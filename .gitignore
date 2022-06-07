@@ -125,7 +125,6 @@ hs_err_pid*
 
 ### Maven ###
 target/
-pom.xml
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
@@ -135,9 +134,7 @@ dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
-mvnw
-mvnw.cmd
-HELP.md
+
 
 ### Windows ###
 # Windows thumbnail cache files
@@ -165,9 +162,6 @@ $RECYCLE.BIN/
 *.lnk
 
 ### IntelliJ IDEA ###
-application.properties
-PickitupApplication.java
-PickitupApplicationTests.java
 .idea
 *.iws
 *.iml
