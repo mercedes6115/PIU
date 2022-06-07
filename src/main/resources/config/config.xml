@@ -2,8 +2,6 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0/EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
-<!--        <typeAlias type="com.example.pickitup.domain.vo.BoardVO" alias="boardVO"/>-->
-<!--        <typeAlias type="com.example.pickitup.domain.vo.ReplyVO" alias="replyVO"/>-->
-<!--        <typeAlias type="com.example.pickitup.domain.vo.HeroVO" alias="heroVO"/>-->
+
     </typeAliases>
 </configuration>

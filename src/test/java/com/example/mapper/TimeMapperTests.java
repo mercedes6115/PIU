@@ -1,4 +1,4 @@
-package com.example.mapper;
+package com.example.pickitup.mapper;
 
 import com.example.pickitup.mapper.TimeMapper;
 import lombok.extern.slf4j.Slf4j;
