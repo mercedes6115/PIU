@@ -1,4 +1,4 @@
-package com.example.board.mapper;
+package com.example.pickitup.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 
