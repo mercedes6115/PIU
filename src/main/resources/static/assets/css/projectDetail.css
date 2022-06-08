@@ -1,0 +1,342 @@
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+.notosanskr * {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+@font-face {
+    font-family: 'Openas';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/Openas.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SDSamliphopangche_Basic';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Basic.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+body {
+    width: 100%;
+    height: 100%;
+    background-color: aquamarine;
+    margin: 0;
+}
+
+.allFrame {
+    font-family: 'Noto Sans KR', sans-serif;
+    width: 100%;
+    height: 4000px;
+    background-color: bisque;
+}
+
+.readFrame {
+    font-family: 'Noto Sans KR', sans-serif;
+    max-width: 1176px;
+    width: 100%;
+    background-color: black;
+    height: 4000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.readForm {
+    font-family: 'Noto Sans KR', sans-serif;
+    display: flex;
+    -webkit-box-pack: start;
+    place-content: stretch flex-start;
+    margin-right: -12px;
+    margin-left: -12px;
+    flex-wrap: wrap;
+    background-color: white;
+    height: 4000px;
+}
+
+.readDetail {
+    font-family: 'Noto Sans KR', sans-serif;
+    width: 66.6667%;
+    min-height: 1px;
+    padding-right: 12px;
+    padding-left: 12px;
+    box-sizing: border-box;
+    position: static;
+    background-color: #ff8b77;
+}
+
+.readApplicateForm {
+    font-family: 'Noto Sans KR', sans-serif;
+    position: static;
+    width: 33.3333%;
+    min-height: 1px;
+    padding-right: 12px;
+    padding-left: 12px;
+    box-sizing: border-box;
+    background-color: chocolate;
+}
+
+.imageForm {
+    max-width: 1176px;
+    width: 100%;
+    height: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    margin-bottom: 24px;
+    background-color: aquamarine;
+}
+
+.image {
+    position: relative;
+    overflow: hidden;
+    padding-top: 75%;
+    background-color: burlywood;
+}
+
+.ploggingImg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+.ploggingImg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.menuBarForm {
+    white-space: nowrap;
+    z-index: 2;
+    position: sticky;
+    top: 78px;
+    overflow-x: auto;
+    margin-left: -24px;
+    padding-left: 24px;
+    background-color: white;
+}
+
+.menuBar {
+    width: 100%;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    background-color: aqua;
+}
+
+.menus {
+    display: flex;
+    white-space: nowrap;
+    overflow-x: auto;
+    box-shadow: rgb(248 248 248) 0px -1px 0px 0px inset;
+    background-color: darkred;
+}
+
+.review {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    padding: 14px 0px 13px;
+    flex-basis: auto;
+    margin-right: 24px;
+    cursor: pointer;
+    position: relative;
+    color: rgb(26, 26, 26);
+}
+
+.moveReview {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    color: rgb(26, 26, 26);
+    font-weight: bold;
+}
+
+.introduce{
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    padding: 14px 0px 13px;
+    flex-basis: auto;
+    margin-right: 24px;
+    cursor: pointer;
+    position: relative;
+    color: rgb(162, 162, 162);
+}
+
+.moveIntroduce{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    color: rgb(162, 162, 162);
+}
+
+.community{
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    padding: 14px 0px 13px;
+    flex-basis: auto;
+    margin-right: 24px;
+    cursor: pointer;
+    position: relative;
+    color: rgb(162, 162, 162);
+}
+
+.moveCommunity{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    color: rgb(162, 162, 162);
+}
+
+.group{
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    padding: 14px 0px 13px;
+    flex-basis: auto;
+    margin-right: 24px;
+    cursor: pointer;
+    position: relative;
+    color: rgb(162, 162, 162);
+}
+
+.moveGroup{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    color: rgb(162, 162, 162);
+}
+
+.guide {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    padding: 14px 0px 13px;
+    flex-basis: auto;
+    margin-right: 24px;
+    cursor: pointer;
+    position: relative;
+    color: rgb(162, 162, 162);
+}
+
+.moveGuide {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    color: rgb(162, 162, 162);
+}
+
+.info {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgb(248, 248, 248);
+}
+
+.projectInfo {
+    font-family: 'SDSamliphopangche_Basic';
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.3px;
+    margin: 0px 0px 16px;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+}
+
+.infoDetail{
+    display: flex;
+    margin: 0px;
+}
+
+.courseInfo, .terrainInfo, .pointInfo {
+    font-family: 'SDSamliphopangche_Basic';
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px 12px 0px 0px;
+    color: rgb(162, 162, 162);
+}
+
+.course, .terrain, .point {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px 48px 0px 0px;
+    color: rgb(26, 26, 26);
+}
+
+.reviewForm {
+    max-width: 960px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.review{
+    overflow: hidden;
+    padding: 48px 0px;
+    color: rgb(0, 0, 0);
+    display: flex;
+    flex-direction: column;
+}
