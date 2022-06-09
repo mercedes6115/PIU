@@ -22,7 +22,7 @@
 body {
     width: 100%;
     height: 100%;
-    background-color: aquamarine;
+
     margin: 0;
 }
 
@@ -30,14 +30,13 @@ body {
     font-family: 'Noto Sans KR', sans-serif;
     width: 100%;
     height: 4000px;
-    background-color: bisque;
+
 }
 
 .readFrame {
     font-family: 'Noto Sans KR', sans-serif;
     max-width: 1176px;
     width: 100%;
-    background-color: black;
     height: 4000px;
     margin-left: auto;
     margin-right: auto;
@@ -51,7 +50,6 @@ body {
     margin-right: -12px;
     margin-left: -12px;
     flex-wrap: wrap;
-    background-color: white;
     height: 4000px;
 }
 
@@ -63,7 +61,6 @@ body {
     padding-left: 12px;
     box-sizing: border-box;
     position: static;
-    background-color: #ff8b77;
 }
 
 .readApplicateForm {
@@ -74,7 +71,6 @@ body {
     padding-right: 12px;
     padding-left: 12px;
     box-sizing: border-box;
-    background-color: chocolate;
 }
 
 .imageForm {
@@ -87,7 +83,6 @@ body {
     overflow: hidden;
     border-radius: 4px;
     margin-bottom: 24px;
-    background-color: aquamarine;
 }
 
 .image {
@@ -119,7 +114,6 @@ body {
     overflow-x: auto;
     margin-left: -24px;
     padding-left: 24px;
-    background-color: white;
 }
 
 .menuBar {
@@ -129,7 +123,6 @@ body {
     align-items: center;
     -webkit-box-pack: justify;
     justify-content: space-between;
-    background-color: aqua;
 }
 
 .menus {
@@ -137,7 +130,7 @@ body {
     white-space: nowrap;
     overflow-x: auto;
     box-shadow: rgb(248 248 248) 0px -1px 0px 0px inset;
-    background-color: darkred;
+
 }
 
 .review {
@@ -339,4 +332,70 @@ body {
     color: rgb(0, 0, 0);
     display: flex;
     flex-direction: column;
+}
+
+.reviewHead {
+    margin-bottom: 40px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.reviewHeadInfo {
+    font-family: 'SDSamliphopangche_Basic';
+    font-size: 20px;
+    line-height: 26px;
+    letter-spacing: -0.2px;
+    margin: 0px;
+    font-weight: bold;
+    color: inherit;
+}
+
+.moveWriteReviewForm {
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-right: 8px;
+    padding-left: 8px;
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 0;
+    --system-on-color: #101010;
+    background-color: rgb(255, 255, 255);
+    color: var(--system-on-color);
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.15);
+    border-radius: 2px;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    display: inline-flex;
+    position: relative;
+    text-decoration: none;
+}
+
+.mwrFontForm1 {
+    display: flex;
+    visibility: inherit;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.mwrFontForm2 {
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.mwrFont {
+    font-family: 'Noto Sans KR', sans-serif;
+    line-height: 1rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-width: 0px;
+    color: var(--system-on-color);
+    margin: 0px;
+    padding: 0px;
 }
