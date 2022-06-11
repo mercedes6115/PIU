@@ -1,0 +1,88 @@
+<!--
+replyController의 랜덤 생성 및 연결하는 부분 가져오기
+CoolSmsUtil.java 파일 필요
+pom.xml에서 dependency 추가
+-->
+
+
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>회원가입</title>
+</head>
+<link rel="stylesheet" href="join.css"/>
+<body>
+<header include-html="/경로/header.html"></header>
+<div class="root">
+    <div class="wrapper-1">
+        <div class="wrapper">
+            <form method="post" action="/컨트롤러 경로/login.html" id="joinForm">
+                <div class="join-firststep">
+                    <div class="wrapper-title"><h1 class="join-title">회원가입</h1><span
+                            class="join-title-type">(일반회원)</span></div>
+                    <div class="join-table">
+                        <div class="join-table-title">이메일<span class="check-text" id="emailCheck_text"> </span></div>
+                        <input class="input-data" id="email" placeholder="example@example.com" type="text"/>
+                    </div>
+                    <div class="join-table">
+                        <div class="join-table-title">비밀번호<span class="check-text" id="pwCheck_text_first"/></span></div>
+                        <input class="input-data" id="password" placeholder="********" type="password"/>
+                    </div>
+                    <div class="join-table">
+                        <div class="join-table-title">비밀번호 재확인<span class="check-text" id="pwCheck_text"/></span></div>
+                        <input class="input-data" id="password_check" placeholder="********" type="password"/>
+                    </div>
+                    <div class="join-table">
+                        <div class="join-table-title">이름<span class="check-text" id="nameCheck_text"> </span></div>
+                        <input class="input-data" id="name" placeholder="홍길동" type="text"/>
+                    </div>
+                    <div class="join-table">
+                        <div class="join-table-title">전화번호<span class="check-text" id="phoneCheck_text"> </span></div>
+                        <input class="input-data" id="phone" placeholder="010-0000-0000" type="text" minlength="12"
+                               maxlength="13"/>
+                    </div>
+                    <div class="join-table">
+                        <div class="join-table-title">주소</div>
+                        <div style="display: flex;margin-right: -32px;margin-top: 10px;margin-bottom: 5px;">
+                            <input class="input-data" type="text" id="state" placeholder="주소">
+                            <input type="button" class="btnCertify" value="검색"/>
+                        </div>
+                        <input class="input-data" type="text" id="state-detail" placeholder="상세주소">
+                    </div>
+                    <input type="button" class="submit_button" id="submit-user" value="다음"/>
+                </div>
+
+                <!--  화면 전환  -->
+                <div class="join-secondstep" style=" display:none;">
+
+                    <div class="wrapper-title"><h1 class="join-title">휴대폰 인증하기</h1></div>
+                    <div class="phone-title">가입을 위해 본인의 휴대폰 번호를 인증해 주세요.<br>
+                        이벤트 알림을 신청하면 추가적으로 혜택을 받으실 수 있어요.
+                    </div>
+                    <div class="join-table">
+                        <div class="join-table-title">휴대폰 번호</div>
+                        <div style="display: flex; margin: 10px 0px 10px;">
+                            <input class="input-data" id="phone2" type="text" readonly/>
+                            <input type="button" class="button-phone" id="sendPhone" value="전송"/>
+                        </div>
+                        <div style="display: flex; margin: 10px 0px 10px;">
+                            <input class="input-data" id="phone-check" type="text" maxlength="6"/>
+                            <input type="button" class="button-phone" id="phone-check-button" value="입력필요"/>
+                        </div>
+                    </div>
+                    <input type="submit" class="submit_button" id="submit-user-final" value="등록"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<footer include-html="/경로/footer.html"></footer>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="join.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+</html>
