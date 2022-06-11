@@ -1,0 +1,541 @@
+@font-face {
+  font-family: 'Openas';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/Openas.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+강조하는 부분 산돌 삼립호빵체 
+@font-face {
+  font-family: 'SDSamliphopangche_Basic';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Basic.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+본문체 noto sans kr
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+.notosanskr * { 
+font-family: 'Noto Sans KR', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+li {
+  list-style-type: none;
+}
+
+/* 보여줄 구간의 높이와 넓이 설정 */
+#slideShow {
+  /*전체 컨테이너*/
+  width: 1200px;
+  height: 500px;
+  position: relative;
+  margin: 50px auto;
+  overflow: hidden; /*리스트 형식으로 이미지를 일렬로 정렬할 것이기 때문에, 1200px 밖으로 튀어 나간 이미지들은 hidden으로 숨겨줘야됨*/
+}
+
+@media (max-width:1024px){
+  #slideShow{
+    width: 100%; 
+  }
+}
+
+.adjust{
+  width:300px;
+  height:300px;
+}
+#slideShow .slides li{
+  width:1200px;
+  height:500px;
+}
+
+
+#slideShow .slides li img{
+  width:100%;
+  height:100%;
+}
+
+@media (max-width:1024px){
+  #slideShow . slides li img{
+    width: 100%; 
+    height: auto;
+  }
+}
+
+.img-adjust{
+  width:100%;
+  height:100%;
+}
+.slides {
+  /*이미지들이 담겨있는 슬라이드 컨테이너*/
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 11200px; /* 슬라이드할 사진과 마진 총 넓이 */
+  left: -1500px;
+  transition: 0.5s ease-out; /*ease-out: 처음에는 느렸다가 점점 빨라짐*/
+} /* 첫 번째 슬라이드 가운데에 정렬하기위해 첫번째 슬라이드만 margin-left조정 */
+
+.slides li:first-child {
+
+} /* 슬라이드들 옆으로 정렬 */
+
+.slides li:not(:last-child) {
+  float: left;
+  margin-right: 100px;
+}
+.controller span {
+  position: absolute;
+  background-color: transparent;
+  color: black;
+  text-align: center;
+  border-radius: 50%;
+  padding: 10px 20px;
+  top: 50%;
+  font-size: 1.3em;
+  cursor: pointer;
+} /* 이전, 다음 화살표에 마우스 커서가 올라가 있을때 */
+.controller span:hover {
+  background-color: rgba(128, 128, 128, 0.11);
+}
+.prev {
+  left: 10px;
+} /* 이전 화살표에 마우스 커서가 올라가 있을때 이전 화살표가 살짝 왼쪽으로 이동하는 효과*/
+.prev:hover {
+  transform: translateX(-10px);
+}
+.next {
+  right: 10px;
+} /* 다음 화살표에 마우스 커서가 올라가 있을때 이전 화살표가 살짝 오른쪽으로 이동하는 효과*/
+.next:hover {
+  transform: translateX(10px);
+}
+
+.space-before-main{
+    max-width: 1176px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.space-before-main1{
+  margin-top: 72px;
+  margin-left: 10%;
+}
+
+.filter-btn{
+  height:40px;
+  width:80px;
+  border-radius:5px;
+  font-family: 'SDSamliphopangche_Basic';
+  cursor:pointer;
+  border:none;
+}
+.plogging-wrapper{
+  max-width: 1176px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.plogging-margin{
+  margin-top: 72px;
+}
+.hot-plogging-text{
+  margin-bottom: 16px;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    align-items: flex-end;
+    
+}
+.hot-plogging-text1{
+  font-family: 'SDSamliphopangche_Basic';
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+.hot-plogging-text2{
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(26, 26, 26);
+    line-height: 34px;
+    letter-spacing: -0.4px;
+    margin-left: 15px;
+}
+
+.plogging-project-container{
+  position: relative;
+    width: 100%;
+}
+
+.plogging-project-container1{
+  overflow: hidden;
+  border-radius: 3px;
+  margin-bottom: 8px;
+}
+.plogging-project-img-border{
+  position: relative;
+  border-radius: 3px;
+  display: block;
+  overflow: hidden;
+  font-size: 0px;
+  padding-top: 75%;
+background: rgb(238, 238, 238);
+}
+
+.plogging-img-wrap{
+    position: relative;
+    border-radius: 3px;
+    overflow: hidden;
+    font-size: 0px;
+    padding-top: 75%;
+    background: rgb(238, 238, 238);
+}
+
+.plogging-img{
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+
+
+
+
+/*두번째 이미지 슬라이드 */
+/* 보여줄 구간의 높이와 넓이 설정 */
+#slideShow1 {
+  /*전체 컨테이너*/
+  width: 1200px;
+  height: 350px;
+  position: relative;
+  margin: 50px auto;
+  overflow: hidden; /*리스트 형식으로 이미지를 일렬로 정렬할 것이기 때문에, 500px 밖으로 튀어 나간 이미지들은 hidden으로 숨겨줘야됨*/
+}
+@media (min-width:1024px){
+  .slides1{
+    width:100%;
+
+  }
+}
+.slides1 {
+  /*이미지들이 담겨있는 슬라이드 컨테이너*/
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2500px; /* 슬라이드할 사진과 마진 총 넓이 */
+  transition: 0.5s ease-out; /*ease-out: 처음에는 느렸다가 점점 빨라짐*/
+} /* 첫 번째 슬라이드 가운데에 정렬하기위해 첫번째 슬라이드만 margin-left조정 */
+.slides1 li:first-child {
+  margin-left: 20px;
+} /* 슬라이드들 옆으로 정렬 */
+.slides1 li:not(:last-child) {
+  float: left;
+  margin-right: 20px;
+}
+.controller1 span {
+  position: absolute;
+  background-color: transparent;
+  color: black;
+  text-align: center;
+  border-radius: 50%;
+  padding: 10px 20px;
+  top: 50%;
+  font-size: 1.3em;
+  cursor: pointer;
+} /* 이전, 다음 화살표에 마우스 커서가 올라가 있을때 */
+.controller1 span:hover {
+  background-color: rgba(128, 128, 128, 0.11);
+}
+.prev1 {
+  left: 10px;
+  margin-left: -33px;
+} /* 이전 화살표에 마우스 커서가 올라가 있을때 이전 화살표가 살짝 왼쪽으로 이동하는 효과*/
+
+.next1 {
+  right: 10px;
+  margin-right: -33px;
+} /* 다음 화살표에 마우스 커서가 올라가 있을때 이전 화살표가 살짝 오른쪽으로 이동하는 효과*/
+
+#slideShow1 .slides1 li{
+  width: 276px;
+  height: 350px
+}
+
+#slideShow1 .slides1 li img{
+  width:100%;
+  height:100%;
+}
+
+
+.material-symbols-outlined{
+  color:white;
+  margin-left:5px;
+  margin-top:1px;
+  font-size: 14px;
+  
+}
+
+
+/* 세번째 슬라이드 */
+/* 보여줄 구간의 높이와 넓이 설정 */
+#slideShow2 {
+  /*전체 컨테이너*/
+  width: 1200px;
+  height: 350px;
+  position: relative;
+  margin: 50px auto;
+  overflow: hidden; /*리스트 형식으로 이미지를 일렬로 정렬할 것이기 때문에, 500px 밖으로 튀어 나간 이미지들은 hidden으로 숨겨줘야됨*/
+}
+@media (min-width:1024px){
+  .slides2{
+    width:100%;
+    
+  }
+}
+.slides2 {
+  /*이미지들이 담겨있는 슬라이드 컨테이너*/
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2500px; /* 슬라이드할 사진과 마진 총 넓이 */
+  transition: 0.5s ease-out; /*ease-out: 처음에는 느렸다가 점점 빨라짐*/
+} /* 첫 번째 슬라이드 가운데에 정렬하기위해 첫번째 슬라이드만 margin-left조정 */
+.slides2 li:first-child {
+  margin-left: 20px;
+} /* 슬라이드들 옆으로 정렬 */
+.slides2 li:not(:last-child) {
+  float: left;
+  margin-right: 20px;
+}
+.controller2 span {
+  position: absolute;
+  background-color: transparent;
+  color: black;
+  text-align: center;
+  border-radius: 50%;
+  padding: 10px 20px;
+  top: 50%;
+  font-size: 1.3em;
+  cursor: pointer;
+} /* 이전, 다음 화살표에 마우스 커서가 올라가 있을때 */
+.controller2 span:hover {
+  background-color: rgba(128, 128, 128, 0.11);
+}
+.prev2 {
+  left: 10px;
+  margin-left: -33px;
+} /* 이전 화살표에 마우스 커서가 올라가 있을때 이전 화살표가 살짝 왼쪽으로 이동하는 효과*/
+
+.next2 {
+  right: 10px;
+  margin-right: -33px;
+} /* 다음 화살표에 마우스 커서가 올라가 있을때 이전 화살표가 살짝 오른쪽으로 이동하는 효과*/
+
+#slideShow2 .slides2 li{
+  width: 276px;
+  height: 350px
+}
+
+#slideShow2 .slides2 li img{
+  width:100%;
+  height:100%;
+}
+
+
+
+/* 세번째 슬라이드 */
+/* 보여줄 구간의 높이와 넓이 설정 */
+#slideShow3 {
+  /*전체 컨테이너*/
+  width: 1200px;
+  height: 350px;
+  position: relative;
+  margin: 50px auto;
+  overflow: hidden; /*리스트 형식으로 이미지를 일렬로 정렬할 것이기 때문에, 500px 밖으로 튀어 나간 이미지들은 hidden으로 숨겨줘야됨*/
+}
+
+.slides3 {
+  /*이미지들이 담겨있는 슬라이드 컨테이너*/
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2500px; /* 슬라이드할 사진과 마진 총 넓이 */
+  transition: 0.5s ease-out; /*ease-out: 처음에는 느렸다가 점점 빨라짐*/
+} /* 첫 번째 슬라이드 가운데에 정렬하기위해 첫번째 슬라이드만 margin-left조정 */
+
+@media (min-width:1024px){
+  .slides3{
+    width:100%;
+    
+  }
+}
+.slides3 li:first-child {
+  margin-left: 20px;
+} /* 슬라이드들 옆으로 정렬 */
+.slides3 li:not(:last-child) {
+  float: left;
+  margin-right: 20px;
+}
+.controller3 span {
+  position: absolute;
+  background-color: transparent;
+  color: black;
+  text-align: center;
+  border-radius: 50%;
+  padding: 10px 20px;
+  top: 50%;
+  font-size: 1.3em;
+  cursor: pointer;
+} /* 이전, 다음 화살표에 마우스 커서가 올라가 있을때 */
+.controller3 span:hover {
+  background-color: rgba(128, 128, 128, 0.11);
+}
+.prev3 {
+  left: 10px;
+  margin-left: -33px;
+} /* 이전 화살표에 마우스 커서가 올라가 있을때 이전 화살표가 살짝 왼쪽으로 이동하는 효과*/
+
+.next3 {
+  right: 10px;
+  margin-right: -33px;
+} /* 다음 화살표에 마우스 커서가 올라가 있을때 이전 화살표가 살짝 오른쪽으로 이동하는 효과*/
+
+
+#slideShow3 .slides3 li{
+  width: 276px;
+  height: 350px
+}
+
+#slideShow3 .slides3 li img{
+  width:100%;
+  height:100%;
+}
+
+.hot-plogging-text > a{
+  text-decoration:none
+}
+
+.plogging-thumbnail-wrap{
+  height:207px;
+  
+}
+.slides3 > li > .plogging-thumbnail-wrap > img{
+  border-radius: 5px;
+}
+
+.slides2 > li > .plogging-thumbnail-wrap > img{
+  border-radius: 5px;
+}
+
+.slides1 > li > .plogging-thumbnail-wrap > img{
+  border-radius: 5px;
+}
+
+.deadline{
+  width:100%;
+  background-color:#1F89FF;
+  border-radius: 5px;
+  margin-top:10px;
+}
+.deadline-text{
+  position: absolute;
+  margin-top: 4px;
+  display:inline;
+  color:white;
+  font-family:'SDSamliphopangche_Basic';
+  margin-left: 5px;
+}
+
+.plogging-location-text{
+  font-family:'SDSamliphopangche_Basic';
+  padding-top: 5%;
+
+}
+
+.plogging-msg-text{
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: bold;
+  margin-top: 5%;
+}
+
+.deadline > img{
+  margin-top:5px;
+  margin-left:7px;
+  margin-right:7px;
+}
+
+.d-day{
+  font-family: 'SDSamliphopangche_Basic';
+  color:white;
+  display:inline;
+  float:right;
+  margin-right:8px;
+  margin-top: 4px;
+}
+.jjims-and-likes{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 4px
+px
+;
+}
+.last-wrap{
+  display: flex;
+  align-items: center;
+}
+.heart-icon{
+    font-family:'SDSamliphopangche_Basic';
+    font-size: 11px;
+    line-height: 16px;
+    letter-spacing: normal;
+    margin: 0px 8px 0px 0px;
+    display: flex;
+    align-items: center;
+    color: rgb(162, 162, 162);
+    margin-top: 5px;
+}
+
+.heasrt-svg{
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  height: 12px;
+  margin-right: 2px;
+}
+
+.hearts{
+  margin-top: 2px;
+}
+.likes-wrap{
+  font-family:'SDSamliphopangche_Basic';
+    font-size: 11px;
+    line-height: 16px;
+    letter-spacing: normal;
+    margin: 0px 8px 0px 0px;
+    display: flex;
+    align-items: center;
+    color: rgb(162, 162, 162);
+    margin-top: 5px;
+}
+.likes{
+  margin-bottom: 4px;
+}
+
+.likes-svg{
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  height: 12px;
+  margin-right: 2px;
+}
