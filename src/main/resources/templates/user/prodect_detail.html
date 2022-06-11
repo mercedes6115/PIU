@@ -6,17 +6,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<link rel="stylesheet" href="test.css"/>
 <body>
     <div class="root">
-        <div class="wrapper">
-            <div class="title-wrapper">
-                <div class="title-category">
-                    <div class="title-mypage"><a target="_self" class="to_mypage">마이페이지</a></div>
-                    <div class="title-divide"></div>
-                    <div class="title-productList" aria-disabled="false"><a target="_self" class="to_prodectList">주문 및 배송</a></div>
+        <div class="wrapper-1">
+            <div class="wrapper-product">
+                <div class="title-wrapper">
+                    <div class="title-category">
+                        <div class="title-category-detail"><a target="_self" class="to_mypage">마이페이지</a></div>
+                        <div class="title-divide"></div>
+                        <div class="title-category-detail" aria-disabled="false"><a target="_self" class="to_prodectList">주문 및 배송</a></div>
+                        <div class="title-divide"></div>
+                        <div class="title-category-detail" aria-disabled="false"><a target="_self" class="to_prodectList">주문 상세</a></div>
+                    </div>
+                    <h3>2022.06.11(페이지 이동시 받아오기) 주문 상세 내역</h3>
                 </div>
+                <div class="divide"></div>
+                <div class="product-bill-wrapper">
+                    <h4>결제 성공</h4>
+                    <!-- <div class="bill-divide"></div> -->
+                    <div class="bill-way-title">
+                        <div class="bill-way-wrapper">
+                        <p class="bill-wrapper-left">결제 수단</p>
+                        <p class="bill-wrapper-right">카카오페이</p>
+                        </div>
+                    </div>
+                    <div class =bill-divide></div>
+                    <div class="bill-way-detail-wrapper">
+                        <div class="bill-way-detail">
+                            
+                            <div class="bill-way-wrapper" id="bill-price-wrpper">
+                                <p class="bill-wrapper-left">상품 금액</p>
+                                <p class="bill-wrapper-right" id="product-price">100원</p>
+                            </div>
+                            <div class="bill-way-wrapper" id="bill-count-wrpper">
+                                <p class="bill-wrapper-left">상품 갯수</p>
+                                <p class="bill-wrapper-right" id="product-count">2개</p>
+                            </div>
+
+                            <div class="bill-way-wrapper" id="bill-deliver">
+                                <p class="bill-wrapper-left">배송비</p>
+                                <p class="bill-wrapper-right">무료</p>
+                            </div>
+                            <div class =bill-divide></div>
+
+                            <div class="bill-way-wrapper" id="bill-total">
+                                <p class="bill-wrapper-left">총 결제 금액</p>
+                                <p class="bill-wrapper-right">200원</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="divide"></div>
             </div>
-            <div class="title"></div>
         </div>
     </div>
     

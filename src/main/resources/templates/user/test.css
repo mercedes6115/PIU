@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+@font-face {
+    font-family: 'SDSamliphopangche_Basic';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Basic.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.notosanskr * {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.wrapper-1 {
+    max-width: 960px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+}
+
+.wrapper {
+    display: block;
+    width: 50%;
+    margin-left: 25%;
+}
+
+.wrapper-product {
+    display: block;
+    width: 640px;
+    margin-left: 160px;
+}
+
+.title-wrapper{
+    display: flex;
+    padding-left: 24px;
+    flex-direction: column
+}
+
+.title-category{
+    display: flex;
+    align-items: center;
+    color: rgb(162, 162, 162);
+}
+
+.title-category-detail{
+    border-radius: 24px;
+    background-color: rgb(248, 248, 248);
+    padding: 6px 10px;
+    color: rgb(202, 202, 202);
+    display:table;
+}
+
+.title-category-detail a{
+    font-size: 11px;
+    display:table-cell;
+    vertical-align:middle;
+}
+
+.title-divide{
+    transform: rotate(13deg);
+    margin: 0px 6px;
+    width: 1px;
+    height: 20px;
+    background-color: rgb(202, 202, 202);
+}
+
+.title-wrapper h3{
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.divide {
+    height: 8px;
+    width: 100%;
+    background-color: black;
+}
+
+.product-bill-wrapper{
+    display: flex;
+    padding: 24px;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.product-bill-wrapper h4{
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.bill-way-title{
+    display: flex;
+    flex-direction: column;
+}
+
+.bill-wrapper-left{
+    color: rgb(162, 162, 162);
+    margin: 0px;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.125rem;
+}
+
+.bill-wrapper-right{
+    margin: 0px;
+    font-size: 0.875rem;
+    font-weight: 400;
+}
+
+.bill-way-wrapper{
+    display: flex;
+    justify-content: space-between;
+}
+
+.bill-divide{
+    background-color: rgb(229, 229, 229);
+    width: 100%;
+    height: 1px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
