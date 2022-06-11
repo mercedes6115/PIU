@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/src/main/resources/static/assets/css/header.css" />
+    <link rel="stylesheet" href="/src/main/resources/static/assets/css/footer.css" />
+    <link rel="stylesheet" href="/src/main/resources/static/assets/css/pickitupStore.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+</head>
+<body>
+
+     <!--헤더  -->
+   
+<section class="header-wrap">
+    <header class="header">
+        <div class="header1">
+            <div class="header2">
+                <div class="header3">
+                    <a href="#">
+                        <div class="logo-wrap" >
+                            <span class="logo-font">pickitup</span>
+                        </div>
+                    </a>
+                    <div class="empty-space" ></div>
+                    <div class="menu-search-wrap" >
+                        <div class="menu-wrap" >
+                            <a href="#" style="text-decoration-line: none;">
+                                <h4 class="menu-plogging" >플로깅</h4>
+                            </a>
+                            <div class="menu-space"></div>
+                            <a href="#" style="text-decoration-line: none;">
+                                <h4 class="menu-store">스토어</h4>
+                            </a>
+                        </div>
+                        <div class="empty-space" ></div>
+                        <div class="search-box" >
+                            <div class="search-box1" >
+                                <div class="search-box2" >
+                                    <div class="search-box3" >
+                                        <div class="search-box4" >
+                                            <div class="search-text-icon" >
+                                                <input type="text" class="search-text" placeholder="찾으시는 플로깅이 있으신가요?"></input>
+                                                <span class="search-icon" >
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="css-skwyyj">
+                                                        <path d="m22.925 21.16-5.605-5.605A8.453 8.453 0 0 0 19 10.5 8.5 8.5 0 0 0 10.5 2 8.5 8.5 0 0 0 2 10.5a8.5 8.5 0 0 0 8.5 8.5c1.895 0 3.64-.63 5.055-1.68l5.605 5.605c.1.1.255.1.355 0l1.415-1.415a.246.246 0 0 0-.005-.35ZM4.5 10.5c0-3.31 2.69-6 6-6s6 2.69 6 6-2.69 6-6 6-6-2.69-6-6Z" class="css-sy7xp0">
+                                                        </path>
+                                                    </svg>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="header-right-menu-wrap">
+                        <div class="header-right-menu-wrap1" >
+                            <div class="header-right-menu-wrap2" >
+                                <div class="header-right-menu-wrap3">
+                                <a href="#" style="text-decoration-line: none;">
+                                    <p class = "myplogging">마이 플로깅</p>
+                                </a>
+                                    <div class="empty-space1"></div>
+                                <a href="#" style="text-decoration-line: none;">
+                                    <p class = "loginout">로그인</p>
+                                </a>
+                                    <div class="empty-space1"></div>
+                                <a href="#" style="text-decoration-line: none;">
+                                    <p class = "loginout">찜목록</p>
+                                </a>
+                                    <div class="empty-space1"></div>
+                                    <div class="empty-space1"></div>
+                                    <div class="empty-space1"></div>
+                                    <div class="profile">
+                                        <div class="profile-img-wrap">
+                                            <div class="profile-img">
+                                                <div class="profile-img1">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+</section>
+   <!--헤더 -->
+
+    <div class="media_store_categories">
+       <input type="button" value="전체" class="categories_selected">
+       <input type="button" value="생활">
+       <input type="button" value="주방">
+       <input type="button" value="욕실">
+       <input type="button" value="반려동물">
+       <input type="button" value="화장품">
+       <input type="button" value="식품">
+       <input type="button" value="문구">
+       <input type="button" value="원예">
+    </div>
+    <section class="store_container">
+        <div class="store_categories">
+            <ul>
+                <li class="active"><a href="#">전체</a></li>
+                <li><a href="#">생활</a></li>
+                <li><a href="#">주방</a></li>
+                <li><a href="#">욕실</a></li>
+                <li><a href="#">반려동물</a></li>
+                <li><a href="#">화장품</a></li>
+                <li><a href="#">식품</a></li>
+                <li><a href="#">문구</a></li>
+                <li><a href="#">원예</a></li>
+              
+            </ul>
+        </div>
+
+        <!-- -----------------------------임시 데이터 --------------------------------->
+        <div class="store_items">
+            <div class="all_items">
+                <div class="onetime">
+                    <p>전체 상품 목록 &nbsp;&nbsp; 600개</p>
+                </div>
+
+                                <!--  목록 리스트 사적 -->
+
+                <ul>
+                    <li>
+                        <div class="item">
+                            <span class="material-symbols-outlined jjim">
+                                favorite
+                                </span>
+                            <a href="pickitupStoreDetail.html"><img src="/src/main/resources/static/images/1.jpg">
+                                <div>
+                                    <b>[아시아 종묘] 코코넛 화분</b>
+                                </div>
+                                <div>
+                                    800원
+                                </div>
+                                <div class="flex">
+                                    <div><span class="material-symbols-outlined">
+                                        chat_add_on
+                                        </span> &nbsp; &nbsp;</div>
+                                    <div><span class="material-symbols-outlined">
+                                        favorite
+                                        </span></div>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item">
+                            <span class="material-symbols-outlined jjim">
+                                favorite
+                                </span>
+                            <a href="pickitupStoreDetail.html"><img src="/src/main/resources/static/images/1.jpg">
+                                <div>
+                                    <b>[아시아 종묘] 코코넛 화분</b>
+                                </div>
+                                <div>
+                                    800원
+                                </div>
+                                <div class="flex">
+                                    <div><span class="material-symbols-outlined">
+                                        chat_add_on
+                                        </span> &nbsp; &nbsp;</div>
+                                    <div><span class="material-symbols-outlined">
+                                        favorite
+                                        </span></div>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item">
+                            <span class="material-symbols-outlined jjim">
+                                favorite
+                                </span>
+                            <a href="pickitupStoreDetail.html"><img src="/src/main/resources/static/images/1.jpg">
+                                <div>
+                                    <b>[아시아 종묘] 코코넛 화분</b>
+                                </div>
+                                <div>
+                                    800원
+                                </div>
+                                <div class="flex">
+                                    <div><span class="material-symbols-outlined">
+                                        chat_add_on
+                                        </span> &nbsp; &nbsp;</div>
+                                    <div><span class="material-symbols-outlined">
+                                        favorite
+                                        </span></div>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item">
+                            <span class="material-symbols-outlined jjim">
+                                favorite
+                                </span>
+                            <a href="pickitupStoreDetail.html"><img src="/src/main/resources/static/images/1.jpg">
+                                <div>
+                                    <b>[아시아 종묘] 코코넛 화분</b>
+                                </div>
+                                <div>
+                                    800원
+                                </div>
+                                <div class="flex">
+                                    <div><span class="material-symbols-outlined">
+                                        chat_add_on
+                                        </span> &nbsp; &nbsp;</div>
+                                    <div><span class="material-symbols-outlined">
+                                        favorite
+                                        </span></div>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item">
+                            <span class="material-symbols-outlined jjim">
+                                favorite
+                                </span>
+                            <a href="pickitupStoreDetail.html"><img src="/src/main/resources/static/images/1.jpg">
+                                <div>
+                                    <b>[아시아 종묘] 코코넛 화분</b>
+                                </div>
+                                <div>
+                                    800원
+                                </div>
+                                <div class="flex">
+                                    <div><span class="material-symbols-outlined">
+                                        chat_add_on
+                                        </span> &nbsp; &nbsp;</div>
+                                    <div><span class="material-symbols-outlined">
+                                        favorite
+                                        </span></div>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item">
+                            <span class="material-symbols-outlined jjim">
+                                favorite
+                                </span>
+                            <a href="pickitupStoreDetail.html"><img src="/src/main/resources/static/images/1.jpg">
+                                <div>
+                                    <b>[아시아 종묘] 코코넛 화분</b>
+                                </div>
+                                <div>
+                                    800원
+                                </div>
+                                <div class="flex">
+                                    <div><span class="material-symbols-outlined">
+                                        chat_add_on
+                                        </span> &nbsp; &nbsp;</div>
+                                    <div><span class="material-symbols-outlined">
+                                        favorite
+                                        </span></div>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item">
+                            <span class="material-symbols-outlined jjim">
+                                favorite
+                                </span>
+                            <a href="pickitupStoreDetail.html"><img src="/src/main/resources/static/images/1.jpg">
+                                <div>
+                                    <b>[아시아 종묘] 코코넛 화분</b>
+                                </div>
+                                <div>
+                                    800원
+                                </div>
+                                <div class="flex">
+                                    <div><span class="material-symbols-outlined">
+                                        chat_add_on
+                                        </span> &nbsp; &nbsp;</div>
+                                    <div><span class="material-symbols-outlined">
+                                        favorite
+                                        </span></div>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item">
+                            <span class="material-symbols-outlined jjim">
+                                favorite
+                                </span>
+                            <a href="pickitupStoreDetail.html"><img src="/src/main/resources/static/images/1.jpg">
+                                <div>
+                                    <b>[아시아 종묘] 코코넛 화분</b>
+                                </div>
+                                <div>
+                                    800원
+                                </div>
+                                <div class="flex">
+                                    <div><span class="material-symbols-outlined">
+                                        chat_add_on
+                                        </span> &nbsp; &nbsp;</div>
+                                    <div><span class="material-symbols-outlined">
+                                        favorite
+                                        </span></div>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item">
+                            <span class="material-symbols-outlined jjim">
+                                favorite
+                                </span>
+                            <a href="pickitupStoreDetail.html"><img src="/src/main/resources/static/images/1.jpg">
+                                <div>
+                                    <b>[아시아 종묘] 코코넛 화분</b>
+                                </div>
+                                <div>
+                                    800원
+                                </div>
+                                <div class="flex">
+                                    <div><span class="material-symbols-outlined">
+                                        chat_add_on
+                                        </span> &nbsp; &nbsp;</div>
+                                    <div><span class="material-symbols-outlined">
+                                        favorite
+                                        </span></div>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                   
+                    
+                </ul>
+                <!--  목록 리스트 끝 -->
+
+
+            </div>
+        </div>
+            <button type="button" class="toTop">TOP</button>
+    </section>
+    <!-- -----------------------------임시 데이터 --------------------------------->
+
+</body>
+<script src="/src/main/resources/static/assets/js/store.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<script>
+    //scroll top
+    $('.toTop').click(function(){
+        $('html, body').animate({scrollTop : 0},300);
+    });
+    //정상웹 일때
+    $('.store_categories li').click(function(){
+        $('.store_categories li').removeClass('active');
+        if($(this).hasClass('active')){
+            $(this).removeClass('active');
+        }else{
+            $(this).addClass('active');
+        }
+    })
+
+    //반응형 웹
+    $('.media_store_categories input').click(function(){
+        $('.media_store_categories input').removeClass('categories_selected');
+        if($(this).hasClass('categories_selected')){
+            $(this).removeClass('categories_selected');
+        }else{
+            $(this).addClass('categories_selected');
+        }
+    })
+
+    $('.jjim').click(function(){
+        if($(this).attr("color")=="red"){
+            $(this).css("color","black");
+        }
+        $(this).css("color","red");
+        console.log( $(this).attr("color"));
+    })
+
+</script>
+</html>
