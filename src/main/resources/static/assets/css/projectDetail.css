@@ -130,7 +130,8 @@ body {
     white-space: nowrap;
     overflow-x: auto;
     box-shadow: rgb(248 248 248) 0px -1px 0px 0px inset;
-
+    background-color: white;
+    width: 100%;
 }
 
 .review {
@@ -300,7 +301,7 @@ body {
 }
 
 .courseInfo, .terrainInfo, .pointInfo {
-    font-family: 'SDSamliphopangche_Basic';
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 14px;
     font-weight: normal;
     line-height: 20px;
@@ -340,6 +341,7 @@ body {
     -webkit-box-align: center;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
 }
 
 .reviewHeadInfo {
@@ -390,7 +392,7 @@ body {
 }
 
 .mwrFont {
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'SDSamliphopangche_Basic';
     line-height: 1rem;
     font-size: 0.75rem;
     font-weight: 700;
@@ -398,4 +400,475 @@ body {
     color: var(--system-on-color);
     margin: 0px;
     padding: 0px;
+}
+
+.wrapImage {
+    width: 100%;
+    margin: 0px auto;
+    position: relative;
+    overflow: hidden;
+    list-style: none;
+    padding: 0px;
+    z-index: 1;
+}
+
+.reviewImages{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    box-sizing: content-box;
+}
+
+.reviewImageForm {
+    width: 144px;
+    height: 144px;
+    cursor: pointer;
+    flex-shrink: 0;
+    position: relative;
+    margin-right: 8px;
+}
+
+.moveImage img{
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.readReviews {
+    display: flex;
+    flex-direction: column;
+    flex-flow: row wrap;
+    margin: 0px -16px;
+}
+
+.readReviewForm {
+    display: flex;
+    min-width: 360px;
+    width: 100%;
+    flex: 1 1 0%;
+    margin: 0px 16px 40px;
+}
+
+.readReview {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.moveReviewDetail {
+    text-decoration: none;
+    color: inherit;
+}
+
+.reviewDetailProfile {
+    display: flex;
+}
+
+.reviewProfileForm {
+    position: relative;
+    width: 32px;
+    height: 32px;
+}
+
+.reviewProfile {
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgb(248, 248, 248);
+    border-radius: 100%;
+    line-height: 0;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    font-size: 0px;
+    background: rgb(238, 238, 238);
+}
+
+.profile {
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.profile img {
+        width: 100%;
+        height:100%;
+}
+
+.reviewNameDate {
+    flex: 1 1 0%;
+    display: flex;
+    flex-direction: column;
+    margin: 0px 8px;
+}
+
+.reviewName {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 16px;
+    color: inherit;
+}
+
+.reviewDate {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: normal;
+    font-size: 11px;
+    line-height: 14px;
+    color: rgb(162, 162, 162);
+    
+}
+
+.profileMargin{
+    margin-bottom: 12px;
+}
+
+.reviewContentForm{
+    display: flex;
+    margin-top: auto;
+}
+
+.reviewContent{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 18px;
+    margin-bottom: 0px;
+    flex: 1 1 0%;
+    width: 100%;
+    word-break: break-word;
+    white-space: break-spaces;
+    height: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.reviewContentMargin{
+    margin-right: 12px;
+}
+
+.moveReviewTotal {
+    font-family: 'SDSamliphopangche_Basic';
+    padding: 13px 12px;
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 0;
+    --system-on-color: #101010;
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--system-on-color);
+    border-width: 0px;
+    border-radius: 2px;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    display: inline-flex;
+    position: relative;
+    width: 100%;
+    text-decoration: none;
+}
+
+.pIntroduceFrame {
+    max-width: 960px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.pIntroduceForm {
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-box-pack: start;
+    place-content: stretch flex-start;
+    margin-right: -12px;
+    margin-left: -12px;
+}
+
+.gIntroduceFrame {
+    max-width: 960px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.gIntroduceForm {
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-box-pack: start;
+    place-content: stretch flex-start;
+    margin-right: -12px;
+    margin-left: -12px;
+}
+
+.gIntroduceTitleFrame {
+    margin-bottom: 26px;
+    position: relative;
+    width: 100%;
+    margin: 48px 0px 24px;
+}
+
+.gIntroduceTitleForm {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+
+.gIntroduceTitle {
+    font-family: 'SDSamliphopangche_Basic';
+    font-size: 24px;
+    font-weight: normal;
+    color: rgb(26, 26, 26);
+    line-height: 34px;
+    letter-spacing: -0.4px;
+    margin: 0px;
+}
+
+.gIntroduceProfileFrame {
+    position: relative;
+    width: 64px;
+    height: 64px;
+}
+
+.gIntroduceProfileForm{
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgb(248, 248, 248);
+    border-radius: 100%;
+    line-height: 0;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    font-size: 0px;
+    background: rgb(238, 238, 238);
+}
+
+.gIntroduceProfile {
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.gIntroduceProfile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gIntroduceContentFrame{
+    word-break: break-word;
+    margin-bottom: 48px;
+    width: 100%;
+}
+
+.gIntroduceContentFrame {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.qnaFrame {
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-box-pack: start;
+    place-content: stretch flex-start;
+
+}
+
+.qnaTitle {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    position: relative;
+    width: 100%;
+    margin: 48px 0px 24px;
+}
+
+.qnaTitle h3 {
+    font-family: 'SDSamliphopangche_Basic';
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(26, 26, 26);
+    line-height: 34px;
+    letter-spacing: -0.4px;
+    margin: 0px;
+}
+
+.qnaListForm {
+    margin-bottom: 0px;
+    width: 100%;
+}
+
+.qnaList {
+    position: relative;
+    top: 0px;
+    left: 0px;
+}
+
+.question {
+    margin-top: 24px;
+    display: block;
+    color: rgb(58, 58, 58);
+    cursor: pointer;
+}
+
+.qUserProfileFrame {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+
+.qUserProfileForm {
+    margin-bottom: 8px;
+    display: flex;
+}
+
+.qUserProfileImgFrame {
+    position: relative;
+    width: 40px;
+    height: 40px;
+}
+
+.qUserProfileImgForm {
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgb(248, 248, 248);
+    border-radius: 100%;
+    line-height: 0;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    font-size: 0px;
+    background: rgb(238, 238, 238);
+}
+
+.qUserProfile {
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.qUserProfile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.qUserProfileNameFrame {
+    display: flex;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    justify-content: center;
+    padding-left: 10px;
+}
+
+.qUserProfileName {
+    font-family: 'SDSamliphopangche_Basic';
+    font-size: 11px;
+    line-height: 16px;
+    letter-spacing: normal;
+    margin: 0px;
+    font-weight: 600;
+    color: rgb(26, 26, 26);
+}
+
+.qUserProfileDate {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 9px;
+    font-weight: normal;
+    line-height: 12px;
+    letter-spacing: normal;
+    margin: 0px;
+    color: rgb(202, 202, 202);
+}
+
+.qContentFrame {
+    margin-top: 16px;
+    margin-bottom: 8px;
+}
+
+.qContentForm {
+    font-size: 14px;
+    font-weight: normal;
+    color: rgb(26, 26, 26);
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+    width: 100%;
+}
+
+.qContent {
+    padding: 0px;
+    color: rgb(26, 26, 26);
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.qContentAddForm {
+    margin-top: 16px;
+    margin-bottom: 24px;
+    position: relative;
+}
+
+.qContentAdd {
+    position: relative;
+    display: flex;
+    border-radius: 25px;
+    padding: 0px 10px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(229, 229, 229);
+    width: 100%;
+    justify-content: space-between;
+}
+
+.qContentAddText {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    color: rgb(26, 26, 26);
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+    width: 100%;
+    overflow: hidden;
+    padding: 14px 10px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    resize: none;
+    overflow-x: hidden;
+    overflow-wrap: break-word;
+    height: 21px;
+}
+
+.qContentAddBtn {
+    font-weight: 500;
+    background-color: transparent;
+    text-decoration-line: none;
+    display: inline-flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    border-width: 0px;
+    cursor: pointer;
+    color: rgb(102, 102, 102);
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    right: 11px;
+    top: 24px;
+    transform: translateY(-50%);
+    padding: 0px;
+    background: none;
+    border: 0px;
+    line-height: 1;
+    box-shadow: none;
 }

@@ -6,9 +6,88 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="/assets/css/projectDetail.css" />
+    <link rel="stylesheet" href="/src/main/resources/static/assets/css/projectDetail.css" />
+    <link rel="stylesheet" href="/src/main/resources/static/assets/css/header.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 </head>
 <body>
+    <section class="header-wrap">
+        <header class="header">
+            <div class="header1">
+                <div class="header2">
+                    <div class="header3">
+                        <a href="#">
+                            <div class="logo-wrap" >
+                                <span class="logo-font">pickitup</span>
+                            </div>
+                        </a>
+                        <div class="empty-space" ></div>
+                        <div class="menu-search-wrap" >
+                            <div class="menu-wrap" >
+                                <a href="#" style="text-decoration-line: none;">
+                                    <h4 class="menu-plogging" >플로깅</h4>
+                                </a>
+                                <div class="menu-space"></div>
+                                <a href="#" style="text-decoration-line: none;">
+                                    <h4 class="menu-store">스토어</h4>
+                                </a>
+                            </div>
+                            <div class="empty-space" ></div>
+                            <div class="search-box" >
+                                <div class="search-box1" >
+                                    <div class="search-box2" >
+                                        <div class="search-box3" >
+                                            <div class="search-box4" >
+                                                <div class="search-text-icon" >
+                                                    <input type="text" class="search-text" placeholder="찾으시는 플로깅이 있으신가요?"></input>
+                                                    <span class="search-icon" >
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="css-skwyyj">
+                                                            <path d="m22.925 21.16-5.605-5.605A8.453 8.453 0 0 0 19 10.5 8.5 8.5 0 0 0 10.5 2 8.5 8.5 0 0 0 2 10.5a8.5 8.5 0 0 0 8.5 8.5c1.895 0 3.64-.63 5.055-1.68l5.605 5.605c.1.1.255.1.355 0l1.415-1.415a.246.246 0 0 0-.005-.35ZM4.5 10.5c0-3.31 2.69-6 6-6s6 2.69 6 6-2.69 6-6 6-6-2.69-6-6Z" class="css-sy7xp0">
+                                                            </path>
+                                                        </svg>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="header-right-menu-wrap">
+                            <div class="header-right-menu-wrap1" >
+                                <div class="header-right-menu-wrap2" >
+                                    <div class="header-right-menu-wrap3">
+                                    <a href="#" style="text-decoration-line: none;">
+                                        <p class = "myplogging">마이 플로깅</p>
+                                    </a>
+                                        <div class="empty-space1"></div>
+                                    <a href="#" style="text-decoration-line: none;">
+                                        <p class = "loginout">로그인</p>
+                                    </a>
+                                        <div class="empty-space1"></div>
+                                    <a href="#" style="text-decoration-line: none;">
+                                        <p class = "loginout">찜목록</p>
+                                    </a>
+                                        <div class="empty-space1"></div>
+                                        <div class="empty-space1"></div>
+                                        <div class="empty-space1"></div>
+                                        <div class="profile">
+                                            <div class="profile-img-wrap">
+                                                <div class="profile-img">
+                                                    <div class="profile-img1">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </section>
     <div class="allFrame">
         <div class="readFrame">
             <div class="readForm">
@@ -16,8 +95,8 @@
                     <div class="imageForm">
                         <div class ="image">
                             <picture class="ploggingImg">
-                                <source srcset="/images/chun.png" media="all and (min-width: 1024px)" >
-                                <img src="/images/chun.png" alt="">
+                                <source srcset="/src/main/resources/static/images/chun.png" media="all and (min-width: 1024px)" >
+                                <img src="/src/main/resources/static/images/chun.png" alt="">
                             </picture>
                         </div>
                     </div>
@@ -34,7 +113,7 @@
                                     <div type="default" class="moveGroup">단체</div>
                                 </div>
                                 <div class="menu community">
-                                    <div type="default" class="moveCommunity">커뮤니티</div>
+                                    <div type="default" class="moveCommunity">문의하기</div>
                                 </div>
                                 <div class="menu guide">
                                     <div type="default" class="moveGuide">이용 안내</div>
@@ -57,20 +136,337 @@
                         <section class="review">
                             <div class="reviewHead">
                                 <div class="reviewHeadInfo">실제 참가자 후기</div>
-                                <a target="_self" cursor="pointer" class="moveWriteReviewForm" href="#">후기 작성하기
-<!--                                    <span class="mwrFontForm1">-->
-<!--                                        <span class="mwrFontForm2">-->
-<!--                                            <span class="mwrFont">후기 작성하기</span>-->
-<!--                                        </span>-->
-<!--                                    </span>-->
+                                <a target="_self" cursor="pointer" class="moveWriteReviewForm" href="#">
+                                   <span class="mwrFontForm1">
+                                        <span class="mwrFontForm2">
+                                           <span class="mwrFont">후기 작성하기</span>
+                                       </span>
+                                   </span>
                                 </a>
                             </div>
+                            <div class="wrapImage">
+                                <div class="reviewImages">
+                                     <div class ="reviewImageForm">                                        
+                                             <picture class="moveImage">
+                                                <source srcset="/src/main/resources/static/images/chun2.png" media="all and (min-width: 1024px)" >
+                                                <img src="/src/main/resources/static/images/chun2.png" alt="">
+                                             </picture>                                         
+                                     </div>
+                                     <div class ="reviewImageForm">                                        
+                                            <picture class="moveImage">
+                                               <source srcset="/src/main/resources/static/images/chun3.png" media="all and (min-width: 1024px)" >
+                                               <img src="/src/main/resources/static/images/chun2.png" alt="">
+                                            </picture>                                        
+                                    </div>
+                                    <div class ="reviewImageForm">                                        
+                                            <picture class="moveImage">
+                                               <source srcset="/src/main/resources/static/images/chun6.png" media="all and (min-width: 1024px)" >
+                                               <img src="/src/main/resources/static/images/chun2.png" alt="">
+                                            </picture>                                        
+                                    </div>
+                                    <div class ="reviewImageForm">                                   
+                                            <picture class="moveImage">
+                                               <source srcset="/src/main/resources/static/images/chun8.png" media="all and (min-width: 1024px)" >
+                                               <img src="/src/main/resources/static/images/chun2.png" alt="">
+                                            </picture>                                        
+                                    </div>
+                                    <div class ="reviewImageForm">                                   
+                                        <picture class="moveImage">
+                                           <source srcset="/src/main/resources/static/images/chun.png" media="all and (min-width: 1024px)" >
+                                           <img src="/src/main/resources/static/images/chun.png" alt="">
+                                        </picture>                                        
+                                </div>
+                                </div>
+                            </div>
+                            <div style="margin : 40px 0px;"></div>
+                            <div class="readReviews">
+                                <div class="readReviewForm">
+                                    <div class="readReview">
+                                        <a href="#" class="moveReviewDetail">
+                                            <div class="reviewDetailProfile">
+                                                <div class="reviewProfileForm">
+                                                    <span class="reviewProfile">
+                                                        <picture class="profile">
+                                                        
+                                                            <img src="/src/main/resources/static/images/chun.png" alt="">
+                                                        </picture>
+                                                    </span>
+                                                </div>
+                                                <div class="reviewNameDate">
+                                                    <div class="reviewName">짜리킴</div>
+                                                    <div class="reviewDate">5월 31일</div>
+                                                </div>
+                                            </div>
+                                            <div class="profileMargin"></div>
+                                            <div class="reviewContentForm">
+                                                <pre class="reviewContent">집구하는 신혼부부입니다. 강의 덕분에 그동안 집구하면서 무엇을 잘못했는지, 앞으로는 어떤 전략으로 구해야 하는지 확실히 알게 되었어요! 일찍 완강했으면 좋았을 것을... 지금이라도 이 댓글을 보시는 분들! 집 구하시는 분이라면 언능 완강하세요~ 그리 길지도 않고 필요한 정보만 있어서 정말 도움이 됩니다! 매번 실습을 하면 현실파악에 더 도움이 되고요! 추천합니다
+                                                </pre>
+                                                <div class="reviewContentMargin"></div>
+                                            </div>
+                                        </a>                                       
+                                    </div>
+                                </div>
+                                <div class="readReviewForm">
+                                    <div class="readReview">
+                                        <a href="#" class="moveReviewDetail">
+                                            <div class="reviewDetailProfile">
+                                                <div class="reviewProfileForm">
+                                                    <span class="reviewProfile">
+                                                        <picture class="profile">
+                                                        
+                                                            <img src="/src/main/resources/static/images/chun.png" alt="">
+                                                        </picture>
+                                                    </span>
+                                                </div>
+                                                <div class="reviewNameDate">
+                                                    <div class="reviewName">짜리킴</div>
+                                                    <div class="reviewDate">5월 31일</div>
+                                                </div>
+                                            </div>
+                                            <div class="profileMargin"></div>
+                                            <div class="reviewContentForm">
+                                                <pre class="reviewContent">집구하는 신혼부부입니다. 강의 덕분에 그동안 집구하면서 무엇을 잘못했는지, 앞으로는 어떤 전략으로 구해야 하는지 확실히 알게 되었어요! 일찍 완강했으면 좋았을 것을... 지금이라도 이 댓글을 보시는 분들! 집 구하시는 분이라면 언능 완강하세요~ 그리 길지도 않고 필요한 정보만 있어서 정말 도움이 됩니다! 매번 실습을 하면 현실파악에 더 도움이 되고요! 추천합니다
+                                                </pre>
+                                                <div class="reviewContentMargin"></div>
+                                            </div>
+                                        </a>                                       
+                                    </div>
+                                </div>
+                                <div class="readReviewForm">
+                                    <div class="readReview">
+                                        <a href="#" class="moveReviewDetail">
+                                            <div class="reviewDetailProfile">
+                                                <div class="reviewProfileForm">
+                                                    <span class="reviewProfile">
+                                                        <picture class="profile">
+                                                        
+                                                            <img src="/src/main/resources/static/images/chun.png" alt="">
+                                                        </picture>
+                                                    </span>
+                                                </div>
+                                                <div class="reviewNameDate">
+                                                    <div class="reviewName">짜리킴</div>
+                                                    <div class="reviewDate">5월 31일</div>
+                                                </div>
+                                            </div>
+                                            <div class="profileMargin"></div>
+                                            <div class="reviewContentForm">
+                                                <pre class="reviewContent">집구하는 신혼부부입니다. 강의 덕분에 그동안 집구하면서 무엇을 잘못했는지, 앞으로는 어떤 전략으로 구해야 하는지 확실히 알게 되었어요! 일찍 완강했으면 좋았을 것을... 지금이라도 이 댓글을 보시는 분들! 집 구하시는 분이라면 언능 완강하세요~ 그리 길지도 않고 필요한 정보만 있어서 정말 도움이 됩니다! 매번 실습을 하면 현실파악에 더 도움이 되고요! 추천합니다
+                                                </pre>
+                                                <div class="reviewContentMargin"></div>
+                                            </div>
+                                        </a>                                       
+                                    </div>
+                                </div>
+                                <div class="readReviewForm">
+                                    <div class="readReview">
+                                        <a href="#" class="moveReviewDetail">
+                                            <div class="reviewDetailProfile">
+                                                <div class="reviewProfileForm">
+                                                    <span class="reviewProfile">
+                                                        <picture class="profile">
+                                                        
+                                                            <img src="/src/main/resources/static/images/chun.png" alt="">
+                                                        </picture>
+                                                    </span>
+                                                </div>
+                                                <div class="reviewNameDate">
+                                                    <div class="reviewName">짜리킴</div>
+                                                    <div class="reviewDate">5월 31일</div>
+                                                </div>
+                                            </div>
+                                            <div class="profileMargin"></div>
+                                            <div class="reviewContentForm">
+                                                <pre class="reviewContent">집구하는 신혼부부입니다. 강의 덕분에 그동안 집구하면서 무엇을 잘못했는지, 앞으로는 어떤 전략으로 구해야 하는지 확실히 알게 되었어요! 일찍 완강했으면 좋았을 것을... 지금이라도 이 댓글을 보시는 분들! 집 구하시는 분이라면 언능 완강하세요~ 그리 길지도 않고 필요한 정보만 있어서 정말 도움이 됩니다! 매번 실습을 하면 현실파악에 더 도움이 되고요! 추천합니다
+                                                </pre>
+                                                <div class="reviewContentMargin"></div>
+                                            </div>
+                                        </a>                                       
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#" class="moveReviewTotal">후기 더보기</a>
                         </section>
                     </div>
+                    <div class="pIntroduceFrame">
+                        <div class="pIntroduceForm">
 
+                        </div>
+                    </div>
+                    <div class="gIntroduceFrame">                        
+                        <div class="gIntroduceTitleFrame">
+                            <div class="gIntroduceTitleForm">
+                                <h3 font-weight="normal" class="gIntroduceTitle">
+                                    기업
+                                    <br>
+                                    <strong>한국산업인력공단</strong>
+                                    입니다.
+                                </h3>
+                                <div class="gIntroduceProfileFrame">
+                                    <span class="gIntroduceProfileForm">
+                                        <picture class="gIntroduceProfile">
+                                            <source srcset="/src/main/resources/static/images/hrdk.png" media="all and (min-width: 1024px)" >
+                                            <img src="/src/main/resources/static/images/hrdk.png" alt="">
+                                        </picture>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>        
+                        <div class="gIntroduceContentFrame">
+                            부동산읽어주는남자 정태익입니다
+현재 4개의 회사를 운영하며 투자자, 교육자, 상담가, 유튜버를 하고 있습니다.
+
+저는 지금도 어릴 때 반지하에서 살았던 기억이 생생합니다. 크리스마스 즈음이었는데 작은 창문 사이로 눈이 오는 것을 보면서 뛸 뜻이 기뻐했던 장면 말이죠.
+
+
+
+작은 쪽창 너머로 넓은 세상이 있었지만 대다수의 사람들은 그 쪽창이 세상의 전부인 줄 알고 삽니다. 저의 어린 시절이 그랬듯이요.
+
+
+
+우리 모두가 수백억 부자가 되는 것을 꿈꾸지는 않습니다.
+
+우리 가족이 편하게 살 수 있을 집이 하나 있었으면 좋겠고, 이왕 사는 것 가격도 올라서 막연하지만 미래 노후대비도 좀 되었으면 싶습니다. 자식이 공부는 좀 잘했으면 싶지만, 내가 수백억 부자가 되고 싶은 것까지는 아닌게 우리네 삶입니다.
+
+
+
+그런데 그런 소박한 목표도 쉽지가 않습니다.
+
+누구 하나 제대로 알려주지를 않으니까요. 부모님도 모르고, 친구들도 모르고, 회사 동료들도 잘 모릅니다.
+
+집을 어떻게 사야 하는 건지도 모르겠고 법은 복잡하다는데 중개사, 수리업자, 임차인같은 사람 상대는 겁부터 납니다.
+
+
+
+그런 분들에게 목표를 이루는 시작이 되어 드리고 싶었습니다. 반지하 살던 꼬마에게 밖의 세상은 엄청 넓고 너는 달라질 수 있다고, 21살의 나에게 이렇게 하는게 부자가 되는 준비를 하는 길이라고, 누군가 답을 줬었다면 나의 인생은 좀 더 달라졌을텐데라고 생각한 적이 많습니다.
+
+
+
+저도 누군가에게는 그 답을 드리는 사람이 되고 싶습니다.
+
+그 이야기와 노하우를 클래스 101에서 알려드릴게요.
+                        </div>
+                    </div>
+                    <div class="qnaFrame">
+                        <div class="qnaTitle">
+                            <h3>문의하기</h3>
+                        </div>
+                        <div class="qnaListForm">
+                            <div class="qnaList">
+                                <div class="qna">
+                                    <div class="question">
+                                        <div class="qUserProfileFrame">
+                                            <section class="qUserProfileForm">
+                                                <div class="qUserProfileImgFrame">
+                                                    <span class="qUserProfileImgForm">
+                                                        <picture class="qUserProfile">
+                                                            <img src="/src/main/resources/static/images/chun.png" alt="">
+                                                        </picture>
+                                                    </span>
+                                                </div>
+                                                <div class="qUserProfileNameFrame">
+                                                    <strong class="qUserProfileName">짜리킴</strong>
+                                                    <div class="qUserProfileDate">2022. 05. 26.</div>
+                                                </div>
+                                            </section>
+                                        </div>
+                                        <div class="qContentFrame">
+                                            <div class="qContentForm">                    
+                                                <div class="qContent">춘식이도 부자가 될 수 있을까요?</div>
+                                            </div>
+                                        </div>
+                                        <div class="qContentAddFrame">
+                                            <form class="qContentAddForm">
+                                                <div class="qContentAdd">
+                                                    <textarea class="qContentAddText" placeholder="댓글을 입력해주세요."></textarea>
+                                                    <button class="qContentAddBtn" type="submit">
+                                                        <span class="material-symbols-outlined">
+                                                            add
+                                                            </span>
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="qna">
+                                    <div class="question">
+                                        <div class="qUserProfileFrame">
+                                            <section class="qUserProfileForm">
+                                                <div class="qUserProfileImgFrame">
+                                                    <span class="qUserProfileImgForm">
+                                                        <picture class="qUserProfile">
+                                                            <img src="/src/main/resources/static/images/chun.png" alt="">
+                                                        </picture>
+                                                    </span>
+                                                </div>
+                                                <div class="qUserProfileNameFrame">
+                                                    <strong class="qUserProfileName">짜리킴</strong>
+                                                    <div class="qUserProfileDate">2022. 05. 26.</div>
+                                                </div>
+                                            </section>
+                                        </div>
+                                        <div class="qContentFrame">
+                                            <div class="qContentForm">                    
+                                                <div class="qContent">춘식이도 부자가 될 수 있을까요?</div>
+                                            </div>
+                                        </div>
+                                        <div class="qContentAddFrame">
+                                            <form class="qContentAddForm">
+                                                <div class="qContentAdd">
+                                                    <textarea class="qContentAddText" placeholder="댓글을 입력해주세요."></textarea>
+                                                    <button class="qContentAddBtn" type="submit">
+                                                        <span class="material-symbols-outlined">
+                                                            add
+                                                            </span>
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="qna">
+                                    <div class="question">
+                                        <div class="qUserProfileFrame">
+                                            <section class="qUserProfileForm">
+                                                <div class="qUserProfileImgFrame">
+                                                    <span class="qUserProfileImgForm">
+                                                        <picture class="qUserProfile">
+                                                            <img src="/src/main/resources/static/images/chun.png" alt="">
+                                                        </picture>
+                                                    </span>
+                                                </div>
+                                                <div class="qUserProfileNameFrame">
+                                                    <strong class="qUserProfileName">짜리킴</strong>
+                                                    <div class="qUserProfileDate">2022. 05. 26.</div>
+                                                </div>
+                                            </section>
+                                        </div>
+                                        <div class="qContentFrame">
+                                            <div class="qContentForm">                    
+                                                <div class="qContent">춘식이도 부자가 될 수 있을까요?</div>
+                                            </div>
+                                        </div>
+                                        <div class="qContentAddFrame">
+                                            <form class="qContentAddForm">
+                                                <div class="qContentAdd">
+                                                    <textarea class="qContentAddText" placeholder="댓글을 입력해주세요."></textarea>
+                                                    <button class="qContentAddBtn" type="submit">
+                                                        <span class="material-symbols-outlined">
+                                                            add
+                                                            </span>
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="readApplicateForm">
-
+                    
                 </div>
             </div>
         </div>
