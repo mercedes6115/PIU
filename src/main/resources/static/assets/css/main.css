@@ -22,3 +22,19 @@
     align-items: stretch;
     flex-direction: column;
 }
+.footer-logo{
+    font-family: 'Openas';
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    margin-right: 32px;
+}
+.footer-language3{
+    border-width: 0;
+    color: #666666;
+    margin: 0;
+    padding: 0;
+    font-size: 0.8125rem;
+    font-weight: 400;
+    line-height: 1.125rem;
+}
