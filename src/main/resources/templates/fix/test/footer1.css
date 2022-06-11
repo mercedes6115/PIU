@@ -1,0 +1,189 @@
+@font-face {
+    font-family: 'Openas';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/Openas.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+@font-face {
+    font-family: 'SDSamliphopangche_Basic';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Basic.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.footer-wrap{
+    padding-top: 40px;
+    padding-bottom: 64px;
+    border-top: 1px solid rgb(248, 248, 248);
+    background-color: rgb(255, 255, 255);
+}
+
+.footer-wrapper{
+    max-width: 1176px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+.footer-menu-wrap{
+    display: flex;
+    flex-direction: row;
+}
+.footer-menu1-wrap{
+    flex-basis: 398px;
+    flex-shrink: 0;
+    margin-top: 24px;
+}
+.footer-logo{
+    margin-top: 13px;
+    font-family: 'Openas';
+    font-weight:700;
+}
+.footer-msg1{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    color: rgb(102, 102, 102);
+    font-feature-settings: "case", "ss02";
+    margin-top: 20px;
+}
+.footer-language{
+    color: rgb(26, 26, 26);
+    padding: 8px 0px;
+    margin-top: 12px;
+    display: inline-block;
+    cursor: pointer;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    font-feature-settings: "case", "ss02";
+}
+.footer-language1{
+    font-weight: 400;
+    background-color: transparent;
+    border-radius: 2px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-width: 0;
+    cursor: pointer;
+}
+.footer-language2{
+    color: rgb(26, 26, 26);
+    padding: 8px 0px;
+    margin-top: 12px;
+    display: inline-block;
+    cursor: pointer;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+.footer-menu2-wrap{
+    max-width: 272px;
+    margin-left: -12px;
+    flex-grow: 0;
+    width: 100%;
+    margin-top: 24px;
+}
+.footer-menu2-text{
+    font-family: 'SDSamliphopangche_Basic';
+    color: rgb(26, 26, 26);
+    margin-bottom: 8px;
+    padding-left: 12px;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: bold;
+    letter-spacing: -0.15px;
+    margin-top: 4px;
+}
+
+.footer-link1{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+}
+
+.footer-link1-text1{
+    font-family: 'Noto Sans KR', sans-serif;
+    margin-right: 28px;
+    color: rgb(26, 26, 26);
+    flex: 1 1 0%;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+}
+
+.footer-menu3-text{
+    font-family: 'SDSamliphopangche_Basic';
+    float: left;
+    color: rgb(26, 26, 26);
+    margin-bottom: 8px;
+    padding-left: 12px;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+    font-weight: bold;
+}
+
+.footer-media-menu3-text{
+    display: block;
+    float: right;
+    margin: 0px;
+    padding-right: 12px;
+    line-height: 24px;
+    color: rgb(162, 162, 162);
+    font-size: 11px;
+    font-weight: normal;
+    letter-spacing: normal;
+    display: none;
+}
+.footer-menu3-wrap{
+    margin-left: 12px;
+}
+.footer-center-button{
+    border: 0;
+    border-radius: 3px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    letter-spacing: -0.15px;
+    font-feature-settings: "case", "ss02";
+    padding: 0px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 40px;
+    color: rgb(26, 26, 26);
+    margin-top: 10px;
+}
+.footer-center-text{
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.footer-center-text1{
+    display: block;
+    color: rgb(162, 162, 162);
+    text-align: center;
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+}
