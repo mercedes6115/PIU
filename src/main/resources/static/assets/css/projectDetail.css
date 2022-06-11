@@ -580,15 +580,26 @@ body {
     position: relative;
     margin-left: auto;
     margin-right: auto;
-}
-
-.pIntroduceForm {
     display: flex;
     flex-wrap: wrap;
     -webkit-box-pack: start;
     place-content: stretch flex-start;
-    margin-right: -12px;
-    margin-left: -12px;
+}
+
+.pIntroduceTitleForm {
+    position: relative;
+    width: 100%;
+    margin: 48px 0px 24px;
+}
+
+.pIntroduceTitle {
+    font-family: 'SDSamliphopangche_Basic';
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(26, 26, 26);
+    line-height: 34px;
+    letter-spacing: -0.4px;
+    margin: 0px;
 }
 
 .gIntroduceFrame {
@@ -824,7 +835,7 @@ body {
     padding: 0px 10px;
     background-color: rgb(255, 255, 255);
     border: 1px solid rgb(229, 229, 229);
-    width: 100%;
+    width: 97%;
     justify-content: space-between;
 }
 
@@ -872,3 +883,54 @@ body {
     line-height: 1;
     box-shadow: none;
 }
+
+.useGuideFrame {
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-box-pack: start;
+    place-content: stretch flex-start;
+}
+
+.useGuide {
+    position: relative;
+    width: 100%;
+    margin: 48px 0px 24px;
+}
+
+.useGuideTitle {
+    font-family: 'SDSamliphopangche_Basic';
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(26, 26, 26);
+    line-height: 34px;
+    letter-spacing: -0.4px;
+    margin: 0px;
+}
+
+.useGuideContentFrame {
+    word-break: break-word;
+    margin-bottom: 0px;
+    width: 100%;
+}
+.useGuideContentForm {
+    padding: 24px 24px 28px;
+    display: flex;
+    background-color: rgb(248, 248, 248);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+
+.useGuideContent {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px 8px 0px 0px;
+    flex: 1 1 0%;
+    color: rgb(58, 58, 58);
+}
+
