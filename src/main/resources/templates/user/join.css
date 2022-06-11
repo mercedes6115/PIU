@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+@font-face {
+    font-family: 'SDSamliphopangche_Basic';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Basic.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.notosanskr * {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.wrapper-1 {
+    max-width: 960px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+}
+
+.wrapper {
+    display: block;
+    width: 50%;
+    margin-left: 25%;
+}
+
+.join-table {
+    font-size: 32px;
+    margin: 16px 0px 16px;
+}
+
+.input-data {
+    font-size: 14px;
+    border: 1px solid rgb(239, 239, 239);
+    background-color: white;
+    height: 48px;
+    width: 100%;
+    padding: 0px 16px;
+    border-radius: 3px;
+}
+
+.join-table-title {
+    font-family: 'SDSamliphopangche_Basic';
+    font-size: 14px;
+}
+
+.check-text {
+    font-size: 8px;
+    margin-left: 10px;
+}
+
+.join-title-type {
+    font-size: 14px;
+    font-weight: 500;
+    position: absolute;
+    bottom: 0px;
+    margin-block-end: 26px;
+    margin-inline-start: 130px;
+}
+
+.wrapper-title {
+    font-family: 'SDSamliphopangche_Basic';
+    position: relative;
+    display: flex;
+}
+
+.submit_button {
+    font-size: 14px;
+    border: orange;
+    background-color: orange;
+    height: 48px;
+    width: 100%;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-right: -32px;
+}
+
+.phone-title {
+    font-size: 14px;
+    color: rgb(162, 162, 162);
+    margin-bottom: 60px;
+}
+
+.button-phone {
+    border: 1px solid rgb(239, 239, 239);
+    width: 25%;
+    border-radius: 3px;
+    font-weight: 500;
+    font-size: 14px;
+    padding: 0px 16px;
+    background-color: rgb(222, 222, 222);
+    cursor: pointer;
+}
+
+.btnCertify {
+    border: 1px solid rgb(239, 239, 239);
+    width: 25%;
+    border-radius: 3px;
+    font-weight: 500;
+    font-size: 14px;
+    padding: 0px 16px;
+    background-color: rgb(222, 222, 222);
+    cursor: pointer;
+}
+
+
+#ex_filename {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip:rect(0,0,0,0);
+    border: 0;
+  }
+
+  #join-button{
+      vertical-align: middle;
+      display: table-cell;
+  }
+
+  .uploadWrapper{
+      border: 1px solid rgb(239, 239, 239);
+      width: 25%;
+      border-radius: 3px;
+      font-weight: 500;
+      font-size: 14px;
+      padding: 0px 16px;
+      background-color: rgb(222, 222, 222);
+      cursor: pointer;
+      text-align: center;
+      box-sizing: border-box;
+      display: table;
+  }
