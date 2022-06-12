@@ -97,7 +97,7 @@
    <form action="">
         <div class="pay_bar_media" style="text-align: center;">
             <div class="flex" style="width: 100%;">
-                <div style="width: 7%; padding-left: 10px;"><span class="material-symbols-outlined pointer" style="font-size: 40px; padding-top: 15px;">
+                <div style="width: 7%; padding-left: 10px;"><span class="material-symbols-outlined pointer jjim-ajax" style="font-size: 40px; padding-top: 15px;">
                     favorite
                     </span></div>
                 <input class="toBuy" type="submit" value="구매하기" style="width: 90%; height: 50px;">
@@ -134,7 +134,7 @@
                     <div class="flex" style="width: 100%;">
                         <div class="flex" style="width: 100%;"">
                             <div class="btn text-align flex" style="margin-right: 5px;  justify-content: center; align-items: center;">
-                                <span class="padding-t material-symbols-outlined" style="font-size: 20px;">
+                                <span class="padding-t material-symbols-outlined jjim-ajax" style="font-size: 20px;">
                                 favorite
                                 </span> <p style="font-weight: normal; font-size: 14px; margin: 0;">&nbsp; 좋아요</p></div>
                             <div class="btn text-align flex share_btn" style="margin-right: 5px;  justify-content: center; align-items: center;"><span class="padding-t material-symbols-outlined" style="font-size: 18px;">
@@ -324,7 +324,7 @@
 
                 <div class="flex" style="width: 100%;"">
                     <div class="btn text-align flex" style="margin-right: 5px;  justify-content: center; align-items: center;">
-                        <span class="padding-t material-symbols-outlined" style="font-size: 20px;">
+                        <span class="padding-t material-symbols-outlined jjim-ajax" style="font-size: 20px;">
                         favorite
                         </span> <p style="font-weight: normal; font-size: 14px; margin: 0;">&nbsp; 좋아요</p></div>
                     <div class="btn text-align flex share_btn" style="margin-right: 5px;  justify-content: center; align-items: center;"><span class="padding-t material-symbols-outlined" style="font-size: 18px;">
@@ -565,6 +565,29 @@ $('.toTop').click(function(){
             modal.style.display = "none";
         }
     }
+
+    //좋아요 js
+    $('.jjim-ajax').click(function(){
+        if($(this).hasClass("red")){
+            $(this).removeClass("red");
+        }else{
+            $(this).addClass("red");
+        }
+
+        $.ajax({
+            url : "", //찜table 연결하는곳
+            type : "post",
+            data : "상품데이터",
+            contentType : "application/json",
+            dataType : "json",
+            success : function(){
+
+            },
+            error : function(xhr,status,er){
+                
+            }
+        })
+    })
     
 
     //--------------------------- 공유하기 api----------------------------------
