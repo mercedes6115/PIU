@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/assets/css/adminSidebar.css"/>
+    <link rel="stylesheet" href="/assets/css/productRegister.css"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- include libraries(jQuery, bootstrap) -->
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+
+    <!-- include summernote css/js-->
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+
+
+
+
+</head>
+<body>
+<div class="wrap">
+    <div>
+        <!-- header -->
+    </div>
+    <div class="root">
+        <div id="sidebar">
+            <ul>
+                <li class="sidebarCategory">
+                    <a href="#">
+                        <div>
+                                <span class="material-symbols-outlined icon">person
+                                </span>
+                            <span class="sidebarTitle">유저 관리</span>
+                        </div>
+
+                    </a>
+
+                </li>
+                <li class="sidebarCategory">
+                    <a href="#">
+                        <div><span class="material-symbols-outlined icon">
+                                    storefront
+                                </span><span class="sidebarTitle">상품 관리</span>
+                        </div><span class="material-symbols-outlined more">
+                                expand_more
+                            </span>
+                    </a>
+                    <!-- onClick 시 노출 -->
+                    <ul class="sidebarDetail">
+                        <li><a id="detail" href="#">상품 등록</a></li>
+                        <li><a id="detail" href="#">상품 목록</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        <div>
+                                <span class="material-symbols-outlined icon">
+                                    shopping_cart
+                                </span><span class="sidebarTitle">주문 관리</span>
+                        </div>
+                        <span class="material-symbols-outlined more">
+                                expand_more
+                            </span>
+                    </a>
+                    <!-- onClick 시 노출 -->
+                    <ul class="sidebarDetail">
+                        <li><a id="detail" href="#">전체주문목록</a></li>
+                        <li><a id="detail" href="#">배송 관리</a></li>
+                        <li><a id="detail" href="#">취소 관리</a></li>
+                    </ul>
+                </li>
+                <li class="sidebarCategory">
+                    <a href="#">
+                        <div>
+                                <span class="material-symbols-outlined icon">
+                                    public
+                                </span>
+                            <span class="sidebarTitle">프로젝트 관리</span>
+                        </div>
+                        <span class="material-symbols-outlined more">
+                                expand_more
+                            </span>
+                    </a>
+                    <!-- onClick 시 노출 -->
+                    <ul class="sidebarDetail">
+                        <li><a id="detail" href="#">프로젝트 생성</a></li>
+                        <li><a id="detail" href="#">프로젝트 목록</a></li>
+                        <li><a id="detail" href="#">QR코드</a></li>
+                    </ul>
+                </li>
+                <li class="sidebarCategory">
+                    <a href="#">
+                        <div>
+                                <span class="material-symbols-outlined icon">
+                                    assignment
+                                    </span>
+                            <span class="sidebarTitle">게시물 관리</span>
+                        </div>
+                        <span class="material-symbols-outlined more">
+                                expand_more
+                            </span>
+                    </a>
+                </li>
+                <li class="sidebarCategory">
+                    <a href="#">
+                        <div>
+                                <span class="material-symbols-outlined icon">
+                                    analytics
+                                </span>
+                            <span class="sidebarTitle">통계 현황</span>
+                        </div>
+                        <span class="material-symbols-outlined more">
+                                expand_more
+                            </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- sidebar -->
+
+
+        <div class="container">
+            <!-- container -->
+            <div class="content">
+                <!-- content -->
+                <div class="product">
+                    <!-- product register -->
+                    <div class="register">
+                        <!-- 상품등록 -->
+                        <h1>상품등록</h1>
+                    </div>
+                    <!-- <div class="flow">
+                        <ol>
+                            <li class="home">홈</li>
+                            <li class="">상품관리</li>
+                            <li>상품등록</li>
+                        </ol>
+                    </div> -->
+                </div>
+
+                <form action="" class="formlayout">
+                    <div class="togglebar">
+                        <!-- togglebar -->
+                        <h2>기본정보</h2>
+                    </div>
+
+                    <div class="toggleArea">
+                        <!-- togglecontent -->
+                        <table >
+
+                            <tbody>
+                            <tr>
+                                <th>상품명
+                                </th>
+                                <td>
+                                    <input class="productName" type="text" name="product_name" required="required" placeholder="예시 ">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope='row'>상품가격
+                                </th>
+                                <td>
+                                    <input class="pay" type="text" name="product_name" required="required">원
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>상품카테고리
+                                </th>
+                                <td>
+                                    <input class="check" type="checkbox">
+                                    <label for="">생활</label>
+
+                                    <input class="check" type="checkbox">
+                                    <label for="">주방</label>
+
+                                    <input class="check" type="checkbox">
+                                    <label for="">욕실</label>
+
+                                    <input class="check" type="checkbox">
+                                    <label for="">반려동물</label>
+
+                                    <input class="check" type="checkbox">
+                                    <label for="">화장품</label>
+
+                                    <input class="check" type="checkbox">
+                                    <label for="">식품</label>
+
+                                    <input class="check" type="checkbox">
+                                    <label for="">문구</label>
+
+                                    <input class="check" type="checkbox">
+                                    <label for="">원예</label>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>상품요약
+                                </th>
+                                <td><input class="summary"  required="required"></td>
+                            </tr>
+                            <tr>
+                                <th>상품 상세 내용
+                                </th>
+                                <td>
+
+                                    <textarea name="content" id="summernote" class="summernote" required="required"></textarea>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>상품재고
+                                </th>
+                                <td>
+                                    <input class="pay" type="text" name="product_name" required="required">개
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>상품 이미지</th>
+                                <td>
+                                    <button class="picture">첨부파일</button>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <th>제조사
+                                </th>
+                                <td>
+                                    <input class="productName" type="text" name="product_name" required="required" placeholder="제조사 ">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>공급사
+                                </th>
+                                <td>
+                                    <input class="productName" type="text" name="product_name" required="required" placeholder="공급사 ">
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                    <div class="submitbtn">
+                        <!-- button -->
+                        <button>상품등록</button>
+                        <button>취소</button>
+
+                    </div>
+                </form>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script>
+    $(document).ready(function() { $('#summernote').summernote();
+    });
+
+
+</script>
+
+
+</html>
