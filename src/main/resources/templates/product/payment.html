@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 
 </head>
-<body>
+<body style="font-family: Noto Sans KR;">
    <!--헤더  -->
    
 <section class="header-wrap">
@@ -92,6 +92,7 @@
     </header>
 </section>
    <!--헤더 -->
+   <form action="">
     <div class="payment_main">
         <div class="black_line">결제하기</div>
         <div class="space"></div>
@@ -103,12 +104,11 @@
                 <div><img src="/src/main/resources/static/images/5.jpg" width="200" height="200"></div>
                 <div style="margin-left: 10px;">
                     <div class="item_title">아무리 닦아도 닦아도 닳지않는 바로 그 고무 장갑!</div>
-                    <div class="small_and_gray">수량 <span>1</span>개</div>
+                    <div class="small_and_gray">수량 <span id="total_items">1</span>개</div>
                 </div>
             </div>
         </div>
 
-        <form action="">
             <div class="shipment">
                 <div class="order_info">배송정보</div>
                 <div style="margin-top: 10px;">받으시는분</div>
@@ -129,7 +129,7 @@
                 <div class="phone_input"><input type="text" placeholder="부재시 경비실에 맡겨주세요"></div>
             </div>
             <div class="order_info" style="margin-top: 50px;">결제금액</div>
-            <div class="small_and_gray" style="margin-bottom: 10px;">도서산간지역은 배송료가 있을수 있습니다</div>
+            <div class="space"></div>
             <div class="flex small_and_gray" style="justify-content: space-between;">
                 <div>총금액</div>
                 <div>900P</div>
@@ -146,13 +146,13 @@
                 <div class="flex" style="align-items: center;"> <input class="checkBox" type="checkbox" name="agree" id="agree" required><label for="agree" style="cursor: pointer; font-size: 14px ; margin-bottom: 4px;">(필수)개인정보 제3자 제공 동의 &nbsp;&nbsp;</label></div>
                 <div id="agree_detail" class="small_and_gray" style="align-items: center; border-bottom: 1px solid gray; cursor: pointer; margin-bottom: 4px;">상세보기</div>
             </div>
-            <button class="toBuy" style="margin-bottom: 10px; font-weight: 900;">주문 완료</button>
+            <button id="order_finish" class="toBuy" style="margin-bottom: 10px; font-weight: 900;">주문 완료</button>
         </div>
     </form>
 
     <button type="button" class="toTop">TOP</button>
 
-    <!-- 모달창 -->
+    <!-- ----------------모달창--------------------- -->
     <div id="agree_modal" class="agree_modal">
         <div class="agree_modal_box">
             <div class="flex" style="justify-content: space-between;">
@@ -162,31 +162,29 @@
 
 
             <div class="flex mt-20" style="justify-content: space-between;">
-                <table>
+                <table class="modal_table">
                     <tbody>
                         <tr>
                             <th>제공받는 자</th>
-                            <td></td>
+                            <td>픽잇업(피끼럽)컴페니</td>
                         </tr>
                         <tr>
                             <th>제공 목적</th>
-                            <td></td>
+                            <td>주문 상품의 배송, 고객상담 및 불만 처리</td>
                         </tr>
                         <tr>
                             <th>제공 항목</th>
-                            <td></td>
+                            <th>수취인 정보(이름, 휴대폰 번호, 주소)</th>
                         </tr>
                         <tr>
                             <th>보유 및 이용 기간</th>
-                            <td></td>
+                            <td>구매 확정 1개월 후 지체 없이 파기</td>
                         </tr>
                     </tbody>
                 </table>
 
             </div>
-
-
-            <div>
+            <div style="margin-top: 8px;">
                 <button id="modal_close_btn" class="modal_close_btn">동의합니다</button>
             </div>
                 
@@ -199,4 +197,6 @@
 <!-- 다음주소 API -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="/src/main/resources/static/assets/js/store.js"></script>
+<script>
+</script>
 </html>

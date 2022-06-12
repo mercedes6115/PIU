@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/src/main/resources/static/assets/css/pickitupStore.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 </head>
-<body>
+<body style="font-family: Noto Sans KR;">
       <!--헤더  -->
    
     <section class="header-wrap">
@@ -105,30 +105,64 @@
             </div>
             <div class="space"></div>
             <div class="item_amount flex" style="display: flex; position: relative; justify-content: center;">
-                <button type="button" class="amount_btn" style="left: 2%;">-</button>
-                <input class="item_amount_input" type="text" placeholder="1" readonly>
-                <button type="button" class="amount_btn" style="right: 2%;">+</button>
+                <button type="button" class="amount_btn minus" style="left: 2%;">-</button>
+                <input class="item_amount_input" type="text" value="1" placeholder="1" readonly>
+                <button type="button" class="amount_btn plus" style="right: 2%;">+</button>
             </div>
             <div class="space_line"></div>
         </div>
         <div>
-            <div class="flex" style="justify-content: space-between;">
-                <div>총 포인트</div>
-                <div class="pay_point"> 700P</div>
-            </div>
-            <div style="width: 100%;"> <button class="toBuy" type="button" style="width: 100%; height: 40px; margin-bottom: 20px;">결제 하기 </button></div>
+            <!-- 결제하기 html로 쏴주기 -->
+            <form action=""> 
+                <div class="flex" style="justify-content: space-between;">
+                    <div>총 포인트</div>
+                    <div class="pay_point flex"> <p class="total_price"></p>P</div>
+                    <input name="total_items" type="hidden">
+                    <input name="total_payment" type="hidden">
+                </div>
+                <div style="width: 100%;"> <button class="toBuy goPayment" type="submit" >결제 하기 </button></div>
+            </form>
         </div>
     </div>
     <button type="button" class="toTop">TOP</button>
     <footer class="footer_mobile"></footer>
 </body>
-<script src="/src/main/resources/static/assets/js/store.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<script src="/src/main/resources/static/assets/js/store.js"></script>
+
 <script>
      //scroll top
      $('.toTop').click(function(){
         $('html, body').animate({scrollTop : 0},300);
     });
+
+    //수량및  아이템 가격 초기화
+    let $oper = $('.item_amount').find('button');
+    let $amount = 1;
+    let $item_price = 700;
+    $('.total_price').text($amount*$item_price);  //700 대신 상품 가격입력
+    $('input[name="total_items"]').val($amount);
+    $('input[name="total_payment"]').val($amount*$item_price);
+
+    //+,- 수량 버튼 클릭시 총 포인트 계산 및  input에 넣어서 넘길준비
+    $oper.click(function(){
+        if($(this).hasClass('minus')){
+            if( $('.item_amount_input').attr("value") > 1){
+                $('.item_amount_input').attr("value",$amount-1);
+                $amount=$amount-1
+                $('.total_price').empty().text($amount*$item_price);
+                $('input[name="total_items"]').val($amount);
+                $('input[name="total_payment"]').val($amount*$item_price);
+            }
+        }else if($(this).hasClass('plus')){
+            $('.item_amount_input').attr("value",$amount+1);
+            $amount=$amount+1
+            $('.total_price').empty().text($amount*$item_price);
+            $('input[name="total_items"]').val($amount);
+            $('input[name="total_payment"]').val($amount*$item_price);
+        }
+    })
+
 </script>
 
 
