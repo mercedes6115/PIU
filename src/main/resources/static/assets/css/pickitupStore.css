@@ -531,7 +531,18 @@ li.active{
     color: white;
     cursor: pointer;
 }
+.btn_qnaToadmin{
+    border: none;
+    background-color: #005bedc1;
+    padding: 8px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
 .btn_qna:hover{
+    background-color: #005bed;
+}
+.btn_qnaToadmin:hover{
     background-color: #005bed;
 }
 .doComment{
@@ -768,7 +779,12 @@ textarea{
     letter-spacing: -0.15px;
     padding: 4px 0px;
 }
-
+.personaddrbtn{
+    height: 46px; 
+    padding: 0; 
+    margin: 0;
+    width: 85px;
+}
 
 
 

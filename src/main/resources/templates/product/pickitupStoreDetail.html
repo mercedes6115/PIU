@@ -225,7 +225,7 @@
                 <div id="toitem_question">
                     <div class="flex" style="align-items: center; justify-content: space-between;">
                         <p>문의</p>
-                        <div style=" margin-right: 5%;"><input class="btn_qna" type="button" value="문의하기"></div>
+                        <div style=" margin-right: 5%;"><input class="btn_qnaToadmin" type="button" value="문의하기"></div>
                     </div>
 
                     <!-- 댓글 하나 -->
@@ -450,6 +450,12 @@
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script>
     
+    //scroll top
+$('.toTop').click(function(){
+    $('html, body').animate({scrollTop : 0},300);
+});
+
+
     //리뷰 쓰기
     $('.review-container').css("display","none");
     $('.write-after').hide();
