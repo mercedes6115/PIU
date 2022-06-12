@@ -28,6 +28,7 @@ function checkPw(){
         $('span#pwCheck_text_first').text("가능한 비밀번호 형식입니다").css("color", "green");
     }
 }
+
 $upw.blur(function () {
     checkPw();
 })
