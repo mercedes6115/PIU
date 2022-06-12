@@ -32,7 +32,7 @@
     height: fit-content;
     background-color: rgb(255, 255, 255);
     border-color: rgb(229, 229, 229);
-    z-index: 1002;
+    z-index: 3;
     top: 0px;
     left: 0px;
     position: sticky;
@@ -57,7 +57,6 @@
     height: auto;
     background-color: rgb(255, 255, 255);
     border-color: rgb(229, 229, 229);
-    z-index: 101;
     top: 0px;
     left: 0px;
     position: sticky;
@@ -147,8 +146,7 @@
     width: 240px;
     height: 100%;
     background-color: rgb(255, 255, 255);
-    border-color: rgb(229, 229, 229);
-    z-index: 1001;
+    border-color: rgb(229, 229, 229);    
     top: 78px;
     left: 0px;
     position: fixed;
@@ -301,12 +299,9 @@
 }
 
 .groupPageMainForm {
-    display: flex;
     padding-left: 80px;
     padding-right: 80px;
-    -webkit-box-align: stretch;
-    align-items: stretch;
-    flex-direction: column;
+    display: contents;
 }
 
 .groupPageContainer {
@@ -404,4 +399,703 @@
     color: var(--system-on-color);
     margin-right: 4px;
     font-weight: 700;
+}
+
+.projectListFrame {
+    border-radius: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    border-color: rgb(229, 229, 229);
+}
+
+.projectListForm {
+    display: flex;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.projectListContainer {
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 12px;
+    overflow: hidden;
+    transform: translateX(0px) translateY(0px) translateZ(0px);
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    border-color: rgb(239, 239, 239);
+}
+
+.projectListBox {
+    display: flex;
+    height: fit-content;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.searchForm {
+    padding: 16px 16px 10px;
+}
+
+.searchBox {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    cursor: text;
+    --system-on-color: #101010;
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--system-on-color);
+    border-radius: 2px;
+    flex: 1 1 0%;
+    padding: 10px 16px;
+}
+
+.searchProjectBox {
+    flex: 1 1 0%;
+    margin-right: 12px;
+    line-height: normal;
+}
+
+.searchProject {
+    background-color: transparent;
+    border-width: 0px;
+    border-radius: 2px;
+    outline-style: none;
+    color: var(--system-on-color);
+    width: 100%;
+    height: 100%;
+    font-size: 14px;
+}
+
+.searchImg {
+    display: block;
+    width: 16px;
+    height: 16px;
+}
+
+.showListFrame {
+    display: flex;
+    overflow-x: auto;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.showListHeader {
+    width: 1232px;
+    height: 56px;
+    padding-right: 0px;
+    border-bottom: 1px solid rgb(239, 239, 239);
+    font-size: 13px;
+    line-height: 18;
+    color: rgb(26, 26, 26);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.showListHeader1 {
+    display: flex;
+    height: 100%;
+    flex: 0 1 44px;
+    margin-left: 10px;
+    margin-right: 10px;
+    min-width: 0;
+}
+
+.listCheckBoxForm {
+    margin-left: 14px;
+    margin-right: 14px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    height: 120%;
+}
+
+.listCheckBox {
+    cursor: pointer;
+    position: relative;
+}
+
+.showListHeader2 {
+    display: flex;
+    padding: 19px 16px;
+    flex: 0 1 73px;
+}
+
+.showListHeader3 {
+    display: flex;
+    padding: 19px 16px;
+    flex: 0 1 200px;
+}
+
+.showListHeader4 {
+    display: flex;
+    padding: 19px 16px;
+    flex: 0 1 170px;
+}
+
+.showListHeader5 {
+    display: flex;
+    padding: 19px 16px;
+    flex: 0 1 120px;
+}
+
+.showListhTerrain, .showListhCourse, .showListhState, .showListhTitle, .showListBoundary, .listCheckBoxFrame, .showListhPoint, .showListhDate, .showListhMore {
+    font-family: 'Noto Sans KR', sans-serif;
+    display: inline-block;
+    max-width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.showListHeader6 {
+    display: flex;
+    padding: 19px 16px;
+    flex: 0 1 170px;
+}
+
+.showListHeader7 {
+    display: flex;
+    padding: 19px 16px;
+    flex: 0 1 100px;
+}
+
+.showListHeader8 {
+    display: flex;
+    padding: 19px 16px;
+    flex: 0 1 180px;
+}
+
+.showListHeader9 {
+    display: flex;
+    padding: 19px 16px;
+    flex: 0 1 155px;
+    margin-right: 10px;
+    min-width: 0;
+}
+
+.showListBodyFrame {
+    box-sizing: border-box;
+    direction: ltr;
+    height: 296px;
+    position: relative;
+    width: 1232px;
+    will-change: transform;
+    overflow: hidden;
+}
+
+.showListBodyForm {
+    width: auto;
+    height: 288px;
+    max-width: 1232px;
+    max-height: 288px;
+    overflow: hidden;
+    position: relative;
+}
+
+.showListBody {
+    height: 72px;
+    left: 0px;
+    position: absolute;
+    top: 0px;
+    width: 1232px;
+    overflow: hidden;
+    padding-right: 0px;
+    border-bottom: 1px solid rgb(248, 248, 248);
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+}
+
+.showListBody1 {
+    overflow: hidden;
+    flex: 0 1 44px;
+    margin-left: 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 10px;
+    min-width: 0;
+}
+
+.sbCheckBoxFrame {
+    margin-left: 14px;
+    margin-right: 14px;
+    width: fit-content;
+    cursor: pointer;
+}
+
+.sbCheckBoxForm {
+    cursor: pointer;
+    position: relative;
+}
+
+.sbSelect {
+    top: 0px;
+    position: absolute;
+    left: 0px;
+    width: 0px;
+    height: 0px;
+    border-width: 0px;
+    opacity: 0;
+    cursor: pointer;
+    display: none;
+}
+
+.showListBody2 {
+    overflow: hidden;
+    flex: 0 1 73px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 10px;
+    min-width: 0;
+}
+
+.sbStateFrame, .sbTitleForm, .sbTerrainForm, .sbImageFrame, .sbCourseFrame, .sbPointFrame, .sbDateFrame, .sbMoreFrame {
+    padding: 24px 12px;
+    font-size: 13px;
+    line-height: 18;
+}
+
+.sbImageForm {
+    width: 56px;
+}
+
+.sbImageContainer {
+    position: relative;
+    width: 100%;
+    height: 0px;
+    padding-bottom: 75%;
+}
+
+.sbImageBox {
+    position: absolute;
+    inset: 0px;
+}
+
+.sbImageWrap {
+    border-radius: 2px;
+    overflow: hidden;
+    transform: translateX(0px) translateY(0px) translateZ(0px);
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    border-color: rgb(229, 229, 229);
+}
+
+.sbImageShow {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: relative;
+}
+
+.sbImage {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    vertical-align: top;
+    visibility: inherit;
+}
+
+.showListBody3 {
+    overflow: hidden;
+    flex: 0 1 200px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 10px;
+    min-width: 0;
+}
+
+
+
+.sbTitle {
+    font-family: 'Noto Sans KR', sans-serif;
+    border-width: 0px;
+    color: var(--system-on-color);
+    margin: 0px;
+    padding: 0px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.125rem;
+    white-space: pre-wrap;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.showListBody4 {
+    overflow: hidden;
+    flex: 0 1 170px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 10px;
+    min-width: 0;
+}
+
+
+
+.sbStateForm {
+    display: flex;
+    width: max-content;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.sbState {
+    font-family: 'Noto Sans KR', sans-serif;
+    line-height: 1.125rem;
+    font-size: 0.875rem;
+    border-width: 0px;
+    color: rgb(26, 26, 26);
+    margin: 0px;
+    padding: 0px;
+    font-weight: 400;
+}
+
+.showListBody5 {
+    overflow: hidden;
+    flex: 0 1 120px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 10px;
+    min-width: 0;
+}
+
+.sbTerrain, .sbCousre, .sbPoint, .sbDate {
+    border-width: 0px;
+    color: var(--system-on-color);
+    margin: 0px;
+    padding: 0px;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.125rem;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.showListBody6 {
+    overflow: hidden;
+    flex: 0 1 170px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 10px;
+    min-width: 0;
+}
+
+.showListBody7 {
+    overflow: hidden;
+    flex: 0 1 100px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 10px;
+    min-width: 0;
+}
+
+.showListBody8 {
+    overflow: hidden;
+    flex: 0 1 180px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 10px;
+    min-width: 0;
+}
+
+.showListBody9 {
+    overflow: hidden;
+    flex: 0 1 155px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 10px;
+    min-width: 0;
+}
+
+.sbMoreForm {
+    display: flex;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: row;
+    cursor: pointer;
+}
+
+.qrCheckFrame {
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 0;
+    --system-on-color: #101010;
+    background-color: rgb(255, 255, 255);
+    color: var(--system-on-color);
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.15);
+    border-radius: 2px;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    display: inline-flex;
+    padding: 9px;
+    position: relative;
+}
+
+.qrCheckForm {
+    display: flex;
+    visibility: inherit;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.qrCheck {
+    padding-left: 4px;
+    padding-right: 4px;
+    border-width: 0px;
+    color: var(--system-on-color);
+    margin: 0px;
+    padding: 0px;
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1.125rem;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.moreBoundary{
+    width: 8px;
+    height: 0px;
+    -webkit-box-flex: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.sbMoreBox {
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 0;
+    --system-on-color: #101010;
+    background-color: rgb(255, 255, 255);
+    color: var(--system-on-color);
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.15);
+    border-radius: 2px;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    display: inline-flex;
+    padding: 9px;
+    position: relative;
+}
+
+.qrModal-overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 999;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(1.5px);
+    -webkit-backdrop-filter: blur(1.5px);
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.18);
+}
+
+.modal-qr {
+    background: rgba( 69, 139, 197, 0.70 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 13.5px );
+    -webkit-backdrop-filter: blur( 13.5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );        width: 400px;
+    height: 500px;
+    position: relative;
+    top: -100px;
+    padding: 10px;
+}
+
+.modal-title {
+    padding-left: 10px;
+    display: inline;
+    text-shadow: 1px 1px 2px gray;
+    color: white;
+}
+
+.modal-title h2 {
+    display: inline;
+}
+
+.close-modal {
+    display: inline;
+    float: right;
+    padding-right: 10px;
+    cursor: pointer;
+    text-shadow: 1px 1px 2px gray;
+    color: white;
+}
+
+.content {
+    margin-top: 20px;
+    padding: 0px 10px;
+    text-shadow: 1px 1px 2px gray;
+    color: white;
+}
+
+
+.showMoreFrame {
+    display: none;
+    margin-top: 70px;
+    font-size: 13px;
+    line-height: 4;
+    z-index: 200;
+    background-color: rgba( 255, 255, 255, 0.18 );
+    margin-right: 33px;
+    justify-content: flex-end;
+}
+
+.showMoreForm {
+    display: flex;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: row;
+    cursor: pointer;
+}
+
+.moveProjectModify {
+    text-decoration: none;
+    color: black;
+}
+
+.modifyForm {
+    display: flex;
+    align-items: center;
+    margin-right: 4px;
+}
+
+.deleteForm {
+    display: flex;
+    align-items: center;
+}
+
+.showListPagingFrame {
+    display: flex;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.showListPagingForm {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.pageMoveBtn {
+    border-radius: 19px;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    --system-on-color: #AFAFAF;
+    border: white;
+    background-color: white;
+}
+
+#prevBtnImg, #nextBtnImg {
+    width: 18px;
+    height: 18px;
+    display: block;
+}
+
+.btnBoundary {
+    width: 16px;
+    display: flex;
+}
+
+.showPageNum {
+    display: flex;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: row;
+}
+
+.movePageNum {
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+    background-color: rgb(255, 91, 20);
+    color: var(--system-on-color);
+    border-radius: 19px;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    --system-on-color: #FFFFFF;
+}
+
+.displayPageNum {
+    border-width: 0px;
+    color: var(--system-on-color);
+    margin: 0px;
+    padding: 0px;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    line-height: 1.125rem;
+}
+
+.footerBoundary {
+    width: 0px;
+    height: 72px;
+    -webkit-box-flex: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.groupPageFooter {
+    display: flex;
+    width: 100%;
+    padding-bottom: 40px;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.boundaryLine {
+    flex: 0 0 auto;
+    background-color: rgb(239, 239, 239);
+    width: 100%;
+    height: 1px;
+    z-index: 50;
+}
+
+.footerFrame {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    padding-top: 32px;
 }
