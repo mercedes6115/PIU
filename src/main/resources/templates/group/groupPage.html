@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/src/main/resources/static/assets/css/groupPage.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+</head>
+<body>
+    <div class="groupPageFrame">
+        <div class="groupPageTitleFrame">
+            <div class="groupPageTitleForm">
+                <header class="groupPageHeaderFrame">
+                    <div class="groupPageHeaderForm">
+                        <span class="material-symbols-outlined">directions_walk</span>                                                        
+                        <a href="#" class="groupPageHeader">Plogger Center</a>
+                        <div class="groupPageProfileFrame">
+                            <div class="groupPageProfileForm">
+                                <div class="groupPageProfileContainer">
+                                    <picture class="groupPageProfile">
+                                        <source srcset="/src/main/resources/static/images/chun2.png" media="all and (min-width: 1024px)" >
+                                        <img src="/src/main/resources/static/images/chun2.png" class="profileImage" alt="">
+                                    </picture>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+            </div>
+            <div class="boundary"></div>
+        </div>
+        <div class="groupPageBodyFrame">
+            <div class="groupPageSidebarFrame">
+                <div class="groupPageSidebarForm">
+                    <div class="groupPageSidebarList">
+                        <div class="groupPageSidebar">
+                            <div class="groupPageSidebars">
+                                <div class="sNoticeFrame">
+                                    <div class="sNoticeForm">
+                                        <span class="material-symbols-outlined">notifications</span>
+                                        <div class="margin"></div>
+                                        <span class="sTitle">공지사항</span>    
+                                            
+                                    </div>
+                                </div>
+                                <div class="sGroupInfoFrame">
+                                    <div class="sGroupInfoForm">
+                                        <span class="material-symbols-outlined">group</span>                                                                                        
+                                        <div class="margin"></div>
+                                        <span class="sTitle">단체 정보</span> 
+                                    </div>
+                                </div>
+                                <div class="sProjectFrame">
+                                    <div class="sProjectForm">
+                                        <div class="sProjectTitleForm">
+                                            <span class="material-symbols-outlined">list</span>                                                                                                
+                                            <div class="margin"></div>
+                                            <span class="sTitle">플로깅</span> 
+                                        </div>
+                                        <span id="listClose" class="material-symbols-outlined show">expand_less</span>                        
+                                    </div>
+                                </div>
+                                <div class="sProjectContainer">
+                                    <a class="sProjectList" href="#">전체 플로깅</a>
+                                    <a class="sProjectQna" href="#">플로깅 문의</a>
+                                </div>
+                                <div class="sQrFrame">
+                                    <div class="sQrForm">
+                                        <span class="material-symbols-outlined">qr_code_scanner</span>                                                                                        
+                                        <div class="margin"></div>
+                                        <span class="sTitle">QR 확인</span>
+                                    </div>
+                                </div>
+                                <div class="sGuideFrame">
+                                    <div class="sGuideForm">
+                                        <span class="material-symbols-outlined">help_center</span>                                                                                        
+                                        <div class="margin"></div>
+                                        <span class="sTitle">플로거 가이드 센터</span> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sideBarBoundary"></div>
+                </div>
+            </div>                   
+        </div>
+        <div class="groupPageMainFrame">
+            <div class="groupPageMainForm">
+                <div class="groupPageContainer">
+                    <div class="bodyTitleFrame">
+                        <h3 class="bodyTitle">플로깅</h3>
+                        <a href="#" class="addProjectFrame">
+                            <button class="addProjectBtn">
+                                <span class="addProjectForm">
+                                    <span class="addProjectImg">
+                                        <span class="material-symbols-outlined">add</span>                                            
+                                    </span>
+                                    <div class="addBoundary"></div> 
+                                    <span class="addProjectText">플로깅 만들기</span>                                   
+                                </span>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>  
+    </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+    let spanText = document.getElementById("listClose").textContent;
+    let sProjectContainer = document.querySelector('.sProjectContainer');
+
+    $("#listClose").click(function(){        
+        if(spanText == "expand_less"){
+            document.getElementById("listClose").textContent="expand_more";
+            spanText = document.getElementById("listClose").textContent;
+            sProjectContainer.classList.add('hidden');
+        } else {
+            document.getElementById("listClose").textContent="expand_less";
+            spanText=document.getElementById("listClose").textContent;
+            sProjectContainer.classList.remove('hidden');
+        }
+    });
+
+</script>
+</html>
