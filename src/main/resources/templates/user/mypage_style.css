@@ -1,0 +1,1096 @@
+/* 로고 유토이미지 */
+@font-face {
+    font-family: 'Openas';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/Openas.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 강조하는 부분 산돌 삼립호빵체  */
+@font-face {
+    font-family: 'SDSamliphopangche_Basic';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Basic.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 본문체 noto sans kr */
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+.notosanskr * { 
+ font-family: 'Noto Sans KR', sans-serif;
+}
+
+
+
+.my-profile-email {
+    text-align: left;
+    color: #716d6d;
+}
+
+.email {
+    text-align: right;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+
+.mypage-outline {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.mypage-wrap {
+    display: flex;
+}
+
+.left-side {
+    margin-top: 70px;
+    min-width: 320px;
+    margin-right: 78px;
+    display: block;    
+    position: sticky;
+}
+
+.my-profile {
+    display: flex;
+    min-height: 250px;
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.user-letter {    
+    vertical-align: bottom;
+}
+
+.my-profile-image {
+    margin-top: 18px;
+    display: inline-block;            
+    width: 120px;
+    height: 120px;
+}
+
+.my-profile-image > img {
+    width: 100%;
+    height: 100%;
+}
+
+.user-info-modify, .user-plogging, .user-store {
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.45px;
+}
+
+.info-modify {
+    font-size: 14px;
+    font-weight: 700;    
+}
+
+.user-store {
+    font-size: 16px;
+    font-weight: 700;    
+}
+
+.my-point {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.user-point {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0px;
+}
+
+.reply, .QnA, .buy-product {
+    padding: 8px 0px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.mypage-right, .mypoint-right, .user-info-change-right{
+    width: 100%;
+}
+
+.mypage-right {
+    margin-top: 30px;
+}
+
+.visited-plogging-wrap, .jjim-plogging-wrap, .visited-store-wrap, .jjim-store-wrap, .join-plogging-wrap, .pay-store-wrap {
+    display: flex;
+}
+
+
+
+.visited-plogging-title, .jjim-plogging-title, .visited-store-title, .jjim-store-title, .pay-store-title, .join-plogging-title  {
+    display: flex;
+    justify-content: space-between;
+}
+
+.visited-plogging-title-inside, .pay-store-title-inside, .join-plogging-title-inside, .jjim-plogging-title-inside, .visited-store-title-inside, .jjim-store-title-inside {
+    
+    font-weight: bold;
+    font-size: 18px;
+}
+
+
+.my-join-plogging {
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 24px;
+    letter-spacing: -0.45px;
+    margin: 0px;  
+}
+
+
+
+.my-visited-plogging {
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 24px;
+    letter-spacing: -0.45px;
+    margin: 0px;
+}
+
+.my-visited-plogging {
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 24px;
+    letter-spacing: -0.45px;
+    margin: 0px;
+}
+
+.visited-plogging-title, .jjim-plogging-title, .visited-store-title, .jjim-store-title, .join-plogging-title, .pay-store-title {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    justify-content: space-between;
+}
+
+
+
+.visited-plogging-main-image, .jjim-plogging-main-image, .visited-store-main-image, .jjim-store-main-image, .join-plogging-main-image, .pay-store-main-image {
+    display: inline-block;
+    width: 243px;
+    height: 182px;
+    overflow: hidden;
+}
+
+.visited-plogging-main-image > img, .jjim-plogging-main-image > img, .visited-store-main-image > img, .jjim-store-main-image > img, .join-plogging-main-image > img, .pay-store-main-image > img {
+    width: 100%;
+    height: 100%;
+}
+
+.visited-plogging-main-image img, .jjim-plogging-main-image img, .visited-store-main-image img, .jjim-store-main-image img, .join-plogging-main-image img, .pay-store-main-image img {
+    transition: all 0.2s linear;
+  }
+.visited-plogging-main-image:hover img, .jjim-plogging-main-image:hover img, .visited-store-main-image:hover img, .jjim-store-main-image:hover img, .join-plogging-main-image:hover img, .pay-store-main-image:hover img {
+    transform: scale(1.4);
+  }
+
+.visited-plogging-content, .jjim-plogging-content, .join-plogging-content, .visited-store-content ,.jjim-store-content, .pay-store-content {
+    position: relative;
+    width: 100%;
+    text-align: left;
+}
+
+.visited-plogging-title-name, .jjim-plogging-title-name, .visited-store-title-name, .jjim-store-title-name, .pay-store-title-name, .join-plogging-title-name {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    line-height: 0.875rem;
+    display: block;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.visited-plogging-list-content, .jjim-plogging-list-content, .visited-store-list-content, .jjim-store-list-content, .join-plogging-list-content, .pay-store-list-content {
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    height: 40px;
+    margin: 4px 0px 8px;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.visited-plogging-list, .jjim-plogging-list, .visited-store-list, .jjim-store-list, .pay-store-list, .join-plogging-list {
+    width: 238px;
+    margin-right: 29px;
+}
+
+.jjim-wrap {
+    display: flex;
+    font-size: 8px;
+}
+
+.jjim-plus {
+    display: block;
+    height: 12px;
+}
+
+.product-price {
+    font-size: 0.875rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.mypoint-right {
+    width: 100%;
+}
+
+.my-real-point {
+    text-align: center;
+    font-size: 2.0rem;
+    font-weight: 700;
+    margin-top: 65px;
+}
+
+.my-now-point {
+    margin-top: 60px;
+    margin-bottom: 30px;
+    font-weight: 700;
+    font-size: 1.4rem;    
+}
+
+.my-point-number {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-top: 8px;
+    margin-left: 18px;
+}
+
+.point-notice {
+    margin-top: 80px;
+    margin-left: 100px;
+}
+
+
+.point-notice > ul > p {
+    margin-bottom: 25px;    
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.point-notice > ul > li {
+    font-size: 8px;
+    font-weight: 200;
+    color: darkgray;
+    height: 25px;
+}
+
+.point-use-history {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-top: 60px;
+    margin-bottom: 10px;
+}
+
+.point-use-explain {
+    text-align: center;
+    color: darkgray;
+    font-size: 14px;
+    font-weight: 200;
+}
+
+.user-check {
+    font-size: 2.0rem;
+    font-weight: 600;
+    margin-top: 150px;
+    
+}
+
+.user-check-id > p {
+    font-size: 0.85rem;
+}
+
+
+.user-email {
+    color: blue;    
+}
+
+.check-email, .check-pw {
+    font-size: 1rem;
+    font-weight: 500;
+    display: flex;
+}
+
+.confirmPw {
+    width: 75%;
+    height: 30px;
+}
+
+.user-pw, .user-id {
+    display: flex;
+    align-items:center;
+}
+
+.spacebar {
+    width: 100px;
+}
+
+.spacebar-sec {
+    width: 130px;
+}
+
+.user-modify-check {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.modify-check {
+    background-color: #20d8d8;
+    color: aliceblue;
+    border: #20d8d8;
+    width: 50px;
+    height: 28px;
+    cursor: pointer;
+}
+
+.modify-cancel {
+    background-color: #b2bcbc;
+    color: aliceblue;
+    border: #b2bcbc;
+    width: 50px;
+    height: 28px;
+    cursor: pointer;
+}
+
+.user-info-change-right {
+    text-align: center;
+    width: 100%;
+}
+
+.user-info-list {    
+    margin-top: 70px;
+    margin-left: 40px;
+}
+
+.user-info-title {    
+    text-align: center;
+    font-size: 2.0rem;
+    font-weight: 700;
+    margin-bottom: 50px;
+}
+
+.user-email-form, .user-name-form, .now-password, .change-password, .check-password, .user-phone-form, .join-table-title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-top: 20px;
+    text-align: left;    
+}
+
+.user-email-form > label, .user-name-form > label, .now-password > label, .change-password > label, .check-password > label, .user-phone-form > label, .join-table-title > label {
+    display: block;
+    padding-left: 72px;
+}
+
+.user-modify-confirm {    
+    margin-top: 20px;
+    margin-left: 100px;
+}
+
+.modify-ok, .out-ok {
+    border-radius: 3px;
+    display: block;
+    cursor: pointer;
+}
+
+.user-info-total > input, .user-info-total > div > div > input, .input-data, .adrr-first {
+    height: 35px;
+}
+
+
+
+.user-info-total > div > div > input {
+    margin-top: 10px;    
+}
+
+.modify-profile-image {
+    margin-left: 30px;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.modify-image {
+    border-radius: 50%;
+}
+
+#state {
+    margin-bottom: 20px;
+}
+
+.user-total-form {
+    width: 100%;
+}
+
+input.btnCertify {
+    height: 30px;
+    margin-bottom: 20px;
+}
+
+input.user-infor-email, input.user-infor-name, input.user-phone-form, input.input-data {
+    width: 80%;    
+}
+
+.adrr-second {
+    margin-top: 20px;
+}
+
+.user-modify-confirm {
+    text-align: center;
+    margin-left: 0;
+}
+
+.user-modify-confirm > .modify-ok {
+    width: 82%;
+    display: inline-block;
+    height: 35px;
+    background-color: orange;
+    border: orange;
+    color: white;
+}
+
+.user-out {
+    margin-top: 25px;
+}
+
+.user-out > .out-ok {
+    margin-top: 10px;
+    width: 82%;
+    display: inline-block;
+    height: 35px;
+    background-color: #ff001583;
+    border: #ff001583;
+    color: white;
+}
+
+.pen-image {
+    cursor: pointer;
+}
+
+.myorder-right {    
+    width: 100%;
+    text-align: center;
+}
+
+.order-deliver {
+    margin-top: 70px;    
+}
+
+.order-title {
+    display: flex;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-left: 50px;
+}
+
+.order-title > .title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+.order-title > .count {
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+}
+
+.order-modal {
+    justify-content: space-between;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+}
+
+.order-date > .check-date {
+    width: 82%;
+    display: inline-block;
+    height: 35px;
+    background-color: orange;
+    border: orange;
+    color: white;
+}
+
+.order-main-title {
+    
+    text-align: center;
+    font-size: 2.0rem;
+    font-weight: 700;
+    margin-bottom: 50px;
+}
+
+.modal-window {
+    padding-right: 63px;
+}
+
+
+#my_modal {
+    display: none;
+    padding: 20px 60px;
+    background-color: #fefefe;
+    border: 1px solid #888;
+    border-radius: 3px;
+}
+
+#my_modal .modal_close_btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#my_modal > .modal-title {
+    margin-bottom: 30px;
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+#my_modal > p {
+    margin:0;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+#my_modal > .image {
+    text-align: center;
+}
+
+#popup_open_btn {
+    display: none;
+}
+
+.modal-window {
+    cursor: pointer;
+}
+
+.modal_close_btn {
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.modal_close_btn2 {
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.cal-date {
+    display: flex;
+}
+
+.date-date {    
+    color: black;
+}
+
+.date-cal-date {
+    display: flex;
+    justify-content: center;  
+}
+
+.date-detail {
+    font-size: 1.0rem;
+    font-weight: 580;
+    margin-top: 30px;
+    padding-left: 60px;
+    padding-right: 60px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.buy-item-content {
+    display: flex;
+    padding-left: 66px;
+}
+
+.buy-success {
+    font-size: 1.0rem;
+    font-weight: 700;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    text-align: left;
+    padding-left: 60px;
+}
+
+.sapcebar-thr {
+    width: 20px;
+}
+
+.explain-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.explain-count {
+    text-align: left;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: darkgray;
+}
+
+.check-date {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.main-cal {
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+    display: flex;
+}
+
+.calen {    
+    width: 84%;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+ul li {list-style-type: none; float: left;}
+
+
+.search-date > .search-ok {
+    margin-top: 15px;
+    width: 100%;
+    display: inline-block;
+    height: 35px;
+    background-color: orange;
+    border: orange;
+    color: white;
+    border-radius: 3px;
+}
+
+.order-search {
+    font-weight: 600;
+    margin-left: 60px;
+    margin-top: 10px;
+    text-align: left;
+}
+
+.my-order-list {
+    font-weight: 600;
+    margin-left: 60px;
+    margin-top: 10px;
+    text-align: left;
+}
+
+.my-qna-list-right {
+    width: 100%;
+}
+
+.my-review-list-right {
+    width: 100%;
+}
+
+.plogging-qna-title, .store-qna-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+.plogging-review-title, .store-review-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+table.type09 {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    line-height: 1.5;
+    text-align: center;
+  
+  }
+  table.type09 thead th {
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #369;
+    border-bottom: 3px solid #036;
+  }
+  table.type09 tbody th {
+    
+    padding: 10px;
+    font-size: 1.0rem;
+    font-weight: 600;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+    background: #f3f6f7;
+  }
+
+  table.type09 td.qna-date {        
+    font-size: 0.8rem;
+    width: 20%;
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+  }
+
+  table.type09 td.review-date {        
+    font-size: 0.8rem;
+    width: 20%;
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+  }
+
+  table.type09 td.qna-content {
+    width: 70px;
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+    font-size: 0.8rem;
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis;    
+  }
+
+  table.type09 td.qna-answer {
+    
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+    font-size: 0.8rem;
+    text-align: center;
+  }
+
+  table.type09 td.review-content {
+    width: 60%;
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+    font-size: 0.8rem;
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+  }
+
+  table.type09 tbody th.plogging-title {
+      font-size: 1.0rem;
+      font-weight: 600;
+      padding-left: 20px;
+  }
+
+.pwck {
+    display: inline-block;
+}
+
+.npwck {
+    display: inline-block;
+}
+
+.ckms {
+    display: inline-block;
+    margin-left: 30px;
+}
+
+.nckms {
+    display: inline-block;
+    margin-left: 30px;
+}
+
+.check-password {
+    display: flex;
+}
+
+.now-password {
+    display: flex;
+}
+
+.space-enter {
+    width: 100%;
+    height: 1px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.jjim-store-outline {
+    margin-top: 20px;
+}
+
+.mypage-right{    
+    padding: 0;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.mypage-right li {
+    list-style: none;
+}
+
+ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides_6 {
+    padding: 0;
+}
+
+.join-plogging-wrap {
+    position: relative;
+    width: 801px;
+    margin: 0 auto;
+    height: 325px;
+    overflow: hidden;
+}
+
+.visited-plogging-wrap {
+    position: relative;
+    width: 801px;
+    margin: 0 auto;
+    height: 325px;
+    overflow: hidden;
+}
+
+.jjim-plogging-wrap {
+    position: relative;
+    width: 801px;
+    margin: 0 auto;
+    height: 325px;
+    overflow: hidden;
+}
+
+.pay-store-wrap {
+    position: relative;
+    width: 801px;
+    margin: 0 auto;
+    height: 325px;
+    overflow: hidden;
+}
+
+.visited-store-wrap {
+    position: relative;
+    width: 801px;
+    margin: 0 auto;
+    height: 325px;
+    overflow: hidden;
+}
+
+.jjim-store-wrap {
+    position: relative;
+    width: 801px;
+    margin: 0 auto;
+    height: 325px;
+    overflow: hidden;
+}
+
+.yslides_1, .yslides_2, .yslides_3, .yslides_4, .yslides_5, .yslides_6 {
+    position: absolute;
+    left: 0;
+    top: 0;    
+}
+
+.yslides_1.animated, .yslides_2.animated, .yslides_3.animated, .yslides_4.animated, .yslides_5.animated, .yslides_6.animated {
+    transition: 0.5s ease-out;
+}
+
+.yslides_1 li {
+    width: 267px;
+    height: 325px;
+    float: left;
+}
+
+.yslides_2 li {
+    width: 267px;
+    height: 325px;
+    float: left;
+}
+
+.yslides_3 li {
+    width: 267px;
+    height: 325px;
+    float: left;
+}
+
+.yslides_4 li {
+    width: 267px;
+    height: 325px;
+    float: left;
+}
+
+.yslides_5 li {
+    width: 267px;
+    height: 325px;
+    float: left;
+}
+
+.yslides_6 li {
+    width: 267px;
+    height: 325px;
+    float: left;
+}
+
+.yslides_1 li:not(:last-child), .yslides_2 li:not(:last-child), .yslides_3 li:not(:last-child), .yslides_4 li:not(:last-child), .yslides_5 li:not(:last-child), .yslides_6 li:not(:last-child) {
+    margin-right: 0;
+}
+
+.button-box {
+    float: right;
+    display: flex;
+}
+
+.button-box .prev_1, .button-box .next_1, .button-box .prev_2, .button-box .next_2, .button-box .prev_3, .button-box .next_3, .button-box .prev_4, .button-box .next_4, .button-box .prev_5, .button-box .next_5, .button-box .prev_6, .button-box .next_6{
+    
+    background-color: transparent;
+    color: black;
+    text-align: center;
+    border-radius: 50%;
+    padding: 10px 20px;
+    top: 50%;
+    font-size: 1.3em;
+    cursor: pointer;
+  }
+
+
+
+/* 달력 관련 css */
+
+input[type=text],input[type=password]{font-family:"Malgun Gothic","맑은 고딕",Dotum,"돋움",Arial,sans-serif}
+            *{font-family:"Malgun Gothic","맑은 고딕",Dotum,"돋움",Arial,sans-serif}
+            .mypage-outline > .mypage-wrap > .myorder-right > .order-deliver > .my_calen > .main-cal {margin:0;padding:0;font-size:12px;color:#555;background:transparent;-webkit-user-select:none;-moz-user-select:none;-webkit-text-size-adjust:none;-moz-text-size-adjust:none;-ms-text-size-adjust:none}
+            ol,ul{list-style:none} 
+            table{table-layout:fixed;width:100%;border-collapse:collapse;border-spacing:0}
+            caption{overflow:hidden;width:0;height:0;font-size:0;line-height:0;text-indent:-999em}
+            img,fieldset{border:0}
+            legend{height:0;visibility:hidden}
+            em,address{font-style:normal}
+            img{border:0 none;vertical-align:middle}
+            a{color:#555;text-decoration:none}
+            input,select{margin:0;padding:0;vertical-align:middle}
+            button{margin:0;padding:0;font-family:inherit;border:0 none;background:transparent;cursor:pointer}
+            button::-moz-focus-inner{border:0;padding:0}
+            .myorder-right header, .myorder-right footer, .myorder-right aside, .myorder-right nav, .myorder-right section, .myorder-right article{display:block}
+
+            .clearfix{*zoom:1}
+            .clearfix:after{content:"";display:block;clear:both;overflow:hidden}
+
+            .searchBox{border:none}
+            .searchBox tbody th{padding:20px 10px 20px 35px;font-size:14px;font-weight:bold;text-align:left;vertical-align:top;border:none;background:#8fcbe1 }
+            .searchBox tbody td{padding:12px 10px 12px 25px;border:none;background-color:#dfedf2}
+        
+            .searchDate{overflow:hidden;margin-bottom:10px;*zoom:1}
+            .searchDate:after{display:block;clear:both;content:''}
+            .searchDate li{position:relative;float:left;margin:0 7px 0 0}
+            .searchDate li .chkbox2{display:block;text-align:center}
+            .searchDate li .chkbox2 input{position:absolute;z-index:-1}
+            .searchDate li .chkbox2 label{display:block;width:72px;height:26px;font-size:14px;font-weight:bold;color:#fff;text-align:center;line-height:25px;text-decoration:none;cursor:pointer;background:#98cdea}
+            .searchDate li .chkbox2.on label{background:#ec6a6a}
+        
+            .demi{display:inline-block;margin:0 1px;vertical-align:middle}
+            .inpType{padding-left:6px;height:24px;line-height:24px;border:1px solid #dfedf2}
+            .btncalendar{display:inline-block;width:22px;height:22px;background:url(images/btn_calendar.gif) center center no-repeat;text-indent:-999em}
+
+/* 달력 css 끝 */
+
+ 
+.myPoint {
+	table-layout: auto;
+	width: 100%;
+	min-width: 320px;
+	max-width: 100%;
+	overflow: hidden;	
+	border: 0;
+	border-collapse: collapse;
+	background-color: #FAFAFA; 
+	margin: auto;	margin-bottom: 20px;
+	text-align: center;
+	font-size: 0.9em
+}
+.myPoint tr { height: 40px; }
+.myPoint td, th { border: 1px white solid; padding: 8px; }
+.myPoint th { background-color: #ffa775; color: whitesmoke; }
+
+.myPoint.chageTabe tr:nth-Child(odd) { background-color: #F0F0F0; }
+.myPoint.chageTabe td,
+.myPoint.chageTabe th { border-width: 0 1px; }
+.myPoint.chageTabe tr:hover td { border-color: transparent; background-color: #E6E6E6; }
+.myPoint.chageTabe tr:hover td:first-Child { border-left-color: white; }
+.myPoint.chageTabe tr:hover td:last-Child { border-right-color: white; }
+
+.myPoint.chageTabeybrid tr:first-Child th:first-Child { background-color: transparent; } /* 복합 형식 1번 셀 */
+.myPoint.chageTabeybrid td:hover { background-color: #E6E6E6; }
+
+th.point-change-count {
+    width: 15%;
+}
+
+th.point-change-content {
+    width: 50%;
+}
+
+th.point-change-remain {
+    width: 15%;
+}
+
+th.point-change-date {
+    width: 20%;
+}
+
+#popup_open_btn2 {
+    display: none;
+}
+
+#my_modal2 {
+    display: none;
+    padding: 20px 60px;
+    background-color: #fefefe;
+    border: 1px solid #888;
+    border-radius: 5px;
+}
+
+#my_modal2 .modal_close_btn2 {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#my_modal2 > .modal-title2 {
+    margin-bottom: 30px;
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+#my_modal2 > p {
+    margin:0;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+#my_modal2 > div .out-ok-confirm {
+    background-color: #98c3f1;
+    color: white;
+    width: 20%;
+    float: right;
+    height: 30px;    
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+}
+
+#my_modal2 > div .out-cancel-confirm {
+    background-color: #ec6a6a;
+    color: white;
+    width: 20%;
+    float: right;
+    height: 30px;
+    border-radius: 3px;
+    margin-right: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.buttons-box {
+    margin-top: 20px;
+}
