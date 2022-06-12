@@ -132,7 +132,7 @@
                 <ul>
                     <li>
                         <div class="item">
-                            <span class="material-symbols-outlined jjim">
+                            <span class="material-symbols-outlined jjim jjim-ajax">
                                 favorite
                                 </span>
                             <a href="pickitupStoreDetail.html"><img src="/src/main/resources/static/images/1.jpg">
@@ -155,7 +155,7 @@
                     </li>
                     <li>
                         <div class="item">
-                            <span class="material-symbols-outlined jjim">
+                            <span class="material-symbols-outlined jjim jjim-ajax">
                                 favorite
                                 </span>
                             <a href="pickitupStoreDetail.html"><img src="/src/main/resources/static/images/1.jpg">
@@ -178,7 +178,7 @@
                     </li>
                     <li>
                         <div class="item">
-                            <span class="material-symbols-outlined jjim">
+                            <span class="material-symbols-outlined jjim jjim-ajax">
                                 favorite
                                 </span>
                             <a href="pickitupStoreDetail.html"><img src="/src/main/resources/static/images/1.jpg">
@@ -201,7 +201,7 @@
                     </li>
                     <li>
                         <div class="item">
-                            <span class="material-symbols-outlined jjim">
+                            <span class="material-symbols-outlined jjim jjim-ajax">
                                 favorite
                                 </span>
                             <a href="pickitupStoreDetail.html"><img src="/src/main/resources/static/images/1.jpg">
@@ -224,7 +224,7 @@
                     </li>
                     <li>
                         <div class="item">
-                            <span class="material-symbols-outlined jjim">
+                            <span class="material-symbols-outlined jjim jjim-ajax">
                                 favorite
                                 </span>
                             <a href="pickitupStoreDetail.html"><img src="/src/main/resources/static/images/1.jpg">
@@ -247,7 +247,7 @@
                     </li>
                     <li>
                         <div class="item">
-                            <span class="material-symbols-outlined jjim">
+                            <span class="material-symbols-outlined jjim  jjim-ajax">
                                 favorite
                                 </span>
                             <a href="pickitupStoreDetail.html"><img src="/src/main/resources/static/images/1.jpg">
@@ -270,7 +270,7 @@
                     </li>
                     <li>
                         <div class="item">
-                            <span class="material-symbols-outlined jjim">
+                            <span class="material-symbols-outlined jjim jjim-ajax">
                                 favorite
                                 </span>
                             <a href="pickitupStoreDetail.html"><img src="/src/main/resources/static/images/1.jpg">
@@ -293,7 +293,7 @@
                     </li>
                     <li>
                         <div class="item">
-                            <span class="material-symbols-outlined jjim">
+                            <span class="material-symbols-outlined jjim jjim-ajax">
                                 favorite
                                 </span>
                             <a href="pickitupStoreDetail.html"><img src="/src/main/resources/static/images/1.jpg">
@@ -316,7 +316,7 @@
                     </li>
                     <li>
                         <div class="item">
-                            <span class="material-symbols-outlined jjim">
+                            <span class="material-symbols-outlined jjim jjim-ajax">
                                 favorite
                                 </span>
                             <a href="pickitupStoreDetail.html"><img src="/src/main/resources/static/images/1.jpg">
@@ -339,7 +339,7 @@
                     </li>
                     <li>
                         <div class="item">
-                            <span class="material-symbols-outlined jjim">
+                            <span class="material-symbols-outlined jjim jjim-ajax">
                                 favorite
                                 </span>
                             <a href="pickitupStoreDetail.html"><img src="/src/main/resources/static/images/1.jpg">
@@ -362,7 +362,7 @@
                     </li>
                     <li>
                         <div class="item">
-                            <span class="material-symbols-outlined jjim">
+                            <span class="material-symbols-outlined jjim jjim-ajax">
                                 favorite
                                 </span>
                             <a href="pickitupStoreDetail.html"><img src="/src/main/resources/static/images/1.jpg">
@@ -385,7 +385,7 @@
                     </li>
                     <li>
                         <div class="item">
-                            <span class="material-symbols-outlined jjim">
+                            <span class="material-symbols-outlined jjim jjim-ajax">
                                 favorite
                                 </span>
                             <a href="pickitupStoreDetail.html"><img src="/src/main/resources/static/images/1.jpg">
@@ -536,7 +536,7 @@
         }
     })
 
-    $('.jjim').click(function(){
+    $('jjim-ajax').click(function(){
         if($(this).hasClass("red")){
             $(this).removeClass("red");
         }else{
@@ -544,9 +544,9 @@
         }
 
         $.ajax({
-            url : "",
+            url : "", //찜table 연결하는곳
             type : "post",
-            data : "",
+            data : "상품데이터",
             contentType : "application/json",
             dataType : "json",
             success : function(){

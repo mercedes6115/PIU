@@ -187,41 +187,17 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
  <script>
-    //뒤로가기버튼
     $('.review-header-left').click(function(){
         location.href = history.back();
     })
 
-    
     //무한스크롤
     $(window).on("scroll", function() { 
 	var scrollHeight = $(document).height();
 	var scrollPosition = $(window).height() + $(window).scrollTop();		
     let str = "";
-    
-    //후기가 없을때까지
-        if (scrollPosition > scrollHeight -1) {	
-            // function getReviews(param, callback){
-            //     $.ajax({
-            //         url:"",
-            //         type:"post",
-            //         data:JSON.stringify({}),
-            //         success:function(list){
-            //             if(callback){
-            //                 callback(list);
-            //             }
-            //         },
-            //         error:function(){
-            //         }
-            //     })	
-            // }
-            // getReviews(param,function(list){
-            //     $.each(list, function(i, reply){
 
-            //     });
-            // })
-            //밑의 내용 위에 each 문에 넣기
-            
+        if (scrollPosition > scrollHeight -300) {			
             str +=  "<section class='allreveiws'>";
             str +=  '<div class="p-24">';
             str +=  '<div class="flex">';
