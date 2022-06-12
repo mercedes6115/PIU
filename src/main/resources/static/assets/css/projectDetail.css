@@ -63,11 +63,26 @@ body {
     position: static;
 }
 
-.readApplicateFrame {
-    position: sticky;
+.readApplicantBody {
+    position: static;
     width: 33.3333%;
     min-height: 1px;
+    padding-right: 12px;
+    padding-left: 12px;
     box-sizing: border-box;
+}
+
+.readApplicantContainer{
+    position: sticky;
+    top: 78px;
+    max-height: 100vh;
+    overflow: auto;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.readApplicateFrame {
+    min-height: 1px; 
     padding: 24px;
     border-radius: 3px;
     box-shadow: rgb(41 42 43 / 16%) 0px 2px 6px -2px;
@@ -79,7 +94,242 @@ body {
     background-color: rgb(255, 255, 255);
 }
 
+.readGroupInfoForm {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgb(26, 26, 26);
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+    margin-bottom: 12px;
+}
 
+.readApplicantTitle {
+    font-family: 'SDSamliphopangche_Basic';
+    margin-bottom: 8px;
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(26, 26, 26);
+    line-height: 28px;
+    margin: 0px;
+}
+
+.readApplicantCategory {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.readApplicantTerrainForm, .readApplicantCourseForm{
+    margin-right: 4px;
+    margin-bottom: 4px;
+    min-width: 24px;
+    height: 24px;
+    border-radius: 3px;
+    padding-left: 6px;
+    padding-right: 6px;
+    background-color: rgb(248, 248, 248);
+    flex: 0 0 auto;
+    display: inline-flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.readApplicantTerrain, .readApplicantCourse {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    color: black;
+    line-height: 16px;
+    letter-spacing: normal;
+    margin: 0px;
+    font-weight: 600;
+    display: inline-flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.readApplicantPointFrame, .readApplicantContentFrame, .readApplicantDateFrame {
+    margin: 8px 0px 12px;
+}
+
+
+.readApplicantPointForm, .readApplicantContentForm, .readApplicantDateForm {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    position: relative;
+}
+
+.readApplicantContent, .readApplicantDate {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: black;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+}
+
+.readApplicantPointTitleForm {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.readApplicantPointTitle{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgb(253, 48, 73);
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+}
+
+.readApplicantPointAccumlateForm {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-left: auto;
+}
+
+.readApplicantPointAccumlate {
+    font-family: 'Noto Sans KR', sans-serif;
+    margin-left: 4px;
+    font-size: 18px;
+    font-weight: 700;
+    color: rgb(253, 48, 73);
+    line-height: 24px;
+    letter-spacing: -0.45px;
+    margin: 0px;
+}
+
+.readApplicantBtnFrame {
+    position: relative;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.readApplicantBtnForm {
+    margin-right: 12px;
+    flex: 1 1 0%;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.readApplicantBtnFormRight {
+    flex: 1 1 0%;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.projectApplicantFrame {
+    width: 100%;
+}
+
+.projectApplicantFrame :hover{
+    background-color: rgba(255, 85, 0, 0.532);
+}
+
+.projectApplicantBtn :hover {
+    background-color: rgba(255, 85, 0, 0.532);
+}
+
+.projectApplicant :hover{
+    background-color: rgba(255, 85, 0, 0.532);
+}
+
+.projectApplicantBtn {
+    font-family: 'Noto Sans KR', sans-serif;
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    vertical-align: middle;
+    border-radius: 3px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(255, 86, 0);
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: -0.2px;
+    padding: 0px 20px;
+    height: 48px;
+    transition: background-color 0.1s ease 0s;
+    text-decoration-line: none;
+    border: 0px;
+    outline: none;
+    margin: 0px;
+    flex: initial;
+    box-sizing: border-box;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.readApplicantBtnForm :hover{
+    background-color: rgb(180,180,180);
+}
+
+.readApplicantBtnFormRight :hover {
+    background-color: rgb(180,180,180);
+}
+
+.readApplicantLikeBtn, .readApplicantShareBtn {
+    cursor: pointer;
+    width: 100%;
+    display: inline-flex;
+    vertical-align: middle;
+    border-radius: 3px;
+    color: rgb(26, 26, 26);
+    background-color: rgb(248, 248, 248);
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: -0.2px;
+    padding: 0px 16px;
+    height: 40px;
+    transition: background-color 0.1s ease 0s;
+    text-decoration-line: none;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+    flex: initial;
+    box-sizing: border-box;
+    border: 0px;
+    outline: none;
+    margin: 0px;
+}
+.pLikeImage, .pShareImage {
+    flex: 0 0 auto;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 0px;
+    width: 18px;
+    height: 18px;
+    margin-right: 4px;
+}
+
+.pLikeCount {
+    flex: 0 0 auto;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
 
 .ploggingImageForm {
     max-width: 1176px;
@@ -167,8 +417,9 @@ body {
     justify-content: center;
     -webkit-box-align: center;
     align-items: center;
-    color: rgb(26, 26, 26);
-    font-weight: bold;
+    color: rgb(162, 162, 162);
+    font-weight: normal;
+    text-decoration: none;
 }
 
 .introduce{
@@ -362,53 +613,6 @@ body {
     color: inherit;
 }
 
-.moveWriteReviewForm {
-    padding-top: 7px;
-    padding-bottom: 7px;
-    padding-right: 8px;
-    padding-left: 8px;
-    cursor: pointer;
-    overflow: hidden;
-    z-index: 0;
-    --system-on-color: #101010;
-    background-color: rgb(255, 255, 255);
-    color: var(--system-on-color);
-    border-width: 1px;
-    border-style: solid;
-    border-color: rgba(0, 0, 0, 0.15);
-    border-radius: 2px;
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    justify-content: center;
-    display: inline-flex;
-    position: relative;
-    text-decoration: none;
-}
-
-.mwrFontForm1 {
-    display: flex;
-    visibility: inherit;
-    -webkit-box-align: center;
-    align-items: center;
-    flex-direction: row;
-}
-
-.mwrFontForm2 {
-    padding-left: 4px;
-    padding-right: 4px;
-}
-
-.mwrFont {
-    font-family: 'SDSamliphopangche_Basic';
-    line-height: 1rem;
-    font-size: 0.75rem;
-    font-weight: 700;
-    border-width: 0px;
-    color: var(--system-on-color);
-    margin: 0px;
-    padding: 0px;
-}
 
 .wrapImage {
     width: 100%;
@@ -438,7 +642,7 @@ body {
     margin-right: 8px;
 }
 
-.moveImage img{
+.moveImage .reviewImage{
     top: 0px;
     left: 0px;
     width: 100%;
@@ -957,5 +1161,86 @@ body {
     margin: 0px 8px 0px 0px;
     flex: 1 1 0%;
     color: rgb(58, 58, 58);
+}   
+
+.modalFrame {
+    position: fixed;
+    top: 0;
+    left:0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+    background: rgba(0, 0, 0, 0.6) !important;
+    display: none;
+    width: auto;
 }
 
+.show {
+    display: block;
+}
+
+.modalForm {
+    position: relative;
+    display: flex;
+    transform: translate(10px, 55px);
+}
+
+.modalItem {
+    min-height: 80vh;
+    background: url("/src/main/resources/static/images/chun.png") center/cover fixed no-repeat;
+    border-radius: 0.3rem;
+    width: 96%
+}
+
+.btnClose {
+    color: #fff;
+  font-size: 3rem;
+  transition: all 1s ease-in-out;
+  cursor: pointer;
+}
+
+.btnClose :hover {
+    color: rgb(249,228,148);
+}
+
+.modalControl {
+    position: absolute;
+    font-size: 4rem;
+    color: var(--mainWhite);
+    transition: all 1s linear;
+    cursor: pointer;
+}
+
+.modalControl :hover {
+    color: rgb(249,228,148);
+}
+
+.btnLeft {
+    top: 50%;
+    left: 0;
+    transform: translateX(-60%);
+    margin-left: 20px;
+}
+
+.btnRight {
+    top: 50%;
+    right: 0;
+    transform: translateX(60%);
+    margin-right: 20px;
+}
+
+.active {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+}
