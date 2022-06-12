@@ -1,0 +1,850 @@
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+.notosanskr * { 
+ font-family: 'Noto Sans KR', sans-serif;
+}
+/* ---------------------------------공통------------------------- */
+html, body{
+    margin: 0;
+}
+p{
+    margin: 0;
+}
+
+/* --------------------------------임시헤더----------------------- */
+@font-face {
+    font-family: 'Openas';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/Openas.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+@font-face {
+    font-family: 'SDSamliphopangche_Basic';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Basic.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.header-wrap{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.header{
+    border-radius: 0;
+    width: 100%;
+    height: auto;
+    background-color: #FFFFFF;
+    border-color: #E5E5E5;
+    z-index: 101;
+    top: 0;
+    left: 0;
+    position: sticky;
+    display: block;
+
+
+}
+.header1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header2{
+    display: flex;
+    max-width: 1176px;
+    width: calc(100% - 40px);
+    margin-left: 20px;
+    margin-right: 20px;
+    align-items: stretch;
+    flex-direction: column;
+}
+.header3{
+    height: 78px;
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    position: relative;
+}
+.header3 > a {
+    color: black;
+    text-decoration-line: none;
+}
+.logo-wrap{
+    display: block;
+    align-items: stretch;
+    flex-direction: column;
+}
+.logo-font{
+    font-family:'Openas';
+    display: block;
+    width: auto;
+    height: 24px;
+    FONT-WEIGHT: 600;
+    font-size: 25px;
+    padding-top: 33%;
+}
+.empty-space{
+    width:36px;
+    display: flex;
+    height:0;
+}
+.menu-search-wrap{
+    margin-right: 32px;
+    display: flex;
+    flex: 1;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0%;
+    align-items: stretch;
+    flex-direction: row;
+}
+.menu-wrap{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+.menu-plogging{
+    font-family: 'SDSamliphopangche_Basic';
+    border-width: 0;
+    color: #1F89FF;
+    margin: 0;
+    padding: 0;
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.625rem;
+    white-space: nowrap;
+    text-decoration-line: none;
+}
+
+.menu-space{
+    width: 16px;
+    height: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+.menu-store{
+    font-family: 'SDSamliphopangche_Basic';
+    border-width: 0;
+    color: #1A1A1A;
+    margin: 0;
+    padding: 0;
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.625rem;
+    white-space: nowrap;
+    text-decoration-line: none;
+}
+h4> .menu-store{
+    text-decoration-line: none;
+}
+.search-box{
+    max-width: 380px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: row;
+}
+.search-box1{
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+    flex-direction: column;
+}
+.search-box2{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+.search-box3{
+    display: flex;
+    margin-top: -9px;
+    margin-bottom: -9px;
+    margin-left: -4px;
+    margin-right: -4px;
+    width: 100%;
+    align-items: stretch;
+    flex-direction: row;
+    cursor: unset;
+}
+.search-box4{
+    border-radius: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #F8F8F8;
+    border-color: #E5E5E5;
+}
+.search-text-icon{
+    display: flex;
+    height: 38px;
+    padding-left: 16px;
+    padding-right: 10px;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+.search-text{
+    font-family: 'Noto Sans KR', sans-serif;
+    border-width: 0;
+    color: #A2A2A2;
+    margin: 0;
+    width:100%;
+    padding: 0;
+    outline: none;
+    background-color:rgb(248, 248, 248);
+    font-size: 0.675rem;
+    font-weight: 400;
+    line-height: 1.125rem;
+}
+.search-icon{
+    display: block;
+    width: 20px;
+    height: 20px;
+}
+.header-right-menu-wrap{
+    display: flex;
+    margin-left: auto;
+    align-items: stretch;
+    flex-direction: row;
+}
+.header-right-menu-wrap1{
+    display: flex;
+    align-items: stretch;
+    flex-direction: row;
+    flex-direction: row;
+}
+
+.header-right-menu-wrap2{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+.header-right-menu-wrap3{
+    display: flex;
+    align-items: stretch;
+    flex-direction: row;
+}
+.myplogging{
+    font-family: 'Noto Sans KR', sans-serif;
+    border-width: 0px;
+    color: #1A1A1A;
+    margin: 0px;
+    padding: 0px;
+    padding-top: 10px;
+    font-size: 0.875rem;
+    font-weight: bold;
+    line-height: 1.125rem;
+    text-decoration-line: none;
+}
+.empty-space1{
+    width: 20px;
+    height: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+.loginout{
+    /*font-family: 'SDSamliphopangche_Basic';*/
+    border-width: 0px;
+    color: #1A1A1A;
+    margin: 0px;
+    padding: 0px;
+    padding-top: 10px;
+    font-size: 0.875rem;
+    font-weight: bold;
+    line-height: 1.125rem;
+
+}
+.profile{
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    position: relative;
+}
+.profile-img-wrap{
+    width: 34px;
+    height: 34px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+.profile-img{
+    background-color: rgb(248, 248, 248);
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.profile-img1{
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: relative;
+}
+
+/*--------------------------- 스토어  css ---------------------*/
+/*--------------------------- 탑으로 ---------------------*/
+.toTop{
+    position: fixed;
+    bottom: 5%;
+    right: 10px;
+    background-color: rgba(128, 128, 128, 0.4);
+    color: black;
+    padding: 10px;
+    border-radius: 15%;
+    font-size: large;
+    cursor: pointer;
+    opacity: 0.5;
+    z-index: 99999;
+}
+/*--------------------------- 스토어 전체 컨테이너 ---------------------*/
+.store_container{
+    display: flex;
+    width: 1200px;
+    height: 100%;
+    font-family: "Noto Sans KR";
+    z-index: -1;
+    margin: auto;
+    padding: 30px 0;
+}
+/*--------------------------- 스토어 카테고리 컨테이너 ---------------------*/
+.store_categories{
+    display: fixed;
+    position: relative;
+    width: 200px;
+    padding: 0 24px;
+    height: 100%;
+}
+.store_categories ul{
+    list-style: none;
+    position: absolute;
+    margin-top: 0;
+    width: 70%;
+    left: 20px;
+}
+.store_categories li{
+    margin-bottom: 20px;
+    padding-left: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+li.active{
+    background-color: #1f88ff2b;
+}
+.store_categories a{
+    text-decoration: none;
+}
+.store_categories a:visited{
+    color: black;
+}
+.store_categories li:hover{
+    background-color: #1f88ff2b;
+}
+
+/*--------------------------- 스토어 아이템 리스트---------------------*/
+.store_items{
+    position: relative;
+    width: 1000px;
+    height: 100%;
+    margin: 0 70px;
+}
+.store_items p{
+    font-size: large;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+.all_items{
+    position: relative;
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5%;
+}
+.store_items .all_items ul{
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+}
+.store_items .all_items ul li{
+    width: 24.5%;
+    border-bottom: 1px solid #71727448;
+    padding-bottom: 20px;
+    padding-top: 10px;
+    margin-right: 3px;
+}
+.store_items .all_items img{
+   width: 100%;
+}
+.item a{
+    text-decoration: none;
+    
+}
+.item a:visited{
+    color: black;
+}
+
+.onetime{
+    display: flex;
+    justify-content: space-between;
+}
+.onetime a{
+    text-decoration: none;
+}
+.onetime a:visited{
+    color: black;
+}
+.onetime a:hover{
+    color: gray;
+}
+.media_store_categories{
+    display: none;
+    margin-left: 70px;
+}
+.item{
+    position: relative;
+}
+.item div{
+    padding-bottom: 5px;
+}
+.jjim{
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+}
+
+/* --------------------------반응형 스토어 메인 ----------------------*/
+@media ( max-width: 1024px ) {
+    .store_categories{
+        display: none;
+    }
+    .media_store_categories{
+        display: block;
+    }
+    .media_store_categories input{
+        background-color: white;
+        border: none;
+        font-family: "Noto Sans KR";
+        font-size: 15px;
+        cursor: pointer;
+    }
+    input.categories_selected{
+        background-color: #1f88ff2b;
+        border-radius: 10px;
+        padding: 0 10px;
+    }
+    .jjim{
+        position: absolute;
+        right: 50px;
+    }
+  }
+
+  /*--------------------- 상품 디테일------------------------- */
+
+.store_detail{
+    font-family: 'Noto Sans KR';
+    display: block;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+.detail_item{
+    width: 776px;
+    padding: 12px;
+    height: fit-content;
+    margin: 0 12px;
+}
+.detail_item_img img{
+    width: 100%;
+}
+.pay_bar{
+    position: sticky;
+    top: 80px;
+    width: 318px;
+    height: fit-content;
+    padding: 24px;
+    box-shadow: rgb(41 42 43 / 16%) 0px 2px 6px -2px;
+}
+.item_title{
+    font-size: larger;
+}
+
+.nav_item{
+    display: flex;
+}
+.nav_item a{
+    text-decoration: none;
+    color: gray;
+    margin-right: 10px;
+}
+.nav_item a.active{
+    color: black;
+    font-weight: 700;
+    border-bottom: 3px solid;
+}
+
+.toBuy{
+    width: 100%;
+    border: none;
+    background-color: #005bed;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 0;
+    margin-top: 10px;
+    cursor: pointer;
+}
+.profile_img{
+    width: 30px;
+    height: 30px;
+    margin: 0 5px;
+}
+.btn_review{
+    width: 90%;
+    border: none;
+    height: 35px;
+}
+.btn_review:hover{
+    background-color: rgba(128, 128, 128, 0.348);
+}
+.btn_qna{
+    border: none;
+    background-color: #005bedc1;
+    padding: 8px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+.btn_qna:hover{
+    background-color: #005bed;
+}
+.doComment{
+    width: 90%;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid gray;
+}
+.send_btn{
+    border: none;
+    background-color: white;
+    color: rgba(128, 128, 128, 0.578);
+    font-size: 25px;
+    cursor: pointer;
+    position: absolute;
+    right: 10%;
+}
+.send_btn:hover{
+    color: black;
+}
+.return_policy{
+    width: 80%;
+    background-color: rgba(128, 128, 128, 0.116);
+    border: none;
+    padding: 20px;
+    border-radius: 15px;
+    color: rgb(49, 49, 4);
+}
+.pay_bar_media{
+    display: none;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background-color: white;
+    align-items: center;
+    z-index: 1000;
+    box-shadow: rgb(41 42 43 / 16%) 0px 2px 6px -2px;
+}
+.jjim_btn{
+    font-size: 30px;
+    text-align: center;
+    width: 70px;
+    display: none;
+}
+.item_description_media{
+    display: none;
+}
+
+
+/* -------------------상품 디테일 반응형--------------- */
+@media ( max-width: 1024px ) {
+    .pay_bar{
+        display: none;
+    }
+    .pay_bar_media{
+        display: flex;
+    }
+    .jjim_btn{
+        display: block;
+    }
+    .item_description{
+        display: none;
+    }
+    .item_description_media{
+        display: block;
+    }
+    .store_items .all_items ul li{
+        width: 49%;
+    }
+   
+}
+/*----------------------- 구매하기 첫번째 페이지----------------------------------- */
+.header_mobile{
+    display: block;
+    top: 0;
+    max-width: 640px;
+    margin: 0 auto;
+    height: 80px;
+    background-color: green;
+    z-index: 100;
+}
+.footer_mobile{
+    display: block;
+    bottom: 0;
+    margin: 0 auto;
+    max-width: 640px;
+    height: 300px;
+    background-color: rgba(109, 109, 113, 0.312);
+}
+.item_choose_main{
+    max-width: 640px;
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+    height: 100%;
+    background-color: white;
+}
+.item_select{
+    width: 100%;
+}
+.item_amount_input{
+    width: 100%;
+    height: 40px;
+    text-align: center;
+}
+
+.item_img{
+    width: 150px;
+    margin-right: 15px;
+}
+.item_img img{
+    width: 100%
+}
+
+.amount_btn{
+    position: absolute;
+    top: 50%; 
+    transform: translateY(-50%);
+    padding: 0 12px;
+    font-size: 30px;
+    background-color: rgba(182, 184, 186, 0.139);
+    border: none;
+}
+.amount_btn:hover{
+    background-color: rgba(128, 128, 128, 0.189);
+}
+
+/*-------------------------- 결제하기 페이지 ---------------------- */
+.payment_main{
+    font-family: "Noto Sans KR";
+    width: 640px;
+    margin: 0 auto;
+}
+.black_line{
+    display: flex;
+    width: 100%;
+    height: 50px;
+    background-color: black;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    font-size: larger;
+    font-weight: 600;
+}
+
+
+
+
+
+
+/* -------------------------------공통 요소---------- */
+.padding-t{
+    padding-top: 3px;
+}
+
+.pointer{
+    cursor: pointer;
+}
+.text-align{
+    text-align: center;
+}
+.space_line{
+    margin: 20px 10px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.11) ;
+    width: 95%;
+}
+.space{
+    height: 20px;
+}
+.flex{
+    display: flex;
+}
+.btn{
+    margin-top: 10px;
+    width: 100%;
+    border: none;
+    padding: 0;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: rgba(128, 128, 128, 0.154);
+}
+.btn:hover{
+    background-color: #a2a2a269;
+}
+.small_and_gray{
+    font-size: small;
+    color: gray;
+}
+.modal_th{
+    font-family: 'Noto Sans KR';
+    font-size: 14px;
+    color: rgb(58, 58, 58);
+    font-weight: normal;
+}
+.asdf{
+    color: rgb(26, 26, 26);
+}
+.gray_box{
+    width: fit-content;
+    height: fit-content;
+    padding: 3px;
+    background-color: rgba(128, 128, 128, 0.144);
+    font-weight: 600;
+    font-size: 10px;
+    margin-top: 5px;
+}
+
+/* -------------------------------공통 요소---------- */
+
+.pay_point{
+    font-size: larger;
+    font-weight: 600;
+}
+.item_detail{
+    font-weight: 600;
+}
+.item_amount{
+    width: 100%;
+    height: 50px;
+}
+.shipment{
+    width: 99%;
+}
+.ship_input{
+    width: 100%;
+}
+.ship_input input{
+    width: 100%;
+    height: 40px;
+    border: 1px solid #005bed;
+}
+.phone_input{
+    width: 100%;
+}
+.phone_input input{
+    width: 100%;
+    height: 40px;
+    border: 1px solid #005bed;
+}
+.checkValid{
+    font-size: small;
+    color: red;
+}
+.order_info{
+    font-size: 20px; 
+    font-weight: 700;
+}
+.addr_input{
+    width: 85%;
+    height: 40px;
+    border: 1px solid #005bed;
+}
+input:focus{outline: none;}
+.agree_modal{
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+.agree_modal_box{
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 32px;
+    border: 1px solid #888;
+    width: 480px;
+    border-radius: 8px;
+}
+.agree_title{
+    font-size: 24px;
+    font-family: 'Noto Sans KR';
+    font-weight: 700;
+
+}
+/* The Close Button */
+.close {
+    color: #aaa;
+    background-color: white;
+    border: none;
+    float: right;
+    font-size: 35px;
+    font-weight: bold;
+    margin-left: 15px;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .modal_close_btn{
+    width: 100%;
+    border: none;
+    background-color: #005bed;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 0;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  .modal_title div{
+      margin-bottom: 10px;
+  }
+  .modal_detail div{
+      margin-bottom: 5px;
+  }
+  .mt-20{
+    margin-top: 20px;
+  }
+
+/* -------------------------------공통 요소---------- */
+
+
+footer{
+    display: block;
+    bottom: 0;
+    width: 100%;
+    height: 300px;
+    background-color: rgba(109, 109, 113, 0.312);
+}

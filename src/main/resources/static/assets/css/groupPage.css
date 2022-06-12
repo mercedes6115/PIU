@@ -1,0 +1,407 @@
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+.notosanskr * {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+@font-face {
+    font-family: 'Openas';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/Openas.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SDSamliphopangche_Basic';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Basic.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.groupPageFrame {
+    display: flex;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+    width: 100%;
+}
+
+.groupPageTitleFrame {
+    border-radius: 0px;
+    width: 100%;
+    height: fit-content;
+    background-color: rgb(255, 255, 255);
+    border-color: rgb(229, 229, 229);
+    z-index: 1002;
+    top: 0px;
+    left: 0px;
+    position: sticky;
+    display: flex;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.groupPageTitleForm {
+    padding-left: 24px;
+    padding-right: 24px;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+}
+
+.groupPageHeaderFrame{
+    border-radius: 0px;
+    width: 100%;
+    height: auto;
+    background-color: rgb(255, 255, 255);
+    border-color: rgb(229, 229, 229);
+    z-index: 101;
+    top: 0px;
+    left: 0px;
+    position: sticky;
+}
+
+.groupPageHeaderForm {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.groupPageHeader {
+    text-decoration: none;
+    color: inherit;
+    font-size: 20px;
+    font-family: 'SDSamliphopangche_Basic';
+    font-weight: bold;
+}
+
+.groupPageProfileFrame {
+    display: flex;
+    margin-left: auto;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: row;
+}
+
+.groupPageProfileForm {
+    width: 34px;
+    height: 34px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+}
+
+.groupPageProfileContainer {
+    background-color: rgb(248, 248, 248);
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.groupPageProfile {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: relative;
+}
+
+.profileImage {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    vertical-align: top;
+    visibility: inherit;
+}
+
+.boundary {
+    flex: 0 0 auto;
+    background-color: rgb(229, 229, 229);
+    width: 100%;
+    height: 1px;
+}
+
+.groupPageBodyFrame {
+    display: flex;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: row;
+}
+
+.groupPageSidebarFrame{
+    border-radius: 0px;
+    width: 240px;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    border-color: rgb(229, 229, 229);
+    z-index: 1001;
+    top: 78px;
+    left: 0px;
+    position: fixed;
+}
+
+.groupPageSidebarForm {
+    display: flex;
+    height: calc(100vh - 78px);
+    min-width: 240px;
+    width: 240px;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: row;
+}
+
+.groupPageSidebarList{
+    display: flex;
+    width: 100%;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.groupPageSidebar {
+    display: flex;
+    padding: 12px;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.groupPageSidebars {
+    display: flex;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.sideBarBoundary {
+    flex: 0 0 auto;
+    background-color: rgb(229, 229, 229);
+    width: 1px;
+    height: 100%;
+}
+
+.sNoticeFrame, .sGroupInfoFrame, .sProjectFrame , .sQrFrame, .sGuideFrame{
+    background-color: rgb(255, 255, 255);
+    padding: 12px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 0.875rem;
+    line-height: 1.125rem;
+    font-weight: 400;
+}
+
+.sNoticeForm, .sGroupInfoForm, .sQrForm, .sGuideForm {
+    -webkit-box-pack: justify;
+    justify-content: flex-start;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.sTitle {
+    font-family: 'Noto Sans KR', sans-serif;
+    border-width: 0px;
+    color: var(--system-on-color);
+    margin: 0px;
+    padding: 0px;
+}
+
+.margin {
+    width: 20px;
+    height: 0px;
+    -webkit-box-flex: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.sProjectForm {
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.sProjectTitleForm {
+    display: flex;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: row;
+}
+
+.sProjectList {
+    font-family: 'Noto Sans KR', sans-serif;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    padding-left: 56px;
+    color: rgb(26, 26, 26);
+    background-color: rgb(248, 248, 248);
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 0.875rem;
+    line-height: 1.125rem;
+    font-weight: 400;
+    text-decoration: none;
+}
+
+.sProjectQna {
+    font-family: 'Noto Sans KR', sans-serif;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    padding-left: 56px;
+    color: rgb(26, 26, 26);
+    background-color: rgb(255, 255, 255);
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 0.875rem;
+    line-height: 1.125rem;
+    font-weight: 400;
+    text-decoration: none;
+}
+
+.sProjectQna :hover, .sProjectList :hover, .sProjectFrame :hover, .sGroupInfoFrame :hover, .sNoticeFrame :hover, .sProjectQna :hover {
+    padding: 0px;
+    background-color: rgb(248, 248, 248);
+}
+
+.sProjectContainer {
+    display: flex;
+    -webkit-box-align: stretch;
+    flex-direction: column;
+}
+
+.hidden {
+    display: none;
+}
+
+.groupPageMainFrame {
+    padding-left: 240px;
+    display: flex;
+    width: 100%;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.groupPageMainForm {
+    display: flex;
+    padding-left: 80px;
+    padding-right: 80px;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.groupPageContainer {
+    margin-top: 40px;
+    width: 100%;
+    max-width: 1232px;
+    margin-left: auto;
+    margin-right: auto;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+}
+
+.bodyTitleFrame{
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    padding-top: 40px;
+    padding-bottom: 24px;
+    width: 100%;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+}
+
+.bodyTitle {
+    font-family: 'SDSamliphopangche_Basic';
+    line-height: 2.5rem;
+    font-weight: 700;
+    font-size: 1.75rem;
+    border-width: 0px;
+    color: rgb(26, 26, 26);
+    margin: 0px;
+    padding: 0px;
+}
+
+.addProjectFrame {
+    text-decoration: none;
+    color: inherit;
+}
+
+.addProjectBtn {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 0;
+    --system-on-color: #FFFFFF;
+    background-color: rgb(255, 91, 20);
+    color: var(--system-on-color);
+    border-width: 0px;
+    border-radius: 2px;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    display: inline-flex;
+    position: relative;
+}
+
+.addProjectForm {
+    display: flex;
+    visibility: inherit;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.addProjectImg {
+    width: 24px;
+    height: 24px;
+    display: block;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.addBoundary {
+    width: 0px;
+    height: 0px;
+    -webkit-box-flex: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.addProjectText {
+    font-family: 'Noto Sans KR', sans-serif;
+    padding-left: 4px;
+    padding-right: 4px;
+    line-height: 1.125rem;
+    font-size: 0.875rem;
+    border-width: 0px;
+    color: var(--system-on-color);
+    margin-right: 4px;
+    font-weight: 700;
+}

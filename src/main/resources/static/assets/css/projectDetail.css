@@ -1,0 +1,1246 @@
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+.notosanskr * {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+@font-face {
+    font-family: 'Openas';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/Openas.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SDSamliphopangche_Basic';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Basic.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+body {
+    width: 100%;
+    height: 100%;
+
+    margin: 0;
+}
+
+.allFrame {
+    font-family: 'Noto Sans KR', sans-serif;
+    width: 100%;
+    height: 100%;
+
+}
+
+.readFrame {
+    font-family: 'Noto Sans KR', sans-serif;
+    max-width: 1176px;
+    width: 100%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.readForm {
+    font-family: 'Noto Sans KR', sans-serif;
+    display: flex;
+    -webkit-box-pack: start;
+    place-content: stretch flex-start;
+    margin-right: -12px;
+    margin-left: -12px;
+    flex-wrap: wrap;
+    height: 100%;
+}
+
+.readDetail {
+    font-family: 'Noto Sans KR', sans-serif;
+    width: 66.6667%;
+    min-height: 1px;
+    padding-right: 12px;
+    padding-left: 12px;
+    box-sizing: border-box;
+    position: static;
+}
+
+.readApplicantBody {
+    position: static;
+    width: 33.3333%;
+    min-height: 1px;
+    padding-right: 12px;
+    padding-left: 12px;
+    box-sizing: border-box;
+}
+
+.readApplicantContainer{
+    position: sticky;
+    top: 78px;
+    max-height: 100vh;
+    overflow: auto;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.readApplicateFrame {
+    min-height: 1px; 
+    padding: 24px;
+    border-radius: 3px;
+    box-shadow: rgb(41 42 43 / 16%) 0px 2px 6px -2px;
+    border: 1px solid rgb(255, 255, 255);
+    margin-bottom: 12px;
+}
+
+.readApplicateForm {
+    background-color: rgb(255, 255, 255);
+}
+
+.readGroupInfoForm {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgb(26, 26, 26);
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+    margin-bottom: 12px;
+}
+
+.readApplicantTitle {
+    font-family: 'SDSamliphopangche_Basic';
+    margin-bottom: 8px;
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(26, 26, 26);
+    line-height: 28px;
+    margin: 0px;
+}
+
+.readApplicantCategory {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.readApplicantTerrainForm, .readApplicantCourseForm{
+    margin-right: 4px;
+    margin-bottom: 4px;
+    min-width: 24px;
+    height: 24px;
+    border-radius: 3px;
+    padding-left: 6px;
+    padding-right: 6px;
+    background-color: rgb(248, 248, 248);
+    flex: 0 0 auto;
+    display: inline-flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.readApplicantTerrain, .readApplicantCourse {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    color: black;
+    line-height: 16px;
+    letter-spacing: normal;
+    margin: 0px;
+    font-weight: 600;
+    display: inline-flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.readApplicantPointFrame, .readApplicantContentFrame, .readApplicantDateFrame {
+    margin: 8px 0px 12px;
+}
+
+
+.readApplicantPointForm, .readApplicantContentForm, .readApplicantDateForm {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    position: relative;
+}
+
+.readApplicantContent, .readApplicantDate {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: black;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+}
+
+.readApplicantPointTitleForm {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.readApplicantPointTitle{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgb(253, 48, 73);
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+}
+
+.readApplicantPointAccumlateForm {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-left: auto;
+}
+
+.readApplicantPointAccumlate {
+    font-family: 'Noto Sans KR', sans-serif;
+    margin-left: 4px;
+    font-size: 18px;
+    font-weight: 700;
+    color: rgb(253, 48, 73);
+    line-height: 24px;
+    letter-spacing: -0.45px;
+    margin: 0px;
+}
+
+.readApplicantBtnFrame {
+    position: relative;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.readApplicantBtnForm {
+    margin-right: 12px;
+    flex: 1 1 0%;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.readApplicantBtnFormRight {
+    flex: 1 1 0%;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.projectApplicantFrame {
+    width: 100%;
+}
+
+.projectApplicantFrame :hover{
+    background-color: rgba(255, 85, 0, 0.532);
+}
+
+.projectApplicantBtn :hover {
+    background-color: rgba(255, 85, 0, 0.532);
+}
+
+.projectApplicant :hover{
+    background-color: rgba(255, 85, 0, 0.532);
+}
+
+.projectApplicantBtn {
+    font-family: 'Noto Sans KR', sans-serif;
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    vertical-align: middle;
+    border-radius: 3px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(255, 86, 0);
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: -0.2px;
+    padding: 0px 20px;
+    height: 48px;
+    transition: background-color 0.1s ease 0s;
+    text-decoration-line: none;
+    border: 0px;
+    outline: none;
+    margin: 0px;
+    flex: initial;
+    box-sizing: border-box;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.readApplicantBtnForm :hover{
+    background-color: rgb(180,180,180);
+}
+
+.readApplicantBtnFormRight :hover {
+    background-color: rgb(180,180,180);
+}
+
+.readApplicantLikeBtn, .readApplicantShareBtn {
+    cursor: pointer;
+    width: 100%;
+    display: inline-flex;
+    vertical-align: middle;
+    border-radius: 3px;
+    color: rgb(26, 26, 26);
+    background-color: rgb(248, 248, 248);
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: -0.2px;
+    padding: 0px 16px;
+    height: 40px;
+    transition: background-color 0.1s ease 0s;
+    text-decoration-line: none;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+    flex: initial;
+    box-sizing: border-box;
+    border: 0px;
+    outline: none;
+    margin: 0px;
+}
+.pLikeImage, .pShareImage {
+    flex: 0 0 auto;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 0px;
+    width: 18px;
+    height: 18px;
+    margin-right: 4px;
+}
+
+.pLikeCount {
+    flex: 0 0 auto;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.ploggingImageForm {
+    max-width: 1176px;
+    width: 100%;
+    height: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    margin-bottom: 24px;
+}
+
+.ploggingImage {
+    position: relative;
+    overflow: hidden;
+    padding-top: 75%;
+    background-color: burlywood;
+}
+
+.ploggingImg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+.ploggingImg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.menuBarForm {
+    white-space: nowrap;
+    z-index: 2;
+    position: sticky;
+    top: 78px;
+    overflow-x: auto;
+    margin-left: -24px;
+    padding-left: 24px;
+}
+
+.menuBar {
+    width: 100%;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+
+.menus {
+    display: flex;
+    white-space: nowrap;
+    overflow-x: auto;
+    box-shadow: rgb(248 248 248) 0px -1px 0px 0px inset;
+    background-color: white;
+    width: 100%;
+}
+
+.review {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    padding: 14px 0px 13px;
+    flex-basis: auto;
+    margin-right: 24px;
+    cursor: pointer;
+    position: relative;
+    color: rgb(26, 26, 26);
+}
+
+.moveReview {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    color: rgb(162, 162, 162);
+    font-weight: normal;
+    text-decoration: none;
+}
+
+.introduce{
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    padding: 14px 0px 13px;
+    flex-basis: auto;
+    margin-right: 24px;
+    cursor: pointer;
+    position: relative;
+    color: rgb(162, 162, 162);
+}
+
+.moveIntroduce{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    color: rgb(162, 162, 162);
+}
+
+.community{
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    padding: 14px 0px 13px;
+    flex-basis: auto;
+    margin-right: 24px;
+    cursor: pointer;
+    position: relative;
+    color: rgb(162, 162, 162);
+}
+
+.moveCommunity{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    color: rgb(162, 162, 162);
+}
+
+.group{
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    padding: 14px 0px 13px;
+    flex-basis: auto;
+    margin-right: 24px;
+    cursor: pointer;
+    position: relative;
+    color: rgb(162, 162, 162);
+}
+
+.moveGroup{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    color: rgb(162, 162, 162);
+}
+
+.guide {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    padding: 14px 0px 13px;
+    flex-basis: auto;
+    margin-right: 24px;
+    cursor: pointer;
+    position: relative;
+    color: rgb(162, 162, 162);
+}
+
+.moveGuide {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    color: rgb(162, 162, 162);
+}
+
+.info {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgb(248, 248, 248);
+}
+
+.projectInfo {
+    font-family: 'SDSamliphopangche_Basic';
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.3px;
+    margin: 0px 0px 16px;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+}
+
+.infoDetail{
+    display: flex;
+    margin: 0px;
+}
+
+.courseInfo, .terrainInfo, .pointInfo {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px 12px 0px 0px;
+    color: rgb(162, 162, 162);
+}
+
+.course, .terrain, .point {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px 48px 0px 0px;
+    color: rgb(26, 26, 26);
+}
+
+.reviewForm {
+    max-width: 960px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.review{
+    overflow: hidden;
+    padding: 48px 0px;
+    color: rgb(0, 0, 0);
+    display: flex;
+    flex-direction: column;
+}
+
+.reviewHead {
+    margin-bottom: 40px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.reviewHeadInfo {
+    font-family: 'SDSamliphopangche_Basic';
+    font-size: 20px;
+    line-height: 26px;
+    letter-spacing: -0.2px;
+    margin: 0px;
+    font-weight: bold;
+    color: inherit;
+}
+
+
+.wrapImage {
+    width: 100%;
+    margin: 0px auto;
+    position: relative;
+    overflow: hidden;
+    list-style: none;
+    padding: 0px;
+    z-index: 1;
+}
+
+.reviewImages{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    box-sizing: content-box;
+}
+
+.reviewImageForm {
+    width: 144px;
+    height: 144px;
+    cursor: pointer;
+    flex-shrink: 0;
+    position: relative;
+    margin-right: 8px;
+}
+
+.moveImage .reviewImage{
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.readReviews {
+    display: flex;
+    flex-direction: column;
+    flex-flow: row wrap;
+    margin: 0px -16px;
+}
+
+.readReviewForm {
+    display: flex;
+    min-width: 360px;
+    width: 100%;
+    flex: 1 1 0%;
+    margin: 0px 16px 40px;
+}
+
+.readReview {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.moveReviewDetail {
+    text-decoration: none;
+    color: inherit;
+}
+
+.reviewDetailProfile {
+    display: flex;
+}
+
+.reviewProfileForm {
+    position: relative;
+    width: 32px;
+    height: 32px;
+}
+
+.reviewProfile {
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgb(248, 248, 248);
+    border-radius: 100%;
+    line-height: 0;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    font-size: 0px;
+    background: rgb(238, 238, 238);
+}
+
+.profile {
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.profile img {
+        width: 100%;
+        height:100%;
+}
+
+.reviewNameDate {
+    flex: 1 1 0%;
+    display: flex;
+    flex-direction: column;
+    margin: 0px 8px;
+}
+
+.reviewName {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 16px;
+    color: inherit;
+}
+
+.reviewDate {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: normal;
+    font-size: 11px;
+    line-height: 14px;
+    color: rgb(162, 162, 162);
+    
+}
+
+.profileMargin{
+    margin-bottom: 12px;
+}
+
+.reviewContentForm{
+    display: flex;
+    margin-top: auto;
+}
+
+.reviewContent{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 18px;
+    margin-bottom: 0px;
+    flex: 1 1 0%;
+    width: 100%;
+    word-break: break-word;
+    white-space: break-spaces;
+    height: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.reviewContentMargin{
+    margin-right: 12px;
+}
+
+.moveReviewTotal {
+    font-family: 'SDSamliphopangche_Basic';
+    padding: 13px 12px;
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 0;
+    --system-on-color: #101010;
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--system-on-color);
+    border-width: 0px;
+    border-radius: 2px;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    display: inline-flex;
+    position: relative;
+    width: 100%;
+    text-decoration: none;
+}
+
+.pIntroduceFrame {
+    max-width: 960px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-box-pack: start;
+    place-content: stretch flex-start;
+}
+
+.pIntroduceTitleForm {
+    position: relative;
+    width: 100%;
+    margin: 48px 0px 24px;
+}
+
+.pIntroduceTitle {
+    font-family: 'SDSamliphopangche_Basic';
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(26, 26, 26);
+    line-height: 34px;
+    letter-spacing: -0.4px;
+    margin: 0px;
+}
+
+.pIntroduceContent {
+    overflow: hidden;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 60px;
+}
+
+.pIntroduceContent img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gIntroduceFrame {
+    max-width: 960px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.gIntroduceForm {
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-box-pack: start;
+    place-content: stretch flex-start;
+    margin-right: -12px;
+    margin-left: -12px;
+}
+
+.gIntroduceTitleFrame {
+    margin-bottom: 26px;
+    position: relative;
+    width: 100%;
+    margin: 48px 0px 24px;
+}
+
+.gIntroduceTitleForm {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+
+.gIntroduceTitle {
+    font-family: 'SDSamliphopangche_Basic';
+    font-size: 24px;
+    font-weight: normal;
+    color: rgb(26, 26, 26);
+    line-height: 34px;
+    letter-spacing: -0.4px;
+    margin: 0px;
+}
+
+.gIntroduceProfileFrame {
+    position: relative;
+    width: 64px;
+    height: 64px;
+}
+
+.gIntroduceProfileForm{
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgb(248, 248, 248);
+    border-radius: 100%;
+    line-height: 0;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    font-size: 0px;
+    background: rgb(238, 238, 238);
+}
+
+.gIntroduceProfile {
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.gIntroduceProfile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gIntroduceContentFrame{
+    word-break: break-word;
+    margin-bottom: 48px;
+    width: 100%;
+}
+
+.gIntroduceContentFrame {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.qnaFrame {
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-box-pack: start;
+    place-content: stretch flex-start;
+
+}
+
+.qnaTitle {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    position: relative;
+    width: 100%;
+    margin: 48px 0px 24px;
+}
+
+.qnaTitle h3 {
+    font-family: 'SDSamliphopangche_Basic';
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(26, 26, 26);
+    line-height: 34px;
+    letter-spacing: -0.4px;
+    margin: 0px;
+}
+
+.qnaListForm {
+    margin-bottom: 0px;
+    width: 100%;
+}
+
+.qnaList {
+    position: relative;
+    top: 0px;
+    left: 0px;
+}
+
+.question {
+    margin-top: 24px;
+    display: block;
+    color: rgb(58, 58, 58);
+    cursor: pointer;
+}
+
+.qUserProfileFrame {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+
+.qUserProfileForm {
+    margin-bottom: 8px;
+    display: flex;
+}
+
+.qUserProfileImgFrame {
+    position: relative;
+    width: 40px;
+    height: 40px;
+}
+
+.qUserProfileImgForm {
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgb(248, 248, 248);
+    border-radius: 100%;
+    line-height: 0;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    font-size: 0px;
+    background: rgb(238, 238, 238);
+}
+
+.qUserProfile {
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.qUserProfile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.qUserProfileNameFrame {
+    display: flex;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    justify-content: center;
+    padding-left: 10px;
+}
+
+.qUserProfileName {
+    font-family: 'SDSamliphopangche_Basic';
+    font-size: 11px;
+    line-height: 16px;
+    letter-spacing: normal;
+    margin: 0px;
+    font-weight: 600;
+    color: rgb(26, 26, 26);
+}
+
+.qUserProfileDate {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 9px;
+    font-weight: normal;
+    line-height: 12px;
+    letter-spacing: normal;
+    margin: 0px;
+    color: rgb(202, 202, 202);
+}
+
+.qContentFrame {
+    margin-top: 16px;
+    margin-bottom: 8px;
+}
+
+.qContentForm {
+    font-size: 14px;
+    font-weight: normal;
+    color: rgb(26, 26, 26);
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+    width: 100%;
+}
+
+.qContent {
+    padding: 0px;
+    color: rgb(26, 26, 26);
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.qContentAddForm {
+    margin-top: 16px;
+    margin-bottom: 24px;
+    position: relative;
+}
+
+.qContentAdd {
+    position: relative;
+    display: flex;
+    border-radius: 25px;
+    padding: 0px 10px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(229, 229, 229);
+    width: 97%;
+    justify-content: space-between;
+}
+
+.qContentAddText {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    color: rgb(26, 26, 26);
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+    width: 100%;
+    overflow: hidden;
+    padding: 14px 10px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    resize: none;
+    overflow-x: hidden;
+    overflow-wrap: break-word;
+    height: 21px;
+}
+
+.qContentAddBtn {
+    font-weight: 500;
+    background-color: transparent;
+    text-decoration-line: none;
+    display: inline-flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    border-width: 0px;
+    cursor: pointer;
+    color: rgb(102, 102, 102);
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    right: 11px;
+    top: 24px;
+    transform: translateY(-50%);
+    padding: 0px;
+    background: none;
+    border: 0px;
+    line-height: 1;
+    box-shadow: none;
+}
+
+.useGuideFrame {
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-box-pack: start;
+    place-content: stretch flex-start;
+    margin-bottom: 120px;
+}
+
+.useGuide {
+    position: relative;
+    width: 100%;
+    margin: 48px 0px 24px;
+}
+
+.useGuideTitle {
+    font-family: 'SDSamliphopangche_Basic';
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(26, 26, 26);
+    line-height: 34px;
+    letter-spacing: -0.4px;
+    margin: 0px;
+}
+
+.useGuideContentFrame {
+    word-break: break-word;
+    margin-bottom: 0px;
+    width: 100%;
+}
+.useGuideContentForm {
+    padding: 24px 24px 28px;
+    display: flex;
+    background-color: rgb(248, 248, 248);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+
+.useGuideContent {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px 8px 0px 0px;
+    flex: 1 1 0%;
+    color: rgb(58, 58, 58);
+}   
+
+.modalFrame {
+    position: fixed;
+    top: 0;
+    left:0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+    background: rgba(0, 0, 0, 0.6) !important;
+    display: none;
+    width: auto;
+}
+
+.show {
+    display: block;
+}
+
+.modalForm {
+    position: relative;
+    display: flex;
+    transform: translate(10px, 55px);
+}
+
+.modalItem {
+    min-height: 80vh;
+    background: url("/src/main/resources/static/images/chun.png") center/cover fixed no-repeat;
+    border-radius: 0.3rem;
+    width: 96%
+}
+
+.btnClose {
+    color: #fff;
+  font-size: 3rem;
+  transition: all 1s ease-in-out;
+  cursor: pointer;
+}
+
+.btnClose :hover {
+    color: rgb(249,228,148);
+}
+
+.modalControl {
+    position: absolute;
+    font-size: 4rem;
+    color: var(--mainWhite);
+    transition: all 1s linear;
+    cursor: pointer;
+}
+
+.modalControl :hover {
+    color: rgb(249,228,148);
+}
+
+.btnLeft {
+    top: 50%;
+    left: 0;
+    transform: translateX(-60%);
+    margin-left: 20px;
+}
+
+.btnRight {
+    top: 50%;
+    right: 0;
+    transform: translateX(60%);
+    margin-right: 20px;
+}
+
+.active {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+}

@@ -1,0 +1,322 @@
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+/* 유토이미지 로고 */
+@font-face {
+    font-family: 'Openas';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/Openas.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+/* 강조글씨 산돌 */
+@font-face {
+    font-family: 'SDSamliphopangche_Basic';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Basic.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+/* 본문체 */
+.notosanskr * {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+
+* {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+html{
+    margin: 0;
+    /* padding: 0;
+    border: 0; */
+    /* font-size: 100%;
+    vertical-align: baseline; */
+    line-height: 1.15;
+    /* -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0); */
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    line-height: 1;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    overflow-wrap: break-word;
+    overflow-wrap: anywhere;
+}
+
+body>div {
+    position: relative;
+    z-index: 0;
+}
+
+.content{
+    height: 100%;
+    width: 100%;
+    overflow-y: scroll;
+    display: flex;
+    min-height: -webkit-fill-available;
+    align-items: center;
+    justify-content: center;
+
+}
+.content::after{
+    display: block;
+}
+
+.formdesign{
+    height: 100%;
+    width: 100%;
+    position: relative;
+    flex: 0.88 1 0%;
+    display: flex;
+    flex-direction: column;
+    background: rgb(255, 255, 255);
+    align-items: center;
+    justify-content: center;
+    min-width: 500px;
+    margin: 0 auto;
+
+}
+
+.logo{
+    font-family: 'Openas';
+    margin-left: -2px;
+    display: inline-flex;
+    text-decoration: none;
+    color: inherit;
+}
+
+.loginh1 {
+    color: #182026;
+    font-weight: 600;
+    line-height: 40px;
+    position: relative;
+    padding: 81px 24px 0px;
+    left: 0px;
+    right: 0px;
+    border: 0;
+    margin: 0px auto;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 376px;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.loginform{
+    width: 100%;
+    max-width: 376px;
+    margin: 0;
+    padding: 24px;
+    padding-top: 0px;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    -webkit-box-align: center;
+    align-items: center;
+    position: relative;
+    /* display: flex;
+    justify-content: center;
+    flex-direction: column; */
+
+}
+
+.title{
+    font-family: 'SDSamliphopangche_Basic';
+    font-size: 32px;
+    font-weight: bold;
+    color: rgb(58, 58, 58);
+    position: relative;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+.emaildiv{
+    font-family: 'Noto Sans KR', sans-serif;
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+    margin: 0px 0px 16px;
+}
+.pwdiv{
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+    margin: 0px 0px 16px;
+}
+
+.email{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px 0px 4px;
+    color: rgb(58, 58, 58);
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+    margin: 0px 0px 16px;
+}
+.emailtype{
+    font-family: 'Noto Sans KR', sans-serif;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    border: 2px solid rgb(239, 239, 239);
+    background-color: white;
+    height: 48px;
+    flex: 1 1 auto;
+    width: 100%;
+    color: rgb(26, 26, 26);
+    box-sizing: border-box;
+    padding: 0px 16px;
+}
+
+.findpw{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 16px;
+    letter-spacing: normal;
+    margin: 0px;
+    display: block;
+    float: left;
+    color: rgb(202, 202, 202);
+}
+
+.joinus{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 16px;
+    letter-spacing: normal;
+    margin: 0px;
+    display: block;
+    text-align: right;
+    color: rgb(202, 202, 202);
+}
+
+hr{
+    border: none;
+    border-bottom: 1px solid rgba(16, 22, 26, 0.15);
+    box-sizing: content-box;
+    height: 0;
+    overflow: visible;
+}
+
+.loginbutton{
+    font-family: 'Noto Sans KR', sans-serif;
+    cursor: pointer;
+    margin: 16px 0px;
+    width: 100%;
+    border-radius: 3px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(255, 86, 0);
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: -0.2px;
+    padding: 0px 20px;
+    height: 48px;
+    align-items: center;
+    transition: background-color 0.1s ease 0s;
+    text-decoration-line: none;
+    box-sizing: border-box;
+    border: 0px;
+    justify-content: center;
+}
+
+
+.kakaobutton{
+    font-family: 'Noto Sans KR', sans-serif;
+    cursor: pointer;
+    margin: 16px 0px;
+    width: 100%;
+    margin-bottom: 8px;
+    color: rgb(58, 58, 58);
+    transition: filter 0.1s ease 0s;
+    background-color: rgb(255, 232, 18) !important;
+    border: 0px;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: -0.2px;
+    padding: 0px 20px;
+    height: 48px;
+    transition: background-color 0.1s ease 0s;
+}
+
+@media (max-width: 1024px ) {
+    .formdesign{
+        flex: 1 1 0%;
+        margin:0 auto;
+    }
+
+    .imgdiv{
+        display: none;
+    }
+}
+
+.loginimg {
+    height:100%;
+    width: 100%;
+    flex: 1 1 0%;
+
+}
+.imgdiv{
+    height:100%;
+    width: 50%;
+    flex: 1 1 0%;
+    background : cover;
+}
+
+
+.loginbutton:not(:disabled):not(.disabled) {
+    cursor: pointer;
+}
+
+svg{
+    width: 25px;
+    height: 25px;
+    margin-right: -8px;
+}
+
+
+h6{
+    font-family: 'Noto Sans KR', sans-serif;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    margin: 2px 0px;
+    color: rgb(255, 82, 82);
+    font-weight: 600;
+    line-height: 16px;
+}
+
+.svgdiv path{
+    fill: rgb(255, 82, 82);
+}
+
+/* .invalid */
+
+.letshow1{
+    display: none;
+}
+.letshow2{
+    display: none;
+}
+
