@@ -6,18 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<link rel="stylesheet" href="buyProductDetail.css"/>
+<link rel="stylesheet" href="\src\main\resources\static\assets\css\buyProductDetail.css"/>
 <body>
     <div class="root">
         <div class="wrapper-1">
             <div class="wrapper-product">
                 <div class="title-wrapper">
+                    <h1>주문이 완료되었습니다</h1>
+                    <div style="margin-bottom: 20px;">단순생활 천연거품 입욕제 아로마 배스밤</div>
+                </div>
+                <div class="title-wrapper">
                     <div class="title-category">
-                        <div class="title-category-detail"><a target="_self" class="to_mypage">마이페이지</a></div>
+                        <div class="title-category-detail"><a href="/user/마이페이지.html" target="_self" class="to_mypage">마이페이지</a></div>
                         <div class="title-divide"></div>
-                        <div class="title-category-detail" aria-disabled="false"><a target="_self" class="to_prodectList">주문 및 배송</a></div>
+                        <div class="title-category-detail" aria-disabled="false"><a href="/user/주문리스트.html" target="_self" class="to_prodectList">주문 및 배송</a></div>
                         <div class="title-divide"></div>
-                        <div class="title-category-detail" aria-disabled="false"><a target="_self" class="to_prodectList_detail">주문 상세</a></div>
+                        <div class="title-category-detail" aria-disabled="false"><a class="to_prodectList_detail" style="color: rgb(26, 26, 26);">주문 상세</a></div>
                     </div>
                     <h3>2022.06.11(페이지 이동시 받아오기) 주문 상세 내역</h3>
                 </div>
@@ -58,6 +62,23 @@
                     </div>
                 </div>
                 <div class="divide"></div>
+                <div class="product-buyer-wrapper">
+                    <h4>배송 정보</h4>
+                    <div class="bill-way-detail-wrapper">
+                        <div class="bill-way-wrapper" id="bill-price-wrpper">
+                            <p class="bill-wrapper-left">받는분</p>
+                            <p class="bill-wrapper-right" id="userName">이름</p>
+                        </div>
+                        <div class="bill-way-wrapper" id="bill-price-wrpper">
+                            <p class="bill-wrapper-left">연락처</p>
+                            <p class="bill-wrapper-right" id="userPhone">010-0000-0000</p>
+                        </div>
+                        <div class="bill-way-wrapper" id="bill-price-wrpper">
+                            <p class="bill-wrapper-left">주소</p>
+                            <p class="bill-wrapper-right" id="userState">서울 어딘가 아파트 0층 0호</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
