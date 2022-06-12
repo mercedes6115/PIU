@@ -1054,6 +1054,7 @@
     height: 38px;
     display: flex;
     --system-on-color: #FFFFFF;
+    border: 1px white solid;
 }
 
 .displayPageNum {
@@ -1098,4 +1099,186 @@
     -webkit-box-align: center;
     align-items: center;
     padding-top: 32px;
+}
+
+.groupPageNoticeForm {
+    display: flex;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    max-width: 960px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.gpNoticeTitle {
+    font-family: 'SDSamliphopangche_Basic';
+    border-width: 0px;
+    color: var(--system-on-color);
+    margin: 0px;
+    padding: 0px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.625rem;
+}
+
+.nTitleBoundary {
+    width: 0px;
+    height: 24px;
+    -webkit-box-flex: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.noticeFrame {
+    display: flex;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.noticeForm {
+    border-radius: 0px;
+    box-shadow: rgb(0 0 0 / 8%) 0px 0px 1px, rgb(0 0 0 / 5%) 0px 2px 6px;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    border-color: rgb(229, 229, 229);
+}
+
+.noticeList {
+    display: flex;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.noticeItemFrame {
+    display: flex;
+    margin: 17px;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.moveNoticeDetail {
+    text-decoration: none;
+    color: inherit;
+}
+
+.noticeItemForm {
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    display: flex;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: row;
+}
+
+.noticeItem {
+    border-width: 0px;
+    color: var(--system-on-color);
+    margin: 0px;
+    padding: 0px;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.125rem;
+}
+
+.noticeItemBoundary {
+    flex: 0 0 auto;
+    background-color: rgb(248, 248, 248);
+    width: 100%;
+    height: 1px;
+}
+
+.nPagingBoundary {
+    width: 0px;
+    height: 24px;
+    -webkit-box-flex: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.nPagingFrame {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.nPagingForm {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.nDetailTitleBoundary {
+    width: 0px;
+    height: 20px;
+    -webkit-box-flex: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.nTitleContainer, .nContentContainer {
+    border-radius: 0px;
+    box-shadow: rgb(0 0 0 / 8%) 0px 0px 1px, rgb(0 0 0 / 5%) 0px 2px 6px;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    border-color: rgb(229, 229, 229);
+    padding: 20px;
+}
+
+.nTitleBox {
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.nDetailTitle {
+    border-width: 0px;
+    color: var(--system-on-color);
+    margin: 0px;
+    padding: 0px;
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1.125rem;
+    font-family: 'Noto Sans KR', sans-serif;
+    
+}
+
+.nDetailDate {
+    border-width: 0px;
+    color: rgb(175, 175, 175);
+    margin: 0px;
+    padding: 0px;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.125rem;
+}
+
+.nDetailBoundary {
+    width: 0px;
+    height: 6px;
+    -webkit-box-flex: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.nContent {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 1.125rem;
+    line-height: 1.875rem;
+    font-weight: 400;
+    color: rgb(16, 16, 16);
+    padding-top: 8px;
 }
