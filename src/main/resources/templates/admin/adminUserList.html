@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>유저목록</title>
+</head>
+<link rel="stylesheet" href="admin_style.css">
+<link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+<body>
+    <div class="root">
+
+        <!-- sidebar -->
+        <div id="sidebar">
+            <ul>
+                <li class="sidebarCategory">
+                    <a href="#">
+                        <div>
+                            <span class="material-symbols-outlined icon">person
+                            </span>
+                            <span class="sidebarTitle">유저 관리</span>
+                        </div>
+
+                    </a>
+
+                </li>
+                <li class="sidebarCategory">
+                    <a href="#">
+                        <div><span class="material-symbols-outlined icon">
+                                storefront
+                            </span><span class="sidebarTitle">상품 관리</span>
+                        </div><span class="material-symbols-outlined more">
+                            expand_more
+                        </span>
+                    </a>
+                    <!-- onClick 시 노출 -->
+                    <ul class="sidebarDetail">
+                        <li><a id="detail" href="#">상품 등록</a></li>
+                        <li><a id="detail" href="#">상품 목록</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        <div>
+                            <span class="material-symbols-outlined icon">
+                                shopping_cart
+                            </span><span class="sidebarTitle">주문 관리</span>
+                        </div>
+                        <span class="material-symbols-outlined more">
+                            expand_more
+                        </span>
+                    </a>
+                    <!-- onClick 시 노출 -->
+                    <ul class="sidebarDetail">
+                        <li><a id="detail" href="#">전체주문목록</a></li>
+                        <li><a id="detail" href="#">배송 관리</a></li>
+                        <li><a id="detail" href="#">취소 관리</a></li>
+                    </ul>
+                </li>
+                <li class="sidebarCategory">
+                    <a href="#">
+                        <div>
+                            <span class="material-symbols-outlined icon">
+                                public
+                            </span>
+                            <span class="sidebarTitle">프로젝트 관리</span>
+                        </div>
+                        <span class="material-symbols-outlined more">
+                            expand_more
+                        </span>
+                    </a>
+                    <!-- onClick 시 노출 -->
+                    <ul class="sidebarDetail">
+                        <li><a id="detail" href="#">프로젝트 생성</a></li>
+                        <li><a id="detail" href="#">프로젝트 목록</a></li>
+                        <li><a id="detail" href="#">QR코드</a></li>
+                    </ul>
+                </li>
+                <li class="sidebarCategory">
+                    <a href="#">
+                        <div>
+                            <span class="material-symbols-outlined icon">
+                                assignment
+                            </span>
+                            <span class="sidebarTitle">게시물 관리</span>
+                        </div>
+                        <span class="material-symbols-outlined more">
+                            expand_more
+                        </span>
+                    </a>
+                </li>
+                <li class="sidebarCategory">
+                    <a href="#">
+                        <div>
+                            <span class="material-symbols-outlined icon">
+                                analytics
+                            </span>
+                            <span class="sidebarTitle">통계 현황</span>
+                        </div>
+                        <span class="material-symbols-outlined more">
+                            expand_more
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- content -->
+        <div id="container">
+            <div>
+                <h2>유저관리</h2>
+            </div>
+            <!-- <div class="userSearchBox"> -->
+                <div class="searchBox" id="userSearchBox">
+                <form id="userSearch">
+                        <div class="userFilterBox">
+                        <input type="radio" id="userFilterAll" name="userFilter" value="all" checked>
+                        <label for="all">전체</label>
+                        <input type="radio" id="userFilterKakao" name="userFilter" value="kakao">
+                        <label for="kakao">카카오톡</label>
+                        </div>
+                        <select>
+                            <option>일반</option>
+                            <option>단체</option>
+                        </select>
+                        <select>
+                            <option>이름</option>
+                            <option>휴대폰번호</option>
+                        </select>
+                        <input type="text">
+                        <button type="button" id="userSearchBtn">검색</button>
+                </form>
+            </div>
+        <div class="listBox" id="userList">
+            <table>
+                <tr>
+                    <div class="userListTitle">
+                        <div>
+                            <span>[총 회원수 
+                                <strong>2</strong>명]</span>
+                            <span>검색결과 0건</span>
+                        </div>
+                        <div>
+                            <button type="button" class="userListBtn" id="userDisabled">비활성화</button>
+                            <button type="button" class="userListBtn" id="userApprove">승인</button>
+                        </div>
+                    </div>
+                </tr>
+
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">번호</th>
+                    <th scope="col">유형</th>
+                    <th scope="col">상태</th>
+                    <th scope="col">승인</th>
+                    <th scope="col">이름</th>
+                    <th scope="col">아이디</th>
+                    <th scope="col">등록일</th>
+                    <th scope="col">전화번호</th>
+                    <th scope="col">주소</th>
+                    <th scope="col">포인트</th>
+                    <th scope="col"></th>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="userCheck"></td>
+                    <td>1</td>
+                    <td>단체</td>
+                    <td>활성화</td>
+                    <td>승인완료</td>
+                    <td>해바라기봉사단</td>
+                    <td>flower@naver.com</td>
+                    <td>2022-06-10</td>
+                    <td>02-123-1234</td>
+                    <td>서울</td>
+                    <td></td>
+                    <td><a href="#" class="userDetail">상세보기</a></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="userCheck"></td>
+                    <td>2</td>
+                    <td>일반</td>
+                    <td>활성화</td>
+                    <td></td>
+                    <td>서길동</td>
+                    <td>gilgil@naver.com</td>
+                    <td>2022-06-10</td>
+                    <td>010-1111-1234</td>
+                    <td>서울</td>
+                    <td>110point</td>
+                    <td><a href="#" class="userDetail">상세보기</a></td>
+                </tr>
+                <!-- 더미 데이터 -->
+                
+            </table>
+
+        </div>
+        <div class="paging">
+            <a href="#">&lt;</a>
+            <a href="#">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">&gt;</a>
+        </div>
+    </div>
+
+
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+// 체크박스 체크시 
+$('.userCheck').on("click", function(){
+    console.log(this);
+    
+})
+
+
+
+
+
+
+// 비활성화 버튼 클릭시
+$('#userDisabled').on("click", function(e){
+    if(confirm("해당 유저를 비활성화 하시겠습니까?")){
+
+
+        // 해당 유저 비활성화 
+        $.ajax({
+          url: "",
+          type: "post",
+          data: {userNumber: $userNumber},
+          success: function(){
+              
+          }
+       });
+
+
+    }else{
+
+    }
+});
+</script>
+
+</html>

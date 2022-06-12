@@ -1,0 +1,263 @@
+/* 로고 유토이미지 */
+@font-face {
+    font-family: 'Openas';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/Openas.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 강조하는 부분 산돌 삼립호빵체  */
+@font-face {
+    font-family: 'SDSamliphopangche_Basic';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Basic.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 본문체 noto sans kr */
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+.notosanskr * {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+body{
+    font-family: 'Noto Sans KR', sans-serif;
+    display: block;
+    margin: 0;
+    padding: 0;
+    min-width: 1600px;
+    height: 100%;
+    word-spacing: -1px;
+    background: #ecf0f7;
+    font-size: 14px;
+}
+
+.wrap{
+    height: 100%;
+    padding: 56px 0 0 256px;
+    box-sizing: border-box;
+}
+
+.container{
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+@media (min-width: 1920px){
+    .container {
+        width: 1616px;
+        margin: 0 auto;
+    }
+}
+
+.content{
+    min-height: 750px;
+    padding: 0 24px 40px;
+    box-sizing: border-box;
+    vertical-align: top;
+}
+.product{
+    position: relative;
+    margin: 0 0 38px;
+    padding: 20px 0 0;
+
+}
+.register{
+    position: relative;
+    margin : 40px 0 14px
+}
+.product h1{
+    font-family: 'SDSamliphopangche_Basic';
+    position: relative;
+    display: inline-block;
+    font-size: 40px;
+    line-height: 30px;
+    font-weight: bold;
+    vertical-align: middle;
+    color: #2e3039;
+
+}
+
+table{
+    table-layout: fixed;
+    width: 100%;
+    border: 0;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+.togglebar{
+    margin: 0 0 -1px 0;
+    height: 50px;
+    border: 1px solid #787d8f;
+    background-color: #8b93a9;
+    box-sizing: border-box;
+}
+
+.togglebar h2{
+    font-family: 'Noto Sans KR', sans-serif;
+    float: left;
+    padding: 0px 0 0 20px;
+    font-size: 20px;
+    color: #fff;
+    font-weight: normal;
+    margin-top: 10px;
+}
+
+.togglebar .ctrl{
+
+    float: right;
+    height: 100%;
+    line-height: 48px;
+
+}
+
+.togglebar .ctrl span{
+    display: inline-block;
+    height: 100%;
+    vertical-align: top;
+}
+
+button{
+    padding: 0;
+    margin: 0;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    background: transparent;
+}
+
+.toggleArea{
+    padding: 30px 20px;
+    border-radius: 2px;
+    background: #fff;
+
+}
+table{
+    border:1px solid #dedede;
+    line-height: 1.5;
+    background-color: #fff;
+    table-layout: fixed;
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+tbody{
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+tr{
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+
+.toggleArea th{
+    font-family: 'Noto Sans KR', sans-serif;
+    border: 1px solid #dedede;
+    text-align: left;
+    word-break: keep-all;
+    padding: 11px 15px 10px;
+    vertical-align: top;
+    color: #2e3039;
+    background-color: #f3f3f3;
+    word-wrap: break-word;
+    width: 190px;
+}
+
+.mBoard th[scope*='row'] + td {
+    height: 32px;
+}
+
+.toggleArea td{
+    font-family: 'Noto Sans KR', sans-serif;
+    border: 1px solid #dedede;
+    padding: 10px 15px;
+    line-height: 24px;
+    vertical-align: top;
+}
+
+.productName{
+    position: relative;
+    display: inline-block;
+    max-width: 100%;
+    color: #686b6d;
+    width: 500px;
+
+}
+
+input{
+    vertical-align: middle;
+    height: 32px;
+    max-width: 100%;
+    padding: 0 9px 2px;
+    box-sizing: border-box;
+    border: 1px solid #d4d4d4;
+    font-size: 14px;
+    line-height: 26px;
+    color: #686b6d;
+    outline: 0 none;
+    transition: border .2s ease-out;
+}
+
+.pay{
+    text-align: right;
+}
+.summary{
+    width: 80%;
+}
+.panel-body{
+    height: 400px;
+}
+.check{
+    text-align: center;
+
+
+}
+
+label{
+    margin-right: 20px;
+    position: relative;
+    top: 3px;
+}
+
+input .check{
+    position: relative;
+    top: -16px;
+}
+
+.picture{
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: #686868;
+    border-radius: 3px;
+    color: #fff;
+    width: 100px;
+}
+
+.submitbtn button{
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: skyblue;
+    padding: 15px;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+}
+.submitbtn > button + button {
+    margin-left:22px;
+    letter-spacing:3px;
+
+}
+.submitbtn{
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #fff;
+    width: 100%;
+    padding: 20px;
+}

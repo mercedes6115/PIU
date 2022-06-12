@@ -353,11 +353,6 @@ li.active{
     height: 100%;
     margin: 0 70px;
 }
-.store_items p{
-    font-size: large;
-    font-weight: 700;
-    margin-bottom: 10px;
-}
 .all_items{
     position: relative;
     width: 100%;
@@ -375,7 +370,7 @@ li.active{
 .store_items .all_items ul li{
     width: 24.5%;
     border-bottom: 1px solid #71727448;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
     padding-top: 10px;
     margin-right: 3px;
 }
@@ -410,13 +405,21 @@ li.active{
 .item{
     position: relative;
 }
-.item div{
-    padding-bottom: 5px;
-}
 .jjim{
     position: absolute;
     right: 10px;
     cursor: pointer;
+}
+.red{
+    color: red;
+}
+.store_main_item_title{
+    border-width: 0px;
+    color: rgb(26, 26, 26);
+    margin: 0px;
+    padding: 0px;
+    font-size: 0.875rem;
+    font-weight: 700;
 }
 
 /* --------------------------반응형 스토어 메인 ----------------------*/
@@ -443,13 +446,15 @@ li.active{
         position: absolute;
         right: 50px;
     }
+    .red{
+        color: red;
+    }
   }
 
   /*--------------------- 상품 디테일------------------------- */
 
 .store_detail{
     font-family: 'Noto Sans KR';
-    display: block;
     display: flex;
     width: 100%;
     justify-content: center;
@@ -489,6 +494,12 @@ li.active{
     border-bottom: 3px solid;
 }
 
+.goPayment{
+   width: 100%; 
+   height: 40px;
+   margin-bottom: 20px;
+}
+
 .toBuy{
     width: 100%;
     border: none;
@@ -520,7 +531,18 @@ li.active{
     color: white;
     cursor: pointer;
 }
+.btn_qnaToadmin{
+    border: none;
+    background-color: #005bedc1;
+    padding: 8px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
 .btn_qna:hover{
+    background-color: #005bed;
+}
+.btn_qnaToadmin:hover{
     background-color: #005bed;
 }
 .doComment{
@@ -569,7 +591,109 @@ li.active{
 .item_description_media{
     display: none;
 }
+.pay_bar_category{
+    font-family: 'Noto Sans KR';
+    font-size: 14px;
+    font-weight: 500;
+    color: rgb(26, 26, 26);
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+    margin-bottom: 4px;
+}
+.pay_bar_item_description{
+    font-family: 'Noto Sans KR';
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(26, 26, 26);
+    line-height: 28px;
+    margin: 0px;
+    margin-bottom: 8px;
+}
+.space-8{
+    margin-bottom: 4px;
+    font-size: 14px;
+}
+.space-8 strong{
+    font-size: 18px;
+    font-weight: 600;
+}
+.qnas{
+    position: relative;
+    margin-left: 25px;
+}
+.qna_reply{
+    width: 100%;
+    position: relative;
+}
+.qna_reply{
+    left: 10%;
+    width: 80%;
+}
+textarea{
+    border: none;
+}
+.review-container{
+    width: 100%;
+}
+.write-review{
+    width: 79%;
+}
+.write-review textarea{
+    width: 90%;
+    resize: none;
+    border-radius: 3px;
+    border: 1px solid #A2A2A2;
+    outline: none;
+    font-family: 'Noto Sans KR';
+    font-size: 14px;
+}
+.write-after{
+    text-align: end;
+}
+.write-after button{
+    border: none;
+    background-color: #005bedc1;
+    padding: 8px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+.write-after button:hover{
+    background-color: #005bed;
+}
 
+/*문의하기*/
+.question-container{
+    width: 100%;
+}
+.write-question{
+    width: 79%;
+}
+.write-question textarea{
+    width: 90%;
+    resize: none;
+    border-radius: 3px;
+    border: 1px solid #A2A2A2;
+    outline: none;
+    font-family: 'Noto Sans KR';
+    font-size: 14px;
+}
+.write-after-question{
+    text-align: end;
+}
+.write-after-question button{
+    border: none;
+    background-color: #005bedc1;
+    padding: 8px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+.write-after-question button:hover{
+    background-color: #005bed;
+}
+/*문의하기*/
 
 /* -------------------상품 디테일 반응형--------------- */
 @media ( max-width: 1024px ) {
@@ -638,7 +762,7 @@ li.active{
 
 .amount_btn{
     position: absolute;
-    top: 50%; 
+    top: 47%; 
     transform: translateY(-50%);
     padding: 0 12px;
     font-size: 30px;
@@ -667,12 +791,41 @@ li.active{
     font-weight: 600;
 }
 
+.modal_table{
+    text-align: left;
+    width: 100%;
+}
+.mt-20 th{
+    font-family: "Noto Sans KR";
+    font-size: 14px;
+    font-weight: normal;
+    color: rgb(113, 111, 111);
+    padding: 4px 0px;
+    min-width: 120px;
+}
+.mt-20 td{
+    font-family: "Noto Sans KR";
+    font-size: 14px;
+    font-weight: bold;
+    color: rgb(26, 26, 26);
+    letter-spacing: -0.15px;
+    padding: 4px 0px;
+}
+.personaddrbtn{
+    height: 46px; 
+    padding: 0; 
+    margin: 0;
+    width: 85px;
+}
 
 
 
 
 
 /* -------------------------------공통 요소---------- */
+.justify-content{
+    justify-content: space-between;
+}
 .padding-t{
     padding-top: 3px;
 }
@@ -697,7 +850,9 @@ li.active{
 .btn{
     margin-top: 10px;
     width: 100%;
+    height: 40px;
     border: none;
+    border-radius: 3px;
     padding: 0;
     font-weight: bold;
     cursor: pointer;
@@ -728,11 +883,18 @@ li.active{
     font-size: 10px;
     margin-top: 5px;
 }
-
+input::placeholder{
+    color: rgba(128, 128, 128, 0.57);
+    font-weight: bold;
+}
+.border_bottom_line{
+    border-bottom: 1px solid rgba(128, 128, 128, 0.107);
+    width: 80%;
+}
 /* -------------------------------공통 요소---------- */
 
 .pay_point{
-    font-size: larger;
+    font-size: 18px;
     font-weight: 600;
 }
 .item_detail{
@@ -751,7 +913,6 @@ li.active{
 .ship_input input{
     width: 100%;
     height: 40px;
-    border: 1px solid #005bed;
 }
 .phone_input{
     width: 100%;
@@ -759,7 +920,6 @@ li.active{
 .phone_input input{
     width: 100%;
     height: 40px;
-    border: 1px solid #005bed;
 }
 .checkValid{
     font-size: small;
@@ -772,7 +932,6 @@ li.active{
 .addr_input{
     width: 85%;
     height: 40px;
-    border: 1px solid #005bed;
 }
 input:focus{outline: none;}
 .agree_modal{
@@ -847,4 +1006,170 @@ footer{
     width: 100%;
     height: 300px;
     background-color: rgba(109, 109, 113, 0.312);
+}
+
+
+/* ---------------------공유하기 모달-------------------------------- */
+
+.share_container{
+    position: fixed;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    inset: 0px;
+    background-color: rgba(0, 0, 0, 0.72);
+    opacity: 1;
+    visibility: visible;
+    overscroll-behavior: contain;
+}
+.share{
+    display: flex;
+    flex-direction: column;
+    padding: 32px;
+    width: 300px;
+    max-height: 800px;
+    border-radius: 8px;
+    background-color: rgb(255, 255, 255);
+    box-sizing: border-box;
+    box-shadow: rgb(0 0 0 / 2%) 0px 0px 5px, rgb(0 0 0 / 2%) 0px 6px 4px, rgb(0 0 0 / 3%) 0px 9px 6px, rgb(0 0 0 / 3%) 0px 16px 12px, rgb(0 0 0 / 8%) 0px 24px 24px;
+}
+.share_header{
+    height: 34px;
+    display: flex;
+    margin-bottom: 8px;
+    justify-content: space-between;
+}
+.share_header_one{
+    font-size: 22px;
+    font-weight: bold;
+    color: rgb(26, 26, 26);
+}
+.close{
+    display: inline-flex;
+    flex: 0 0 auto;
+    vertical-align: middle;
+    padding: 0px;
+    border-radius: 3px;
+    color: rgb(26, 26, 26);
+    background-color: transparent;
+    width: 32px;
+    height: 32px;
+    transition: background-color 0.1s ease 0s;
+    cursor: pointer;
+}
+#kakao-link-btn img{
+    width: 48px;
+    height: 48px;
+    border-radius: 32px;
+    background-color: rgb(255, 232, 18);
+    min-height: auto;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-bottom: 8px;
+}
+.chare_content{
+    justify-content: space-around;
+    align-items: center;
+}
+.chare_content a{
+    text-decoration: none;
+    color: black;
+}
+.chare_content a:visited{
+    color: black;
+}
+.flex{
+    display: flex;
+}
+.link-share{
+    font-size: 11px;
+    align-items: center;
+    background-color: rgb(248, 248, 248);
+    border-radius: 20px;
+    display: flex;
+    height: 48px;
+    justify-content: center;
+    width: 120px;
+}
+.link_copy{
+    padding-bottom: 3px;
+}
+
+/* ---------------------공유하기 모달-------------------------------- */
+
+/*-------------------------------- 리뷰-------------------------------------  */
+
+.review-container{
+   width: 100%;
+   position: relative;
+}
+.reviews-wrap{
+    position: relative;
+    width: 640px;
+    margin: 0 auto;
+    height: 56px;
+}
+.review_header{
+    display: flex;
+    padding: 17px 20px;
+    align-items: center;
+    background-color: white;
+    margin-bottom: 10px;
+}
+.reviews-wrap h5{
+    border-width: 0px;
+    margin: 0px;
+    padding: 0px;
+    font-size: 1.125rem;
+    font-weight: 700;
+    text-align: center;
+}
+.review-header-left{
+    display: block;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+.allreveiws{
+    position: relative;
+    width: 640px;
+    margin: 0 auto;
+    background-color: white;
+    
+}
+.review_date{
+    font-weight: normal;
+    font-size: 11px;
+    line-height: 14px;
+    color: rgb(162, 162, 162);
+    margin-left: 8px;
+}
+.review_id{
+    font-weight: bold;
+    font-size: 12px;
+    color: inherit;
+    margin-left: 8px;
+}
+.allreveiws img{
+    width: 32px;
+    height: 32px;
+}
+.review_id_and_date{
+    margin-bottom: 8px;
+}
+.review_content_container{
+    width: 100%;
+}
+.review_content{
+    width: 100%;
+    font-size: 14px;
+    height: 100%;
+}
+.p-24{
+    padding: 24px;
 }

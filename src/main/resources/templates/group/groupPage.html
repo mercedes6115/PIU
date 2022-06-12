@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 </head>
 <body>
-    <div class="groupPageFrame">
+    <div class="groupPageFrame">        
         <div class="groupPageTitleFrame">
             <div class="groupPageTitleForm">
                 <header class="groupPageHeaderFrame">
@@ -66,13 +66,7 @@
                                     <a class="sProjectList" href="#">전체 플로깅</a>
                                     <a class="sProjectQna" href="#">플로깅 문의</a>
                                 </div>
-                                <div class="sQrFrame">
-                                    <div class="sQrForm">
-                                        <span class="material-symbols-outlined">qr_code_scanner</span>                                                                                        
-                                        <div class="margin"></div>
-                                        <span class="sTitle">QR 확인</span>
-                                    </div>
-                                </div>
+                                
                                 <div class="sGuideFrame">
                                     <div class="sGuideForm">
                                         <span class="material-symbols-outlined">help_center</span>                                                                                        
@@ -103,10 +97,180 @@
                             </button>
                         </a>
                     </div>
+                    <div class="projectListFrame">
+                        <div class="projectListForm">
+                            <div class="projectListContainer">
+                                <div class="projectListBox">
+                                    <div class="searchForm">
+                                        <div class="searchBox">
+                                            <div class="searchProjectBox">
+                                                <form action>
+                                                    <input placeholder="플로깅명 검색" class="searchProject" value>                                    
+                                                </form>
+                                            </div>
+                                            <span class="searchImg">
+                                                <span class="material-symbols-outlined">search</span>                                                                                                        
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="showListFrame">
+                                        <div class="showListForm">
+                                            <div class="showListBox" aria-colcount="9" aria-rowcount="2" role="grid">
+                                                <div class="showListHeader">
+                                                    
+                                                    <div class="showListHeader2">
+                                                        <span class="showListBoundary"></span>
+                                                    </div>
+                                                    <div class="showListHeader3">
+                                                        <span class="showListhTitle">제목</span>
+                                                    </div>
+                                                    <div class="showListHeader4">
+                                                        <span class="showListhState">상태</span>
+                                                    </div>
+                                                    <div class="showListHeader5">
+                                                        <span class="showListhTerrain">지형</span>
+                                                    </div>
+                                                    <div class="showListHeader6">
+                                                        <span class="showListhCourse">장소 / 코스</span>
+                                                    </div>
+                                                    <div class="showListHeader7">
+                                                        <span class="showListhPoint">포인트</span>
+                                                    </div>
+                                                    <div class="showListHeader8">
+                                                        <span class="showListhDate">생성일</span>
+                                                    </div>
+                                                    <div class="showListHeader9">
+                                                        <span class="showListhMore"></span>
+                                                    </div>
+                                                </div>                                                
+                                                <div class="showListBodyFrame" aria-label="grid" role="rowgroup" tabindex="0">
+                                                    <div class="showListBodyForm">
+                                                        <div class="showListBody">
+                                                            
+                                                            <div class="showListBody2">
+                                                                <div class="sbImageFrame">
+                                                                    <div class="sbImageForm">
+                                                                        <div class="sbImageContainer">
+                                                                            <div class="sbImageBox">
+                                                                                <div class="sbImageWrap">
+                                                                                    <picture class="sbImageShow">
+                                                                                        <source srcset="/src/main/resources/static/images/chun.png" media="all and (min-width: 1024px)" >
+                                                                                        <img src="/src/main/resources/static/images/chun.png" class="sbImage" alt="">
+                                                                                    </picture>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="showListBody3">
+                                                                <div class="sbTitleForm">
+                                                                    <p class="sbTitle">다 같이 줍자!</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="showListBody4">
+                                                                <div class="sbStateFrame">
+                                                                    <div class="sbStateForm">
+                                                                        <p class="sbState">승인 대기</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="showListBody5">
+                                                                <div class="sbTerrainForm">
+                                                                    <p class="sbTerrain">산</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="showListBody6">
+                                                                <div class="sbCourseFrame">
+                                                                    <p class="sbCousre">코스</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="showListBody7">
+                                                                <div class="sbPointFrame">
+                                                                    <p class="sbPoint">300p</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="showListBody8">
+                                                                <div class="sbDateFrame">
+                                                                    <p class="sbDate">2022. 6. 12. 오후 4:35</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="showListBody9">
+                                                                <div class="sbMoreFrame">
+                                                                    <div class="sbMoreForm">
+                                                                        <button class="qrCheckFrame" id="qrCheck">
+                                                                            <span class="qrCheckForm">
+                                                                                <span class="qrCheck">QR확인</span>
+                                                                            </span>
+                                                                        </button>                                                                        
+                                                                        <div class="moreBoundary"></div>
+                                                                        <button class="sbMoreBox" id="showMoreBtn">
+                                                                            <span class="material-symbols-outlined">more_horiz</span>                                                                                                                                                                
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                            </div>                                                    
+                                                        </div>
+                                                        <div class="showMoreFrame" id="showMore">
+                                                            <div class="showMoreForm">
+                                                                <div class="modifyForm">
+                                                                    <span class="material-symbols-outlined">build</span>                                                                                                                                                                
+                                                                    <a class="moveProjectModify" href="#">수정</a>
+                                                                </div>
+                                                                <div class="deleteForm">
+                                                                    <span class="material-symbols-outlined">delete</span>                                                                                                                                                                
+                                                                    <input type="button" id="projectDelete" value="삭제">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="showListPagingFrame">
+                                                    <nav class="showListPagingForm">
+                                                        <button class="pageMoveBtn">
+                                                            <span class="material-symbols-outlined" id="prevBtnImg">chevron_left</span>                                                                                                                                
+                                                        </button>
+                                                        <div class="btnBoundary"></div>
+                                                        <div class="showPageNum">
+                                                            <button class="movePageNum">
+                                                                <span class="displayPageNum">1</span>
+                                                            </button>    
+                                                        </div>
+                                                        <div class="btnBoundary"></div>
+                                                        <button class="pageMoveBtn">
+                                                            <span class="material-symbols-outlined" id="nextBtnImg">chevron_right</span>                                                                                                                                
+                                                        </button>
+                                                    </nav>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>  
+            <div class="footerBoundary"></div>
+            <footer class="groupPageFooter">
+                <div class="boundaryLine"></div>
+                <div class="footerFrame">
+                    
+                </div>
+            </footer>
+        </div>
+
     </div>
+    </div>
+    <div id="qrModal" class="qrModal-overlay">                                                    
+        <div class="close-modal">X</div>
+        <div class="content">
+            <picture class="qrShow">
+                <source srcset="/src/main/resources/static/images/qrCheck.png" media="all and (min-width: 1024px)" >
+                <img src="/src/main/resources/static/images/qrCheck.png" class="qrImage" alt="">
+            </picture>
+        </div>
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
@@ -125,6 +289,40 @@
             sProjectContainer.classList.remove('hidden');
         }
     });
+
+    const modal = document.getElementById("qrModal");
+    const btnModal = document.getElementById("qrCheck");
+    btnModal.addEventListener("click", e => {
+        modal.style.display = "flex";
+    });
+
+    const closeBtn = modal.querySelector(".close-modal")
+    closeBtn.addEventListener("click",e => {
+        modal.style.display = "none";
+    })
+
+    modal.addEventListener("click", e => {
+        const evTarget = e.target
+        if(evTarget.classList.contains("qrModal-overlay")) {
+            modal.style.display = "none";
+        }
+    })
+
+    let showFlag = false;
+    const showMoreBox = document.getElementById("showMore");
+    const showMore = document.getElementById("showMoreBtn");
+    showMore.addEventListener("click", e => {
+        console.log("들어옴");
+        if(!showFlag) {
+            console.log("들어옴1");
+            showMoreBox.style.display ="flex";
+            showFlag = true;
+        } else {
+            console.log("들어옴2");
+            showMoreBox.style.display ="none";
+            showFlag = false;
+        }
+    })
 
 </script>
 </html>
