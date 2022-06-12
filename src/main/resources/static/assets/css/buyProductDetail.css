@@ -7,6 +7,8 @@
     font-style: normal;
 }
 
+
+
 .notosanskr * {
     font-family: 'Noto Sans KR', sans-serif;
 }
@@ -131,4 +133,32 @@ body {
 #product-detail-total{
     font-weight: 700;
     color: black;
+}
+
+.product-buyer-wrapper{
+    display: flex;
+    padding: 24px;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.product-buyer-wrapper h4{
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.product-buyer-wrapper .bill-way-wrapper{
+    margin-bottom: 12px;
+}
+
+.title-category a{
+    text-decoration: none;
+    color: rgb(202, 202, 202);
+}
+
+.title-category a#to_prodectList_detail{
+    color: rgb(26, 26, 26);
 }
