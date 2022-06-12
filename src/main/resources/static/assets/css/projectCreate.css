@@ -345,7 +345,7 @@
 }
 
 .addProjectFrame {
-    text-decoration: none;
+    font-family: 'Noto Sans KR', sans-serif;
     color: inherit;
 }
 
@@ -414,10 +414,12 @@
 .projectCoverImage{
     display: flex;
     flex: 0.5 1 0%;
+    margin-bottom: 100px;
 
 }
 
 .ImageLabel{
+    font-family: 'SDSamliphopangche_Basic';
     font-size: 14px;
     font-weight: normal;
     line-height: 20px;
@@ -443,7 +445,7 @@
     background-color: rgb(255, 255, 255);
     border: 1px solid rgb(229, 229, 229);
     border-radius: 3px;
-    height: 715px;
+    height: 675px;
     width: 250px;
 
 }
@@ -485,9 +487,10 @@
 }
 
 .SpacingBox{
-    margin-right: 40px;
+    margin-right: 20px;
 }
 .FormGroupLabel{
+    font-family: 'SDSamliphopangche_Basic';
     font-size: 14px;
     font-weight: normal;
     line-height: 20px;
@@ -632,8 +635,36 @@
     box-shadow: rgb(0 0 0 / 2%) 0px 1px 3px, rgb(0 0 0 / 3%) 0px 3px 6px, rgb(0 0 0 / 5%) 0px 8px 12px, rgb(0 0 0 / 6%) 0px 12px 18px;
     top: 108px;
     width: 360px;
-    height: 640px;
+    height: 675px;
     border-radius: 12px;
     overflow: hidden;
-    margin-left:20px;
+    margin-left:70px;
+    margin-top: 40px;
+}
+
+.PloggingImgsPreviewWrapper{
+    position: relative;
+    height: 100%;
+}
+
+.PloggingImgsPreview{
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+}
+
+.BaseBackground{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: rgb(58, 58, 58);
+}
+
+.PreviewSection1{
+    width: 100%;
+    height: 280px;
+    background: linear-gradient(rgba(27, 28, 29, 0) 0%, rgb(27, 28, 29) 100%);
+    position: absolute;
+    bottom: 0px;
 }
