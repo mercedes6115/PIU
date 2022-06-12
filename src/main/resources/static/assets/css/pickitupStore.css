@@ -531,7 +531,18 @@ li.active{
     color: white;
     cursor: pointer;
 }
+.btn_qnaToadmin{
+    border: none;
+    background-color: #005bedc1;
+    padding: 8px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
 .btn_qna:hover{
+    background-color: #005bed;
+}
+.btn_qnaToadmin:hover{
     background-color: #005bed;
 }
 .doComment{
@@ -652,6 +663,38 @@ textarea{
     background-color: #005bed;
 }
 
+/*문의하기*/
+.question-container{
+    width: 100%;
+}
+.write-question{
+    width: 79%;
+}
+.write-question textarea{
+    width: 90%;
+    resize: none;
+    border-radius: 3px;
+    border: 1px solid #A2A2A2;
+    outline: none;
+    font-family: 'Noto Sans KR';
+    font-size: 14px;
+}
+.write-after-question{
+    text-align: end;
+}
+.write-after-question button{
+    border: none;
+    background-color: #005bedc1;
+    padding: 8px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+.write-after-question button:hover{
+    background-color: #005bed;
+}
+/*문의하기*/
+
 /* -------------------상품 디테일 반응형--------------- */
 @media ( max-width: 1024px ) {
     .pay_bar{
@@ -768,7 +811,12 @@ textarea{
     letter-spacing: -0.15px;
     padding: 4px 0px;
 }
-
+.personaddrbtn{
+    height: 46px; 
+    padding: 0; 
+    margin: 0;
+    width: 85px;
+}
 
 
 

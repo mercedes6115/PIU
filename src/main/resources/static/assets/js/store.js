@@ -46,6 +46,7 @@ $('#personphone').blur(function(){
     }
 });
 
+
 //주소검색
 window.onload = function(){
     document.getElementById("personaddrbtn").addEventListener("click", function(){ //주소입력칸을 클릭하면
