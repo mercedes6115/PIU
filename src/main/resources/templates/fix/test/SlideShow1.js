@@ -47,13 +47,14 @@ prev1.addEventListener('click', function () {
   //이전 버튼 눌렀을때
   console.log(currentIdx);
   if (currentIdx1 >= 0) {
-    slide1.style.left = -(currentIdx + 2) * (slideWidth1 + slideMargin1) + 'px';
+    slide1.style.left = -currentIdx1* (slideWidth1 + slideMargin1) + 'px';
     slide1.style.transition = `${0.5}s ease-out`;
   }
   if (currentIdx === 0) {
     setTimeout(function () {
       slide1.style.left = -slideCount1 * (slideWidth1 + slideMargin1) + 'px';
       slide1.style.transition = `${0}s ease-out`;
+
     }, 500);
     currentIdx1 = slideCount1;
   }
