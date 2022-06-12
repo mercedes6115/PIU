@@ -106,10 +106,6 @@ function move() {
 const intervals = setInterval(intervalclick,2500);
 
 
-/*
-
-*/
-
 function colorChange(){
   const rand = Math.floor(Math.random() * 10);
   var colorIndex=[
