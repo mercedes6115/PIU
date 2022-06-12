@@ -486,7 +486,18 @@ $('.toTop').click(function(){
     })
     //작성완료 버튼 클릭시
     $('.review-finish').click(function(){
+        //후기 추가
+        $.ajax({
+            url:"",
+            type:"post",
+            data:"",
+            success:function(result){
 
+            },
+            error:function(xhr,status,er){
+
+            }
+        })
     })
     //취소 버튼 클릭시
     $('.review-cancel').click(function(){
@@ -509,7 +520,18 @@ $('.toTop').click(function(){
     })
     //작성완료 버튼 클릭시
     $('.question-finish').click(function(){
+        //문의 추가
+        $.ajax({
+            url:"",
+            type:"post",
+            data:"",
+            success:function(result){
 
+            },
+            error:function(xhr,status,er){
+
+            }
+        })
     })
     //취소 버튼 클릭시
     $('.question-cancel').click(function(){
