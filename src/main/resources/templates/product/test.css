@@ -1,0 +1,18 @@
+.write-review{
+    width: 500px;
+    height: 300px;
+}
+input{
+    width: 100%;
+    border: 1px solid salmon;
+    border-radius: 3px;
+    outline: none;
+}
+textarea{
+    width: 100%;
+    border: 1px solid salmon;
+    resize: none;
+    outline: none;
+    border-radius: 3px;
+
+}
