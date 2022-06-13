@@ -289,18 +289,21 @@ h4> .menu-store{
 
 /*--------------------------- 스토어  css ---------------------*/
 /*--------------------------- 탑으로 ---------------------*/
-.toTop{
+.gototop{
     position: fixed;
     bottom: 5%;
     right: 10px;
-    background-color: rgba(128, 128, 128, 0.4);
+    background-color: rgba(214, 210, 210, 0.723);
     color: black;
     padding: 10px;
-    border-radius: 15%;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
     font-size: large;
     cursor: pointer;
-    opacity: 0.5;
-    z-index: 99999;
+    opacity: 0.8;
+    z-index: 99998;
+    text-align: center;
 }
 /*--------------------------- 스토어 전체 컨테이너 ---------------------*/
 .store_all_body{
@@ -955,16 +958,7 @@ textarea{
         width: 49%;
         margin-right: 24px;
     }
-    .btn_qnaToadmin{
-        background-color: white;
-        border: 1px solid rgba(0,0,0,0.15);
-        border-radius: 3px;
-        cursor: pointer;
-        padding: 6px 7px;
-    }
-    .btn_qnaToadmin:hover{
-        background-color: rgba(128, 128, 128, 0.248);
-    }
+    
     .nav_item{
         margin: 0 24px;
     }
