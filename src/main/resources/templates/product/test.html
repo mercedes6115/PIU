@@ -4,61 +4,48 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="test.css">
+    <title>첨부파일 썸네일</title>
+    <style>
+        label[for='attach'] div{
+            width: 150px;
+            height: 150px;
+            background-image: url("/src/main/resources/static/images/insert.png");
+            background-size: 100% 100%;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <header></header>
-    <div class="store_container">
-        <div class="store_container1">
-            <div class="store_container2">
-
-                <div class="store_category">
-                    <div class="store_category1">
-                        <div class="store_category2">
-                            <div class="store_cate_detail">
-                                <div class="fs">
-                                    <div class="fs1">
-                                        전자책
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="store_cate_detail">
-                                <div class="fs">
-                                    <div class="fs1">
-                                        디지털 파일
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="store_cate_detail">
-                                <div class="fs">
-                                    <div class="fs1">
-                                        재료와 도구
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="store_cate_detail">
-                                <div class="fs">
-                                    <div class="fs1">
-                                        굿즈
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="store_cate_detail">
-                                <div class="fs">
-                                    <div class="fs1">
-                                        키트
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="store_items"></div>
-
-            </div>
-        </div>
-    </div>
-    <footer></footer>
+    <label for="attach">
+        <div></div>
+    </label>
+    <input type="file" id="attach" style="display: none;">
 </body>
+<script>
+    //첨부파일 input태그 가져오기
+    const file = document.querySelector("input[type='file']");
+    const thumbnail = document.querySelector("label[for='attach'] div");
+
+    //첨부파일이 등록되었다면 change이벤트 발생
+    file.addEventListener("change", function(event){
+        //특정 경로의 파일을 읽어올 때 사용.
+        let reader = new FileReader();
+
+        //파일정보를 전달하여 reader객체에 등록한다.
+        reader.readAsDataURL(event.target.files[0]);
+        //등록이 되었다면 reader객체의 load 이벤트가 발생한다.
+        reader.onload = function(event){
+            //등록된 파일의 경로에 작성된 파일의 타입검사
+            if(event.target.result.includes("image")){
+                console.log("이미지 파일입니다.");
+                //등록된 파일의 경로로 대체
+                thumbnail.style.backgroundImage = "url(\"" + event.target.result + "\")";
+            }else{
+                console.log("이미지 파일이 아닙니다.");
+                //미리 준비해놓은 이미지 경로로 대체
+                thumbnail.style.backgroundImage = "url(img/no_image.png)";
+            }
+        }
+    });
+</script>
 </html>
