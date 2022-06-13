@@ -23,98 +23,139 @@
             <div>
                 <h2>유저관리</h2>
             </div>
-            <!-- <div class="userSearchBox"> -->
-                <div class="searchBox" id="userSearchBox">
-                <form id="userSearch">
-                        <div class="userFilterBox">
-                        <input type="radio" id="userFilterAll" name="userFilter" value="all" checked>
-                        <label for="all">전체</label>
-                        <input type="radio" id="userFilterKakao" name="userFilter" value="kakao">
-                        <label for="kakao">카카오톡</label>
-                        </div>
-                        <select>
-                            <option>일반</option>
-                            <option>단체</option>
-                        </select>
-                        <select>
-                            <option>이름</option>
-                            <option>휴대폰번호</option>
-                        </select>
-                        <input type="text">
-                        <button type="button" id="userSearchBtn">검색</button>
+            <div class="searchBox" id="userSearchBox">
+                <form id="userSearchForm">
+                    <table id="searchTbl">
+                        
+                        <tr>
+                            <th>검색어</th>
+                            <td>
+                                <select>
+                                    <option>일반</option>
+                                    <option>단체</option>
+                                </select>
+                                <select>
+                                    <option>이름</option>
+                                    <option>휴대폰번호</option>
+                                </select>
+                                <input type="text">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th>구매금액/건수</th>
+                            <td>
+                                <select>
+                                    <option>전체</option>
+                                    <option>총 주문금액</option>
+                                    <option>총 주문건수</option>
+                                </select>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <th>가입일</th>
+                            <td>
+                                <input type="date" name="" id="">
+                                <input type="date" name="" id="">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>승인상태</th>
+                            <td>
+                                <select>
+                                    <option>전체</option>
+                                    <option>승인</option>
+                                    <option>미승인</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>SNS 연동</th>
+                            <td>
+                                <span>전체</span><input type="radio" name="snsCheck" id="" checked>
+                                <span>카카오톡</span><input type="radio" name="snsCheck" id="">
+                            </td>
+                        </tr>
+                    </table>
                 </form>
+                <div class="btnBox">
+                    <button type="button" id="userSearchBtn">검색</button>
+                </div>
             </div>
-        <div class="listBox" id="userList">
-            <table>
-                <tr>
-                    <div class="userListTitle">
-                        <div>
-                            <span>[총 회원수 
-                                <strong>2</strong>명]</span>
-                            <span>검색결과 0건</span>
-                        </div>
-                        <div>
-                            <button type="button" class="userListBtn" id="userDisabled">비활성화</button>
-                            <button type="button" class="userListBtn" id="userApprove">승인</button>
-                        </div>
-                    </div>
-                </tr>
+            <div class="listBox" id="userList">
+                <h2>회원 목록</h2>
+                <div class="searchResult">
+                    <span>[총 회원수
+                        <strong>2</strong>명]</span>
+                    <span>검색결과 0건</span>
+                </div>
+                <table>
+                    <tr>
+                        <td colspan="12">
+                            <div class="listTitle">
+                                <button type="button" class="listBtn" id="userDisabled">비활성화</button>
+                                <button type="button" class="listBtn" id="userApprove">승인</button>
+                            </div>
+                        </td>
 
-                <tr>
-                    <th scope="col"></th>
-                    <th scope="col">번호</th>
-                    <th scope="col">유형</th>
-                    <th scope="col">상태</th>
-                    <th scope="col">승인</th>
-                    <th scope="col">이름</th>
-                    <th scope="col">아이디</th>
-                    <th scope="col">등록일</th>
-                    <th scope="col">전화번호</th>
-                    <th scope="col">주소</th>
-                    <th scope="col">포인트</th>
-                    <th scope="col"></th>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" class="userCheck"></td>
-                    <td>1</td>
-                    <td>단체</td>
-                    <td>활성화</td>
-                    <td>승인완료</td>
-                    <td>해바라기봉사단</td>
-                    <td>flower@naver.com</td>
-                    <td>2022-06-10</td>
-                    <td>02-123-1234</td>
-                    <td>서울</td>
-                    <td></td>
-                    <td><a href="#" class="userDetail">상세보기</a></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" class="userCheck"></td>
-                    <td>2</td>
-                    <td>일반</td>
-                    <td>활성화</td>
-                    <td></td>
-                    <td>서길동</td>
-                    <td>gilgil@naver.com</td>
-                    <td>2022-06-10</td>
-                    <td>010-1111-1234</td>
-                    <td>서울</td>
-                    <td>110point</td>
-                    <td><a href="#" class="userDetail">상세보기</a></td>
-                </tr>
-                <!-- 더미 데이터 -->
-                
-            </table>
+                    </tr>
+
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">번호</th>
+                        <th scope="col">유형</th>
+                        <th scope="col">상태</th>
+                        <th scope="col">승인</th>
+                        <th scope="col">이름</th>
+                        <th scope="col">아이디</th>
+                        <th scope="col">등록일</th>
+                        <th scope="col">전화번호</th>
+                        <th scope="col">주소</th>
+                        <th scope="col">포인트</th>
+                        <th scope="col"></th>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="userCheck"></td>
+                        <td>1</td>
+                        <td>단체</td>
+                        <td>활성화</td>
+                        <td>승인완료</td>
+                        <td>해바라기봉사단</td>
+                        <td>flower@naver.com</td>
+                        <td>2022-06-10</td>
+                        <td>02-123-1234</td>
+                        <td>서울</td>
+                        <td></td>
+                        <td><a href="adminUserDetail.html" class="userDetail">상세보기</a></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="userCheck"></td>
+                        <td>2</td>
+                        <td>일반</td>
+                        <td>활성화</td>
+                        <td></td>
+                        <td>서길동</td>
+                        <td>gilgil@naver.com</td>
+                        <td>2022-06-10</td>
+                        <td>010-1111-1234</td>
+                        <td>서울</td>
+                        <td>110point</td>
+                        <td><a href="adminUserDetail.html" class="userDetail">상세보기</a></td>
+                    </tr>
+                    <!-- 더미 데이터 -->
+
+                </table>
+                <div class="paging">
+                    <a href="#">&lt;</a>
+                    <a href="#">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">&gt;</a>
+                </div>
+            </div>
 
         </div>
-        <div class="paging">
-            <a href="#">&lt;</a>
-            <a href="#">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">&gt;</a>
-        </div>
-    </div>
 
 
     </div>
@@ -122,57 +163,51 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 
-// 체크박스 체크시 해당 유저의 번호를 id값으로 변경
-$('.userCheck').on("click", function(){
-    console.log(this);
-    
-})
+    //타임리프에서 필드값으로 해당 유저의 번호 뿌려줄것
+
+    // 비활성화 버튼 클릭시
+    $('#userDisabled').on("click", function (e) {
+        
+        if (confirm("해당 유저를 비활성화 하시겠습니까?")) {
+
+            // 해당 유저 비활성화 
+            $.ajax({
+                url: "",
+                type: "post",
+                data: { userNumber: $userNumber },
+                success: function () {
+
+                }
+            });
 
 
-// 비활성화 버튼 클릭시
-$('#userDisabled').on("click", function(e){
-    if(confirm("해당 유저를 비활성화 하시겠습니까?")){
+        } else {
+
+        }
+    });
 
 
-        // 해당 유저 비활성화 
-        $.ajax({
-          url: "",
-          type: "post",
-          data: {userNumber: $userNumber},
-          success: function(){
-              
-          }
-       });
+    // 승인 버튼 클릭시
+    $('#userApprove').on("click", function (e) {
+        if (confirm("해당 유저를 승인 하시겠습니까?")) {
+
+            // 해당 유저 승인처리
+            $.ajax({
+                url: "",
+                type: "post",
+                data: { userNumber: $userNumber },
+                success: function () {
+
+                }
+            });
 
 
-    }else{
+        } else {
 
-    }
-});
+        }
+    });
 
-
-// 승인 버튼 클릭시
-$('#userApprove').on("click", function(e){
-    if(confirm("해당 유저를 승인 하시겠습니까?")){
-
-
-        // 해당 유저 승인처리
-        $.ajax({
-          url: "",
-          type: "post",
-          data: {userNumber: $userNumber},
-          success: function(){
-              
-          }
-       });
-
-
-    }else{
-
-    }
-});
-
-$(document).ready(function(){
+    $(document).ready(function () {
         $('#sidebar').load("adminSideBar.html");
 
     })

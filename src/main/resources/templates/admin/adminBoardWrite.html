@@ -11,111 +11,17 @@
 <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
-<!-- 
-1. 검색명(상품명, 상품번호, )
-2. 카테고리
-3. 상품 등록일
-4. 진열상태 
-5. 재고상태
-
- -->
+<!-- bootstrap css -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<!-- summernote css  -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 
 <body>
     <div class="root">
 
         <!-- sidebar -->
         <div id="sidebar">
-            <ul>
-                <li class="sidebarCategory">
-                    <a href="#">
-                        <div>
-                            <span class="material-symbols-outlined icon">person
-                            </span>
-                            <span class="sidebarTitle">유저 관리</span>
-                        </div>
-
-                    </a>
-
-                </li>
-                <li class="sidebarCategory">
-                    <a href="#">
-                        <div><span class="material-symbols-outlined icon">
-                                storefront
-                            </span><span class="sidebarTitle">상품 관리</span>
-                        </div><span class="material-symbols-outlined more">
-                            expand_more
-                        </span>
-                    </a>
-                    <!-- onClick 시 노출 -->
-                    <ul class="sidebarDetail">
-                        <li><a id="detail" href="#">상품 등록</a></li>
-                        <li><a id="detail" href="#">상품 목록</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">
-                        <div>
-                            <span class="material-symbols-outlined icon">
-                                shopping_cart
-                            </span><span class="sidebarTitle">주문 관리</span>
-                        </div>
-                        <span class="material-symbols-outlined more">
-                            expand_more
-                        </span>
-                    </a>
-                    <!-- onClick 시 노출 -->
-                    <ul class="sidebarDetail">
-                        <li><a id="detail" href="#">전체주문목록</a></li>
-                        <li><a id="detail" href="#">배송 관리</a></li>
-                        <li><a id="detail" href="#">취소 관리</a></li>
-                    </ul>
-                </li>
-                <li class="sidebarCategory">
-                    <a href="#">
-                        <div>
-                            <span class="material-symbols-outlined icon">
-                                public
-                            </span>
-                            <span class="sidebarTitle">프로젝트 관리</span>
-                        </div>
-                        <span class="material-symbols-outlined more">
-                            expand_more
-                        </span>
-                    </a>
-                    <!-- onClick 시 노출 -->
-                    <ul class="sidebarDetail">
-                        <li><a id="detail" href="#">프로젝트 생성</a></li>
-                        <li><a id="detail" href="#">프로젝트 목록</a></li>
-                        <li><a id="detail" href="#">QR코드</a></li>
-                    </ul>
-                </li>
-                <li class="sidebarCategory">
-                    <a href="#">
-                        <div>
-                            <span class="material-symbols-outlined icon">
-                                assignment
-                            </span>
-                            <span class="sidebarTitle">게시물 관리</span>
-                        </div>
-                        <span class="material-symbols-outlined more">
-                            expand_more
-                        </span>
-                    </a>
-                </li>
-                <li class="sidebarCategory">
-                    <a href="#">
-                        <div>
-                            <span class="material-symbols-outlined icon">
-                                analytics
-                            </span>
-                            <span class="sidebarTitle">통계 현황</span>
-                        </div>
-                        <span class="material-symbols-outlined more">
-                            expand_more
-                        </span>
-                    </a>
-                </li>
-            </ul>
         </div>
         <!-- sidebar -->
 
@@ -124,32 +30,56 @@
             <div>
                 <h2>공지사항 등록</h2>
             </div>
-            <div class="boardWriteBox">
+            <div class="searchBox">
                 <form id="boardWriteForm">
                     <table>
+                        
                         <tr>
-                            <td>제목</td>
+                            <td><span>제목</span><input type="text" name="" id="boardTitle"></td>
                         </tr>
-                        <tr>
-                            <td><input type="text" name="" id="boardTitle"></td>
-                        </tr>
-                        <tr>
-                            <td>내용</td>
-                        </tr>
+                        
                         <!-- floala 에디터 -->
                         <tr>
-                            <td><textarea id="boardContent"></textarea></td>
+                            <td><textarea id="summernote" name=""></textarea></td>
                         </tr>
                     </table>
-                    <div>
-                    <button>등록</button></div>
+                 
                 </form>
+                
+            </div>
+            <div class="btnBox">
+                <button type="button" id="boardWriteBtn">등록</button>
             </div>
         </div>
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- 부스트랩 js -->
+<script
+src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+crossorigin="anonymous"></script>
+<!-- summernote js -->
+<script
+src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
 <script>
+    $(document).ready(function () {
+        $('#sidebar').load("adminSideBar.html");
+    })
+
+
+    // 툴바중에 필요 없는것 정리
+    $('#summernote').summernote({
+    placeholder : '내용을 입력해주세요',
+    tabsize : 2,
+    height : 300
+});
 </script>
+
+
+
+
+
 
 </html>

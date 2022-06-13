@@ -7,60 +7,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>admin</title>
 </head>
+<style>
+
+</style>
 <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link rel="stylesheet" href="admin_style.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
 <body>
     <div class="root">
-        <div id="container">
+        <div id="mContainer">
             <!-- 유저 현황 -->
             <div class="userStatus"><strong>오늘 가입자수 20명 동시 접속자수 50명</strong></div>
-  
             <div class="statusBox">
-                
-           
-                <div id="user">
-                    
-                   <table>
-                       <tr>
-                        <td>구분</td>
-                        <td colspan="2">아이디</td>
-                        <td colspan="2">단체명</td>
-                           <td>가입일자</td>
-                           <td>상태</td>
-                           
-                       </tr>
-                       <tr>
-                        <td>1</td>
-                           <td colspan="2">gao@naver.com</td>
-                           <td colspan="2">장미봉사단</td>
-                           <td>2022-06-13</td>
-                           <td>승인대기</td>
-                       </tr>
-                       <tr>
-                        <td>2</td>
-                        <td colspan="2">gao@naver.com</td>
-                        <td colspan="2">장미봉사단</td>
-                        <td>2022-06-13</td>
-                        <td>승인대기</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td colspan="2">gao@naver.com</td>
-                        <td colspan="2">장미봉사단</td>
-                        <td>2022-06-13</td>
-                        <td>승인대기</td>
-                    </tr>
-                         
-                   </table>
-                </div>
-                
+            
+                <div id="chart_div"style="width: 400px; height: 200px;" ></div>
+                <div id="donutchart" style="width: 400px; height: 200px;"></div>
 
-                <div>
-                    <h2>미답변 문의 (수정중)</h2>
-                </div>
+                
             
             </div>
 
@@ -68,39 +34,42 @@
             <!-- 클릭시 색상 변경 -->
             <div class="projectBox">
                 <div>
-                    <h2>오늘 프로젝트 현황(06월 10일 01:10 기준) </h2>
+                    <h2>오늘 프로젝트 현황 (06월 10일 01:10 기준) </h2>
                 </div>
                 <div class="projectStatus">
                     <a href="#">
                         <!-- 아이콘 -->
                         <span class="material-symbols-outlined contentIcon" style="font-size: 50px;">
                             hourglass_empty
-                            </span>
-                            <span class="projectStatus-title">승인대기</span><strong>0건</strong></a>
+                        </span>
+                        <span class="projectStatus-title">승인대기</span><strong>0건</strong>
+                    </a>
                     <a href="#">
                         <!-- 아이콘 -->
                         <span class="material-symbols-outlined contentIcon" style="font-size: 50px;">
                             start
-                            </span>
-                            <span class="projectStatus-title">진행중</span><strong>0건</strong></a>
+                        </span>
+                        <span class="projectStatus-title">진행중</span><strong>0건</strong>
+                    </a>
                     <a href="#">
                         <!-- 아이콘 -->
                         <span class="material-symbols-outlined contentIcon" style="font-size: 50px;">
                             paid
-                            </span>
-                        <span class="projectStatus-title">지급대기</span><strong>0건</strong></a>
+                        </span>
+                        <span class="projectStatus-title">지급대기</span><strong>0건</strong>
+                    </a>
                 </div>
             </div>
             <!-- 주문 현황 -->
             <div class="orderBox">
-                <h2>오늘 주문 현황(최근 1개월 기준)</h2>
-            <div class="orderStatus">
-                <div><a href="#"><strong>0</strong><span class="title">주문접수</span></a></div>
-                <div><a href="#"><strong>0</strong><span class="title">배송준비</span></a></div>
-                <div><a href="#"><strong>0</strong><span class="title">배송중</span></a></div>
-                <div><a href="#"><strong>0</strong><span class="title">배송완료</span></a></div>
+                <h2>오늘 주문 현황 (최근 1개월 기준)</h2>
+                <div class="orderStatus">
+                    <div><a href="#"><strong>0</strong><span class="title">주문접수</span></a></div>
+                    <div><a href="#"><strong>0</strong><span class="title">배송준비</span></a></div>
+                    <div><a href="#"><strong>0</strong><span class="title">배송중</span></a></div>
+                    <div><a href="#"><strong>0</strong><span class="title">배송완료</span></a></div>
+                </div>
             </div>
-        </div>
         </div>
 
         <!-- sidebar  -->
@@ -111,11 +80,63 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
 <script>
-  $(document).ready(function(){
+    $(document).ready(function () {
         $('#sidebar').load("adminSideBar.html");
 
-    })
+    });
+
+
+    google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      google.charts.setOnLoadCallback(drawChart2);
+
+      function drawChart() {
+          let date = new Date();
+
+        var data = google.visualization.arrayToDataTable([
+          ['Year', '진행중', '모집중'],
+          ['06.07',  1000,      400],
+          ['06.08',  1000,      400],
+          ['06.09',  1000,      400],
+          ['06.10',  1000,      400],
+          ['06.11',  1170,      460],
+          ['06.12',  660,       1120],
+          ['06.13',  1030,      540]
+        ]);
+
+        var options = {
+          title: '플로깅 현황',
+          hAxis: {title: date.toLocaleDateString(),  titleTextStyle: {color: '#333'}},
+          vAxis: {minValue: 0}
+        };
+
+        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+
+      function drawChart2() {
+    var data = google.visualization.arrayToDataTable([
+      ['Task', 'Hours per Day'],
+      ['평지',     11],
+      ['산',      2],
+      ['바다',  2],
+      ['코스', 2],
+      ['장소',    7]
+    ]);
+
+    var options = {
+      title: '플로깅 유형',
+      pieHole: 0.4,
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+    chart.draw(data, options);
+  }
 </script>
+
+</body>
 
 </html>

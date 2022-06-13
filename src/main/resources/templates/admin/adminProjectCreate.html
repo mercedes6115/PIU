@@ -43,12 +43,12 @@
             <div>
                 <h2>프로젝트 등록</h2>
             </div>
-            <div class="productSearchBox">
-                <form id="productSearch">
+            <div class="searchBox">
+                <form id="projectCreateForm">
                     <table class="projectCreateTbl">
                         <tr>
                             <th colspan="3">유형선택</th>
-                            <td colspan="1">
+                            <td colspan="4">
                                 <select>
                                     <option>코스</option>
                                     <option>장소</option>
@@ -65,54 +65,69 @@
                         </tr>
                         <tr>
                             <th colspan="3">플로깅제목</th>
-                            <td colspan="1">
-                                <input type="text" name="" id="">
-                                <span title="현재글자수/최대글자수">
-                                    [
-                                    <strong>0</strong>
-                                     / 250 ]
+                            <td colspan="4">
+                                <input type="text" name="" id="projectTitle">
+                                <span title="현재글자수/최대글자수">[
+                                    <strong id="titleCount">0</strong>
+                                    / 250 ]
                                 </span>
+                                <span id="projectTitleCheck">제목을
+                                    입력해주세요</span>
                             </td>
                         </tr>
                         <tr>
-                            <th colspan="3">플로깅 내용</th>
-                            <td colspan=""><textarea name="" id="" cols="100" rows="5"></textarea></td>
+                            <th colspan="3">플로깅내용</th>
+                            <td colspan="4"><textarea name="" id="" cols="100" rows="5" required></textarea></td>
                         </tr>
                         <tr>
                             <!-- 코스일 경우 출발지, 도착지, 장소일 경우 주소 -->
                             <th colspan="3">주소</th>
-                            
-                            <td><span>출발지</span>
-                                <input type="text" name="" id="">
-                                <span class="none">도착지</span>
-                            <input type="text" name="" id="" class="none"></td>
+
+                            <td colspan="4">
+                                <div class="locationBox">
+                                    <div>
+                                        <button type="button" class="locationBtn" id="startPoint">주소검색</button>
+                                        <span>출발지: </span><span class="startPoint"></span>
+                                        <input type="text" name="" id="startPoint" hidden>
+                                    </div>
+
+                                    <div>
+                                        <button type="button" class="locationBtn" id="endPoint">주소검색</button>
+                                        <span>도착지: </span><span class="endPoint"></span>
+                                    </div>
+                                    <input type="text" name="" id="endPoint" hidden>
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <th colspan="3">플로깅이미지</th>
-                            <td colspan=""><input type="file" name="" id=""></td>
+                            <td colspan="4"><input type="file" name="" id="" required></td>
                         </tr>
                         <tr>
-                            
+
                             <th colspan="3">일정</th>
-                            <td>
-                                <span>시작</span>
-                           <input type="datetime-local" name="" id="">
-                           <span>종료</span>
-                            <input type="datetime-local" name="" id=""></td> 
+                            <td colspan="1" style="width: 40px; text-align: center;">
+                                시작
+                            </td>
+                            <td colspan="1" style="width: 300px;"> <input type="datetime-local" name="" id=""
+                                    class="dateSelect" required></td>
+                            <td colspan="1" style="width: 40px; text-align: center;">종료</td>
+                            <td colspan="1" style="width: 300px;"><input type="datetime-local" name="" id=""
+                                    class="dateSelect" required></td>
                         </tr>
                         <tr>
                             <th colspan="3">포인트</th>
-                            <td colspan="1"><input type="number" name="" id=""><span> point</span></td>
+                            <td colspan="4"><input type="number" name="" id="" required><span> point</span></td>
                         </tr>
 
                         <tr>
                             <th colspan="3">모집자 정보</th>
-                            <td colspan="1"><textarea name="" id="" cols="100" rows="5"></textarea></td>
+                            <td colspan="4"><textarea name="" id="" cols="100" rows="5" required></textarea></td>
 
                         </tr>
                         <tr>
                             <th colspan="3">모집자 정보 첨부파일</th>
-                            <td colspan="1"><input type="file" name="" id=""></td>
+                            <td colspan="4"><input type="file" name="" id="" required></td>
                         </tr>
                     </table>
                     <div class="btnBox">
@@ -128,10 +143,58 @@
 
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
-      $(document).ready(function(){
+
+    $(document).ready(function () {
         $('#sidebar').load("adminSideBar.html");
 
+    });
+
+    function getAddress(point) {
+        new daum.Postcode({
+            oncomplete: function (data) {
+                // 주소 검색시 span 태그 html 변경
+                $('.' + point).html(data.address);
+                // 주소 검색시 input 태그 value 변경
+                $('input#' + point).val(data.address);
+            }
+        }).open();
+    }
+
+    $('button.locationBtn').on("click", function () {
+        let point = $(this).attr('id');
+        getAddress(point);
+    })
+
+
+
+
+    // 유효성 검사
+
+    // 제목
+
+    $('#projectTitle').blur(function () {
+        let projectTitle = $('#projectTitle').val();
+        if (!projectTitle) {
+            $('#projectTitleCheck').css('display', 'block');
+        }
+    });
+
+    $('#projectTitle').keypress(function () {
+        console.log('hello');
+        let projectTitle = $('#projectTitle').val();
+        if (projectTitle) {
+            $('#projectTitleCheck').css('display', 'none');
+        }
+        $('#titleCount').html(projectTitle.length);
+    });
+
+
+    let projectCreateForm = $('#projectCreateForm');
+    // 이상없을시 제출
+    $('#productSearchBtn').on("click", function () {
+        projectCreateForm.submit();
     })
 </script>
 
