@@ -23,21 +23,21 @@
 <body>
     <div class="root">
         <div id="sidebar">
-            </div>
-      
+        </div>
+
 
         <!-- content -->
         <div id="container">
             <div>
                 <h2>게시물 목록</h2>
             </div>
-            <div class="productSearchBox">
-                <form id="productSearch">
+            <div class="searchBox" id="boardSearchBox">
+                <form id="boardSearchForm">
                     <table>
                         <tr>
                             <th>기간</th>
-                            <td colspan="3">
-                                <div class="productRegisterDate">
+                            <td>
+                                <div class="dateSelect" id="boardDateSelect">
                                     <a class="btnDate" href="">오늘</a>
                                     <a class="btnDate" href="">3일</a>
                                     <a class="btnDate" href="">7일</a>
@@ -50,53 +50,64 @@
                         </tr>
                         <tr>
                             <th>게시판 선택</th>
-                            <td colspan="3">
+                            <td>
                                 <select>
                                     <option>전체</option>
                                     <option>공지사항</option>
-                                    
+                                    <option>크리에이터센터 문의</option>
+                                    <option>스토어 문의</option>
+                                    <option>프로젝트 문의</option>
                                 </select>
                             </td>
                         </tr>
                         <tr>
-                            
-                        </tr>
-                        <tr>
                             <th>게시글 찾기</th>
                             <td>
-                            <select>
-                                <option>제목</option>
-                                <option>내용</option>
-                            </select>
-                            <input type="text" name="" id="">
-                        </td>
+                                <select>
+                                    <option>제목</option>
+                                    <option>내용</option>
+                                    <option>작성자</option>
+                                </select>
+                                <input type="text" name="" id="">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>답변상태</th>
+                            <td>
+                                <span>전체</span><input type="radio" name="answerStatus" id="" checked>
+                                <span>답변 대기</span><input type="radio" name="answerStatus" id="">
+                                <span>답변 완료</span><input type="radio" name="answerStatus" id="">
+                            </td>
                         </tr>
                     </table>
                     <div class="btnBox">
-                        <button type="button" id="productSearchBtn">검색</button>
+                        <button type="button" id="orderSearchBtn">검색</button>
                     </div>
                 </form>
             </div>
 
             <!-- 클래스명 변경 -->
-            <div class="userList">
-                <table>
+            <div class="listBox">
+                <table id="orderTbl">
                     <tr>
-                        <div class="productListTitle">
-                            <div>
-                                <span>[총
-                                    <strong>2</strong>
-                                    개]</span>
+                        <div class="listTitle">
+                            <span>[총
+                                <strong>2</strong>
+                                개]</span>
 
-                            </div>
-                            <div>
-                                <a href="" class="productListBtn">삭제</a>
-                                <a href="" class="productListBtn">공지지정</a>
-                                <a href="" class="productListBtn">공지해제</a>
 
-                            
-                            </div>
+                            <td colspan="12">
+                                <div class="listTitle">
+                                    <a href="" class="listBtn">삭제</a>
+                                    <a href="" class="listBtn">공지지정</a>
+                                    <a href="" class="listBtn">공지해제</a>
+
+                                </div>
+                            </td>
+
+
                         </div>
+
                     </tr>
 
 
@@ -122,7 +133,7 @@
                         <td><a href="#">상세보기</a></td>
                     </tr>
                     <tr>
-                       
+
                     </tr>
 
                 </table>
@@ -143,10 +154,20 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
         $('#sidebar').load("adminSideBar.html");
 
     })
+
+    // 삭제 버튼 클릭시
+
+
+    // 공지 지정 버튼 클릭시
+
+
+    // 공지 해제 버튼 클릭시
+
+    
 </script>
 
 </html>
