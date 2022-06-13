@@ -71,5 +71,3 @@ $('#modal_close_btn').click(function(){
 // -----------------------pickitupItemChoose 페이지-------------------//
 
 
-
-

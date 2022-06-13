@@ -498,10 +498,17 @@ li.active{
     }
     .jjim{
         position: absolute;
-        right: 50px;
+        right: 10px;
     }
     .red{
         color: red;
+    }
+    .store_container{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        max-width: 640px;
+        padding-top: 28px;
     }
   }
 
@@ -1191,6 +1198,35 @@ input::placeholder{
     width: 80%;
 }
 /* -------------------------------공통 요소---------- */
+label[for='attach'] div.hide{
+    width: 25px;
+    height: 25px;
+    background-image: url("/src/main/resources/static/images/attach.png");
+    background-size: 100% 100%;
+    cursor: pointer;
+}
+label[for='attach'] div.thumb{
+    width: 130px;
+    height: 130px;
+    background-image: url("/src/main/resources/static/images/insert.png");
+    background-size: 100% 100%;
+    cursor: pointer;
+    display: none;
+}
+label[for='attach'] div.thumb2{
+    width: 130px;
+    height: 130px;
+    background-image: url("/src/main/resources/static/images/insert.png");
+    background-size: 100% 100%;
+    cursor: pointer;
+}
+label[for='attach'] div.thumb3{
+    width: 130px;
+    height: 130px;
+    background-image: url("/src/main/resources/static/images/insert.png");
+    background-size: 100% 100%;
+    cursor: pointer;
+}
 
 .pay_point{
     font-size: 18px;
@@ -1712,4 +1748,12 @@ footer{
     right: 0;
     transform: translateX(60%);
     margin-right: 20px;
+}
+.review_item_title{
+    font-size: 11px;
+    font-weight: normal;
+    color: rgb(26, 26, 26);
+    line-height: 16px;
+    letter-spacing: normal;
+    margin: 0px;
 }
