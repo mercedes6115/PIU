@@ -21,14 +21,17 @@ function checkEmail(){
         }
 }
 
+// 비밀번호 유효성검사
 function checkPw(){
     if($("input#password").val().length < 8){
         $('span#pwCheck_text_first').text("8자 이상 입력해주세요").css("color", "red");
+        $('span#pwCheck_text').text(" ").css("color", "red");
     }else{
         $('span#pwCheck_text_first').text("가능한 비밀번호 형식입니다").css("color", "green");
     }
 }
 
+// 비밀번호 유효성 검사 적용
 $upw.blur(function () {
     checkPw();
 })
@@ -66,7 +69,6 @@ $upw.blur(function () {
 // });
 
 // 비밀번호 확인검사
-// 비밀번호 정규식 추가해야함
 $upw2.blur(function () {
     let $upwval = $upw.val();
     let $upw2val = $upw2.val();
@@ -74,8 +76,9 @@ $upw2.blur(function () {
         $('span#pwCheck_text').text("비밀번호를 입력해주세요").css("color", "red");
         pwPass = false;
         return;
-    }
-    if ($upwval != $upw2val) {
+    }else if($("input#password").val().length < 8){
+        $('span#pwCheck_text').text("선 비밀번호 조건이 맞지 안습니다").css("color", "red");
+    }else if ($upwval != $upw2val) {
         $('span#pwCheck_text').text("비밀번호가 일치하지 않습니다").css("color", "red");
         pwPass = false;
         return;
@@ -166,7 +169,7 @@ $('.btnCertify').on("click", function () {
     }).open();
 });
 
-
+// 인증번호 검사(미완)
 $("input#phone-check").on("keyup", function (e) {
     if ($("input#phone-check").val().length == 6) {
         $("button#phone-check-button").css("background-color", "rgb(204, 69, 0)");
@@ -268,4 +271,16 @@ $("#phone").change(function () {
 });
 
 
+function CheckEnter(frm, objName)
+{
+    var keycode = event.keyCode;
+    var i = 0;
 
+    if( keycode == 13 ){
+        for( i = 0; i < frm.length; ++i ){
+            if( objName.name == frm[i].name )
+                break;
+        }
+        frm[++i].focus();
+    }
+}

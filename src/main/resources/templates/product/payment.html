@@ -94,62 +94,68 @@
    <!--헤더 -->
    <form action="">
     <div class="payment_main">
-        <div class="black_line">결제하기</div>
-        <div class="space"></div>
-        <div>
-            <div class="order_info">주문정보</div>
-            <div class="space"></div>
-            <div style="font-size: 15px; font-weight: 700; margin-bottom: 10px;">선택한 구성품</div>
-            <div class="flex" style="border-bottom: 1px solid rgba(128, 128, 128, 0.187); padding-bottom: 30px; margin-bottom: 30px;">
-                <div><img src="/src/main/resources/static/images/5.jpg" width="200" height="200"></div>
-                <div style="margin-left: 10px;">
-                    <div class="item_title">아무리 닦아도 닦아도 닳지않는 바로 그 고무 장갑!</div>
-                    <div class="small_and_gray">수량 <span id="total_items">1</span>개</div>
-                </div>
+        <div class="black_line flex">
+            <div><h3 class="_pay_header">결제하기</h3></div>
+            <div class="flex" style="align-items: center;">
+                <div><img src="/src/main/resources/static/images/encryption.jpg">&nbsp;</div>
+                <div style="color: orange ;margin-bottom: 5px; font-size: 1rem;">암호화중</div>
             </div>
         </div>
-
-            <div class="shipment">
-                <div class="order_info">배송정보</div>
-                <div style="margin-top: 10px;">받으시는분</div>
-                <div class="ship_input"><input type="text" id="personname"></div>
-                <div class="checkValid" id="personname_check"></div>
-                <div class="small_and_gray" style="margin-bottom: 10px;">정확한 배송을 위해 실명입력하세요</div>
-                <div>휴대폰번호</div>
-                <div class="phone_input"><input type="text" id="personphone" placeholder="'-'없이 입력해주세요"></div>
-                <div class="checkValid" id="personphone_check"></div>
-                <div style="margin-top: 10px;">배송주소</div>
-                <div class="flex" style="width: 102%;">
-                    <input id="personaddr" class="addr_input" type="text" readonly>
-                    <button type="button" id="personaddrbtn" class="personaddrbtn">주소 검색</button>
+        <div style="padding: 24px;">
+            <div>
+                <div class="order_info">주문 정보</div>
+                <div class="space"></div>
+                <div class="selected_item" style="font-weight: bold;">선택한 구성품</div>
+                <div class="flex" style="border-bottom: 1px solid rgba(209, 208, 208, 0.187); padding-bottom: 30px; margin-bottom: 30px;">
+                    <div class="order_img"><img src="/src/main/resources/static/images/5.jpg"></div>
+                    <div style="margin-left: 10px;">
+                        <div class="item_title">아무리 닦아도 닦아도 닳지않는 바로 그 고무 장갑!</div>
+                        <div class="small_and_gray">수량 <span id="total_items">1</span>개</div>
+                    </div>
                 </div>
-                <div class="checkValid" style="margin-bottom: 10px;">필수입력입니다.</div>
-                <div class="phone_input"><input id="addr_detail" type="text" placeholder="상세주소"></div>
-                <div style="margin-top: 10px;">배송요청사항</div>
-                <div class="phone_input"><input type="text" placeholder="부재시 경비실에 맡겨주세요"></div>
             </div>
-            <div class="order_info" style="margin-top: 50px;">결제금액</div>
-            <div class="space"></div>
-            <div class="flex small_and_gray" style="justify-content: space-between;">
-                <div>총금액</div>
-                <div>900P</div>
+
+                <div class="shipment">
+                    <div class="order_info">배송정보</div>
+                    <div class="receiver">받으시는 분</div>
+                    <div class="ship_input"><input type="text" id="personname"></div>
+                    <div class="checkValid" id="personname_check"></div>
+                    <div class="valid" style="margin-bottom: 10px;">정확한 배송을 위해 실명을 입력하세요</div>
+                    <div class="receiver">휴대폰번호</div>
+                    <div class="phone_input"><input type="text" id="personphone" placeholder=" '-'없이 입력해주세요"></div>
+                    <div class="checkValid" id="personphone_check"></div>
+                    <div class="receiver">배송주소</div>
+                    <div class="flex" style="width: 102%;">
+                        <input id="personaddr" class="addr_input" type="text" readonly>
+                        <button type="button" id="personaddrbtn" class="personaddrbtn">주소 검색</button>
+                    </div>
+                    <div class="checkValid" style="margin-bottom: 10px;">필수입력입니다.</div>
+                    <div class="phone_input"><input id="addr_detail" type="text" placeholder="상세주소"></div>
+                    <div class="receiver">배송요청사항</div>
+                    <div class="phone_input"><input type="text" placeholder=" 예) 부재시 경비실에 맡겨주세요"></div>
+                </div>
+                <div class="order_info" style="margin-top: 50px;">결제금액</div>
+                <div class="space"></div>
+                <div class="flex small_and_gray" style="justify-content: space-between;">
+                    <div>총금액</div>
+                    <div>900P</div>
+                </div>
+                <div class="flex small_and_gray" style="justify-content: space-between; margin-bottom: 10px;">
+                    <div>배송비</div>
+                    <div>무료</div>
+                </div>
+                <div class="flex" style="justify-content: space-between; border-top: 1px solid rgba(128, 128, 128, 0.11); padding-top: 10px;">
+                    <div>최종가격</div>
+                    <div>900P</div>
+                </div>
+                <div class="flex" style="border-top: 1px solid  rgba(128, 128, 128, 0.11); padding-top: 10px; margin-top: 10px; align-items: center;">
+                    <div class="flex" style="align-items: center;"> <input class="checkBox" type="checkbox" name="agree" id="agree" required><label for="agree" style="cursor: pointer; font-size: 14px ; margin-bottom: 4px;">(필수)개인정보 제3자 제공 동의 &nbsp;&nbsp;</label></div>
+                    <div id="agree_detail" class="small_and_gray" style="align-items: center; border-bottom: 1px solid gray; cursor: pointer; margin-bottom: 4px;">상세보기</div>
+                </div>
+                <button id="order_finish" class="toBuy" style="margin-bottom: 10px; font-weight: 900;">주문 완료</button>
             </div>
-            <div class="flex small_and_gray" style="justify-content: space-between; margin-bottom: 10px;">
-                <div>배송비</div>
-                <div>무료</div>
-            </div>
-            <div class="flex" style="justify-content: space-between; border-top: 1px solid rgba(128, 128, 128, 0.11); padding-top: 10px;">
-                <div>최종가격</div>
-                <div>900P</div>
-            </div>
-            <div class="flex" style="border-top: 1px solid  rgba(128, 128, 128, 0.11); padding-top: 10px; margin-top: 10px; align-items: center;">
-                <div class="flex" style="align-items: center;"> <input class="checkBox" type="checkbox" name="agree" id="agree" required><label for="agree" style="cursor: pointer; font-size: 14px ; margin-bottom: 4px;">(필수)개인정보 제3자 제공 동의 &nbsp;&nbsp;</label></div>
-                <div id="agree_detail" class="small_and_gray" style="align-items: center; border-bottom: 1px solid gray; cursor: pointer; margin-bottom: 4px;">상세보기</div>
-            </div>
-            <button id="order_finish" class="toBuy" style="margin-bottom: 10px; font-weight: 900;">주문 완료</button>
         </div>
     </form>
-
     <button type="button" class="toTop">TOP</button>
 
     <!-- ----------------모달창--------------------- -->
