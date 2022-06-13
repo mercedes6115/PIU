@@ -805,8 +805,8 @@ textarea{
      color: inherit;
  }
  .allreveiws img{
-     width: 32px;
-     height: 32px;
+     width: 38px;
+     height: 38px;
  }
  .review_id_and_date{
      margin-bottom: 8px;
@@ -821,6 +821,20 @@ textarea{
  }
  .p-24{
      padding: 24px;
+ }
+ .review_write_container{
+    position: relative;
+    width: 640px;
+    margin: 0 auto;
+    background-color: white;
+    
+ }
+ .user_review{
+    width: 90%;
+    border: 1px solid rgb(223, 221, 221);
+    resize: none;
+    border-radius: 3px;
+    padding: 10px;
  }
 .write-review{
     width: 79%;
