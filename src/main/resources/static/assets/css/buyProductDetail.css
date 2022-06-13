@@ -79,7 +79,7 @@ body {
 .divide {
     height: 8px;
     width: 100%;
-    background-color: black;
+    background-color: rgb(229, 229, 229);
 }
 
 .product-bill-wrapper{
@@ -159,6 +159,6 @@ body {
     color: rgb(202, 202, 202);
 }
 
-.font-check{
+/* .font-check{
     font-family: 'SDSamliphopangche_Basic';
-}
+} */

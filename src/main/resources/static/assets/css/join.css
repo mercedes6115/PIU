@@ -42,10 +42,10 @@ body {
     width: 100%;
     padding: 0px 16px;
     border-radius: 3px;
+    box-sizing : border-box;
 }
 
 .join-table-title {
-    font-family: 'SDSamliphopangche_Basic';
     font-size: 14px;
 }
 
@@ -64,7 +64,6 @@ body {
 }
 
 .wrapper-title {
-    font-family: 'SDSamliphopangche_Basic';
     position: relative;
     display: flex;
 }
@@ -137,4 +136,8 @@ body {
       text-align: center;
       box-sizing: border-box;
       display: table;
+  }
+
+  .join-input-table{
+    display: block;
   }

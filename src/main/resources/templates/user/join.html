@@ -26,7 +26,7 @@ pom.xml에서 dependency 추가
                             class="join-title-type">(일반회원)</span></div>
                     <div class="join-table">
                         <div class="join-table-title">이메일<span class="check-text" id="emailCheck_text"> </span></div>
-                        <input class="input-data" id="email" placeholder="example@example.com" type="text"/>
+                        <div class="join-input-table"><input class="input-data" id="email" placeholder="example@example.com" type="text"/></div>
                     </div>
                     <div class="join-table">
                         <div class="join-table-title">비밀번호<span class="check-text" id="pwCheck_text_first"/></span></div>
@@ -42,12 +42,11 @@ pom.xml에서 dependency 추가
                     </div>
                     <div class="join-table">
                         <div class="join-table-title">전화번호<span class="check-text" id="phoneCheck_text"> </span></div>
-                        <input class="input-data" id="phone" placeholder="010-0000-0000" type="text" minlength="12"
-                               maxlength="13"/>
+                        <input class="input-data" id="phone" placeholder="010-0000-0000" type="text" maxlength="13"/>
                     </div>
                     <div class="join-table">
                         <div class="join-table-title">주소</div>
-                        <div style="display: flex;margin-right: -32px;margin-top: 10px;margin-bottom: 5px;">
+                        <div style="display: flex; margin-top: 10px;margin-bottom: 5px;">
                             <input class="input-data" type="text" id="state" placeholder="주소">
                             <input type="button" class="btnCertify" value="검색"/>
                         </div>
@@ -83,6 +82,6 @@ pom.xml에서 dependency 추가
 <footer include-html="/경로/footer.html"></footer>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="join.js"></script>
+<script src="\src\main\resources\static\assets\js\join.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </html>
