@@ -1,105 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link rel="stylesheet" href="admin_style.css">
+<link rel="stylesheet" href="sideBarStyle.css">
+
 <body>
-    <div id="sidebar">
+    <div id="sideBar">
         <ul>
-            <li class="sidebarCategory">
-                <a href="#">
+            <li class="sideBarCategory">
+                <a href="adminMain.html">
                     <div>
-                        <span class="material-symbols-outlined icon">person
+                        <span class="material-symbols-outlined">
+                            home
                         </span>
-                        <span class="sidebarTitle">유저 관리</span>
+                        <span class="sideBarTitle" style="margin-left: 12px;">홈</span>
                     </div>
 
                 </a>
 
             </li>
-            <li class="sidebarCategory">
-                <a href="#">
+
+            <li class="sideBarCategory" id="user">
+                <a href="adminUserList.html" class="user">
+                    <div><span class="material-symbols-outlined icon">person
+                        </span>
+                        <span class="sideBarTitle">유저 관리</span>
+                    </div>
+                </a>
+
+
+
+
+            </li>
+            <li class="sideBarCategory" id="product">
+                <a>
                     <div><span class="material-symbols-outlined icon">
                             storefront
-                        </span><span class="sidebarTitle">상품 관리</span>
+                        </span><span class="sideBarTitle">상품 관리</span>
                     </div><span class="material-symbols-outlined more">
                         expand_more
                     </span>
                 </a>
                 <!-- onClick 시 노출 -->
-                <ul class="sidebarDetail">
-                    <li><a id="detail" href="#">상품 등록</a></li>
-                    <li><a id="detail" href="#">상품 목록</a></li>
+                <ul class="sideBarDetail product">
+                    <li><a class="sideBarDetail" href="">상품 등록</a></li>
+                    <li><a class="sideBarDetail" href="adminProductList.html">상품 목록</a></li>
                 </ul>
             </li>
-            <li>
+
+            <li class="sideBarCategory" id="order">
                 <a href="#">
                     <div>
                         <span class="material-symbols-outlined icon">
                             shopping_cart
-                        </span><span class="sidebarTitle">주문 관리</span>
+                        </span><span class="sideBarTitle">주문 관리</span>
                     </div>
                     <span class="material-symbols-outlined more">
                         expand_more
                     </span>
                 </a>
                 <!-- onClick 시 노출 -->
-                <ul class="sidebarDetail">
-                    <li><a id="detail" href="#">전체주문목록</a></li>
-                    <li><a id="detail" href="#">배송 관리</a></li>
-                    <li><a id="detail" href="#">취소 관리</a></li>
+                <ul class="sideBarDetail order">
+                    <li><a class="sideBarDetail" href="adminOrderList.html">전체주문목록</a></li>
+                    <!-- <li><a class="sideBarDetail" href="#">배송 관리</a></li>
+                    <li><a class="sideBarDetail" href="#">취소 관리</a></li> -->
                 </ul>
             </li>
-            <li class="sidebarCategory">
+            <li class="sideBarCategory" id="project">
                 <a href="#">
                     <div>
                         <span class="material-symbols-outlined icon">
                             public
                         </span>
-                        <span class="sidebarTitle">프로젝트 관리</span>
+                        <span class="sideBarTitle">프로젝트 관리</span>
                     </div>
                     <span class="material-symbols-outlined more">
                         expand_more
                     </span>
                 </a>
                 <!-- onClick 시 노출 -->
-                <ul class="sidebarDetail">
-                    <li><a id="detail" href="#">프로젝트 생성</a></li>
-                    <li><a id="detail" href="#">프로젝트 목록</a></li>
-                    <li><a id="detail" href="#">QR코드</a></li>
+                <ul class="sideBarDetail project">
+                    <li><a class="sideBarDetail" href="adminProjectCreate.html">프로젝트 생성</a></li>
+                    <!-- <li><a class="sideBarDetail" href="adminProjectList.html">프로젝트 목록</a></li>
+                    <li><a class="sideBarDetail" href="#">QR코드</a></li> -->
                 </ul>
             </li>
-            <li class="sidebarCategory">
-                <a href="#">
+            <li class="sideBarCategory" id="board">
+                <a href="#" >
                     <div>
                         <span class="material-symbols-outlined icon">
                             assignment
                         </span>
-                        <span class="sidebarTitle">게시물 관리</span>
+                        <span class="sideBarTitle">게시물 관리</span>
                     </div>
                     <span class="material-symbols-outlined more">
                         expand_more
                     </span>
                 </a>
+                <!-- onClick 시 노출 -->
+                <ul class="sideBarDetail board">
+                    <li><a class="sideBarDetail" href="adminBoardWrite.html">게시글 작성</a></li>
+                    <li><a class="sideBarDetail" href="adminBoardList.html">게시글목록</a></li>
+                    <!-- <li><a class="sideBarDetail" href="#">QR코드</a></li> -->
+                </ul>
             </li>
-            <li class="sidebarCategory">
-                <a href="#">
-                    <div>
-                        <span class="material-symbols-outlined icon">
-                            analytics
-                        </span>
-                        <span class="sidebarTitle">통계 현황</span>
-                    </div>
-                    <span class="material-symbols-outlined more">
-                        expand_more
-                    </span>
-                </a>
-            </li>
+            
         </ul>
     </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+    $('li.sideBarCategory').on("click", function () {
+       let category = $(this).attr('id');
+       $('.' + category).toggle();
+    //    $(this).children('a:eq(0)').toggleClass('active');
+       
+       
+    });
+
+
+</script>
+
 </html>

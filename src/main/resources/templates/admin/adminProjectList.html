@@ -25,7 +25,6 @@
 
         <!-- sidebar -->
         <div id="sidebar">
-           
         </div>
         <!-- sidebar -->
 
@@ -34,33 +33,31 @@
             <div>
                 <h2>상품 목록</h2>
             </div>
-            <div class="productSearchBox">
-                <form id="productSearch">
-                    <table>
+            <div class="searchBox" id="projectSearchBox">
+                <form id="projectSearchForm">
+                    <table id="searchTbl">
                         <tr>
                             <th>검색분류</th>
                             <td colspan="3">
                                 <select>
-                                    <option>상품명</option>
-                                    <option>상품번호</option>
-                                    <option>제조사</option>
-                                    <option>공급사</option>
+                                    <option>프로젝트명</option>
+                                    <option>프로젝트번호</option>
+                                    <option>프로젝트장소</option>
+                                    <option>모집자명</option>
                                 </select>
+                                <input type="text" name="" id="">
                             </td>
                         </tr>
                         <tr>
-                            <th>상품분류</th>
+                            <th>유형분류</th>
                             <td colspan="3">
                                 <select>
                                     <option>전체</option>
-                                    <option>생활</option>
-                                    <option>주방</option>
-                                    <option>욕실</option>
-                                    <option>반려동물</option>
-                                    <option>화장품</option>
-                                    <option>식품</option>
-                                    <option>문구</option>
-                                    <option>원예</option>
+                                    <option>산</option>
+                                    <option>바다</option>
+                                    <option>평지</option>
+                                    <option>기타</option>
+                                    
                                 </select>
                                 <input type="text" name="" id="">
                             </td>
@@ -68,10 +65,12 @@
                         <tr>
                             <th>상품등록일</th>
                             <td colspan="3">
-                                <div class="productRegisterDate">
+                                <div class="dateSelect">
                                     <select>
-                                        <option>상품등록일</option>
-                                        <option>상품최종수정일</option>
+                                        <option>프로젝트생성일</option>
+                                        <option>프로젝트시작일</option>
+                                        <option>프로젝트종료일</option>
+                                        <option>프로젝트승인일</option>
                                     </select>
                                     <a class="btnDate" href="">오늘</a>
                                     <a class="btnDate" href="">3일</a>
@@ -85,24 +84,14 @@
                         </tr>
                         <tr>
                             <div class="productFilterBox">
-                                <th>진열상태</th>
+                                <th>프로젝트 상태</th>
                                 <td>
-                                    <input type="radio" id="productFilterAll" name="productFilter" value="" checked>
-                                    <label for="all">전체</label>
-                                    <input type="radio" id="productFilterOn" name="productFilter" value="">
-                                    <label for="productFilterOn">진열함</label>
-                                    <input type="radio" id="productFilterDown" name="productFilter" value="">
-                                    <label for="productFilterDown">진열안함</label>
+                                    <span>전체</span><input type="radio" name="snsCheck" id="" checked>
+                                    <span>승인대기</span><input type="radio" name="snsCheck" id="">
+                                    <span>진행완료</span><input type="radio" name="snsCheck" id="">
+                                    <span>지급완료</span><input type="radio" name="snsCheck" id="">
                                 </td>
-                                <th>재고상태</th>
-                                <td>
-                                    <input type="radio" id="productFilterAll" name="productFilter" value="" checked>
-                                    <label for="all">전체</label>
-                                    <input type="radio" id="productFilterOn" name="productFilter" value="">
-                                    <label for="productFilterOn">판매함</label>
-                                    <input type="radio" id="productFilterDown" name="productFilter" value="">
-                                    <label for="productFilterDown">판매안함</label>
-                                </td>
+                              
                             </div>
                         </tr>
                     </table>
@@ -114,71 +103,83 @@
             </div>
 
             <!-- 클래스명 변경 -->
-            <div class="userList">
+            <div class="listBox">
                 <table>
                     <tr>
-                        <div class="productListTitle">
-                            <div>
-                                <span>[총
-                                    <strong>2</strong>
-                                    개]</span>
-
-                            </div>
-                            <div>
-                                <a href="" class="productListBtn">삭제</a>
-                                <a href="" class="productListBtn">진열변경</a>
-                                <a href="" class="productListBtn">판매변경</a>
-                                <a href="" class="productListBtn">상품등록</a>
-                            </div>
+                        <div class="listFilter">
+                            <span>[총
+                                <strong>2</strong>
+                                개]</span>
+                            <select>
+                                <option>등록일 역순</option>
+                                <option>등록일 순</option>
+                                <option>-----------</option>
+                                <option>수정일 역순</option>
+                                <option>수정일 순</option>
+                                <option>-----------</option>
+                                <option>상품명 역순</option>
+                                <option>상품명 순</option>
+                                <option>-----------</option>
+                                <option>판매가 역순</option>
+                                <option>판매가 순</option>
+                            </select>
                         </div>
-                    </tr>
 
-
-                    <tr>
-                        <!-- 생활, 주방, 욕실, 반려동물, 화장품, 식품, 문구, 원예  -->
-
-                        <th scope="col"></th>
-                        <th scope="col">번호</th>
-                        <th scope="col">상품번호</th>
-                        <th scope="col">분류</th>
-                        <th scope="col">상품명</th>
-                        <th scope="col">판매가</th>
-                        <th scope="col">진열상태</th>
-                        <th scope="col">판매상태</th>
-                        <th scope="col">상품등록일</th>
-                        <th scope="col">상품진열상황</th>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>1</td>
-                        <td>20201918</td>
-                        <td>생활</td>
-                        <!-- 상품 수정하기로 이동 -->
-                        <td><a href="#">초록초록 고무장갑</a></td>
-                        <td>50point</td>
-                        <td>진열함</td>
-                        <td>판매함</td>
-                        <td>2022-06-12</td>
-                        <!-- 상품 상세보기로 이동 -->
-                        <td><a href="#">상세보기</a></td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>2</td>
-                        <td>20201918</td>
-                        <td>생활</td>
-                        <td><a href="#">초록초록 고무장갑</a></td>
-                        <td>50point</td>
-                        <td>진열함</td>
-                        <td>판매함</td>
-                        <td>2022-06-12</td>
-                        <td><a href="#">상세보기</a></td>
-                    </tr>
-
-                </table>
-
+                        <td colspan="12">
+                            <div class="listTitle">
+                                <a href="" class="listBtn">삭제</a>
+                                <a href="" class="listBtn" id="productDisplayChage">진열변경</a>
+                                <a href="" class="listBtn">판매변경</a>
+                                <a href="" class="listBtn">상품등록</a>
+                            </div>
+                        </td>
             </div>
-            <!-- 페이징 처리 -->
+            </tr>
+
+
+            <tr>
+                <!-- 생활, 주방, 욕실, 반려동물, 화장품, 식품, 문구, 원예  -->
+
+                <th scope="col"></th>
+                <th scope="col">번호</th>
+                <th scope="col">상품번호</th>
+                <th scope="col">분류</th>
+                <th scope="col">상품명</th>
+                <th scope="col">판매가</th>
+                <th scope="col">진열상태</th>
+                <th scope="col">판매상태</th>
+                <th scope="col">상품등록일</th>
+                <th scope="col">상품진열상황</th>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>1</td>
+                <td>20201918</td>
+                <td>생활</td>
+                <!-- 상품 수정하기로 이동 -->
+                <td><a href="#">초록초록 고무장갑</a></td>
+                <td>50point</td>
+                <td>진열함</td>
+                <td>판매함</td>
+                <td>2022-06-12</td>
+                <!-- 상품 상세보기로 이동 -->
+                <td><a href="#">상세보기</a></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>2</td>
+                <td>20201918</td>
+                <td>생활</td>
+                <td><a href="#">초록초록 고무장갑</a></td>
+                <td>50point</td>
+                <td>진열함</td>
+                <td>판매함</td>
+                <td>2022-06-12</td>
+                <td><a href="#">상세보기</a></td>
+            </tr>
+
+            </table>
+            <!-- 페이징 처리  -->
             <div class="paging">
                 <a href="#">&lt;</a>
                 <a href="#">1</a>
@@ -187,16 +188,61 @@
                 <a href="#">&gt;</a>
             </div>
         </div>
+        
+        
+    </div>
 
 
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-      $(document).ready(function(){
+    $(document).ready(function () {
         $('#sidebar').load("adminSideBar.html");
 
     })
+
+    $('#userDisabled').on("click", function (e) {
+        
+        if (confirm("해당 유저를 비활성화 하시겠습니까?")) {
+
+            // 해당 유저 비활성화 
+            $.ajax({
+                url: "",
+                type: "post",
+                data: { userNumber: $userNumber },
+                success: function () {
+
+                }
+            });
+
+
+        } else {
+
+        }
+    });
+
+
+    // 승인 버튼 클릭시
+    $('#userApprove').on("click", function (e) {
+        if (confirm("해당 유저를 승인 하시겠습니까?")) {
+
+            // 해당 유저 승인처리
+            $.ajax({
+                url: "",
+                type: "post",
+                data: { userNumber: $userNumber },
+                success: function () {
+
+                }
+            });
+
+
+        } else {
+
+        }
+    });
+
 </script>
 
 </html>
