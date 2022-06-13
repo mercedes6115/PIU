@@ -303,38 +303,62 @@ h4> .menu-store{
     z-index: 99999;
 }
 /*--------------------------- 스토어 전체 컨테이너 ---------------------*/
+.store_all_body{
+    width: 100%;
+    height: 100%;
+    padding-bottom: 80px;
+    background-color: rgb(255, 255, 255);
+    border-color: rgb(229, 229, 229);
+}
 .store_container{
     display: flex;
-    width: 1200px;
-    height: 100%;
-    font-family: "Noto Sans KR";
-    z-index: -1;
-    margin: auto;
-    padding: 30px 0;
+    width: 1176px;
+    max-width: 1256px;
+    margin-left: auto;
+    margin-right: auto;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 28px;
+}
+.store_cate_items{
+    display: flex;
 }
 /*--------------------------- 스토어 카테고리 컨테이너 ---------------------*/
 .store_categories{
     display: fixed;
     position: relative;
-    width: 200px;
-    padding: 0 24px;
-    height: 100%;
+    margin-top: 12px;
+    margin-right: 60px;
+    min-width: 180px;
+    width: 180px;
+    margin-bottom: 120px;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+    
 }
 .store_categories ul{
     list-style: none;
     position: absolute;
     margin-top: 0;
     width: 70%;
-    left: 20px;
+    padding: 0;
+    position: sticky;
+    top: 94px;
 }
 .store_categories li{
-    margin-bottom: 20px;
-    padding-left: 15px;
+    margin: 20px 0;
     border-radius: 5px;
     cursor: pointer;
+    font-weight: 700;
+    font-size: 1rem;
 }
 li.active{
     background-color: #1f88ff2b;
+    margin-top: 10px;
 }
 .store_categories a{
     text-decoration: none;
@@ -351,11 +375,10 @@ li.active{
     position: relative;
     width: 1000px;
     height: 100%;
-    margin: 0 70px;
 }
 .all_items{
     position: relative;
-    width: 100%;
+    width: 960px;
     height: 50%;
     display: flex;
     flex-direction: column;
@@ -366,28 +389,55 @@ li.active{
     flex-wrap: wrap;
     list-style: none;
     padding: 0;
+  
 }
 .store_items .all_items ul li{
-    width: 24.5%;
+    width: 21.5%;
     border-bottom: 1px solid #71727448;
     padding-bottom: 10px;
     padding-top: 10px;
-    margin-right: 3px;
+    margin-right: 24px;
 }
 .store_items .all_items img{
    width: 100%;
 }
+.items_header{
+    border-width: 0px;
+    color: var(--system-on-color);
+    margin: 0px;
+    padding: 0px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.625rem;
+}
+.item_headerp{
+    border-width: 0px;
+    color: rgb(162, 162, 162);
+    margin: 0px;
+    padding: 0px;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.125rem;
+}
+.item{
+    width: 216px;
+}
+.item img{
+    border: 1px solid;
+    width: 216px;
+    height: 216px;
+}
 .item a{
     text-decoration: none;
-    
 }
 .item a:visited{
     color: black;
 }
 
 .onetime{
+    margin-top: 20px;
     display: flex;
-    justify-content: space-between;
+    align-items: center;
 }
 .onetime a{
     text-decoration: none;
@@ -407,6 +457,7 @@ li.active{
 }
 .jjim{
     position: absolute;
+    top: 10px;
     right: 10px;
     cursor: pointer;
 }
@@ -452,45 +503,76 @@ li.active{
   }
 
   /*--------------------- 상품 디테일------------------------- */
-
+.store_detail_t{
+    display: flex;
+    place-content: stretch flex-start;
+    margin-right: -12px;
+    margin-left: -12px;
+}
+.store_detail_left{
+    width: 66.6667%;
+    padding: 0 12px;
+}
+.store_detail_right{
+    width: 33.3337%;
+    padding: 0 12px;
+}
 .store_detail{
     font-family: 'Noto Sans KR';
     display: flex;
     width: 100%;
-    justify-content: center;
+    margin: auto;
+    max-width: 1176px;
 }
 .detail_item{
     width: 776px;
-    padding: 12px;
     height: fit-content;
-    margin: 0 12px;
 }
 .detail_item_img img{
-    width: 100%;
+    width: 99%;
+    border: 1px solid;
 }
 .pay_bar{
     position: sticky;
     top: 80px;
-    width: 318px;
+    width: 328px;
     height: fit-content;
     padding: 24px;
     box-shadow: rgb(41 42 43 / 16%) 0px 2px 6px -2px;
 }
 .item_title{
-    font-size: larger;
+    border-width: 0px;
+    color: var(--system-on-color);
+    margin: 0px;
+    padding: 0px;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.125rem;
 }
-
+.order_img img{
+    width: 94px;
+    height: 94px;
+    border: 1px solid;
+}
 .nav_item{
+    z-index: 10;
+    position: sticky;
+    top: 78px;
+    background-color: white;
     display: flex;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.058);
 }
 .nav_item a{
     text-decoration: none;
     color: gray;
     margin-right: 10px;
+    font-weight: normal;
+    font-size: 14px;
 }
 .nav_item a.active{
     color: black;
-    font-weight: 700;
+    font-weight: normal;
+    font-size: 14px;
     border-bottom: 3px solid;
 }
 
@@ -509,29 +591,33 @@ li.active{
     padding: 10px 0;
     margin-top: 10px;
     cursor: pointer;
+    height: 48px;
+}
+.admin_profile_img{
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+
+}
+.admin_profile_img img{
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
 }
 .profile_img{
-    width: 30px;
-    height: 30px;
-    margin: 0 5px;
+    width: 38px;
+    height: 38px;
+    margin-right: 10px;
 }
-.btn_review{
-    width: 90%;
-    border: none;
-    height: 35px;
+.profile_img img{
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    border: 1px solid;
+
 }
-.btn_review:hover{
-    background-color: rgba(128, 128, 128, 0.348);
-}
+
 .btn_qna{
-    border: none;
-    background-color: #005bedc1;
-    padding: 8px;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-}
-.btn_qnaToadmin{
     border: none;
     background-color: #005bedc1;
     padding: 8px;
@@ -542,14 +628,34 @@ li.active{
 .btn_qna:hover{
     background-color: #005bed;
 }
+.btn_qnaToadmin{
+    background-color: white;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 6px 7px;
+}
 .btn_qnaToadmin:hover{
-    background-color: #005bed;
+    background-color: rgba(128, 128, 128, 0.248);
 }
 .doComment{
-    width: 90%;
-    padding: 10px;
-    border-radius: 20px;
-    border: 1px solid gray;
+    width: 85%;
+    height: 48px;
+    display: block;
+    border-radius: 25px;
+    padding: 0px 20px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(229, 229, 229);
+}
+.send_plane{
+    top: 28%;
+    right: 12%;
+    position: absolute;
+    color: #aaa;
+}
+.send_plane:hover{
+    color: black;
+    cursor: pointer;
 }
 .send_btn{
     border: none;
@@ -564,11 +670,10 @@ li.active{
     color: black;
 }
 .return_policy{
-    width: 80%;
+    width: 100%;
     background-color: rgba(128, 128, 128, 0.116);
     border: none;
     padding: 20px;
-    border-radius: 15px;
     color: rgb(49, 49, 4);
 }
 .pay_bar_media{
@@ -617,25 +722,120 @@ li.active{
 .space-8 strong{
     font-size: 18px;
     font-weight: 600;
+    color: rgb(253, 48, 73);
 }
 .qnas{
     position: relative;
-    margin-left: 25px;
 }
 .qna_reply{
-    width: 100%;
     position: relative;
-}
-.qna_reply{
-    left: 10%;
+    left: 5%;
     width: 80%;
+}
+
+.qnas input{
+    outline: none;
+}
+.do_admin_comment{
+    width: 100%;
+    height: 100%;
+}
+
+.id_and_date{
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 16px;
+    margin: 0px 4px 0px 0px;
+    color: rgb(58, 58, 58);
+}
+.admin_date{
+    color: rgb(202, 202, 202);
+    font-weight: normal;
 }
 textarea{
     border: none;
 }
 .review-container{
     width: 100%;
-}
+    position: relative;
+ }
+ .reviews-wrap{
+     position: relative;
+     width: 640px;
+     margin: 0 auto;
+     height: 56px;
+ }
+ .review_header{
+     display: flex;
+     padding: 17px 20px;
+     align-items: center;
+     background-color: white;
+     margin-bottom: 10px;
+ }
+ .reviews-wrap h5{
+     border-width: 0px;
+     margin: 0px;
+     padding: 0px;
+     font-size: 1.125rem;
+     font-weight: 700;
+     text-align: center;
+ }
+ .review-header-left{
+     display: block;
+     width: 20px;
+     height: 20px;
+     cursor: pointer;
+ }
+ .allreveiws{
+     position: relative;
+     width: 640px;
+     margin: 0 auto;
+     background-color: white;
+     
+ }
+ .review_date{
+     font-weight: normal;
+     font-size: 11px;
+     line-height: 14px;
+     color: rgba(145, 141, 141, 0.439);
+ }
+ .review_id{
+     font-weight: bold;
+     font-size: 12px;
+     color: inherit;
+ }
+ .allreveiws img{
+     width: 38px;
+     height: 38px;
+ }
+ .review_id_and_date{
+     margin-bottom: 8px;
+ }
+ .review_content_container{
+     width: 100%;
+ }
+ .review_content{
+     width: 100%;
+     font-size: 14px;
+     height: 100%;
+ }
+ .p-24{
+     padding: 24px;
+ }
+ .review_write_container{
+    position: relative;
+    width: 640px;
+    margin: 0 auto;
+    background-color: white;
+    
+ }
+ .user_review{
+    width: 90%;
+    border: 1px solid rgb(223, 221, 221);
+    resize: none;
+    border-radius: 3px;
+    padding: 10px;
+ }
 .write-review{
     width: 79%;
 }
@@ -662,6 +862,20 @@ textarea{
 .write-after button:hover{
     background-color: #005bed;
 }
+.nav_each_item{
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    padding: 14px 0px 13px;
+    flex-basis: auto;
+    margin-right: 24px;
+    cursor: pointer;
+    position: relative;
+    color: rgb(26, 26, 26);
+}
+
 
 /*문의하기*/
 .question-container{
@@ -678,20 +892,43 @@ textarea{
     outline: none;
     font-family: 'Noto Sans KR';
     font-size: 14px;
+    padding: 15px;
 }
 .write-after-question{
     text-align: end;
 }
 .write-after-question button{
-    border: none;
-    background-color: #005bedc1;
-    padding: 8px;
-    border-radius: 5px;
-    color: white;
+    background-color: white;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 3px;
     cursor: pointer;
+    padding: 6px 7px;
 }
 .write-after-question button:hover{
-    background-color: #005bed;
+    background-color: rgba(128, 128, 128, 0.248);
+}
+.highlight{
+    font-size: 20px;
+    line-height: 26px;
+    letter-spacing: -0.2px;
+    margin: 0px;
+    font-weight: bold;
+    color: inherit;
+    flex: 1 1 0%;
+}
+.goTomoveReviewTotal{
+    font-size: 0.875rem;
+    font-weight: 700;
+}
+.user_question{
+    color: black;
+    font-size: 14px;
+    font-weight: normal;
+
+}
+.admin_comment{
+    font-size: 0.875rem;
+    font-weight: 400;
 }
 /*문의하기*/
 
@@ -707,15 +944,45 @@ textarea{
         display: block;
     }
     .item_description{
-        display: none;
+        display: block;
     }
     .item_description_media{
         display: block;
+        margin: 0 24px;
+        padding-top: 12px;
     }
     .store_items .all_items ul li{
         width: 49%;
+        margin-right: 24px;
     }
-   
+    .btn_qnaToadmin{
+        background-color: white;
+        border: 1px solid rgba(0,0,0,0.15);
+        border-radius: 3px;
+        cursor: pointer;
+        padding: 6px 7px;
+    }
+    .btn_qnaToadmin:hover{
+        background-color: rgba(128, 128, 128, 0.248);
+    }
+    .nav_item{
+        margin: 0 24px;
+    }
+    .highlight{
+        margin: 0 24px;
+    }
+    .readReviews{
+        padding: 0 12px;
+    }
+    .moveReviewTotal {
+        margin: 0 auto;
+    }
+    .return_policy{
+        margin: 0 24px;
+    }
+    .store_detail_t {
+        margin: 0 auto;
+    }
 }
 /*----------------------- 구매하기 첫번째 페이지----------------------------------- */
 .header_mobile{
@@ -757,7 +1024,7 @@ textarea{
     margin-right: 15px;
 }
 .item_img img{
-    width: 100%
+    width: 100%;
 }
 
 .amount_btn{
@@ -779,16 +1046,45 @@ textarea{
     width: 640px;
     margin: 0 auto;
 }
+.receiver{
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px 0px 4px;
+    color: rgb(26, 26, 26);
+    margin-top: 20px;
+}
+.valid{
+    font-size: 11px;
+    font-weight: normal;
+    line-height: 16px;
+    letter-spacing: normal;
+    margin: 4px 0px 0px;
+    color: rgb(162, 162, 162);
+}
 .black_line{
+    justify-content: space-between;
     display: flex;
-    width: 100%;
-    height: 50px;
     background-color: black;
     color: white;
     align-items: center;
-    justify-content: center;
     font-size: larger;
     font-weight: 600;
+    padding: 19px;
+}
+.black_line img{
+    width: 20px;
+    height: 20px;
+}
+._pay_header{
+    border-width: 0px;
+    color: rgb(255, 255, 255);
+    margin: 0px;
+    padding: 0px;
+    font-size: 1.625rem;
+    font-weight: 700;
+    line-height: 2.25rem;
 }
 
 .modal_table{
@@ -816,6 +1112,15 @@ textarea{
     padding: 0; 
     margin: 0;
     width: 85px;
+    background-color: rgb(248, 248, 248);
+    color: rgb(58, 58, 58);
+    border-top: 1px solid rgb(229, 229, 229);
+    border-right: 1px solid rgb(229, 229, 229);
+    border-bottom: 1px solid rgb(229, 229, 229);
+    border-left: none;
+}
+.personaddrbtn:hover{
+    background-color: rgba(210, 208, 208, 0.792);
 }
 
 
@@ -907,6 +1212,12 @@ input::placeholder{
 .shipment{
     width: 99%;
 }
+.shipment input{
+    border:1px solid #dedbdb;
+    border-radius: 3px;
+    padding-left: 10px;
+
+}
 .ship_input{
     width: 100%;
 }
@@ -926,14 +1237,25 @@ input::placeholder{
     color: red;
 }
 .order_info{
-    font-size: 20px; 
-    font-weight: 700;
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(26, 26, 26);
+    line-height: 28px;
+    margin: 0px;
+}
+.selected_item{
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(26, 26, 26);
+    line-height: 24px;
+    letter-spacing: -0.3px;
+    margin: 0px;
 }
 .addr_input{
     width: 85%;
     height: 40px;
 }
-input:focus{outline: none;}
+.shipment input:focus{outline: 0.5px solid black;}
 .agree_modal{
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -995,6 +1317,25 @@ input:focus{outline: none;}
   }
   .mt-20{
     margin-top: 20px;
+  }
+  .review_modify button{
+    background-color: white;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  .review_delete button{
+    background-color: white;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  .review_modify button:hover{
+    background-color: #dedbdb;
+  }
+  .review_delete button:hover{
+    background-color: #dedbdb;
+
   }
 
 /* -------------------------------공통 요소---------- */
@@ -1072,15 +1413,16 @@ footer{
     align-items: center;
     margin-bottom: 8px;
 }
-.chare_content{
+.share_content{
     justify-content: space-around;
     align-items: center;
+    margin-left: 20px;
 }
-.chare_content a{
+.share_content a{
     text-decoration: none;
     color: black;
 }
-.chare_content a:visited{
+.share_content a:visited{
     color: black;
 }
 .flex{
@@ -1103,73 +1445,277 @@ footer{
 /* ---------------------공유하기 모달-------------------------------- */
 
 /*-------------------------------- 리뷰-------------------------------------  */
-
-.review-container{
-   width: 100%;
-   position: relative;
-}
-.reviews-wrap{
+.reviewForm {
+    max-width: 960px;
     position: relative;
-    width: 640px;
-    margin: 0 auto;
-    height: 56px;
+    margin-left: auto;
+    margin-right: auto;
 }
-.review_header{
+.review{
+    overflow: hidden;
+    padding: 48px 12px;
+    color: rgb(0, 0, 0);
     display: flex;
-    padding: 17px 20px;
+    flex-direction: column;
+}
+
+.reviewHead {
+    margin-bottom: 40px;
+    display: flex;
+    -webkit-box-align: center;
     align-items: center;
-    background-color: white;
-    margin-bottom: 10px;
+    justify-content: space-between;
+    width: 100%;
 }
-.reviews-wrap h5{
-    border-width: 0px;
+
+.reviewHeadInfo {
+    font-size: 20px;
+    line-height: 26px;
+    letter-spacing: -0.2px;
     margin: 0px;
-    padding: 0px;
-    font-size: 1.125rem;
-    font-weight: 700;
-    text-align: center;
+    font-weight: bold;
+    color: inherit;
 }
-.review-header-left{
-    display: block;
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-}
-.allreveiws{
+
+
+.wrapImage {
+    width: 100%;
+    height: 150px;
+    margin: 0px auto;
     position: relative;
-    width: 640px;
-    margin: 0 auto;
-    background-color: white;
-    
+    overflow: hidden;
+    list-style: none;
+    padding: 0px;
+    z-index: 1;
 }
-.review_date{
+
+.reviewImages{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    box-sizing: content-box;
+}
+
+.reviewImageForm {
+    width: 144px;
+    height: 144px;
+    cursor: pointer;
+    flex-shrink: 0;
+    position: relative;
+    margin-right: 8px;
+}
+
+.moveImage .reviewImage{
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.readReviews {
+    display: flex;
+    flex-direction: column;
+    flex-flow: row wrap;
+    margin: 0px -16px;
+}
+
+.readReviewForm {
+    display: flex;
+    min-width: 360px;
+    width: 100%;
+    flex: 1 1 0%;
+    margin: 0px 16px 40px;
+}
+
+.readReview {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.moveReviewDetail {
+    text-decoration: none;
+    color: inherit;
+}
+
+.reviewDetailProfile {
+    display: flex;
+}
+
+.reviewProfileForm {
+    position: relative;
+    width: 32px;
+    height: 32px;
+}
+
+.reviewProfile {
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgb(248, 248, 248);
+    border-radius: 100%;
+    line-height: 0;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    font-size: 0px;
+    background: rgb(238, 238, 238);
+}
+
+.profile {
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.profile img {
+        width: 100%;
+        height:100%;
+}
+
+.reviewNameDate {
+    flex: 1 1 0%;
+    display: flex;
+    flex-direction: column;
+    margin: 0px 8px;
+}
+
+.reviewName {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 16px;
+    color: inherit;
+}
+
+.reviewDate {
+    font-family: 'Noto Sans KR', sans-serif;
     font-weight: normal;
     font-size: 11px;
     line-height: 14px;
     color: rgb(162, 162, 162);
-    margin-left: 8px;
+    
 }
-.review_id{
-    font-weight: bold;
-    font-size: 12px;
-    color: inherit;
-    margin-left: 8px;
+
+.profileMargin{
+    margin-bottom: 12px;
 }
-.allreveiws img{
-    width: 32px;
-    height: 32px;
+
+.reviewContentForm{
+    display: flex;
+    margin-top: auto;
 }
-.review_id_and_date{
-    margin-bottom: 8px;
-}
-.review_content_container{
-    width: 100%;
-}
-.review_content{
-    width: 100%;
+
+.reviewContent{
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 14px;
+    line-height: 18px;
+    margin-bottom: 0px;
+    flex: 1 1 0%;
+    width: 100%;
+    word-break: break-word;
+    white-space: break-spaces;
     height: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
-.p-24{
-    padding: 24px;
+
+.reviewContentMargin{
+    margin-right: 12px;
+}
+
+.moveReviewTotal {
+    padding: 13px 12px;
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 0;
+    --system-on-color: #101010;
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--system-on-color);
+    border-width: 0px;
+    border-radius: 2px;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    display: inline-flex;
+    position: relative;
+    width: 100%;
+    text-decoration: none;
+}
+.moveReviewTotal:hover{
+    background-color: rgba(150, 149, 149, 0.207);
+}
+
+
+.modalFrame {
+    position: fixed;
+    top: 0;
+    left:0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+    background: rgba(0, 0, 0, 0.6) !important;
+    display: none;
+    width: auto;
+}
+
+
+.modalForm {
+    position: relative;
+    display: flex;
+    transform: translate(10px, 55px);
+}
+
+.modalItem {
+    min-height: 80vh;
+    background: url("/src/main/resources/static/images/chun.png") center/cover fixed no-repeat;
+    border-radius: 0.3rem;
+    width: 96%
+}
+
+.btnClose {
+    color: #fff;
+  font-size: 3rem;
+  transition: all 1s ease-in-out;
+  cursor: pointer;
+}
+
+.btnClose :hover {
+    color: rgb(249,228,148);
+}
+
+.modalControl {
+    position: absolute;
+    font-size: 4rem;
+    color: var(--mainWhite);
+    transition: all 1s linear;
+    cursor: pointer;
+}
+
+.modalControl :hover {
+    color: rgb(249,228,148);
+}
+.show {
+    display: block;
+}
+.btnLeft {
+    top: 50%;
+    left: 0;
+    transform: translateX(-60%);
+    margin-left: 20px;
+}
+
+.btnRight {
+    top: 50%;
+    right: 0;
+    transform: translateX(60%);
+    margin-right: 20px;
 }

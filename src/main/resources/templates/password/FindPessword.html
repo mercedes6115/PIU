@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="footer.css">
 
+    <script src="password.js"></script>
 </head>
 
 <body>
@@ -32,7 +33,7 @@
                         <div class="hinner">
                             <!--                    <h1>PickItUp</h1>-->
                             <div class="hunderline">
-                                <p>비밀번호 찾기</p>
+                                <p>새로운 비밀번호를 설정해주세요.</p>
                             </div>
                             <div class="hinner">
                                 <p class="hpstile">계정에 연결된 이메일 주소를 입력하면 암호를 재설정할 수 있는 링크를 이메일로 보내드릴게요.</p>
@@ -43,12 +44,12 @@
 
                         <div class="hmiddlemain">
                             <div class="hinnertext">
-                                <p>이메일</p>
+                                <p class="hpstile" style="margin-block-start: 38px">이메일</p>
                             </div>
                             <div class="hinnertext">
                                 <input class="hinputEMail" type="text" onchange="checkFilled()" id="PWemail"
                                     placeholder="example@naver.com">
-                                    <p class="herror" id="herror">입력해주세요.</p>
+                                    <p class="herror" id="herror"style="display: none">*이메일을 입력해주세요.</p>
                                 <div class="hmiddle">
 
                                     <button class="hemailEnter" onclick='chkEM()'>인증 이메일 전송하기</button>
@@ -74,36 +75,11 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     type = "text/javascript" >
-        $(document).ready(function () {
-            $("#headers").load("header.html");  //헤더 인클루드
-            $("#footers").load("footer.html");  //푸터부분 인클루드
-        }
-        );
-
-    function chkEM() {
-
-        console.log($("#PWemail").val());
-        if ($("#PWemail").val().length < 10) {
-            alert("이메일을 입력하세요.");
-            return false;
-        } else if ($("#PWemail").val() != "aaaa@naver.com") {
-            alert("없는 아이디입니다.");
-            return false;
-        } else if ($("#PWemail").val() == "aaaa@naver.com") {
-            alert("이메일로 전송했습니다.");
-            return true;
-        }
-
+    $(document).ready(function () {
+        $("#headers").load("header.html");  //헤더 인클루드
+        $("#footers").load("footer.html");  //푸터부분 인클루드
     }
-    function checkFilled(){
-        if ($("#PWemail").val().length < 1){
-            $("#herror").show();
-        }
-        else{
-            $("#herror").hide();
-        }
-    }
+    );
 </script>
-
 
 </html>
