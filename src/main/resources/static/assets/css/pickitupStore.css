@@ -819,15 +819,18 @@ textarea{
      height: 38px;
  }
  .review_id_and_date{
-     margin-bottom: 8px;
+     margin-top: 4px;
  }
  .review_content_container{
      width: 100%;
  }
  .review_content{
-     width: 100%;
-     font-size: 14px;
-     height: 100%;
+    font-size: 14px;
+    font-weight: normal;
+    color: rgb(26, 26, 26);
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
  }
  .p-24{
      padding: 24px;
@@ -1756,4 +1759,25 @@ footer{
     line-height: 16px;
     letter-spacing: normal;
     margin: 0px;
+}
+.All_review_header{
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(26, 26, 26);
+    line-height: 24px;
+    letter-spacing: -0.3px;
+    margin: 0px;
+}
+.review_item_name{
+    font-size: 11px;
+    font-weight: 600;
+    color: rgb(26, 26, 26);
+    line-height: 16px;
+    letter-spacing: normal;
+    margin: 0px;
+}
+.review_content_container img{
+    width: 192px;
+    height: 108px;
+    border: 1px solid;
 }
