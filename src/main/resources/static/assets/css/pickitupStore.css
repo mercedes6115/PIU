@@ -757,7 +757,73 @@ textarea{
 }
 .review-container{
     width: 100%;
-}
+    position: relative;
+ }
+ .reviews-wrap{
+     position: relative;
+     width: 640px;
+     margin: 0 auto;
+     height: 56px;
+ }
+ .review_header{
+     display: flex;
+     padding: 17px 20px;
+     align-items: center;
+     background-color: white;
+     margin-bottom: 10px;
+ }
+ .reviews-wrap h5{
+     border-width: 0px;
+     margin: 0px;
+     padding: 0px;
+     font-size: 1.125rem;
+     font-weight: 700;
+     text-align: center;
+ }
+ .review-header-left{
+     display: block;
+     width: 20px;
+     height: 20px;
+     cursor: pointer;
+ }
+ .allreveiws{
+     position: relative;
+     width: 640px;
+     margin: 0 auto;
+     background-color: white;
+     
+ }
+ .review_date{
+     font-weight: normal;
+     font-size: 11px;
+     line-height: 14px;
+     color: rgb(162, 162, 162);
+     margin-left: 8px;
+ }
+ .review_id{
+     font-weight: bold;
+     font-size: 12px;
+     color: inherit;
+     margin-left: 8px;
+ }
+ .allreveiws img{
+     width: 32px;
+     height: 32px;
+ }
+ .review_id_and_date{
+     margin-bottom: 8px;
+ }
+ .review_content_container{
+     width: 100%;
+ }
+ .review_content{
+     width: 100%;
+     font-size: 14px;
+     height: 100%;
+ }
+ .p-24{
+     padding: 24px;
+ }
 .write-review{
     width: 79%;
 }
