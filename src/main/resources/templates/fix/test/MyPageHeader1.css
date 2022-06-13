@@ -1,0 +1,303 @@
+본문체 noto sans kr
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+.notosanskr * { 
+font-family: 'Noto Sans KR', sans-serif;
+}
+
+@font-face {
+    font-family: 'Openas';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/Openas.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+
+.MyPageHeader-Container{
+    position: relative;
+    max-width: 640px;
+    margin: 0px auto;
+}
+
+.MyPageHeader-Section{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.MyPageHeader-Header{
+    border-radius: 0;
+    width: 100%;
+    height: auto;
+    background-color: #FFFFFF;
+    border-color: #E5E5E5;
+    z-index: 101;
+    top: 0;
+    left: 0;
+    position: sticky;
+}
+
+.MyPageHeader-wrapper1{
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.MyPageHeader-wrapper2{
+    display: flex;
+    width: 100%;
+    max-width: 1216px;
+    padding-left: 20px;
+    padding-right: 20px;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: row;
+}
+.MyPageHeader-Contents-wrapper{
+    height: 56px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: row;
+    position: relative;
+}
+.MyPageHeader-Logo{
+    display: block;
+    flex-direction: column;
+    align-items: stretch;
+    -webkit-box-align: stretch;
+}
+
+.MyPageHeader-Logo-wrap{
+    height:18px;
+    font-family: 'Openas';
+    font-size: 20px;
+}
+
+a {
+    text-decoration: none;
+  }
+.MyPageHeader-Space1{
+    width: 36px;
+    display: flex;
+}
+.MyPageHeader-Search-Wrap{
+    max-width: 360px;
+    display: flex;
+    width: 100%;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+}
+.MyPageHeader-Search-Wrap1{
+    display: flex;
+    width: 100%;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.MyPageHeader-Search-Wrap2{
+    display: flex;  
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.MyPageSearch-Box{
+    display: flex;
+    margin-top: -9px;
+    margin-bottom: -9px;
+    margin-left: -4px;
+    margin-right: -4px;
+    width: 100%;
+    flex-direction: row;
+    cursor: unset;
+    align-items: stretch;
+}
+
+.MyPageSearch-Box-Back{
+    border-radius: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #F8F8F8;
+    border-color: #E5E5E5;
+}
+
+.MyPageSearch-Flex{
+    display: flex;
+    height: 38px;
+    padding-left: 16px;
+    padding-right: 10px;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.MyPageSearchHolder{
+    font-family: 'Noto Sans KR', sans-serif;
+    border-width: 0;
+    color: #A2A2A2;
+    margin: 0;
+    padding: 0;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.125rem;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+}
+
+.MyPageS-Icon{
+    display: block;
+    width: 20px;
+    height: 20px;
+}
+.MyPageHeader-RightSide-Wrapper{
+    display: flex;
+    margin-left: auto;
+    align-items: stretch;
+    -webkit-box-align: stretch;
+    flex-direction: row;
+}
+
+
+.MyPageHeader-RightSide-Wrapper1{
+    display: flex;
+    flex: none;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: row;
+}
+
+.MyPageHeader-RightSide-Wrapper2{
+    display: flex;
+    -webkit-box-align: stretch;
+    align-items: center;
+    flex-direction: row;
+}
+.MyPage-Space2{
+    width: 20px;
+    height: 0;
+    -webkit-box-flex: 0;
+    flex-shrink: 0;
+    flex-grow: 0;
+}
+.MyPageHeartIcon{
+    display: block;
+    width: 20px;
+    height: 20px;
+}
+.MyPageCoupontIcon{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+}
+
+
+.MyPageCoupontIcon11{
+    display: block;
+    width: 20px;
+    height: 20px;
+}
+
+.CouponNum{
+    right: -9px;
+    top: -6px;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    z-index: 1;
+    position: absolute;
+}
+
+.CoupunNumWrap{
+    width: 16px;
+    height: 16px;
+    background-color: rgb(243, 33, 59);
+    border-radius: 8px;
+}
+
+.CouponOneIcon{
+    border-width: 0px;
+    color: rgb(255, 255, 255);
+    margin: 0px;
+    padding: 0px;
+    font-size: 0.625rem;
+    font-weight: 700;
+    line-height: 0.75rem;
+    text-align: center;
+    z-index: 1;
+    position: absolute;
+}
+
+.MyPageProfileWrap{
+    display: flex;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+    position: relative;
+}
+.MyPageProfileWrap1{
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+    cursor: pointer;
+}
+
+.MyPageProfileImage{
+    width: 34px;
+    height: 34px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+}
+
+.MyPageProfileImage1{
+    
+    background-color: rgb(248, 248, 248);
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    overflow: hidden;
+
+}
+
+.PPPImage{
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: relative;
+}
+
+.EmptySpacing3{
+    width: 4px;
+    height: 0;
+    -webkit-box-flex: 0;
+}
+
+.DropDownBtn{
+    display: block;
+    width: 12px;
+    height: 12px;
+}

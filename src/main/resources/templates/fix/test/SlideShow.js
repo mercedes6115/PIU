@@ -57,7 +57,6 @@ prev.addEventListener('click', function () {
     slides.style.transition = `${0.5}s ease-out`;
   }
   if (currentIdx === 0) {
-    prev1.disabled=true;
     setTimeout(function () {
       slides.style.left = -slideCount * (slideWidth + slideMargin) + 'px';
       slides.style.transition = `${0}s ease-out`;
@@ -103,7 +102,7 @@ function move() {
   }
 }
 
-const intervals = setInterval(intervalclick,2500);
+const intervals = setInterval(intervalclick,3000);
 
 
 function colorChange(){
@@ -115,11 +114,6 @@ function colorChange(){
   '#347395',
   '#129de7',
   '#129de7',
-  '#91b9e6',
-  '#b7d2f1;',
-  '#0b3e78',
-  '#bcd3ec;'
-
   ]
 bannerBackground.style.backgroundColor=colorIndex[rand];
 bannerBackground.style.transition = `${0.5}s ease-out`;

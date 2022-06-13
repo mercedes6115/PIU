@@ -20,7 +20,7 @@
                     </span>
                 </div>
                 <div style="width: 100%;">
-                    <h5>플로깅 후기 작성</h5>
+                    <h5>상품 후기 작성</h5>
                 </div>
             </div>
         </div>
@@ -28,23 +28,49 @@
         <section class="review_write_container">
             <div>
                 <div>
-                    <div class="flex p-24" style="align-items: center;">
+                    <div class="flex p-24" style="align-items: center; padding-bottom: 15px;">
                         <div class="profile_img"><img src="/src/main/resources/static/images/chun2.png"></div>
                         <div class="flex justify-content" style="width: 100%; align-items: center;">
-                            <div class="review_id">춘식이</div>
+                            <div class="id_and_date">
+                                <div class="review_id">춘식이</div>
+                                <div class="admin_date">2022-06-14</div>
+                            </div>
                             <div><input class="btn_qnaToadmin" type="button" value="글등록"></div>
                         </div>
                     </div>
-                    <div>
-                        <div style="text-align: center;">
+                    <div class="space flex" style="padding-left: 24px; justify-content: space-between;">
+                        <div class="review_item_title">
+                            [주방용품] 춘식이가 좋아하는 초록색 고무장갑
+                        </div>
+                        <div>
+                            <label for="attach"> <div class="hide" style="margin-right: 20px;"></div>
+                            </label>
+                        </div>
+                    </div>
+                    <div style="margin-top: 8px;">
+                        <div style="text-align: center;"">
                             <textarea class="user_review" name="" id="" cols="30" rows="10"></textarea>
                         </div>
-                        <div class="p-24" style="text-align: left;"><input type="file" multiple></div>
+                        <div class="flex" style="text-align: left; padding: 0  0 10px 24px ; justify-content: space-between;"">
+                            <label for="attach" class="flex">
+                               
+                                <div class="thumb"></div><div class="thumb"></div><div class="thumb"></div> 
+                            </label>
+                            <div class="admin_comment" style="font-size: 11px; margin-top:5px; margin-right: 20px;">첨부파일은 3개 까지만 가능합니다.</div>
+                        <input type="file" id="attach" style="display: none;" multiple>
                     </div>
                 </div>
             </div>
         </section>
     </div>
+
+
+
+    <div class="gototop">
+        <span class="material-symbols-outlined toTop" style="font-size: 35px;">
+            vertical_align_top
+            </span>
+    </div> 
     <footer class="footer-wrap">
         <div class="footer-wrapper">
             <div class="footer-menu-wrap">
@@ -137,6 +163,34 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <script>
-    
+    //첨부파일 input태그 가져오기
+    const file = document.querySelector("input[type='file']");
+    const thumbnail = document.querySelectorAll("label[for='attach'] div.thumb");
+    //첨부파일이 등록되었다면 change이벤트 발생
+    file.addEventListener("change", function(event){
+        //특정 경로의 파일을 읽어올 때 사용.
+        for(let i=0;i<thumbnail.length;i++){
+            let reader1 = new FileReader();
+            if(!event.target.files[i]){
+                return;
+            }
+            reader1.readAsDataURL(event.target.files[i]);
+            console.log(event.target.files[i]);
+            reader1.onload = function(event){
+                //등록된 파일의 경로에 작성된 파일의 타입검사
+                if(event.target.result.includes("image")){
+                    console.log("이미지 파일입니다.");
+                    //등록된 파일의 경로로 대체
+                    thumbnail[i].style.backgroundImage = "url(\"" + event.target.result + "\")";
+                }else{
+                    alert("이미지 파일이 아닙니다.");
+                    //미리 준비해놓은 이미지 경로로 대체
+                    thumbnail[i].style.backgroundImage = "url(/src/main/resources/static/images/error.png)";
+                }
+            
+            }
+            thumbnail[i].style.display = "block";
+        }
+    });
 </script>
 </html>
