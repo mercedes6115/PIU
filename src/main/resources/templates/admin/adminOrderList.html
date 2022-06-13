@@ -27,10 +27,9 @@
             <div>
                 <h2>주문 목록</h2>
             </div>
-            <div class="orderSearchBox">
-                <form id="productSearch">
+            <div class="searchBox" id="orderSearchBox">
+                <form id="orderSearchForm">
                     <table>
-                        
                         <tr>
                             <th>검색분류</th>
                             <td colspan="3">
@@ -62,7 +61,7 @@
                         <tr>
                             <th>기간</th>
                             <td colspan="3">
-                                <div class="productRegisterDate">
+                                <div class="dateSelect">
                                     <select>
                                         <option>주문일</option>
                                         <option>배송시작일</option>
@@ -79,7 +78,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <div class="productFilterBox">
+                            <div class="checkBox">
                                 <th>주문상태</th>
                                 <td>
                                     <input type="checkbox" name="" id="orderCheckAll">
@@ -95,17 +94,17 @@
                         </tr>
                     </table>
                     <div class="btnBox">
-                        <button type="button" id="productSearchBtn">검색</button>
-                        <button type="button" id="productSearchBtn">초기화</button>
+                        <button type="button" id="orderSearchBtn">검색</button>
+                        <button type="button" id="orderSearchBtn">초기화</button>
                     </div>
                 </form>
             </div>
 
             <!-- 클래스명 변경 -->
-            <div class="userList">
+            <div class="listBox" id="orderList">
                 <table>
                     <tr>
-                        <div class="productListTitle">
+                        <div class="searchResult">
                             <div>
                                 <span>[총
                                     <strong>2</strong>
@@ -158,16 +157,16 @@
                     </tr>
 
                 </table>
-
+                <div class="paging">
+                    <a href="#">&lt;</a>
+                    <a href="#">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">&gt;</a>
+                </div>
             </div>
             <!-- 페이징 처리 -->
-            <div class="paging">
-                <a href="#">&lt;</a>
-                <a href="#">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">&gt;</a>
-            </div>
+     
         </div>
 
 
