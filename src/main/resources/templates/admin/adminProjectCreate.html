@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 프로젝트 생성</title>
+</head>
+<link rel="stylesheet" href="admin_style.css">
+<link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+<body>
+
+    <!--
+    1.프로젝트 번호
+    2.프로젝트 제목
+    3.프로젝트 내용
+    3. 프로젝트 작성자
+    4. 프로젝트 유형
+    5. 프로젝트 지형
+    6. 프로젝트 출발지
+       프로젝트 도착지
+    7. 프로젝트 포인트
+    8. 프로젝트 승인여부
+    9. 프로젝트 동록날짜
+    10. 프로젝트 상태
+    11. 프로젝트 수정날짜
+    12. 출발시간
+    13. 도착시간
+    
+    -->
+    <div class="root">
+
+        <!-- sidebar -->
+        <div id="sidebar">
+        </div>
+        <!-- sidebar -->
+
+        <!-- content -->
+        <div id="container">
+            <div>
+                <h2>프로젝트 등록</h2>
+            </div>
+            <div class="productSearchBox">
+                <form id="productSearch">
+                    <table class="projectCreateTbl">
+                        <tr>
+                            <th colspan="3">유형선택</th>
+                            <td colspan="1">
+                                <select>
+                                    <option>코스</option>
+                                    <option>장소</option>
+                                </select>
+                                <select>
+                                    <option>지형</option>
+                                    <option>산</option>
+                                    <option>바다</option>
+                                    <option>평지</option>
+                                    <option>기타</option>
+                                </select>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <th colspan="3">플로깅제목</th>
+                            <td colspan="1">
+                                <input type="text" name="" id="">
+                                <span title="현재글자수/최대글자수">
+                                    [
+                                    <strong>0</strong>
+                                     / 250 ]
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th colspan="3">플로깅 내용</th>
+                            <td colspan=""><textarea name="" id="" cols="100" rows="5"></textarea></td>
+                        </tr>
+                        <tr>
+                            <!-- 코스일 경우 출발지, 도착지, 장소일 경우 주소 -->
+                            <th colspan="3">주소</th>
+                            
+                            <td><span>출발지</span>
+                                <input type="text" name="" id="">
+                                <span class="none">도착지</span>
+                            <input type="text" name="" id="" class="none"></td>
+                        </tr>
+                        <tr>
+                            <th colspan="3">플로깅이미지</th>
+                            <td colspan=""><input type="file" name="" id=""></td>
+                        </tr>
+                        <tr>
+                            
+                            <th colspan="3">일정</th>
+                            <td>
+                                <span>시작</span>
+                           <input type="datetime-local" name="" id="">
+                           <span>종료</span>
+                            <input type="datetime-local" name="" id=""></td> 
+                        </tr>
+                        <tr>
+                            <th colspan="3">포인트</th>
+                            <td colspan="1"><input type="number" name="" id=""><span> point</span></td>
+                        </tr>
+
+                        <tr>
+                            <th colspan="3">모집자 정보</th>
+                            <td colspan="1"><textarea name="" id="" cols="100" rows="5"></textarea></td>
+
+                        </tr>
+                        <tr>
+                            <th colspan="3">모집자 정보 첨부파일</th>
+                            <td colspan="1"><input type="file" name="" id=""></td>
+                        </tr>
+                    </table>
+                    <div class="btnBox">
+                        <button type="button" id="productSearchBtn">프로젝트 등록</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- 클래스명 변경 -->
+
+        </div>
+    </div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+      $(document).ready(function(){
+        $('#sidebar').load("adminSideBar.html");
+
+    })
+</script>
+
+</html>

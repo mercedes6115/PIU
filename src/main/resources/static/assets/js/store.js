@@ -39,12 +39,13 @@ $('#personname').blur(function(){
 $('#personphone').blur(function(){
     $("#personphone_check").show();
     let $personphone = $('#personphone').val();
-    if(!$personphone || $personphone.length!=11){
+    if(!$personphone || $personphone.length!=11 || !$.isNumeric($personphone) ){
         $("#personphone_check").empty().text("정확한 전화번호를 입력하세요");
     }else{
         $("#personphone_check").hide();
     }
 });
+
 
 //주소검색
 window.onload = function(){
@@ -67,6 +68,8 @@ $('#modal_close_btn').click(function(){
 
 
 // -----------------------pickitupStoreDetail 페이지-------------------//
+// -----------------------pickitupItemChoose 페이지-------------------//
+
 
 
 

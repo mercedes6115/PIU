@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> 
+<script src="https://kit.fontawesome.com/3e4acc40f3.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="mypage_style.css">    
+    <title>회원정보 수정</title>
+</head>
+<body>    
+    <div id="my_modal2" class="my_modal2">
+        <p>정말 클래스101을 떠나실 건가요?</p>
+<p>회원탈퇴 신청 전 아래 사항을 확인 부탁드립니다 😊</p>
+<p>1. 신청일부터 5일 후 회원탈퇴가 처리되며, 회원탈퇴 처리 전까지 고객센터에서 그 신청을 철회할 수 있습니다.</p>
+<p>2. 회원탈퇴 후 기존 계정으로 회원가입을 신청할 수 없습니다.</p>
+    <p>3. 배송/교환/반품 중인 상품이 있는 경우 신청할 수 없습니다.</p>
+        <p>4. 회원탈퇴 시 수강권, 코칭권, 포인트, 캐시, 쿠폰 등 회원이 가진 권리는 모두 소멸합니다. 회원탈퇴 후 수강권, 코칭권, 캐시 등의 환불이 불가하므로 필요한 경우 탈퇴 전에 환불을 신청해주세요.</p>
+            <p>5. 회원탈퇴 시 회사가 보관하고 있는 회원 데이터는 모두 영구적으로 삭제됩니다. 다만, 관련 법령에 따라 회사가 보관할 의무가 있는 정보 또는 자료는 일정기간 동안 보관됩니다.</p>
+                <p>6. 회원탈퇴 후 클래스101에 게시한 게시물을 편집하거나 삭제할 수 없습니다. 필요한 경우 신청 전 게시물을 편집하거나 삭제해주세요.</p>
+                <div class="buttons-box">
+                <input type="button" class="out-ok-confirm" id="out-ok-confirm" value="탈퇴하기">
+                <button type="button" class="out-cancel-confirm" id="out-cancel-confirm" >취소하기</button>
+            </div>
+        <a class="modal_close_btn2" id="modal_close_btn2">닫기</a>
+    </div>
+    <button id="popup_open_btn2">팝업창 띄어 줘염</button>
+
+    
+    <div class="mypage-outline">
+        <div class="mypage-wrap">
+            <aside class="left-side">
+                <section class="my-profile">  
+                    <div class="user-letter">                        
+                        <div class="my-profile-nickname">
+                            <p><strong>김아무개</strong></p>
+                        </div>
+                        <div class="email">                        
+                            <div class="my-profile-email">
+                                <p><strong>이메일@naver.com</strong></p>
+                            </div>
+                        </div>
+                    </div>                   
+                    <div class="my-profile-image">
+                        <img src="1361876.png">
+                    </div>                    
+                </section>
+                <hr class="line">
+                <section class="user-info-modify">
+                    <a class="info-modify" href="userInfoChange.html">
+                    회원정보 수정</a>
+                </section>
+                <hr class="line">
+                <a class="point-check" href="mypoint.html">
+                    <section class="user-point">
+                        <div class="my-point">
+                            내 포인트
+                        </div>
+                        <div class="point-number">
+                            0P
+                        </div>
+                    </section></a>
+                    <a class="my-reply" href="myReview.html">
+                        <section class="reply">
+                            내 후기
+                        </section></a>
+                    <a class="my-QnA" href="myReview.html">
+                        <section class="QnA">
+                            내 문의
+                        </section></a>
+                <hr class="line">                
+                <section class="user-store">
+                    내 상품
+                    <a class="my-product" href="myorderlist.html">
+                        <section class="buy-product">
+                            주문 내역
+                        </section>
+                    </a>
+                </section>
+            </aside>
+            <div class="user-info-change-right">
+                <section class="user-info-list">
+                    <form action="#" method="post">
+                        <div class="user-info-total">
+                            <div class="user-info-title">
+                                회원 정보 수정
+                            </div>
+                            <div class="info-modify-top">
+                                <div class="modify-profile-image" id="modify-profile-image">                                    
+                                    <img src="bbaldae.jpg" class="modify-image" width="100px" height="100px">                                    
+                                    <a class="pen-image"><i class="fa-solid fa-pencil" onclick="document.getElementById('file').click();"></i></a>
+                                    <div class="uploadDiv">
+                                        <input type="file" id="file" name="upload-image" style="display:none;" />
+                                    </div>                                    
+                                </div>
+                            </div>
+
+                            <div class="user-info-form">
+                                <div class="user-email-form">
+                                    <label>이메일</label>
+                                </div>
+                                <div>
+                                    <input class="user-infor-email" type="text" value="이메일@naver.com" readonly>
+                                </div>
+                            </div>
+                            <div class="user-total-form">
+                                <div class="user-name-form">
+                                    <label>이름</label>    
+                                </div>
+                                <div>
+                                    <input type="text" class="user-infor-name" value="김아무개" readonly>
+                                </div>
+                            </div>                            
+                            <div>
+                                <div class="user-phone-form">
+                                    <label>전화번호</label>
+                                </div>
+                                <div>
+                                    <input type="text" id="phone" class="user-phone-form" placeholder="010-1234-1234">
+                                </div>
+                            </div>
+                            <div class="address">
+                                <div class="join-table-title">
+                                    <label>주소</label>
+                                </div>
+                                <div class="adrr-first">
+                                    <input class="input-data" type="text" id="state" placeholder="주소" style="width:63%;">&nbsp;&nbsp;
+                                    <input type="button" class="btnCertify" value="검색" style="width: 15%; height: 40px;"/>
+                                </div>
+                                <div class="adrr-second">
+                                    <input class="input-data" type="text" id="state-detail" placeholder="상세주소">
+                            </div>
+                            </div>
+                        </div>
+                        <div class="user-modify-confirm">   
+                            <button type="submit" class="modify-ok" id="modify-ok" >수정하기</button>
+                        </div>
+                        <div class="user-out">   
+                            <input type="button" class="out-ok" id="out-ok" value="회원탈퇴" onclick="document.getElementById('popup_open_btn2').click();" >
+                        </div>
+                    </form>
+                </section>
+                
+               
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        function modal(id) {
+            var zIndex = 9999;
+            var modal = document.getElementById(id);
+
+            // 모달 div 뒤에 희끄무레한 레이어
+            var bg = document.createElement('div');
+            bg.setStyle({
+                position: 'fixed',
+                zIndex: zIndex,
+                left: '0px',
+                top: '0px',
+                width: '100%',
+                height: '100%',
+                overflow: 'auto',
+                // 레이어 색갈은 여기서 바꾸면 됨
+                backgroundColor: 'rgba(0,0,0,0.4)'
+            });
+            document.body.append(bg);    
+
+            // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
+            modal.querySelector('.modal_close_btn2').addEventListener('click', function() {
+                bg.remove();
+                modal.style.display = 'none';
+            });
+
+            modal.setStyle({
+                position: 'fixed',
+                display: 'block',
+                boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+
+                // 시꺼먼 레이어 보다 한칸 위에 보이기
+                zIndex: zIndex + 1,
+
+                // div center 정렬
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                msTransform: 'translate(-50%, -50%)',
+                webkitTransform: 'translate(-50%, -50%)'
+            });
+
+            $("#out-cancel-confirm").on("click",function(){
+                bg.remove();
+            $("#my_modal2").attr("style","display:none");
+            });
+
+        }
+
+        // Element 에 style 한번에 오브젝트로 설정하는 함수 추가
+        Element.prototype.setStyle = function(styles) {
+            for (var k in styles) this.style[k] = styles[k];
+            return this;
+        };
+
+        document.getElementById('popup_open_btn2').addEventListener('click', function() {
+            // 모달창 띄우기
+            modal('my_modal2');
+        });
+    </script>
+
+
+</body>
+<script src="mypage.js"></script>
+
+</html>

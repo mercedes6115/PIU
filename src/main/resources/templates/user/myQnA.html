@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>  
+    <link rel="stylesheet" href="mypage_style.css">    
+    <title>내 문의 내역</title>
+</head>
+<body>
+    <div class="mypage-outline">
+        <div class="mypage-wrap">
+          <aside class="left-side">
+            <section class="my-profile">  
+                <div class="user-letter">                        
+                    <div class="my-profile-nickname">
+                        <p><strong>김아무개</strong></p>
+                    </div>
+                    <div class="email">                        
+                        <div class="my-profile-email">
+                            <p><strong>이메일@naver.com</strong></p>
+                        </div>
+                    </div>
+                </div>                   
+                <div class="my-profile-image">
+                    <img src="1361876.png">
+                </div>                    
+            </section>
+            <hr class="line">
+            <section class="user-info-modify">
+                <a class="info-modify" href="userInfoChange.html">
+                회원정보 수정</a>
+            </section>
+            <hr class="line">
+            <a class="point-check" href="mypoint.html">
+                <section class="user-point">
+                    <div class="my-point">
+                        내 포인트
+                    </div>
+                    <div class="point-number">
+                        0P
+                    </div>
+                </section></a>
+                <a class="my-reply" href="myReview.html">
+                    <section class="reply">
+                        내 후기
+                    </section></a>
+                <a class="my-QnA" href="myQnA.html">
+                    <section class="QnA">
+                        내 문의
+                    </section></a>
+            <hr class="line">                
+            <section class="user-store">
+                내 상품
+                <a class="my-product" href="myorderlist.html">
+                    <section class="buy-product">
+                        주문 내역
+                    </section>
+                </a>
+            </section>
+        </aside>
+            <div class="my-qna-list-right">
+                <section class="my-qna-plogging-list">
+                   <div class="plogging-qna-title">
+                        플로깅 문의내역
+                   </div> 
+                   <div class="plogging-qna-table">
+                    <table class="type09" style="table-layout:fixed">
+                        <thead>
+                        <tr>
+                          <th scope="cols">프로젝트명</th>
+                          <th scope="cols">문의내용</th>
+                          <th scope="cols">답변여부</th>
+                          <th scope="cols">작성일자</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th class="plogging-title" scope="row">지구 쓰담쓰담</th>
+                            <td class="qna-content">신청만 하고 참가 못하면 다음에 참가 못하는건 아니죠?</td>
+                            <td class="qna-answer">O</td>
+                            <td class="qna-date" style="vertical-align: middle;">2022-05-22</td>
+                          </tr>
+                          <tr>
+                            <th class="plogging-title" scope="row">함께 뛰어요</th>
+                            <td class="qna-content">친구들 더 데려오면 포인트 더 주는건 없나요?</td>
+                            <td class="qna-answer">O</td>
+                            <td class="qna-date" style="vertical-align: middle;">2022-05-21</td>
+                          </tr>
+                          <tr>
+                            <th class="plogging-title" scope="row">에코 플로깅</th>
+                            <td class="qna-content">코스가 한군데 뿐인가요?</td>
+                            <td class="qna-answer">O</td>
+                            <td class="qna-date" style="vertical-align: middle;">2022-05-20</td>
+                          </tr>
+                        <tr>
+                            <th class="plogging-title" scope="row">Save Earth</th>
+                            <td class="qna-content">중간에 일생겨서 나가게 되면 포인트 못받나요?</td>
+                            <td class="qna-answer">O</td>
+                            <td class="qna-date" style="vertical-align: middle;">2022-05-18</td>
+                          </tr>
+                        <tr>
+                          <th class="plogging-title" scope="row">클린어스</th>
+                          <td class="qna-content">더 많이 주워도 포인트 더 안주는건가요?</td>
+                          <td class="qna-answer">X</td>
+                          <td class="qna-date" style="vertical-align: middle;">2022-05-17</td>
+                        </tr>
+                        <tr>
+                          <th class="plogging-title" scope="row">함께 걷자</th>
+                          <td class="qna-content">중간에 쉬는시간도 있을까요?</td>
+                          <td class="qna-answer">O</td>
+                          <td class="qna-date" style="vertical-align: middle;">2022-05-15</td>
+                        </tr>
+                        <tr>
+                          <th class="plogging-title" scope="row">그린 플로깅</th>
+                          <td class="qna-content">예정시간보다 빨리 끝나도 늦게 나가요?</td>
+                          <td class="qna-answer">O</td>
+                          <td class="qna-date" style="vertical-align: middle;">2022-05-10</td>
+                        </tr>
+                        </tbody>
+                      </table>
+                   </div>                    
+                </section>
+                <section class="my-qna-store-list">
+                    <div class="store-qna-title">
+                        스토어 문의내역
+                   </div> 
+                   <div class="store-qna-table">
+                    <table class="type09" style="table-layout:fixed">
+                        <thead>
+                        <tr>
+                          <th scope="cols">상품명</th>
+                          <th scope="cols">문의내용</th>
+                          <th scope="cols">답변여부</th>
+                          <th scope="cols">작성일자</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th class="store-title" scope="row">친환경 티슈</th>
+                            <td class="qna-content">요청사항 필히 읽어주세요. 경비실에 맡겨주세요.</td>
+                            <td class="qna-answer">O</td>
+                            <td class="qna-date" style="vertical-align: middle;">2022-05-25</td>
+                          </tr> 
+                           <tr>
+                            <th class="store-title" scope="row">친환경 클리너</th>
+                            <td class="qna-content">클리너도 친환경 제품이 있는지 이제 알았네요. 언제오나요?</td>
+                            <td class="qna-answer">O</td>
+                            <td class="qna-date" style="vertical-align: middle;">2022-05-19</td>
+                          </tr>
+                          <tr>
+                            <th class="store-title" scope="row">화장품</th>
+                            <td class="qna-content">롯데택배만 빼고 다른택배로 보내주세요.</td>
+                            <td class="qna-answer">O</td>
+                            <td class="qna-date" style="vertical-align: middle;">2022-05-21</td>
+                          </tr>
+                          <tr>
+                            <th class="store-title" scope="row">친환경 유기농 채소</th>
+                            <td class="qna-content">농약 안친거 확실한거죠?</td>
+                            <td class="qna-answer">O</td>
+                            <td class="qna-date" style="vertical-align: middle;">2022-05-16</td>
+                          </tr>
+                          <tr>
+                            <th class="store-title" scope="row">친환경 세제</th>
+                            <td class="qna-content">비싸도 친환경이라서 주문했는데 잘닦이겠죠?</td>
+                            <td class="qna-answer">O</td>
+                            <td class="qna-date" style="vertical-align: middle;">2022-05-14</td>
+                          </tr>
+                         <tr>
+                            <th class="store-title" scope="row">대나무 빨대</th>
+                            <td class="qna-content">대나무 빨대는 환경호르몬 안나오는거 맞나요?</td>
+                            <td class="qna-answer">O</td>
+                            <td class="qna-date" style="vertical-align: middle;">2022-05-11</td>
+                          </tr>
+                         <tr>
+                          <th class="store-title" scope="row">친환경 티슈</th>
+                          <td class="qna-content">지난주에 주문했는데 언제 배송되나요?</td>
+                          <td class="qna-answer">O</td>
+                          <td class="qna-date" style="vertical-align: middle;">2022-05-09</td>
+                        </tr>                         
+                    </tbody>
+                </table>
+             </div>
+                </section>
+               
+            </div>
+        </div>
+    </div>
+</body>
+<script src="mypage.js"></script>
+
+</html>

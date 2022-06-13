@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>  
+    <link rel="stylesheet" href="mypage_style.css">    
+    <title>내 후기 내역</title>
+</head>
+<body>
+    <div class="mypage-outline">
+        <div class="mypage-wrap">
+          <aside class="left-side">
+            <section class="my-profile">  
+                <div class="user-letter">                        
+                    <div class="my-profile-nickname">
+                        <p><strong>김아무개</strong></p>
+                    </div>
+                    <div class="email">                        
+                        <div class="my-profile-email">
+                            <p><strong>이메일@naver.com</strong></p>
+                        </div>
+                    </div>
+                </div>                   
+                <div class="my-profile-image">
+                    <img src="1361876.png">
+                </div>                    
+            </section>
+            <hr class="line">
+            <section class="user-info-modify">
+                <a class="info-modify" href="userInfoChange.html">
+                회원정보 수정</a>
+            </section>
+            <hr class="line">
+            <a class="point-check" href="mypoint.html">
+                <section class="user-point">
+                    <div class="my-point">
+                        내 포인트
+                    </div>
+                    <div class="point-number">
+                        0P
+                    </div>
+                </section></a>
+                <a class="my-reply" href="myReview.html">
+                    <section class="reply">
+                        내 후기
+                    </section></a>
+                <a class="my-QnA" href="myQnA.html">
+                    <section class="QnA">
+                        내 문의
+                    </section></a>
+            <hr class="line">                
+            <section class="user-store">
+                내 상품
+                <a class="my-product" href="myorderlist.html">
+                    <section class="buy-product">
+                        주문 내역
+                    </section>
+                </a>
+            </section>
+        </aside>
+            <div class="my-qna-list-right">
+                <section class="my-review-plogging-list">
+                   <div class="plogging-review-title">
+                        플로깅 후기내역
+                   </div> 
+                   <div class="plogging-review-table">
+                    <table class="type09" style="table-layout:fixed">
+                        <thead>
+                        <tr>
+                          <th scope="cols">프로젝트명</th>
+                          <th scope="cols">후기내용</th>
+                          <th scope="cols">작성일자</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th class="plogging-title" scope="row">지구 쓰담쓰담</th>
+                            <td class="review-content">중간중간 인원이 빠져나가는것처럼 보였어요</td>
+                            <td class="review-date" style="vertical-align: middle;">2022-05-22</td>
+                          </tr>
+                          <tr>
+                            <th class="plogging-title" scope="row">함께 뛰어요</th>
+                            <td class="review-content">오르막이 심해서 힘들었지만 더 보람있었습니다.</td>
+                            <td class="review-date" style="vertical-align: middle;">2022-05-17</td>
+                          </tr>
+                          <tr>
+                            <th class="plogging-title" scope="row">에코 플로깅</th>
+                            <td class="review-content">다음엔 좀더 길게 하고 포인트 더 줬으면 좋겠습니다.</td>
+                            <td class="review-date" style="vertical-align: middle;">2022-05-10</td>
+                          </tr>
+                        <tr>
+                            <th class="plogging-title" scope="row">Save Earth</th>
+                            <td class="review-content">다들 웃으면서 하니까 힘이 나더라구요.</td>
+                            <td class="review-date" style="vertical-align: middle;">2022-04-18</td>
+                          </tr>
+                        <tr>
+                          <th class="plogging-title" scope="row">클린어스</th>
+                          <td class="review-content">생각보다 쓰레기가 없었어요</td>
+                          <td class="review-date" style="vertical-align: middle;">2022-04-07</td>
+                        </tr>
+                        <tr>
+                          <th class="plogging-title" scope="row">함께 걷자</th>
+                          <td class="review-content">사람도 많고 날씨도 좋았어요.</td>
+                          <td class="review-date" style="vertical-align: middle;">2022-04-01</td>
+                        </tr>
+                         <tr>
+                          <th class="plogging-title" scope="row">그린 플로깅</th>
+                          <td class="review-content">처음해봤는데 재미있었어요.</td>
+                          <td class="review-date" style="vertical-align: middle;">2022-03-10</td>
+                        </tr>
+                        </tbody>
+                      </table>
+                   </div>                    
+                </section>
+                <section class="my-review-store-list">
+                    <div class="store-review-title">
+                        스토어 후기내역
+                   </div> 
+                   <div class="store-review-table">
+                    <table class="type09" style="table-layout:fixed">
+                        <thead>
+                        <tr>
+                          <th scope="cols">상품명</th>
+                          <th scope="cols">후기내용</th>
+                          <th scope="cols">작성일자</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th class="store-title" scope="row">친환경 티슈</th>
+                            <td class="review-content">언제오는건가요?</td>
+                            <td class="review-date" style="vertical-align: middle;">2022-05-25</td>
+                          </tr>
+                          <tr>
+                            <th class="store-title" scope="row">화장품</th>
+                            <td class="review-content">재구매의사 있습니다.</td>
+                            <td class="review-date" style="vertical-align: middle;">2022-05-21</td>
+                          </tr>
+                          <tr>
+                            <th class="store-title" scope="row">친환경 클리너</th>
+                            <td class="review-content">클리너는 역시 친환경 클리너죠</td>
+                            <td class="review-date" style="vertical-align: middle;">2022-05-19</td>
+                          </tr>
+                          <tr>
+                            <th class="store-title" scope="row">친환경 유기농 채소</th>
+                            <td class="review-content">농약 안쳐서 그런지 모양은 좀...</td>
+                            <td class="review-date" style="vertical-align: middle;">2022-05-16</td>
+                          </tr>
+                          <tr>
+                            <th class="store-title" scope="row">친환경 세제</th>
+                            <td class="review-content">생각보다 향이 독해서 놀랐네요.</td>
+                            <td class="review-date" style="vertical-align: middle;">2022-05-14</td>
+                          </tr>
+                        <tr>
+                            <th class="store-title" scope="row">대나무 빨대</th>
+                            <td class="review-content">나무향이 나서 좋아요</td>
+                            <td class="review-date" style="vertical-align: middle;">2022-05-11</td>
+                          </tr>
+                        <tr>
+                          <th class="store-title" scope="row">친환경 티슈</th>
+                          <td class="review-content">지난번에 구매했었는데 좋아서 재구매합니다.</td>
+                          <td class="review-date" style="vertical-align: middle;">2022-05-09</td>
+                        </tr>                         
+                    </tbody>
+                </table>
+             </div>
+                </section>
+               
+            </div>
+        </div>
+    </div>
+</body>
+<script src="mypage.js"></script>
+
+</html>
