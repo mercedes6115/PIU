@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>유저정보</title>
+</head>
+<link rel="stylesheet" href="admin_style.css">
+<link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+<body>
+    <div class="root">
+
+        <!-- sidebar -->
+        <div id="sidebar">
+        </div>
+
+        <!-- content -->
+        <div id="container">
+            <div>
+                <h2>유저정보</h2>
+            </div>
+            <div class="listBox" id="userDetail">
+                <table>
+                    <tr>
+                        <th>아이디</th>
+                        <td>ㄴㅇㄹ</td>
+                    </tr>
+                    <tr>
+                        <th>단체명</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>담당자 전화번호</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>단체 전화번호</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>단체주소</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>단체 사업자번호</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>등록날짜</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>상태</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>승인여부</th>
+                        <td></td>
+                    </tr>
+                </table>
+         
+                <table>
+                    <tr>
+                        <th></th>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+        $('#sidebar').load("adminSideBar.html");
+
+    })
+</script>
+
+</html>

@@ -16,97 +16,6 @@
 
         <!-- sidebar -->
         <div id="sidebar">
-            <ul>
-                <li class="sidebarCategory">
-                    <a href="#">
-                        <div>
-                            <span class="material-symbols-outlined icon">person
-                            </span>
-                            <span class="sidebarTitle">유저 관리</span>
-                        </div>
-
-                    </a>
-
-                </li>
-                <li class="sidebarCategory">
-                    <a href="#">
-                        <div><span class="material-symbols-outlined icon">
-                                storefront
-                            </span><span class="sidebarTitle">상품 관리</span>
-                        </div><span class="material-symbols-outlined more">
-                            expand_more
-                        </span>
-                    </a>
-                    <!-- onClick 시 노출 -->
-                    <ul class="sidebarDetail">
-                        <li><a id="detail" href="#">상품 등록</a></li>
-                        <li><a id="detail" href="#">상품 목록</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">
-                        <div>
-                            <span class="material-symbols-outlined icon">
-                                shopping_cart
-                            </span><span class="sidebarTitle">주문 관리</span>
-                        </div>
-                        <span class="material-symbols-outlined more">
-                            expand_more
-                        </span>
-                    </a>
-                    <!-- onClick 시 노출 -->
-                    <ul class="sidebarDetail">
-                        <li><a id="detail" href="#">전체주문목록</a></li>
-                        <li><a id="detail" href="#">배송 관리</a></li>
-                        <li><a id="detail" href="#">취소 관리</a></li>
-                    </ul>
-                </li>
-                <li class="sidebarCategory">
-                    <a href="#">
-                        <div>
-                            <span class="material-symbols-outlined icon">
-                                public
-                            </span>
-                            <span class="sidebarTitle">프로젝트 관리</span>
-                        </div>
-                        <span class="material-symbols-outlined more">
-                            expand_more
-                        </span>
-                    </a>
-                    <!-- onClick 시 노출 -->
-                    <ul class="sidebarDetail">
-                        <li><a id="detail" href="#">프로젝트 생성</a></li>
-                        <li><a id="detail" href="#">프로젝트 목록</a></li>
-                        <li><a id="detail" href="#">QR코드</a></li>
-                    </ul>
-                </li>
-                <li class="sidebarCategory">
-                    <a href="#">
-                        <div>
-                            <span class="material-symbols-outlined icon">
-                                assignment
-                            </span>
-                            <span class="sidebarTitle">게시물 관리</span>
-                        </div>
-                        <span class="material-symbols-outlined more">
-                            expand_more
-                        </span>
-                    </a>
-                </li>
-                <li class="sidebarCategory">
-                    <a href="#">
-                        <div>
-                            <span class="material-symbols-outlined icon">
-                                analytics
-                            </span>
-                            <span class="sidebarTitle">통계 현황</span>
-                        </div>
-                        <span class="material-symbols-outlined more">
-                            expand_more
-                        </span>
-                    </a>
-                </li>
-            </ul>
         </div>
 
         <!-- content -->
@@ -213,15 +122,11 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 
-// 체크박스 체크시 
+// 체크박스 체크시 해당 유저의 번호를 id값으로 변경
 $('.userCheck').on("click", function(){
     console.log(this);
     
 })
-
-
-
-
 
 
 // 비활성화 버튼 클릭시
@@ -244,6 +149,33 @@ $('#userDisabled').on("click", function(e){
 
     }
 });
+
+
+// 승인 버튼 클릭시
+$('#userApprove').on("click", function(e){
+    if(confirm("해당 유저를 승인 하시겠습니까?")){
+
+
+        // 해당 유저 승인처리
+        $.ajax({
+          url: "",
+          type: "post",
+          data: {userNumber: $userNumber},
+          success: function(){
+              
+          }
+       });
+
+
+    }else{
+
+    }
+});
+
+$(document).ready(function(){
+        $('#sidebar').load("adminSideBar.html");
+
+    })
 </script>
 
 </html>
