@@ -1,35 +1,12 @@
-/* 로고 유토이미지 */
-@font-face {
-    font-family: 'Openas';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/Openas.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-/* 강조하는 부분 산돌 삼립호빵체  */
-@font-face {
-    font-family: 'SDSamliphopangche_Basic';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Basic.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-/* 본문체 noto sans kr */
-@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
-
-.notosanskr * {
-    font-family: 'Noto Sans KR', sans-serif;
-}
-
 body{
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: '맑은 고딕', 'Malgun Gothic', 'Dotum', '돋움', 'arial', 'verdana', sans-serif;
     display: block;
     margin: 0;
     padding: 0;
     min-width: 1600px;
     height: 100%;
     word-spacing: -1px;
-    background: #ecf0f7;
+    background-color: #ecf0f7 !important;
     font-size: 14px;
 }
 
@@ -46,7 +23,7 @@ body{
 }
 
 @media (min-width: 1920px){
-    .container {
+    .content {
         width: 1616px;
         margin: 0 auto;
     }
@@ -69,10 +46,9 @@ body{
     margin : 40px 0 14px
 }
 .product h1{
-    font-family: 'SDSamliphopangche_Basic';
     position: relative;
     display: inline-block;
-    font-size: 40px;
+    font-size: 30px;
     line-height: 30px;
     font-weight: bold;
     vertical-align: middle;
@@ -97,7 +73,6 @@ table{
 }
 
 .togglebar h2{
-    font-family: 'Noto Sans KR', sans-serif;
     float: left;
     padding: 0px 0 0 20px;
     font-size: 20px;
@@ -157,7 +132,6 @@ tr{
 }
 
 .toggleArea th{
-    font-family: 'Noto Sans KR', sans-serif;
     border: 1px solid #dedede;
     text-align: left;
     word-break: keep-all;
@@ -174,7 +148,6 @@ tr{
 }
 
 .toggleArea td{
-    font-family: 'Noto Sans KR', sans-serif;
     border: 1px solid #dedede;
     padding: 10px 15px;
     line-height: 24px;
@@ -187,6 +160,7 @@ tr{
     max-width: 100%;
     color: #686b6d;
     width: 500px;
+    margin-right: 5px;
 
 }
 
@@ -202,13 +176,17 @@ input{
     color: #686b6d;
     outline: 0 none;
     transition: border .2s ease-out;
+
+
 }
 
 .pay{
     text-align: right;
+    margin-right: 5px;
 }
 .summary{
     width: 80%;
+    margin-right: 5px;
 }
 .panel-body{
     height: 400px;
@@ -231,7 +209,6 @@ input .check{
 }
 
 .picture{
-    font-family: 'Noto Sans KR', sans-serif;
     background-color: #686868;
     border-radius: 3px;
     color: #fff;
@@ -239,7 +216,6 @@ input .check{
 }
 
 .submitbtn button{
-    font-family: 'Noto Sans KR', sans-serif;
     background-color: skyblue;
     padding: 15px;
     border-radius: 3px;
@@ -260,4 +236,115 @@ input .check{
     background-color: #fff;
     width: 100%;
     padding: 20px;
+}
+
+
+/* test */
+ul, li{
+    overflow: hidden;
+    list-style: none;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+}
+li {
+    list-style: none;
+
+}
+
+form input::file-selector-button{
+    display: none;
+}
+
+.count{
+    display: flex;
+    color: #97989b;
+    word-spacing: 3px;
+    vertical-align: bottom;
+}
+
+
+.extraImg li{
+    float: left;
+
+}
+
+
+image{
+    width: 200px;
+    height: 200px;
+}
+
+
+.largeImg, .inputImg{
+    width: 210px;
+    height: 210px;
+    cursor: pointer;
+    border: 0;
+}
+
+.imgIcon{
+    overflow: hidden;
+    text-indent: -150%;
+    white-space: nowrap;
+    font-size: 1px;
+    line-height: 0;
+    color: transparent;
+    cursor: pointer;
+    box-sizing: border-box;
+    border: 1px solid #d4d4d4;
+    transition: .3s ease-out;
+
+    position: relative;
+    margin: 10px 0 10px 0;
+
+}
+.smallImg{
+    width: 100px;
+    height: 100px;
+}
+
+
+.imgIcon::after{
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2px;
+    height: 16px;
+    margin: -8px 0 0 -1px;
+    background-color: #565656;
+    background-image: none;
+}
+.imgIcon::before{
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -1px 0 0 -8px;
+    width: 16px;
+    height: 2px;
+    background-color: #565656;
+    background-image: none;
+
+}
+.textInfo{
+    color: #97989b;
+    font-size: 13px;
+    font-style: normal;
+    margin: 4px 0;
+}
+
+ul.txtInfo li:before {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 1px;
+    top: 10px;
+    left: 0;
+    background-color: #a7a8aa;
+}
+
+ul.txtInfo li{
+    line-height: 21px;
 }
