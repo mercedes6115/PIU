@@ -19,12 +19,45 @@
             <div class="userStatus"><strong>오늘 가입자수 20명 동시 접속자수 50명</strong></div>
   
             <div class="statusBox">
-                <!-- 문의 현황 -->
-                <div>
-                   <h2>승인 대기자 (수정중)</h2>
+                
+           
+                <div id="user">
+                    
+                   <table>
+                       <tr>
+                        <td>구분</td>
+                        <td colspan="2">아이디</td>
+                        <td colspan="2">단체명</td>
+                           <td>가입일자</td>
+                           <td>상태</td>
+                           
+                       </tr>
+                       <tr>
+                        <td>1</td>
+                           <td colspan="2">gao@naver.com</td>
+                           <td colspan="2">장미봉사단</td>
+                           <td>2022-06-13</td>
+                           <td>승인대기</td>
+                       </tr>
+                       <tr>
+                        <td>2</td>
+                        <td colspan="2">gao@naver.com</td>
+                        <td colspan="2">장미봉사단</td>
+                        <td>2022-06-13</td>
+                        <td>승인대기</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td colspan="2">gao@naver.com</td>
+                        <td colspan="2">장미봉사단</td>
+                        <td>2022-06-13</td>
+                        <td>승인대기</td>
+                    </tr>
+                         
+                   </table>
                 </div>
                 
-                <!-- 후기 현황 -->
+
                 <div>
                     <h2>미답변 문의 (수정중)</h2>
                 </div>
@@ -72,97 +105,6 @@
 
         <!-- sidebar  -->
         <div id="sidebar">
-            <ul>
-                <li class="sidebarCategory">
-                    <a href="#">
-                        <div>
-                            <span class="material-symbols-outlined icon">person
-                            </span>
-                            <span class="sidebarTitle">유저 관리</span>
-                        </div>
-                      
-                    </a>
-               
-                </li>
-                <li class="sidebarCategory">
-                    <a href="#">
-                        <div><span class="material-symbols-outlined icon">
-                                storefront
-                            </span><span class="sidebarTitle">상품 관리</span>
-                        </div><span class="material-symbols-outlined more">
-                            expand_more
-                        </span>
-                    </a>
-                    <!-- onClick 시 노출 -->
-                    <ul class="sidebarDetail">
-                        <li><a id="detail" href="#">상품 등록</a></li>
-                        <li><a id="detail" href="#">상품 목록</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">
-                        <div>
-                            <span class="material-symbols-outlined icon">
-                                shopping_cart
-                            </span><span class="sidebarTitle">주문 관리</span>
-                        </div>
-                        <span class="material-symbols-outlined more">
-                            expand_more
-                        </span>
-                    </a>
-                    <!-- onClick 시 노출 -->
-                    <ul class="sidebarDetail">
-                        <li><a id="detail" href="#">전체주문목록</a></li>
-                        <li><a id="detail" href="#">배송 관리</a></li>   
-                        <li><a id="detail" href="#">취소 관리</a></li>   
-                    </ul>
-                </li>
-                <li class="sidebarCategory">
-                    <a href="#">
-                        <div>
-                            <span class="material-symbols-outlined icon">
-                                public
-                            </span>
-                            <span class="sidebarTitle">프로젝트 관리</span>
-                        </div>
-                        <span class="material-symbols-outlined more">
-                            expand_more
-                        </span>
-                    </a>
-                    <!-- onClick 시 노출 -->
-                    <ul class="sidebarDetail">
-                        <li><a id="detail" href="#">프로젝트 생성</a></li>
-                        <li><a id="detail" href="#">프로젝트 목록</a></li>
-                        <li><a id="detail" href="#">QR코드</a></li>
-                    </ul>
-                </li>
-                <li class="sidebarCategory">
-                    <a href="#">
-                        <div>
-                            <span class="material-symbols-outlined icon">
-                                assignment
-                                </span>
-                            <span class="sidebarTitle">게시물 관리</span>
-                        </div>
-                        <span class="material-symbols-outlined more">
-                            expand_more
-                        </span>
-                    </a>
-                </li>
-                <li class="sidebarCategory">
-                    <a href="#">
-                        <div>
-                            <span class="material-symbols-outlined icon">
-                                analytics
-                            </span>
-                            <span class="sidebarTitle">통계 현황</span>
-                        </div>
-                        <span class="material-symbols-outlined more">
-                            expand_more
-                        </span>
-                    </a>
-                </li>
-            </ul>
         </div>
         <!-- sidebar -->
 
@@ -170,6 +112,10 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+  $(document).ready(function(){
+        $('#sidebar').load("adminSideBar.html");
 
+    })
 </script>
+
 </html>

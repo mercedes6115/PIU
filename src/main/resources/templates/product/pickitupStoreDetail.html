@@ -97,7 +97,7 @@
    <form action="">
         <div class="pay_bar_media" style="text-align: center;">
             <div class="flex" style="width: 100%;">
-                <div style="width: 7%; padding-left: 10px;"><span class="material-symbols-outlined pointer" style="font-size: 40px; padding-top: 15px;">
+                <div style="width: 7%; padding-left: 10px;"><span class="material-symbols-outlined pointer jjim-ajax" style="font-size: 40px; padding-top: 15px;">
                     favorite
                     </span></div>
                 <input class="toBuy" type="submit" value="구매하기" style="width: 90%; height: 50px;">
@@ -134,7 +134,7 @@
                     <div class="flex" style="width: 100%;">
                         <div class="flex" style="width: 100%;"">
                             <div class="btn text-align flex" style="margin-right: 5px;  justify-content: center; align-items: center;">
-                                <span class="padding-t material-symbols-outlined" style="font-size: 20px;">
+                                <span class="padding-t material-symbols-outlined jjim-ajax" style="font-size: 20px;">
                                 favorite
                                 </span> <p style="font-weight: normal; font-size: 14px; margin: 0;">&nbsp; 좋아요</p></div>
                             <div class="btn text-align flex share_btn" style="margin-right: 5px;  justify-content: center; align-items: center;"><span class="padding-t material-symbols-outlined" style="font-size: 18px;">
@@ -324,7 +324,7 @@
 
                 <div class="flex" style="width: 100%;"">
                     <div class="btn text-align flex" style="margin-right: 5px;  justify-content: center; align-items: center;">
-                        <span class="padding-t material-symbols-outlined" style="font-size: 20px;">
+                        <span class="padding-t material-symbols-outlined jjim-ajax" style="font-size: 20px;">
                         favorite
                         </span> <p style="font-weight: normal; font-size: 14px; margin: 0;">&nbsp; 좋아요</p></div>
                     <div class="btn text-align flex share_btn" style="margin-right: 5px;  justify-content: center; align-items: center;"><span class="padding-t material-symbols-outlined" style="font-size: 18px;">
@@ -466,6 +466,54 @@
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script>
+     //리뷰 리스트 js
+     function showReviewList(page){
+        reviewService.getReviewList({bno: boardBno, page: page}, function(total, list){
+            let str = "";
+
+            if(list == null || list.length == 0){
+                replyUL.html("");
+                return;
+            }
+
+            $.each(list, function(i, reply){
+                str += '<div> <div class="flex" style="align-items: flex-end;">';
+                str += '<div class="profile_img"><img src="/src/main/resources/static/images/2.jpg" style="width: 100%; height: 100%;"></div>';
+                str += '<div class="small_and_gray">닉네임뭐짓지&nbsp;•&nbsp;</div>';
+                str += '<div class="small_and_gray">2022-06-08</div></div>';
+                str += '<div>이 장갑끼고 스키장에 다녀왔어요!! 그래도 여전히 튼튼합니다!</div>';
+                str += '<div style="width: 200px; height:100px"><img src="/src/main/resources/static/images/5.jpg" style="width: 100%; height: 100%;"></div> </div>';
+                str += '<div class="space_line"></div>';
+            });
+            $('.toitem_review').html(str);
+        });
+    }
+
+    //문의 리스트 js
+     function showQuestionList(page){
+        questionService.getQuestionList({bno: boardBno, page: page}, function(total, list){
+            let str = "";
+
+            if(list == null || list.length == 0){
+                replyUL.html("");
+                return;
+            }
+
+            $.each(list, function(i, reply){
+                str += '<div class="flex" style="align-items: center;">';
+                str += '<div class="profile_img"><img src="/src/main/resources/static/images/1.jpg" style="width: 100%; height: 100%;"></div>';
+                str += '<div>';
+                str += '<div class="small_and_gray" style="color: black;">배고프다</div>';
+                str += '<div class="small_and_gray">2022.06.08</div>';
+                str += '</div></div>';
+                str += '<div class="space"></div>';
+                str += '<div class="small_and_gray" style="color: black;"><p>초록색 고무장갑 특 엑스 라지는 없나요?</p></div>';
+            });
+
+            $('.qnas').html(str);
+        });
+    }
+
     
     //scroll top
 $('.toTop').click(function(){
@@ -486,7 +534,25 @@ $('.toTop').click(function(){
     })
     //작성완료 버튼 클릭시
     $('.review-finish').click(function(){
+        //후기 추가
+        $.ajax({
+            url: "",
+            type: "post",
+            data: JSON.stringify(review),
+            contentType: "application/json",
+            success: function(result){
+               if(callback){
+                   callback(result);
+               }
+            },
+            error: function(xhr, status, er){
+                if(error){
+                    error(xhr, status, er);
+                }
+            }
+        });
 
+        showReviewList(1); //다시 리스트 리프레쉬
     })
     //취소 버튼 클릭시
     $('.review-cancel').click(function(){
@@ -509,7 +575,25 @@ $('.toTop').click(function(){
     })
     //작성완료 버튼 클릭시
     $('.question-finish').click(function(){
+        //문의 추가
+        $.ajax({
+            url: "",
+            type: "post",
+            data: JSON.stringify(question),
+            contentType: "application/json",
+            success: function(result){
+               if(callback){
+                   callback(result);
+               }
+            },
+            error: function(xhr, status, er){
+                if(error){
+                    error(xhr, status, er);
+                }
+            }
+        });
 
+        showQuestionList(1); //다시 리스트 리프레쉬
     })
     //취소 버튼 클릭시
     $('.question-cancel').click(function(){
@@ -565,6 +649,29 @@ $('.toTop').click(function(){
             modal.style.display = "none";
         }
     }
+
+    //좋아요 js
+    $('.jjim-ajax').click(function(){
+        if($(this).hasClass("red")){
+            $(this).removeClass("red");
+        }else{
+            $(this).addClass("red");
+        }
+
+        $.ajax({
+            url : "", //찜table 연결하는곳
+            type : "post",
+            data : "상품데이터",
+            contentType : "application/json",
+            dataType : "json",
+            success : function(){
+
+            },
+            error : function(xhr,status,er){
+                
+            }
+        })
+    })
     
 
     //--------------------------- 공유하기 api----------------------------------

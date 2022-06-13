@@ -264,8 +264,24 @@ a#detail{
 }
 
 .active{
-    background-color: "#0d318c";
+    background-color: #0d318c;
 }
+
+#user {
+    font-size: 12px;
+    padding: 10px;
+    background-color: white;
+    height: 145px;
+}
+
+#user td{
+    padding: 5px;
+}
+
+#user table{
+    text-align: center;
+}
+
 
 /* userList */
 
