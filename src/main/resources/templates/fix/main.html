@@ -1,27 +1,25 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="/assets/css/Header.css"/>
-    <link rel="stylesheet" href="/assets/css/Main.css"/>
-    <link rel="stylesheet" href="/assets/css/Footer.css"/>
+    <link rel="stylesheet" th:href="@{/assets/css/Header.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/Main.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/Footer.css}"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
-</head>
+
 <body>
 
-<div id="HeaderImport">
-
-</div>
 <!--여기까지가 헤더 입니다-->
-
-
+<div th:replace="~{/fix/Header :: HeaderImport}"></div>
 <!--여기서부터 메인 컨텐츠-->
-
 
 <div class="banners-container-total">
     <div class="banner-container-inside1">
@@ -959,15 +957,13 @@
 
 
         <!--여기부터 푸터-->
-        <div id="FooterImport">
-
-        </div>
+        <div th:replace="~{/fix/Footer :: FooterImport}"></div>
 
 </body>
 
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script type=text/javascript src="/assets/js/SlideShow.js"></script>
-<script type=text/javascript src="/assets/js/Banner.js"></script>
+<script type=text/javascript th:src="@{/assets/js/SlideShow.js}"></script>
+<script type=text/javascript th:src="@{/assets/js/Banner.js}"></script>
 
 
 <script>
@@ -1002,10 +998,10 @@
     }
 
     // 외부 html파일 JQuery를 이용해 load하는 함수
-    $(function(){
-        $("#HeaderImport").load("Header.html");
-        $("#FooterImport").load("Footer.html");
-    });
+    // $(function(){
+    //     $("#HeaderImport").load("Header.html");
+    //     $("#FooterImport").load("Footer.html");
+    // });
 
 
 
