@@ -251,7 +251,6 @@ ul, li{
 }
 li {
     list-style: none;
-
 }
 
 form input::file-selector-button{
@@ -266,10 +265,10 @@ form input::file-selector-button{
 }
 
 
+
 .extraImg li{
     float: left;
 }
-
 
 label[for='attach'] div{
     width: 210px;
@@ -278,7 +277,6 @@ label[for='attach'] div{
     cursor: pointer;
 }
 .largeImg, .inputImg{
-    cursor: pointer;
     border: 0;
 }
 .bigThumb{
@@ -319,7 +317,7 @@ label[for='attach'] div{
 }
 
 
-.imgIcon::after{
+span::after{
     content: "";
     position: absolute;
     top: 50%;
@@ -330,7 +328,7 @@ label[for='attach'] div{
     background-color: #565656;
     background-image: none;
 }
-.imgIcon::before{
+span::before{
     content: "";
     position: absolute;
     top: 50%;
