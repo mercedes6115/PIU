@@ -1232,34 +1232,44 @@ input::placeholder{
     width: 80%;
 }
 /* -------------------------------공통 요소---------- */
-label[for='attach'] div.hide{
-    width: 25px;
-    height: 25px;
-    background-image: url("/src/main/resources/static/images/attach.png");
-    background-size: 100% 100%;
-    cursor: pointer;
-}
-label[for='attach'] div.thumb{
+label[for='attach1'] div.thumb1{
     width: 130px;
     height: 130px;
-    background-image: url("/src/main/resources/static/images/insert.png");
+    background-image: url("");
     background-size: 100% 100%;
     cursor: pointer;
-    display: none;
+    border: 1px solid;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-label[for='attach'] div.thumb2{
+label[for='attach2'] div.thumb2{
     width: 130px;
     height: 130px;
-    background-image: url("/src/main/resources/static/images/insert.png");
+    background-image: url("");
     background-size: 100% 100%;
     cursor: pointer;
+    border: 1px solid;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: gray;
 }
-label[for='attach'] div.thumb3{
+label[for='attach3'] div.thumb3{
     width: 130px;
     height: 130px;
-    background-image: url("/src/main/resources/static/images/insert.png");
+    background-image: url("");
     background-size: 100% 100%;
     cursor: pointer;
+    border: 1px solid;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: gray;
+
 }
 
 .pay_point{
@@ -1382,24 +1392,13 @@ label[for='attach'] div.thumb3{
   .mt-20{
     margin-top: 20px;
   }
-  .review_modify button{
-    background-color: white;
-    border: 1px solid rgba(0,0,0,0.15);
-    border-radius: 3px;
-    cursor: pointer;
+  .review_modify img{
+    width: 23px;
+    height: 23px;
   }
-  .review_delete button{
-    background-color: white;
-    border: 1px solid rgba(0,0,0,0.15);
-    border-radius: 3px;
-    cursor: pointer;
-  }
-  .review_modify button:hover{
-    background-color: #dedbdb;
-  }
-  .review_delete button:hover{
-    background-color: #dedbdb;
-
+  .review_delete img{
+    width: 27px;
+    height: 23px;
   }
 
 /* -------------------------------공통 요소---------- */
