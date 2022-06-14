@@ -12,6 +12,6 @@ public class MainController {
 
     @GetMapping("/main")
     public void main(){
-        log.info("==============main페이지");
+        log.info("============== main페이지");
     }
 }

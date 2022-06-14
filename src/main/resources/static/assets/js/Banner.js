@@ -104,7 +104,7 @@ nextBtn.addEventListener('click', function () {
       banner.style.left = -(currentBannerIdx + 2) * (bannerWidth + bannerMargin) + 'px';
       banner.style.transition = `${0.5}s ease-out`; //이동 속도
     }
-    if (currentBannerIdx === bannerCount - 1) {
+    if (currentBannerIdx == bannerCount - 1) {
       //마지막 슬라이드 일때
       setTimeout(function () {
         //0.5초동안 복사한 첫번째 이미지에서, 진짜 첫번째 위치로 이동
@@ -132,7 +132,7 @@ nextBtn.addEventListener('click', function () {
         bannerBackgroundright.style.backgroundColor=rightColorIndex[currentBannerIdx];
         bannerBackgroundright.style.transition = `${0.5}s ease-out`;
     }
-    if (currentBannerIdx === 0) { // ===은 데이터타입까지 비교해주기 위함
+    if (currentBannerIdx == 0) { // ===은 데이터타입까지 비교해주기 위함
       setTimeout(function () {
         banner.style.left = -bannerCount * (bannerWidth + bannerMargin) + 'px';
         banner.style.transition = `${0}s ease-out`;
