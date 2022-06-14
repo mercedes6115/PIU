@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/assets/css/header.css" />
-    <link rel="stylesheet" href="/assets/css/footer.css" />
-    <link rel="stylesheet" href="/assets/css/pickitupStore.css" />
+    <link rel="stylesheet" href="@{/assets/css/header.css}" />
+    <link rel="stylesheet" href="@{/assets/css/footer.css}" />
+    <link rel="stylesheet" href="@{/assets/css/pickitupStore.css}" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 </head>
 <body style="font-family: Noto Sans KR;">
       <!--헤더  -->
 
-   <div id="HeaderImport"></div>
+      <div th:replace="~{/fix/Header :: HeaderImport}"></div>
        <!--헤더 -->
     <div class="item_choose_main">
         <div class="item_select">
@@ -54,9 +54,10 @@
         <span class="material-symbols-outlined toTop" style="font-size: 35px;">
             vertical_align_top
         </span>
-    </div> 
+    </div>
 
-<div id="FooterImport"></div>
+
+      <div th:replace="~{/fix/Footer :: FooterImport}"></div>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <script src="/assets/js/store.js"></script>
@@ -94,10 +95,6 @@
         }
     })
 
-     $(function(){
-         $("#HeaderImport").load("/fix/test/Header.html");
-         $("#FooterImport").load("/fix/test/Footer.html");
-     });
 
 </script>
 

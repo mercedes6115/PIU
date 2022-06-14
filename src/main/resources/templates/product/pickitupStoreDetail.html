@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,10 +12,10 @@
 
 </head>
 <body>
-      <!--헤더  -->
-   
-<div id="HeaderImport"></div>
-   <!--헤더 -->
+        <!--헤더  -->
+
+      <div th:replace="~{/fix/Header :: HeaderImport}"></div>
+        <!--헤더 -->
    
    <!-- 반응형 구매하기 폼태그 -->
    <form action="">
@@ -415,7 +415,7 @@
         
     </div>
 
-      <div id="FooterImport"></div>
+      <div th:replace="~{/fix/Footer :: FooterImport}"></div>
     
     <div class="gototop">
         <span class="material-symbols-outlined toTop" style="font-size: 35px;">
@@ -728,12 +728,5 @@ $('.toTop').click(function(){
          }
   </script>
 
-<script>
-    type = "text/javascript" >
-        $(document).ready(function () {
-                $("#HeaderImport").load("/fix/test/Header.html");  //헤더 인클루드
-                $("#FooterImport").load("/fix/test/Footer.html");  //푸터부분 인클루드
-            }
-        );
-</script>
+
 </html>

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../static/assets/css/mypage_style.css">
+    <link rel="stylesheet" href="/assets/css/mypage_style.css">
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
 
 
@@ -334,15 +334,7 @@
                         </section>                   
                     </section>
                   </div>
-              
-              
-              
-              
-    
-            <button id="popup_open_btn">팝업창 띄어 줘염</button>           
-
-
-               
+            <button id="popup_open_btn">팝업창 띄어 줘염</button>
             </div>
         </div>
     </div>
@@ -399,9 +391,7 @@
         document.getElementById('popup_open_btn').addEventListener('click', function() {
             // 모달창 띄우기
             modal('my_modal');
-        });    
-
-        
+        });
     </script>
 </body>
 </html>

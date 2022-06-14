@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<link rel="stylesheet" href="\src\main\resources\static\assets\css\join.css"/>
+<link rel="stylesheet" href="/assets/css/join.css"/>
 <body>
     <div class="root">
         <div class="wrapper-1">
@@ -64,7 +65,7 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="\src\main\resources\static\assets\js\join.js"></script>
+<script type=text/javascript th:src="@{/assets/js/join.js}"></script>
 <script>
 // 입력받은 파일 이름 넘기기 
 $(document).ready(function(){

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -68,8 +68,8 @@
         <span class="material-symbols-outlined toTop" style="font-size: 35px;">
             vertical_align_top
             </span>
-    </div> 
-<div id="#FooterImport"></div>
+    </div>
+    <div th:replace="~{/fix/Footer :: FooterImport}"></div>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <script>
