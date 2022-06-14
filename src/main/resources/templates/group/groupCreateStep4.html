@@ -14,7 +14,7 @@
             <div class="cpTitleForm">
                 <img src="/src/main/resources/static/images/chun2.png" class="logoImg">
                 <div class="cpTitle">프로젝트 작성하기</div>
-                <div class="cpTitlepercent">40% 완료</div>
+                <div class="cpTitlepercent">60% 완료</div>
                 <div class="cpTitleBtnFrame">
                     <button type="button" class="cpExitBtnForm">
                         <span class="cpExitBtn">나가기</span>
@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="cpTitleBoundary">
-                <div class="cpProcessBar" style="transform: translateX(-60%);"></div>
+                <div class="cpProcessBar" style="transform: translateX(-40%);"></div>
             </div>
         </div>
         <div class="cpBodyFrame">
@@ -49,23 +49,23 @@
                             </span>                    
                         </a>
                     </span>
-                    <span class="sidebarStep3Frame">
+                    <span class="sidebarStepFrame">
                         <a class="sidebarStepForm">
                             <span class="sidebarStepBox">
                                 <div class="sidebarCheckBox">
                                     <span class="material-symbols-outlined">looks_3</span>                                                                                
                                 </div>
-                                <div class="sidebarStepTitle3">소개</div>
+                                <div class="sidebarStepTitle">소개</div>
                             </span>                    
                         </a>
                     </span>
-                    <span class="sidebarStepFrame">
+                    <span class="sidebarStep4Frame">
                         <a class="sidebarStepForm">
                             <span class="sidebarStepBox">
                                 <div class="sidebarCheckBox">
                                     <span class="material-symbols-outlined">looks_4</span>                                                                                
                                 </div>
-                                <div class="sidebarStepTitle">단체 소개</div>
+                                <div class="sidebarStepTitle4">단체 소개</div>
                             </span>                    
                         </a>
                     </span>
@@ -84,49 +84,54 @@
             <div class="cpContentFrame">
                 <div class="cpContentForm">
                     <div class="cpContentContainer">
-                        <div class="cpIntroduceFrame">
-                            <h3 class="cpIntroduceTitle">어떻게 진행하실 건가요?</h3>
-                            <div class="cpIntroduceTitleInfo">프로젝트 상세내용을 알려주세요.</div>
-                            <form action="#" class="imgInsertFrame">
-                                <div class="imgInsertBox">
-                                    <div class="imgInsertForm">
-                                        <div class="imgInsertContainer">
-                                            <label class="imgInsertWindow">
-                                                <input class="imgInsert" type="file" accept="image/*,video/mp4,video/x-m4v,video/*">
-                                                <div class="introImgContainer">
-                                                <div class="introImgBox">
-                                                    <img src="/src/main/resources/static/images/add-photo-portrait.png" class="introImgPlus">
-                                                    <h2 class="introImgText">프로젝트에 대한 상세내용</h2>
-                                                    <p class="imgFieldDefault"></p>
-                                                </div>
+                        <div class="cpGroupIntroFrame">
+                            <h3 class="cpGroupIntroTitle">단체를 소개해 주세요</h3>
+                            <form action="#">
+                                <div class="groupIntroProfileFrame">
+                                    <label class="groupIntroProfileTitle">프로필</label>
+                                    <label class="groupIntroProfileInsertFrame">
+                                        <input type="file" accept="image/*" class="groupProfile">
+                                        <div class="groupIntroProfileForm">
+                                            <div class="groupIntroProfileBox">
+                                                <span class="showGroupProfile">
+                                                    <picture class="showGroupImg">
+                                                        <source srcset="/src/main/resources/static/images/chun2.png" media="all and (min-width: 1024px)" >
+                                                        <img src="/src/main/resources/static/images/chun2.png" class="profileImage" alt="">
+                                                    </picture>
+                                                </span>
                                             </div>
-                                            </label>                                            
-                                        </div>
-                                        <div class="imgInsertContainer">
-                                            <label class="imgInsertWindow">
-                                                <input class="imgInsert" type="file" accept="image/*,video/mp4,video/x-m4v,video/*">
-                                                <div class="introImgContainer">
-                                                <div class="introImgBox">
-                                                    <img src="/src/main/resources/static/images/add-photo-portrait.png" class="introImgPlus">
-                                                    <h2 class="introImgText">프로젝트에 대한 상세내용</h2>
-                                                    <p class="imgFieldDefault"></p>
-                                                </div>
+                                            <div class="insertImgIcon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24">
+                                                    <path fill-rule="evenodd" d="M9 3h6l1.83 2H20c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V7c0-1.1.9-2 2-2h3.17L9 3zm6.2 10c0 2.133-1.067 3.2-3.2 3.2S8.8 15.133 8.8 13 9.867 9.8 12 9.8s3.2 1.067 3.2 3.2zM12 18c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5z" fill="#FFF"></path></svg>
                                             </div>
-                                            </label>                                            
                                         </div>
-                                        <div class="imgInsertContainer">
-                                            <label class="imgInsertWindow">
-                                                <input class="imgInsert" type="file" accept="image/*,video/mp4,video/x-m4v,video/*">
-                                                <div class="introImgContainer">
-                                                <div class="introImgBox">
-                                                    <img src="/src/main/resources/static/images/add-photo-portrait.png" class="introImgPlus">
-                                                    <h2 class="introImgText">프로젝트에 대한 상세내용</h2>
-                                                    <p class="imgFieldDefault"></p>
-                                                </div>
-                                            </div>
-                                            </label>                                            
-                                        </div>
+                                    </label>
+                                </div>
+                                <div class="introGroupNameFrame">
+                                    <label class="groupIntroName">단체 이름</label>
+                                    <div class="groupNameInputForm">
+                                        <input class="groupNameInput" type="text" name="nickName" placeholder="단체 이름을 적어주세요." value="">
                                     </div>
+                                </div>
+                                <div class="introGroupTelFrame">
+                                    <label class="groupIntroTel">단체 전화번호</label>
+                                    <div class="groupTelInputForm">
+                                        <input class="groupTelInput" type="text" name="tel" value="">
+                                    </div>
+                                </div>
+                                <div class="introGroupPhoneFrame">
+                                    <label class="groupIntroPhone">비상연락망</label>
+                                    <div class="groupPhoneInputForm">
+                                        <input class="groupPhoneInput" type="text" name="phone" placeholder="010xxxxxxxx" value="">
+                                    </div>
+                                </div>
+                                <div class="introGroupTextFrame">
+                                    <label class="groupIntroText">단체 소개</label>
+                                    <div class="groupIntroTextForm">
+                                        <textarea class="groupTextInput" name="content" placeholder="어떤 단체인지 소개해 주세요."></textarea>
+                                    </div>
+                                </div>
+                                <div class="introGroupGuideFrame">사용자님 단체의 매력을 소개해주세요. 단체 소개가 플로거의 마음을 움직일 수 있을거예요!                        
                                 </div>
                                 <div class="nextBtnFrame">
                                     <button type="button" class="prevPage">
@@ -141,7 +146,6 @@
                                     </button>
                                 </div>
                             </form>
-                            
                         </div>
                     </div>
                 </div>
