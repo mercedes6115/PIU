@@ -1,3 +1,5 @@
+
+
 body{
     font-family: '맑은 고딕', 'Malgun Gothic', 'Dotum', '돋움', 'arial', 'verdana', sans-serif;
     display: block;
@@ -266,21 +268,38 @@ form input::file-selector-button{
 
 .extraImg li{
     float: left;
-
 }
 
 
-image{
-    width: 200px;
-    height: 200px;
-}
-
-
-.largeImg, .inputImg{
+label[for='attach'] div{
     width: 210px;
     height: 210px;
+    background-size: 100% 100%;
+    cursor: pointer;
+}
+.largeImg, .inputImg{
     cursor: pointer;
     border: 0;
+}
+.bigThumb{
+    position: relative;
+}
+
+
+.bigThumb .largeImg{
+    width: 210px;
+    height: 210px;
+}
+
+.bigThumb .thumb{
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    border: 1px solid #dedede;
+    background: #fff;
+    box-sizing: border-box;
+    transition: .5s ease-out;
 }
 
 .imgIcon{
@@ -290,18 +309,13 @@ image{
     font-size: 1px;
     line-height: 0;
     color: transparent;
-    cursor: pointer;
+    width: 100%;
+    height: 100%;
     box-sizing: border-box;
     border: 1px solid #d4d4d4;
     transition: .3s ease-out;
-
-    position: relative;
-    margin: 10px 0 10px 0;
-
-}
-.smallImg{
-    width: 100px;
-    height: 100px;
+    cursor: pointer;
+    display: block;
 }
 
 
@@ -328,6 +342,11 @@ image{
     background-image: none;
 
 }
+.bigThumb .smallImg{
+    width: 100px;
+    height: 100px;
+}
+
 .textInfo{
     color: #97989b;
     font-size: 13px;

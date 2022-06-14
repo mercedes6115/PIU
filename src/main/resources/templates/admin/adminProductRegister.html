@@ -28,6 +28,9 @@
 </head>
 <body>
 
+
+
+
 <div class="wrap">
 
     <section class="header-wrap">
@@ -319,17 +322,20 @@
                             <th rowspan="2">상품 이미지</th>
                             <td>
                                 <h5>대표이미지</h5>
-
-                                <div class="field">
-                                    <div class=" imgIcon largeImg"  >
-                                        <input id="fileUpload" name="thumbnail" type="file" class="inputImg" >
-                                    </div>
-                                    <ul class="textInfo">
-                                        <li>
-                                            -등록이미지 : 5M이하 / gif, png, jpg(jpeg)
-                                        </li>
-                                    </ul>
+                                <div class="bigThumb largeImg">
+                                    <label for="attach">
+                                        <div id="box" class="imgIcon">
+                                            <span></span>
+                                        </div>
+                                    </label>
+                                    <input type="file" id="attach" style="display: none;">
                                 </div>
+                                <ul class="textInfo">
+                                    <li>
+                                        -등록이미지 : 5M이하 / gif, png, jpg(jpeg)
+                                    </li>
+                                </ul>
+
 
                             </td>
                         </tr>
@@ -340,29 +346,47 @@
                                 <span class="detailImg">추가이미지</span>
                                 <div class="extraImg">
                                     <ul style="display: flex;">
-                                        <li>
-                                            <div class="imgIcon smallImg">
-                                                <span></span>
-                                                <input id="fileUpload" name="thumbnail" type="file" class="inputImg" >
-                                                <div id="image-holder"></div>
+                                        <li >
+                                            <div class="bigThumb ">
+                                                <label for="attach">
+                                                    <div id="box" class="imgIcon smallImg">
+                                                        <span></span>
+                                                    </div>
+                                                </label>
+                                                <input type="file" id="attach" style="display: none;">
                                             </div>
 
 
 
                                         </li>
                                         <li>
-                                            <div class="imgIcon smallImg">
-                                                <span></span>
+                                            <div class="bigThumb ">
+                                                <label for="attach">
+                                                    <div id="box" class="imgIcon smallImg">
+                                                        <span></span>
+                                                    </div>
+                                                </label>
+                                                <input type="file" id="attach" style="display: none;">
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="imgIcon smallImg">
-                                                <span></span>
+                                            <div class="bigThumb ">
+                                                <label for="attach">
+                                                    <div id="box" class="imgIcon smallImg">
+                                                        <span></span>
+                                                    </div>
+                                                </label>
+                                                <input type="file" id="attach" style="display: none;">
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="imgIcon smallImg">
-                                                <span></span>
+                                            <div class="bigThumb ">
+                                                <label for="attach">
+                                                    <div id="box" class="imgIcon smallImg">
+                                                        <span></span>
+                                                    </div>
+                                                </label>
+                                                <input type="file" id="attach" style="display: none;">
                                             </div>
                                         </li>
                                     </ul>
@@ -381,21 +405,21 @@
                             <th>제조사
                             </th>
                             <td>
-                                <input class="" type="text" name="product_name" required="required" placeholder="제조사 ">
+                                <input class="" type="text" name="product_name" required="required" placeholder="제조사 이름">
                             </td>
                         </tr>
                         <tr>
                             <th>공급사
                             </th>
                             <td>
-                                <input class="" type="text" name="product_name" required="required" placeholder="공급사 ">
+                                <input class="" type="text" name="product_name" required="required" placeholder="공급사 이름">
                             </td>
                         </tr>
                         <tr>
                             <th>원산지
                             </th>
                             <td>
-                                <input class="" type="text" name="product_name" required="required" placeholder="공급사 ">
+                                <input class="" type="text" name="product_name" required="required" placeholder="원산지 이름">
                             </td>
                         </tr>
                         </tbody>
@@ -454,7 +478,7 @@
 
     //첨부파일 input태그 가져오기
     const file = document.querySelector("input[type='file']");
-    const thumbnail = document.querySelector("input[name='thumbnail']");
+    const thumbnail = document.querySelector("label[for='attach'] div");
 
     //첨부파일이 등록되었다면 change이벤트 발생
     file.addEventListener("change", function(event){
@@ -464,20 +488,17 @@
         //파일정보를 전달하여 reader객체에 등록한다.
         reader.readAsDataURL(event.target.files[0]);
         //등록이 되었다면 reader객체의 load 이벤트가 발생한다.
-        $(".letshow1").css({"display":"none"});
+        $("imgIcon").css({"display":"none"});
         reader.onload = function(event){
             //등록된 파일의 경로에 작성된 파일의 타입검사
             if(event.target.result.includes("image")){
                 console.log("이미지 파일입니다.");
                 //등록된 파일의 경로로 대체
-                $("div[name='thumbnail']").css({"position":"uset"});
                 thumbnail.style.backgroundImage = "url(\"" + event.target.result + "\")";
-                console.log(thumbnail.style.backgroundImage)
             }else{
                 console.log("이미지 파일이 아닙니다.");
-                alert("이미지 파일이 아닙니다.")
                 //미리 준비해놓은 이미지 경로로 대체
-                // thumbnail.style.backgroundImage = "url(img/no_image.png)";
+                thumbnail.style.backgroundImage = "url(img/no_image.png)";
             }
         }
     });

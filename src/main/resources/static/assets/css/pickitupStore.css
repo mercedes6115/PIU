@@ -289,18 +289,21 @@ h4> .menu-store{
 
 /*--------------------------- 스토어  css ---------------------*/
 /*--------------------------- 탑으로 ---------------------*/
-.toTop{
+.gototop{
     position: fixed;
-    bottom: 5%;
-    right: 10px;
-    background-color: rgba(128, 128, 128, 0.4);
+    bottom: 24px;
+    right: 24px;
+    background-color: rgba(214, 210, 210, 0.723);
     color: black;
     padding: 10px;
-    border-radius: 15%;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
     font-size: large;
     cursor: pointer;
-    opacity: 0.5;
-    z-index: 99999;
+    opacity: 0.8;
+    z-index: 99998;
+    text-align: center;
 }
 /*--------------------------- 스토어 전체 컨테이너 ---------------------*/
 .store_all_body{
@@ -393,7 +396,6 @@ li.active{
 }
 .store_items .all_items ul li{
     width: 21.5%;
-    border-bottom: 1px solid #71727448;
     padding-bottom: 10px;
     padding-top: 10px;
     margin-right: 24px;
@@ -421,6 +423,7 @@ li.active{
 }
 .item{
     width: 216px;
+    margin-bottom: 56px;
 }
 .item img{
     border: 1px solid;
@@ -465,12 +468,37 @@ li.active{
     color: red;
 }
 .store_main_item_title{
+    font-family: -apple-system,BlinkMacSystemFont,'Pretendard JP',Pretendard,system-ui,Roboto,'Helvetica Neue','Segoe UI','Noto Sans KR','Malgun Gothic',sans-serif;
     border-width: 0px;
     color: rgb(26, 26, 26);
     margin: 0px;
     padding: 0px;
     font-size: 0.875rem;
     font-weight: 700;
+    line-height: 1.125rem;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.store_main_item_category{
+    border-width: 0px;
+    color: rgb(102, 102, 102);
+    margin: 0px;
+    padding: 0px;
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: 1rem;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.store_item_price{
+    font-family: -apple-system,BlinkMacSystemFont,'Pretendard JP',Pretendard,system-ui,Roboto,'Helvetica Neue','Segoe UI','Noto Sans KR','Malgun Gothic',sans-serif;
+    margin: 0px;
+    padding: 0px;
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1.125rem;
 }
 
 /* --------------------------반응형 스토어 메인 ----------------------*/
@@ -495,10 +523,17 @@ li.active{
     }
     .jjim{
         position: absolute;
-        right: 50px;
+        right: 10px;
     }
     .red{
         color: red;
+    }
+    .store_container{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        max-width: 640px;
+        padding-top: 28px;
     }
   }
 
@@ -676,6 +711,12 @@ li.active{
     padding: 20px;
     color: rgb(49, 49, 4);
 }
+.return_policy img{
+    width: 45px;
+    height: 45px;
+    border: none;
+    margin-right: 15px;
+}
 .pay_bar_media{
     display: none;
     position: fixed;
@@ -809,15 +850,18 @@ textarea{
      height: 38px;
  }
  .review_id_and_date{
-     margin-bottom: 8px;
+     margin-top: 4px;
  }
  .review_content_container{
      width: 100%;
  }
  .review_content{
-     width: 100%;
-     font-size: 14px;
-     height: 100%;
+    font-size: 14px;
+    font-weight: normal;
+    color: rgb(26, 26, 26);
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
  }
  .p-24{
      padding: 24px;
@@ -955,16 +999,7 @@ textarea{
         width: 49%;
         margin-right: 24px;
     }
-    .btn_qnaToadmin{
-        background-color: white;
-        border: 1px solid rgba(0,0,0,0.15);
-        border-radius: 3px;
-        cursor: pointer;
-        padding: 6px 7px;
-    }
-    .btn_qnaToadmin:hover{
-        background-color: rgba(128, 128, 128, 0.248);
-    }
+    
     .nav_item{
         margin: 0 24px;
     }
@@ -1197,6 +1232,35 @@ input::placeholder{
     width: 80%;
 }
 /* -------------------------------공통 요소---------- */
+label[for='attach'] div.hide{
+    width: 25px;
+    height: 25px;
+    background-image: url("/src/main/resources/static/images/attach.png");
+    background-size: 100% 100%;
+    cursor: pointer;
+}
+label[for='attach'] div.thumb{
+    width: 130px;
+    height: 130px;
+    background-image: url("/src/main/resources/static/images/insert.png");
+    background-size: 100% 100%;
+    cursor: pointer;
+    display: none;
+}
+label[for='attach'] div.thumb2{
+    width: 130px;
+    height: 130px;
+    background-image: url("/src/main/resources/static/images/insert.png");
+    background-size: 100% 100%;
+    cursor: pointer;
+}
+label[for='attach'] div.thumb3{
+    width: 130px;
+    height: 130px;
+    background-image: url("/src/main/resources/static/images/insert.png");
+    background-size: 100% 100%;
+    cursor: pointer;
+}
 
 .pay_point{
     font-size: 18px;
@@ -1718,4 +1782,33 @@ footer{
     right: 0;
     transform: translateX(60%);
     margin-right: 20px;
+}
+.review_item_title{
+    font-size: 11px;
+    font-weight: normal;
+    color: rgb(26, 26, 26);
+    line-height: 16px;
+    letter-spacing: normal;
+    margin: 0px;
+}
+.All_review_header{
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(26, 26, 26);
+    line-height: 24px;
+    letter-spacing: -0.3px;
+    margin: 0px;
+}
+.review_item_name{
+    font-size: 11px;
+    font-weight: 600;
+    color: rgb(26, 26, 26);
+    line-height: 16px;
+    letter-spacing: normal;
+    margin: 0px;
+}
+.review_content_container img{
+    width: 192px;
+    height: 108px;
+    border: 1px solid;
 }
