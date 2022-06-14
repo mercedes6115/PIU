@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/src/main/resources/static/assets/css/projectCreate.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    
+</head>
+
+<style>
+    body{
+        overflow-x:hidden;
+    }
+</style>
+<body>
+    <div class="groupPageFrame">
+        <div class="groupPageTitleFrame">
+            <div class="groupPageTitleForm">
+                <header class="groupPageHeaderFrame">
+                    <div class="groupPageHeaderForm">
+                        <span class="material-symbols-outlined">directions_walk</span>                                                        
+                        <a href="#" class="groupPageHeader">Plogger Center</a>
+                        <div class="groupPageProfileFrame">
+                            <div class="groupPageProfileForm">
+                                <div class="groupPageProfileContainer">
+                                    <picture class="groupPageProfile">
+                                        <source srcset="/src/main/resources/static/images/chun2.png" media="all and (min-width: 1024px)" >
+                                        <img src="/src/main/resources/static/images/chun2.png" class="profileImage" alt="">
+                                    </picture>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+            </div>
+            <div class="boundary"></div>
+        </div>
+        <div class="groupPageBodyFrame">
+            <div class="groupPageSidebarFrame">
+                <div class="groupPageSidebarForm">
+                    <div class="groupPageSidebarList">
+                        <div class="groupPageSidebar">
+                            <div class="groupPageSidebars">
+                                <div class="sNoticeFrame">
+                                    <div class="sNoticeForm">
+                                        <span class="material-symbols-outlined">
+                                            looks_one
+                                            </span>
+                                        <div class="margin"></div>
+                                        <span class="sTitle">상세 정보</span>    
+                                            
+                                    </div>
+                                </div>
+                                <div class="sGroupInfoFrame">
+                                    <div class="sGroupInfoForm">
+                                        <span class="material-symbols-outlined">
+                                            looks_two
+                                            </span>                                                                                        
+                                        <div class="margin"></div>
+                                        <span class="sTitle">단체 소개</span> 
+                                    </div>
+                                </div>
+                                <div class="sProjectFrame">
+                                    <div class="sProjectForm">
+                                        <div class="sProjectTitleForm">
+                                            <span class="material-symbols-outlined">
+                                                looks_3
+                                                </span>                                                                                                
+                                            <div class="margin"></div>
+                                            <span class="sTitle">이용 안내</span> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sideBarBoundary"></div>
+                </div>
+            </div>                   
+        </div>
+        <div class="groupPageMainFrame">
+            <div class="groupPageMainForm">
+                <div class="groupPageContainer">
+                    <div class="" style="margin-left:0px;">
+                        <h3 class="bodyTitle">단체(회사)의 컨셉이 잘 드러난</h3>
+                        <br>
+                        <h3 class="bodyTitle">소개글을 작성해 주세여</h3>
+                        <a href="#" class="addProjectFrame">
+                        </a>
+                        플로깅을 통해 알려주실 것과 완성할 수 있는 것들을 설명해 주세요.
+                        <form action="" method="post">
+                        <div class="CompanyIntroduceContainer">
+                            <div class="FormGroupContainer">
+                                <label class="FormGroupLabel">프로필</label>
+                                <label class="UploadButtonContainer">
+                                    <input type="file" accept="image/*">
+                                    <div class="MyProfileImageField1Container"></div>
+                                <label>
+                                    <div class="FormGroupNameContainer">
+                                        <label class="FormGroupNamelabel">크리에이터 닉네임</label>
+                                        <div class="InputNameContainer">
+                                            <input class="InputNameStyledInput" type="text" placeholder="사용할 닉네임을 적어주세요">
+                                        </div>
+                                    </div>
+                                    <div class="FormGroupNameContainer">
+                                        <label class="FormGroupNamelabel">크리에이터 닉네임</label>
+                                        <div class="InputNameContainer">
+                                            <input class="InputNameStyledInput" type="text" placeholder="사용할 닉네임을 적어주세요">
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>        
+                        </form>                     
+                        <div class="FormNextPageBtn-Wrapper">
+                            <div class='PageButtonWrapper'>
+                                <div style="display: inline;">
+                                    <button type="button" disabled class="NextBtn1">
+                                        <span>다음</span>
+                                    </button>
+                                    <button type="button" disabled class="SaveBtn1">
+                                <span>저장하기</span>
+                            </button>
+                            
+                        </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>      
+        </div>    
+    </div>
+   
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    let spanText = document.getElementById("listClose").textContent;
+    let sProjectContainer = document.querySelector('.sProjectContainer');
+
+    $("#listClose").click(function(){        
+        if(spanText == "expand_less"){
+            document.getElementById("listClose").textContent="expand_more";
+            spanText = document.getElementById("listClose").textContent;
+            sProjectContainer.classList.add('hidden');
+        } else {
+            document.getElementById("listClose").textContent="expand_less";
+            spanText=document.getElementById("listClose").textContent;
+            sProjectContainer.classList.remove('hidden');
+        }
+    });
+
+    function findAddr(){
+        new daum.Postcode({
+            oncomplete: function(data) {
+                
+                console.log(data);
+                
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+                // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var roadAddr = data.roadAddress; // 도로명 주소 변수
+                var jibunAddr = data.jibunAddress; // 지번 주소 변수
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('member_post').value = data.zonecode;
+                if(roadAddr !== ''){
+                    document.getElementById("member_addr").value = roadAddr;
+                } 
+                else if(jibunAddr !== ''){
+                    document.getElementById("member_addr").value = jibunAddr;
+                }
+            }
+        }).open();
+    }
+
+
+</script>
+</html>

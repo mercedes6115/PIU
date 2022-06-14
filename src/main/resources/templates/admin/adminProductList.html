@@ -25,97 +25,6 @@
 
         <!-- sidebar -->
         <div id="sidebar">
-            <ul>
-                <li class="sidebarCategory">
-                    <a href="#">
-                        <div>
-                            <span class="material-symbols-outlined icon">person
-                            </span>
-                            <span class="sidebarTitle">유저 관리</span>
-                        </div>
-
-                    </a>
-
-                </li>
-                <li class="sidebarCategory">
-                    <a href="#">
-                        <div><span class="material-symbols-outlined icon">
-                                storefront
-                            </span><span class="sidebarTitle">상품 관리</span>
-                        </div><span class="material-symbols-outlined more">
-                            expand_more
-                        </span>
-                    </a>
-                    <!-- onClick 시 노출 -->
-                    <ul class="sidebarDetail">
-                        <li><a id="detail" href="#">상품 등록</a></li>
-                        <li><a id="detail" href="#">상품 목록</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">
-                        <div>
-                            <span class="material-symbols-outlined icon">
-                                shopping_cart
-                            </span><span class="sidebarTitle">주문 관리</span>
-                        </div>
-                        <span class="material-symbols-outlined more">
-                            expand_more
-                        </span>
-                    </a>
-                    <!-- onClick 시 노출 -->
-                    <ul class="sidebarDetail">
-                        <li><a id="detail" href="#">전체주문목록</a></li>
-                        <li><a id="detail" href="#">배송 관리</a></li>
-                        <li><a id="detail" href="#">취소 관리</a></li>
-                    </ul>
-                </li>
-                <li class="sidebarCategory">
-                    <a href="#">
-                        <div>
-                            <span class="material-symbols-outlined icon">
-                                public
-                            </span>
-                            <span class="sidebarTitle">프로젝트 관리</span>
-                        </div>
-                        <span class="material-symbols-outlined more">
-                            expand_more
-                        </span>
-                    </a>
-                    <!-- onClick 시 노출 -->
-                    <ul class="sidebarDetail">
-                        <li><a id="detail" href="#">프로젝트 생성</a></li>
-                        <li><a id="detail" href="#">프로젝트 목록</a></li>
-                        <li><a id="detail" href="#">QR코드</a></li>
-                    </ul>
-                </li>
-                <li class="sidebarCategory">
-                    <a href="#">
-                        <div>
-                            <span class="material-symbols-outlined icon">
-                                assignment
-                            </span>
-                            <span class="sidebarTitle">게시물 관리</span>
-                        </div>
-                        <span class="material-symbols-outlined more">
-                            expand_more
-                        </span>
-                    </a>
-                </li>
-                <li class="sidebarCategory">
-                    <a href="#">
-                        <div>
-                            <span class="material-symbols-outlined icon">
-                                analytics
-                            </span>
-                            <span class="sidebarTitle">통계 현황</span>
-                        </div>
-                        <span class="material-symbols-outlined more">
-                            expand_more
-                        </span>
-                    </a>
-                </li>
-            </ul>
         </div>
         <!-- sidebar -->
 
@@ -124,9 +33,9 @@
             <div>
                 <h2>상품 목록</h2>
             </div>
-            <div class="productSearchBox">
-                <form id="productSearch">
-                    <table>
+            <div class="searchBox" id="productSearchBox">
+                <form id="productSearchForm">
+                    <table id="searchTbl">
                         <tr>
                             <th>검색분류</th>
                             <td colspan="3">
@@ -136,6 +45,7 @@
                                     <option>제조사</option>
                                     <option>공급사</option>
                                 </select>
+                                <input type="text" name="" id="">
                             </td>
                         </tr>
                         <tr>
@@ -158,7 +68,7 @@
                         <tr>
                             <th>상품등록일</th>
                             <td colspan="3">
-                                <div class="productRegisterDate">
+                                <div class="dateSelect">
                                     <select>
                                         <option>상품등록일</option>
                                         <option>상품최종수정일</option>
@@ -204,71 +114,83 @@
             </div>
 
             <!-- 클래스명 변경 -->
-            <div class="userList">
+            <div class="listBox">
                 <table>
                     <tr>
-                        <div class="productListTitle">
-                            <div>
-                                <span>[총
-                                    <strong>2</strong>
-                                    개]</span>
-
-                            </div>
-                            <div>
-                                <a href="" class="productListBtn">삭제</a>
-                                <a href="" class="productListBtn">진열변경</a>
-                                <a href="" class="productListBtn">판매변경</a>
-                                <a href="" class="productListBtn">상품등록</a>
-                            </div>
+                        <div class="listFilter">
+                            <span>[총
+                                <strong>2</strong>
+                                개]</span>
+                            <select>
+                                <option>등록일 역순</option>
+                                <option>등록일 순</option>
+                                <option>-----------</option>
+                                <option>수정일 역순</option>
+                                <option>수정일 순</option>
+                                <option>-----------</option>
+                                <option>상품명 역순</option>
+                                <option>상품명 순</option>
+                                <option>-----------</option>
+                                <option>판매가 역순</option>
+                                <option>판매가 순</option>
+                            </select>
                         </div>
-                    </tr>
 
-
-                    <tr>
-                        <!-- 생활, 주방, 욕실, 반려동물, 화장품, 식품, 문구, 원예  -->
-
-                        <th scope="col"></th>
-                        <th scope="col">번호</th>
-                        <th scope="col">상품번호</th>
-                        <th scope="col">분류</th>
-                        <th scope="col">상품명</th>
-                        <th scope="col">판매가</th>
-                        <th scope="col">진열상태</th>
-                        <th scope="col">판매상태</th>
-                        <th scope="col">상품등록일</th>
-                        <th scope="col">상품진열상황</th>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>1</td>
-                        <td>20201918</td>
-                        <td>생활</td>
-                        <!-- 상품 수정하기로 이동 -->
-                        <td><a href="#">초록초록 고무장갑</a></td>
-                        <td>50point</td>
-                        <td>진열함</td>
-                        <td>판매함</td>
-                        <td>2022-06-12</td>
-                        <!-- 상품 상세보기로 이동 -->
-                        <td><a href="#">상세보기</a></td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>2</td>
-                        <td>20201918</td>
-                        <td>생활</td>
-                        <td><a href="#">초록초록 고무장갑</a></td>
-                        <td>50point</td>
-                        <td>진열함</td>
-                        <td>판매함</td>
-                        <td>2022-06-12</td>
-                        <td><a href="#">상세보기</a></td>
-                    </tr>
-
-                </table>
-
+                        <td colspan="12">
+                            <div class="listTitle">
+                                <a href="" class="listBtn">삭제</a>
+                                <a href="" class="listBtn">진열변경</a>
+                                <a href="" class="listBtn">판매변경</a>
+                                <a href="" class="listBtn">상품등록</a>
+                            </div>
+                        </td>
             </div>
-            <!-- 페이징 처리 -->
+            </tr>
+
+
+            <tr>
+                <!-- 생활, 주방, 욕실, 반려동물, 화장품, 식품, 문구, 원예  -->
+
+                <th scope="col"></th>
+                <th scope="col">번호</th>
+                <th scope="col">상품번호</th>
+                <th scope="col">분류</th>
+                <th scope="col">상품명</th>
+                <th scope="col">판매가</th>
+                <th scope="col">진열상태</th>
+                <th scope="col">판매상태</th>
+                <th scope="col">상품등록일</th>
+                <th scope="col">상품진열상황</th>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>1</td>
+                <td>20201918</td>
+                <td>생활</td>
+                <!-- 상품 수정하기로 이동 -->
+                <td><a href="#">초록초록 고무장갑</a></td>
+                <td>50point</td>
+                <td>진열함</td>
+                <td>판매함</td>
+                <td>2022-06-12</td>
+                <!-- 상품 상세보기로 이동 -->
+                <td><a href="#">상세보기</a></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>2</td>
+                <td>20201918</td>
+                <td>생활</td>
+                <td><a href="#">초록초록 고무장갑</a></td>
+                <td>50point</td>
+                <td>진열함</td>
+                <td>판매함</td>
+                <td>2022-06-12</td>
+                <td><a href="#">상세보기</a></td>
+            </tr>
+
+            </table>
+            <!-- 페이징 처리  -->
             <div class="paging">
                 <a href="#">&lt;</a>
                 <a href="#">1</a>
@@ -277,12 +199,19 @@
                 <a href="#">&gt;</a>
             </div>
         </div>
+        
+        
+    </div>
 
 
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+    $(document).ready(function () {
+        $('#sidebar').load("adminSideBar.html");
+
+    })
 </script>
 
 </html>

@@ -1,476 +1,596 @@
 @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
 
-
-#sidebar {
-    position: fixed;
-    z-index: 201;
-    top: 0;
-    left: 0;
-    width: 250px;
-    height: 100%;
-    padding: 56px 0 0;
-    box-sizing: border-box;
-    vertical-align: top;
-    background-color: #3c5fba;
+#sideBar {
+  position: fixed;
+  z-index: 201;
+  top: 0;
+  left: 0;
+  width: 256px;
+  height: 100%;
+  padding: 56px 0 0;
+  box-sizing: border-box;
+  vertical-align: top;
+  background-color: #0d318c;
 }
 
 #container {
-    
-    width: 70%;
-    height: 100vh;
-    position: relative;
-    left:300px;
-
+  width: 80%;
+  height: 100vh;
+  position: relative;
+  left: 300px;
 }
 
 body {
-    margin: 0;
-    font-family: 'Noto Sans KR', sans-serif;
+  margin: 0;
+  font-family: "맑은 고딕", "Malgun Gothic", "Dotum", "돋움", "arial", "verdana",
+    sans-serif;
 }
 
 li {
-    list-style: none;
+  list-style: none;
 }
 
 .root {
-    display: flex;
-    background-color: #ecf0f7;
-
+  display: flex;
+  background-color: #ecf0f7;
 }
 
-table{
-    border-collapse: collapse;
-}
-
-/* sidebar css */
-
-#sidebar li {
-    position: relative;
-
-}
-#sidebar ul {
-    margin: 0;
-    padding: 0;
-}
-  
-#sidebar a {
-    color: white;
-    text-decoration: none;
-    font-size: 14px;
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 11px 10px 19px;
-    font-weight:bold;
-}
-
-.material-symbols-outlined {
-    margin-right: 10px;
-}
-
-#sidebar span.more {
-    position: relative;
-
-}
-
-#sidebar span.icon{
-    position: relative;
-    margin-right: 14px;
-}
-
-#sidebar a:hover{
-    background-color: #0d318c;
-}
-
-.sidebarTitle {
-    position: relative;
-    bottom: 6px;
-
+table {
+  border-collapse: collapse;
 }
 
 /* sidebar css */
 
+#sideBar li {
+  position: relative;
+}
+#sideBar ul {
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+#sideBar ul.sideBarDetail {
+  display: none;
+}
+#sideBar li.sideBarDetail:hover {
+  background-color: #0d318c;
+}
+
+#sideBar a {
+  color: white;
+  text-decoration: none;
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px 10px 27px;
+}
+
+#sideBar span.material-symbols-outlined {
+  margin-right: 10px;
+}
+
+#sideBar span.more {
+  position: relative;
+}
+
+#sideBar span.icon {
+  position: relative;
+  margin-right: 14px;
+}
+
+#sideBar a:hover {
+  background-color: #0d318c;
+}
+
+.sideBarTitle {
+  position: relative;
+  bottom: 6px;
+}
+
+.active {
+  background-color: #0d318c;
+}
+
+/* sidebar css 끝 */
 
 /* 공용 css */
 #container a {
-    color: black;
-    text-decoration: none;
+  color: black;
+  text-decoration: none;
 }
 
-/* .userSearchBox, .userList, .productSearchBox, .orderSearchBox{ */
-
-.searchBox, .listBox {
-    background-color: white;
-    padding: 10px;
-    flex: 1;
-    font-size: 14px;
-    box-shadow: 0 2px 1px 0 rgb(205 211 222);
-    margin-bottom: 20px;
-    font-size: 13px;
-    
+.searchBox,
+.listBox,
+.orderSearchBox {
+  background-color: white;
+  padding: 30px 20px;
+  flex: 1;
+  font-size: 14px;
+  box-shadow: 0 2px 1px 0 rgb(205 211 222);
+  margin-bottom: 20px;
+  font-size: 13px;
+}
+#container h2, #mContainer h2 {
+  margin-top: 20px;
+  font-size: 14px;
 }
 
-.userStatus{
-    padding: 10px 0;
-    text-align: center;
-    background-color: #EBFBF4;
-    height: 20px;
-    margin-top: 40px;
-    border: 1px solid #D6DAE1;
-    border-radius: 4px;
-    font-size: 12px;
+.searchBox table,
+.listBox table {
+  width: 100%;
+  border-spacing: 0;
+  font-size: 14px;
+  line-height: 1.5;
 }
 
-#container h2{
-    margin-top: 20px;
-    font-size: 14px;
+textarea {
+  resize: none;
+}
+/* admin main */
+
+.userStatus {
+  padding: 10px 0;
+  text-align: center;
+  background-color: #ebfbf4;
+  height: 20px;
+  margin-top: 40px;
+  border: 1px solid #d6dae1;
+  border-radius: 4px;
+  font-size: 12px;
+  line-height: 20px;
 }
 
-.statusBox{
-    display: flex;
-    justify-content: space-between;
-
+.statusBox {
+  position: relative;
+  margin: 16px 0 0;
+  padding: 15px;
+  background-color: #fff;
+  border: 1px solid #D6DAE1;
+  border-radius: 4px;
+  font-family: "맑은 고딕","malgun gothic",sans-serif;
+  height: 200px;
 }
 
-.statusBox div {
-    height: 100px;
-    position: relative;
-    margin: 16px 0 0;
-    width: 41%;
-    padding: 31px;
-    background-color: #fff;
-    border: 1px solid #D6DAE1;
-    border-radius: 4px;
-    font-family: "맑은 고딕","malgun gothic",sans-serif;
-}
+/* .statusBox div {
+  height: 100px;
+  position: relative;
+  margin: 16px 0 0;
+  width: 41%;
+  padding: 31px;
+  background-color: #fff;
+  border: 1px solid #d6dae1;
+  border-radius: 4px;
+  font-family: "맑은 고딕", "malgun gothic", sans-serif;
+} */
 
-.orderStatus{
-    display: flex;
-    justify-content: space-evenly;
+.orderStatus {
+  display: flex;
+  justify-content: space-evenly;
 }
-
 
 .orderStatus a {
-    text-decoration: none;
-    color:black;
-    display: block;
-    flex:1;
-    box-sizing: border-box;
-    padding: 36px 0;
-    
+  text-decoration: none;
+  color: black;
+  display: block;
+  flex: 1;
+  box-sizing: border-box;
+  padding: 36px 0;
 }
 
-.orderStatus a:hover{
-    background-color: #3c5fba;
-    color: white;
+.orderStatus a:hover {
+  background-color: #3c5fba;
+  color: white;
 }
-.orderStatus > div{
-    background-color: white;
-    margin-right:20px;
-    box-shadow: 0 2px 1px 0 rgb(205 211 222);
-    flex: 1;
-    text-align: center;
-    
+.orderStatus > div {
+  background-color: white;
+  margin-right: 20px;
+  box-shadow: 0 2px 1px 0 rgb(205 211 222);
+  flex: 1;
+  text-align: center;
 }
 
 .orderBox strong {
-    font-size: 36px;
+  font-size: 36px;
 }
 
-.orderStatus div:last-child{
-    margin-right:0px;
+.orderStatus div:last-child {
+  margin-right: 0px;
 }
 
-.projectBox, .orderBox{
-    margin-top: 38px;
+.projectBox,.orderBox {
+  margin-top: 38px;
 }
 
-a#detail{
-    display: none;
-    font-weight: 400;
-    padding: 10px 24px 10px 59px;
+.projectStatus {
+  background-color: white;
+  border-radius: 2px;
+  display: flex;
+  height: 147px;
+  box-shadow: 0 2px 1px 0 rgb(205 211 222);
+  align-items: center;
+  position: relative;
+}
+.projectStatus a {
+  box-sizing: border-box;
+  margin: 0 auto;
+  width: 40%;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  height: 147px;
+  padding-left: 30px;
+  position: relative;
+  padding-top: 32px;
 }
 
-
-.projectStatus{
-    background-color: white;
-    border-radius: 2px;
-    display: flex;
-    height: 147px;
-    box-shadow: 0 2px 1px 0 rgb(205 211 222);
-    align-items: center;
-    position: relative;
-    
-    
-}
-.projectStatus a{
-    box-sizing: border-box;
-    margin: 0 auto;
-    width: 40%;
-    color: black;
-    text-align: center;
-    text-decoration: none;
-    height: 147px;
-    padding-left: 30px;
-    position: relative;
-    padding-top: 32px;
-    
+.projectStatus a::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 72px;
+  height: 72px;
+  background-color: #c9cfdf;
+  top: 35px;
+  border-radius: 50%;
 }
 
-.projectStatus a::before{
-    content: "";
-    position: absolute;
-    display: block;
-    width: 72px;
-    height: 72px;
-    background-color: #C9CFDF;
-    top: 35px;
-    border-radius: 50%;
-    
+.projectStatus a:nth-child(-n + 2)::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 2px;
+  height: 60px;
+  background-color: #ecf0f7;
+  bottom: 40px;
+  right: 0;
 }
 
-.projectStatus a:nth-child(-n+2)::after{
-    content: "";
-    position: absolute;
-    display: block;
-    width: 2px;
-    height: 60px;
-    background-color: #ecf0f7;
-    bottom: 40px;
-    right: 0;
-    
-}
-.projectStatus-title{
-    display: block;
-    position: relative;
-    margin-top: 12px;
-    margin-bottom: 10px;
+.projectStatus span.contentIcon {
+  position: absolute;
+  left: 41px;
+  top: 45px;
+  color: white;
+  font-weight: 500;
 }
 
-.projectStatus span.contentIcon{
-    position: absolute;
-    left: 41px;
-    top: 45px;
-    color: white;
-    font-weight: 500;
+.statusTitle {
+  display: flex;
 }
 
-.statusTitle{
-    display: flex;
+.title {
+  display: block;
 }
 
-.title{
-    display: block;
-
+.active {
+  background-color: #0d318c;
 }
 
-.active{
-    background-color: "#0d318c";
+/* 공용부분 추가 수정 */
+.searchBox th,
+.listBox th  {
+  padding: 8px 5px;
+  border: 1px solid #dedede;
+  text-align: center;
+  vertical-align: middle;
+  background-color: #f3f3f3;
 }
 
-/* userList */
-
-#userList table {
-width: 100%;
-text-align: center;
-border-spacing: 0;
-
+.listTitle {
+  /* justify-content: end; */
+  display: flex;
+  margin: 5px;
 }
 
-#userList th, .productSearchBox th {
-    padding: 5px 5px;
-    border: 1px solid #dedede;
-    text-align: center;
-    vertical-align: middle;
-    background-color: #f3f3f3;
-    font-size: 13px;
+.listBtn {
+  border: 1px solid #98989b;
+  background-color: #fff;
+  padding: 5px 10px;
+  font-size: 12px;
+  margin-left: 5px;
 }
 
-#userList a.userDetail{
-    font-weight: bold;
+.searchBox select {
+  height: 32px;
+  margin-right: 2px;
+  border: 1px solid #d4d4d4;
 }
 
-.userListTitle{
-    justify-content: space-between;
-    display: flex;
-    margin-bottom: 10px;
+.listBox td,
+.searchBox td {
+  font-size: 12px;
+  border: 1px solid #dedede;
+  height: 31px;
+  padding: 5px 10px 4px;
 }
 
-#userSearchBox select{
-    height: 21px;
-    margin-right: 5px;
-
+.searchBox td {
+  font-size: 14px;
 }
 
-.userFilterBox{
-    margin-right: 15px;
+.listBox td {
+  text-align: center;
 }
 
-#userSearch{
-    display: flex;
-    justify-content: center;
+.searchBox input[type="text"],
+.searchBox input[type="date"] {
+  border: 1px solid #d4d4d4;
+  height: 28px;
 }
-#userSearchBtn{
-    margin-left: 5px;
+
+.searchBtn {
+  margin-left: 5px;
 }
 
 .paging a {
-    background-color: white;
-    text-align: center;
-    margin-right: 10px;
-    padding: 5px;
-    width: 15px;
-    height: 15px;
-    line-height: 12px;
-    font-size: 12px;
+  background-color: white;
+  text-align: center;
+  margin-right: 10px;
+  padding: 5px;
+  width: 15px;
+  height: 15px;
+  line-height: 12px;
+  font-size: 12px;
 }
 
-.paging a:nth-child(3){
-    color: blue;
+.paging a:nth-child(3) {
+  color: blue;
 }
 
 .paging {
-    margin-top: 10px;
-    display: flex;
-    justify-content: center;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.btnBox {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.dateSelect a:nth-child(2){
+  margin-left: 5px;
 
 }
 
-#userList td {
-    font-size: 12px;
-    border: 1px solid #dedede;
+/* 클릭시 색상 변경 */
+.btnBox button {
+  margin-right: 5px;
+  padding: 0 20px;
+  height: 30px;
+  color: #fff;
+  border: 1px solid transparent;
+  background-color: #55a0ff;
 }
 
-.userListContent{
-    box-shadow: 0 2px 1px 0 rgb(205 211 222);
+.btnDate {
+  height: 28px;
+  margin-left: -5px;
+  padding: 6px 7px;
+  font-size: 13px;
+  line-height: 26px;
+  border: 1px solid #98989b;
+  background-color: #fff;
 }
 
-.userListBtn{
-    border: 1px solid #98989b;
-    background-color: #fff;
-    padding: 5px 10px;
-    font-size: 12px;
+
+#container a.btnDate:hover {
+  background-color: #56a0ff;
+  color: white;
 }
 
+/* userList */
+#userSearchBox input[type="radio"],
+.productFilterBox input[type="radio"] {
+  position: relative;
+  top: 2px;
+}
+
+.searchResult {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#userList h2 {
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 0;
+}
+.searchResult {
+  margin-bottom: 20px;
+}
 
 /* productList */
 
 .productSearchBox td {
-    border: 1px solid #dedede;
-    padding: 9px 9px 7px;
+  border: 1px solid #dedede;
+  padding: 9px 9px 7px;
 }
 
-.productSearchBox table{
-    border-spacing: 0;
-    margin: 0;
-    width: 100%;
+.productSearchBox table {
+  border-spacing: 0;
+  margin: 0;
+  width: 100%;
 }
 
-.btnBox {
-    margin-top: 10px;
-    display: flex;
-    justify-content: center;
+.productListBtn {
+  height: 28px;
+  padding: 2px 10px;
+  font-size: 12px;
+  line-height: 26px;
+  border: 1px solid #98989b;
+  background-color: #fff;
 }
 
-/* 클릭시 색상 변경 */
-.btnBox button{
-    margin-right: 5px;
-    height: 25px;
-    color: #fff;
-    border: 1px solid transparent;
-    background-color: #55a0ff;
+#productSearch {
+  margin-top: 20px;
 }
-
-.productSearchBox select{
-padding: 5px 40px 5px 10px;
-border: 1px solid #d4d4d4;
-}
-
-.btnDate{
-    height: 28px;
-    margin-left: -5px;
-    padding: 3px 5px;
-    font-size: 13px;
-    line-height: 26px;
-    border: 1px solid #98989b;
-    background-color: #fff;
-}
-
-.productRegisterDate a:nth-child(2){
-    margin-left: 10px;
-    margin-top: 2px;
-
-}
-
-.btnDate:hover{
-    background-color: #56A0FF;
-    color: white;
-
-}
-
-.productListBtn{
-    height: 28px;
-    padding: 2px 10px;
-    font-size: 12px;
-    line-height: 26px;
-    border: 1px solid #98989b;
-    background-color: #fff;
-}
-
-.productListTitle div:first-child {
-    margin-bottom: 10px;
-
-}
-
-#productSearch{
-    margin-top: 20px;
-}
-
 
 /* orderList */
-.orderSearchText{
-    width: 490px;
-    height: 29px;
-    line-height: 14px;
-    padding: 0 9px 0;
-    box-sizing: border-box;
-    border: 1px solid #d4d4d4;
-    font-size: 14px;
+
+#boardSearchBox select {
+  width: 150px;
+  padding: 0 5px;
 }
 
-#filderAddBtn{
-    position: relative;
-    border: 1px solid #98989b;
-    background-color: #fff;
-    height: 28px;
-    width: 28px;
-
+#boardSearchBox input[type="text"] {
+  width: 400px;
 }
 
+
+
+/* projectList */
+
+.pdateSelect select{
+  width: 150px;
+  padding: 0 10px;
+}
+.pdateSelect a:nth-child(2){
+  margin-left: 5px;
+}
 /* 게시물 등록 */
 
-.boardWriteBox{
-    background-color: white;
-    box-shadow: 0 2px 1px 0 rgb(205 211 222);
-    padding: 0;
-    font-size: 12px;
+#boardWriteForm span {
+  margin-right: 10px;
 }
 
-.boardWriteForm{
-    padding: 10px;
+#boardWriteForm input[type="text"] {
+  width: 80%;
 }
 
-.boarWriteForm input {
-    width: 100%;
+#boardSearchBox a:nth-child(2){
+  margin: 0;
 }
+
+#boardDateSelect{
+  margin-left: 5px;
+}
+
+
 
 /* 프로젝트 생성 */
-.projectCreateTbl input, .projectCreateTbl textarea{
-    font-size: 12px;
-    border: 1px solid #d4d4d4;
+.projectCreateTbl input,
+.projectCreateTbl textarea {
+  font-size: 12px;
+  border: 1px solid #d4d4d4;
 }
 
-.projectCreateTbl input[type="file"]{
-    font-size: 12px;
-    border: none;
-    
+.projectCreateTbl input[type="file"] {
+  font-size: 12px;
+  border: none;
+}
+
+.projectCreateTbl select {
+  width: 100px;
+  padding: 0 0 0 8px;
+}
+
+.projectCreateTbl input{
+  height: 28px;
+}
+#projectTitle {
+  width: 350px;
+}
+
+.locationBox {
+  margin: 5px 0;
+}
+
+.locationBox div{
+  margin: 5px 0;
+}
+
+.locationBox button{
+  margin-right: 5px;
+}
+
+#projectTitleCheck{
+  color: red;
+  font-size: 12px;
+  display: none;
+}
+
+
+/* 유저 정보 상세보기 */
+
+#userDetail a {
+  padding: 4px 8px;
+  border: 1px solid #aeb4c6;
+  border-radius: 3px;
+  font-size: 12px;
+  line-height: 26px;
+  color: #1b1e26;
+  font-weight: normal;
+  background-color: #fff;
+  margin-left: 10px;
+}
+
+#userDetail td {
+  text-align: left;
+}
+
+#userDetail input {
+  border: 1px solid #d4d4d4;
+  height: 28px;
+  width: 300px;
+  padding: 0 10px;
+  font-size: 12px;
+}
+
+#userDetail button {
+  padding: 0 20px;
+  border: 1px solid transparent;
+  font-size: 14px;
+  color: #fff;
+  line-height: 30px;
+  background-color: #56a0ff;
+}
+
+#userDetail div:last-child {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+
+/* main */
+
+#mContainer{
+  left: 0;
+  padding-left:300px;
+  width: 80%;
+  height: 100%;
+  position: relative;
+}
+
+.projectStatus-title{
+  display: block;
+  position: relative;
+  margin-top: 12px;
+  margin-bottom: 10px;
+}
+
+
+#userTbl td{
+  border: 1px solid #dedede;
+  padding: 5px 5px;
+}
+
+
+.statusBox {
+  display: flex;
+  justify-content: space-around;
+}
+
+.root{
+  height: 100vh;
+}
+
+.sideBarTitle{
+  margin-left: 7px;
+}
+
+.sideBarDetail a{
+  margin-left: 45px;
 }

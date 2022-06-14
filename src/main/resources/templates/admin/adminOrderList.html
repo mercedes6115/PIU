@@ -17,97 +17,7 @@
 
         <!-- sidebar -->
         <div id="sidebar">
-            <ul>
-                <li class="sidebarCategory">
-                    <a href="#">
-                        <div>
-                            <span class="material-symbols-outlined icon">person
-                            </span>
-                            <span class="sidebarTitle">유저 관리</span>
-                        </div>
-
-                    </a>
-
-                </li>
-                <li class="sidebarCategory">
-                    <a href="#">
-                        <div><span class="material-symbols-outlined icon">
-                                storefront
-                            </span><span class="sidebarTitle">상품 관리</span>
-                        </div><span class="material-symbols-outlined more">
-                            expand_more
-                        </span>
-                    </a>
-                    <!-- onClick 시 노출 -->
-                    <ul class="sidebarDetail">
-                        <li><a id="detail" href="#">상품 등록</a></li>
-                        <li><a id="detail" href="#">상품 목록</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">
-                        <div>
-                            <span class="material-symbols-outlined icon">
-                                shopping_cart
-                            </span><span class="sidebarTitle">주문 관리</span>
-                        </div>
-                        <span class="material-symbols-outlined more">
-                            expand_more
-                        </span>
-                    </a>
-                    <!-- onClick 시 노출 -->
-                    <ul class="sidebarDetail">
-                        <li><a id="detail" href="#">전체주문목록</a></li>
-                        <li><a id="detail" href="#">배송 관리</a></li>
-                        <li><a id="detail" href="#">취소 관리</a></li>
-                    </ul>
-                </li>
-                <li class="sidebarCategory">
-                    <a href="#">
-                        <div>
-                            <span class="material-symbols-outlined icon">
-                                public
-                            </span>
-                            <span class="sidebarTitle">프로젝트 관리</span>
-                        </div>
-                        <span class="material-symbols-outlined more">
-                            expand_more
-                        </span>
-                    </a>
-                    <!-- onClick 시 노출 -->
-                    <ul class="sidebarDetail">
-                        <li><a id="detail" href="#">프로젝트 생성</a></li>
-                        <li><a id="detail" href="#">프로젝트 목록</a></li>
-                        <li><a id="detail" href="#">QR코드</a></li>
-                    </ul>
-                </li>
-                <li class="sidebarCategory">
-                    <a href="#">
-                        <div>
-                            <span class="material-symbols-outlined icon">
-                                assignment
-                            </span>
-                            <span class="sidebarTitle">게시물 관리</span>
-                        </div>
-                        <span class="material-symbols-outlined more">
-                            expand_more
-                        </span>
-                    </a>
-                </li>
-                <li class="sidebarCategory">
-                    <a href="#">
-                        <div>
-                            <span class="material-symbols-outlined icon">
-                                analytics
-                            </span>
-                            <span class="sidebarTitle">통계 현황</span>
-                        </div>
-                        <span class="material-symbols-outlined more">
-                            expand_more
-                        </span>
-                    </a>
-                </li>
-            </ul>
+          
         </div>
         <!-- sidebar -->
 
@@ -117,10 +27,9 @@
             <div>
                 <h2>주문 목록</h2>
             </div>
-            <div class="orderSearchBox">
-                <form id="productSearch">
+            <div class="searchBox" id="orderSearchBox">
+                <form id="orderSearchForm">
                     <table>
-                        
                         <tr>
                             <th>검색분류</th>
                             <td colspan="3">
@@ -152,7 +61,7 @@
                         <tr>
                             <th>기간</th>
                             <td colspan="3">
-                                <div class="productRegisterDate">
+                                <div class="dateSelect">
                                     <select>
                                         <option>주문일</option>
                                         <option>배송시작일</option>
@@ -169,7 +78,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <div class="productFilterBox">
+                            <div class="checkBox">
                                 <th>주문상태</th>
                                 <td>
                                     <input type="checkbox" name="" id="orderCheckAll">
@@ -185,17 +94,17 @@
                         </tr>
                     </table>
                     <div class="btnBox">
-                        <button type="button" id="productSearchBtn">검색</button>
-                        <button type="button" id="productSearchBtn">초기화</button>
+                        <button type="button" id="orderSearchBtn">검색</button>
+                        <button type="button" id="orderSearchBtn">초기화</button>
                     </div>
                 </form>
             </div>
 
             <!-- 클래스명 변경 -->
-            <div class="userList">
+            <div class="listBox" id="orderList">
                 <table>
                     <tr>
-                        <div class="productListTitle">
+                        <div class="searchResult">
                             <div>
                                 <span>[총
                                     <strong>2</strong>
@@ -248,16 +157,16 @@
                     </tr>
 
                 </table>
-
+                <div class="paging">
+                    <a href="#">&lt;</a>
+                    <a href="#">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">&gt;</a>
+                </div>
             </div>
             <!-- 페이징 처리 -->
-            <div class="paging">
-                <a href="#">&lt;</a>
-                <a href="#">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">&gt;</a>
-            </div>
+     
         </div>
 
 
@@ -265,6 +174,10 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+      $(document).ready(function(){
+        $('#sidebar').load("adminSideBar.html");
+
+    })
 </script>
 
 </html>

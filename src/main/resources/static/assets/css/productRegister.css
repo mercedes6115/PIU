@@ -1,0 +1,367 @@
+
+
+body{
+    font-family: '맑은 고딕', 'Malgun Gothic', 'Dotum', '돋움', 'arial', 'verdana', sans-serif;
+    display: block;
+    margin: 0;
+    padding: 0;
+    min-width: 1600px;
+    height: 100%;
+    word-spacing: -1px;
+    background-color: #ecf0f7 !important;
+    font-size: 14px;
+}
+
+.wrap{
+    height: 100%;
+    padding: 0 0 0 256px;
+    box-sizing: border-box;
+}
+
+.container{
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+@media (min-width: 1920px){
+    .content {
+        width: 1616px;
+        margin: 0 auto;
+    }
+}
+
+.content{
+    min-height: 750px;
+    padding: 0 24px 40px;
+    box-sizing: border-box;
+    vertical-align: top;
+}
+.product{
+    position: relative;
+    margin: 0 0 38px;
+    padding: 20px 0 0;
+
+}
+.register{
+    position: relative;
+    margin : 40px 0 14px
+}
+.product h1{
+    position: relative;
+    display: inline-block;
+    font-size: 30px;
+    line-height: 30px;
+    font-weight: bold;
+    vertical-align: middle;
+    color: #2e3039;
+
+}
+
+table{
+    table-layout: fixed;
+    width: 100%;
+    border: 0;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+.togglebar{
+    margin: 0 0 -1px 0;
+    height: 50px;
+    border: 1px solid #787d8f;
+    background-color: #8b93a9;
+    box-sizing: border-box;
+}
+
+.togglebar h2{
+    float: left;
+    padding: 0px 0 0 20px;
+    font-size: 20px;
+    color: #fff;
+    font-weight: normal;
+    margin-top: 10px;
+}
+
+.togglebar .ctrl{
+
+    float: right;
+    height: 100%;
+    line-height: 48px;
+
+}
+
+.togglebar .ctrl span{
+    display: inline-block;
+    height: 100%;
+    vertical-align: top;
+}
+
+button{
+    padding: 0;
+    margin: 0;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    background: transparent;
+}
+
+.toggleArea{
+    padding: 30px 20px;
+    border-radius: 2px;
+    background: #fff;
+
+}
+table{
+    border:1px solid #dedede;
+    line-height: 1.5;
+    background-color: #fff;
+    table-layout: fixed;
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+tbody{
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+tr{
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+
+.toggleArea th{
+    border: 1px solid #dedede;
+    text-align: left;
+    word-break: keep-all;
+    padding: 11px 15px 10px;
+    vertical-align: top;
+    color: #2e3039;
+    background-color: #f3f3f3;
+    word-wrap: break-word;
+    width: 190px;
+}
+
+.mBoard th[scope*='row'] + td {
+    height: 32px;
+}
+
+.toggleArea td{
+    border: 1px solid #dedede;
+    padding: 10px 15px;
+    line-height: 24px;
+    vertical-align: top;
+}
+
+.productName{
+    position: relative;
+    display: inline-block;
+    max-width: 100%;
+    color: #686b6d;
+    width: 500px;
+    margin-right: 5px;
+
+}
+
+input{
+    vertical-align: middle;
+    height: 32px;
+    max-width: 100%;
+    padding: 0 9px 2px;
+    box-sizing: border-box;
+    border: 1px solid #d4d4d4;
+    font-size: 14px;
+    line-height: 26px;
+    color: #686b6d;
+    outline: 0 none;
+    transition: border .2s ease-out;
+
+
+}
+
+.pay{
+    text-align: right;
+    margin-right: 5px;
+}
+.summary{
+    width: 80%;
+    margin-right: 5px;
+}
+.panel-body{
+    height: 400px;
+}
+.check{
+    text-align: center;
+
+
+}
+
+label{
+    margin-right: 20px;
+    position: relative;
+    top: 3px;
+}
+
+input .check{
+    position: relative;
+    top: -16px;
+}
+
+.picture{
+    background-color: #686868;
+    border-radius: 3px;
+    color: #fff;
+    width: 100px;
+}
+
+.submitbtn button{
+    background-color: skyblue;
+    padding: 15px;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+}
+.submitbtn > button + button {
+    margin-left:22px;
+    letter-spacing:3px;
+
+}
+.submitbtn{
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #fff;
+    width: 100%;
+    padding: 20px;
+}
+
+
+/* test */
+ul, li{
+    overflow: hidden;
+    list-style: none;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+}
+li {
+    list-style: none;
+}
+
+form input::file-selector-button{
+    display: none;
+}
+
+.count{
+    display: flex;
+    color: #97989b;
+    word-spacing: 3px;
+    vertical-align: bottom;
+}
+
+
+
+.extraImg li{
+    float: left;
+}
+
+label[for='attach'] div{
+    width: 210px;
+    height: 210px;
+    background-size: 100% 100%;
+    cursor: pointer;
+}
+.largeImg, .inputImg{
+    border: 0;
+}
+.bigThumb{
+    position: relative;
+}
+
+
+.bigThumb .largeImg{
+    width: 210px;
+    height: 210px;
+}
+
+.bigThumb .thumb{
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    border: 1px solid #dedede;
+    background: #fff;
+    box-sizing: border-box;
+    transition: .5s ease-out;
+}
+
+.imgIcon{
+    overflow: hidden;
+    text-indent: -150%;
+    white-space: nowrap;
+    font-size: 1px;
+    line-height: 0;
+    color: transparent;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    border: 1px solid #d4d4d4;
+    transition: .3s ease-out;
+    cursor: pointer;
+    display: block;
+}
+
+
+span::after{
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2px;
+    height: 16px;
+    margin: -8px 0 0 -1px;
+    background-color: #565656;
+    background-image: none;
+}
+span::before{
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -1px 0 0 -8px;
+    width: 16px;
+    height: 2px;
+    background-color: #565656;
+    background-image: none;
+
+}
+.bigThumb .smallImg{
+    width: 100px;
+    height: 100px;
+}
+
+.textInfo{
+    color: #97989b;
+    font-size: 13px;
+    font-style: normal;
+    margin: 4px 0;
+}
+
+ul.txtInfo li:before {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 1px;
+    top: 10px;
+    left: 0;
+    background-color: #a7a8aa;
+}
+
+ul.txtInfo li{
+    line-height: 21px;
+}

@@ -1,5 +1,11 @@
 @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
 
+body {
+    margin: 0;
+
+
+}
+
 .notosanskr * {
     font-family: 'Noto Sans KR', sans-serif;
 }
@@ -18,12 +24,16 @@
     font-style: normal;
 }
 
+.main {
+    position: relative;
+    z-index: 0;
+}
+
 .groupPageFrame {
     display: flex;
     -webkit-box-align: stretch;
     align-items: stretch;
     flex-direction: column;
-    width: 100%;
 }
 
 .groupPageTitleFrame {
@@ -32,23 +42,26 @@
     height: fit-content;
     background-color: rgb(255, 255, 255);
     border-color: rgb(229, 229, 229);
-    z-index: 1002;
+    z-index: 200;
     top: 0px;
     left: 0px;
     position: sticky;
+}
+
+.groupPageTitleForm {
     display: flex;
     -webkit-box-align: stretch;
     align-items: stretch;
     flex-direction: column;
 }
 
-.groupPageTitleForm {
+.groupPageTitleBox {
+    display: flex;
     padding-left: 24px;
     padding-right: 24px;
     -webkit-box-align: center;
     align-items: center;
     flex-direction: row;
-    display: flex;
 }
 
 .groupPageHeaderFrame{
@@ -69,16 +82,29 @@
     justify-content: center;
     -webkit-box-align: center;
     align-items: center;
-    margin-bottom: 20px;
-    margin-top: 20px;
+}
+
+.groupPageHeaderBox {
+    display: flex;
+    height: 70px;
+    width: 100%;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+    position: relative;
 }
 
 .groupPageHeader {
     text-decoration: none;
     color: inherit;
     font-size: 20px;
-    font-family: 'SDSamliphopangche_Basic';
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: bold;
+}
+
+.htBoundary {
+    width: 36px;
+    display: flex;
 }
 
 .groupPageProfileFrame {
@@ -98,6 +124,14 @@
     align-items: flex-start;
     -webkit-box-pack: start;
     justify-content: flex-start;
+}
+
+.groupPageProfileBox {
+    display: flex;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+    cursor: pointer;
 }
 
 .groupPageProfileContainer {
@@ -144,12 +178,11 @@
 
 .groupPageSidebarFrame{
     border-radius: 0px;
-    width: 240px;
+    width: 216px;
     height: 100%;
     background-color: rgb(255, 255, 255);
-    border-color: rgb(229, 229, 229);
-    z-index: 1001;
-    top: 78px;
+    border-color: rgb(229, 229, 229);    
+    top: 72px;
     left: 0px;
     position: fixed;
 }
@@ -157,7 +190,6 @@
 .groupPageSidebarForm {
     display: flex;
     height: calc(100vh - 78px);
-    min-width: 240px;
     width: 240px;
     -webkit-box-align: stretch;
     align-items: stretch;
@@ -200,30 +232,46 @@
     padding: 12px;
     cursor: pointer;
     border-radius: 3px;
-    font-size: 0.875rem;
     line-height: 1.125rem;
     font-weight: 400;
 }
 
 .sNoticeForm, .sGroupInfoForm, .sQrForm, .sGuideForm {
     -webkit-box-pack: justify;
-    justify-content: flex-start;
+    justify-content: space-between;
     display: flex;
     -webkit-box-align: center;
     align-items: center;
     flex-direction: row;
 }
 
+.sNoticeBox, .sGroupInfoBox, .sProjectTitleBox, .sGuideBox {
+    display: flex;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: row
+}
+
 .sTitle {
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 12px;
+    font-weight: 550;
     border-width: 0px;
-    color: var(--system-on-color);
+    color: #101010;
     margin: 0px;
     padding: 0px;
+    text-decoration: none;
+}
+
+#gfSize {
+    width: 20px;
+    height: 20px;
+    display: block;
+    font-size: 20px;
 }
 
 .margin {
-    width: 20px;
+    width: 15px;
     height: 0px;
     -webkit-box-flex: 0;
     flex-grow: 0;
@@ -247,32 +295,32 @@
 }
 
 .sProjectList {
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     padding-top: 13px;
     padding-bottom: 13px;
-    padding-left: 56px;
+    padding-left: 47px;
     color: rgb(26, 26, 26);
     background-color: rgb(248, 248, 248);
     cursor: pointer;
     border-radius: 3px;
-    font-size: 0.875rem;
+    font-size: 12px;
     line-height: 1.125rem;
-    font-weight: 400;
+    font-weight: 550;
     text-decoration: none;
 }
 
 .sProjectQna {
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     padding-top: 13px;
     padding-bottom: 13px;
-    padding-left: 56px;
+    padding-left: 47px;
     color: rgb(26, 26, 26);
     background-color: rgb(255, 255, 255);
     cursor: pointer;
     border-radius: 3px;
-    font-size: 0.875rem;
+    font-size: 12px;
     line-height: 1.125rem;
-    font-weight: 400;
+    font-weight: 550;
     text-decoration: none;
 }
 
@@ -292,7 +340,7 @@
 }
 
 .groupPageMainFrame {
-    padding-left: 240px;
+    padding-left: 213px;
     display: flex;
     width: 100%;
     -webkit-box-align: stretch;
@@ -301,9 +349,9 @@
 }
 
 .groupPageMainForm {
+    padding-left: 20px;
+    padding-right: 20px;
     display: flex;
-    padding-left: 80px;
-    padding-right: 80px;
     -webkit-box-align: stretch;
     align-items: stretch;
     flex-direction: column;
@@ -311,7 +359,7 @@
 
 .groupPageContainer {
     margin-top: 40px;
-    width: 100%;
+    width: 87%;
     max-width: 1232px;
     margin-left: auto;
     margin-right: auto;
@@ -334,10 +382,10 @@
 }
 
 .bodyTitle {
-    font-family: 'SDSamliphopangche_Basic';
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     line-height: 2.5rem;
     font-weight: 700;
-    font-size: 1.75rem;
+    font-size: 24px;
     border-width: 0px;
     color: rgb(26, 26, 26);
     margin: 0px;
@@ -350,10 +398,7 @@
 }
 
 .addProjectBtn {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 5px;
     cursor: pointer;
     overflow: hidden;
     z-index: 0;
@@ -395,13 +440,1109 @@
 }
 
 .addProjectText {
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     padding-left: 4px;
     padding-right: 4px;
     line-height: 1.125rem;
-    font-size: 0.875rem;
+    font-size: 12px;
     border-width: 0px;
     color: var(--system-on-color);
     margin-right: 4px;
     font-weight: 700;
+    text-decoration: none;
+}
+
+.projectListFrame {
+    border-radius: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    border-color: rgb(229, 229, 229);
+}
+
+.projectListForm {
+    display: flex;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.projectListContainer {
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 12px;
+    overflow: hidden;
+    transform: translateX(0px) translateY(0px) translateZ(0px);
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    border-color: rgb(239, 239, 239);
+}
+
+.projectListBox {
+    display: flex;
+    height: fit-content;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.searchForm {
+    padding: 16px 16px 10px;
+}
+
+.searchBox {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    cursor: text;
+    --system-on-color: #101010;
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--system-on-color);
+    border-radius: 2px;
+    flex: 1 1 0%;
+    padding: 6px 16px;
+}
+
+.searchProjectBox {
+    flex: 1 1 0%;
+    margin-right: 12px;
+    line-height: normal;
+}
+
+.searchProject {
+    background-color: transparent;
+    border-width: 0px;
+    border-radius: 2px;
+    outline-style: none;
+    color: var(--system-on-color);
+    width: 100%;
+    height: 100%;
+    font-size: 14px;
+}
+
+.searchImg {
+    display: block;
+    width: 16px;
+    height: 16px;
+}
+
+.showListFrame {
+    display: flex;
+    overflow-x: auto;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.showListForm {
+    overflow-y: hidden;
+}
+
+.showListHeader {
+    width: 100%;
+    height: 56px;
+    padding-right: 0px;
+    border-bottom: 1px solid rgb(239, 239, 239);
+    font-size: 13px;
+    line-height: 18;
+    color: rgb(26, 26, 26);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.showListHeader1 {
+    display: flex;
+    height: 100%;
+    flex: 0 1 44px;
+    margin-left: 10px;
+    margin-right: 10px;
+    min-width: 0;
+}
+
+.listCheckBoxForm {
+    margin-left: 9px;
+    margin-right: 14px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    height: 120%;
+}
+
+.listCheckBox {
+    cursor: pointer;
+    position: relative;
+}
+
+.showListHeader2 {
+    display: flex;
+    padding: 19px 16px;
+    flex: 0 1 73px;
+}
+
+.showListHeader3 {
+    display: flex;
+    padding: 19px 16px;
+    flex: 0 1 200px;
+}
+
+.showListHeader4 {
+    display: flex;
+    padding: 19px 16px;
+    flex: 0 1 170px;
+}
+
+.showListHeader5 {
+    display: flex;
+    padding: 19px 16px;
+    flex: 0 1 120px;
+}
+
+.showListhTerrain, .showListhCourse, .showListhState, .showListhTitle, .showListBoundary, .listCheckBoxFrame, .showListhPoint, .showListhDate, .showListhMore {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    display: inline-block;
+    max-width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.showListHeader6 {
+    display: flex;
+    padding: 19px 16px;
+    flex: 0 1 170px;
+}
+
+.showListHeader7 {
+    display: flex;
+    padding: 19px 16px;
+    flex: 0 1 100px;
+}
+
+.showListHeader8 {
+    display: flex;
+    padding: 19px 16px;
+    flex: 0 1 180px;
+    margin-right: 10px;
+    min-width: 0;
+}
+
+.showListHeader9 {
+    display: flex;
+    padding: 19px 16px;
+    flex: 0 1 155px;
+    margin-right: 10px;
+    min-width: 0;
+}
+
+.showListBodyFrame {
+    box-sizing: border-box;
+    direction: ltr;
+    height: 200px;
+    position: relative;
+    width: 100%;
+    will-change: transform;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.showListBodyForm {
+    width: auto;
+    height: 288px;
+    max-width: 1232px;
+    max-height: 288px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.showListBody {
+    height: 72px;
+    left: 0px;
+    position: relative;
+    top: 0px;
+    width: 100%;
+    overflow: hidden;
+    padding-right: 0px;
+    border-bottom: 1px solid rgb(248, 248, 248);
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+}
+
+.showListBody1 {
+    overflow: hidden;
+    flex: 0 1 44px;
+    margin-left: 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 10px;
+    min-width: 0;
+}
+
+.sbCheckBoxFrame {
+    margin-left: 9px;
+    margin-right: 14px;
+    width: fit-content;
+    cursor: pointer;
+}
+
+.sbCheckBoxForm {
+    cursor: pointer;
+    position: relative;
+}
+
+.sbSelect {
+    top: 0px;
+    position: absolute;
+    left: 0px;
+    width: 0px;
+    height: 0px;
+    border-width: 0px;
+    opacity: 0;
+    cursor: pointer;
+    display: none;
+}
+
+.showListBody2 {
+    overflow: hidden;
+    flex: 0 1 73px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 10px;
+    min-width: 0;
+}
+
+.sbStateFrame, .sbTitleForm, .sbTerrainForm, .sbImageFrame, .sbCourseFrame, .sbPointFrame,  .sbMoreFrame, .sbDateFrame {
+    padding: 24px 12px;
+    font-size: 13px;
+    
+}
+
+.sbImageForm {
+    width: 56px;
+}
+
+.sbImageContainer {
+    position: relative;
+    width: 100%;
+    height: 0px;
+    padding-bottom: 75%;
+}
+
+.sbImageBox {
+    position: absolute;
+    inset: 0px;
+}
+
+.sbImageWrap {
+    border-radius: 2px;
+    overflow: hidden;
+    transform: translateX(0px) translateY(0px) translateZ(0px);
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    border-color: rgb(229, 229, 229);
+}
+
+.sbImageShow {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: relative;
+}
+
+.sbImage {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    vertical-align: top;
+    visibility: inherit;
+}
+
+.showListBody3 {
+    overflow: hidden;
+    flex: 0 1 200px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 10px;
+    min-width: 0;
+}
+
+
+
+.sbTitle {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    border-width: 0px;
+    color: var(--system-on-color);
+    margin: 0px;
+    padding: 0px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.125rem;
+    white-space: pre-wrap;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.showListBody4 {
+    overflow: hidden;
+    flex: 0 1 170px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 10px;
+    min-width: 0;
+}
+
+
+
+.sbStateForm {
+    display: flex;
+    width: max-content;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.sbState {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.125rem;
+    font-size: 12px;
+    border-width: 0px;
+    color: rgb(26, 26, 26);
+    margin: 0px;
+    padding: 0px;
+    font-weight: 400;
+}
+
+.showListBody5 {
+    overflow: hidden;
+    flex: 0 1 120px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 10px;
+    min-width: 0;
+}
+
+.sbTerrain, .sbCousre, .sbPoint, .sbDate {
+    border-width: 0px;
+    color: var(--system-on-color);
+    margin: 0px;
+    padding: 0px;
+    font-size: 12px;;
+    font-weight: 400;
+    line-height: 1.125rem;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.showListBody6 {
+    overflow: hidden;
+    flex: 0 1 170px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 10px;
+    min-width: 0;
+}
+
+.showListBody7 {
+    overflow: hidden;
+    flex: 0 1 100px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 10px;
+    min-width: 0;
+}
+
+.showListBody8 {
+    overflow: hidden;
+    flex: 0 1 180px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 10px;
+    min-width: 0;
+}
+
+.showListBody9 {
+    overflow: hidden;
+    flex: 0 1 165px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 10px;
+    min-width: 0;
+}
+
+.sbMoreForm {
+    display: flex;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: row;
+    cursor: pointer;
+}
+
+.qrCheckFrame {
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 0;
+    --system-on-color: #101010;
+    background-color: rgb(255, 255, 255);
+    color: var(--system-on-color);
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.15);
+    border-radius: 2px;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    display: inline-flex;
+    padding: 9px;
+    position: relative;
+}
+
+.qrCheckForm {
+    display: flex;
+    visibility: inherit;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.qrCheck {
+    padding-left: 4px;
+    padding-right: 4px;
+    border-width: 0px;
+    color: var(--system-on-color);
+    margin: 0px;
+    padding: 0px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.125rem;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.moreBoundary{
+    width: 8px;
+    height: 0px;
+    -webkit-box-flex: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.sbMoreBox {
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 0;
+    --system-on-color: #101010;
+    background-color: rgb(255, 255, 255);
+    color: var(--system-on-color);
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.15);
+    border-radius: 2px;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    display: inline-flex;
+    padding: 9px;
+    position: relative;
+    height: 38px;
+}
+
+
+
+.content {
+    margin-top: 20px;
+    padding: 0px 10px;
+    text-shadow: 1px 1px 2px gray;
+    color: white;
+}
+
+
+.showMoreFrame {
+    display: none;
+    font-size: 13px;
+    line-height: 4;
+    z-index: 0;
+    background-color: rgba( 255, 255, 255, 0.18 );
+    margin-right: 16px;
+    justify-content: flex-end;
+}
+
+.showMoreForm {
+    display: flex;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: row;
+    cursor: pointer;
+}
+
+.moveProjectModify {
+    text-decoration: none;
+    color: black;
+}
+
+.modifyForm {
+    display: flex;
+    align-items: center;
+    margin-right: 4px;
+}
+
+.deleteForm {
+    display: flex;
+    align-items: center;
+}
+
+.showListPagingFrame {
+    display: flex;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.showListPagingForm {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.pageMoveBtn {
+    border-radius: 19px;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    --system-on-color: #AFAFAF;
+    border: white;
+    background-color: white;
+}
+
+#prevBtnImg, #nextBtnImg {
+    width: 18px;
+    height: 18px;
+    display: block;
+}
+
+.btnBoundary {
+    width: 16px;
+    display: flex;
+}
+
+.showPageNum {
+    display: flex;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: row;
+}
+
+.movePageNum {
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+    background-color: rgb(255, 91, 20);
+    color: var(--system-on-color);
+    border-radius: 19px;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    --system-on-color: #FFFFFF;
+    border: 1px white solid;
+}
+
+.displayPageNum {
+    border-width: 0px;
+    color: var(--system-on-color);
+    margin: 0px;
+    padding: 0px;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    line-height: 1.125rem;
+}
+
+.footerBoundary {
+    width: 0px;
+    height: 72px;
+    -webkit-box-flex: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.groupPageFooter {
+    display: flex;
+    width: 100%;
+    padding-bottom: 40px;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.boundaryLine {
+    flex: 0 0 auto;
+    background-color: rgb(239, 239, 239);
+    width: 100%;
+    height: 1px;
+    z-index: 50;
+}
+
+.footerFrame {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    padding-top: 32px;
+}
+
+.groupPageNoticeForm {
+    display: flex;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    max-width: 960px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.gpNoticeTitle {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    border-width: 0px;
+    color: var(--system-on-color);
+    margin: 0px;
+    padding: 0px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.625rem;
+}
+
+.nTitleBoundary {
+    width: 0px;
+    height: 24px;
+    -webkit-box-flex: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.noticeFrame {
+    display: flex;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.noticeForm {
+    border-radius: 0px;
+    box-shadow: rgb(0 0 0 / 8%) 0px 0px 1px, rgb(0 0 0 / 5%) 0px 2px 6px;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    border-color: rgb(229, 229, 229);
+}
+
+.noticeList {
+    display: flex;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.noticeItemFrame {
+    display: flex;
+    margin: 17px;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.moveNoticeDetail {
+    text-decoration: none;
+    color: inherit;
+}
+
+.noticeItemForm {
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    display: flex;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: row;
+}
+
+.noticeItem {
+    border-width: 0px;
+    color: var(--system-on-color);
+    margin: 0px;
+    padding: 0px;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.125rem;
+}
+
+.noticeItemBoundary {
+    flex: 0 0 auto;
+    background-color: rgb(248, 248, 248);
+    width: 100%;
+    height: 1px;
+}
+
+.nPagingBoundary {
+    width: 0px;
+    height: 24px;
+    -webkit-box-flex: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.nPagingFrame {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.nPagingForm {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.nDetailTitleBoundary {
+    width: 0px;
+    height: 20px;
+    -webkit-box-flex: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.nTitleContainer, .nContentContainer {
+    border-radius: 0px;
+    box-shadow: rgb(0 0 0 / 8%) 0px 0px 1px, rgb(0 0 0 / 5%) 0px 2px 6px;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    border-color: rgb(229, 229, 229);
+    padding: 20px;
+}
+
+.nTitleBox {
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.nDetailTitle {
+    border-width: 0px;
+    color: var(--system-on-color);
+    margin: 0px;
+    padding: 0px;
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1.125rem;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    
+}
+
+.nDetailDate {
+    border-width: 0px;
+    color: rgb(175, 175, 175);
+    margin: 0px;
+    padding: 0px;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.125rem;
+}
+
+.nDetailBoundary {
+    width: 0px;
+    height: 6px;
+    -webkit-box-flex: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.nContent {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 1.125rem;
+    line-height: 1.875rem;
+    font-weight: 400;
+    color: rgb(16, 16, 16);
+    padding-top: 8px;
+}
+
+.backListBtnFrame {
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    display: flex;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    flex: 1 1 0%;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: row;
+}
+
+.backListBtnForm {
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 0;
+    --system-on-color: #101010;
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--system-on-color);
+    border-width: 0px;
+    border-radius: 2px;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    display: inline-flex;
+    padding: 13px 12px;
+    position: relative;
+    text-decoration: none;
+}
+
+.backListBtnBox {
+    display: flex;
+    visibility: inherit;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+    text-decoration: none;
+}
+
+#returnList {
+    width: 18px;
+    height: 18px;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.backListBtn {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    border-width: 0px;
+    color: var(--system-on-color);
+    margin: 0px;
+    padding-left: 4px;
+    padding-right: 4px;
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1.125rem;
+    text-decoration: none;
+}
+
+.backListBtnFrame :hover {
+    background-color: #AFAFAF;
+}
+
+.allCheck, oneCheck {
+    top: 0px;
+    position: absolute;
+    left: 0px;
+    width: 0px;
+    height: 0px;
+    border-width: 0px;
+    opacity: 0;
+    cursor: pointer;
+    display: none;
+}
+
+#checkBoxBtn {
+    color: silver;
+    font-size: 22px;
+}
+
+#dropBtn {
+    width: 14px;
+    height: 14px;
+}
+
+.showListhDateFrame {
+    display: inline-block;
+    max-width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.showListhDateForm {
+    display: flex;
+    width: 135px;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.PagingBtnFrame {
+    display: flex;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.groupQnaFrame {
+    margin-top: 32px;
+    margin-bottom: 32px;
+}
+
+.groupQnaForm {
+    max-width: 960px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.qnaHeaderFrame {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.qnaBodyFrame {
+    margin-top: 16px;
+}
+
+.qnaHeaderForm {
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.qnaHeader {
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(26, 26, 26);
+    line-height: 34px;
+    letter-spacing: -0.4px;
+    margin: 0px;
+}
+
+.qbSelectFrame {
+    margin-bottom: 16px;
+}
+
+.qnaTitleSelect {
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 3px;
+    background-color: white;
+    border-color: rgb(239, 239, 239);
+    height: 48px;
+    display: block;
+    flex: 1 1 auto;
+    width: 100%;
+    padding: 0px 48px 0px 16px;
+    appearance: none;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAMAAABiM0N1AAAArlBMVEUAAAA2Pj43Oz82PD42Oz3///82OzxmZmY2Oz1NTU05VVU1Oz1AQEA1PD42Oz01QEA2Oz01Ojw1Ozw8PDw2PD42Oz02Oz03PT02PDw2Oz01Oz04PT04PEA2Ozw2Ojw3Oz44Oz81Ojw6Pz82Oj01Ojw1O0E1Ozw1Ojw2Oz02Ojw7O0U2Ozw2Q0M1Oj07O041Ozw1OzxAQEA2Oj1AQEA1Oj2AgIA2Oz02Ojw3Ozw1OjwC6qbsAAAAOXRSTlMAQkGAkwGlBbUKCcQQeNEYaP3dIlr75y5M9+87QPL2Skn1Nez6K+X+bH8a1BPKDb+2CLME0gKXiIdaPhwMAAAAAWJLR0QAiAUdSAAAAAlwSFlzAAAASAAAAEgARslrPgAAAVVJREFUWMPtlNlygkAQRTvBBeOCCu6aRQWNa9Ro0v//Y0HSM67QQ6ry1udN+84pcOwLIAiCIAgCz4NZ7JELWJjJ8ppsBi3Og5jLc558LoxZnAfRLiR7nuwoZnEexGIpyVMqUizeVKYEVpx4j1NRqXJ8qFqjTN2Ni7h1itSqSY/tNSjWbN0PtJoUaHjJP2S7Q8Fu796416Vxpw0M/QFFn19uh69vNBz0OQ/AcETh8c3De2MajYa8B8APKD6ZXg6mExoEvonn7GIu/ynv6tv4K71mNldnTosXrhcxn5l6ABZLdUotXrReEcuFuQdgtVbnPqLFK9jq83qVxgOw2aqTx8XT64XbTToPwE6/y6dzWq/cLq0HYH/Qt6Rv8bBP7wn5wiu+/6SBs1pha4ND1wpbGxy6Vtja4FC1wtcGx2+tmNQGx7FWzGqDww9Ma4PDNa4NQRAE4T/5AXc8Urhqe4+OAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE4LTAyLTIwVDA3OjI0OjAxLTA1OjAwCLbogQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxOC0wMi0yMFQwNzoyNDowMS0wNTowMHnrUD0AAAAASUVORK5CYII=);
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 18px;
+    color: rgb(58, 58, 58);
+}
+
+.opfirst {
+    font-weight: normal;
+    white-space: nowrap;
+    min-height: 1.2em;
+    padding: 0px 2px 1px;
+}
+
+option:disabled {
+    color: -internal-light-dark(graytext, rgb(170, 170, 170));
+}
+
+.qbContentFrame {
+    position: relative;
+    top: 0px;
+    left: 0px;
+}
+
+.qbProfileFrame {
+    display: block;
+    color: rgb(58, 58, 58);
+    cursor: pointer;
+}
+
+.qbProfileForm {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+
+.qbProfileContainer {
+    margin-bottom: 8px;
+    display: flex;
+}
+
+.qbProfileBox {
+    position: relative;
+    width: 40px;
+    height: 40px;
+}
+
+.qbProfileImgBox {
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgb(248, 248, 248);
+    border-radius: 100%;
+    line-height: 0;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    font-size: 0px;
+    background: rgb(238, 238, 238);
+}
+
+.qbProfile {
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.qbProfileImage {
+    transition: opacity 0.1s linear 0s;
+    object-fit: cover;
+    opacity: 1;
+    width: 100%;
+    height: 100%;
 }
