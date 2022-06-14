@@ -84,6 +84,7 @@
     width: auto;
     FONT-WEIGHT: 600;
     font-size: 25px;
+    margin-top: 5px;
 
 }
 
@@ -336,6 +337,8 @@ header-search-text1 {
     height: 12px;
 }
 .search-icon{
+    background-color: #F8F8F8;
+    width:270px;
     font-family: 'Noto Sans KR', sans-serif;
     border-width: 0;
     color: #A2A2A2;
@@ -569,16 +572,12 @@ right-menu-wrapper2{
     display: none;
 }
 
-
-
 .nav-contents-wrapper{
     display: flex;
-    overflow-x: scroll;
     height: fit-content;
     align-items: flex-end;
     flex-direction: row;
 }
-
 
 .nav-category-wrapper{
     display: flex;
