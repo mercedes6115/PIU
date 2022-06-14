@@ -1,3 +1,6 @@
+
+
+console.log("asdasd");
 let slide1 = document.querySelector('.slides1');
 let slideImg1 = document.querySelectorAll('.slides1 li');
 currentIdx1 = 0;
@@ -6,6 +9,7 @@ slideCount1 = slideImg1.length;
 
 prev1 = document.querySelector('.prev1'); //이전 버튼
 next1 = document.querySelector('.next1'); //다음 버튼
+console.log(prev1,next1);
 slideWidth1 = 276; //슬라이드이미지 넓이
 slideMargin1 = 20; //슬라이드 끼리의 마진값
 makeClone1(); // 처음이미지와 마지막 이미지 복사 함수
@@ -29,6 +33,7 @@ next1.addEventListener('click', function () {
 
   if (currentIdx1 <= slideCount1 - 1) {
     //슬라이드이동
+    console.log("Asdasss");
     slide1.style.left = -(currentIdx1 + 2) * (slideWidth1 + slideMargin1) + 'px';
     slide1.style.transition = `${0.5}s ease-out`; //이동 속도
   }
@@ -183,4 +188,4 @@ prev3.addEventListener('click', function () {
     currentIdx3 = slideCount3;
   }
   currentIdx3 -= 1;
-});
+})
