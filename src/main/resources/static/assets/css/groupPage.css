@@ -977,7 +977,6 @@ body {
 .showMoreFrame {
     display: none;
     font-size: 13px;
-    line-height: 4;
     z-index: 0;
     background-color: rgba( 255, 255, 255, 0.18 );
     margin-right: 10px;
@@ -993,13 +992,15 @@ body {
     margin-top: 8px;
 }
 
+
 .moveProjectModify, .deleteProjectBtn {
     text-decoration: none;
     color: black;
     display: flex;
     align-items: center;
+    background-color: white;
     border: 1px silver solid;
-    font-size: 10px;
+    font-size: 8px;
 }
 
 .modifyForm {
@@ -1388,8 +1389,8 @@ body {
 }
 
 #dropBtn {
-    width: 14px;
-    height: 14px;
+    width: 96px;
+    height: 20px;
 }
 
 .showListhDateFrame {
@@ -1560,6 +1561,8 @@ option:disabled {
 }
 
 .pmBtn, .pdBtn {
+
     font-size: 12px;
 }
 
+ 
