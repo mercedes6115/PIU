@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>상품 목록</title>
+    <title>프로젝트 목록</title>
 </head>
 <link rel="stylesheet" href="/assets/css/admin_style.css">
 <link rel="stylesheet"
@@ -31,7 +31,7 @@
         <!-- content -->
         <div id="container">
             <div>
-                <h2>상품 목록</h2>
+                <h2>프로젝트 목록</h2>
             </div>
             <div class="searchBox" id="projectSearchBox">
                 <form id="projectSearchForm">
@@ -88,7 +88,7 @@
                                 <td>
                                     <span>전체</span><input type="radio" name="snsCheck" id="" checked>
                                     <span>승인대기</span><input type="radio" name="snsCheck" id="">
-                                    <span>진행완료</span><input type="radio" name="snsCheck" id="">
+                                    <span>승인완료</span><input type="radio" name="snsCheck" id="">
                                     <span>지급완료</span><input type="radio" name="snsCheck" id="">
                                 </td>
                               
@@ -128,9 +128,9 @@
                         <td colspan="12">
                             <div class="listTitle">
                                 <a href="" class="listBtn">삭제</a>
-                                <a href="" class="listBtn" id="productDisplayChage">진열변경</a>
-                                <a href="" class="listBtn">판매변경</a>
-                                <a href="" class="listBtn">상품등록</a>
+                                <a href="" class="listBtn" id="productDisplayChage">상태변경</a>
+                                <a href="" class="listBtn">승인</a>
+                          
                             </div>
                         </td>
             </div>
@@ -142,40 +142,41 @@
 
                 <th scope="col"></th>
                 <th scope="col">번호</th>
-                <th scope="col">상품번호</th>
-                <th scope="col">분류</th>
-                <th scope="col">상품명</th>
-                <th scope="col">판매가</th>
-                <th scope="col">진열상태</th>
-                <th scope="col">판매상태</th>
-                <th scope="col">상품등록일</th>
-                <th scope="col">상품진열상황</th>
+                <th scope="col">프로젝트번호</th>
+                <th scope="col">유형</th>
+                <th scope="col">지형</th>
+                <th scope="col">플로깅제목</th>
+                <th scope="col">모집자</th>
+                <th scope="col">상태</th>
+                <th scope="col">모집등록일</th>
+                <th scope="col">모집상황</th>
+                <th scope="col">포인트</th>
             </tr>
             <tr>
                 <td><input type="checkbox"></td>
                 <td>1</td>
-                <td>20201918</td>
-                <td>생활</td>
-                <!-- 상품 수정하기로 이동 -->
-                <td><a href="#">초록초록 고무장갑</a></td>
-                <td>50point</td>
-                <td>진열함</td>
-                <td>판매함</td>
-                <td>2022-06-12</td>
-                <!-- 상품 상세보기로 이동 -->
-                <td><a href="#">상세보기</a></td>
+                <td>P123456</td>
+                <td>코스</td>
+                <td>산</td>
+                <td>강남구청과 함께하는</td>
+                <td>강남구청</td>
+                <td>승인대기중</td>
+                <td>2022-06-14</td>
+                <td>모집중</td>
+                <td>110point</td>
             </tr>
             <tr>
                 <td><input type="checkbox"></td>
-                <td>2</td>
-                <td>20201918</td>
-                <td>생활</td>
-                <td><a href="#">초록초록 고무장갑</a></td>
-                <td>50point</td>
-                <td>진열함</td>
-                <td>판매함</td>
-                <td>2022-06-12</td>
-                <td><a href="#">상세보기</a></td>
+                <td>1</td>
+                <td>P123456</td>
+                <td>코스</td>
+                <td>산</td>
+                <td>강남구청과 함께하는</td>
+                <td>강남구청</td>
+                <td>승인대기중</td>
+                <td>2022-06-14</td>
+                <td>모집중</td>
+                <td>110point</td>
             </tr>
 
             </table>

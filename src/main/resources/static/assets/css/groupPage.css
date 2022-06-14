@@ -86,7 +86,7 @@ body {
 
 .groupPageHeaderBox {
     display: flex;
-    height: 78px;
+    height: 70px;
     width: 100%;
     -webkit-box-align: center;
     align-items: center;
@@ -398,10 +398,7 @@ body {
 }
 
 .addProjectBtn {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 5px;
     cursor: pointer;
     overflow: hidden;
     z-index: 0;
@@ -538,6 +535,10 @@ body {
     flex-direction: column;
 }
 
+.showListForm {
+    overflow-y: hidden;
+}
+
 .showListHeader {
     width: 100%;
     height: 56px;
@@ -640,11 +641,13 @@ body {
 .showListBodyFrame {
     box-sizing: border-box;
     direction: ltr;
-    height: 296px;
+    height: 200px;
     position: relative;
     width: 100%;
     will-change: transform;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .showListBodyForm {
@@ -654,12 +657,14 @@ body {
     max-height: 288px;
     overflow: hidden;
     position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 .showListBody {
     height: 72px;
     left: 0px;
-    position: absolute;
+    position: relative;
     top: 0px;
     width: 100%;
     overflow: hidden;
@@ -716,7 +721,7 @@ body {
 .sbStateFrame, .sbTitleForm, .sbTerrainForm, .sbImageFrame, .sbCourseFrame, .sbPointFrame,  .sbMoreFrame, .sbDateFrame {
     padding: 24px 12px;
     font-size: 13px;
-    line-height: 18;
+    
 }
 
 .sbImageForm {
@@ -867,7 +872,7 @@ body {
 
 .showListBody9 {
     overflow: hidden;
-    flex: 0 1 155px;
+    flex: 0 1 165px;
     text-overflow: ellipsis;
     white-space: nowrap;
     margin-right: 10px;
@@ -949,59 +954,10 @@ body {
     display: inline-flex;
     padding: 9px;
     position: relative;
+    height: 38px;
 }
 
-.qrModal-overlay {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(0,0,0,0.5);
-    z-index: 999;
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    backdrop-filter: blur(1.5px);
-    -webkit-backdrop-filter: blur(1.5px);
-    border-radius: 10px;
-    border: 1px solid rgba(255,255,255,0.18);
-}
 
-.modal-qr {
-    background: rgba( 69, 139, 197, 0.70 );
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-    backdrop-filter: blur( 13.5px );
-    -webkit-backdrop-filter: blur( 13.5px );
-    border-radius: 10px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );        width: 400px;
-    height: 500px;
-    position: relative;
-    top: -100px;
-    padding: 10px;
-}
-
-.modal-title {
-    padding-left: 10px;
-    display: inline;
-    text-shadow: 1px 1px 2px gray;
-    color: white;
-}
-
-.modal-title h2 {
-    display: inline;
-}
-
-.close-modal {
-    display: inline;
-    float: right;
-    padding-right: 10px;
-    cursor: pointer;
-    text-shadow: 1px 1px 2px gray;
-    color: white;
-}
 
 .content {
     margin-top: 20px;
@@ -1013,12 +969,11 @@ body {
 
 .showMoreFrame {
     display: none;
-    margin-top: 70px;
     font-size: 13px;
     line-height: 4;
-    z-index: 200;
+    z-index: 0;
     background-color: rgba( 255, 255, 255, 0.18 );
-    margin-right: 33px;
+    margin-right: 16px;
     justify-content: flex-end;
 }
 
@@ -1442,4 +1397,152 @@ body {
     -webkit-box-pack: justify;
     justify-content: space-between;
     cursor: pointer;
+}
+
+.PagingBtnFrame {
+    display: flex;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.groupQnaFrame {
+    margin-top: 32px;
+    margin-bottom: 32px;
+}
+
+.groupQnaForm {
+    max-width: 960px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.qnaHeaderFrame {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.qnaBodyFrame {
+    margin-top: 16px;
+}
+
+.qnaHeaderForm {
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.qnaHeader {
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(26, 26, 26);
+    line-height: 34px;
+    letter-spacing: -0.4px;
+    margin: 0px;
+}
+
+.qbSelectFrame {
+    margin-bottom: 16px;
+}
+
+.qnaTitleSelect {
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 3px;
+    background-color: white;
+    border-color: rgb(239, 239, 239);
+    height: 48px;
+    display: block;
+    flex: 1 1 auto;
+    width: 100%;
+    padding: 0px 48px 0px 16px;
+    appearance: none;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAMAAABiM0N1AAAArlBMVEUAAAA2Pj43Oz82PD42Oz3///82OzxmZmY2Oz1NTU05VVU1Oz1AQEA1PD42Oz01QEA2Oz01Ojw1Ozw8PDw2PD42Oz02Oz03PT02PDw2Oz01Oz04PT04PEA2Ozw2Ojw3Oz44Oz81Ojw6Pz82Oj01Ojw1O0E1Ozw1Ojw2Oz02Ojw7O0U2Ozw2Q0M1Oj07O041Ozw1OzxAQEA2Oj1AQEA1Oj2AgIA2Oz02Ojw3Ozw1OjwC6qbsAAAAOXRSTlMAQkGAkwGlBbUKCcQQeNEYaP3dIlr75y5M9+87QPL2Skn1Nez6K+X+bH8a1BPKDb+2CLME0gKXiIdaPhwMAAAAAWJLR0QAiAUdSAAAAAlwSFlzAAAASAAAAEgARslrPgAAAVVJREFUWMPtlNlygkAQRTvBBeOCCu6aRQWNa9Ro0v//Y0HSM67QQ6ry1udN+84pcOwLIAiCIAgCz4NZ7JELWJjJ8ppsBi3Og5jLc558LoxZnAfRLiR7nuwoZnEexGIpyVMqUizeVKYEVpx4j1NRqXJ8qFqjTN2Ni7h1itSqSY/tNSjWbN0PtJoUaHjJP2S7Q8Fu796416Vxpw0M/QFFn19uh69vNBz0OQ/AcETh8c3De2MajYa8B8APKD6ZXg6mExoEvonn7GIu/ynv6tv4K71mNldnTosXrhcxn5l6ABZLdUotXrReEcuFuQdgtVbnPqLFK9jq83qVxgOw2aqTx8XT64XbTToPwE6/y6dzWq/cLq0HYH/Qt6Rv8bBP7wn5wiu+/6SBs1pha4ND1wpbGxy6Vtja4FC1wtcGx2+tmNQGx7FWzGqDww9Ma4PDNa4NQRAE4T/5AXc8Urhqe4+OAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE4LTAyLTIwVDA3OjI0OjAxLTA1OjAwCLbogQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxOC0wMi0yMFQwNzoyNDowMS0wNTowMHnrUD0AAAAASUVORK5CYII=);
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 18px;
+    color: rgb(58, 58, 58);
+}
+
+.opfirst {
+    font-weight: normal;
+    white-space: nowrap;
+    min-height: 1.2em;
+    padding: 0px 2px 1px;
+}
+
+option:disabled {
+    color: -internal-light-dark(graytext, rgb(170, 170, 170));
+}
+
+.qbContentFrame {
+    position: relative;
+    top: 0px;
+    left: 0px;
+}
+
+.qbProfileFrame {
+    display: block;
+    color: rgb(58, 58, 58);
+    cursor: pointer;
+}
+
+.qbProfileForm {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+
+.qbProfileContainer {
+    margin-bottom: 8px;
+    display: flex;
+}
+
+.qbProfileBox {
+    position: relative;
+    width: 40px;
+    height: 40px;
+}
+
+.qbProfileImgBox {
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgb(248, 248, 248);
+    border-radius: 100%;
+    line-height: 0;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    font-size: 0px;
+    background: rgb(238, 238, 238);
+}
+
+.qbProfile {
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.qbProfileImage {
+    transition: opacity 0.1s linear 0s;
+    object-fit: cover;
+    opacity: 1;
+    width: 100%;
+    height: 100%;
 }
