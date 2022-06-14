@@ -11,5 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainController {
 
     @GetMapping("/main")
-    public void main(){}
+    public void main(){
+        log.info("==============main페이지");
+    }
 }

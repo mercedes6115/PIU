@@ -7,11 +7,11 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>페스워드 찾기</title>
-    <link rel="stylesheet" href="../../static/assets/css/Password.css" />
-    <link rel="stylesheet" href="header.css">
-    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="/assets/css/Password.css" />
+    <link rel="stylesheet" href="/assets/css/header.css">
+    <link rel="stylesheet" href="/assets/css/footer.css">
 
-    <script src="../../static/assets/js/password.js"></script>
+    <script src="/assets/js/password.js"></script>
 </head>
 
 <body>
@@ -75,12 +75,10 @@
 <!-- Scripts -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    type = "text/javascript" >
     $(document).ready(function () {
-        $("#HeaderImport").load("Header.html");  //헤더 인클루드
-        $("#FooterImport").load("Footer.html");  //푸터부분 인클루드
-    }
-    );
+        $("#HeaderImport").load("/fix/test/Header.html");  //헤더 인클루드
+        $("#FooterImport").load("/fix/test/Footer.html");  //푸터부분 인클루드
+    });
 </script>
 
 </html>
