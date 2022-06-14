@@ -85,7 +85,7 @@ const intervalclick = function(){
   }
 const intervals = setInterval(intervalclick,4000);
 nextBtn.addEventListener('click', function () {
-    //다음 버튼 눌렀을때
+    console.log("asd");
     move();
     bannerBackground11.src=backImgs[currentBannerIdx];
     bannerBackground11.style.transition = `${0.5}s ease-out`;
@@ -137,10 +137,4 @@ nextBtn.addEventListener('click', function () {
     currentBannerIdx -= 1;
   });
 
-  function test() {
-    var tmp = document.getElementById("test_obj").src;
-    alert(tmp);
-}
-
-  let bannerBackground1 = document.getElementById("bannerBackGround").src;
 
