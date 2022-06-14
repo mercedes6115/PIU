@@ -1,0 +1,755 @@
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+.notosanskr * {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+
+body {
+    margin: 0;
+    line-height: 1;
+    overflow-wrap: anywhere;
+}
+
+.main {
+    position: relative;
+    z-index: 0;
+}
+
+.cpTitleFrame {
+    position: sticky;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 70px;
+    background-color: rgb(255, 255, 255);
+    z-index: 10;
+}
+
+.cpTitleForm {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 14px 24px;
+}
+
+.logoImg {
+    margin-right: 10px;
+    width: 40px;
+    height: 30px;
+}
+
+.cpTitle {
+    font-family: 'Noto Sans KR', sans-serif;
+    margin-right: 16px;
+    font-size: 14px;
+    font-weight: normal;
+    color: rgb(26, 26, 26);
+    line-height: 24px;
+    letter-spacing: -0.3px;
+    margin: 0px;
+}
+
+.cpTitlepercent {
+    color: rgb(255, 61, 0);
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin-left: 16px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.cpTitleBtnFrame {
+    margin-left: auto;
+}
+
+.cpExitBtnForm {
+    font-family: 'Noto Sans KR', sans-serif;
+    cursor: pointer;
+    margin-right: 8px;
+    width: auto;
+    display: inline-flex;
+    vertical-align: middle;
+    border-radius: 3px;
+    color: rgb(26, 26, 26);
+    background-color: rgb(248, 248, 248);
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: -0.2px;
+    padding: 0px 16px;
+    height: 36px;
+    transition: background-color 0.1s ease 0s;
+    text-decoration-line: none;
+    border: 0px;
+    outline: none;
+    margin: 0px;
+    flex: initial;
+    box-sizing: border-box;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.cpExitBtn {
+    flex: 0 0 auto;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.cpTitleBoundary {
+    display: flex;
+    overflow: hidden;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    border-radius: 2px;
+    background-color: rgb(248, 248, 248);
+    height: 2px;
+}
+
+.cpProcessBar {
+    width: 100%;
+    height: 100%;
+    border-radius: 2px;
+    background-color: rgb(255, 86, 0);
+    transition: transform 0.3s ease-in-out 0s;
+}
+
+.cpBodyFrame {
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    min-height: calc(100vh - 60px);
+}
+
+.cpSidebarBoundary {
+    border-right: 1px solid rgb(248, 248, 248);
+    width: 252px;
+    z-index: 2;
+}
+
+.cpSidebarFrame {
+    position: fixed;
+    left: 0px;
+    width: 220px;
+    padding: 24px 16px;
+}
+
+.cpSidebarForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebarStepFrame {
+    cursor: pointer;
+    -webkit-box-pack: start;
+    justify-content: start;
+    margin-bottom: 12px !important;
+    height: 40px;
+    padding: 0px;
+    width: auto;
+    display: inline-flex;
+    vertical-align: middle;
+    border-radius: 3px;
+    color: rgb(58, 58, 58);
+    background-color: rgb(255, 255, 255);
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: -0.2px;
+    transition: background-color 0.1s ease 0s;
+    text-decoration-line: none;
+    margin: 0px;
+    flex: initial;
+    box-sizing: border-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.sidebarStep1Frame, .sidebarStep2Frame, .sidebarStep3Frame, .sidebarStep4Frame, .sidebarStep5Frame {
+    cursor: pointer;
+    -webkit-box-pack: start;
+    justify-content: start;
+    margin-bottom: 12px !important;
+    height: 40px;
+    padding: 0px;
+    width: auto;
+    display: inline-flex;
+    vertical-align: middle;
+    border-radius: 3px;
+    color: rgb(26, 26, 26);
+    background-color: rgb(248, 248, 248);
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: -0.2px;
+    transition: background-color 0.1s ease 0s;
+    text-decoration-line: none;
+    margin: 0px;
+    flex: initial;
+    box-sizing: border-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.sidebarStepForm {
+    display: flex;
+    -webkit-box-pack: start;
+    justify-content: start;
+    padding: 12px;
+    color: rgb(58, 58, 58);
+    width: 100%;
+    height: 100%;
+    -webkit-box-align: center;
+    align-items: center;
+    text-decoration: none;
+    flex-direction: row;
+}
+
+.sidebarStepBox {
+    flex: 0 0 auto;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.sidebarCheckedBox {
+    background-color: rgb(255, 61, 0);
+    border-radius: 6px;
+    margin-right: 12px;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 11px;
+    font-weight: normal;
+    color: rgb(26, 26, 26);
+    line-height: 16px;
+    letter-spacing: normal;
+    margin: 0px;
+}
+
+.sidebarCheckBox {
+    background-color: rgb(255, 255, 255);
+    border-radius: 6px;
+    margin-right: 12px;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 11px;
+    font-weight: normal;
+    color: rgb(26, 26, 26);
+    line-height: 16px;
+    letter-spacing: normal;
+    margin: 0px;
+}
+
+.sidebarStepTitle {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    color: rgb(162, 162, 162);
+    line-height: 24px;
+    letter-spacing: -0.3px;
+    margin-left: 12px;
+}
+
+.sidebarStepTitle1, .sidebarStepTitle2, .sidebarStepTitle3, .sidebarStepTitle4, .sidebarStepTitle5 {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    color: rgb(26, 26, 26);
+    line-height: 24px;
+    letter-spacing: -0.3px;
+    margin-left: 12px;
+    font-weight: 700;
+}
+
+
+
+.cpContentFrame {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    flex: 1 1 0%;
+    margin:0 200px;
+}
+
+.cpContentForm {
+    width: 100%;
+}
+
+.cpContentContainer {
+    flex: 1 1 0%;
+    padding: 6px 32px 60px;
+}
+
+.basicInfoContainer {
+    display: flex;
+}
+
+.basicInfoBox {
+    flex: 1 1 0%;
+    overflow: auto;
+}
+
+.basicInfoText {
+    font-family: 'Noto Sans KR', sans-serif;
+    white-space: pre-wrap;
+    margin-bottom: 16px;
+    font-size: 22px;
+    font-weight: bold;
+    color: rgb(26, 26, 26);
+    line-height: 34px;
+    letter-spacing: -0.4px;
+}
+
+.basicInfoSubText {
+    font-family: 'Noto Sans KR', sans-serif;
+    white-space: pre-wrap;
+    margin-bottom: 32px;
+    font-size: 12px;
+    font-weight: normal;
+    color: rgb(162, 162, 162);
+    line-height: 20px;
+    letter-spacing: -0.15px;
+}
+
+.formTerrain, .formCourse {
+    margin-bottom: 32px;
+    display: flex;
+    flex-direction: column;
+    margin: 0px 0px 16px;
+}
+
+.formTerrainLabel, .formCourseLabel {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px 0px 4px;
+    color: rgb(26, 26, 26);
+}
+
+.formTerrainSelect, .formCourseSelect{
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+    border: 1px solid rgb(239, 239, 239);
+    border-radius: 1px;
+    background-color: white;
+    height: 40px;
+    flex: 1 1 auto;
+    width: 71%;
+    padding: 0px 48px 0px 16px;
+    appearance: none;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAMAAABiM0N1AAAArlBMVEUAAAA2Pj43Oz82PD42Oz3///82OzxmZmY2Oz1NTU05VVU1Oz1AQEA1PD42Oz01QEA2Oz01Ojw1Ozw8PDw2PD42Oz02Oz03PT02PDw2Oz01Oz04PT04PEA2Ozw2Ojw3Oz44Oz81Ojw6Pz82Oj01Ojw1O0E1Ozw1Ojw2Oz02Ojw7O0U2Ozw2Q0M1Oj07O041Ozw1OzxAQEA2Oj1AQEA1Oj2AgIA2Oz02Ojw3Ozw1OjwC6qbsAAAAOXRSTlMAQkGAkwGlBbUKCcQQeNEYaP3dIlr75y5M9+87QPL2Skn1Nez6K+X+bH8a1BPKDb+2CLME0gKXiIdaPhwMAAAAAWJLR0QAiAUdSAAAAAlwSFlzAAAASAAAAEgARslrPgAAAVVJREFUWMPtlNlygkAQRTvBBeOCCu6aRQWNa9Ro0v//Y0HSM67QQ6ry1udN+84pcOwLIAiCIAgCz4NZ7JELWJjJ8ppsBi3Og5jLc558LoxZnAfRLiR7nuwoZnEexGIpyVMqUizeVKYEVpx4j1NRqXJ8qFqjTN2Ni7h1itSqSY/tNSjWbN0PtJoUaHjJP2S7Q8Fu796416Vxpw0M/QFFn19uh69vNBz0OQ/AcETh8c3De2MajYa8B8APKD6ZXg6mExoEvonn7GIu/ynv6tv4K71mNldnTosXrhcxn5l6ABZLdUotXrReEcuFuQdgtVbnPqLFK9jq83qVxgOw2aqTx8XT64XbTToPwE6/y6dzWq/cLq0HYH/Qt6Rv8bBP7wn5wiu+/6SBs1pha4ND1wpbGxy6Vtja4FC1wtcGx2+tmNQGx7FWzGqDww9Ma4PDNa4NQRAE4T/5AXc8Urhqe4+OAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE4LTAyLTIwVDA3OjI0OjAxLTA1OjAwCLbogQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxOC0wMi0yMFQwNzoyNDowMS0wNTowMHnrUD0AAAAASUVORK5CYII=);
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 18px;
+    color: rgb(26, 26, 26);
+}
+
+option {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.addressBox{
+    display: flex;
+    flex-direction: column;
+}
+
+.addressBoxEnd {
+    display: none;
+}
+
+.show {
+    display: flex;
+    flex-direction: column; 
+    margin-bottom: 60px;
+}
+
+.addressForm {
+    display:flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    width: 71%;
+}
+
+#address {
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+    border: 1px solid rgb(239, 239, 239);
+    border-radius: 1px;
+    background-color: white;
+    height: 40px;
+    flex: 1 1 auto;
+    width: 71%;
+    padding: 0px 48px 0px 16px;
+    appearance: none;
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 18px;
+    color: rgb(26, 26, 26);
+}
+
+#addressDetail {
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+    border: 1px solid rgb(239, 239, 239);
+    border-radius: 1px;
+    background-color: white;
+    height: 40px;
+    flex: 1 1 auto;
+    width: 66%;
+    padding: 0px 48px 0px 16px;
+    appearance: none;
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 18px;
+    color: rgb(26, 26, 26);
+    margin-bottom: 8px;
+}
+
+.formCourseSelect {
+    margin-bottom: 8px;
+}
+
+.nextBtnFrame {
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    width: 1585px;
+    padding: 18px 32px;
+    -webkit-box-align: center;
+    align-items: center;
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    border-top: 1px solid rgb(248, 248, 248);
+    height: 76px;
+    z-index: 1;
+    justify-content: flex-end;
+}
+
+.savePage {
+    color: rgb(239, 239, 239);
+    background-color: rgb(248, 248, 248);
+    cursor: not-allowed;
+    display: inherit;
+    margin-left: auto;
+    width: auto;
+    vertical-align: middle;
+    border-radius: 3px;
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: -0.2px;
+    padding: 0px 16px;
+    height: 40px;
+    transition: background-color 0.1s ease 0s;
+    text-decoration-line: none;
+    border: 0px;
+    outline: none;
+    flex: initial;
+    box-sizing: border-box;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.savePageBtn, .nextPageBtn{
+    flex: 0 0 auto;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.nextPage {
+    cursor: pointer;
+    margin-left: 8px;
+    display: inherit;
+    width: auto;
+    vertical-align: middle;
+    border-radius: 3px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(255, 86, 0);
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: -0.2px;
+    padding: 0px 16px;
+    height: 40px;
+    transition: background-color 0.1s ease 0s;
+    text-decoration-line: none;
+    border: 0px;
+    outline: none;
+    flex: initial;
+    box-sizing: border-box;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.subImgFrame {
+    display: flex;
+    margin-bottom: 32px;
+}
+
+.subImgForm {
+    max-width: 260px;
+    flex: 0.5 1 0%;
+    display: flex;
+    flex-direction: column;
+    margin: 0px 0px 16px;
+}
+
+.subImgLabel, .subImgTitle {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px 0px 4px;
+    color: rgb(26, 26, 26);
+}
+
+.subImgContainer {
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.subImgBox {
+    width: 100%;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.subImgInput {
+    display:none;
+}
+
+.photoImgFrame {
+    position: relative;
+    padding-bottom: calc(75% - 2px);
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(229, 229, 229);
+    border-radius: 3px;
+}
+
+.photoImgForm {
+    padding: 16px 0px;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+.plusImg {
+    flex: 0 0 auto;
+    width: 72px;
+    height: 72px;
+}
+
+.photoAddText {
+    flex: 0 0 auto;
+    white-space: pre-wrap;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    color: rgb(202, 202, 202);
+    margin: 8px 0px;
+    font-weight: normal;
+}
+
+.photoFieldDescription {
+    flex: 0 0 auto;
+    font-size: 11px;
+    line-height: 16px;
+    letter-spacing: normal;
+    color: rgb(202, 202, 202);
+    margin: 0px;
+}
+
+.subImgBoundary {
+    margin-right: 40px;
+}
+
+.subImgTitleInfo {
+    max-width: 540px;
+    flex: 1 1 0%;
+    margin: 0px 0px 16px;
+}
+
+.subImgTitleFrame {
+    display: block;
+    margin-top: 4px;
+}
+
+.subTitleInput {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+    border: 1px solid rgb(242, 242, 242);
+    background-color: white;
+    height: 42px;
+    flex: 1 1 auto;
+    width: 100%;
+    color: rgb(26, 26, 26);
+    box-sizing: border-box;
+    padding: 0px 16px;
+    border-radius: 3px;
+}
+
+.subImgInfoFrame {
+    flex: 0.94 1 0%;
+    height: 68%;
+    margin-top: 20px;
+    padding: 16px;
+    border-radius: 3px;
+    background-color: rgb(248, 248, 248);
+    font-size: 14px;
+    font-weight: normal;
+    color: rgb(26, 26, 26);
+    line-height: 20px;
+    letter-spacing: -0.15px;
+}
+
+.subImgInfoQ {
+    font-family: 'Noto Sans KR', sans-serif;
+    margin-bottom: 12px;
+    font-size: 12px;
+    font-weight: bold;
+    color: rgb(26, 26, 26);
+    line-height: 20px;
+    letter-spacing: -0.15px;
+}
+
+.subimgInoText {
+    font-family: 'Noto Sans KR', sans-serif;
+    margin-bottom: 12px;
+    font-size: 12px;
+    font-weight: normal;
+    color: rgb(26, 26, 26);
+    line-height: 20px;
+    letter-spacing: -0.15px;
+}
+
+.subImgExamFrame {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 16px;
+    margin-top: 12px;
+}
+
+.subImgExamBox {
+    position: relative;
+}
+
+.subImgExamForm {
+    overflow: hidden;
+    border-radius: 3px
+}
+
+.subImgExamContainer {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    font-size: 0px;
+    padding-top: 75%;
+    background: rgb(238, 238, 238);
+}
+
+.subImgExamItem {
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.coverImg {
+    transition: opacity 0.1s linear 0s;
+    object-fit: cover;
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+}
+
+.examItem1 {
+    width: 90%;
+    height: 12px;
+    border-radius: 3px;
+    background-color: rgb(239, 239, 239);
+    margin-top: 8px;
+}
+
+.examItem2 {
+    width: 50%;
+    height: 18px;
+    border-radius: 3px;
+    background-color: rgb(239, 239, 239);
+    margin-top: 8px;
+}
+
+.cpIntroduceFrame {
+    flex: 1 1 0%;
+    overflow: auto;
+}
+
+.cpIntroduceTitle {
+    font-family: 'Noto Sans KR', sans-serif;
+    white-space: pre-wrap;
+    margin-bottom: 16px;
+    font-size: 22px;
+    font-weight: bold;
+    color: rgb(26, 26, 26);
+    line-height: 34px;
+    letter-spacing: -0.4px;
+}
+
+.cpIntroduceTitleInfo {
+    white-space: pre-wrap;
+    margin-bottom: 32px;
+    font-size: 14px;
+    font-weight: normal;
+    color: rgb(162, 162, 162);
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+}

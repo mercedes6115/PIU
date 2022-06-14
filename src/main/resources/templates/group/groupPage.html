@@ -94,7 +94,8 @@
                     <div class="sideBarBoundary"></div>
                 </div>
             </div>                   
-            </div>
+            </div>    
+            <!-- 여기까지 사이드바 입니다. -->
             <div class="groupPageMainFrame">
             <div class="groupPageMainForm">
                 <div class="groupPageContainer">
@@ -120,7 +121,7 @@
                                         <div class="searchBox">
                                             <div class="searchProjectBox">
                                                 <form action>
-                                                    <input placeholder="플로깅명 검색" class="searchProject" value>                                    
+                                                    <input placeholder="프로젝트명 검색" class="searchProject" value>                                    
                                                 </form>
                                             </div>
                                             <span class="searchImg">
@@ -149,7 +150,7 @@
                                                         <span class="showListhTitle">제목</span>
                                                     </div>
                                                     <div class="showListHeader4">
-                                                        <span class="showListhState">상태</span>
+                                                        <span class="showListhState" >승인상태</span>
                                                     </div>
                                                     <div class="showListHeader5">
                                                         <span class="showListhTerrain">지형</span>
@@ -207,7 +208,7 @@
                                                             <div class="showListBody4">
                                                                 <div class="sbStateFrame">
                                                                     <div class="sbStateForm">
-                                                                        <p class="sbState">승인 대기</p>
+                                                                        <p class="sbState" id="agreeState">승인 대기</p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -235,56 +236,62 @@
                                                             <div class="showListBody9">
                                                                 <div class="sbMoreFrame">
                                                                     <div class="sbMoreForm">
-                                                                        <button class="qrCheckFrame" id="qrCheck">
-                                                                            <span class="qrCheckForm">
-                                                                                <span class="qrCheck">QR확인</span>
-                                                                            </span>
-                                                                        </button>                                                                        
+                                                                        <div class="seeApplier" id="seeApplierBox">    
+                                                                            <button class="qrCheckFrame" id="qrCheck">
+                                                                                <span class="qrCheckForm">
+                                                                                    <span class="qrCheck">회원목록</span>
+                                                                                </span>
+                                                                            </button>
+                                                                        </div>                                                                            
                                                                         <div class="moreBoundary"></div>
-                                                                        <button class="sbMoreBox" id="showMoreBtn">
-                                                                            <span class="material-symbols-outlined">more_horiz</span>                                                                                                                                                                
-                                                                        </button>
+                                                                        <div class="sbMoreContainer" id="sbMoreContainer">
+                                                                            <button class="sbMoreBox" id="showMoreBtn">
+                                                                                <span class="material-symbols-outlined">more_horiz</span>                                                                                                                                                                
+                                                                            </button>
+                                                                        </div>
                                                                     </div>
+                                                                </div>                                                               
+                                                            </div>                                                    
+                                                        </div>     
+                                                            <!-- 수정 삭제 들어갈 자리  -->
+                                                    <div class="showMoreFrame" id="showMore">                                                
+                                                        <div class="showMoreForm">
+                                                            <div class="modifyForm">                                                                                                                                                                                                                               
+                                                                <a class="moveProjectModify" href="#"><span class="material-symbols-outlined">build</span></a>
+                                                            </div>
+                                                            <div class="deleteForm">
+                                                                <span class="material-symbols-outlined">delete</span>                                                                                                                                                                
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                                 </div>
                                                                 
                                                             </div>                                                    
-                                                        </div>
-                                                        
-                                                        <div class="showMoreFrame" id="showMore">
-                                                            <div class="showMoreForm">
-                                                                <div class="modifyForm">
-                                                                    <span class="material-symbols-outlined">build</span>                                                                                                                                                                
-                                                                    <a class="moveProjectModify" href="#">수정</a>
-                                                                </div>
-                                                                <div class="deleteForm">
-                                                                    <span class="material-symbols-outlined">delete</span>                                                                                                                                                                
-                                                                    <input type="button" id="projectDelete" value="삭제">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                                                                           
+                                                        </div>                                                                                                           
                                                     </div>
                                                                                                                                                            
                                                 </div>
-                                                <div class="showListPagingFrame">
-                                                    <nav class="showListPagingForm">
-                                                        <button class="pageMoveBtn">
-                                                            <span class="material-symbols-outlined" id="prevBtnImg">chevron_left</span>                                                                                                                                
-                                                        </button>
-                                                        <div class="btnBoundary"></div>
-                                                        <div class="showPageNum">
-                                                            <button class="movePageNum">
-                                                                <span class="displayPageNum">1</span>
-                                                            </button>    
-                                                        </div>
-                                                        <div class="btnBoundary"></div>
-                                                        <button class="pageMoveBtn">
-                                                            <span class="material-symbols-outlined" id="nextBtnImg">chevron_right</span>                                                                                                                                
-                                                        </button>
-                                                    </nav>
-                                                </div>                                              
+                                                                                              
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="showListPagingFrame">
+                                        <nav class="showListPagingForm">
+                                            <button class="pageMoveBtn">
+                                                <span class="material-symbols-outlined" id="prevBtnImg">chevron_left</span>                                                                                                                                
+                                            </button>
+                                            <div class="btnBoundary"></div>
+                                            <div class="showPageNum">
+                                                <button class="movePageNum">
+                                                    <span class="displayPageNum">1</span>
+                                                </button>    
+                                            </div>
+                                            <div class="btnBoundary"></div>
+                                            <button class="pageMoveBtn">
+                                                <span class="material-symbols-outlined" id="nextBtnImg">chevron_right</span>                                                                                                                                
+                                            </button>
+                                        </nav>
                                     </div>
                                 </div>
                             </div>
@@ -303,15 +310,7 @@
         
     </div>
     </div>
-    <div id="qrModal" class="qrModal-overlay">                                                    
-        <div class="close-modal">X</div>
-        <div class="content">
-            <picture class="qrShow">
-                <source srcset="/src/main/resources/static/images/qrCheck.png" media="all and (min-width: 1024px)" >
-                <img src="/src/main/resources/static/images/qrCheck.png" class="qrImage" alt="">
-            </picture>
-        </div>
-    </div>
+    
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
@@ -331,24 +330,6 @@
         }
     });
 
-    const modal = document.getElementById("qrModal");
-    const btnModal = document.getElementById("qrCheck");
-    btnModal.addEventListener("click", e => {
-        modal.style.display = "flex";
-    });
-
-    const closeBtn = modal.querySelector(".close-modal")
-    closeBtn.addEventListener("click",e => {
-        modal.style.display = "none";
-    })
-
-    modal.addEventListener("click", e => {
-        const evTarget = e.target
-        if(evTarget.classList.contains("qrModal-overlay")) {
-            modal.style.display = "none";
-        }
-    })
-
     let showFlag = false;
     const showMoreBox = document.getElementById("showMore");
     const showMore = document.getElementById("showMoreBtn");
@@ -364,6 +345,56 @@
             showFlag = false;
         }
     })
+    // 승인상태에 따라 버튼을 다르게 보이게 함
+    // var agreeState = $('#agreeState').text();
+    // console.log(agreeState);
+    // var agLength = $('.sbState').length;
+    
 
+    // var agState = new Array(agLength);
+
+    // for(var i = 0; i < agLength; i++) {
+    //     agState[i] = $('.sbState').eq(i).text();
+    // }
+    
+    // console.log(agState);
+
+
+    // const seeApplier = document.getElementById('seeApplierBox');
+    // const sbMoreContainer = document.getElementById('sbMoreContainer');
+
+    // for(var i = 0; i < agLength; i++) {
+    //     if(agState[i] == "승인 대기"){
+    //         console.log("승인 대기");
+    //         seeApplier.style.display = "none";
+    //         sbMoreContainer.style.display = "block";
+    //     } else {
+    //         console.log("승인");
+    //         seeApplier.style.display = "block";
+    //         sbMoreContainer.style.display = "none";
+    //     }
+    // }
+
+    
+    const modal = document.getElementById("moreBoxModalFrame");
+    const btnModal = document.getElementById("showMoreBtn");
+    btnModal.addEventListener("click", e => {
+        modal.style.display = "flex";
+    });
+
+    const closeBtn = modal.querySelector(".close-modal")
+    closeBtn.addEventListener("click",e => {
+        modal.style.display = "none";
+    })
+
+    modal.addEventListener("click", e => {
+        const evTarget = e.target
+        if(evTarget.classList.contains("moreBoxModalForm")) {
+            modal.style.display = "none";
+        }
+    })
+
+    
+    
 </script>
 </html>
