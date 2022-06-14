@@ -1,38 +1,639 @@
-html,body{
-    margin: 0;
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+.notosanskr * {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+@font-face {
+    font-family: 'Openas';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/Openas.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SDSamliphopangche_Basic';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Basic.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.groupPageFrame {
+    display: flex;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
     width: 100%;
 }
-.bcontainer{
+
+.groupPageTitleFrame {
+    border-radius: 0px;
     width: 100%;
-    background-color: blue;
+    height: fit-content;
+    background-color: rgb(255, 255, 255);
+    border-color: rgb(229, 229, 229);
+    z-index: 1002;
+    top: 0px;
+    left: 0px;
+    position: sticky;
+    display: flex;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.groupPageTitleForm {
+    padding-left: 24px;
+    padding-right: 24px;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+}
+
+.groupPageHeaderFrame{
+    border-radius: 0px;
+    width: 100%;
+    height: auto;
+    background-color: rgb(255, 255, 255);
+    border-color: rgb(229, 229, 229);
+    z-index: 101;
+    top: 0px;
+    left: 0px;
+    position: sticky;
+}
+
+.groupPageHeaderForm {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.groupPageHeader {
+    text-decoration: none;
+    color: inherit;
+    font-size: 20px;
+    font-family: 'SDSamliphopangche_Basic';
+    font-weight: bold;
+}
+
+.groupPageProfileFrame {
+    display: flex;
+    margin-left: auto;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: row;
+}
+
+.groupPageProfileForm {
+    width: 34px;
+    height: 34px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+}
+
+.groupPageProfileContainer {
+    background-color: rgb(248, 248, 248);
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.groupPageProfile {
+    width: 100%;
+    height: 100%;
+    display: block;
     position: relative;
 }
-header{
+
+.profileImage {
+    object-fit: cover;
     width: 100%;
-    height: 100px;
-    border: 1px solid red;
+    height: 100%;
+    vertical-align: top;
+    visibility: inherit;
 }
-.b2container{
+
+.boundary {
+    flex: 0 0 auto;
+    background-color: rgb(229, 229, 229);
+    width: 100%;
+    height: 1px;
+}
+
+.groupPageBodyFrame {
+    display: flex;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: row;
+}
+
+.groupPageSidebarFrame{
+    border-radius: 0px;
+    width: 240px;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    border-color: rgb(229, 229, 229);
+    z-index: 1001;
+    top: 78px;
+    left: 0px;
+    position: fixed;
+}
+
+.groupPageSidebarForm {
+    display: flex;
+    height: calc(100vh - 78px);
+    min-width: 240px;
+    width: 240px;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: row;
+}
+
+.groupPageSidebarList{
+    display: flex;
+    width: 100%;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.groupPageSidebar {
+    display: flex;
+    padding: 12px;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.groupPageSidebars {
+    display: flex;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.sideBarBoundary {
+    flex: 0 0 auto;
+    background-color: rgb(229, 229, 229);
+    width: 1px;
+    height: 100%;
+}
+
+.sNoticeFrame, .sGroupInfoFrame, .sProjectFrame , .sQrFrame, .sGuideFrame{
+    background-color: rgb(255, 255, 255);
+    padding: 12px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 0.875rem;
+    line-height: 1.125rem;
+    font-weight: 400;
+}
+
+.sNoticeForm, .sGroupInfoForm, .sQrForm, .sGuideForm {
+    -webkit-box-pack: justify;
+    justify-content: flex-start;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.sTitle {
+    font-family: 'Noto Sans KR', sans-serif;
+    border-width: 0px;
+    color: var(--system-on-color);
+    margin: 0px;
+    padding: 0px;
+    margin-top: 3px;
+}
+
+.margin {
+    width: 20px;
+    height: 0px;
+    -webkit-box-flex: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.sProjectForm {
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.sProjectTitleForm {
+    display: flex;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: row;
+}
+
+.sProjectList {
+    font-family: 'Noto Sans KR', sans-serif;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    padding-left: 56px;
+    color: rgb(26, 26, 26);
+    background-color: rgb(248, 248, 248);
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 0.875rem;
+    line-height: 1.125rem;
+    font-weight: 400;
+    text-decoration: none;
+}
+
+.sProjectQna {
+    font-family: 'Noto Sans KR', sans-serif;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    padding-left: 56px;
+    color: rgb(26, 26, 26);
+    background-color: rgb(255, 255, 255);
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 0.875rem;
+    line-height: 1.125rem;
+    font-weight: 400;
+    text-decoration: none;
+}
+
+.sProjectQna :hover, .sProjectList :hover, .sProjectFrame :hover, .sGroupInfoFrame :hover, .sNoticeFrame :hover, .sProjectQna :hover {
+    padding: 0px;
+    background-color: rgb(248, 248, 248);
+}
+
+.sProjectContainer {
+    display: flex;
+    -webkit-box-align: stretch;
+    flex-direction: column;
+}
+
+.hidden {
+    display: none;
+}
+
+.groupPageMainFrame {
+    padding-left: 240px;
+    display: flex;
+    width: 100%;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.groupPageMainForm {
+    display: flex;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.groupPageContainer {
+    margin-top: 40px;
+    width: 100%;
+    max-width: 1000px;
+    margin-left: 5%;
+    margin-right: auto;
+    -webkit-box-align: center;
+    align-items: center;
+    display: inline-block;
+    position: absolute;
+    display: flex;
+}
+
+.bodyTitleFrame{
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    padding-top: 40px;
+    padding-bottom: 24px;
+    width: 100%;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+}
+
+.bodyTitle {
+    font-family: 'SDSamliphopangche_Basic';
+    line-height: 2.5rem;
+    font-weight: 700;
+    font-size: 1.75rem;
+    border-width: 0px;
+    color: rgb(26, 26, 26);
+    margin: 0px;
+    padding: 0px;
+}
+
+.addProjectFrame {
+    text-decoration: none;
+    color: inherit;
+}
+
+.addProjectBtn {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 0;
+    --system-on-color: #FFFFFF;
+    background-color: rgb(255, 91, 20);
+    color: var(--system-on-color);
+    border-width: 0px;
+    border-radius: 2px;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    display: inline-flex;
     position: relative;
-    width: calc(100% -20px);
-    height: 100%;
-    padding: 10px;
-    background-color: red;
 }
-.b3container{
-    width: calc(100%-20px);
-    height: 100%;
-    background-color: green;
-    padding: 10px;
+
+.addProjectForm {
+    display: flex;
+    visibility: inherit;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
 }
-.b4container{
-    width: clac(100%-20px);
-    height: 100vh;
+
+.addProjectImg {
+    width: 24px;
+    height: 24px;
+    display: block;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.addBoundary {
+    width: 0px;
+    height: 0px;
+    -webkit-box-flex: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.addProjectText {
+    font-family: 'Noto Sans KR', sans-serif;
+    padding-left: 4px;
+    padding-right: 4px;
+    line-height: 1.125rem;
+    font-size: 0.875rem;
+    border-width: 0px;
+    color: var(--system-on-color);
+    margin-right: 4px;
+    font-weight: 700;
+}
+
+.totalImageCover{
+    display: flex;
+    margin-bottom: 32px;
+}
+
+.projectCoverImage{
+    display: flex;
+    flex: 0.5 1 0%;
+
+}
+
+.ImageLabel{
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px 0px 4px;
+    color: rgb(26, 26, 26);
+}
+
+.TitleAndCoverContent{
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.UploadButtonContainer{
+    width: 100%;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.PhotoFieldContainer{
+    position: relative;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(229, 229, 229);
+    border-radius: 3px;
+    height: 715px;
+    width: 250px;
+
+}
+.PhotoFieldContainerInner{
+    padding: 16px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+
+}
+.InnerImage{
+    flex: 0 0 auto;
+    width: 72px;
+    height: 72px;
+}
+
+.PhotoFieldTitleInner{
+    flex: 0 0 auto;
+    white-space: pre-wrap;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    color: rgb(202, 202, 202);
+    margin: 8px 0px;
+    font-weight: normal;
+}
+.PhotoFieldDescription{
+    flex: 0 0 auto;
+    font-size: 11px;
+    line-height: 16px;
+    letter-spacing: normal;
+    color: rgb(202, 202, 202);
+    margin: 0px;
+}
+
+.SpacingBox{
+    margin-right: 40px;
+}
+.FormGroupLabel{
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px 0px 4px;
+    color: rgb(26, 26, 26);
+}
+.InputContainer1{
+    display:block;
+}
+
+.InputStyledInput{
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+    border: 1px solid rgb(239, 239, 239);
     background-color: white;
-    padding: 10px;
-}
-.b5contatiner{
+    height: 48px;
+    flex: 1 1 auto;
     width: 100%;
-    height: 100%;
-    background-color: black;
+    color: rgb(26, 26, 26);
+    box-sizing: border-box;
+    padding: 0px 16px;
+    border-radius: 3px;
+}
+.FormGroupContainer{
+    width:400px;
+}
+
+.PloggingCategoryStyle{
+    width: 100%;
+    margin: 0px;
+    border: 1px solid rgb(239, 239, 239);
+    background-color: white;
+    height: 48px;
+}
+
+.PloggingLocationStyle{
+    width: 100%;
+    margin: 0px;
+    border: 1px solid rgb(239, 239, 239);
+    background-color: white;
+    height: 48px;
+}
+
+.startingLocation1{
+    width: 100%;
+    margin: 0px;
+    border: 1px solid rgb(239, 239, 239);
+    background-color: white;
+    height: 48px;
+}
+
+.startingLocation2{
+    width: 100%;
+    margin: 0px;
+    border: 1px solid rgb(239, 239, 239);
+    background-color: white;
+    height: 48px;
+}
+
+.detailContentStyle{
+    width: 100%;
+    margin: 0px;
+    border: 1px solid rgb(239, 239, 239);
+    background-color: white;
+    height: 48px;
+}
+
+.FormNextPageBtn-Wrapper{
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    width: calc(100% - 280px);
+    padding: 18px 32px;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    border-top: 1px solid rgb(248, 248, 248);
+    z-index: 1;
+}
+
+.SaveBtn1{
+    color: rgb(239, 239, 239);
+    background-color: rgb(248, 248, 248);
+    cursor: not-allowed;
+    display: inherit;
+    margin-left: auto;
+    width: auto;
+    vertical-align: middle;
+    border-radius: 3px;
+    color: rgb(26, 26, 26);
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: -0.2px;
+    padding: 0px 16px;
+    height: 40px;
+    transition: background-color 0.1s ease 0s;
+    text-decoration-line: none;
+    border: 0px;
+    outline: none;
+    margin: 0px;
+    flex: initial;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    float: right;
+    margin-left: 10px;
+}
+
+.NextBtn1{
+    margin-left: 8px;
+    display: inherit;
+    cursor: pointer;
+    width: auto;
+    vertical-align: middle;
+    border-radius: 3px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(255, 86, 0);
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: -0.2px;
+    padding: 0px 16px;
+    height: 40px;
+    transition: background-color 0.1s ease 0s;
+    text-decoration-line: none;
+    border: 0px;
+    outline: none;
+    margin: 0px;
+    flex: initial;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    float: right;
+
+}
+.PloggingImgsContainer{
+    box-shadow: rgb(0 0 0 / 2%) 0px 1px 3px, rgb(0 0 0 / 3%) 0px 3px 6px, rgb(0 0 0 / 5%) 0px 8px 12px, rgb(0 0 0 / 6%) 0px 12px 18px;
+    top: 108px;
+    width: 360px;
+    height: 640px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-left:20px;
 }
