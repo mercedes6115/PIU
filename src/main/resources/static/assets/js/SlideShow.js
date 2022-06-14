@@ -1,3 +1,6 @@
+
+
+console.log("asdasd");
 let slide1 = document.querySelector('.slides1');
 let slideImg1 = document.querySelectorAll('.slides1 li');
 currentIdx1 = 0;
@@ -6,6 +9,7 @@ slideCount1 = slideImg1.length;
 
 prev1 = document.querySelector('.prev1'); //이전 버튼
 next1 = document.querySelector('.next1'); //다음 버튼
+console.log(prev1,next1);
 slideWidth1 = 276; //슬라이드이미지 넓이
 slideMargin1 = 20; //슬라이드 끼리의 마진값
 makeClone1(); // 처음이미지와 마지막 이미지 복사 함수
@@ -29,10 +33,11 @@ next1.addEventListener('click', function () {
 
   if (currentIdx1 <= slideCount1 - 1) {
     //슬라이드이동
+    console.log("Asdasss");
     slide1.style.left = -(currentIdx1 + 2) * (slideWidth1 + slideMargin1) + 'px';
     slide1.style.transition = `${0.5}s ease-out`; //이동 속도
   }
-  if (currentIdx1 === slideCount1 - 1) {
+  if (currentIdx1 == slideCount1 - 1) {
     //마지막 슬라이드 일때
     setTimeout(function () {
       //0.5초동안 복사한 첫번째 이미지에서, 진짜 첫번째 위치로 이동
@@ -50,7 +55,7 @@ prev1.addEventListener('click', function () {
     slide1.style.left = -currentIdx1* (slideWidth1 + slideMargin1) + 'px';
     slide1.style.transition = `${0.5}s ease-out`;
   }
-  if (currentIdx === 0) {
+  if (currentIdx == 0) {
     setTimeout(function () {
       slide1.style.left = -slideCount1 * (slideWidth1 + slideMargin1) + 'px';
       slide1.style.transition = `${0}s ease-out`;
@@ -92,7 +97,7 @@ next2.addEventListener('click', function () {
     slide2.style.left = -(currentIdx2 + 2) * (slideWidth2 + slideMargin2) + 'px';
     slide2.style.transition = `${0.5}s ease-out`; //이동 속도
   }
-  if (currentIdx2 === slideCount2 - 1) {
+  if (currentIdx2 == slideCount2 - 1) {
     //마지막 슬라이드 일때
     setTimeout(function () {
       //0.5초동안 복사한 첫번째 이미지에서, 진짜 첫번째 위치로 이동
@@ -110,7 +115,7 @@ prev2.addEventListener('click', function () {
     slide2.style.left = -currentIdx2 * (slideWidth2 + slideMargin2) + 'px';
     slide2.style.transition = `${0.5}s ease-out`;
   }
-  if (currentIdx2 === 0) {
+  if (currentIdx2 == 0) {
     setTimeout(function () {
       slide2.style.left = -slideCount2 * (slideWidth2 + slideMargin2) + 'px';
       slide2.style.transition = `${0}s ease-out`;
@@ -158,7 +163,7 @@ next3.addEventListener('click', function () {
     slide3.style.left = -(currentIdx3 + 2) * (slideWidth3 + slideMargin3) + 'px';
     slide3.style.transition = `${0.5}s ease-out`; //이동 속도
   }
-  if (currentIdx3 === slideCount3 - 1) {
+  if (currentIdx3 == slideCount3 - 1) {
     //마지막 슬라이드 일때
     setTimeout(function () {
       //0.5초동안 복사한 첫번째 이미지에서, 진짜 첫번째 위치로 이동
@@ -175,7 +180,7 @@ prev3.addEventListener('click', function () {
     slide3.style.left = -currentIdx3 * (slideWidth3 + slideMargin3) + 'px';
     slide3.style.transition = `${0.5}s ease-out`;
   }
-  if (currentIdx3 === 0) {
+  if (currentIdx3 == 0) {
     setTimeout(function () {
       slide3.style.left = -slideCount3 * (slideWidth3 + slideMargin3) + 'px';
       slide3.style.transition = `${0}s ease-out`;
@@ -183,4 +188,4 @@ prev3.addEventListener('click', function () {
     currentIdx3 = slideCount3;
   }
   currentIdx3 -= 1;
-});
+})

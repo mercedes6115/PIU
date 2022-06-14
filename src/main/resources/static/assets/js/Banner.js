@@ -3,17 +3,19 @@ const btns = document.querySelectorAll("button.btn");
 const banner = document.querySelector(".swiper-imgWrapper1");
 prevBtn = document.querySelector('.previous-button1'); //이전 버튼
 nextBtn = document.querySelector('.next-button1'); //다음 버튼
-var currentBannerIdx = 0;
-var bannerCount=6;
+var currentBannerIdx = 0; // 현재 슬라이드 인덱스 번호
+var bannerCount=6; // 총 슬라이드 수
 
-let bannerBackground11 = document.getElementById("bannerBackGround");
-let bannerBackgroundright = document.getElementById("banner-container-rightside");
+let bannerBackground11 = document.getElementById("bannerBackGround"); // 배너 뒷배경 왼쪽
+let bannerBackgroundright = document.getElementById("banner-container-rightside"); // 배너 뒷배경 오른쪽
 
 let bannerTexts=document.getElementById("advertising-text");
 
 let CurrentBannerNumber=document.getElementById("CurrentBannerNumber");
 var elem = document.getElementById("progress-bar-loading2");
 console.log(CurrentBannerNumber);
+
+
 let zeroIndex=[
     '01',
     '02',
@@ -22,7 +24,6 @@ let zeroIndex=[
     '05',
     '06'
 ]
-
 
 
 let backImgs=[
@@ -34,8 +35,7 @@ let backImgs=[
 'poster6.png'
 ]
 
-
-var rightColorIndex=[
+var rightColorIndex=[ // 배너 오른쪽 색상 배열로 묶어줌
 '#c9e9f6',
 '#9bdbd8',
 '#cefff2',
@@ -44,7 +44,7 @@ var rightColorIndex=[
 '#1691db'
 ]
 
-var addsText=[
+var addsText=[ // 배너 문구
 '플로깅은 여러분의 건강과 함께 환경을 개선해 나갑니다',
 '"이삭을 줍는다(polcka upp)"는 뜻의 스웨덴어과 영어 조깅 (jogging)의 합성어',
 '테스트 중입니다 광고 문구는 신경쓰지 말아주세요',
@@ -55,10 +55,12 @@ var addsText=[
 
 
 
-bannerWidth = 660; //슬라이드이미지 넓이
-bannerMargin = 16;
+bannerWidth = 660; //슬라이드이미지 width
+bannerMargin = 16; // 슬라이드간 margin
 
 
+
+//Progress Bar
 var i=0;
 function move() {
   if (i == 0) {
@@ -78,14 +80,17 @@ function move() {
   }
 }
 
-
+//자동실행 다음 버튼과 진행바 실행
 const intervalclick = function(){
     nextBtn.click();
     move();
   }
+//4초 간격
 const intervals = setInterval(intervalclick,4000);
+
+
+// 다음 버튼 클릭시 이벤트 발생
 nextBtn.addEventListener('click', function () {
-    //다음 버튼 눌렀을때
     move();
     bannerBackground11.src=backImgs[currentBannerIdx];
     bannerBackground11.style.transition = `${0.5}s ease-out`;
@@ -99,7 +104,7 @@ nextBtn.addEventListener('click', function () {
       banner.style.left = -(currentBannerIdx + 2) * (bannerWidth + bannerMargin) + 'px';
       banner.style.transition = `${0.5}s ease-out`; //이동 속도
     }
-    if (currentBannerIdx === bannerCount - 1) {
+    if (currentBannerIdx == bannerCount - 1) {
       //마지막 슬라이드 일때
       setTimeout(function () {
         //0.5초동안 복사한 첫번째 이미지에서, 진짜 첫번째 위치로 이동
@@ -127,7 +132,7 @@ nextBtn.addEventListener('click', function () {
         bannerBackgroundright.style.backgroundColor=rightColorIndex[currentBannerIdx];
         bannerBackgroundright.style.transition = `${0.5}s ease-out`;
     }
-    if (currentBannerIdx === 0) {
+    if (currentBannerIdx == 0) { // ===은 데이터타입까지 비교해주기 위함
       setTimeout(function () {
         banner.style.left = -bannerCount * (bannerWidth + bannerMargin) + 'px';
         banner.style.transition = `${0}s ease-out`;
@@ -137,10 +142,4 @@ nextBtn.addEventListener('click', function () {
     currentBannerIdx -= 1;
   });
 
-  function test() {
-    var tmp = document.getElementById("test_obj").src;
-    alert(tmp);
-}
-
-  let bannerBackground1 = document.getElementById("bannerBackGround").src;
 
