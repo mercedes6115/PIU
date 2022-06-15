@@ -452,7 +452,7 @@ body {
     text-decoration: none;
 }
 
-.projectListFrame {
+.projectListFrame, .applierListFrame {
     border-radius: 0px;
     width: 100%;
     height: 100%;
@@ -461,6 +461,13 @@ body {
 }
 
 .projectListForm {
+    display: flex;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.applierListForm {
     display: flex;
     -webkit-box-align: stretch;
     align-items: stretch;
@@ -972,7 +979,7 @@ body {
     font-size: 13px;
     z-index: 0;
     background-color: rgba( 255, 255, 255, 0.18 );
-    margin-right: 16px;
+    margin-right: 10px;
     justify-content: flex-end;
 }
 
@@ -985,7 +992,8 @@ body {
     margin-top: 8px;
 }
 
-.moveProjectModify, .deleteProjectBtn{
+
+.moveProjectModify, .deleteProjectBtn {
     text-decoration: none;
     color: black;
     display: flex;
@@ -998,7 +1006,7 @@ body {
 .modifyForm {
     display: flex;
     align-items: center;
-    margin-right: 4px;
+    margin-right: 8px;
 }
 
 .deleteForm {
@@ -1553,5 +1561,8 @@ option:disabled {
 }
 
 .pmBtn, .pdBtn {
-    font-size: 16px;
+
+    font-size: 12px;
 }
+
+ 

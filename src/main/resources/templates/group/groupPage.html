@@ -365,8 +365,8 @@
                                                                                               
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="showListPagingFrame">
+                        </div>
+                            <div class="showListPagingFrame">
                                         <nav class="showListPagingForm">
                                             <button class="pageMoveBtn">
                                                 <span class="material-symbols-outlined" id="prevBtnImg">chevron_left</span>                                                                                                                                
@@ -382,9 +382,52 @@
                                                 <span class="material-symbols-outlined" id="nextBtnImg">chevron_right</span>                                                                                                                                
                                             </button>
                                         </nav>
-                                    </div>
-                                </div>
                             </div>
+                          
+                                    
+                                </div>
+                                <div class="applierListFrame">
+                                <div class="applierListForm">
+                                    <div class="applierListContainer">
+                                        <div class="applierListBox">
+                                            <div class="showListFrame">
+                                                <div class="showListForm">
+                                                    <div class="showListBox">
+                                                        <div class="showListHeader">
+                                                            <div class="showListHeader1">
+                                                                <span class="listCheckBoxFrame">
+                                                                    <div class="listCheckBoxForm">
+                                                                        <label class="listCheckBox">
+                                                                            <span class="material-symbols-outlined" id="checkBoxBtn">check_box_outline_blank</span>
+                                                                            <input type="checkbox" class="allCheck">
+                                                                        </label>
+                                                                    </div>
+                                                                </span>
+                                                            </div>
+                                                            <div class="showListHeader2">
+                                                                <span class="showListBoundary"></span>
+                                                            </div>                                                    
+                                                            <div class="showListHeader3">
+                                                                <span class="showListhTitle">이름</span>
+                                                            </div>
+                                                            <div class="showListHeader4">
+                                                                <span class="showListhState" >전화번호</span>
+                                                            </div>
+                                                            <div class="showListHeader5">
+                                                                <span class="showListhTerrain">신청 날짜</span>
+                                                            </div>
+                                                            <div class="showListHeader6">
+                                                                <span class="showListhCourse">신청자 상태</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>  
+                            </div>
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -430,8 +473,10 @@
         }
     });
 
-    var showMoreBox = document.getElementById("showMore");
-    var showMore = document.getElementById("showMoreBtn");
+
+    const showMoreBox = document.getElementById("showMore");
+    const showMore = document.getElementById("showMoreBtn");
+
     // showMore.addEventListener("click", e => {
     //     console.log("들어옴");
     //     if(!showFlag) {
