@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -8,14 +8,12 @@
     <title>Document</title>
 </head>
 <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
 <link rel="stylesheet" href="/assets/css/admin_style.css">
 <link rel="stylesheet" href="sideBarStyle.css">
 
 <body>
-
-
-
+<div th:replace="~{/admin/adminSideBar :: adminSideBarImport}"></div>
 
 <div class="wrap">
 
@@ -25,32 +23,35 @@
                 <div class="header2">
                     <div class="header3">
                         <a href="#">
-                            <div class="logo-wrap" >
+                            <div class="logo-wrap">
                                 <span class="logo-font">pickitup</span>
                             </div>
                         </a>
-                        <div class="empty-space" ></div>
-                        <div class="menu-search-wrap" >
-                            <div class="menu-wrap" >
+                        <div class="empty-space"></div>
+                        <div class="menu-search-wrap">
+                            <div class="menu-wrap">
                                 <a href="#" style="text-decoration-line: none;">
-                                    <h4 class="menu-plogging" >플로깅</h4>
+                                    <h4 class="menu-plogging">플로깅</h4>
                                 </a>
                                 <div class="menu-space"></div>
                                 <a href="#" style="text-decoration-line: none;">
                                     <h4 class="menu-store">스토어</h4>
                                 </a>
                             </div>
-                            <div class="empty-space" ></div>
-                            <div class="search-box" >
-                                <div class="search-box1" >
-                                    <div class="search-box2" >
-                                        <div class="search-box3" >
-                                            <div class="search-box4" >
-                                                <div class="search-text-icon" >
-                                                    <input type="text" class="search-text" placeholder="찾으시는 플로깅이 있으신가요?"></input>
-                                                    <span class="search-icon" >
-                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="css-skwyyj">
-                                                                <path d="m22.925 21.16-5.605-5.605A8.453 8.453 0 0 0 19 10.5 8.5 8.5 0 0 0 10.5 2 8.5 8.5 0 0 0 2 10.5a8.5 8.5 0 0 0 8.5 8.5c1.895 0 3.64-.63 5.055-1.68l5.605 5.605c.1.1.255.1.355 0l1.415-1.415a.246.246 0 0 0-.005-.35ZM4.5 10.5c0-3.31 2.69-6 6-6s6 2.69 6 6-2.69 6-6 6-6-2.69-6-6Z" class="css-sy7xp0">
+                            <div class="empty-space"></div>
+                            <div class="search-box">
+                                <div class="search-box1">
+                                    <div class="search-box2">
+                                        <div class="search-box3">
+                                            <div class="search-box4">
+                                                <div class="search-text-icon">
+                                                    <input type="text" class="search-text"
+                                                           placeholder="찾으시는 플로깅이 있으신가요?"></input>
+                                                    <span class="search-icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                                 class="css-skwyyj">
+                                                                <path d="m22.925 21.16-5.605-5.605A8.453 8.453 0 0 0 19 10.5 8.5 8.5 0 0 0 10.5 2 8.5 8.5 0 0 0 2 10.5a8.5 8.5 0 0 0 8.5 8.5c1.895 0 3.64-.63 5.055-1.68l5.605 5.605c.1.1.255.1.355 0l1.415-1.415a.246.246 0 0 0-.005-.35ZM4.5 10.5c0-3.31 2.69-6 6-6s6 2.69 6 6-2.69 6-6 6-6-2.69-6-6Z"
+                                                                      class="css-sy7xp0">
                                                                 </path>
                                                             </svg>
                                                         </span>
@@ -62,19 +63,19 @@
                             </div>
                         </div>
                         <div class="header-right-menu-wrap">
-                            <div class="header-right-menu-wrap1" >
-                                <div class="header-right-menu-wrap2" >
+                            <div class="header-right-menu-wrap1">
+                                <div class="header-right-menu-wrap2">
                                     <div class="header-right-menu-wrap3">
                                         <a href="#" style="text-decoration-line: none;">
-                                            <p class = "myplogging">마이 플로깅</p>
+                                            <p class="myplogging">마이 플로깅</p>
                                         </a>
                                         <div class="empty-space1"></div>
                                         <a href="#" style="text-decoration-line: none;">
-                                            <p class = "loginout">로그인</p>
+                                            <p class="loginout">로그인</p>
                                         </a>
                                         <div class="empty-space1"></div>
                                         <a href="#" style="text-decoration-line: none;">
-                                            <p class = "loginout">찜목록</p>
+                                            <p class="loginout">찜목록</p>
                                         </a>
                                         <div class="empty-space1"></div>
                                         <div class="empty-space1"></div>
@@ -117,7 +118,8 @@
                         <div><span class="material-symbols-outlined icon">
                                     storefront
                                 </span><span class="sidebarTitle">상품 관리</span>
-                        </div><span class="material-symbols-outlined more">
+                        </div>
+                        <span class="material-symbols-outlined more">
                                 expand_more
                             </span>
                     </a>
@@ -195,7 +197,6 @@
         <!-- sidebar -->
 
 
-
         <div class="content">
             <!-- content -->
             <div class="product">
@@ -221,14 +222,15 @@
 
                 <div class="toggleArea">
                     <!-- togglecontent -->
-                    <table >
+                    <table>
 
                         <tbody>
                         <tr>
                             <th>상품명
                             </th>
                             <td style="display: flex;">
-                                <input class="productName" type="text" name="product_name" required="required" placeholder="예시 ">
+                                <input class="productName" type="text" name="product_name" required="required"
+                                       placeholder="예시 ">
 
                                 <div class="count">
                                     [<p class="textCount"> 0</p>
@@ -280,7 +282,7 @@
                             <th>상품요약
                             </th>
                             <td style="display: flex;">
-                                <input class="summary"  required="required">
+                                <input class="summary" required="required">
                                 <div class="count">
                                     [<p class="textCount"> 0</p>
                                     /
@@ -293,7 +295,8 @@
                             </th>
                             <td>
 
-                                <textarea name="content" id="summernote" class="summernote" required="required"></textarea>
+                                <textarea name="content" id="summernote" class="summernote"
+                                          required="required"></textarea>
                             </td>
                         </tr>
 
@@ -332,7 +335,7 @@
                                 <span class="detailImg">추가이미지</span>
                                 <div class="extraImg">
                                     <ul style="display: flex;">
-                                        <li >
+                                        <li>
                                             <div class="bigThumb ">
                                                 <label for="attach">
                                                     <div id="box" class="imgIcon smallImg">
@@ -341,7 +344,6 @@
                                                 </label>
                                                 <input type="file" id="attach" style="display: none;">
                                             </div>
-
 
 
                                         </li>
@@ -391,21 +393,24 @@
                             <th>제조사
                             </th>
                             <td>
-                                <input class="" type="text" name="product_name" required="required" placeholder="제조사 이름">
+                                <input class="" type="text" name="product_name" required="required"
+                                       placeholder="제조사 이름">
                             </td>
                         </tr>
                         <tr>
                             <th>공급사
                             </th>
                             <td>
-                                <input class="" type="text" name="product_name" required="required" placeholder="공급사 이름">
+                                <input class="" type="text" name="product_name" required="required"
+                                       placeholder="공급사 이름">
                             </td>
                         </tr>
                         <tr>
                             <th>원산지
                             </th>
                             <td>
-                                <input class="" type="text" name="product_name" required="required" placeholder="원산지 이름">
+                                <input class="" type="text" name="product_name" required="required"
+                                       placeholder="원산지 이름">
                             </td>
                         </tr>
                         </tbody>
@@ -417,7 +422,8 @@
                     <!-- button -->
                     <button>상품등록</button>
                     <button onclick="handleOnClick()"
-                            value="confirm">취소</button>
+                            value="confirm">취소
+                    </button>
 
                 </div>
             </form>
@@ -433,8 +439,6 @@
         $('#sidebar').load("adminSideBar.html");
 
     });
-
-
 
 
     $('.productName').keyup(function (e) {
@@ -453,19 +457,19 @@
             $(this).val($(this).val().substring(0, 250));
             // 250자 넘으면 알림창 뜨도록
             alert('글자수는 250자까지 입력 가능합니다.');
-        };
+        }
+        ;
     });
 
 
-    $(document).ready(function() { $('#summernote').summernote();
+    $(document).ready(function () {
+        $('#summernote').summernote();
     });
 
-    function handleOnClick()  {
+    function handleOnClick() {
         let like = confirm("정말 취소하시겠습니까?");
         document.getElementById('result').innerText = like;
     }
-
-
 
 
     // 강사님
@@ -476,21 +480,21 @@
     const thumbnail = document.querySelector("label[for='attach'] div");
 
     //첨부파일이 등록되었다면 change이벤트 발생
-    file.addEventListener("change", function(event){
+    file.addEventListener("change", function (event) {
         //특정 경로의 파일을 읽어올 때 사용.
         let reader = new FileReader();
 
         //파일정보를 전달하여 reader객체에 등록한다.
         reader.readAsDataURL(event.target.files[0]);
         //등록이 되었다면 reader객체의 load 이벤트가 발생한다.
-        $("span").css({"display":"none"});
-        reader.onload = function(event){
+        $("span").css({"display": "none"});
+        reader.onload = function (event) {
             //등록된 파일의 경로에 작성된 파일의 타입검사
-            if(event.target.result.includes("image")){
+            if (event.target.result.includes("image")) {
                 console.log("이미지 파일입니다.");
                 //등록된 파일의 경로로 대체
                 thumbnail.style.backgroundImage = "url(\"" + event.target.result + "\")";
-            }else{
+            } else {
                 console.log("이미지 파일이 아닙니다.");
                 //미리 준비해놓은 이미지 경로로 대체
                 thumbnail.style.backgroundImage = "url(img/no_image.png)";
