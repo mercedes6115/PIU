@@ -17,30 +17,5 @@ public class MainController {
         log.info("============== main페이지");
     }
 
-    // 게시물 상세보기
-    @GetMapping("/{pno}")
-    public void projectDetail(){
-    }
-
-    // 로그인
-    @GetMapping("/login")
-    public void login(){
-
-    }
-
-    // 회원가입
-    @GetMapping("/join")
-    public void join(){
-
-    }
-
-    // 단체 회원가입
-    @GetMapping("/joinCorp")
-    public void joinCorp(){
-
-    }
-
-
-
 
 }

@@ -53,14 +53,14 @@ public class AdminController {
     }
 
     // 관리자 상품 목록
-    @GetMapping("/itemList")
-    public void itemList(){
+    @GetMapping("/productList")
+    public void productList(){
 
     }
 
     // 관리자 상품 등록
-    @GetMapping("/itemRegister")
-    public void itemRegister(){
+    @GetMapping("/productRegister")
+    public void productRegister(){
 
     }
 
