@@ -560,6 +560,7 @@ option {
     background-color: rgb(255, 255, 255);
     border: 1px solid rgb(229, 229, 229);
     border-radius: 3px;
+    background-size: 100% 100%;
 }
 
 .photoImgForm {
@@ -923,7 +924,8 @@ option {
     display: flex;
     flex-direction: column;
     position: relative;
-    width: 100%;
+    width: 185px;
+    height: 332px;
 }
 
 .imgInsertWindow {
@@ -931,7 +933,7 @@ option {
     cursor: pointer;
 }
 
-.imgInsert {
+.attach1, .attach2, .attach3{
     margin:0;
     display: none;
 }
@@ -943,9 +945,11 @@ option {
     border: 1px solid rgb(229, 229, 229);
     border-radius: 3px;
     overflow: hidden;
+    background-size: 100% 100%;
+    cursor: pointer;
 }
 
-.introImgBox {
+.introImgBox1, .introImgBox2, .introImgBox3 {
     display: flex;
     flex-direction: column;
     -webkit-box-pack: center;
@@ -957,6 +961,13 @@ option {
     left: 0px;
     width: 100%;
     height: 100%;
+}
+
+.label[for='attach'] div.introImgContainer{
+    width: 185px;
+    height: 332px;
+    background-size: 100% 100%;
+    cursor: pointer;
 }
 
 .introImgPlus {
@@ -1072,9 +1083,12 @@ option {
 }
 
 .groupIntroProfileForm {
+    border: 1px silver solid;
     position: relative;
     width: 76px;
     height: 76px;
+    background-size: 100% 100%;
+    border-radius: 40px;
 }
 
 .groupIntroProfileBox {
