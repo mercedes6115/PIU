@@ -1,0 +1,250 @@
+
+/* 해더 */
+.hqtheader {
+    padding: 25px 0;
+    background-color: #010d0b;
+
+}
+
+.hqtcontainer {
+    padding-left: 40px;
+    padding-right: 40px;
+    flex: 1 0 auto;
+}
+
+.hqtcontent {
+    max-width: 100%;
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hqto__centered {
+    align-items: center;
+    margin-bottom: 15px;
+    line-height: 1;
+    display: flex;
+}
+
+.hqtmo__body {
+    flex: 1;
+    min-width: 0;
+    position: relative;
+}
+
+.hqtheader__logo {
+    margin: 0;
+}
+
+.hlogo-wrap {
+    font-family: 'Openas';
+    display: block;
+    width: auto;
+    FONT-WEIGHT: 600;
+    font-size: 25px;
+    margin-top: 5px;
+    color: white;
+}
+
+/*바디 위쪽*/
+.hqtcontainer {
+    padding-left: 40px;
+    padding-right: 40px;
+    flex: 1 0 auto;
+}
+
+.hqtsection {
+    padding-top: 26px;
+}
+
+.hqtbreadcrumb {
+    position: relative;
+    z-index: 11;
+}
+
+.hqtlink__arrow {
+    position: relative;
+    font-size: 14px;
+    text-decoration: none;
+    display: inline-block;
+    color: #8f919d;
+    margin: 0 7px 7px 0;
+    padding-right: 16px;
+    top: -6px;
+}
+
+.link__arrow a {
+    color: #4f5e6b;
+    text-decoration: none;
+}
+
+.hqtpaper {
+    background-color: white;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    padding: 30px;
+    position: relative;
+    z-index: 3;
+    text-decoration: none;
+    overflow: hidden;
+    width: 100%;
+    display: block;
+    outline: none;
+    box-shadow: 0 3px 8px 0 rgb(0 0 0 / 3%);
+    transition: border .15s linear, transform .15s linear, background-color .15s linear, box-shadow .15s linear, opacity .15s linear;
+}
+
+/* 본문 */
+.hqtpaper__large {
+    padding: 60px;
+}
+
+.hqtcontent__narrow {
+    width: 640px;
+}
+
+.hqtarticle {
+    font-size: 17px;
+    line-height: 1.53;
+    word-wrap: break-word;
+}
+
+.hqt__article {
+    font-size: 17px;
+    line-height: 1.53;
+    word-wrap: break-word;
+}
+
+.hqtarticle__meta {
+    margin-bottom: 30px;
+}
+
+.hqtt h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0 0 17px;
+    font-size: 33px;
+    font-weight: normal;
+    line-height: 1.24;
+    font-weight: 400;
+    color: #3a3c4c;
+}
+
+.hqtbody {
+    font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #565867;
+    font-weight: 400;
+    background: #f3f5f7;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    -moz-osx-font-smoothing: grayscale;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    height: 100%;
+    min-height: 100%;
+}
+
+.hqtarticle__desc {
+    font-size: 20px;
+    line-height: 1.35;
+    margin-bottom: 17px;
+    color: #8F919D;
+}
+
+.hqtavatar {
+    font-size: 13px;
+    color: #8f919d;
+    margin-top: 4px;
+}
+
+.hqtavatar__info,
+.hqtavatar__photo {
+    line-height: 1.4;
+}
+
+.hqtavatar__photo {
+    margin-right: 10px;
+    float: left;
+}
+
+.hqtavatar__image {
+    width: 32px;
+    height: 32px;
+    vertical-align: bottom;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px white;
+    position: relative;
+    z-index: 4;
+}
+
+.hqtavatar__fallback {
+    display: inline-block;
+    text-align: center;
+    line-height: 32px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background-color: #010d0b;
+}
+
+.hqtc__darker {
+    color: #4f5e6b;
+}
+
+.hqtarticle h2 {
+    font-size: 22px;
+    margin: 0 0 17px;
+    line-height: 1.24;
+}
+
+article p.hqtno-margin {
+    margin-bottom: 0;
+    min-height: 1.53em;
+}
+
+article p {
+    margin-top: 0;
+}
+
+article ul,
+article ol {
+    padding-left: 16px;
+}
+.hqtintercom-reaction-picker {
+backface-visibility: hidden;
+padding: 12px;
+text-align: center;
+color: #777;
+background-color: #f0f3f5;
+margin: 60px -44px -44px -44px;
+border-radius: 8px;
+}
+.hqtintercom-reaction-picker .hqtintercom-reaction-prompt {
+padding-top: 9px;
+padding-bottom: 4px;
+text-align: center;
+}
+.hqtintercom-reaction-picker .hqtintercom-reaction {
+background: none;
+color: inherit;
+border: none;
+padding: 0;
+font: inherit;
+cursor: pointer;
+outline: none;
+width: 50px;
+height: 100%;
+display: inline-block;
+text-align: center;
+font-size: 32px;
+transition: transform 0.16s cubic-bezier(0.65, 0.61, 0.18, 1.8) 0.02s, filter 0.32s linear;
+cursor: pointer;
+transform-origin: 50% 60%;
+}

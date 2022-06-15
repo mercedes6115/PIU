@@ -1,7 +1,12 @@
-* {
-    font-family: -apple-system,BlinkMacSystemFont,'Pretendard JP',Pretendard,system-ui,Roboto,'Helvetica Neue','Segoe UI','Noto Sans KR','Malgun Gothic',sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+.notosanskr * {
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+}
 *, *::before, *::after {
     box-sizing: border-box;
 }
@@ -483,6 +488,7 @@ body {
 }
 
 .my-body-total {
+    font-family: 'Noto Sans KR', sans-serif;
     line-height: 1;
     padding: 0;
     border: 0;
@@ -496,6 +502,7 @@ body {
 }
 
 .my-body-total>div {
+    font-family: 'Noto Sans KR', sans-serif;
     position: relative;
     z-index: 0;
 }
@@ -507,6 +514,7 @@ body {
 }
 
 .my-review-title {
+    font-family: 'Noto Sans KR', sans-serif;
     border-radius: 0;
     width: 100%;
     height: 100%;
@@ -651,6 +659,7 @@ body {
 }
 
 .review-by1 {
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 14px;
     line-height: 18px;
     margin-bottom: 0px;
@@ -661,25 +670,30 @@ body {
 }
 
 .review-by2 {
+    font-family: 'Noto Sans KR', sans-serif;
     margin-bottom: 12px;
 }
 
 .review-by3 {
+    font-family: 'Noto Sans KR', sans-serif;
     display: flex;
     margin-top: auto;
 }
 
 .review-by4 {
+    font-family: 'Noto Sans KR', sans-serif;
     display: flex;
     margin-top: auto;
     cursor: pointer;
 }
 
 .review-by5 {
+    font-family: 'Noto Sans KR', sans-serif;
     line-height: 16px;
 }
 
 .review-by6 {
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 12px;
     line-height: 16px;
     color: rgb(162, 162, 162);
@@ -687,19 +701,23 @@ body {
 }
 
 .review-by7 {
+    font-family: 'Noto Sans KR', sans-serif;
     margin-right: 12px;
 }
 
 .review-by8 {
+    font-family: 'Noto Sans KR', sans-serif;
     display: flex;
     cursor: pointer;
 }
 
 .review-by9 {
+    font-family: 'Noto Sans KR', sans-serif;
     line-height: 16px;
 }
 
 .review-with1 {
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 12px;
     line-height: 16px;
     color: rgb(162, 162, 162);
@@ -708,10 +726,12 @@ body {
 }
 
 .review-with2 {
+    font-family: 'Noto Sans KR', sans-serif;
     flex: 1 1 0%;
 }
 
 .review-with3 {
+    font-family: 'Noto Sans KR', sans-serif;
     font-weight: bold;
     font-size: 11px;
     line-height: 14px;
@@ -720,10 +740,12 @@ body {
 }
 
 .review-with4 {
+    font-family: 'Noto Sans KR', sans-serif;
     margin-bottom: 8px;
 }
 
 .review-with6 {
+    font-family: 'Noto Sans KR', sans-serif;
     box-shadow: rgb(248 248 248) 0px -1px 0px inset;
     border: none;
     height: 1px;
@@ -731,16 +753,19 @@ body {
 }
 
 .review-with7 {
+    font-family: 'Noto Sans KR', sans-serif;
     margin-top: 8px;
 }
 
 .review-with8 {
+    font-family: 'Noto Sans KR', sans-serif;
     display: flex;
     flex-direction: column;
     max-width: 100%;
 }
 
 .review-with9 {
+    font-family: 'Noto Sans KR', sans-serif;
     display: flex;
     flex-direction: row;
     -webkit-box-align: center;
@@ -748,12 +773,14 @@ body {
 }
 
 .review-read {
+    font-family: 'Noto Sans KR', sans-serif;
     display: flex;
     -webkit-box-align: center;
     align-items: center;
 }
 
 .review-read1 {
+    font-family: 'Noto Sans KR', sans-serif;
     display: inline-block;
     position: relative;
     width: 24px;
@@ -765,6 +792,7 @@ body {
 }
 
 .review-read2 {
+    font-family: 'Noto Sans KR', sans-serif;
     display: flex;
     flex: 1 1 0%;
     flex-direction: column;
@@ -772,6 +800,7 @@ body {
 }
 
 .review-read3 {
+    font-family: 'Noto Sans KR', sans-serif;
     display: flex;
     flex: 1 1 0%;
     flex-direction: row;
@@ -780,6 +809,7 @@ body {
 }
 
 .review-read4 {
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 11px;
     font-weight: 600;
     color: rgb(58, 58, 58);
@@ -789,6 +819,7 @@ body {
 }
 
 .review-read5 {
+    font-family: 'Noto Sans KR', sans-serif;
     margin-top: 0px;
     margin-left: 6px;
     color: rgb(202, 202, 202);
@@ -799,6 +830,7 @@ body {
 }
 
 .review-read6 {
+    font-family: 'Noto Sans KR', sans-serif;
     display: flex;
     flex-direction: column;
     margin-top: 4px;
@@ -806,6 +838,7 @@ body {
 }
 
 .review-read7 {
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 14px;
     font-weight: normal;
     line-height: 20px;
@@ -818,7 +851,12 @@ body {
     color: rgb(58, 58, 58);
 }
 
+.review-read7 > pre {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
 .review-read8 {
+    font-family: 'Noto Sans KR', sans-serif;
     display: flex;
     margin-left: 36px;
     margin-top: 9px;
@@ -828,22 +866,26 @@ body {
 }
 
 .review-read9 {
+    font-family: 'Noto Sans KR', sans-serif;
     display: flex;
     flex-direction: row;
     align-self: flex-start;
 }
 
 .review-read10 {
+    font-family: 'Noto Sans KR', sans-serif;
     display: flex;
     flex-direction: row-reverse;
     align-self: flex-end;
 }
 
 .review-list {
+    font-family: 'Noto Sans KR', sans-serif;
     margin-left: 36px;
 }
 
 .review-list1 {
+    font-family: 'Noto Sans KR', sans-serif;
     margin-left: 36px;
 }
 
@@ -852,6 +894,7 @@ body {
 }
 
 .review-list3 {
+    font-family: 'Noto Sans KR', sans-serif;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -976,12 +1019,23 @@ info-change4 {
     position: relative;
 }
 
+#modi-ok:disabled {
+    cursor: not-allowed;
+    background-color: #ccc;
+}
+
 .info-change4 i {
     transition: opacity 0.1s linear 0s;
     object-fit: cover;
     opacity: 1;
     width: 100%;
     height: 100%;
+}
+
+.info-change4 > li > img {
+    border-radius: 50%;
+    width: 88px;
+    height: 88px;
 }
 
 .info-change5 {
@@ -1003,15 +1057,18 @@ info-change4 {
     display: flex;
     flex-direction: column;
     margin-bottom: 16px;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
 .info-input2 {
+    font-family: 'Noto Sans KR', sans-serif;
     display: flex;
     flex-direction: column;
     margin: 0px 0px 16px;
 }
 
 .info-input3 {
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 14px;
     font-weight: normal;
     line-height: 20px;
@@ -1021,14 +1078,17 @@ info-change4 {
 }
 
 .info-input4 {
+    font-family: 'Noto Sans KR', sans-serif;
     display: block;
 }
 
 .myinfo-list input {
+    font-family: 'Noto Sans KR', sans-serif;
     overflow: visible;
 }
 
 .info-input5 {
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 14px;
     font-weight: normal;
     line-height: 20px;
@@ -1046,16 +1106,19 @@ info-change4 {
 }
 
 .info-phone1 {
+    font-family: 'Noto Sans KR', sans-serif;
     display: flex;
 }
 
 .info-input6 {
+    font-family: 'Noto Sans KR', sans-serif;
     -webkit-box-flex: 1;
     flex-grow: 1;
     display: block;
 }
 
 .info-phone2 {
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 14px;
     font-weight: normal;
     line-height: 20px;
@@ -1072,6 +1135,7 @@ info-change4 {
 }
 
 .info-phone1 > button, .info-phone-change-btn {
+    font-family: 'Noto Sans KR', sans-serif;
     height: 48px;
     border-top: 1px solid rgb(239, 239, 239);
     border-right: 1px solid rgb(239, 239, 239);
@@ -1104,6 +1168,7 @@ info-change4 {
 }
 
 .user-info-ch1 {
+    font-family: 'Noto Sans KR', sans-serif;
     flex: 0 0 auto;
     display: flex;
     -webkit-box-pack: center;
@@ -1116,6 +1181,7 @@ info-change4 {
 }
 
 .modify-con {
+    font-family: 'Noto Sans KR', sans-serif;
     display: flex;
     -webkit-box-pack: end;
     justify-content: flex-end;
@@ -1123,6 +1189,7 @@ info-change4 {
 }
 
 .modify-checking {
+    font-family: 'Noto Sans KR', sans-serif;
     width: 100%;
     display: flex;
     vertical-align: middle;
@@ -1139,6 +1206,7 @@ info-change4 {
 }
 
 .checking-modify {
+    font-family: 'Noto Sans KR', sans-serif;
     border: 0px;
     outline: none;
     margin: 0px;
@@ -2378,7 +2446,7 @@ input.user-infor-email, input.user-infor-name, input.user-phone-form {
 
 .date-detail {
     font-size: 1.0rem;
-    font-weight: 600;
+    font-weight: 580;
     margin-top: 30px;
     padding-left: 60px;
     padding-right: 60px;
@@ -3376,6 +3444,7 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 }
 
 .my-real-point-body {
+    font-family: 'Noto Sans KR', sans-serif;
     width: auto;
     margin: 0;
     overflow-wrap: anywhere;
@@ -3392,22 +3461,26 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 }
 
 .my-real-point-body>div {
+    font-family: 'Noto Sans KR', sans-serif;
     position: relative;
     z-index: 0;
 }
 
 .my-real-point-top {
+    font-family: 'Noto Sans KR', sans-serif;
     position: relative;
     max-width: 640px;
     margin: 0px auto;
 }
 
 .my-real-point-top2 {
+    font-family: 'Noto Sans KR', sans-serif;
     background-color: rgb(255, 255, 255);
     padding: 28px 0px 0px;
 }
 
 .my-real-point-top3 {
+    font-family: 'Noto Sans KR', sans-serif;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -3417,6 +3490,7 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 }
 
 .my-real-point-top4 {
+    font-family: 'Noto Sans KR', sans-serif;
     display: flex;
     -webkit-box-align: center;
     align-items: center;
@@ -3429,21 +3503,25 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 }
 
 .my-real-point-top5 {
+    font-family: 'Noto Sans KR', sans-serif;
     margin-left: 4px;
 }
 
 .my-real-point-top6 {
+    font-family: 'Noto Sans KR', sans-serif;
     display: flex;
     -webkit-box-pack: justify;
     justify-content: space-between;
 }
 
 .my-real-point-top7 {
+    font-family: 'Noto Sans KR', sans-serif;
     display: flex;
     align-items: flex-end;
 }
 
 .my-real-point-top8 {
+    font-family: 'Noto Sans KR', sans-serif;
     font-weight: bold;
     line-height: 44px;
     letter-spacing: -0.6px;
@@ -3453,6 +3531,7 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 }
 
 .my-real-point-top9 {
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 18px;
     letter-spacing: -0.45px;
     margin: 0px 0px 0px 4px;
@@ -3463,12 +3542,14 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 }
 
 .my-real-point-top10 {
+    font-family: 'Noto Sans KR', sans-serif;
     align-self: center;
     width: 32px;
     height: 32px;
 }
 
 .my-good-point {
+    font-family: 'Noto Sans KR', sans-serif;
     margin-top: 4px;
     display: block;
     content: "";
@@ -3478,6 +3559,7 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 }
 
 .my-good-point1 {
+    font-family: 'Noto Sans KR', sans-serif;
     display: flex;
     margin: 32px 24px 24px;
     -webkit-box-align: stretch;
@@ -3486,6 +3568,7 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 }
 
 .my-good-point2 {
+    font-family: 'Noto Sans KR', sans-serif;
     border-radius: 2px;
     overflow: hidden;
     transform: translateX(0px) translateY(0px) translateZ(0px);
@@ -3497,6 +3580,7 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 }
 
 .my-good-point3 {
+    font-family: 'Noto Sans KR', sans-serif;
     display: flex;
     padding: 22px 20px;
     -webkit-box-align: center;
@@ -3505,6 +3589,7 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 }
 
 .my-good-point4 {
+    font-family: 'Noto Sans KR', sans-serif;
     display: flex;
     flex: 1 1 0%;
     -webkit-box-align: stretch;
@@ -3513,6 +3598,7 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 }
 
 .my-good-point5 {
+    font-family: 'Noto Sans KR', sans-serif;
     border-width: 0px;
     color: rgb(255, 255, 255);
     margin: 0px;
@@ -3523,6 +3609,7 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 }
 
 .my-good-point6 {
+    font-family: 'Noto Sans KR', sans-serif;
     width: 0px;
     height: 4px;
     -webkit-box-flex: 0;
@@ -3531,6 +3618,7 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 }
 
 .my-good-point7 {
+    font-family: 'Noto Sans KR', sans-serif;
     border-width: 0px;
     color: rgb(255, 255, 255);
     margin: 0px;
@@ -3541,6 +3629,7 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 }
 
 .my-good-point8 {
+    font-family: 'Noto Sans KR', sans-serif;
     width: 12px;
     height: 0px;
     -webkit-box-flex: 0;
@@ -3549,6 +3638,7 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 }
 
 .my-good-point9 {
+    font-family: 'Noto Sans KR', sans-serif;
     display: flex;
     -webkit-box-align: stretch;
     align-items: stretch;
@@ -3556,6 +3646,7 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 }
 
 .my-point-gold {
+    font-family: 'Noto Sans KR', sans-serif;
     width: 70px;
     height: 60px;
     display: block;
@@ -3563,6 +3654,7 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 }
 
 .my-point-gold1 {
+    font-family: 'Noto Sans KR', sans-serif;
     object-fit: cover;
     width: 100%;
     height: 100%;
@@ -3571,26 +3663,31 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 }
 
 .my-point-gold2 {
+    font-family: 'Noto Sans KR', sans-serif;
     padding: 0px 24px;
     margin-bottom: 28px;
 }
 
 .my-point-gold2 > div:first-child {
+    font-family: 'Noto Sans KR', sans-serif;
     margin-bottom: 4px;
 }
 
 .my-point-gold3 {
+    font-family: 'Noto Sans KR', sans-serif;
     display: flex;
     flex-direction: column;
 }
 
 .my-point-gold4 {
+    font-family: 'Noto Sans KR', sans-serif;
     display: flex;
     -webkit-box-align: center;
     align-items: center;
 }
 
 .my-point-gold5 {
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 18px;
     font-weight: bold;
     color: rgb(26, 26, 26);
@@ -3605,6 +3702,7 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 }
 
 .my-point-gold6 {
+    font-family: 'Noto Sans KR', sans-serif;
     display: flex;
     flex-direction: row;
     -webkit-box-pack: justify;
@@ -3615,16 +3713,19 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 }
 
 .my-point-gold6:not(:last-child) {
+    font-family: 'Noto Sans KR', sans-serif;
     border-bottom: 1px solid rgb(248, 248, 248);
 }
 
 .my-point-gold7 {
+    font-family: 'Noto Sans KR', sans-serif;
     width: 32px;
     height: 32px;
     margin-right: 20px;
 }
 
 .my-point-gold8 {
+    font-family: 'Noto Sans KR', sans-serif;
     flex: 1 1 0%;
     display: flex;
     flex-direction: column;
@@ -3633,6 +3734,7 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 }
 
 .my-point-gold9 {
+    font-family: 'Noto Sans KR', sans-serif;
     margin-bottom: 4px;
     font-size: 14px;
     font-weight: normal;
@@ -3642,6 +3744,7 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 }
 
 .my-point-gold10 {
+    font-family: 'Noto Sans KR', sans-serif;
     color: rgb(253, 126, 20);
     font-size: 11px;
     font-weight: 600;
@@ -3651,6 +3754,7 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 }
 
 .my-point-gold11 {
+    font-family: 'Noto Sans KR', sans-serif;
     width: 61px;
     height: 28px;
     display: inline-flex;
@@ -3677,6 +3781,7 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 }
 
 .my-point-gold12 {
+    font-family: 'Noto Sans KR', sans-serif;
     flex: 0 0 auto;
     display: flex;
     -webkit-box-pack: center;
@@ -3686,6 +3791,7 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 }
 
 .my-point-gold13 {
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 11px;
     font-weight: normal;
     color: rgb(58, 58, 58);
@@ -3695,6 +3801,7 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 }
 
 .my-point-coin {
+    font-family: 'Noto Sans KR', sans-serif;
     display: flex;
     flex-direction: row;
     -webkit-box-pack: justify;
@@ -3705,16 +3812,19 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 }
 
 .my-point-coin:not(:last-child) {
+    font-family: 'Noto Sans KR', sans-serif;
     border-bottom: 1px solid rgb(248, 248, 248);
 }
 
 .my-point-coin1 {
+    font-family: 'Noto Sans KR', sans-serif;
     width: 32px;
     height: 32px;
     margin-right: 20px;
 }
 
 .my-point-coin2 {
+    font-family: 'Noto Sans KR', sans-serif;
     flex: 1 1 0%;
     display: flex;
     flex-direction: column;
@@ -3724,6 +3834,7 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 
 
 .my-point-coin3 {
+    font-family: 'Noto Sans KR', sans-serif;
     margin-bottom: 4px;
     font-size: 14px;
     font-weight: normal;
@@ -3734,6 +3845,7 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 }
 
 .my-point-coin4 {
+    font-family: 'Noto Sans KR', sans-serif;
     color: rgb(253, 126, 20);
     font-size: 11px;
     font-weight: 600;
@@ -3743,6 +3855,7 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 }
 
 .my-point-coin5 {
+    font-family: 'Noto Sans KR', sans-serif;
     width: 61px;
     height: 28px;
     display: inline-flex;
@@ -3769,6 +3882,7 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 }
 
 .my-point-coin6 {
+    font-family: 'Noto Sans KR', sans-serif;
     flex: 0 0 auto;
     display: flex;
     -webkit-box-pack: center;
@@ -3778,6 +3892,7 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 }
 
 .my-point-coin7 {
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 11px;
     font-weight: normal;
     color: rgb(58, 58, 58);
@@ -3787,6 +3902,7 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 }
 
 .my-point-coin8 {
+    font-family: 'Noto Sans KR', sans-serif;
     display: flex;
     flex-direction: row;
     -webkit-box-pack: justify;
@@ -3797,12 +3913,14 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 }
 
 .my-point-coin9 {
+    font-family: 'Noto Sans KR', sans-serif;
     width: 32px;
     height: 32px;
     margin-right: 20px;
 }
 
 .my-point-coin10 {
+    font-family: 'Noto Sans KR', sans-serif;
     flex: 1 1 0%;
     display: flex;
     flex-direction: column;
@@ -3811,6 +3929,7 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 }
 
 .my-point-coin11 {
+    font-family: 'Noto Sans KR', sans-serif;
     margin-bottom: 4px;
     font-size: 14px;
     font-weight: normal;
@@ -3820,6 +3939,7 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 }
 
 .my-point-coin12 {
+    font-family: 'Noto Sans KR', sans-serif;
     color: rgb(253, 126, 20);
     font-size: 11px;
     font-weight: 600;
@@ -3829,6 +3949,7 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 }
 
 .my-point-coin13 {
+    font-family: 'Noto Sans KR', sans-serif;
     width: 61px;
     height: 28px;
     display: inline-flex;
@@ -3855,6 +3976,7 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 }
 
 .my-point-coin14 {
+    font-family: 'Noto Sans KR', sans-serif;
     flex: 0 0 auto;
     display: flex;
     -webkit-box-pack: center;
@@ -3864,6 +3986,7 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 }
 
 .my-point-coin15 {
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 11px;
     font-weight: normal;
     color: rgb(58, 58, 58);
@@ -3873,11 +3996,13 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 }
 
 .my-point-notice {
+    font-family: 'Noto Sans KR', sans-serif;
     padding: 40px 24px;
     background-color: rgb(248, 248, 248);
 }
 
 .my-point-notice1 {
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 14px;
     color: rgb(26, 26, 26);
     line-height: 20px;
@@ -3887,6 +4012,7 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 }
 
 .my-point-notice2 {
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 11px;
     font-weight: normal;
     line-height: 16px;
@@ -3899,6 +4025,7 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 }
 
 .my-point-notice3 {
+    font-family: 'Noto Sans KR', sans-serif;
     margin-top: 8px;
     display: flex;
     -webkit-box-align: center;
@@ -3906,6 +4033,7 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 }
 
 .my-point-notice3::before {
+    font-family: 'Noto Sans KR', sans-serif;
     margin-right: 6px;
     display: block;
     content: "";
@@ -4017,6 +4145,20 @@ th.point-change-date {
     font-size: 100%;
     padding: 32px;
     width: 480px;
+    max-height: 800px;
+    border-radius: 8px;
+    background-color: rgb(255, 255, 255);
+    box-sizing: border-box;
+    box-shadow: rgb(0 0 0 / 2%) 0px 0px 5px, rgb(0 0 0 / 2%) 0px 6px 4px, rgb(0 0 0 / 3%) 0px 9px 6px, rgb(0 0 0 / 3%) 0px 16px 12px, rgb(0 0 0 / 8%) 0px 24px 24px;
+}
+
+#my_modal4 {
+    font-family: 'Noto Sans KR', sans-serif;
+    display: none;
+    flex-direction: column;
+    font-size: 100%;
+    padding: 32px;
+    width: 600px;
     max-height: 800px;
     border-radius: 8px;
     background-color: rgb(255, 255, 255);
