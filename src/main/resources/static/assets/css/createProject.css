@@ -375,12 +375,12 @@ option {
 
 .addressBoxEnd {
     display: none;
+
 }
 
 .show {
     display: flex;
     flex-direction: column; 
-    margin-bottom: 60px;
 }
 
 .addressForm {
@@ -389,8 +389,19 @@ option {
     margin-bottom: 8px;
     width: 71%;
 }
+.find_address, .end_address{
+    background: white;
+    border-top: 1px solid #e0dbdb;
+    border-right: 1px solid #e0dbdb;
+    border-bottom: 1px solid #e0dbdb;
+    border-left: none;
+}
+.find_address:hover,
+.end_address:hover{
+    background-color: rgba(196, 196, 196, 0.226);
+}
 
-#address {
+#start_address, #end_address{
     font-size: 14px;
     font-weight: normal;
     line-height: 20px;
@@ -410,7 +421,7 @@ option {
     color: rgb(26, 26, 26);
 }
 
-#addressDetail {
+#start_addressDetail, #end_addressDetail {
     font-size: 14px;
     font-weight: normal;
     line-height: 20px;
@@ -421,8 +432,8 @@ option {
     background-color: white;
     height: 40px;
     flex: 1 1 auto;
-    width: 66%;
-    padding: 0px 48px 0px 16px;
+    width: calc(100% - 20px);
+    padding-left: 16px;
     appearance: none;
     background-repeat: no-repeat;
     background-position: right 16px center;

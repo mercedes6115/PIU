@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>프로젝트 생성</title>
-    <link rel="stylesheet" href="/assets/css/createProject.css" />
+    <!-- <link rel="stylesheet" href="/assets/css/createProject.css" /> -->
+    <link rel="stylesheet" href="/src/main/resources/static/assets/css/createProject.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 </head>
 <body>
@@ -94,48 +95,55 @@
                                         <label class="formTerrainLabel">지형</label>
                                         <select class="formTerrainSelect">
                                             <option value hidden disalbed>지형을 입력해주세요.</option>
-                                            <option value="mountain">산 ( +100p )</option>
-                                            <option value="beach">바닷가 ( + 50p )</option>
-                                            <option value="ground">평지</option>
+                                            <option class="mountain" value="mountain">산 ( +100p )</option>
+                                            <option class="beach" value="beach">바닷가 ( + 50p )</option>
+                                            <option class="ground" value="ground">평지</option>
                                         </select>
                                     </div>
                                     <div class="formCourse">
                                         <label class="formCourseLabel">코스 / 장소</label>
                                         <div class="formCoureSelectBox">
                                             <select class="formCourseSelect" id="selectCourse" onchange="ChangeValue()">
-                                                <option value="place">장소 ( + 100p )</option>
+                                                <option value="place">장소</option>
                                                 <option value="course">코스 ( 3km까지 100p 3km 초과 시 1km 마다 50p 추가 )</option>
                                             </select>                        
                                             <div class="addressBox">
                                                 <label class="formCourseLabel">출발지</label>
                                                 <div class="addressForm">
-                                                <input type="text" id="address" placeholder="주소">
-                                                <input type="button" onclick="findAddress()" value="주소 찾기">
+                                                <input type="text" id="start_address" placeholder="주소" readonly>
+                                                <input type="button" class="find_address" id="find_start_address" value="주소 찾기">
                                                 </div>
-                                                <div style="width: 95%;">
-                                                    <input type="text" id="addressDetail" placeholder="상세주소">
+                                                <div style="width: 100%;">
+                                                    <div style="width: 71%;">
+                                                        <input type="text" id="start_addressDetail" placeholder="상세주소">
+                                                    </div>
                                                 </div>                                                
                                             </div>
+                                                     <input type="hidden" id="x1">
+                                                     <input type="hidden" id="y1">
+                                                     <input type="hidden"  id="x2">
+                                                     <input type="hidden" id="y2">
                                             <div class="addressBoxEnd">
                                                 <label class="formCourseLabel">도착지</label>
                                                 <div class="addressForm">
-                                                <input type="text" id="address" placeholder="주소">
-                                                <input type="button" onclick="findAddress()" value="주소 찾기">
+                                                <input type="text" id="end_address" placeholder="주소" readonly>
+                                                <input type="button" class="end_address" id="find_end_address" value="주소 찾기">
                                                 </div>
-                                                <div style="width: 95%;">
-                                                    <input type="text" id="addressDetail" placeholder="상세주소">
+                                                <div style="width: 100%;">
+                                                    <div style="width: 71%;">
+                                                        <input type="text" id="end_addressDetail" placeholder="상세주소">
+                                                    </div>
                                                 </div>                                                 
+                                            </div>
+                                            <div style="width: 100%; margin-top: 10px; margin-bottom: 60px; font-size: 15px;     font-family: 'Noto Sans KR', sans-serif;">
+                                                <div style="width: 71%; display: flex; justify-content: space-between;">
+                                                    <div>예상 지급 포인트</div>
+                                                    <div style="display: flex;"><p style="margin: 0;" id="distance_point"></p>P</div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="nextBtnFrame">
-                                        <button type="button" class="savePage">
-                                            <span class="savePageBtn">저장하기</span>
-                                        </button>
-                                        <button type="submit" class="nextPage">
-                                            <span class="nextPageBtn">다음</span>
-                                        </button>
-                                    </div>
+                                   
                                 </form>
                             </div>
                         </div>
@@ -143,53 +151,20 @@
                 </div>
             </div>
         </div>
+        <div class="nextBtnFrame">
+            <button type="button" class="savePage">
+                <span class="savePageBtn">저장하기</span>
+            </button>
+            <button type="submit" class="nextPage">
+                <span class="nextPageBtn">다음</span>
+            </button>
+        </div>
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=nshb4pb9af&submodules=geocoder"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
-    function findAddress() {
-        new daum.Postcode({
-            oncomplete: function(data) {
-                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
-                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                var addr = ''; // 주소 변수
-                var extraAddr = ''; // 참고항목 변수
-
-                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-                    addr = data.roadAddress;
-                } else { // 사용자가 지번 주소를 선택했을 경우(J)
-                    addr = data.jibunAddress;
-                }
-
-                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-                if(data.userSelectedType === 'R'){
-                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-                        extraAddr += data.bname;
-                    }
-                    // 건물명이 있고, 공동주택일 경우 추가한다.
-                    if(data.buildingName !== '' && data.apartment === 'Y'){
-                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                    }
-                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-                    if(extraAddr !== ''){
-                        extraAddr = ' (' + extraAddr + ')';
-                    }
-                
-                } 
-
-                // 우편번호와 주소 정보를 해당 필드에 넣는다.                
-                document.getElementById("address").value = addr;
-                // 커서를 상세주소 필드로 이동한다.
-                document.getElementById("addressDetail").focus();
-            }
-        }).open();
-    }
     
     let endAddress = document.querySelector(".addressBoxEnd");
     function ChangeValue(){
@@ -202,6 +177,132 @@
             endAddress.classList.remove('show');
         }
     }
+
+    window.onload = function(){
+        document.getElementById("find_start_address").addEventListener("click", function(){ //주소입력칸을 클릭하면
+            //카카오 지도 발생
+            new daum.Postcode({
+                oncomplete: function(data) { //선택시 입력값 세팅
+                    document.getElementById("start_address").value = data.address; // 주소 넣기
+                    xy(data.address,1);
+                }
+            }).open();
+        });
+        document.getElementById("find_end_address").addEventListener("click", function(){ //주소입력칸을 클릭하면
+            //카카오 지도 발생
+            new daum.Postcode({
+                oncomplete: function(data) { //선택시 입력값 세팅
+                    document.getElementById("end_address").value = data.address; // 주소 넣기
+                    xy(data.address,2);
+                }
+            }).open();
+        });
+            
+    }
+
+    let 출발 = [];
+    let 도착 = [];
+    let default_point=100;
+    let real_point=0;
+    $('#distance_point').text(default_point);
+
+    $('.formTerrainSelect').change(function(){
+        if($(this).val()=="mountain"){
+            if(real_point!=0){
+                default_point = 100;
+            }else{
+                default_point = 200;
+            }
+            $('#distance_point').text(default_point+real_point);
+        }
+        else if($(this).val()=="beach"){
+            if(real_point!=0){
+                default_point = 50;
+            }else{
+                default_point = 150;
+            }
+            $('#distance_point').text(default_point+real_point);
+        }
+        else if($(this).val()=="ground"){
+            if(real_point!=0){
+                default_point = 0;
+            }else{
+                default_point = 100;
+            }
+            $('#distance_point').text(default_point+real_point);
+        }
+
+    })
+
+    // x,y 좌표 받아오기    
+    
+
+// 주소값과 번호를 받아와서  주소 값으로 좌표 생성, 번호로 어느것을 눌렀는지 확인.
+    function xy(ad,i){
+        if(i==1){ //출발지 눌렀을떄
+            naver.maps.Service.geocode({
+                query: ad
+            }, function(status, response) {
+                if (status !== naver.maps.Service.Status.OK) {
+                    return alert('Something wrong!');
+                }
+            
+                var result = response.v2, // 검색 결과의 컨테이너
+                    items = result.addresses; // 검색 결과의 배열
+                   
+                    $('#x'+i).val(items[0].x);  //주소의 x좌표값을 input에 삽입
+                    $('#y'+i).val(items[0].y);  //주소의 x좌표값을 input에 삽입
+
+                    if(출발.length==0){ //처음 장소 넣을때
+                        출발.push(items[0].x);
+                        출발.push(items[0].y);
+                    }else if(출발.length==2){ //출발지만 입력후 출발지 수정
+                        출발[0]=items[0].x;      //수정함
+                        출발[1]=items[0].y;      //수정함
+                    }
+                    if((출발.length + 도착.length) == 4){
+                        dist();
+                    }
+            });
+        }else{ //도착지 눌렀을때.
+            naver.maps.Service.geocode({
+                query: ad
+            }, function(status, response) {
+                if (status !== naver.maps.Service.Status.OK) {
+                    return alert('Something wrong!');
+                }
+            
+                var result = response.v2, // 검색 결과의 컨테이너
+                    items = result.addresses; // 검색 결과의 배열
+
+                    $('#x'+i).val(items[0].x); //도착지 input 에 삽입
+                    $('#y'+i).val(items[0].y); //도착지 input 에 삽입
+                if(도착.length==0){ //처음 도착지 눌렀을때
+                    도착.push(items[0].x);
+                    도착.push(items[0].y);
+                }else if(도착.length==2){
+                    도착[0] = (items[0].x); //수정함
+                    도착[1] = (items[0].y);
+                }
+                if((출발.length + 도착.length) == 4){
+                    dist();
+                }
+            });
+        }
+    }
+    
+   function dist(){
+        let distance_point =  Math.sqrt(Math.pow(출발[0]-도착[0],2) + Math.pow(출발[1]-도착[1],2));
+        let distance = distance_point*111;
+        let real_distance = Math.round(distance);  // km 단위
+        console.log(real_distance);
+        real_point = default_point+(real_distance-3)*50; //3 키로가 넘으면 1km 당 50p
+        if(real_point<default_point){
+            real_point = default_point;
+        }
+        $('p#distance_point').empty().text(real_point);
+   }
+  
     
 </script>
 </html>
