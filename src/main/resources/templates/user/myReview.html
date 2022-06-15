@@ -8,7 +8,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/3e4acc40f3.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="/assets/css/mypage_style.css">
+    <link rel="stylesheet" th:href="@{/assets/css/mypage_style.css}">
     <title>내 후기내역</title>
 </head>
 <!--640px헤더 필요-->
@@ -42,7 +42,7 @@
                         <div class="review-step7">
 
                             <div class="review-step8">2월 17일</div>
-                            <div class="review-step9">62% 수강 후 작성</div>
+                            <div class="review-step9">그린 플로깅</div>
                         </div>
                     </div>
                 </div>
@@ -52,16 +52,7 @@
             </a>
                 <div class="review-by2"></div>
                 <div class="review-by3">
-                    <div class="review-by4">
-                        <div class="review-by5"><svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                     height="16" fill="none" viewBox="0 0 24 24">
-                            <path fill-rule="evenodd"
-                                  d="M2.368 21.632l.594-5.347A9.967 9.967 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10a9.967 9.967 0 01-4.285-.962l-5.347.594zm2.264-2.264l3.452-.384.268.137A7.96 7.96 0 0012 20a8 8 0 100-16 8 8 0 00-8 8 7.96 7.96 0 00.878 3.648l.138.268-.384 3.452zM8 13a1 1 0 110-2 1 1 0 110 2zm4 0a1 1 0 110-2 1 1 0 110 2zm4 0a1 1 0 110-2 1 1 0 110 2z"
-                                  fill="#a2a2a2"></path>
-                        </svg></div>
-                        <div class="review-by6">1</div>
-                    </div>
-                    <div class="review-by7"></div>
+
                     <div class="review-by8">
                         <div class="review-by9"><svg xmlns="http://www.w3.org/2000/svg" width="16"
                                                      height="16" fill="#a2a2a2" viewBox="0 0 24 24">
@@ -75,7 +66,7 @@
                         <div class="review-with1">36명에게 도움됨</div>
                     </div>
                     <div class="review-with2"></div>
-                    <div class="review-with3">신고하기</div>
+
                 </div>
             </div>
             <div class="review-with4"></div>
@@ -84,38 +75,8 @@
             </div>
             <div class="review-with7"></div>
             <div class="my-review-bottom-space"></div>
-            <div width="100%" class="review-with8">
-                <div class="review-with9">
-                    <div class="review-read"><span size="24" class="review-read1"></span></div>
-                    <div class="review-read2">
-                        <div class="review-read3">
-                            <div font-weight="600" color="#3a3a3a" class="review-read4">지인</div>
-                            <div class="review-read5">3월 1일</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="review-read6">
-                    <div class="review-read7">
-                        <pre>우와 대단하셔요 !</pre>
-                    </div>
-                </div>
-                <div class="review-read8">
-                    <div class="review-read9"></div>
-                    <div class="review-read10"></div>
-                </div>
-                <div class="review-list"></div>
-                <div class="review-list1"></div>
-            </div>
+
             <div class="review-list2"></div>
-            <div class="review-list3"><textarea placeholder="댓글을 입력해주세요."
-                                                class="review-list4"></textarea><button type="button"
-                                                                                        class="review-list5" color="transparent"><span
-                    class="review-list6"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                              fill="none" viewBox="0 0 24 24">
-                                <path fill-rule="evenodd"
-                                      d="M6 11h4a1 1 0 110 2H6v6l13-7L6 5v6zm.948 9.761C5.616 21.478 4 20.513 4 19V5c0-1.513 1.616-2.478 2.948-1.761l13 7c1.402.755 1.402 2.767 0 3.522l-13 7z"
-                                      fill="#cacaca"></path>
-                            </svg></span></button></div>
         </div>
         <div class="my-real-review-box">
             <div class="my-real-review-box-inside"><a href="#">
@@ -130,7 +91,7 @@
                         <div class="review-step7">
 
                             <div class="review-step8">1월 20일</div>
-                            <div class="review-step9">62% 수강 후 작성</div>
+                            <div class="review-step9">에코 플로깅</div>
                         </div>
                     </div>
                 </div>
@@ -140,16 +101,7 @@
             </a>
                 <div class="review-by2"></div>
                 <div class="review-by3">
-                    <div class="review-by4">
-                        <div class="review-by5"><svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                     height="16" fill="none" viewBox="0 0 24 24">
-                            <path fill-rule="evenodd"
-                                  d="M2.368 21.632l.594-5.347A9.967 9.967 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10a9.967 9.967 0 01-4.285-.962l-5.347.594zm2.264-2.264l3.452-.384.268.137A7.96 7.96 0 0012 20a8 8 0 100-16 8 8 0 00-8 8 7.96 7.96 0 00.878 3.648l.138.268-.384 3.452zM8 13a1 1 0 110-2 1 1 0 110 2zm4 0a1 1 0 110-2 1 1 0 110 2zm4 0a1 1 0 110-2 1 1 0 110 2z"
-                                  fill="#a2a2a2"></path>
-                        </svg></div>
-                        <div class="review-by6">1</div>
-                    </div>
-                    <div class="review-by7"></div>
+
                     <div class="review-by8">
                         <div class="review-by9"><svg xmlns="http://www.w3.org/2000/svg" width="16"
                                                      height="16" fill="#a2a2a2" viewBox="0 0 24 24">
@@ -163,7 +115,7 @@
                         <div class="review-with1">50명에게 도움됨</div>
                     </div>
                     <div class="review-with2"></div>
-                    <div class="review-with3">신고하기</div>
+
                 </div>
             </div>
             <div class="review-with4"></div>
@@ -172,28 +124,7 @@
             </div>
             <div class="review-with7"></div>
             <div class="my-review-bottom-space"></div>
-            <div width="100%" class="review-with8">
-                <div class="review-with9">
-                    <div class="review-read"><span size="24" class="review-read1"></span></div>
-                    <div class="review-read2">
-                        <div class="review-read3">
-                            <div font-weight="600" color="#3a3a3a" class="review-read4">꼼지락</div>
-                            <div class="review-read5">2월 5일</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="review-read6">
-                    <div class="review-read7">
-                        <pre>저도 친구들한테 얘기해봐야겠네요 !</pre>
-                    </div>
-                </div>
-                <div class="review-read8">
-                    <div class="review-read9"></div>
-                    <div class="review-read10"></div>
-                </div>
-                <div class="review-list"></div>
-                <div class="review-list1"></div>
-            </div>
+
             <div class="review-list2"></div>
             <div class="review-with4"></div>
             <div class="sc-f8caeb8b-0 review-with5">
@@ -201,38 +132,9 @@
             </div>
             <div class="review-with7"></div>
             <div class="my-review-bottom-space"></div>
-            <div width="100%" class="review-with8">
-                <div class="review-with9">
-                    <div class="review-read"><span size="24" class="review-read1"></span></div>
-                    <div class="review-read2">
-                        <div class="review-read3">
-                            <div font-weight="600" color="#3a3a3a" class="review-read4">빵쟁이장발장</div>
-                            <div class="review-read5">2월 1일</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="review-read6">
-                    <div class="review-read7">
-                        <pre>저는 가족들과 같이 해요^^</pre>
-                    </div>
-                </div>
-                <div class="review-read8">
-                    <div class="review-read9"></div>
-                    <div class="review-read10"></div>
-                </div>
-                <div class="review-list"></div>
-                <div class="review-list1"></div>
-            </div>
+
             <div class="review-list2"></div>
-            <div class="review-list3"><textarea placeholder="댓글을 입력해주세요."
-                                                class="review-list4"></textarea><button type="button"
-                                                                                        class="review-list5" color="transparent"><span
-                    class="review-list6"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                              fill="none" viewBox="0 0 24 24">
-                                <path fill-rule="evenodd"
-                                      d="M6 11h4a1 1 0 110 2H6v6l13-7L6 5v6zm.948 9.761C5.616 21.478 4 20.513 4 19V5c0-1.513 1.616-2.478 2.948-1.761l13 7c1.402.755 1.402 2.767 0 3.522l-13 7z"
-                                      fill="#cacaca"></path>
-                            </svg></span></button></div>
+
         </div>
         <div class="my-real-review-box">
             <div class="my-real-review-box-inside"><a href="#">
@@ -247,7 +149,7 @@
                         <div class="review-step7">
 
                             <div class="review-step8">2월 17일</div>
-                            <div class="review-step9">62% 수강 후 작성</div>
+                            <div class="review-step9">클린 어스</div>
                         </div>
                     </div>
                 </div>
@@ -257,16 +159,7 @@
             </a>
                 <div class="review-by2"></div>
                 <div class="review-by3">
-                    <div class="review-by4">
-                        <div class="review-by5"><svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                     height="16" fill="none" viewBox="0 0 24 24">
-                            <path fill-rule="evenodd"
-                                  d="M2.368 21.632l.594-5.347A9.967 9.967 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10a9.967 9.967 0 01-4.285-.962l-5.347.594zm2.264-2.264l3.452-.384.268.137A7.96 7.96 0 0012 20a8 8 0 100-16 8 8 0 00-8 8 7.96 7.96 0 00.878 3.648l.138.268-.384 3.452zM8 13a1 1 0 110-2 1 1 0 110 2zm4 0a1 1 0 110-2 1 1 0 110 2zm4 0a1 1 0 110-2 1 1 0 110 2z"
-                                  fill="#a2a2a2"></path>
-                        </svg></div>
-                        <div class="review-by6">1</div>
-                    </div>
-                    <div class="review-by7"></div>
+
                     <div class="review-by8">
                         <div class="review-by9"><svg xmlns="http://www.w3.org/2000/svg" width="16"
                                                      height="16" fill="#a2a2a2" viewBox="0 0 24 24">
@@ -280,7 +173,7 @@
                         <div class="review-with1">36명에게 도움됨</div>
                     </div>
                     <div class="review-with2"></div>
-                    <div class="review-with3">신고하기</div>
+
                 </div>
             </div>
             <div class="review-with4"></div>
@@ -289,43 +182,114 @@
             </div>
             <div class="review-with7"></div>
             <div class="my-review-bottom-space"></div>
-            <div width="100%" class="review-with8">
-                <div class="review-with9">
-                    <div class="review-read"><span size="24" class="review-read1"></span></div>
-                    <div class="review-read2">
-                        <div class="review-read3">
-                            <div font-weight="600" color="#3a3a3a" class="review-read4">지인</div>
-                            <div class="review-read5">3월 1일</div>
+
+            <div class="review-list2"></div>
+
+        </div>
+        <div class="my-real-review-box">
+            <div class="my-real-review-box-inside"><a href="#">
+                <div class="my-review-profile">
+                    <div size="32" class="review-step1"><span
+                            class="review-step2">
+                                    <picture class="review-step3"><img sizes="100vw" src="	https://class101.net/images/default-user.png"></i>
+                                    </picture>
+                                </span></div>
+                    <div class="review-step5">
+                        <div class="review-step6">곰돌이</div>
+                        <div class="review-step7">
+
+                            <div class="review-step8">2월 17일</div>
+                            <div class="review-step9">그린 플로깅</div>
                         </div>
                     </div>
                 </div>
-                <div class="review-read6">
-                    <div class="review-read7">
-                        <pre>우와 대단하셔요 !</pre>
+                <div class="my-review-bottom-space"></div>
+                <pre
+                        class="review-by1">해볼까 말까 고민했는데 고민한 시간이 안아까울만큼 보람찬 시간이었습니다. 다음에도 참여하고 싶어요 </pre>
+            </a>
+                <div class="review-by2"></div>
+                <div class="review-by3">
+
+                    <div class="review-by8">
+                        <div class="review-by9"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                     height="16" fill="#a2a2a2" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd"
+                                  d="M13.139 10l.844-5.066a2 2 0 00-1.279-2.205l-.419-.155-2.604 7.205V20h8.8l1.467-8.836A1 1 0 0018.961 10h-5.822zm-5.458-.571L11.089 0l2.308.853a4 4 0 012.559 4.41L15.5 8h3.461a3 3 0 012.96 3.491l-1.573 9.477C20.25 21.566 19.779 22 19.23 22H7.681V9.429z">
+                            </path>
+                            <path
+                                    d="M3.135 9.429C2.503 9.429 2 9.989 2 10.68v10.069C2 21.427 2.508 22 3.135 22h2.273V9.429H3.135z">
+                            </path>
+                        </svg></div>
+                        <div class="review-with1">36명에게 도움됨</div>
+                    </div>
+                    <div class="review-with2"></div>
+
+                </div>
+            </div>
+            <div class="review-with4"></div>
+            <div class="sc-f8caeb8b-0 review-with5">
+                <hr color="#f8f8f8" class="review-with6">
+            </div>
+            <div class="review-with7"></div>
+            <div class="my-review-bottom-space"></div>
+
+            <div class="review-list2"></div>
+        </div>
+        <div class="my-real-review-box">
+            <div class="my-real-review-box-inside"><a href="#">
+                <div class="my-review-profile">
+                    <div size="32" class="review-step1"><span
+                            class="review-step2">
+                                    <picture class="review-step3"><img sizes="100vw" src="	https://class101.net/images/default-user.png"></i>
+                                    </picture>
+                                </span></div>
+                    <div class="review-step5">
+                        <div class="review-step6">곰돌이</div>
+                        <div class="review-step7">
+
+                            <div class="review-step8">2월 17일</div>
+                            <div class="review-step9">그린 플로깅</div>
+                        </div>
                     </div>
                 </div>
-                <div class="review-read8">
-                    <div class="review-read9"></div>
-                    <div class="review-read10"></div>
+                <div class="my-review-bottom-space"></div>
+                <pre
+                        class="review-by1">해볼까 말까 고민했는데 고민한 시간이 안아까울만큼 보람찬 시간이었습니다. 다음에도 참여하고 싶어요 </pre>
+            </a>
+                <div class="review-by2"></div>
+                <div class="review-by3">
+
+                    <div class="review-by8">
+                        <div class="review-by9"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                     height="16" fill="#a2a2a2" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd"
+                                  d="M13.139 10l.844-5.066a2 2 0 00-1.279-2.205l-.419-.155-2.604 7.205V20h8.8l1.467-8.836A1 1 0 0018.961 10h-5.822zm-5.458-.571L11.089 0l2.308.853a4 4 0 012.559 4.41L15.5 8h3.461a3 3 0 012.96 3.491l-1.573 9.477C20.25 21.566 19.779 22 19.23 22H7.681V9.429z">
+                            </path>
+                            <path
+                                    d="M3.135 9.429C2.503 9.429 2 9.989 2 10.68v10.069C2 21.427 2.508 22 3.135 22h2.273V9.429H3.135z">
+                            </path>
+                        </svg></div>
+                        <div class="review-with1">36명에게 도움됨</div>
+                    </div>
+                    <div class="review-with2"></div>
+
                 </div>
-                <div class="review-list"></div>
-                <div class="review-list1"></div>
             </div>
+            <div class="review-with4"></div>
+            <div class="sc-f8caeb8b-0 review-with5">
+                <hr color="#f8f8f8" class="review-with6">
+            </div>
+            <div class="review-with7"></div>
+            <div class="my-review-bottom-space"></div>
+
             <div class="review-list2"></div>
-            <div class="review-list3"><textarea placeholder="댓글을 입력해주세요."
-                                                class="review-list4"></textarea><button type="button"
-                                                                                        class="review-list5" color="transparent"><span
-                    class="review-list6"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                              fill="none" viewBox="0 0 24 24">
-                                <path fill-rule="evenodd"
-                                      d="M6 11h4a1 1 0 110 2H6v6l13-7L6 5v6zm.948 9.761C5.616 21.478 4 20.513 4 19V5c0-1.513 1.616-2.478 2.948-1.761l13 7c1.402.755 1.402 2.767 0 3.522l-13 7z"
-                                      fill="#cacaca"></path>
-                            </svg></span></button></div>
         </div>
+
     </div>
 </div>
 
 <!--640px푸터 필요-->
 </body>
-<script src="/assets/js/mypage.js"></script>
+<script src="mypage.js"></script>
+
 </html>

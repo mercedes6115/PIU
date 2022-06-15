@@ -89,8 +89,8 @@
                             <form action="#">
                                 <div class="groupIntroProfileFrame">
                                     <label class="groupIntroProfileTitle">프로필</label>
-                                    <label class="groupIntroProfileInsertFrame">
-                                        <input type="file" accept="image/*" class="groupProfile">
+                                    <label for="attach" class="groupIntroProfileInsertFrame" >
+                                        <input type="file" id="attach" class="groupProfile">
                                         <div class="groupIntroProfileForm">
                                             <div class="groupIntroProfileBox">
                                                 <span class="showGroupProfile">
@@ -198,4 +198,37 @@
         </div>
     </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<script>
+     //첨부파일 input태그 가져오기
+     const file = document.getElementById("attach")
+    const thumbnail = document.querySelector("label[for='attach'] div.groupIntroProfileForm");
+
+    //첨부파일이 등록되었다면 change이벤트 발생
+    file.addEventListener("change", function(event){
+        //특정 경로의 파일을 읽어올 때 사용.
+        let reader = new FileReader();
+
+        //파일정보를 전달하여 reader객체에 등록한다.
+        reader.readAsDataURL(event.target.files[0]);
+        //등록이 되었다면 reader객체의 load 이벤트가 발생한다.
+        $(".showGroupProfile").css({"display":"none"});
+        reader.onload = function(event){
+            //등록된 파일의 경로에 작성된 파일의 타입검사
+            if(event.target.result.includes("image")){
+                console.log("이미지 파일입니다.");
+                //등록된 파일의 경로로 대체
+                thumbnail.style.backgroundImage = "url(\"" + event.target.result + "\")";
+            }else{
+                console.log("이미지 파일이 아닙니다.");
+                //미리 준비해놓은 이미지 경로로 대체
+                thumbnail.style.backgroundImage = "url(img/no_image.png)";
+            }
+        }
+    });
+
+    $(document).ready(function () {
+        $("#HeaderImport").load("../fix/test/Header.html");  //헤더 인클루드
+    });
+</script>
 </html>
