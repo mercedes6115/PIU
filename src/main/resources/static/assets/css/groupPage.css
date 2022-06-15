@@ -564,6 +564,15 @@ body {
 .showListHeader1 {
     display: flex;
     height: 100%;
+    flex: 0 1 50px;
+    margin-left: 10px;
+    margin-right: 10px;
+    min-width: 0;
+}
+
+.userListHeader1 {
+    display: flex;
+    height: 100%;
     flex: 0 1 44px;
     margin-left: 10px;
     margin-right: 10px;
@@ -587,22 +596,46 @@ body {
 .showListHeader2 {
     display: flex;
     padding: 19px 16px;
-    flex: 0 1 73px;
+    flex: 0 1 52px;
+}
+
+.userListHeader2 {
+    display: flex;
+    padding: 19px 16px;
+    flex: 0 1 45px;
 }
 
 .showListHeader3 {
     display: flex;
     padding: 19px 16px;
-    flex: 0 1 200px;
+    flex: 0 1 228px;
+}
+
+.userListHeader3 {
+    display: flex;
+    padding: 19px 12px;
+    flex: 0 1 130px;
 }
 
 .showListHeader4 {
+    display: flex;
+    padding: 19px 0px;
+    flex: 0 1 182px
+}
+
+.userListHeader4 {
     display: flex;
     padding: 19px 16px;
     flex: 0 1 170px;
 }
 
 .showListHeader5 {
+    display: flex;
+    padding: 19px 16px;
+    flex: 0 1 102px;
+}
+
+.userListHeader5 {
     display: flex;
     padding: 19px 16px;
     flex: 0 1 120px;
@@ -620,10 +653,22 @@ body {
 .showListHeader6 {
     display: flex;
     padding: 19px 16px;
-    flex: 0 1 170px;
+    flex: 0 1 202px;
+}
+
+.userListHeader6 {
+    display: flex;
+    padding: 19px 16px;
+    flex: 0 1 148px;
 }
 
 .showListHeader7 {
+    display: flex;
+    padding: 19px 16px;
+    flex: 0 1 108px;
+}
+
+.userListHeader7 {
     display: flex;
     padding: 19px 16px;
     flex: 0 1 100px;
@@ -692,6 +737,16 @@ body {
     min-width: 0;
 }
 
+.userListBody1 {
+    overflow: hidden;
+    flex: 0 1 44px;
+    margin-left: 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 10px;
+    min-width: 0;
+}
+
 .sbCheckBoxFrame {
     margin-left: 9px;
     margin-right: 14px;
@@ -717,6 +772,15 @@ body {
 }
 
 .showListBody2 {
+    overflow: hidden;
+    flex: 0 1 73px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 10px;
+    min-width: 0;
+}
+
+.userListBody2 {
     overflow: hidden;
     flex: 0 1 73px;
     text-overflow: ellipsis;
@@ -781,7 +845,14 @@ body {
     min-width: 0;
 }
 
-
+.userListBody3 {
+    overflow: hidden;
+    flex: 0 1 150px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 10px;
+    min-width: 0;
+}
 
 .sbTitle {
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
@@ -809,7 +880,14 @@ body {
     min-width: 0;
 }
 
-
+.userListBody4 {
+    overflow: hidden;
+    flex: 0 1 194px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 10px;
+    min-width: 0;
+}
 
 .sbStateForm {
     display: flex;
@@ -839,6 +917,15 @@ body {
     min-width: 0;
 }
 
+.userListBody5 {
+    overflow: hidden;
+    flex: 0 1 140px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 10px;
+    min-width: 0;
+}
+
 .sbTerrain, .sbCousre, .sbPoint, .sbDate {
     border-width: 0px;
     color: var(--system-on-color);
@@ -859,7 +946,25 @@ body {
     min-width: 0;
 }
 
+.userListBody6 {
+    overflow: hidden;
+    flex: 0 1 170px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 10px;
+    min-width: 0;
+}
+
 .showListBody7 {
+    overflow: hidden;
+    flex: 0 1 100px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 10px;
+    min-width: 0;
+}
+
+.userListBody7 {
     overflow: hidden;
     flex: 0 1 100px;
     text-overflow: ellipsis;
@@ -879,7 +984,7 @@ body {
 
 .showListBody9 {
     overflow: hidden;
-    flex: 0 1 165px;
+    flex: 0 1 198px;
     text-overflow: ellipsis;
     white-space: nowrap;
     margin-right: 10px;
@@ -894,7 +999,7 @@ body {
     cursor: pointer;
 }
 
-.qrCheckFrame {
+.userCheckFrame {
     cursor: pointer;
     overflow: hidden;
     z-index: 0;
@@ -914,7 +1019,7 @@ body {
     position: relative;
 }
 
-.qrCheckForm {
+.userCheckForm {
     display: flex;
     visibility: inherit;
     -webkit-box-align: center;
@@ -922,7 +1027,7 @@ body {
     flex-direction: row;
 }
 
-.qrCheck {
+.userCheck {
     padding-left: 4px;
     padding-right: 4px;
     border-width: 0px;
@@ -1565,4 +1670,33 @@ option:disabled {
     font-size: 12px;
 }
 
- 
+.oneCheck {
+    display: none;
+}
+
+
+.givePointBtn {
+    color: #101010;
+    border: 1px rgba(0, 0, 0, 0.15) solid;
+    background-color: white;
+    padding: 9px;
+    font-size: 12px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.dgivePointBtn {
+    color: #101010;
+    border: 1px rgba(0,0,0,0.1) solid;
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 9px;
+    font-size: 12px;
+}
+
+.progressCheck {
+    border: 1px rgba(0,0,0,0.15) solid;
+    padding: 9px;
+    display: flex;
+    color: #101010;
+    font-weight: 700;
+}

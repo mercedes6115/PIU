@@ -478,7 +478,7 @@ option {
     flex-direction: row;
 }
 
-.savePageBtn, .nextPageBtn{
+.savePageBtn, .nextPageBtn, .submitPageBtn{
     flex: 0 0 auto;
     display: flex;
     -webkit-box-pack: center;
@@ -488,7 +488,7 @@ option {
     font-family: 'Noto Sans KR', sans-serif;
 }
 
-.nextPage {
+.nextPage, .submitPage {
     cursor: pointer;
     margin-left: 8px;
     display: inherit;
@@ -1406,3 +1406,20 @@ option {
     font-family: 'Noto Sans KR', sans-serif;
     color: rgb(255, 86, 0);
 }
+
+.submitBtnFrame {
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    width: 1200px;
+    padding: 18px 32px;
+    -webkit-box-align: center;
+    align-items: center;
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    border-top: 1px solid rgb(248, 248, 248);
+    height: 28px;
+    z-index: 1;
+    justify-content: space-between;
+}
+
