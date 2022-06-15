@@ -2,13 +2,12 @@ package com.example.pickitup.mapper.project.projectFile;
 
 import com.example.pickitup.domain.vo.project.projectFile.ProjectFileVO;
 import lombok.Data;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component
-@Data
-
+@Mapper
 public interface ProjectFileMapper {
     //    해당 후기글 기본키로 file 객체 가져오기
     public List<ProjectFileVO> findProjectReviewNum(Long projectNum);

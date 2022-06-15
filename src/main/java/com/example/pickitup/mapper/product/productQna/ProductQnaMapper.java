@@ -2,13 +2,12 @@ package com.example.pickitup.mapper.product.productQna;
 
 import com.example.pickitup.domain.vo.product.productQna.ProductQnaVO;
 import lombok.Data;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component
-@Data
-
+@Mapper
 public interface ProductQnaMapper {
     //    qna 전체 띄우기 무한 스크롤
 //    projectQna.num 을 이용하여 comment를 바로 밑에 띄워줘야함

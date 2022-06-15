@@ -3,12 +3,12 @@ package com.example.pickitup.mapper.product.productQna;
 import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.product.productQna.ProductQnaCommentVO;
 import lombok.Data;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component
-@Data
+@Mapper
 
 public interface ProductQnaCommentMapper {
 
