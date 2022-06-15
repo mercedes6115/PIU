@@ -4,7 +4,6 @@ CoolSmsUtil.java 파일 필요
 pom.xml에서 dependency 추가
 -->
 
-
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -14,9 +13,11 @@ pom.xml에서 dependency 추가
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>회원가입</title>
 </head>
-<link rel="stylesheet" href="\src\main\resources\static\assets\css\join.css"/>
+<link rel="stylesheet" href="/assets/css/join.css"/>
+<link rel="stylesheet" href="/assets/css/Header.css"/>
+<link rel="stylesheet" href="/assets/css/Footer.css"/>
 <body>
-<header include-html="/경로/header.html"></header>
+<div th:replace="~{/fix/Header :: HeaderImport}"></div>
 <div class="root">
     <div class="wrapper-1">
         <div class="wrapper">
@@ -80,9 +81,9 @@ pom.xml에서 dependency 추가
         </div>
     </div>
 </div>
-<footer include-html="/경로/footer.html"></footer>
+<div th:replace="~{/fix/Footer :: FooterImport}"></div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="\src\main\resources\static\assets\js\join.js"></script>
+<script  type=text/javascript th:src="@{/assets/js/join.js}"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </html>
