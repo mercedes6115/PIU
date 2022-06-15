@@ -1,17 +1,17 @@
-package com.example.pickitup.domain.vo;
+package com.example.pickitup.domain.vo.project;
 
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
 @Component
 @Data
-public class LatestVO {
+
+public class ProjectQnaVO {
     private Long num;
-    private String category;
+    private String content;
     private String registDate;
-    private String status;
+    private String updateDate;
     private Long userNum;
     private Long projectNum;
-    private Long productNum;
 
 }

@@ -1,4 +1,4 @@
-package com.example.pickitup.domain.vo;
+package com.example.pickitup.domain.vo.user;
 
 import lombok.Data;
 import org.springframework.stereotype.Component;
