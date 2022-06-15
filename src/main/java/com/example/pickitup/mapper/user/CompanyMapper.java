@@ -24,11 +24,11 @@ public interface CompanyMapper {
     public boolean delete(Long num);
 
 //    회사 유저 로그인
-<<<<<<< HEAD:src/main/java/com/example/pickitup/mapper/CompanyMapper.java
+
 //    public
-=======
+
     public CompanyVO login(String email, String password);
->>>>>>> 4c3d9a75aec40aeab71564a5ee5b31fefbc2a083:src/main/java/com/example/pickitup/mapper/user/CompanyMapper.java
+
 
 }
 
