@@ -72,13 +72,10 @@
                                             <a class="sTitle" href="groupPage.html">프로젝트</a>                                            
                                             </div>   
                                         </div>
-                                        <span id="listClose" class="material-symbols-outlined show">expand_less</span>                        
+                                                               
                                     </div>
                                 </div>
-                                <div class="sProjectContainer">
-                                    <a class="sProjectList" href="groupPage.html">전체 플로깅</a>
-                                    <a class="sProjectQna" href="#">플로깅 문의</a>
-                                </div>
+                                
                                 
                                 <div class="sGuideFrame">
                                     <div class="sGuideForm">
@@ -101,18 +98,28 @@
                 <div class="groupPageContainer">
                     <div class="bodyTitleFrame">
                         <h3 class="bodyTitle">프로젝트</h3>
-                        <a href="#" class="addProjectFrame">
+                        <div class="addProjectFrame" id="addProjectFrame">
                             <button class="addProjectBtn">
                                 <span class="addProjectForm">
                                     <span class="addProjectImg">
                                         <span class="material-symbols-outlined">add</span>                                            
                                     </span>
                                     <div class="addBoundary"></div> 
-                                    <a class="addProjectText" href="createProject.html" id="makeProject">프로젝트 만들기</a>
-                                    <input type="button" class="returnListBtn" value="목록으로" id="returnListBtn">                                   
+                                    <a class="addProjectText" href="createProject.html" id="makeProject">프로젝트 만들기</a>                                  
                                 </span>
                             </button>
-                        </a>
+                        </div>
+                        <div class="returnListFrame" id="returnListFrame">
+                            <button class="returnListBtnBox" id="returnListBtnBox">
+                                <span class="returnListForm">
+                                    <span class="returnListImg">
+                                        <span class="material-symbols-outlined">redo</span>                                            
+                                    </span>
+                                    <div class="addBoundary"></div>
+                                    <p class="returnListText">목록으로</p>                                                                                                         
+                                </span>
+                            </button>
+                        </div>
                     </div>
                     <div class="projectListFrame" id="projectListFrame">
                         <div class="projectListForm">
@@ -562,20 +569,7 @@
 </body>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>
-    let spanText = document.getElementById("listClose").textContent;
-    let sProjectContainer = document.querySelector('.sProjectContainer');
-
-    $("#listClose").click(function(){        
-        if(spanText == "expand_less"){
-            document.getElementById("listClose").textContent="expand_more";
-            spanText = document.getElementById("listClose").textContent;
-            sProjectContainer.classList.add('hidden');
-        } else {
-            document.getElementById("listClose").textContent="expand_less";
-            spanText=document.getElementById("listClose").textContent;
-            sProjectContainer.classList.remove('hidden');
-        }
-    });
+    
 
 
     const showMoreBox = document.getElementById("showMore");
@@ -626,17 +620,24 @@
 
     const projectList = document.getElementById("projectListFrame");
     const userList = document.getElementById("applierListFrame");
-    const makeProject = document.getElementById("makeProject");
-    const returnList = document.getElementById("returnListBtn");
+    const makeProject = document.getElementById("addProjectFrame");
+    const returnList = document.getElementById("returnListFrame");
 
     $('.userCheckFrame').click(function(){
         console.log("들어옴");
         projectList.style.display = "none";
         userList.style.display = "block";
         makeProject.style.display = "none";
-        returnList.style.display ="block";
+        returnList.style.display ="flex";
     });
     
+    $('.returnListBtnBox').click(function(){
+        console.log("들어옴");
+        projectList.style.display = "block";
+        userList.style.display = "none";
+        makeProject.style.display = "flex";
+        returnList.style.display ="none";
+    });
 
     
 </script>

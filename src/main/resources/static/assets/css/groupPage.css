@@ -392,12 +392,16 @@ body {
     padding: 0px;
 }
 
-.addProjectFrame {
+.returnListFrame {
+    display: none;
+}
+
+.addProjectFrame, .returnListFrame {
     text-decoration: none;
     color: inherit;
 }
 
-.addProjectBtn {
+.addProjectBtn, .returnListBtnBox {
     padding: 5px;
     cursor: pointer;
     overflow: hidden;
@@ -415,7 +419,16 @@ body {
     position: relative;
 }
 
-.addProjectForm {
+.addProjectForm, .returnListForm {
+    display: flex;
+    visibility: inherit;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.returnListForm {
+    height: 25px;
     display: flex;
     visibility: inherit;
     -webkit-box-align: center;
@@ -429,6 +442,19 @@ body {
     display: block;
     padding-left: 2px;
     padding-right: 2px;
+}
+
+.returnListImg {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    padding-left: 2px;
+    padding-right: 2px;
+    align-items: center;
+}
+
+.returnListText {
+    margin-left: 6px;
 }
 
 .addBoundary {
@@ -461,12 +487,13 @@ body {
 }
 
 .applierListFrame {
-    border-radius: 0px;
+    border-radius: 10px;
     width: 100%;
     height: 100%;
     background-color: rgb(255, 255, 255);
-    border-color: rgb(229, 229, 229);
+    border: 1px rgb(229,229,229) solid;
     display:none;
+    border-color: rgb(229, 229, 229);
 }
 
 .projectListForm {
