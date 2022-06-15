@@ -452,12 +452,21 @@ body {
     text-decoration: none;
 }
 
-.projectListFrame, .applierListFrame {
+.projectListFrame {
     border-radius: 0px;
     width: 100%;
     height: 100%;
     background-color: rgb(255, 255, 255);
     border-color: rgb(229, 229, 229);
+}
+
+.applierListFrame {
+    border-radius: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    border-color: rgb(229, 229, 229);
+    display:none;
 }
 
 .projectListForm {
@@ -1457,6 +1466,20 @@ body {
     height: 18px;
     padding-left: 4px;
     padding-right: 4px;
+}
+
+.returnListBtn {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    padding-left: 4px;
+    padding-right: 4px;
+    line-height: 1.125rem;
+    font-size: 12px;
+    border-width: 0px;
+    color: var(--system-on-color);
+    margin-right: 4px;
+    font-weight: 700;
+    text-decoration: none;
+    display: none;
 }
 
 .backListBtn {

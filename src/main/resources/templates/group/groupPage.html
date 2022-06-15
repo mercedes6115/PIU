@@ -69,7 +69,7 @@
                                             <div class="sProjectTitleBox">
                                             <span class="material-symbols-outlined" id="gfSize">list</span>                                                                                                
                                             <div class="margin"></div>
-                                            <a class="sTitle" href="groupPage.html">프로젝트</a>
+                                            <a class="sTitle" href="groupPage.html">프로젝트</a>                                            
                                             </div>   
                                         </div>
                                         <span id="listClose" class="material-symbols-outlined show">expand_less</span>                        
@@ -108,12 +108,13 @@
                                         <span class="material-symbols-outlined">add</span>                                            
                                     </span>
                                     <div class="addBoundary"></div> 
-                                    <a class="addProjectText" href="createProject.html">프로젝트 만들기</a>                                   
+                                    <a class="addProjectText" href="createProject.html" id="makeProject">프로젝트 만들기</a>
+                                    <input type="button" class="returnListBtn" value="목록으로" id="returnListBtn">                                   
                                 </span>
                             </button>
                         </a>
                     </div>
-                    <div class="projectListFrame">
+                    <div class="projectListFrame" id="projectListFrame">
                         <div class="projectListForm">
                             <div class="projectListContainer">
                                 <div class="projectListBox">
@@ -386,7 +387,7 @@
                           
                                     
                                 </div>
-                                <div class="applierListFrame">
+                                <div class="applierListFrame" id="applierListFrame">
                                 <div class="applierListForm">
                                     <div class="applierListContainer">
                                         <div class="applierListBox">
@@ -592,20 +593,6 @@
     //         showFlag = false;
     //     }
     // })
-    let showFlag = false;
-    $(".sbMoreBox").click(function(){
-        
-        if(!showFlag) {
-            console.log("들어옴1");
-            showMoreBox.style.display ="flex";
-            showFlag = true;
-        } else {
-            console.log("들어옴2");
-            showMoreBox.style.display ="none";
-            showFlag = false;
-        }
-        console.log(showFlag)
-    })
    
     // 승인상태에 따라 버튼을 다르게 보이게 함
     // var agreeState = $('#agreeState').text();
@@ -637,27 +624,20 @@
     //     }
     // }
 
-    sb
-    
-    const modal = document.getElementById("moreBoxModalFrame");
-    const btnModal = document.getElementById("showMoreBtn");
-    btnModal.addEventListener("click", e => {
-        modal.style.display = "flex";
+    const projectList = document.getElementById("projectListFrame");
+    const userList = document.getElementById("applierListFrame");
+    const makeProject = document.getElementById("makeProject");
+    const returnList = document.getElementById("returnListBtn");
+
+    $('.userCheckFrame').click(function(){
+        console.log("들어옴");
+        projectList.style.display = "none";
+        userList.style.display = "block";
+        makeProject.style.display = "none";
+        returnList.style.display ="block";
     });
-
-    const closeBtn = modal.querySelector(".close-modal")
-    closeBtn.addEventListener("click",e => {
-        modal.style.display = "none";
-    })
-
-    modal.addEventListener("click", e => {
-        const evTarget = e.target
-        if(evTarget.classList.contains("moreBoxModalForm")) {
-            modal.style.display = "none";
-        }
-    })
-
     
+
     
 </script>
 </html>
