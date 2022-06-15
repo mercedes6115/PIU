@@ -2,7 +2,6 @@ package com.example.pickitup.mapper.project.projectQna;
 
 import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaVO;
 import org.apache.ibatis.annotations.Mapper;
-
 import java.util.List;
 
 @Mapper

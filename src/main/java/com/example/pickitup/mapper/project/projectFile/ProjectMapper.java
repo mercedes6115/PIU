@@ -2,9 +2,7 @@ package com.example.pickitup.mapper.project.projectFile;
 
 import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
-import lombok.Data;
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
