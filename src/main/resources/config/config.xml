@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0/EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-
+    <typeAliases>
+        <typeAlias type="com.example.pickitup.domain.vo.ApplyVO" alias="applyVO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.CompanyVO" alias="companyVO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.JjimVO" alias="jjimVO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.LatestVO" alias="latestVO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.OrderVO" alias="orderVO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.ProductFileVO" alias="productFileVO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.ProductQnaCommentVO" alias="productQnaCommentVO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.ProductQnaVO" alias="productQnaVO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.ProductReviewFileVO" alias="productReviewFileVO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.ProductReviewVO" alias="productReviewVO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.ProductVO" alias="productVO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.ProjectFileVO" alias="projectFileVO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.ProjectQnaCommentVO" alias="projectQnaCommentVO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.ProjectQnaVO" alias="projectQnaVO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.ProjectReviewCommentVO" alias="projectReviewCommentVO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.ProjectReviewFileVO" alias="projectReviewFileVO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.ProjectReviewVO" alias="projectReviewVO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.ProjectVO" alias="projectVO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.UserVO" alias="userVO"/>
+    </typeAliases>
 </configuration>
