@@ -1,20 +1,21 @@
-package com.example.pickitup.domain.vo;
+package com.example.pickitup.domain.vo.user;
 
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
 @Component
 @Data
-public class CompanyVO {
+
+public class UserVO {
     private Long num;
     private String email;
     private String password;
-    private String name;
+    private String nickname;
     private String phone;
-    private String businessPhone;
     private String address;
-    private String businessNumber;
-    private String approval;
+    private String profileFileName;
+    private String profileUploadPath;
+    private String point;
     private String registDate;
 
 }

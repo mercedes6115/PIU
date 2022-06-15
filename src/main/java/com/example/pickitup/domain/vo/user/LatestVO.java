@@ -1,11 +1,11 @@
-package com.example.pickitup.domain.vo;
+package com.example.pickitup.domain.vo.user;
 
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
 @Component
 @Data
-public class JjimVO {
+public class LatestVO {
     private Long num;
     private String category;
     private String registDate;

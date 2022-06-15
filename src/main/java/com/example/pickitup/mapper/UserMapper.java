@@ -1,6 +1,6 @@
 package com.example.pickitup.mapper;
 
-import com.example.pickitup.domain.vo.UserVO;
+import com.example.pickitup.domain.vo.user.UserVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
