@@ -627,6 +627,8 @@ li.active{
     margin-top: 10px;
     cursor: pointer;
     height: 48px;
+    font-size: 16px;
+    font-weight: 700;
 }
 .admin_profile_img{
     width: 24px;
@@ -664,11 +666,13 @@ li.active{
     background-color: #005bed;
 }
 .btn_qnaToadmin{
+    font-size: 11px;
     background-color: white;
     border: 1px solid rgba(0,0,0,0.15);
     border-radius: 3px;
     cursor: pointer;
     padding: 6px 7px;
+    
 }
 .btn_qnaToadmin:hover{
     background-color: rgba(128, 128, 128, 0.248);
@@ -851,6 +855,7 @@ textarea{
  }
  .review_id_and_date{
      margin-top: 4px;
+     width: 70px;
  }
  .review_content_container{
      width: 100%;
@@ -1232,34 +1237,50 @@ input::placeholder{
     width: 80%;
 }
 /* -------------------------------공통 요소---------- */
-label[for='attach'] div.hide{
-    width: 25px;
-    height: 25px;
-    background-image: url("/src/main/resources/static/images/attach.png");
-    background-size: 100% 100%;
-    cursor: pointer;
-}
-label[for='attach'] div.thumb{
+label[for='attach1'] div.thumb1{
     width: 130px;
     height: 130px;
-    background-image: url("/src/main/resources/static/images/insert.png");
+    background-image: url("");
     background-size: 100% 100%;
     cursor: pointer;
-    display: none;
+    border: 1px solid;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #d4d4d4;
 }
-label[for='attach'] div.thumb2{
+label[for='attach1'] div.thumb1:hover{
+    background-color: #f5f6f8;
+}
+label[for='attach2'] div.thumb2{
     width: 130px;
     height: 130px;
-    background-image: url("/src/main/resources/static/images/insert.png");
+    background-image: url("");
     background-size: 100% 100%;
     cursor: pointer;
+    border: 1px solid;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f6f8;
+    border: 1px solid #d4d4d4;
 }
-label[for='attach'] div.thumb3{
+label[for='attach3'] div.thumb3{
     width: 130px;
     height: 130px;
-    background-image: url("/src/main/resources/static/images/insert.png");
+    background-image: url("");
     background-size: 100% 100%;
     cursor: pointer;
+    border: 1px solid;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f6f8;
+    border: 1px solid #d4d4d4;
+
 }
 
 .pay_point{
@@ -1382,24 +1403,16 @@ label[for='attach'] div.thumb3{
   .mt-20{
     margin-top: 20px;
   }
-  .review_modify button{
-    background-color: white;
-    border: 1px solid rgba(0,0,0,0.15);
-    border-radius: 3px;
-    cursor: pointer;
+  .review_modify{
+    margin-right: 5px;
   }
-  .review_delete button{
-    background-color: white;
-    border: 1px solid rgba(0,0,0,0.15);
-    border-radius: 3px;
-    cursor: pointer;
+  .review_modify img{
+    width: 23px;
+    height: 23px;
   }
-  .review_modify button:hover{
-    background-color: #dedbdb;
-  }
-  .review_delete button:hover{
-    background-color: #dedbdb;
-
+  .review_delete img{
+    width: 27px;
+    height: 23px;
   }
 
 /* -------------------------------공통 요소---------- */
@@ -1784,7 +1797,7 @@ footer{
     margin-right: 20px;
 }
 .review_item_title{
-    font-size: 11px;
+    font-size: 14px;
     font-weight: normal;
     color: rgb(26, 26, 26);
     line-height: 16px;
@@ -1792,6 +1805,7 @@ footer{
     margin: 0px;
 }
 .All_review_header{
+    background-color: white;
     font-size: 16px;
     font-weight: bold;
     color: rgb(26, 26, 26);
