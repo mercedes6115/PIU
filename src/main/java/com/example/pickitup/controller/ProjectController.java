@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @Slf4j
-@RequestMapping("/pickitup/project/*")
+@RequestMapping("/project/*")
 public class ProjectController {
 
 
@@ -16,6 +16,7 @@ public class ProjectController {
     @GetMapping("/projectDetail")
     public void projectDetail(){
     }
+
 
     // 프로젝트 등록 스텝 1
     @GetMapping("/createStep1")

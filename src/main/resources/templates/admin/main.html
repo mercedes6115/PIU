@@ -17,6 +17,9 @@
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
 
 <body>
+<!-- sidebar -->
+<div th:replace="~{/admin/adminSideBar :: AdminSideBarImport}"></div>
+<!-- sidebar -->
 <div class="root">
     <div id="mContainer">
         <!-- 유저 현황 -->
@@ -135,7 +138,7 @@
         chart.draw(data, options);
     }
 </script>
-
+<script th:replace="~{/admin/adminSideBar :: AdminSideBarJSImport}"></script>
 </body>
 
 </html>

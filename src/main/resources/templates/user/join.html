@@ -17,7 +17,7 @@ pom.xml에서 dependency 추가
 <link rel="stylesheet" href="/assets/css/Header.css"/>
 <link rel="stylesheet" href="/assets/css/Footer.css"/>
 <body>
-<div th:replace="~{/fix/Header :: HeaderImport}"></div>
+<div th:replace="~{/main/Header :: HeaderImport}"></div>
 <div class="root">
     <div class="wrapper-1">
         <div class="wrapper">
@@ -81,9 +81,9 @@ pom.xml에서 dependency 추가
         </div>
     </div>
 </div>
-<div th:replace="~{/fix/Footer :: FooterImport}"></div>
+<div th:replace="~{/main/Footer :: FooterImport}"></div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script  type=text/javascript th:src="@{/assets/js/join.js}"></script>
+<script src="/assets/js/join.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </html>

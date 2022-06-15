@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @Slf4j
-@RequestMapping("/pickitup/store/*")
+@RequestMapping("/store/*")
 public class StoreController {
 
     // 스토어 메인페이지

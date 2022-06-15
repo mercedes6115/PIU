@@ -28,107 +28,11 @@
 
 </head>
 <body>
-<div id="HeaderImport"></div>
+
 <!--여기까지가 헤더 입니다-->
 
 <div class="root">
-    <div id="sidebar">
-        <ul>
-            <li class="sidebarCategory">
-                <a href="#">
-                    <div>
-                                <span class="material-symbols-outlined icon">person
-                                </span>
-                        <span class="sidebarTitle">유저 관리</span>
-                    </div>
-
-                </a>
-
-            </li>
-            <li class="sidebarCategory">
-                <a href="#">
-                    <div><span class="material-symbols-outlined icon">
-                                    storefront
-                                </span><span class="sidebarTitle">상품 관리</span>
-                    </div>
-                    <span class="material-symbols-outlined more">
-                                expand_more
-                            </span>
-                </a>
-                <!-- onClick 시 노출 -->
-                <ul class="sidebarDetail">
-                    <li><a id="detail" href="#">상품 등록</a></li>
-                    <li><a id="detail" href="#">상품 목록</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#">
-                    <div>
-                                <span class="material-symbols-outlined icon">
-                                    shopping_cart
-                                </span><span class="sidebarTitle">주문 관리</span>
-                    </div>
-                    <span class="material-symbols-outlined more">
-                                expand_more
-                            </span>
-                </a>
-                <!-- onClick 시 노출 -->
-                <ul class="sidebarDetail">
-                    <li><a id="detail" href="#">전체주문목록</a></li>
-                    <li><a id="detail" href="#">배송 관리</a></li>
-                    <li><a id="detail" href="#">취소 관리</a></li>
-                </ul>
-            </li>
-            <li class="sidebarCategory">
-                <a href="#">
-                    <div>
-                                <span class="material-symbols-outlined icon">
-                                    public
-                                </span>
-                        <span class="sidebarTitle">프로젝트 관리</span>
-                    </div>
-                    <span class="material-symbols-outlined more">
-                                expand_more
-                            </span>
-                </a>
-                <!-- onClick 시 노출 -->
-                <ul class="sidebarDetail">
-                    <li><a id="detail" href="#">프로젝트 생성</a></li>
-                    <li><a id="detail" href="#">프로젝트 목록</a></li>
-                    <li><a id="detail" href="#">QR코드</a></li>
-                </ul>
-            </li>
-            <li class="sidebarCategory">
-                <a href="#">
-                    <div>
-                                <span class="material-symbols-outlined icon">
-                                    assignment
-                                    </span>
-                        <span class="sidebarTitle">게시물 관리</span>
-                    </div>
-                    <span class="material-symbols-outlined more">
-                                expand_more
-                            </span>
-                </a>
-            </li>
-            <li class="sidebarCategory">
-                <a href="#">
-                    <div>
-                                <span class="material-symbols-outlined icon">
-                                    analytics
-                                </span>
-                        <span class="sidebarTitle">통계 현황</span>
-                    </div>
-                    <span class="material-symbols-outlined more">
-                                expand_more
-                            </span>
-                </a>
-            </li>
-        </ul>
-    </div>
-    <!-- sidebar -->
-
-
+    <div th:replace="~{/admin/adminSideBar :: AdminSideBarImport}"></div>
     <div class="content">
         <!-- content -->
         <div class="product">
@@ -425,6 +329,6 @@
 
 
 </script>
-
+<script th:replace="~{/admin/adminSideBar :: AdminSideBarJSImport}"></script>
 
 </html>

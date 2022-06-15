@@ -24,7 +24,7 @@
 <div class="root">
 
     <!-- sidebar -->
-    <div th:replace="~{/admin/adminSideBar :: FooterImport}"></div>
+    <div th:replace="~{/admin/adminSideBar :: AdminSideBarImport}"></div>
     <!-- sidebar -->
 
     <!-- content -->
@@ -87,7 +87,6 @@
                             <th>진열상태</th>
                             <td>
                                 <input type="radio" id="productFilterAll" name="productFilter" value="" checked>
-                                <label for="all">전체</label>
                                 <input type="radio" id="productFilterOn" name="productFilter" value="">
                                 <label for="productFilterOn">진열함</label>
                                 <input type="radio" id="productFilterDown" name="productFilter" value="">
@@ -96,7 +95,6 @@
                             <th>재고상태</th>
                             <td>
                                 <input type="radio" id="productFilterAll" name="productFilter" value="" checked>
-                                <label for="all">전체</label>
                                 <input type="radio" id="productFilterOn" name="productFilter" value="">
                                 <label for="productFilterOn">판매함</label>
                                 <input type="radio" id="productFilterDown" name="productFilter" value="">
@@ -206,11 +204,6 @@
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $('#sidebar').load("adminSideBar.html");
-
-    })
-</script>
+<script th:replace="~{/admin/adminSideBar :: AdminSideBarJSImport}"></script>
 
 </html>

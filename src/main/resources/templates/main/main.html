@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-
 <head>
 
     <meta charset="UTF-8">
@@ -19,7 +18,7 @@
 <body>
 
 <!--여기까지가 헤더 입니다-->
-<div th:replace="~{/fix/Header :: HeaderImport}"></div>
+<div th:replace="~{/main/Header :: HeaderImport}"></div>
 <!--여기서부터 메인 컨텐츠-->
 
 <div class="banners-container-total">
@@ -40,42 +39,42 @@
                                 <div class="swiper-slide-sc">
                                     <div class="swiper-slide-sc1">
                                         <div class="swiper-slide-sc2">
-                                            <img src="/images/poster1.png" class="swiper-slide-sc-a">
+                                            <img src="/assets/images/poster1.png" class="swiper-slide-sc-a">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="swiper-slide-sc">
                                     <div class="swiper-slide-sc1">
                                         <div class="swiper-slide-sc2">
-                                            <img src="/images/poster2.jpg" class="swiper-slide-sc-a">
+                                            <img src="/assets/images/poster2.jpg" class="swiper-slide-sc-a">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="swiper-slide-sc">
                                     <div class="swiper-slide-sc1">
                                         <div class="swiper-slide-sc2">
-                                            <img src="/images/poster3.jpg" class="swiper-slide-sc-a">
+                                            <img src="/assets/images/poster3.jpg" class="swiper-slide-sc-a">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="swiper-slide-sc">
                                     <div class="swiper-slide-sc1">
                                         <div class="swiper-slide-sc2">
-                                            <img src="/images/poster4.jpg" class="swiper-slide-sc-a">
+                                            <img src="/assets/images/poster4.jpg" class="swiper-slide-sc-a">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="swiper-slide-sc">
                                     <div class="swiper-slide-sc1">
                                         <div class="swiper-slide-sc2">
-                                            <img src="/images/poster5.png" class="swiper-slide-sc-a">
+                                            <img src="/assets/images/poster5.png" class="swiper-slide-sc-a">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="swiper-slide-sc">
                                     <div class="swiper-slide-sc1">
                                         <div class="swiper-slide-sc2">
-                                            <img src="/images/poster6.png" class="swiper-slide-sc-a">
+                                            <img src="/assets/images/poster6.png" class="swiper-slide-sc-a">
                                         </div>
                                     </div>
                                 </div>
@@ -97,7 +96,7 @@
                         <div height="1" class="progress-bar-loading">
                             <div class="progress-bar-loading2" id="progress-bar-loading2"></div>
                         </div>
-                        <button type="button" class="previous-button1" id="button" color="transparent">
+                        <button type="button" class="previous-button1" color="transparent">
                             <span class="previous-button-span">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                      viewBox="0 0 24 24">
@@ -106,7 +105,7 @@
                                 </svg>
                             </span>
                         </button>
-                        <button type="button" class="next-button1" id="button" color="transparent">
+                        <button type="button" class="next-button1" color="transparent">
                             <span class="next-button-span">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                      viewBox="0 0 24 24">
@@ -130,7 +129,7 @@
                 <div class="hot-plogging-text">
                     <a href=#>
                         <div class="hot-plogging-text1">
-                            <img src="/images/fire.png" style="width:25px">
+                            <img src="/assets/images/fire.png" style="width:25px">
                             <h2 class="hot-plogging-text2">지금 가장 핫한 프로젝트</h2>
                         </div>
                     </a>
@@ -141,7 +140,7 @@
                         <ul class="slides1">
                             <li>
                                 <div class="plogging-thumbnail-wrap">
-                                    <img src="/images/poster2.jpg">
+                                    <img src="/assets/images/poster2.jpg">
                                 </div>
                                 <div class="deadline"><span class="material-symbols-outlined"
                                                             style="font-size: 14px; margin-left: 5px;">
@@ -1396,11 +1395,19 @@
                                 <span class="prev3"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                          fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd"
                                                                                                d="M15.5 5.5l-6 6.5 6 6.5L14 20l-7.5-8L14 4l1.5 1.5z"
-                                                                                               fill="#1a1a1a"></path></svg></span>
+                                                                                               fill="#1a1a1a">
+
+                                                                                        </path>
+                                                    </svg>
+                                </span>
                                 <span class="next3"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                          fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd"
                                                                                                d="M8.5 18.5l6-6.5-6-6.5L10 4l7.5 8-7.5 8-1.5-1.5z"
-                                                                                               fill="#1a1a1a"></path></svg></span>
+                                                                                               fill="#1a1a1a">
+
+                                                                                        </path>
+                                                    </svg>
+                                </span>
                             </p>
                         </div>
                     </section>
@@ -1409,58 +1416,17 @@
         </div>
         <!--여기까지 메인 컨텐츠-->
 
-
         <!--여기부터 푸터-->
-        <div th:replace="~{/fix/Footer :: FooterImport}"></div>
-
+        <div th:replace="~{/main/Footer :: FooterImport}"></div>
+    </div>
+</div>
 </body>
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script type=text/javascript :src="/assets/js/SlideShow.js"></script>
-<script type=text/javascript src="/assets/js/Banner.js"></script>
+<script src="/assets/js/SlideShow.js"></script>
+<script src="/assets/js/Banner.js"></script>
 
 
-<script>
-    $('.filter-btn').click(function () {
-        var filterVal = $(this).val();
-        $.ajax({
-            url: "",
-            type: "post",
-            data: filterVal,
-            success: function () {
-            }
-        });
-    });
-
-    var i = 0;
-
-    function move() {
-        if (i == 0) {
-            i = 1;
-            var elem = document.getElementById("progress-bar-loading2");
-            var width = 1;
-            var id = setInterval(frame, 30);
-
-            function frame() {
-                if (width >= 100) {
-                    clearInterval(id);
-                    i = 0;
-                } else {
-                    width++;
-                    elem.style.width = width + "%";
-                }
-            }
-        }
-    }
-
-    // 외부 html파일 JQuery를 이용해 load하는 함수
-    // $(function(){
-    //     $("#HeaderImport").load("Header.html");
-    //     $("#FooterImport").load("Footer.html");
-    // });
-
-
-</script>
 </html>
 
 

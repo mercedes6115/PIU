@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -13,8 +13,8 @@
     
 </head>
 <body>
-  <div id="HeaderImport"></div>
-
+<!--헤더 부분-->
+<div th:replace="~{/main/Header :: HeaderImport}"></div>
     <div class="allFrame">
         <div class="readFrame">
             <div class="readForm">

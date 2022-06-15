@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @Slf4j
-@RequestMapping("/pickitup/admin/*")
+@RequestMapping("/admin/*")
 public class AdminController {
 
     // 관리자 로그인
