@@ -98,7 +98,7 @@ body {
     text-decoration: none;
     color: inherit;
     font-size: 20px;
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
     font-weight: bold;
 }
 
@@ -253,7 +253,7 @@ body {
 }
 
 .sTitle {
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 12px;
     font-weight: 550;
     border-width: 0px;
@@ -295,7 +295,7 @@ body {
 }
 
 .sProjectList {
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
     padding-top: 13px;
     padding-bottom: 13px;
     padding-left: 47px;
@@ -310,7 +310,7 @@ body {
 }
 
 .sProjectQna {
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
     padding-top: 13px;
     padding-bottom: 13px;
     padding-left: 47px;
@@ -382,7 +382,7 @@ body {
 }
 
 .bodyTitle {
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
     line-height: 2.5rem;
     font-weight: 700;
     font-size: 24px;
@@ -466,7 +466,7 @@ body {
 }
 
 .addProjectText {
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
     padding-left: 4px;
     padding-right: 4px;
     line-height: 1.125rem;
@@ -609,9 +609,8 @@ body {
 .userListHeader1 {
     display: flex;
     height: 100%;
-    flex: 0 1 44px;
     margin-left: 10px;
-    margin-right: 10px;
+    margin-right: 50px;
     min-width: 0;
 }
 
@@ -638,7 +637,7 @@ body {
 .userListHeader2 {
     display: flex;
     padding: 19px 16px;
-    flex: 0 1 45px;
+    margin-right: 98px;
 }
 
 .showListHeader3 {
@@ -650,7 +649,7 @@ body {
 .userListHeader3 {
     display: flex;
     padding: 19px 12px;
-    flex: 0 1 130px;
+    margin-right: 76px;
 }
 
 .showListHeader4 {
@@ -662,7 +661,7 @@ body {
 .userListHeader4 {
     display: flex;
     padding: 19px 16px;
-    flex: 0 1 170px;
+    margin-right: 99px;
 }
 
 .showListHeader5 {
@@ -674,11 +673,11 @@ body {
 .userListHeader5 {
     display: flex;
     padding: 19px 16px;
-    flex: 0 1 120px;
+    margin-right: 81px;
 }
 
 .showListhTerrain, .showListhCourse, .showListhState, .showListhTitle, .showListBoundary, .listCheckBoxFrame, .showListhPoint, .showListhDate, .showListhMore {
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
     display: inline-block;
     max-width: 100%;
     white-space: nowrap;
@@ -695,7 +694,7 @@ body {
 .userListHeader6 {
     display: flex;
     padding: 19px 16px;
-    flex: 0 1 148px;
+    margin-right: 48px;
 }
 
 .showListHeader7 {
@@ -707,7 +706,7 @@ body {
 .userListHeader7 {
     display: flex;
     padding: 19px 16px;
-    flex: 0 1 100px;
+    margin-right: 85px;
 }
 
 .showListHeader8 {
@@ -775,11 +774,10 @@ body {
 
 .userListBody1 {
     overflow: hidden;
-    flex: 0 1 44px;
     margin-left: 10px;
     text-overflow: ellipsis;
     white-space: nowrap;
-    margin-right: 10px;
+    margin-right: 50px;
     min-width: 0;
 }
 
@@ -818,10 +816,10 @@ body {
 
 .userListBody2 {
     overflow: hidden;
-    flex: 0 1 73px;
+    margin-right: 50px;
     text-overflow: ellipsis;
     white-space: nowrap;
-    margin-right: 10px;
+    
     min-width: 0;
 }
 
@@ -883,15 +881,14 @@ body {
 
 .userListBody3 {
     overflow: hidden;
-    flex: 0 1 150px;
+    margin-right: 85px;
     text-overflow: ellipsis;
     white-space: nowrap;
-    margin-right: 10px;
     min-width: 0;
 }
 
 .sbTitle {
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
     border-width: 0px;
     color: var(--system-on-color);
     margin: 0px;
@@ -918,10 +915,9 @@ body {
 
 .userListBody4 {
     overflow: hidden;
-    flex: 0 1 194px;
+    margin-right: 85px;
     text-overflow: ellipsis;
     white-space: nowrap;
-    margin-right: 10px;
     min-width: 0;
 }
 
@@ -934,7 +930,7 @@ body {
 }
 
 .sbState {
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
     line-height: 1.125rem;
     font-size: 12px;
     border-width: 0px;
@@ -955,10 +951,9 @@ body {
 
 .userListBody5 {
     overflow: hidden;
-    flex: 0 1 140px;
+    margin-right: 85px;
     text-overflow: ellipsis;
     white-space: nowrap;
-    margin-right: 10px;
     min-width: 0;
 }
 
@@ -970,7 +965,7 @@ body {
     font-size: 12px;;
     font-weight: 400;
     line-height: 1.125rem;
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
 .showListBody6 {
@@ -984,10 +979,9 @@ body {
 
 .userListBody6 {
     overflow: hidden;
-    flex: 0 1 170px;
+    margin-right: 85px;
     text-overflow: ellipsis;
     white-space: nowrap;
-    margin-right: 10px;
     min-width: 0;
 }
 
@@ -1002,10 +996,9 @@ body {
 
 .userListBody7 {
     overflow: hidden;
-    flex: 0 1 100px;
     text-overflow: ellipsis;
     white-space: nowrap;
-    margin-right: 10px;
+    margin-right: 85px;
     min-width: 0;
 }
 
@@ -1073,7 +1066,7 @@ body {
     font-size: 12px;
     font-weight: 700;
     line-height: 1.125rem;
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
 .moreBoundary{
@@ -1270,7 +1263,7 @@ body {
     display: flex;
     padding-top: 24px;
     padding-bottom: 24px;
-    max-width: 960px;
+    max-width: 845px;
     width: 100%;
     margin-left: auto;
     margin-right: auto;
@@ -1280,12 +1273,12 @@ body {
 }
 
 .gpNoticeTitle {
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
     border-width: 0px;
     color: var(--system-on-color);
     margin: 0px;
     padding: 0px;
-    font-size: 1.25rem;
+    font-size: 17px;
     font-weight: 700;
     line-height: 1.625rem;
 }
@@ -1348,7 +1341,7 @@ body {
     color: var(--system-on-color);
     margin: 0px;
     padding: 0px;
-    font-size: 0.875rem;
+    font-size: 12px;
     font-weight: 400;
     line-height: 1.125rem;
 }
@@ -1417,7 +1410,7 @@ body {
     font-size: 0.875rem;
     font-weight: 700;
     line-height: 1.125rem;
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
     
 }
 
@@ -1440,7 +1433,7 @@ body {
 }
 
 .nContent {
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 1.125rem;
     line-height: 1.875rem;
     font-weight: 400;
@@ -1496,7 +1489,7 @@ body {
 }
 
 .returnListBtn {
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
     padding-left: 4px;
     padding-right: 4px;
     line-height: 1.125rem;
@@ -1510,7 +1503,7 @@ body {
 }
 
 .backListBtn {
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
     border-width: 0px;
     color: var(--system-on-color);
     margin: 0px;
