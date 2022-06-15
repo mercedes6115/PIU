@@ -1,18 +1,16 @@
 package com.example.pickitup.mapper.product.productQna;
 
 import com.example.pickitup.domain.vo.product.productQna.ProductQnaVO;
-import lombok.Data;
-import org.springframework.stereotype.Component;
+import org.apache.ibatis.annotations.Mapper;
+
 
 import java.util.List;
 
-@Component
-@Data
-
+@Mapper
 public interface ProductQnaMapper {
     //    qna 전체 띄우기 무한 스크롤
-//    projectQna.num 을 이용하여 comment를 바로 밑에 띄워줘야함
-    public List<ProductQnaVO> getList();
+//    productQna.num 을 이용하여 comment를 바로 밑에 띄워줘야함
+    public List<ProductQnaVO> getList(Long productNum);
 
     //    qan 상세보기 class101에 없음 qna+comment 세트로 불러옴
 //    관리자에서 필요함 관리자가 댓글 달아준것만 리스트 업

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.pickitup.mapper.user.UserMapper">
+<mapper namespace="com.example.pickitup.mapper.user.OrderMapper">
 
 <!--    <select id="getList" resultType="boardVO">
         <![CDATA[
@@ -21,9 +21,13 @@
 
     <select id="getDetail" resultType="userVo">
         SELECT
-        NUM, EMAIL, NICKNAME,PHONE, ADDRESS, PROFILE_FILE_NAME, PROFILE_UPLOAD_PATH, POINT, REGIST_DATE
-        FROM TBL_USER
+
+        FROM
+        (
+        SELECT  NUM, TOTAL, COUNTING, REGIST_DATE, PRODUCT_NUM, USER_NUM, STATUS
+        FROM TBL_ORDER
         WHERE NUM=#{num}
+        ) A JOIN TBL_PRODUCT B ON A.PRODUCT_NUM=B.NUM
     </select>
 
     <insert id="insert">
