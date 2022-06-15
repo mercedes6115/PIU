@@ -11,7 +11,6 @@ public class ProjectQnaCommentVO {
     private String content;
     private String registDate;
     private String updateDate;
-    private String status;
     private Long userNum;
     private Long qnaNum;
     private Long companyNum;

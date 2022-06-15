@@ -10,7 +10,6 @@ public class ProjectFileVO {
     private String uuid;
     private String uploadPath;
     private String fileName;
-    private Long fileSize;
     private Long projectNum;
 
 

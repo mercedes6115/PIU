@@ -17,10 +17,5 @@ public class UserVO {
     private String profileUploadPath;
     private String point;
     private String registDate;
-    private String status;
-
-
-
-
 
 }

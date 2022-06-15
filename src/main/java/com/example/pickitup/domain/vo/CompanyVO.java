@@ -16,7 +16,5 @@ public class CompanyVO {
     private String businessNumber;
     private String approval;
     private String registDate;
-    private String status;
-
 
 }
