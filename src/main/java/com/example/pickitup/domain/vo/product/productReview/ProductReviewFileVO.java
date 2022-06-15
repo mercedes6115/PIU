@@ -1,4 +1,4 @@
-package com.example.pickitup.domain.vo.project;
+package com.example.pickitup.domain.vo.product.productReview;
 
 import lombok.Data;
 import org.springframework.stereotype.Component;
@@ -6,10 +6,10 @@ import org.springframework.stereotype.Component;
 @Component
 @Data
 
-public class ProjectReviewFileVO {
+public class ProductReviewFileVO {
     private String uuid;
     private String uploadPath;
     private String fileName;
-    private Long projectReviewNum;
+    private Long productReviewNum;
 
 }
