@@ -32,7 +32,7 @@
             <div>
                 <div>
                     <div class="flex p-24" style="align-items: center; padding-bottom: 15px;">
-                        <div class="profile_img"><img src="/images/chun2.png"></div>
+                        <div class="profile_img"><img src="/src/main/resources/static/images/chun2.png"></div>
                         <div class="flex justify-content" style="width: 100%; align-items: center;">
                             <div class="id_and_date">
                                 <div class="review_id">춘식이</div>
@@ -45,33 +45,48 @@
                         <div class="review_item_title">
                             [주방용품] 춘식이가 좋아하는 초록색 고무장갑
                         </div>
-                        <div>
-                            <label for="attach"> <div class="hide" style="margin-right: 20px;"></div>
-                            </label>
-                        </div>
                     </div>
+                    <div style="margin-bottom: 10px;"></div>
+                    <div class="flex" style="text-align: left; padding: 0  0 10px 24px;">
+                        <label for="attach1" class="flex">
+                            <div class="thumb1">
+                                <div>+</div>
+                            </div>
+                        </label>
+                        <label for="attach2" class="flex">
+                            <div class="thumb2">
+                                <div>+</div>
+                            </div>
+                        </label>
+                        <label for="attach3" class="flex">
+                            <div class="thumb3">
+                                <div>+</div>
+                            </div> 
+                        </label>
+                        <input type="file" id="attach1" class="attach1" style="display: none;">
+                        <input type="file" id="attach2" class="attach2" style="display: none;" disabled>
+                        <input type="file" id="attach3" class="attach3"style="display: none;" disabled>
+                    </div>
+                    
+                    <div class="admin_comment" style="font-size: 10px; margin-top:5px; margin-left: 24px;">첨부파일은 3개 까지만 가능합니다.</div>
+
                     <div style="margin-top: 8px;">
-                        <div style="text-align: center;">
-                            <textarea class="user_review" name="" id="" cols="30" rows="10"></textarea>
+                        <div style="text-align: center;"">
+                            <textarea class="user_review" name="" id="" cols="30" rows="10" required></textarea>
                         </div>
-                        <div class="flex" style="text-align: left; padding: 0  0 10px 24px ; justify-content: space-between;">
-                            <label for="attach" class="flex">
-                               
-                                <div class="thumb"></div><div class="thumb"></div><div class="thumb"></div> 
-                            </label>
-                            <div class="admin_comment" style="font-size: 11px; margin-top:5px; margin-right: 20px;">첨부파일은 3개 까지만 가능합니다.</div>
-                        <input type="file" id="attach" style="display: none;" multiple>
-                    </div>
+                      
                 </div>
             </div>
         </section>
     </div>
 
+
+
     <div class="gototop">
         <span class="material-symbols-outlined toTop" style="font-size: 35px;">
             vertical_align_top
             </span>
-    </div>
+    </div> 
     <div th:replace="~{/fix/Footer :: FooterImport}"></div>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
