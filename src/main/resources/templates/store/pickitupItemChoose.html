@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="@{/assets/css/header.css}" />
+    <link rel="stylesheet" href="@{/assets/css/footer.css}" />
+    <link rel="stylesheet" href="@{/assets/css/pickitupStore.css}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+</head>
+<body style="font-family: Noto Sans KR;">
+      <!--헤더 -->
+      <div th:replace="~{/fix/Header :: HeaderImport}"></div>
+      <!--헤더 -->
+    <div class="item_choose_main">
+        <div class="item_select">
+            <div class="space"></div>
+            <div class="item_title" style="font-weight:700; font-size: 25px;">구성품 선택하기</div>
+            <div class="space"></div>
+            <div class="flex">
+                <div class="item_img"><img src="../../static/images/5.jpg"></div>
+                <div>
+                    <div class="small_and_gray" style="font-size: 10px;">필수옵션 01</div>
+                    <div class="item_detail">스키장갑으로 안성맞춤인 초록색 고무고무</div>
+                </div>
+            </div>
+            <div class="space"></div>
+            <div class="item_amount flex" style="display: flex; position: relative; justify-content: center;">
+                <button type="button" class="amount_btn minus" style="left: 2%;">-</button>
+                <input class="item_amount_input" type="text" value="1" placeholder="1" readonly>
+                <button type="button" class="amount_btn plus" style="right: 2%;">+</button>
+            </div>
+            <div class="space_line"></div>
+        </div>
+        <div>
+            <!-- 결제하기 html로 쏴주기 -->
+            <form action=""> 
+                <div class="flex" style="justify-content: space-between;">
+                    <div>총 결제 포인트</div>
+                    <div class="pay_point flex"> <p class="total_price"></p>P</div>
+                    <input name="total_items" type="hidden">
+                    <input name="total_payment" type="hidden">
+                </div>
+                <div style="width: 100%;"> <button class="toBuy goPayment" type="submit" >결제 하기 </button></div>
+            </form>
+        </div>
+    </div>
+    
+    
+    <div class="gototop">
+        <span class="material-symbols-outlined toTop" style="font-size: 35px;">
+            vertical_align_top
+        </span>
+    </div>
+
+
+      <div th:replace="~{/fix/Footer :: FooterImport}"></div>
+</body>
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<script src="/assets/js/store.js"></script>
+
+<script>
+     //scroll top
+     $('.toTop').click(function(){
+        $('html, body').animate({scrollTop : 0},300);
+    });
+
+    //수량및  아이템 가격 초기화
+    let $oper = $('.item_amount').find('button');
+    let $amount = 1;
+    let $item_price = 700;
+    $('.total_price').text($amount*$item_price);  //700 대신 상품 가격입력
+    $('input[name="total_items"]').val($amount);
+    $('input[name="total_payment"]').val($amount*$item_price);
+
+    //+,- 수량 버튼 클릭시 총 포인트 계산 및  input에 넣어서 넘길준비
+    $oper.click(function(){
+        if($(this).hasClass('minus')){
+            if( $('.item_amount_input').attr("value") > 1){
+                $('.item_amount_input').attr("value",$amount-1);
+                $amount=$amount-1
+                $('.total_price').empty().text($amount*$item_price);
+                $('input[name="total_items"]').val($amount);
+                $('input[name="total_payment"]').val($amount*$item_price);
+            }
+        }else if($(this).hasClass('plus')){
+            $('.item_amount_input').attr("value",$amount+1);
+            $amount=$amount+1
+            $('.total_price').empty().text($amount*$item_price);
+            $('input[name="total_items"]').val($amount);
+            $('input[name="total_payment"]').val($amount*$item_price);
+        }
+    })
+
+
+</script>
+
+
+</html>
