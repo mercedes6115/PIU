@@ -448,8 +448,6 @@ top-bar * {
 }
 
 .mypage-linepick{
-@media (min-width: 1240px;)}
-{
     max-width: 1176px;
     width: 100%;
     margin-left: auto;
@@ -2458,91 +2456,46 @@ calen ul li {list-style-type: none; float: left;}
     text-align: left;
 }
 
-.my-order-top {
+.my-real-order-page {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    line-height: 1;
+    text-align: left;
+    text-transform: none;
+    letter-spacing: 0;
+    background: #f8f8f9;
+}
+
+.my-real-order-lists {
+    position: relative;
+    z-index: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+
+.my-real-order-list {
+    position: relative;
+    max-width: 640px;
+    margin: 0px auto;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+.order and deliver {
     background-color: rgb(255, 255, 255);
     overflow: hidden;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    vertical-align: baseline;
-}
-
-.my-order-top2 {
-    position: relative;
-    padding: 24px;
-}
-
-.my-order-top3 {
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    font-size: 11px;
-    font-weight: normal;
-    line-height: 16px;
-    letter-spacing: normal;
-    margin: 0px;
-    color: rgb(162, 162, 162);
-}
-
-.my-order-top3 * {
-    vertical-align: middle;
-}
-
-.my-order-top4 {
-    border-radius: 24px;
-    background-color: rgb(248, 248, 248);
-    padding: 6px 10px;
-    color: rgb(202, 202, 202);
-}
-
-.my-order-top5 {
-    font-size: 11px;
-    font-weight: normal;
-    line-height: 16px;
-    letter-spacing: normal;
-    margin: 0px;
-    color: inherit;
-}
-
-.my-order-top6 {
-    transform: rotate(13deg);
-    margin: 0px 6px;
-    width: 1px;
-    height: 17px;
-    background-color: rgb(202, 202, 202);
-}
-
-.my-order-top7 {
-    border-radius: 24px;
-    background-color: rgb(248, 248, 248);
-    padding: 6px 10px;
-    color: rgb(26, 26, 26);
-}
-
-.my-order-top8 {
-    margin-top: 12px;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    vertical-align: baseline;
-}
-
-.my-order-top9 {
-    display: flex;
-    flex: 1 1 0%;
-    -webkit-box-align: stretch;
-    align-items: stretch;
-    flex-direction: column;
-}
-
-.my-order-top10 {
-    display: flex;
-    -webkit-box-align: stretch;
-    align-items: stretch;
-    flex-direction: row;
-    justify-content: space-around;
 }
 
 .my-order-step1 {
@@ -3150,209 +3103,6 @@ calen ul li {list-style-type: none; float: left;}
 
 *, *::before, *::after {
     box-sizing: border-box;
-}
-
-.my-order-list {
-    font-weight: 600;
-    margin-left: 60px;
-    margin-top: 10px;
-    text-align: left;
-}
-
-.my-order-story {
-    display: flex;
-    flex: 1 1 0%;
-    -webkit-box-align: center;
-    align-items: center;
-    flex-direction: row;
-}
-
-.my-order-story1 {
-    border-width: 0px;
-    color: var(--system-on-color);
-    margin: 0px;
-    padding: 0px;
-    font-size: 1.25rem;
-    font-weight: 700;
-    line-height: 1.625rem;
-}
-
-.my-order-story2 {
-    width: 8px;
-    height: 0px;
-    -webkit-box-flex: 0;
-    flex-grow: 0;
-    flex-shrink: 0;
-}
-
-.my-order-story3 {
-    border-width: 0px;
-    color: var(--system-on-color);
-    margin: 0px;
-    padding: 0px;
-    font-size: 0.75rem;
-    font-weight: 400;
-    line-height: 1rem;
-}
-
-.my-order-story4 {
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    flex-direction: row;
-}
-
-.my-order-story5 {
-    font-weight: 400;
-    background-color: transparent;
-    border-radius: 2px;
-    display: inline-flex;
-    -webkit-box-pack: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    align-items: center;
-    border-width: 0;
-    cursor: pointer;
-    width: auto;
-}
-
-.my-order-story6 {
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    flex-direction: row;
-}
-
-.my-order-story7 {
-    width: 10px;
-    height: 10px;
-}
-
-.my-order-story8 {
-    display: block;
-    width: 100%;
-    height: 100%;
-    fill: rgb(102, 102, 102);
-}
-
-.css-dudu3d {
-    fill: rgb(102, 102, 102);
-}
-
-.my-order-story9 {
-    width: 2px;
-    height: 0px;
-    -webkit-box-flex: 0;
-    flex-grow: 0;
-    flex-shrink: 0;
-}
-
-.my-order-story10 {
-    color: #666666;
-    font-size: 0.6875rem;
-    line-height: 0.875rem;
-}
-
-.my-order-story11 {
-    width: 0px;
-    height: 16px;
-    -webkit-box-flex: 0;
-    flex-grow: 0;
-    flex-shrink: 0;
-}
-
-.my-order-story12 {
-    padding-top: 7px;
-    padding-bottom: 7px;
-    padding-left: 8px;
-    padding-right: 8px;
-    cursor: pointer;
-    overflow: hidden;
-    z-index: 0;
-    --system-on-color: #101010;
-    background-color: rgba(0, 0, 0, 0.05);
-    color: var(--system-on-color);
-    border-width: 0px;
-    border-radius: 2px;
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    justify-content: center;
-    display: inline-flex;
-    position: relative;
-}
-
-.my-order-story13 {
-    display: flex;
-    visibility: inherit;
-    -webkit-box-align: center;
-    align-items: center;
-    flex-direction: row;
-}
-
-.my-order-story14 {
-    padding-left: 2px;
-    padding-right: 2px;
-}
-
-.my-order-story15 {
-    width: 16px;
-    height: 16px;
-}
-
-.my-order-story16 {
-    display: block;
-    width: 5%;
-    height: 5%;
-    fill: var(--system-on-color);
-}
-
-.my-order-story17 {
-    width: 0px;
-    height: 0px;
-}
-
-.my-order-story18 {
-    padding-left: 4px;
-    padding-right: 4px;
-}
-
-.my-order-story19 {
-    background-color: rgb(248, 248, 248);
-    width: 100%;
-    height: 8px;
-}
-
-.my-order-story21 {
-    width: 40%;
-}
-
-.my-order-story20 {
-    display: flex;
-    flex-direction: column;
-    -webkit-box-pack: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    align-items: center;
-    padding-top: 16px;
-    padding-bottom: 52px;
-}
-
-
-
-.my-order-story22 {
-    font-size: 16px;
-    color: rgb(202, 202, 202);
-    font-weight: 300;
-}
-
-.my-order-story12::before {
-    position: absolute;
-    inset: 0px;
-    opacity: 0;
-    transition: opacity 0.2s ease 0s;
-    background-color: rgb(16, 16, 16);
-    content: "";
 }
 
 .my-order-list {
@@ -4411,3 +4161,4 @@ th.point-change-date {
 .buttons-box {
     margin-top: 20px;
 }
+
