@@ -267,7 +267,12 @@ form input::file-selector-button{
 .extraImg li{
     float: left;
 }
-
+label[for='attach_main'] div{
+    width: 210px;
+    height: 210px;
+    background-size: 100% 100%;
+    cursor: pointer;
+}
 label[for='attach'] div{
     width: 210px;
     height: 210px;
