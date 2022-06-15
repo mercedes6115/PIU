@@ -9,12 +9,19 @@
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="https://kit.fontawesome.com/3e4acc40f3.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="mypage_style.css">
+    <link rel="stylesheet" href="../../static/assets/css/mypage_style.css">
+    <link rel="stylesheet" href="../../static/assets/css/MyPageHeader.css">
     <title>회원정보수정</title>
 
 </head>
 
 <body class="user-info-change-body">
+
+<!--MyPageHeader Import-->
+<div id="MypageHeaderImport">
+
+</div>
+
 
 <div id="my_modal2" class="my_modal2">
     <h1 class="modal-in">
@@ -278,6 +285,11 @@
 </script>
 
 </body>
-<script src="mypage.js"></script>
-
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="../../static/assets/js/mypage.js"></script>
+<script>
+    $(function(){
+        $("#MypageHeaderImport").load("../fix/test/MyPageHeader.html");
+    });
+</script>
 </html>
