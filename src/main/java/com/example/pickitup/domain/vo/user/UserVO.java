@@ -1,5 +1,6 @@
 package com.example.pickitup.domain.vo.user;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
@@ -17,5 +18,7 @@ public class UserVO {
     private String profileUploadPath;
     private String point;
     private String registDate;
+
+
 
 }

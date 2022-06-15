@@ -11,6 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/pickitup/project/*")
 public class ProjectController {
 
+
+    // 프로젝트 상세보기
+    @GetMapping("/projectDetail")
+    public void projectDetail(){
+    }
+
     // 프로젝트 등록 스텝 1
     @GetMapping("/createStep1")
     public void createStep1(){
@@ -32,6 +38,10 @@ public class ProjectController {
     public void createStep5(){
     }
 
+    // 프로젝트 등록 스텝 1
+    @PostMapping("/createStep1")
+    public void projectCreateStep1(){
+    }
 
     // 프로젝트 등록 스텝 2
     @PostMapping("/createStep2")

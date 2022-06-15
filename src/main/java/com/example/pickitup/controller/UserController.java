@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserController {
 
     // 마이페이지 메인
-    @GetMapping("/mypage")
+    @GetMapping("/myPage")
     public void mypage(){
 
     }
 
     // 마이페이지 포인트
-    @GetMapping("/mypoint")
+    @GetMapping("/myPoint")
     public void mypoint(){
 
     }
@@ -35,8 +35,50 @@ public class UserController {
     }
 
     // 마이페이지 주문내역
-    @GetMapping("/myorderlist")
+    @GetMapping("/myOrderList")
     public void myOrderList(){
+
+    }
+
+    // 비밀번호 찾기
+    @GetMapping("/findPw")
+    public void findPW(){
+
+    }
+
+    // 비밀번호 재설정
+    @GetMapping("/updatePw")
+    public void updatePw(){
+
+    }
+
+    // 회원정보 수정 전 비밀번호 확인
+    @GetMapping("/pwCheck")
+    public void pwCheck(){
+
+    }
+
+    // 회원 정보 수정
+    @GetMapping("/infoUpdate")
+    public void infoUpdate(){
+
+    }
+
+    // 일반 유저 회원가입
+    @GetMapping("/join")
+    public void join(){
+
+    }
+
+    // 단체 유저 회원가입
+    @GetMapping("/joinGroup")
+    public void joinGroup(){
+
+    }
+
+    // 로그인
+    @GetMapping("/login")
+    public void login(){
 
     }
 

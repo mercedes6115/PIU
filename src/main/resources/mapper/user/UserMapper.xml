@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.pickitup.mapper.User.UserMapper">
+
+    <select id="getList" resultType="boardVO">
+        <![CDATA[
+        SELECT
+        ROWNUM RN, NUM, EMAIL, PASSWORD, NICKNAME,PHONE, ADDRESS, PROFILE_FILE_NAME, PROFILE_FILE_PATH,POINT, REGIST_DATE
+        FROM
+        (
+            SELECT /*+ INDEX_DESC(TBL_USER SYS_C007234) */
+            ROWNUM RN, NUM, EMAIL, PASSWORD, NICKNAME,PHONE, ADDRESS, PROFILE_FILE_NAME, PROFILE_FILE_PATH,POINT, REGIST_DATE
+            FROM TBL_USER
+            WHERE ROWNUM <= #{pageNum} * #{amount}
+        )
+        WHERE
+        WHERE RN > (#{pageNum} - 1) * #{amount}
+        ]]>
+    </select>
+
+    <insert id="insert">
+        INSERT INTO TBL_USER
+        (SEQ_USER.NEXTVAL, EMAIL, PASSWORD, NICKNAME, PHONE, ADDRESS, PROFILE_FILE_NAME, PROFILE_UPLOAD_PATH)
+        VALUES(#{email}, #{password}, #{nickname}, #{phone}, #{address}, #{profileFileName}, #{ProFIleUpload}, #{phone})
+    </insert>
+
+    INSERT INTO TBL_USER
+    (NUM, EMAIL, PASSWORD, NICKNAME, PHONE, ADDRESS, PROFILE_FILE_NAME, PROFILE_UPLOAD_PATH, POINT, REGIST_DATE)
+    VALUES(0, '', '', '', '', '', '', '', 0, SYSDATE
+    );
+
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

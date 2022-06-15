@@ -283,7 +283,7 @@ body {
     -webkit-box-pack: center;
     justify-content: center;
     flex: 1 1 0%;
-    margin:0 200px;
+    margin:0 120px;
 }
 
 .cpContentForm {
@@ -439,14 +439,14 @@ option {
     position: fixed;
     right: 0px;
     bottom: 0px;
-    width: 1585px;
+    width: 1200px;
     padding: 18px 32px;
     -webkit-box-align: center;
     align-items: center;
     display: flex;
     background-color: rgb(255, 255, 255);
     border-top: 1px solid rgb(248, 248, 248);
-    height: 76px;
+    height: 48px;
     z-index: 1;
     justify-content: flex-end;
 }
@@ -478,7 +478,7 @@ option {
     flex-direction: row;
 }
 
-.savePageBtn, .nextPageBtn{
+.savePageBtn, .nextPageBtn, .submitPageBtn{
     flex: 0 0 auto;
     display: flex;
     -webkit-box-pack: center;
@@ -488,7 +488,7 @@ option {
     font-family: 'Noto Sans KR', sans-serif;
 }
 
-.nextPage {
+.nextPage, .submitPage {
     cursor: pointer;
     margin-left: 8px;
     display: inherit;
@@ -735,7 +735,7 @@ option {
 .cpIntroduceTitle {
     font-family: 'Noto Sans KR', sans-serif;
     white-space: pre-wrap;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
     font-size: 22px;
     font-weight: bold;
     color: rgb(26, 26, 26);
@@ -746,10 +746,680 @@ option {
 .cpIntroduceTitleInfo {
     white-space: pre-wrap;
     margin-bottom: 32px;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: normal;
     color: rgb(162, 162, 162);
     line-height: 20px;
     letter-spacing: -0.15px;
     margin: 0px;
+    font-family: 'Noto Sans KR', sans-serif;
 }
+
+.cpThumbNailFrame {
+    margin-top:32px;
+    margin-right: 32px;
+}
+
+.cpThumbNailForm {
+    box-shadow: rgb(0 0 0 / 2%) 0px 1px 3px, rgb(0 0 0 / 3%) 0px 3px 6px, rgb(0 0 0 / 5%) 0px 8px 12px, rgb(0 0 0 / 6%) 0px 12px 18px;
+    position: sticky;
+    top: 108px;
+    width: 325px;
+    height: 490px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.cpThumbNailContainer {
+    position: relative;
+    height: 100%;
+}
+
+.cpThumbNailBox {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+}
+
+.cpThumbNailInsertForm {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    height: 100%;
+    background-color: rgb(58, 58, 58);
+    font-size: 14px;
+    font-weight: normal;
+    color: rgb(26, 26, 26);
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+}
+
+.defaultImg {
+    width: 100px;
+}
+
+.cpThumbNailInfoForm {
+    left: 24px;
+    bottom: 24px;
+    position: absolute;
+    z-index: 10;
+    width: calc(100% - 48px);
+    overflow-wrap: break-word;
+}
+
+.cpThumbNailInfoBox {
+    height: 28px;
+    margin-right: 4px;
+    margin-top: 8px;
+    padding: 6px 8px;
+    font-weight: normal;
+    backdrop-filter: blur(32px);
+    min-width: 24px;
+    border-radius: 3px;
+    background-color: rgba(0, 0, 0, 0.56);
+    flex: 0 0 auto;
+    display: inline-flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.cpThumbNailInfoName, .cpThumbNailInfoTerrain, .cpThumbNailInfoCourse {
+    font-size: 11px;
+    line-height: 16px;
+    letter-spacing: normal;
+    margin: 0px;
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    display: inline-flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.cpThumbNailInfoText {
+    margin-top: 8px;
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    line-height: 34px;
+    letter-spacing: -0.4px;
+}
+
+.cpThumbNailBlur {
+    width: 100%;
+    height: 280px;
+    background: linear-gradient(rgba(27, 28, 29, 0) 0%, rgb(27, 28, 29) 100%);
+    position: absolute;
+    bottom: 0px;
+}
+
+.cpThumbNailProgressBox {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    left: 24px;
+    right: 24px;
+    top: 12px;
+    position: absolute;
+    z-index: 10;
+}
+
+.cpThumbNailProgressComplete {
+    height: 2px;
+    flex: 1 1 0%;
+    margin-right: 2px;
+    background-color: rgb(255, 255, 255);
+    opacity: 1;
+}
+
+.cpThumbNailProgress {
+    height: 2px;
+    flex: 1 1 0%;
+    margin-right: 2px;
+    background-color: rgb(255, 255, 255);
+    opacity: 0.3;
+}
+
+.cpThumbNailProgressLast {
+    height: 2px;
+    flex: 1 1 0%;
+    margin-right: 0px;
+    background-color: rgb(255, 255, 255);
+    opacity: 0.3; 
+}
+
+.cpThumbNailPrevBox {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    left: 24px;
+    right: 24px;
+    top: 12px;
+    position: absolute;
+    z-index: 10;
+}
+
+.imgInsertFrame {
+    display: grid;
+    margin-top: 18px;
+}
+
+.imgInsertForm {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 24px;
+    margin-bottom: 26px;
+    width: 100%;
+}
+
+.imgInsertContainer {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+}
+
+.imgInsertWindow {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.imgInsert {
+    margin:0;
+    display: none;
+}
+
+.introImgContainer {
+    position: relative;
+    padding-bottom: 177.778%;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(229, 229, 229);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.introImgBox {
+    display: flex;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+.introImgPlus {
+    flex: 0 0 auto;
+    width: 72px;
+    height: 72px;
+}
+
+.introImgText {
+    flex: 0 0 auto;
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    color: rgb(202, 202, 202);
+    margin: 8px 0px;
+    font-weight: normal;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.imgFieldDefault {
+    flex: 0 0 auto;
+    text-align: center;
+    font-size: 11px;
+    line-height: 16px;
+    letter-spacing: normal;
+    color: rgb(202, 202, 202);
+    margin: 0px;
+}
+
+.introImgDetailFrame {
+    display: block;
+}
+
+.prevPage {
+    font-family: 'Noto Sans KR', sans-serif;
+    cursor: pointer;
+    width: auto;
+    display: inline-flex;
+    vertical-align: middle;
+    border-radius: 3px;
+    color: rgb(26, 26, 26);
+    background-color: rgb(248, 248, 248);
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: -0.2px;
+    padding: 0px 16px;
+    height: 40px;
+    transition: background-color 0.1s ease 0s;
+    text-decoration-line: none;
+    border: 0px;
+    outline: none;
+    margin: 0px;
+    flex: initial;
+    box-sizing: border-box;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.prevPageBtn {
+    flex: 0 0 auto;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.cpGroupIntroFrame {
+    flex: 1 1 0%;
+    overflow: auto;
+    margin-top: 20px;
+}
+
+.cpGroupIntroTitle {
+    font-family: 'Noto Sans KR', sans-serif;
+    white-space: pre-wrap;
+    margin-bottom: 16px;
+    font-size: 22px;
+    font-weight: bold;
+    color: rgb(26, 26, 26);
+    line-height: 34px;
+    letter-spacing: -0.4px;
+}
+
+.groupIntroProfileFrame {
+    margin-bottom: 32px;
+    display: flex;
+    flex-direction: column;
+    margin: 0px 0px 16px;
+}
+
+.groupIntroProfileTitle {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px 0px 4px;
+    color: rgb(26, 26, 26);
+}
+
+.groupIntroProfileInsertFrame {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.groupProfile {
+    display: none;
+    margin: 0;
+}
+
+.groupIntroProfileForm {
+    position: relative;
+    width: 76px;
+    height: 76px;
+}
+
+.groupIntroProfileBox {
+    position: relative;
+    width: 76px;
+    height: 76px;
+}
+
+.showGroupProfile {
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgb(192, 192, 192);
+    border-radius: 100%;
+    line-height: 0;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    font-size: 0px;
+    background: rgb(238, 238, 238);
+}
+
+.showGroupImg {
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.insertImgIcon {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+    border-radius: 100%;
+    background-color: rgb(26, 26, 26);
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.introGroupNameFrame, .introGroupTelFrame, .introGroupPhoneFrame, .introGroupTextFrame{
+    margin-bottom: 32px;
+    display: flex;
+    flex-direction: column;
+    margin: 0px 0px 16px;
+}
+
+.groupIntroName, .groupIntroTel, .groupIntroPhone, .groupIntroText {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px 0px 4px;
+    color: rgb(26, 26, 26);
+}
+
+.groupNameInputForm, .groupTelInputForm, .groupPhoneInputForm, .groupIntroTextForm {
+    display: block;
+}
+
+.groupNameInput, .groupTelInput, .groupPhoneInput {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+    border: 1px solid rgb(239, 239, 239);
+    background-color: white;
+    height: 48px;
+    flex: 1 1 auto;
+    width: 100%;
+    color: rgb(26, 26, 26);
+    box-sizing: border-box;
+    padding: 0px 16px;
+    border-radius: 3px;
+}
+
+.groupTextInput {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+    color: rgb(26, 26, 26);
+    border-radius: 1px;
+    background-color: white;
+    border: 1px solid rgb(229, 229, 229);
+    width: 100%;
+    height: 104px;
+    padding: 12px 16px;
+    box-sizing: border-box;
+    resize: none;
+}
+
+.introGroupGuideFrame {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    color: rgb(26, 26, 26);
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    padding: 16px;
+    border-radius: 3px;
+    background-color: rgb(248, 248, 248);
+    margin-top: 8px;
+}
+
+.thunmbPrevBtn {
+    cursor: pointer;
+    left: 2px;
+    top: 50%;
+    position: absolute;
+    z-index: 10;
+    display: inline-flex;
+    flex: 0 0 auto;
+    vertical-align: middle;
+    padding: 0px;
+    border-radius: 3px;
+    color: rgb(26, 26, 26);
+    background-color: transparent;
+    width: 32px;
+    height: 32px;
+    transition: background-color 0.1s ease 0s;
+    border: 0px;
+    outline: none;
+    margin: 0px;
+    box-sizing: border-box;  
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.thumbPrevForm {
+    flex: 0 0 auto;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.cpThumbNailNextBox {
+    width: 30%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    z-index: 1;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s ease 0s;
+    right: 0px;
+}
+
+.thumbNextBtn {
+    cursor: pointer;
+    right: 2px;
+    top: 50%;
+    position: absolute;
+    z-index: 10;
+    display: inline-flex;
+    flex: 0 0 auto;
+    vertical-align: middle;
+    padding: 0px;
+    border-radius: 3px;
+    color: rgb(26, 26, 26);
+    background-color: transparent;
+    width: 32px;
+    height: 32px;
+    transition: background-color 0.1s ease 0s;
+    border: 0px;
+    outline: none;
+    margin: 0px;
+    box-sizing: border-box;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.cpCheckFrame {
+    flex: 1 1 0%;
+    overflow: auto;
+}
+
+.cpCheckTitle {
+    white-space: pre-wrap;
+    margin-bottom: 16px;
+    font-size: 22px;
+    font-weight: bold;
+    color: rgb(26, 26, 26);
+    line-height: 34px;
+    letter-spacing: -0.4px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.cpCheckInfo {
+    white-space: pre-wrap;
+    margin-bottom: 32px;
+    font-size: 12px;
+    font-weight: normal;
+    color: rgb(162, 162, 162);
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.cpCheckContent1, .cpCheckContent2, .cpCheckContent3 {
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    border-radius: 8px;
+    background-color: rgb(248, 248, 248);
+    font-size: 12px;
+    font-weight: normal;
+    color: rgb(26, 26, 26);
+    line-height: 20px;
+    letter-spacing: -0.15px;
+}
+
+.cpCheckContent1Title, .cpCheckContent2Title, .cpCheckContent3Title {
+    font-family: 'Noto Sans KR', sans-serif;
+    margin-bottom: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    color: rgb(26, 26, 26);
+    line-height: 24px;
+    letter-spacing: -0.3px;
+}
+
+.cpCheckContent1Text, .cpCheckContent2Text, .cpCheckContent3Text {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    color: rgb(26, 26, 26);
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+}
+
+.cpCheckBoundaryBox {
+    margin: 14px 0px;
+}
+
+.cpCheckBoundary {
+    box-shadow: rgb(248 248 248) 0px -1px 0px inset;
+    border: none;
+    height: 1px;
+    margin: 0px !important;
+}
+
+.cpCheckBoxForm {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    position: relative;
+}
+
+.cpCheckBoxContainer {
+    display: flex;
+    flex: 0 0 auto;
+}
+
+.cpCheckBox1, .cpCheckBox2, .cpCheckBox3 {
+    display: none;
+    margin: 0;
+}
+
+.cpCheckBoxInfo1, .cpCheckBoxInfo2, .cpCheckBoxInfo3 {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    color: rgb(26, 26, 26);
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px 0px 0px 8px;
+}
+
+.cpCheckContent2Move {
+    cursor: pointer;
+    margin-top: 8px;
+    display: inline-flex;
+    vertical-align: middle;
+    background: none;
+    color: rgb(255, 86, 0);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: -0.2px;
+    transition: color 0.1s ease 0s;
+    padding: 0px;
+    flex: initial;
+    box-sizing: border-box;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.cpCheckContent2MovePage {
+    color: rgb(255, 86, 0);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    text-decoration: none;
+    flex-direction: row;
+}
+
+.cpCheckBox2Move {
+    flex: 0 0 auto;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: rgb(255, 86, 0);
+}
+
+.submitBtnFrame {
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    width: 1200px;
+    padding: 18px 32px;
+    -webkit-box-align: center;
+    align-items: center;
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    border-top: 1px solid rgb(248, 248, 248);
+    height: 28px;
+    z-index: 1;
+    justify-content: space-between;
+}
+
