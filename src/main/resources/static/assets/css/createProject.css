@@ -1264,3 +1264,145 @@ option {
     align-items: center;
     flex-direction: row;
 }
+
+.cpCheckFrame {
+    flex: 1 1 0%;
+    overflow: auto;
+}
+
+.cpCheckTitle {
+    white-space: pre-wrap;
+    margin-bottom: 16px;
+    font-size: 22px;
+    font-weight: bold;
+    color: rgb(26, 26, 26);
+    line-height: 34px;
+    letter-spacing: -0.4px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.cpCheckInfo {
+    white-space: pre-wrap;
+    margin-bottom: 32px;
+    font-size: 12px;
+    font-weight: normal;
+    color: rgb(162, 162, 162);
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.cpCheckContent1, .cpCheckContent2, .cpCheckContent3 {
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    border-radius: 8px;
+    background-color: rgb(248, 248, 248);
+    font-size: 12px;
+    font-weight: normal;
+    color: rgb(26, 26, 26);
+    line-height: 20px;
+    letter-spacing: -0.15px;
+}
+
+.cpCheckContent1Title, .cpCheckContent2Title, .cpCheckContent3Title {
+    font-family: 'Noto Sans KR', sans-serif;
+    margin-bottom: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    color: rgb(26, 26, 26);
+    line-height: 24px;
+    letter-spacing: -0.3px;
+}
+
+.cpCheckContent1Text, .cpCheckContent2Text, .cpCheckContent3Text {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    color: rgb(26, 26, 26);
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+}
+
+.cpCheckBoundaryBox {
+    margin: 14px 0px;
+}
+
+.cpCheckBoundary {
+    box-shadow: rgb(248 248 248) 0px -1px 0px inset;
+    border: none;
+    height: 1px;
+    margin: 0px !important;
+}
+
+.cpCheckBoxForm {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    position: relative;
+}
+
+.cpCheckBoxContainer {
+    display: flex;
+    flex: 0 0 auto;
+}
+
+.cpCheckBox1, .cpCheckBox2, .cpCheckBox3 {
+    display: none;
+    margin: 0;
+}
+
+.cpCheckBoxInfo1, .cpCheckBoxInfo2, .cpCheckBoxInfo3 {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    color: rgb(26, 26, 26);
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px 0px 0px 8px;
+}
+
+.cpCheckContent2Move {
+    cursor: pointer;
+    margin-top: 8px;
+    display: inline-flex;
+    vertical-align: middle;
+    background: none;
+    color: rgb(255, 86, 0);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: -0.2px;
+    transition: color 0.1s ease 0s;
+    padding: 0px;
+    flex: initial;
+    box-sizing: border-box;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.cpCheckContent2MovePage {
+    color: rgb(255, 86, 0);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    text-decoration: none;
+    flex-direction: row;
+}
+
+.cpCheckBox2Move {
+    flex: 0 0 auto;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: rgb(255, 86, 0);
+}
