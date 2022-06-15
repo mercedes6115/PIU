@@ -11,5 +11,4 @@ public class ApplyVO {
     private String registDate;
     private Long userNum;
     private Long projectNum;
-
 }
