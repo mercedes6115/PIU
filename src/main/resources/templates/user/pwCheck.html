@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/assets/css/mypage_style.css">
+    <title>비밀번호 확인</title>
+</head>
+<body>
+    <div class="mypage-outline">
+        <div class="mypage-wrap">
+            <aside class="left-side">
+                <section class="my-profile">  
+                    <div class="user-letter">                        
+                        <div class="my-profile-nickname">
+                            <p><strong>김아무개</strong></p>
+                        </div>
+                        <div class="email">                        
+                            <div class="my-profile-email">
+                                <p><strong>이메일@naver.com</strong></p>
+                            </div>
+                        </div>
+                    </div>                   
+                    <div class="my-profile-image">
+                        <img src="../../static/images/1361876.png">
+                    </div>                    
+                </section>
+                <hr class="line">
+                <section class="user-info-modify">
+                    <a class="info-modify" href="infoUpdate.html">
+                    회원정보 수정</a>
+                </section>
+                <hr class="line">
+                <a class="point-check" href="myPoint.html">
+                    <section class="user-point">
+                        <div class="my-point">
+                            내 포인트
+                        </div>
+                        <div class="point-number">
+                            0P
+                        </div>
+                    </section></a>
+                    <a class="my-reply" href="myReview.html">
+                        <section class="reply">
+                            내 후기
+                        </section></a>
+                    <a class="my-QnA" href="myReview.html">
+                        <section class="QnA">
+                            내 문의
+                        </section></a>
+                <hr class="line">                
+                <section class="user-store">
+                    내 상품
+                    <a class="my-product" href="myOrderList.html">
+                        <section class="buy-product">
+                            주문 내역
+                        </section>
+                    </a>
+                </section>
+            </aside>
+            <div class="mypoint-right">
+                <section class="user-check">
+                    회원정보확인
+                    <div class="user-check-id">
+                        <p><strong class="user-email">이메일@naver.com</strong> 님의 정보를 안전하게 보호하기 위해 비밀번호를 다시 한번 확인 합니다.</p>
+                        <hr>
+                        <section class="user-check-pw">
+                            <form class="user-info-modify" action="#" method="post">
+                                <div class="check-email">
+                                    <div class="user-id">
+                                        아이디(이메일)
+                                    </div>
+                                    <div class="spacebar"></div>
+                                    <div class="user-id">
+                                        이메일@naver.com
+                                    </div>
+                                </div>                            
+                                <hr>
+                                <div class="check-pw">
+                                    <div class="user-pw">
+                                        비밀번호
+                                    </div>
+                                    <div class="spacebar-sec"></div>
+                                    <input class="confirmPw" id="confirmPw" type="password" name="confirmPw">
+                                </div>
+                                <hr>
+                                <div class="user-modify-check">
+                                    <input type="button" class="modify-check" id="modify-check" value="확인">
+                                    <input type="button" class="modify-cancel" value="취소">
+                                </div>
+                            </form>
+                        </section>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</body>
+<script type=text/javascript src="/assets/js/mypage.js"></script>
+
+</html>

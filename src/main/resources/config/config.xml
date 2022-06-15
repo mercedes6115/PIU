@@ -2,6 +2,24 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0/EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
-
+        <typeAlias type="com.example.pickitup.domain.vo.user.ApplyVO" alias="applyVO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.user.CompanyVO" alias="companyVO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.user.JjimVO" alias="jjimVO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.user.LatestVO" alias="latestVO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.user.OrderVO" alias="orderVO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.product.ProductFileVO" alias="productFileVO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.product.ProductQnaCommentVO" alias="productQnaCommentVO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.product.ProductQnaVO" alias="productQnaVO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.product.ProductReviewFileVO" alias="productReviewFileVO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.product.ProductReviewVO" alias="productReviewVO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.product.ProductVO" alias="productVO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.project.ProjectFileVO" alias="projectFileVO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.project.ProjectQnaCommentVO" alias="projectQnaCommentVO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.project.ProjectQnaVO" alias="projectQnaVO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.project.ProjectReviewCommentVO" alias="projectReviewCommentVO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.project.ProjectReviewFileVO" alias="projectReviewFileVO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.project.ProjectReviewVO" alias="projectReviewVO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.project.ProjectVO" alias="projectVO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.user.UserVO" alias="userVO"/>
     </typeAliases>
 </configuration>
