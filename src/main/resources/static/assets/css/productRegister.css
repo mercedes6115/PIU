@@ -245,8 +245,6 @@ input .check{
 ul, li{
     overflow: hidden;
     list-style: none;
-    width: 100%;
-    margin: 0 auto;
     padding: 0;
 }
 li {
