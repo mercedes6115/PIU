@@ -1,7 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.pickitup.mapper.project.projectFile.ProjectMapper">
-    
+
+    <!-- 프로젝트 전체 목록   -->
+    <select id="getList" resultType="projectVO">
+        SELECT NUM, TITLE, CONTENT, COURSE, TERRAIN, ADDRESS, POINT, APPROVAL, STARTTIME, ENDTIME, START_ADDRESS, END_ADDRESS, DISTANCE, QR, REGIST_DATE, UPDATE_DATE, STATUS, COMPANY_NUM, USER_NUM
+        FROM hr.TBL_PROJECT;
+    </select>
+
+    <!-- 프로젝트 전체 목록(페이징처리, 관리자용)  -->
+    <select id="getProjectList" resultType="projectVO">
+        SELECT NUM, TITLE, CONTENT, COURSE, TERRAIN, ADDRESS, POINT, APPROVAL, STARTTIME, ENDTIME, START_ADDRESS, END_ADDRESS, DISTANCE, QR, REGIST_DATE, UPDATE_DATE, STATUS, COMPANY_NUM, USER_NUM
+        FROM hr.TBL_PROJECT WHERE ;
+    </select>
+
+    <!--  특정 유저가 신청한 프로젝트 목록 -->
+    <select id="getUserProject" resultType="projectVO">
+        SELECT NUM, TITLE, CONTENT, COURSE, TERRAIN, ADDRESS, POINT, APPROVAL, STARTTIME, ENDTIME, START_ADDRESS, END_ADDRESS, DISTANCE, QR, REGIST_DATE, UPDATE_DATE, STATUS, COMPANY_NUM, USER_NUM
+        FROM hr.TBL_PROJECT WHERE USER_NUM = #{userNum};
+    </select>
+
+    <!-- 특정 유저가 생성한 프로젝트 목록 -->
+    <select id="getUserProject" resultType="projectVO">
+        SELECT NUM, TITLE, CONTENT, COURSE, TERRAIN, ADDRESS, POINT, APPROVAL, STARTTIME, ENDTIME, START_ADDRESS, END_ADDRESS, DISTANCE, QR, REGIST_DATE, UPDATE_DATE, STATUS, COMPANY_NUM, USER_NUM
+        FROM hr.TBL_PROJECT WHERE COMPANY_NUm = #{companyNum};
+    </select>
+
+    <!-- 프로젝트 한개만 띄우기   -->
+    <select id="getDetail" resultType="projectVO">
+        SELECT NUM, TITLE, CONTENT, COURSE, TERRAIN, ADDRESS, POINT, APPROVAL, STARTTIME, ENDTIME, START_ADDRESS, END_ADDRESS, DISTANCE, QR, REGIST_DATE, UPDATE_DATE, STATUS, COMPANY_NUM, USER_NUM
+        FROM hr.TBL_PROJECT WHERE NUM = #{num};
+    </select>
+
+    <!-- 프로젝트 등록  -->
+    <insert id="insert" parameterType="projectVO">
+        INSERT INTO hr.TBL_PROJECT
+        (TITLE, CONTENT, COURSE, TERRAIN, POINT, APPROVAL, STARTTIME, ENDTIME, START_ADDRESS, END_ADDRESS, DISTANCE, QR, REGIST_DATE, UPDATE_DATE, STATUS, COMPANY_NUM, USER_NUM)
+    VALUES(#{title}, #{content}, #{course}, #{terrain}, #{point}, #{approval}, #{startTime} , #{endTime}, #{startAddress}, #{endAddress}, #{distance}, #{qr}, SYSDATE, SYSDATE, '1' , #{companyNum}, #{userNum});
+    </insert>
+
+    <!-- 프로젝트 수정  -->
+    <update id="update" parameterType="projectVO">
+        UPDATE hr.TBL_PROJECT
+        SET (
+        TITLE='', CONTENT='', COURSE='', TERRAIN=0, POINT=0, APPROVAL='0' , STARTTIME='', ENDTIME='', START_ADDRESS=NULL, END_ADDRESS=NULL, DISTANCE=NULL, QR=NULL, REGIST_DATE=SYSDATE, UPDATE_DATE=SYSDATE, STATUS='1' , COMPANY_NUM=0, USER_NUM=0
+        )
+        WHERE NUM=0;
+
+    </update>
+
+    <!-- 프로젝트 삭제 -->
+    <delete id="delete" parameterType="long">
+       DELETE FROM hr.TBL_PROJECT WHERE NUM = #{num};
+    </delete>
+
+
 </mapper>
 
 
