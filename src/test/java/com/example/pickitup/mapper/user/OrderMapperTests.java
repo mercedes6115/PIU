@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-<<<<<<< HEAD
+
 //@SpringBootTest
 //@Slf4j
 //public class OrderMapperTests {
@@ -19,7 +19,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 //        log.info("주문 상세 내용 "+ orderMapper.);
 //    }
 //}
-=======
+
 @SpringBootTest
 @Slf4j
 public class OrderMapperTests {
@@ -63,4 +63,4 @@ public class OrderMapperTests {
 
 
 }
->>>>>>> piu6
+
