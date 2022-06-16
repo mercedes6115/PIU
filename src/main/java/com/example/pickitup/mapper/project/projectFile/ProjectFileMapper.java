@@ -1,7 +1,13 @@
 package com.example.pickitup.mapper.project.projectFile;
 
 import com.example.pickitup.domain.vo.project.projectFile.ProjectFileVO;
+<<<<<<< HEAD
+import lombok.Data;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Component;
+=======
+import org.apache.ibatis.annotations.Mapper;
+>>>>>>> 4c3d9a75aec40aeab71564a5ee5b31fefbc2a083
 
 import java.util.List;
 
