@@ -590,7 +590,6 @@ px
     width: 50%;
     height: calc(100% - 32px);
     background-color:#1F89FF;
-    filter: blur(28px);
 }
 .banner-container-inside2{
     sposition: absolute;
