@@ -41,45 +41,45 @@ public class FileController {
     private final ProjectReviewFileSerivce projectReviewFileSerivce;
     private final ProductReviewFileService productReviewFileService;
 
-    @PostMapping("/upload")
-    @ResponseBody
-    public List<ProjectFileVO> upload(MultipartFile[] uploadFiles) throws IOException {
-        String uploadFolder = "C:/upload";
-        ArrayList<ProjectFileVO> files = new ArrayList<>();
-
-//        yyyy/MM/dd 경로 만들기
-        File uploadPath = new File(uploadFolder, getFolder());
-        if(!uploadPath.exists()){uploadPath.mkdirs();}
-
-        for(MultipartFile file : uploadFiles){
-            ProjectFileVO projectFileVO = new ProjectFileVO();
-            String uploadFileName = file.getOriginalFilename();
-
-            UUID uuid = UUID.randomUUID();
-            projectFileVO.setFileName(uploadFileName);
-            projectFileVO.setUuid(uuid.toString());
-            projectFileVO.setUploadPath(getFolder());
-
-            uploadFileName = uuid.toString() + "_" + uploadFileName;
-
-            log.info("--------------------------------");
-            log.info("Upload File Name : " + uploadFileName);
-            log.info("Upload File Size : " + file.getSize());
-
-            projectFileVO.setFileSize(file.getSize());
-
-            File saveFile = new File(uploadPath, uploadFileName);
-            file.transferTo(saveFile);
-
-            if(checkImageType(saveFile)){
-                FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_" + uploadFileName));
-                Thumbnailator.createThumbnail(file.getInputStream(), thumbnail, 100, 100);
-                thumbnail.close();
-            }
-            files.add(projectFileVO);
-        }
-        return files;
-    }
+//    @PostMapping("/upload")
+//    @ResponseBody
+//    public List<ProjectFileVO> upload(MultipartFile[] uploadFiles) throws IOException {
+//        String uploadFolder = "C:/upload";
+//        ArrayList<ProjectFileVO> files = new ArrayList<>();
+//
+////        yyyy/MM/dd 경로 만들기
+//        File uploadPath = new File(uploadFolder, getFolder());
+//        if(!uploadPath.exists()){uploadPath.mkdirs();}
+//
+//        for(MultipartFile file : uploadFiles){
+//            ProjectFileVO projectFileVO = new ProjectFileVO();
+//            String uploadFileName = file.getOriginalFilename();
+//
+//            UUID uuid = UUID.randomUUID();
+//            projectFileVO.setFileName(uploadFileName);
+//            projectFileVO.setUuid(uuid.toString());
+//            projectFileVO.setUploadPath(getFolder());
+//
+//            uploadFileName = uuid.toString() + "_" + uploadFileName;
+//
+//            log.info("--------------------------------");
+//            log.info("Upload File Name : " + uploadFileName);
+//            log.info("Upload File Size : " + file.getSize());
+//
+//            projectFileVO.setFileSize(file.getSize());
+//
+//            File saveFile = new File(uploadPath, uploadFileName);
+//            file.transferTo(saveFile);
+//
+//            if(checkImageType(saveFile)){
+//                FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_" + uploadFileName));
+//                Thumbnailator.createThumbnail(file.getInputStream(), thumbnail, 100, 100);
+//                thumbnail.close();
+//            }
+//            files.add(projectFileVO);
+//        }
+//        return files;
+//    }
 
     @GetMapping("/display")
     @ResponseBody
@@ -120,12 +120,12 @@ public class FileController {
         if(file.exists()){ file.delete(); }
     }
 
-    @GetMapping("/list")
-    @ResponseBody
-    public List<FileVO> getList(Long boardBno){
-        log.info("get file list....... : " + boardBno);
-        return boardService.getList(boardBno);
-    }
+//    @GetMapping("/list")
+//    @ResponseBody
+//    public List<FileVO> getList(Long boardBno){
+//        log.info("get file list....... : " + boardBno);
+//        return boardService.getList(boardBno);
+//    }
 }
 
 

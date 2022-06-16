@@ -31,237 +31,243 @@
 
 <!--여기까지가 헤더 입니다-->
 
-<div class="root">
-    <div th:replace="~{/admin/adminSideBar :: AdminSideBarImport}"></div>
-    <div class="content">
-        <!-- content -->
-        <div class="product">
-            <!-- product register -->
-            <div class="register">
-                <!-- 상품등록 -->
-                <h1>상품등록</h1>
+
+<div class="wrap">
+
+    <div class="root">
+        <div th:replace="~{/admin/adminSideBar :: AdminSideBarImport}"></div>
+        <!-- sidebar -->
+
+
+
+        <div class="content">
+            <!-- content -->
+            <div class="product">
+                <!-- product register -->
+                <div class="register">
+                    <!-- 상품등록 -->
+                    <h1>상품등록</h1>
+                </div>
+                <!-- <div class="flow">
+                    <ol>
+                        <li class="home">홈</li>
+                        <li class="">상품관리</li>
+                        <li>상품등록</li>
+                    </ol>
+                </div> -->
             </div>
-            <!-- <div class="flow">
-                <ol>
-                    <li class="home">홈</li>
-                    <li class="">상품관리</li>
-                    <li>상품등록</li>
-                </ol>
-            </div> -->
-        </div>
 
-        <form action="" class="formlayout" enctype="multipart/form-data">
-            <div class="togglebar">
-                <!-- togglebar -->
-                <h2>기본정보</h2>
-            </div>
+            <form action="" class="formlayout" enctype="multipart/form-data">
+                <div class="togglebar">
+                    <!-- togglebar -->
+                    <h2>기본정보</h2>
+                </div>
 
-            <div class="toggleArea">
-                <!-- togglecontent -->
-                <table>
+                <div class="toggleArea">
+                    <!-- togglecontent -->
+                    <table >
 
-                    <tbody>
-                    <tr>
-                        <th>상품명
-                        </th>
-                        <td style="display: flex;">
-                            <input class="productName" type="text" name="product_name" required="required"
-                                   placeholder="예시 ">
+                        <tbody>
+                        <tr>
+                            <th>상품명
+                            </th>
+                            <td style="display: flex;">
+                                <input class="productName" type="text" name="product_name" required="required" placeholder="예시 ">
 
-                            <div class="count">
-                                [<p class="textCount"> 0</p>
-                                /
-                                <p class="textTotal"> 250</p>]
-                            </div>
-                        </td>
+                                <div class="count">
+                                    [<p class="textCount"> 0</p>
+                                    /
+                                    <p class="textTotal"> 250</p>]
+                                </div>
+                            </td>
 
-                    </tr>
-                    <tr>
-                        <th scope='row'>상품가격
-                        </th>
-                        <td>
-                            <input class="pay" type="text" name="product_name" required="required">point
+                        </tr>
+                        <tr>
+                            <th scope='row'>상품가격
+                            </th>
+                            <td>
+                                <input class="pay" type="text" name="product_name" required="required">point
 
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>상품카테고리
-                        </th>
-                        <td>
-                            <input class="check" type="checkbox">
-                            <label for="">생활</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>상품카테고리
+                            </th>
+                            <td>
+                                <input class="check" type="checkbox">
+                                <label for="">생활</label>
 
-                            <input class="check" type="checkbox">
-                            <label for="">주방</label>
+                                <input class="check" type="checkbox">
+                                <label for="">주방</label>
 
-                            <input class="check" type="checkbox">
-                            <label for="">욕실</label>
+                                <input class="check" type="checkbox">
+                                <label for="">욕실</label>
 
-                            <input class="check" type="checkbox">
-                            <label for="">반려동물</label>
+                                <input class="check" type="checkbox">
+                                <label for="">반려동물</label>
 
-                            <input class="check" type="checkbox">
-                            <label for="">화장품</label>
+                                <input class="check" type="checkbox">
+                                <label for="">화장품</label>
 
-                            <input class="check" type="checkbox">
-                            <label for="">식품</label>
+                                <input class="check" type="checkbox">
+                                <label for="">식품</label>
 
-                            <input class="check" type="checkbox">
-                            <label for="">문구</label>
+                                <input class="check" type="checkbox">
+                                <label for="">문구</label>
 
-                            <input class="check" type="checkbox">
-                            <label for="">원예</label>
-                        </td>
-                    </tr>
+                                <input class="check" type="checkbox">
+                                <label for="">원예</label>
+                            </td>
+                        </tr>
 
-                    <tr>
-                        <th>상품요약
-                        </th>
-                        <td style="display: flex;">
-                            <input class="summary" required="required">
-                            <div class="count">
-                                [<p class="textCount"> 0</p>
-                                /
-                                <p class="textTotal"> 250</p>]
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>상품 상세 내용
-                        </th>
-                        <td>
+                        <tr>
+                            <th>상품요약
+                            </th>
+                            <td style="display: flex;">
+                                <input class="summary"  required="required">
+                                <div class="count">
+                                    [<p class="textCount"> 0</p>
+                                    /
+                                    <p class="textTotal"> 250</p>]
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>상품 상세 내용
+                            </th>
+                            <td>
 
-                            <textarea name="content" id="summernote" class="summernote" required="required"></textarea>
-                        </td>
-                    </tr>
+                                <textarea name="content" id="summernote" class="summernote" required="required"></textarea>
+                            </td>
+                        </tr>
 
-                    <tr>
-                        <th>상품재고
-                        </th>
-                        <td>
-                            <input class="pay" type="text" name="product_name" required="required">개
-                        </td>
-                    </tr>
-                    <tr>
-                        <th rowspan="2">상품 이미지</th>
-                        <td>
-                            <h5>대표이미지</h5>
-                            <div class="bigThumb largeImg">
-                                <label for="attach">
-                                    <div id="box" class="imgIcon">
-                                        <span></span>
-                                    </div>
-                                </label>
-                                <input type="file" id="attach" style="display: none;">
-                            </div>
-                            <ul class="textInfo">
-                                <li>
-                                    -등록이미지 : 5M이하 / gif, png, jpg(jpeg)
-                                </li>
-                            </ul>
-
-
-                        </td>
-                    </tr>
-
-                    <tr>
-
-                        <td>
-                            <span class="detailImg">추가이미지</span>
-                            <div class="extraImg">
-                                <ul style="display: flex;">
-                                    <li>
-                                        <div class="bigThumb ">
-                                            <label for="attach">
-                                                <div id="box" class="imgIcon smallImg">
-                                                    <span></span>
-                                                </div>
-                                            </label>
-                                            <input type="file" id="attach" style="display: none;">
+                        <tr>
+                            <th>상품재고
+                            </th>
+                            <td>
+                                <input class="pay" type="text" name="product_name" required="required">개
+                            </td>
+                        </tr>
+                        <tr>
+                            <th rowspan="2">상품 이미지</th>
+                            <td>
+                                <h5>대표이미지</h5>
+                                <div class="bigThumb largeImg">
+                                    <label for="attach">
+                                        <div id="box" class="imgIcon">
+                                            <span></span>
                                         </div>
-
-
-                                    </li>
+                                    </label>
+                                    <input type="file" id="attach" style="display: none;">
+                                </div>
+                                <ul class="textInfo">
                                     <li>
-                                        <div class="bigThumb ">
-                                            <label for="attach">
-                                                <div id="box" class="imgIcon smallImg">
-                                                    <span></span>
-                                                </div>
-                                            </label>
-                                            <input type="file" id="attach" style="display: none;">
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="bigThumb ">
-                                            <label for="attach">
-                                                <div id="box" class="imgIcon smallImg">
-                                                    <span></span>
-                                                </div>
-                                            </label>
-                                            <input type="file" id="attach" style="display: none;">
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="bigThumb ">
-                                            <label for="attach">
-                                                <div id="box" class="imgIcon smallImg">
-                                                    <span></span>
-                                                </div>
-                                            </label>
-                                            <input type="file" id="attach" style="display: none;">
-                                        </div>
+                                        -등록이미지 : 5M이하 / gif, png, jpg(jpeg)
                                     </li>
                                 </ul>
-                            </div>
-                            <ul class="textInfo">
-                                <li>
-                                    -권장이미지 : 500px * 500px / 1M이하 / gif, png, jpg(jpeg) / 4개까지 추가 가능
-                                </li>
-                            </ul>
-
-                        </td>
-                    </tr>
 
 
-                    <tr>
-                        <th>제조사
-                        </th>
-                        <td>
-                            <input class="" type="text" name="product_name" required="required" placeholder="제조사 이름">
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>공급사
-                        </th>
-                        <td>
-                            <input class="" type="text" name="product_name" required="required" placeholder="공급사 이름">
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>원산지
-                        </th>
-                        <td>
-                            <input class="" type="text" name="product_name" required="required" placeholder="원산지 이름">
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+                            </td>
+                        </tr>
 
-            </div>
+                        <tr>
 
-            <div class="submitbtn">
-                <!-- button -->
-                <button>상품등록</button>
-                <button onclick="handleOnClick()"
-                        value="confirm">취소
-                </button>
+                            <td>
+                                <span class="detailImg">추가이미지</span>
+                                <div class="extraImg">
+                                    <ul style="display: flex;">
+                                        <li >
+                                            <div class="bigThumb ">
+                                                <label for="attach">
+                                                    <div id="box" class="imgIcon smallImg">
+                                                        <span></span>
+                                                    </div>
+                                                </label>
+                                                <input type="file" id="attach" style="display: none;">
+                                            </div>
 
-            </div>
-        </form>
+
+
+                                        </li>
+                                        <li>
+                                            <div class="bigThumb ">
+                                                <label for="attach">
+                                                    <div id="box" class="imgIcon smallImg">
+                                                        <span></span>
+                                                    </div>
+                                                </label>
+                                                <input type="file" id="attach" style="display: none;">
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="bigThumb ">
+                                                <label for="attach">
+                                                    <div id="box" class="imgIcon smallImg">
+                                                        <span></span>
+                                                    </div>
+                                                </label>
+                                                <input type="file" id="attach" style="display: none;">
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="bigThumb ">
+                                                <label for="attach">
+                                                    <div id="box" class="imgIcon smallImg">
+                                                        <span></span>
+                                                    </div>
+                                                </label>
+                                                <input type="file" id="attach" style="display: none;">
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <ul class="textInfo">
+                                    <li>
+                                        -권장이미지 : 500px * 500px / 1M이하 / gif, png, jpg(jpeg) / 4개까지 추가 가능
+                                    </li>
+                                </ul>
+
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <th>제조사
+                            </th>
+                            <td>
+                                <input class="" type="text" name="product_name" required="required" placeholder="제조사 이름">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>공급사
+                            </th>
+                            <td>
+                                <input class="" type="text" name="product_name" required="required" placeholder="공급사 이름">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>원산지
+                            </th>
+                            <td>
+                                <input class="" type="text" name="product_name" required="required" placeholder="원산지 이름">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+                <div class="submitbtn">
+                    <!-- button -->
+                    <button>상품등록</button>
+                    <button onclick="handleOnClick()"
+                            value="confirm">취소</button>
+
+                </div>
+            </form>
+        </div>
+
     </div>
-
-</div>
 </div>
 </body>
 
