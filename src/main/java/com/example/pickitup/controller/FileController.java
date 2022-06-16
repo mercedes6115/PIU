@@ -52,13 +52,13 @@ public class FileController {
         if(!uploadPath.exists()){uploadPath.mkdirs();}
 
         for(MultipartFile file : uploadFiles){
-            ProjectFileVO fileVO = new ProjectFileVO();
+            ProjectFileVO projectFileVO = new ProjectFileVO();
             String uploadFileName = file.getOriginalFilename();
 
             UUID uuid = UUID.randomUUID();
-            ProjectFileVO.setFileName(uploadFileName);
-            ProjectFileVO.setUuid(uuid.toString());
-            ProjectFileVO.setUploadPath(getFolder());
+            projectFileVO.setFileName(uploadFileName);
+            projectFileVO.setUuid(uuid.toString());
+            projectFileVO.setUploadPath(getFolder());
 
             uploadFileName = uuid.toString() + "_" + uploadFileName;
 
@@ -66,7 +66,7 @@ public class FileController {
             log.info("Upload File Name : " + uploadFileName);
             log.info("Upload File Size : " + file.getSize());
 
-            fileVO.setFileSize(file.getSize());
+            projectFileVO.setFileSize(file.getSize());
 
             File saveFile = new File(uploadPath, uploadFileName);
             file.transferTo(saveFile);
@@ -75,9 +75,8 @@ public class FileController {
                 FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_" + uploadFileName));
                 Thumbnailator.createThumbnail(file.getInputStream(), thumbnail, 100, 100);
                 thumbnail.close();
-                fileVO.setImage(true);
             }
-            files.add(fileVO);
+            files.add(projectFileVO);
         }
         return files;
     }
