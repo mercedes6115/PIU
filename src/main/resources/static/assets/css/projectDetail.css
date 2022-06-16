@@ -106,7 +106,7 @@ body {
 }
 
 .readApplicantTitle {
-    font-family: 'SDSamliphopangche_Basic';
+    font-family: 'Noto Sans KR', sans-serif;
     margin-bottom: 8px;
     font-size: 20px;
     font-weight: bold;
@@ -153,19 +153,19 @@ body {
     align-items: center;
 }
 
-.readApplicantPointFrame, .readApplicantContentFrame, .readApplicantDateFrame {
+.readApplicantPointFrame, .readApplicantContentFrame, .readApplicantDateFrame, .readApplicantAddressFrame {
     margin: 8px 0px 12px;
 }
 
 
-.readApplicantPointForm, .readApplicantContentForm, .readApplicantDateForm {
+.readApplicantPointForm, .readApplicantContentForm, .readApplicantDateForm, .readApplicantAddressForm {
     display: flex;
     -webkit-box-align: center;
     align-items: center;
     position: relative;
 }
 
-.readApplicantContent, .readApplicantDate {
+.readApplicantContent, .readApplicantDate, .readApplicantAddress {
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 14px;
     font-weight: 500;
@@ -545,7 +545,7 @@ body {
 }
 
 .projectInfo {
-    font-family: 'SDSamliphopangche_Basic';
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 16px;
     line-height: 24px;
     letter-spacing: -0.3px;
@@ -604,7 +604,7 @@ body {
 }
 
 .reviewHeadInfo {
-    font-family: 'SDSamliphopangche_Basic';
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 20px;
     line-height: 26px;
     letter-spacing: -0.2px;
@@ -767,7 +767,7 @@ body {
 }
 
 .moveReviewTotal {
-    font-family: 'SDSamliphopangche_Basic';
+    font-family: 'Noto Sans KR', sans-serif;
     padding: 13px 12px;
     cursor: pointer;
     overflow: hidden;
@@ -805,7 +805,7 @@ body {
 }
 
 .pIntroduceTitle {
-    font-family: 'SDSamliphopangche_Basic';
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 24px;
     font-weight: bold;
     color: rgb(26, 26, 26);
@@ -860,7 +860,7 @@ body {
 }
 
 .gIntroduceTitle {
-    font-family: 'SDSamliphopangche_Basic';
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 24px;
     font-weight: normal;
     color: rgb(26, 26, 26);
@@ -930,7 +930,7 @@ body {
 }
 
 .qnaTitle h3 {
-    font-family: 'SDSamliphopangche_Basic';
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 24px;
     font-weight: bold;
     color: rgb(26, 26, 26);
@@ -1010,7 +1010,7 @@ body {
 }
 
 .qUserProfileName {
-    font-family: 'SDSamliphopangche_Basic';
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 11px;
     line-height: 16px;
     letter-spacing: normal;
@@ -1127,7 +1127,7 @@ body {
 }
 
 .useGuideTitle {
-    font-family: 'SDSamliphopangche_Basic';
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 24px;
     font-weight: bold;
     color: rgb(26, 26, 26);
@@ -1142,25 +1142,11 @@ body {
     width: 100%;
 }
 .useGuideContentForm {
-    padding: 24px 24px 28px;
-    display: flex;
-    background-color: rgb(248, 248, 248);
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    -webkit-box-pack: center;
-    justify-content: center;
+    
 }
 
 .useGuideContent {
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 14px;
-    font-weight: normal;
-    line-height: 20px;
-    letter-spacing: -0.15px;
-    margin: 0px 8px 0px 0px;
-    flex: 1 1 0%;
-    color: rgb(58, 58, 58);
+    
 }   
 
 .show {
@@ -1244,4 +1230,24 @@ body {
     color: black;
     font-weight: bold;
     text-decoration: none;
+}
+
+#applyModal {
+    display: none;
+    width: 300px;
+    padding: 20px 60px;
+    background-color: #fefefe;
+    border: 1px solid #888;
+    border-radius: 3px;
+}
+
+.modal_close_btn {
+    position:absolute;
+    top:10px;
+    right:10px;
+}
+
+.applyInfo {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
 }

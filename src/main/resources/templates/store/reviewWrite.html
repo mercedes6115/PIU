@@ -8,9 +8,9 @@
     <!-- <link rel="stylesheet" href="/assets/css/header.css" />
     <link rel="stylesheet" href="/assets/css/footer.css" />
     <link rel="stylesheet" href="/assets/css/pickitupStore.css" /> -->
-    <link rel="stylesheet" href="/src/main/resources/static/assets/css/Header.css">
-    <link rel="stylesheet" href="/src/main/resources/static/assets/css/Footer.css">
-    <link rel="stylesheet" href="/src/main/resources/static/assets/css/pickitupStore.css">
+    <link rel="stylesheet" href="/assets/css/Header.css">
+    <link rel="stylesheet" href="/assets/css/Footer.css">
+    <link rel="stylesheet" href="/assets/css/pickitupStore.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 
 </head>
@@ -71,7 +71,7 @@
                     <div class="admin_comment" style="font-size: 10px; margin-top:5px; margin-left: 24px;">첨부파일은 3개 까지만 가능합니다.</div>
 
                     <div style="margin-top: 8px;">
-                        <div style="text-align: center;"">
+                        <div style="text-align: center;">
                             <textarea class="user_review" name="" id="" cols="30" rows="10" required></textarea>
                         </div>
                       
@@ -87,7 +87,7 @@
             vertical_align_top
             </span>
     </div> 
-    <div th:replace="~{/fix/Footer :: FooterImport}"></div>
+    <div th:replace="~{/main/Footer :: FooterImport}"></div>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <script>
@@ -121,10 +121,5 @@
         }
     });
 </script>
-<script>
-        $(document).ready(function () {
-                $("#FooterImport").load("/fix/test/Footer.html");  //푸터부분 인클루드
-            }
-        );
-</script>
+
 </html>

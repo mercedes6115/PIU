@@ -16,7 +16,7 @@ public class ProjectQnaDAO {
 
     // qna 전체 목록 -> 수정
     public List<ProjectQnaVO> getList(Long projectNum){
-        return projectQnaMapper.getList(projectNum);
+        return projectQnaMapper.getList();
     }
 
     // qna 상세보기 -> 수정
