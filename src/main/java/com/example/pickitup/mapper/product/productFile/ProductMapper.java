@@ -12,6 +12,10 @@ public interface ProductMapper {
     //    상품 전부 띄우기
     public List<ProductVO> getList();
 
+
+    //
+    public List<ProductVO> getProductList(Criteria criteria);
+
     public List<ProductVO> getProductList(Criteria criteria);
 
     //    상품 한개만 띄우기 (상세보기)
