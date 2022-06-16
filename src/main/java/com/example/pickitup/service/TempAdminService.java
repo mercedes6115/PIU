@@ -18,12 +18,9 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-<<<<<<<< HEAD:src/main/java/com/example/pickitup/service/AdminServiceChange.java
-public class AdminServiceChange {
-========
-public class TempAdminService {
->>>>>>>> 5055cf286eb96c7162084f0e0f2a412c5e8a5fe1:src/main/java/com/example/pickitup/service/TempAdminService.java
 
+
+public class TempAdminService {
     private final UserDAO userDAO;
     private final ApplyDAO applyDAO;
     private final JjimDAO jjimDAO;

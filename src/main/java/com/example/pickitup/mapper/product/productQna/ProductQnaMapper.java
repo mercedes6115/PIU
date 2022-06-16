@@ -1,7 +1,7 @@
 package com.example.pickitup.mapper.product.productQna;
 
 import com.example.pickitup.domain.vo.product.productQna.ProductQnaVO;
-<<<<<<< HEAD
+
 
 import lombok.Data;
 import org.apache.ibatis.annotations.Mapper;
@@ -14,10 +14,10 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 
-=======
+
 import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
->>>>>>> 718039d5105b4170035f906806aabc6fb42d1e7a
+
 @Mapper
 public interface ProductQnaMapper {
     //    qna 전체 띄우기 무한 스크롤

@@ -11,11 +11,10 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-<<<<<<<< HEAD:src/main/java/com/example/pickitup/service/UserSerivceChange.java
-public class UserSerivceChange {
-========
+
+
 public class TempUserSerivce {
->>>>>>>> 5055cf286eb96c7162084f0e0f2a412c5e8a5fe1:src/main/java/com/example/pickitup/service/TempUserSerivce.java
+
 
     private final UserDAO userDAO;
     private final ApplyDAO applyDAO;
