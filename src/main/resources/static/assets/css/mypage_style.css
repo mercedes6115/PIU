@@ -358,7 +358,7 @@ top-bar * {
 }
 
 .modal-by6 {
-    margin-top: 63px;
+    margin-top: 35px;
 }
 
 .modal-by7 {
@@ -367,7 +367,7 @@ top-bar * {
     color: rgb(26, 26, 26);
     line-height: 24px;
     letter-spacing: -0.3px;
-    margin: 0px;
+    margin-bottom: 15px;
 }
 
 .modal-by8 {
