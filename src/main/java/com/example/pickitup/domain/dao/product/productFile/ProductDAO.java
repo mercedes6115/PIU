@@ -2,6 +2,7 @@ package com.example.pickitup.domain.dao.product.productFile;
 
 import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
+import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 import com.example.pickitup.mapper.product.productFile.ProductMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -11,9 +12,7 @@ import java.util.List;
 @Repository
 @RequiredArgsConstructor
 public class ProductDAO {
-
     private final ProductMapper productMapper;
-
 
     // 상품 목록
     public List<ProductVO> getList(){
@@ -21,9 +20,9 @@ public class ProductDAO {
     }
 
     // 상품 목록 - 관리자용
-//    public List<ProductVO> getProductList(Criteria criteria){
-//        return productMapper.getProjectList(criteria);
-//    }
+    public List<ProductVO> getProductList(Criteria criteria){
+        return productMapper.getProductList(criteria);
+    }
 
     // 상품 등록하기 - 관리자용
     public void register(ProductVO productVO){
