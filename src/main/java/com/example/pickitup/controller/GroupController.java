@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @Slf4j
-@RequestMapping("/group/*")
+@RequestMapping("/pickitup/group/*")
 public class GroupController {
 
 
@@ -48,11 +48,6 @@ public class GroupController {
 
     }
 
-    // 그룹 프로필 수정 폼
-    @PostMapping("/modify")
-    public void modifyForm(){
-
-    }
 
     // 그룹 QnA
     @GetMapping("/qna")
