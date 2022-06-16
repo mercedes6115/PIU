@@ -10,8 +10,9 @@ import java.util.List;
 public interface ProductMapper {
     //    프로젝트 전부 띄우기
     public List<ProductVO> getList();
+
     //
-    public List<ProductVO> getProjectList(Criteria criteria);
+    public List<ProductVO> getProductList(Criteria criteria);
 
     //    프로젝트 한개만 띄우기
     public ProductVO getDetail(Long num);
