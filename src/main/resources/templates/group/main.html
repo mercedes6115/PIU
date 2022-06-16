@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -50,7 +50,7 @@
                                         <div class="sNoticeBox">
                                             <span class="material-symbols-outlined" id="gfSize">notifications</span>
                                             <div class="margin"></div>
-                                            <a class="sTitle" href="groupPageNotice.html">공지사항</a>
+                                            <a class="sTitle" href="notice.html">공지사항</a>
                                         </div>
                                     </div>
                                 </div>
@@ -69,13 +69,16 @@
                                             <div class="sProjectTitleBox">
                                             <span class="material-symbols-outlined" id="gfSize">list</span>                                                                                                
                                             <div class="margin"></div>
-                                            <a class="sTitle" href="groupPage.html">프로젝트</a>                                            
+                                            <a class="sTitle" href="main.html">프로젝트</a>
                                             </div>   
                                         </div>
-                                                               
+                                        <span id="listClose" class="material-symbols-outlined show">expand_less</span>                        
                                     </div>
                                 </div>
-                                
+                                <div class="sProjectContainer">
+                                    <a class="sProjectList" href="main.html">전체 플로깅</a>
+                                    <a class="sProjectQna" href="#">플로깅 문의</a>
+                                </div>
                                 
                                 <div class="sGuideFrame">
                                     <div class="sGuideForm">
@@ -98,30 +101,19 @@
                 <div class="groupPageContainer">
                     <div class="bodyTitleFrame">
                         <h3 class="bodyTitle">프로젝트</h3>
-                        <div class="addProjectFrame" id="addProjectFrame">
+                        <a href="#" class="addProjectFrame">
                             <button class="addProjectBtn">
                                 <span class="addProjectForm">
                                     <span class="addProjectImg">
                                         <span class="material-symbols-outlined">add</span>                                            
                                     </span>
                                     <div class="addBoundary"></div> 
-                                    <a class="addProjectText" href="createProject.html" id="makeProject">프로젝트 만들기</a>                                  
+                                    <a class="addProjectText" href="../project/createProject.html">프로젝트 만들기</a>
                                 </span>
                             </button>
-                        </div>
-                        <div class="returnListFrame" id="returnListFrame">
-                            <button class="returnListBtnBox" id="returnListBtnBox">
-                                <span class="returnListForm">
-                                    <span class="returnListImg">
-                                        <span class="material-symbols-outlined returnImg">redo</span>                                            
-                                    </span>
-                                    <div class="addBoundary"></div>
-                                    <p class="returnListText">목록으로</p>                                                                                                         
-                                </span>
-                            </button>
-                        </div>
+                        </a>
                     </div>
-                    <div class="projectListFrame" id="projectListFrame">
+                    <div class="projectListFrame">
                         <div class="projectListForm">
                             <div class="projectListContainer">
                                 <div class="projectListBox">
@@ -144,8 +136,9 @@
                                                     <div class="showListHeader1">
                                                         <span class="listCheckBoxFrame">
                                                             <div class="listCheckBoxForm">
-                                                                <label class="listCheckBox">                                                                   
-                                                                    <input type="checkbox" class="allCheck" onclick="selectAll(this)">
+                                                                <label class="listCheckBox">
+                                                                    <span class="material-symbols-outlined" id="checkBoxBtn">check_box_outline_blank</span>
+                                                                    <input type="checkbox" class="allCheck">
                                                                 </label>
                                                             </div>
                                                         </span>
@@ -185,7 +178,8 @@
                                                         <div class="showListBody">
                                                             <div class="showListBody1">
                                                                 <div class="sbCheckBoxFrame">
-                                                                    <label class="sbCheckBoxForm">                                                                        
+                                                                    <label class="sbCheckBoxForm">
+                                                                        <span class="material-symbols-outlined" id="checkBoxBtn">check_box_outline_blank</span>
                                                                         <input type="checkbox" class="oneCheck">                                                                                                                                                       
                                                                     </label>
                                                                 </div>
@@ -236,24 +230,23 @@
                                                             <div class="showListBody8">                                                                
                                                                 <div class="sbDateFrame">
                                                                     <p class="sbDate">2022. 6. 12. 오후 4:35</p>                                                                    
-                                                                </div>                                                            
+                                                                </div>
+                                                            </span>
                                                             </div>
                                                             <div class="showListBody9">
                                                                 <div class="sbMoreFrame">
                                                                     <div class="sbMoreForm">
                                                                         <div class="seeApplier" id="seeApplierBox">    
-                                                                            <button class="userCheckFrame" id="projectModify">
-                                                                                <span class="userCheckForm">
-                                                                                    <span class="userCheck">수정하기</span>
+                                                                            <button class="qrCheckFrame" id="qrCheck">
+                                                                                <span class="qrCheckForm">
+                                                                                    <span class="qrCheck">회원목록</span>
                                                                                 </span>
                                                                             </button>
                                                                         </div>                                                                            
                                                                         <div class="moreBoundary"></div>
                                                                         <div class="sbMoreContainer" id="sbMoreContainer">
-                                                                            <button class="userCheckFrame" id="projectDelete">
-                                                                                <span class="userCheckForm">
-                                                                                    <span class="userCheck">삭제하기</span>
-                                                                                </span>
+                                                                            <button class="sbMoreBox" id="showMoreBtn">
+                                                                                <span class="material-symbols-outlined">more_horiz</span>                                                                                                                                                                                
                                                                             </button>
                                                                         </div>
                                                                     </div>
@@ -275,7 +268,8 @@
                                                     <div class="showListBody">
                                                         <div class="showListBody1">
                                                             <div class="sbCheckBoxFrame">
-                                                                <label class="sbCheckBoxForm">                                                                    
+                                                                <label class="sbCheckBoxForm">
+                                                                    <span class="material-symbols-outlined" id="checkBoxBtn">check_box_outline_blank</span>
                                                                     <input type="checkbox" class="oneCheck">                                                                                                                                                       
                                                                 </label>
                                                             </div>
@@ -304,7 +298,7 @@
                                                         <div class="showListBody4">
                                                             <div class="sbStateFrame">
                                                                 <div class="sbStateForm">
-                                                                    <p class="sbState" id="agreeState">승인 완료</p>
+                                                                    <p class="sbState" id="agreeState">승인 대기</p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -333,15 +327,17 @@
                                                             <div class="sbMoreFrame">
                                                                 <div class="sbMoreForm">
                                                                     <div class="seeApplier" id="seeApplierBox">    
-                                                                        <button class="userCheckFrame" id="userCheck">
-                                                                            <span class="userCheckForm">
-                                                                                <span class="userCheck">회원목록</span>
+                                                                        <button class="qrCheckFrame" id="qrCheck">
+                                                                            <span class="qrCheckForm">
+                                                                                <span class="qrCheck">회원목록</span>
                                                                             </span>
                                                                         </button>
                                                                     </div>                                                                            
                                                                     <div class="moreBoundary"></div>
-                                                                    <div class="sbMoreContainer" id="sbMoreContainer">                                                                    
-                                                                            <span class="progressCheck">진행중</span>                                                                                                                                                                                                             
+                                                                    <div class="sbMoreContainer" id="sbMoreContainer">
+                                                                        <button class="sbMoreBox" id="showMoreBtn">
+                                                                            <span class="material-symbols-outlined">more_horiz</span>                                                                                                                                                                                
+                                                                        </button>
                                                                     </div>
                                                                 </div>
                                                             </div>                                                               
@@ -390,7 +386,7 @@
                           
                                     
                                 </div>
-                                <div class="applierListFrame" id="applierListFrame">
+                                <div class="applierListFrame">
                                 <div class="applierListForm">
                                     <div class="applierListContainer">
                                         <div class="applierListBox">
@@ -398,154 +394,30 @@
                                                 <div class="showListForm">
                                                     <div class="showListBox">
                                                         <div class="showListHeader">
-                                                            <div class="userListHeader1">
+                                                            <div class="showListHeader1">
                                                                 <span class="listCheckBoxFrame">
                                                                     <div class="listCheckBoxForm">
-                                                                        <label class="listCheckBox">                                                                            
-                                                                            <input type="checkbox" class="allCheck" onclick="selectAll(this)">
+                                                                        <label class="listCheckBox">
+                                                                            <span class="material-symbols-outlined" id="checkBoxBtn">check_box_outline_blank</span>
+                                                                            <input type="checkbox" class="allCheck">
                                                                         </label>
                                                                     </div>
                                                                 </span>
                                                             </div>
-                                                            <div class="userListHeader2">
+                                                            <div class="showListHeader2">
                                                                 <span class="showListBoundary"></span>
                                                             </div>                                                    
-                                                            <div class="userListHeader3">
-                                                                <span class="userListhTitle">닉네임</span>
+                                                            <div class="showListHeader3">
+                                                                <span class="showListhTitle">이름</span>
                                                             </div>
-                                                            <div class="userListHeader4">
-                                                                <span class="userListhPhone" >전화번호</span>                                                            
+                                                            <div class="showListHeader4">
+                                                                <span class="showListhState" >전화번호</span>
                                                             </div>
-                                                            <div class="userListHeader5">
-                                                                <span class="userListhMail">이메일</span>
+                                                            <div class="showListHeader5">
+                                                                <span class="showListhTerrain">신청 날짜</span>
                                                             </div>
-                                                            <div class="userListHeader6">
-                                                                <span class="userListhTerrain">신청 날짜</span>
-                                                            </div>
-                                                            <div class="userListHeader7">
-                                                                <span class="userListhState">진행 상태</span>
-                                                            </div>
-                                                            <div class="userListHeader8">
-                                                                <span class="userListhAgree">승인</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="showListBodyFrame">
-                                                            <div class="showListBodyForm">
-                                                                <div class="showListBody">
-                                                                    <div class="userListBody1">
-                                                                        <div class="sbCheckBoxFrame">
-                                                                            <label class="sbCheckBoxForm">                                                                                
-                                                                                <input type="checkbox" class="oneCheck">                                                                                                                                                       
-                                                                            </label>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="userListBody2">
-                                                                        <div class="sbImageFrame">
-                                                                            <div class="sbImageForm">
-                                                                                <div class="sbImageContainer">
-                                                                                    <div class="sbImageBox">
-                                                                                        <div class="sbImageWrap">
-                                                                                            <picture class="sbImageShow">
-                                                                                                <source srcset="/src/main/resources/static/images/chun.png" media="all and (min-width: 1024px)" >
-                                                                                                <img src="/src/main/resources/static/images/chun.png" class="sbImage" alt="">
-                                                                                            </picture>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="userListBody3">
-                                                                        <div class="sbTitleForm">
-                                                                            <p class="ulTitle">짜리킴</p>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="userListBody4">
-                                                                        <div class="sbStateFrame">
-                                                                            <div class="sbStateForm">
-                                                                                <p class="ulPhone" id="agreeState">01022067609</p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="userListBody5">
-                                                                        <div class="sbTerrainForm">
-                                                                            <p class="ulMail">polimmm@naver.com</p>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="userListBody6">
-                                                                        <div class="sbCourseFrame">
-                                                                            <p class="ulStart">도착</p>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="userListBody7">                                                                
-                                                                        <div class="sbDateFrame">
-                                                                            <p class="ulDate">2022-06-12</p>                                                                    
-                                                                        </div>                                                            
-                                                                    </div>
-                                                                    <div class="userListBody8">
-                                                                        <div class="sbPointFrame">
-                                                                            <input type="button" class="agreeBtn" id="agreeBtn" value="승인하기">                                                                                                                                                                                                                                                                                      
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="showListBody">
-                                                                    <div class="userListBody1">
-                                                                        <div class="sbCheckBoxFrame">
-                                                                            <label class="sbCheckBoxForm">                                                                                
-                                                                                <input type="checkbox" class="oneCheck">                                                                                                                                                       
-                                                                            </label>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="userListBody2">
-                                                                        <div class="sbImageFrame">
-                                                                            <div class="sbImageForm">
-                                                                                <div class="sbImageContainer">
-                                                                                    <div class="sbImageBox">
-                                                                                        <div class="sbImageWrap">
-                                                                                            <picture class="sbImageShow">
-                                                                                                <source srcset="/src/main/resources/static/images/chun.png" media="all and (min-width: 1024px)" >
-                                                                                                <img src="/src/main/resources/static/images/chun.png" class="sbImage" alt="">
-                                                                                            </picture>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="userListBody3">
-                                                                        <div class="sbTitleForm">
-                                                                            <p class="ulTitle">짜리킴</p>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="userListBody4">
-                                                                        <div class="sbStateFrame">
-                                                                            <div class="sbStateForm">
-                                                                                <p class="ulPhone" id="agreeState">01022067609</p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="userListBody5">
-                                                                        <div class="sbTerrainForm">
-                                                                            <p class="ulMail">polimmm@naver.com</p>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="userListBody6">
-                                                                        <div class="sbCourseFrame">
-                                                                            <p class="ulStart">도착</p>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="userListBody7">                                                                
-                                                                        <div class="sbDateFrame">
-                                                                            <p class="ulDate">2022-06-12</p>                                                                    
-                                                                        </div>                                                            
-                                                                    </div>
-                                                                    <div class="userListBody8">
-                                                                        <div class="sbPointFrame">
-                                                                            <input type="button" class="agreeBtn" id="agreeBtn" value="승인하기">                                                                                                                                                                                                                                                                                      
-                                                                        </div>
-                                                                    </div>
-                                                                    
-                                                                </div>
+                                                            <div class="showListHeader6">
+                                                                <span class="showListhCourse">신청자 상태</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -572,11 +444,34 @@
     </div>
     </div>
 
+    <div id="qrModal" class="qrModal-overlay">                                                    
+        <div class="close-modal">X</div>
+        <div class="content">
+            <picture class="qrShow">
+                <source srcset="/static/images/qrCheck.png" media="all and (min-width: 1024px)" >
+                <img src="/static/images/qrCheck.png" class="qrImage" alt="">
+            </picture>
+        </div>
+    </div>
+
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>
-    
+    let spanText = document.getElementById("listClose").textContent;
+    let sProjectContainer = document.querySelector('.sProjectContainer');
+
+    $("#listClose").click(function(){        
+        if(spanText == "expand_less"){
+            document.getElementById("listClose").textContent="expand_more";
+            spanText = document.getElementById("listClose").textContent;
+            sProjectContainer.classList.add('hidden');
+        } else {
+            document.getElementById("listClose").textContent="expand_less";
+            spanText=document.getElementById("listClose").textContent;
+            sProjectContainer.classList.remove('hidden');
+        }
+    });
 
 
     const showMoreBox = document.getElementById("showMore");
@@ -594,6 +489,20 @@
     //         showFlag = false;
     //     }
     // })
+    let showFlag = false;
+    $("#showMoreBtn").click(function(){
+        
+        if(!showFlag) {
+            console.log("들어옴1");
+            showMoreBox.style.display ="flex";
+            showFlag = true;
+        } else {
+            console.log("들어옴2");
+            showMoreBox.style.display ="none";
+            showFlag = false;
+        }
+        console.log(showFlag)
+    })
    
     // 승인상태에 따라 버튼을 다르게 보이게 함
     // var agreeState = $('#agreeState').text();
@@ -625,34 +534,26 @@
     //     }
     // }
 
-    const projectList = document.getElementById("projectListFrame");
-    const userList = document.getElementById("applierListFrame");
-    const makeProject = document.getElementById("addProjectFrame");
-    const returnList = document.getElementById("returnListFrame");
-
-    $('.userCheckFrame').click(function(){
-        console.log("들어옴");
-        projectList.style.display = "none";
-        userList.style.display = "block";
-        makeProject.style.display = "none";
-        returnList.style.display ="flex";
-    });
     
-    $('.returnListBtnBox').click(function(){
-        console.log("들어옴");
-        projectList.style.display = "block";
-        userList.style.display = "none";
-        makeProject.style.display = "flex";
-        returnList.style.display ="none";
+    const modal = document.getElementById("moreBoxModalFrame");
+    const btnModal = document.getElementById("showMoreBtn");
+    btnModal.addEventListener("click", e => {
+        modal.style.display = "flex";
     });
 
-    function selectAll(selectAll) {
-        console.log("들어옴");
-        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    const closeBtn = modal.querySelector(".close-modal")
+    closeBtn.addEventListener("click",e => {
+        modal.style.display = "none";
+    })
 
-        checkboxes.forEach((checkbox) => {
-            checkbox.checked = selectAll.checked
-        })
-    }
+    modal.addEventListener("click", e => {
+        const evTarget = e.target
+        if(evTarget.classList.contains("moreBoxModalForm")) {
+            modal.style.display = "none";
+        }
+    })
+
+    
+    
 </script>
 </html>
