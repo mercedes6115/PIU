@@ -16,7 +16,11 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+<<<<<<<< HEAD:src/main/java/com/example/pickitup/service/CompanyServiceChange.java
 public class CompanyServiceChange {
+========
+public class TempCompanyService {
+>>>>>>>> 5055cf286eb96c7162084f0e0f2a412c5e8a5fe1:src/main/java/com/example/pickitup/service/TempCompanyService.java
     private final CompanyDAO companyDAO;
     private final ProjectQnaDAO projectQnaDAO;
     private final ProjectQnaCommentDAO projectQnaCommentDAO;
