@@ -12,9 +12,7 @@ import java.util.List;
 @Repository
 @RequiredArgsConstructor
 public class ProductDAO {
-
     private final ProductMapper productMapper;
-
 
     // 상품 목록
     public List<ProductVO> getList(){
