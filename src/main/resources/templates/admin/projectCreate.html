@@ -34,7 +34,7 @@
 <div class="root">
 
     <!-- sidebar -->
-    <div th:replace="~{/admin/adminSideBar :: adminSideBarImport}"></div>
+    <div th:replace="~{/admin/adminSideBar :: AdminSideBarImport}"></div>
     <!-- sidebar -->
 
     <!-- content -->
@@ -194,5 +194,5 @@
         projectCreateForm.submit();
     })
 </script>
-
+<script th:replace="~{/admin/adminSideBar :: AdminSideBarJSImport}"></script>
 </html>

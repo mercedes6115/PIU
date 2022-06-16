@@ -24,7 +24,11 @@ public interface CompanyMapper {
     public boolean delete(Long num);
 
 //    회사 유저 로그인
+
+//    public
+
     public CompanyVO login(String email, String password);
+
 
 }
 

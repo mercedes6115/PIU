@@ -16,7 +16,7 @@ public class ProductReviewDAO {
 
     // 리뷰 리스트 -> 수정
     public List<ProductReviewVO> getList(Long productNum){
-        productReviewMapper.getList(productNum);
+        return productReviewMapper.getList();
     }
 
     // 리뷰 상세보기 -> 수정
