@@ -1,6 +1,7 @@
 package com.example.pickitup.mapper.project.projectFile;
 
 import com.example.pickitup.domain.vo.project.projectFile.ProjectFileVO;
+<<<<<<< HEAD
 
 import lombok.Data;
 import org.apache.ibatis.annotations.Mapper;
@@ -10,6 +11,9 @@ import org.apache.ibatis.annotations.Mapper;
 
 
 
+=======
+import org.apache.ibatis.annotations.Mapper;
+>>>>>>> 718039d5105b4170035f906806aabc6fb42d1e7a
 import java.util.List;
 
 @Mapper
