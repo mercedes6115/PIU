@@ -1,23 +1,24 @@
-package com.example.pickitup.mapper.user;
+package com.example.pickitup.service.user;
 
+import com.example.pickitup.service.TempUserSerivce;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
 @Slf4j
-public class JjimMapperTests {
+@SpringBootTest
+public class TempUserServiceTests {
     @Autowired
-    private JjimMapper jjimMapper;
+    private TempUserSerivce tempUserSerivce;
 
     @Test
     public void getProjectListTest() {
-        jjimMapper.getProjectList(2L);
+        tempUserSerivce.getJjimProjectList(2L);
     }
 
     @Test
     public void getProductListTest() {
-        jjimMapper.getProductList(2L);
+        tempUserSerivce.getJjimProductList(2L);
     }
 }

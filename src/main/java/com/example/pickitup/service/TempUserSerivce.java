@@ -2,6 +2,7 @@ package com.example.pickitup.service;
 
 import com.example.pickitup.domain.dao.user.*;
 import com.example.pickitup.domain.vo.Criteria;
+import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 import com.example.pickitup.domain.vo.user.*;
 import lombok.RequiredArgsConstructor;
@@ -50,12 +51,12 @@ public class TempUserSerivce {
 
     // jjimDAO
     // 나의 프로젝트 찜 목록
-    public List<JjimVO> getJjimProjectList(Long userNum) {
+    public List<ProjectVO> getJjimProjectList(Long userNum) {
         return jjimDAO.getProjectList(userNum);
     }
 
     // 나의 상품 찜 목록
-    public List<JjimVO> getJjimProductList(Long userNum) {
+    public List<ProductVO> getJjimProductList(Long userNum) {
         return jjimDAO.getProductList(userNum);
     }
 
