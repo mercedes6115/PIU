@@ -8,19 +8,19 @@
         <typeAlias type="com.example.pickitup.domain.vo.user.LatestVO" alias="latestVO"/>
         <typeAlias type="com.example.pickitup.domain.vo.user.OrderVO" alias="orderVO"/>
         <typeAlias type="com.example.pickitup.domain.vo.user.UserVO" alias="userVO"/>
-        <typeAlias type="com.example.pickitup.domain.vo.Criteria" alias="criteria"/>
+
         <typeAlias type="com.example.pickitup.domain.vo.product.productFile.ProductFileVO" alias="productFileVO"/>
         <typeAlias type="com.example.pickitup.domain.vo.product.productFile.ProductVO" alias="productVO"/>
         <typeAlias type="com.example.pickitup.domain.vo.product.productQna.ProductQnaCommentVO" alias="productQnaCommentVO"/>
         <typeAlias type="com.example.pickitup.domain.vo.product.productQna.ProductQnaVO" alias="productQnaVO"/>
         <typeAlias type="com.example.pickitup.domain.vo.product.productReview.ProductReviewFileVO" alias="productReviewFileVO"/>
         <typeAlias type="com.example.pickitup.domain.vo.product.productReview.ProductReviewVO" alias="productReviewVO"/>
+
         <typeAlias type="com.example.pickitup.domain.vo.project.projectFile.ProjectFileVO" alias="projectFileVO"/>
         <typeAlias type="com.example.pickitup.domain.vo.project.projectFile.ProjectVO" alias="projectVO"/>
         <typeAlias type="com.example.pickitup.domain.vo.project.projectQna.ProjectQnaCommentVO" alias="projectQnaCommentVO"/>
         <typeAlias type="com.example.pickitup.domain.vo.project.projectQna.ProjectQnaVO" alias="projectQnaVO"/>
         <typeAlias type="com.example.pickitup.domain.vo.project.projectReview.ProjectReviewFileVO" alias="projectReviewFileVO"/>
-        <typeAlias type="com.example.pickitup.domain.vo.project.projectReview.ProjectReviewVO" alias="projectReviewVO"/>
         <typeAlias type="com.example.pickitup.domain.vo.project.projectReview.ProjectReviewVO" alias="projectReviewVO"/>
     </typeAliases>
 </configuration>

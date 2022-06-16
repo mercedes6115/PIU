@@ -250,7 +250,7 @@ ul, li{
     padding: 0;
 }
 li {
-    list-style: none;
+list-style: none;
 }
 
 form input::file-selector-button{
@@ -363,5 +363,5 @@ ul.txtInfo li:before {
 }
 
 ul.txtInfo li{
-    line-height: 21px;
+line-height: 21px;
 }
