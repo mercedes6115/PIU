@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @Slf4j
-@RequestMapping("/pickitup/store/*")
+@RequestMapping("/store/*")
 public class StoreController {
 
     // 스토어 메인페이지
@@ -35,7 +35,7 @@ public class StoreController {
 
     }
 
-    // 스토어 리뷰 작성
+    // 스토어 리뷰 작성 폼
     @PostMapping("/reviewWrite")
     public void reviewWriteForm(){
 

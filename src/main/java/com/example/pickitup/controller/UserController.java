@@ -2,12 +2,14 @@ package com.example.pickitup.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @Slf4j
-@RequestMapping("/pickitup/user/*")
+@RequestMapping("/user/*")
 public class UserController {
 
     // 마이페이지 메인
@@ -52,6 +54,12 @@ public class UserController {
 
     }
 
+    // 비밀번호 재설정 폼
+    @PostMapping("/updatePw")
+    public void updatePwForm(){
+
+    }
+
     // 회원정보 수정 전 비밀번호 확인
     @GetMapping("/pwCheck")
     public void pwCheck(){
@@ -64,9 +72,21 @@ public class UserController {
 
     }
 
+    // 회원 정보 수정 폼
+    @PostMapping("/infoUpdate")
+    public void infoUpdateForm(){
+
+    }
+
     // 일반 유저 회원가입
     @GetMapping("/join")
     public void join(){
+
+    }
+
+    // 일반 유저 회원가입 폼
+    @PostMapping("/join")
+    public void joinForm(){
 
     }
 
@@ -76,10 +96,28 @@ public class UserController {
 
     }
 
+    // 단체 유저 회원가입 폼
+    @PostMapping("/joinGroup")
+    public void joinGroupForm(){
+
+    }
+
+
     // 로그인
     @GetMapping("/login")
     public void login(){
 
     }
 
+    // 로그인 폼
+    @PostMapping("/login")
+    public void loginForm(){
+
+    }
+
+    // 회원탈퇴
+    @DeleteMapping("/delete")
+    public void delete(){
+
+    }
 }

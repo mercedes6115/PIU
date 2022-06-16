@@ -15,13 +15,14 @@ public interface OrderMapper {
     public void insert(OrderVO orderVO);
 
 //    주문한 내용 보여주기, 가격, 상품명 등등
-    public void getDetail(@Param("productNum")Long productNum, @Param("num")Long orderNum);
+    public OrderVO getDetail(@Param("userNum")Long userNum, @Param("productNum")Long productNum);
 
 //    주문 취소
     public boolean delete(Long num);
 
-//    상품별 개수 세어주기 상품명, 주문상품개수 DTO 선언
 //
+    public int countOrder();
+    public int countProductOrder(@Param("productNum") Long productNum);
 
 
 

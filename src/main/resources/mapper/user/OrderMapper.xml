@@ -2,58 +2,85 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.pickitup.mapper.user.OrderMapper">
 
+    <select id="getList" resultType="orderVO">
+        <![CDATA[
+            SELECT ROWNUM RN, NUM, TOTAL, COUNTING, REGIST_DATE, PRODUCT_NUM, USER_NUM, STATUS
+            FROM (
+            SELECT  /*+ INDEX_DESC(TBL_USER SYS_C007334) */
+            ROWNUM RN, NUM, TOTAL, COUNTING, REGIST_DATE, PRODUCT_NUM, USER_NUM, STATUS
+            FROM TBL_ORDER
+            WHERE ROWNUM <= #{pageNum} * #{amount}
+            ORDER BY REGIST_DATE DESC
+            )
+            WHERE RN >(#{pageNum} - 1) * #{amount}
+        ]]>
+    </select>
 <!--    <select id="getList" resultType="boardVO">
         <![CDATA[
-        SELECT
-        ROWNUM RN, NUM, EMAIL, PASSWORD, NICKNAME,PHONE, ADDRESS, PROFILE_FILE_NAME, PROFILE_UPLOAD_PATH,POINT, REGIST_DATE
+        SELECT BOARD_BNO, BOARD_TITLE, BOARD_CONTENT, BOARD_WRITER, BOARD_REGISTER_DATE, BOARD_UPDATE_DATE
         FROM
         (
-            SELECT /*+ INDEX_DESC(TBL_USER SYS_C007234) */
-            ROWNUM RN, NUM, EMAIL, PASSWORD, NICKNAME,PHONE, ADDRESS, PROFILE_FILE_NAME, PROFILE_UPLOAD_PATH,POINT, REGIST_DATE
-            FROM TBL_USER
-            WHERE ROWNUM <= #{pageNum} * #{amount}
+            SELECT /*+ INDEX_DESC(TBL_BOARD SYS_C007186) */
+            ROWNUM RN, BOARD_BNO, BOARD_TITLE, BOARD_CONTENT, BOARD_WRITER, BOARD_REGISTER_DATE, BOARD_UPDATE_DATE
+            FROM TBL_BOARD
+            WHERE
+        ]]>
+            <trim prefix="(" prefixOverrides="OR" suffix=") AND">
+                <foreach item="type" collection="types">
+                    <trim prefix="OR">
+                        <choose>
+                            <when test="type == 'T'.toString()">
+                                (BOARD_TITLE LIKE '%'||#{keyword}||'%')
+                            </when>
+                            <when test="type == 'C'.toString()">
+                                (BOARD_CONTENT LIKE '%'||#{keyword}||'%')
+                            </when>
+                            <when test="type == 'W'.toString()">
+                                (BOARD_WRITER LIKE '%'||#{keyword}||'%')
+                            </when>
+                        </choose>
+                    </trim>
+                </foreach>
+            </trim>
+        <![CDATA[
+            ROWNUM <= #{pageNum} * #{amount}
         )
-        WHERE
         WHERE RN > (#{pageNum} - 1) * #{amount}
         ]]>
     </select>-->
 
 
     <select id="getDetail" resultType="userVo">
-        SELECT
-
-        FROM
-        (
-        SELECT  NUM, TOTAL, COUNTING, REGIST_DATE, PRODUCT_NUM, USER_NUM, STATUS
-        FROM TBL_ORDER
-        WHERE NUM=#{num}
-        ) A JOIN TBL_PRODUCT B ON A.PRODUCT_NUM=B.NUM
+        SELECT  ONUM, TOTAL, COUNTING, OREGISTDATE,USERNUM,PRODUCTNUM PRODUCTNAME, PRODUCTPRICE
+        FROM (
+        SELECT O.NUM ONUM, O.TOTAL TOTAL, COUNTING COUNTING, O.REGIST_DATE OREGISTDATE, O.USER_NUM USERNUM,O.PRODUCT_NUM PRODUCTNUM, P.NAME PRODUCTNAME, P.PRICE PRODUCTPRICE
+            FROM TBL_ORDER O JOIN TBL_PRODUCT P ON O.PRODUCT_NUM=P.NUM
+            WHERE USER_NUM =#{userNum}
+            )
+        WHERE PRODUCTNUM=#{productNum}
     </select>
 
     <insert id="insert">
-        INSERT INTO TBL_USER
-        (NUM, EMAIL, PASSWORD, NICKNAME, PHONE, ADDRESS, PROFILE_FILE_NAME, PROFILE_UPLOAD_PATH,REGIST_DATE)
-        VALUES(SEQ_USER.NEXTVAL,#{email}, #{password}, #{nickname}, #{phone}, #{address}, #{profileFileName}, #{profileUploadPath}, SYSDATE)
+        INSERT INTO TBL_ORDER
+        (NUM, TOTAL, COUNTING, PRODUCT_NUM, USER_NUM, REGIST_DATE)
+        VALUES(SEQ_ORDER.NEXTVAL, #{total}, #{counting}, #{productNum}, #{userNum}, SYSDATE)
     </insert>
 
     <delete id="delete">
-        DELETE FROM TBL_USER
+        DELETE FROM TBL_ORDER
         WHERE NUM=#{num}
     </delete>
 
-<!--    -->
-    <update id="update">
-        UPDATE TBL_USER
-        SET EMAIL=#{email}, PASSWORD=#{password}, NICKNAME=#{nickname}, PHONE=#{phone},ADDRESS=#{address},
-        PROFILE_FILE_NAME=#{profileFileName}, PROFILE_UPLOAD_PATH=#{profileUploadPath}, REGIST_DATE=SYSDATE
-        WHERE NUM=#{num}
-    </update>
+    <select id="countOrder" resultType="_int">
+    SELECT COUNT(NUM)
+    FROM TBL_ORDER
+    </select>
 
-
-
-
-
-
+    <select id="countProductOrder" resultType="_int">
+    SELECT COUNT(NUM)
+    FROM TBL_ORDER
+    WHERE PRODUCT_NUM=#{productNum}
+    </select>
 
 </mapper>
 
