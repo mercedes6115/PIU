@@ -2,6 +2,7 @@ package com.example.pickitup.mapper.product.productFile;
 
 import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
+import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -11,8 +12,7 @@ public interface ProductMapper {
     //    상품 전부 띄우기
     public List<ProductVO> getList();
 
-    // ??
-    public List<ProductVO> getProjectList(Criteria criteria);
+    public List<ProductVO> getProductList(Criteria criteria);
 
     //    상품 한개만 띄우기 (상세보기)
     public ProductVO getDetail(Long num);
