@@ -2,14 +2,14 @@ package com.example.pickitup.mapper.product.productQna;
 
 import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.product.productQna.ProductQnaCommentVO;
-import lombok.Data;
+
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Component;
+
 
 import java.util.List;
 
-@Mapper
 
+@Mapper
 public interface ProductQnaCommentMapper {
 
     //    qna 에 관리자가 답변 달은 것들 전체 띄우기 페이징, qnanum으로 qna도 가져와야함

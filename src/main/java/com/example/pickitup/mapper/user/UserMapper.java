@@ -3,6 +3,7 @@ package com.example.pickitup.mapper.user;
 import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.user.UserVO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -25,10 +26,9 @@ public interface UserMapper {
     public boolean delete(Long num);
 
 //    로그인
-    public UserVO login(String email, String password);
+    public UserVO login(@Param("email") String email,@Param("password") String password);
 
-//
-
+// 포인트 적립?
 
 }
 
