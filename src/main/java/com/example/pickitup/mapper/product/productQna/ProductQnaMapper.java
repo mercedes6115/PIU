@@ -1,20 +1,6 @@
 package com.example.pickitup.mapper.product.productQna;
 
 import com.example.pickitup.domain.vo.product.productQna.ProductQnaVO;
-
-
-import lombok.Data;
-import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Component;
-
-import org.apache.ibatis.annotations.Mapper;
-
-
-
-import java.util.List;
-
-
-
 import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
