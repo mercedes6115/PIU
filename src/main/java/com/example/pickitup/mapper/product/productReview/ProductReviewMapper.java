@@ -15,13 +15,13 @@ public interface ProductReviewMapper {
     //  하나의 리뷰 상세보기
 //    public ProductReviewVO getDetail(Long num);
 
-    //    리뷰 하나 작성하기
+    //    리뷰 하나 작성하기 ->일반 유저 ,관리자
     public void insert(ProductReviewVO productReviewVO);
 
-    //    리뷰 수정하기
+    //    리뷰 수정하기 ->일반 유저, 관리자
     public boolean update(ProductReviewVO productReviewVO);
 
-    //    리뷰 삭제하기
+    //    리뷰 삭제하기 ->일반유저, 관리자
     public boolean delete(Long num);
 
 }

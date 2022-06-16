@@ -24,6 +24,11 @@ public class ProductReviewDAO {
 //        return productReviewMapper.getDetail(num);
 //    }
 
+    // 리뷰작성
+    public void insert(ProductReviewVO productReviewVO){
+        productReviewMapper.insert(productReviewVO);
+    }
+
     // 리뷰 수정하기
     public boolean update(ProductReviewVO productReviewVO){
         return productReviewMapper.update(productReviewVO);

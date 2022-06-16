@@ -24,6 +24,11 @@ public class ProductReviewService {
 //        return productReviewDAO.read(num);
 //    }
 
+    // 리뷰 작성하기
+    public void insert(ProductReviewVO productReviewVO){
+        productReviewDAO.insert(productReviewVO);
+    }
+
     // 리뷰 수정하기
     public boolean update(ProductReviewVO productReviewVO){
         return productReviewDAO.update(productReviewVO);

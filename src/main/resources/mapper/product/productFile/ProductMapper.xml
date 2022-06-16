@@ -31,15 +31,15 @@
     <update id="update">
    UPDATE TBL_PRODUCT
     SET
-    NAME = #{name},
-    CONTENT = #{content},
-    CATEGORY = #{category},
-    PRICE = #{price},
-    STOCK = #{stock},
-    ORIGIN = #{origin},
-    MANUFACTURER = #{manufacturer},
-    SUPPLIER = #{supplier},
-    REGIST_DATE = SYSDATE
+        NAME = #{name},
+        CONTENT = #{content},
+        CATEGORY = #{category},
+        PRICE = #{price},
+        STOCK = #{stock},
+        ORIGIN = #{origin},
+        MANUFACTURER = #{manufacturer},
+        SUPPLIER = #{supplier},
+        REGIST_DATE = SYSDATE
     WHERE NUM=#{num}
     </update>
     <update id="delete">
