@@ -1,8 +1,11 @@
 
-const btns = document.querySelectorAll("button.btn");
+
 const banner = document.querySelector(".swiper-imgWrapper1");
 prevBtn = document.querySelector('.previous-button1'); //이전 버튼
 nextBtn = document.querySelector('.next-button1'); //다음 버튼
+
+console.log(prevBtn);
+console.log(nextBtn);
 var currentBannerIdx = 0; // 현재 슬라이드 인덱스 번호
 var bannerCount=6; // 총 슬라이드 수
 

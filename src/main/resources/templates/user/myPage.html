@@ -7,11 +7,14 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/assets/css/mypage_style.css">
+    <link rel="stylesheet" href="/assets/css/Header.css" />
+    <link rel="stylesheet" href="/assets/css/Footer.css" />
     <script src="https://kit.fontawesome.com/3e4acc40f3.js" crossorigin="anonymous"></script>
     <title>마이페이지</title>
 </head>
 
 <body class="mypage-total">
+<div th:replace="~{/main/Header :: HeaderImport}"></div>
 <div id="mypage-total-inside">
     <div class="mypage-outline mypage-linepick">
         <header class="header-middle"><a class="header-top" href="#">
@@ -3261,6 +3264,7 @@
         </div>
     </div>
 </div>
+<div th:replace="~{/main/Footer :: FooterImport}"></div>
 <script src="/assets/js/mypage.js"></script>
 </body>
 </html>

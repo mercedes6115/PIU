@@ -40,7 +40,7 @@
                                     <div class="search-box3">
                                         <div class="search-box4">
                                             <div class="header-search-text1">
-                                                <input type="text" class="search-icon" placeholder="찾으시는 플로깅이 있으신가요?"></input>
+                                                <input type="text" style="outline: none;" class="search-icon111" placeholder="찾으시는 플로깅이 있으신가요?"></input>
                                                 <span class="searching-svg-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="css-skwyyj">
                                                 <path d="m22.925 21.16-5.605-5.605A8.453 8.453 0 0 0 19 10.5 8.5 8.5 0 0 0 10.5 2 8.5 8.5 0 0 0 2 10.5a8.5 8.5 0 0 0 8.5 8.5c1.895 0 3.64-.63 5.055-1.68l5.605 5.605c.1.1.255.1.355 0l1.415-1.415a.246.246 0 0 0-.005-.35ZM4.5 10.5c0-3.31 2.69-6 6-6s6 2.69 6 6-2.69 6-6 6-6-2.69-6-6Z" class="header-search-icon1"></path>
                                             </svg>
@@ -55,6 +55,8 @@
                     <div class="header-right-menu-wrap">
                         <div class="header-right-menu-wrap1">
                             <div class="header-right-menu-wrap2">
+
+<!--  관리자면, 단체(회사)일경우 마이플로깅 -> 플로거 센터로 변경 타임리프 이용-->
                                 <div class="header-right-menu1">
                                     <a target="_blank" rel="noreferrer" href="https://creator.class101.net/center/products?hl=ko">
                                         <p class="myplogging">마이 플로깅</p>
@@ -79,7 +81,7 @@
                             </span>
                                 </a>
                                 <div class="right-empty-space1"></div>
-
+<!--                                로그아웃 상태이면 해당 영역 display:none-->
                                 <div class="loginWrapper1">
                                     <div class="loginWrapper1-left">
                                         <div class="loginWrapper1-left1">
@@ -87,7 +89,7 @@
                                                 <img src="../../../static/images/poster4.jpg" class="loginWrapper1-left2-wrapper">
                                             </div>
                                         </div>
-                                        <div class="Modal1Whole" ></div>
+                                        <div class="Modal1Whole"></div>
                                         <div class="Modal1Container" style="display:none">
                                             <div class="Modal1Wrapper">
                                                 <div class="ModalPadding">
@@ -119,7 +121,6 @@
                                                         <a href="#">
                                                             <p class="ModalMenuTextStyle">로그아웃</p>
                                                         </a>
-
                                                     </div>
                                                     <div class="ModalHeight"></div>
                                                     <div class="ModalMenuWrap12">
@@ -143,7 +144,10 @@
                     </div>
                 </div>
             </div>
+        </div>
     </header>
+
+<!--    페이지에 따라 내비게이션 바가 사라지는 페이지가있음 타임리프로 조건문 걸어서 특정 페이지에서는 사라지게할 예정-->
     <nav class="nav-container">
         <div class="nav-wrapper1">
             <div class="nav-wrapper2">
@@ -229,5 +233,6 @@
         </div>
     </nav>
 </section>
+</div>
 </body>
 </html>
