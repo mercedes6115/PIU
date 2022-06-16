@@ -21,9 +21,9 @@ public class ProductDAO {
     }
 
     // 상품 목록 - 관리자용
-    public List<ProductVO> getProductList(Criteria criteria){
-        return productMapper.getProjectList(criteria);
-    }
+//    public List<ProductVO> getProductList(Criteria criteria){
+//        return productMapper.getProjectList(criteria);
+//    }
 
     // 상품 등록하기 - 관리자용
     public void register(ProductVO productVO){
