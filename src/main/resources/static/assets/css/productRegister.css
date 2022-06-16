@@ -245,10 +245,12 @@ input .check{
 ul, li{
     overflow: hidden;
     list-style: none;
+    width: 100%;
+    margin: 0 auto;
     padding: 0;
 }
 li {
-    list-style: none;
+list-style: none;
 }
 
 form input::file-selector-button{
@@ -267,12 +269,7 @@ form input::file-selector-button{
 .extraImg li{
     float: left;
 }
-label[for='attach_main'] div{
-    width: 210px;
-    height: 210px;
-    background-size: 100% 100%;
-    cursor: pointer;
-}
+
 label[for='attach'] div{
     width: 210px;
     height: 210px;
@@ -366,5 +363,5 @@ ul.txtInfo li:before {
 }
 
 ul.txtInfo li{
-    line-height: 21px;
+line-height: 21px;
 }

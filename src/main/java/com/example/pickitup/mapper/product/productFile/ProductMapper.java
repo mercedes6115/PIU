@@ -8,20 +8,21 @@ import java.util.List;
 
 @Mapper
 public interface ProductMapper {
-    //    프로젝트 전부 띄우기
+    //    상품 전부 띄우기
     public List<ProductVO> getList();
-    //
+
+    // ??
     public List<ProductVO> getProjectList(Criteria criteria);
 
-    //    프로젝트 한개만 띄우기
+    //    상품 한개만 띄우기 (상세보기)
     public ProductVO getDetail(Long num);
 
-    //    프로젝트 등록하기
+    //    상품 등록하기
     public void insert(ProductVO productVO);
 
-    //    프로젝트 수정하기
+    //    상품 수정하기
     public boolean update(ProductVO productVO);
 
-    //    프로젝트 삭제하기
+    //    상품 삭제하기
     public boolean delete(Long num);
 }
