@@ -1,20 +1,8 @@
 package com.example.pickitup.mapper.product.productQna;
 
 import com.example.pickitup.domain.vo.product.productQna.ProductQnaVO;
-<<<<<<< HEAD
-import lombok.Data;
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Component;
-=======
-import org.apache.ibatis.annotations.Mapper;
->>>>>>> 4c3d9a75aec40aeab71564a5ee5b31fefbc2a083
-
-
-<<<<<<< HEAD
-=======
 import java.util.List;
-
->>>>>>> 4c3d9a75aec40aeab71564a5ee5b31fefbc2a083
 @Mapper
 public interface ProductQnaMapper {
     //    qna 전체 띄우기 무한 스크롤
