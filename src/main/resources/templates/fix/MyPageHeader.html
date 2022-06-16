@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/assets/css/MyPageHeader.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+<body>
+<div th:replace="~{/fix/MyPageHeader :: MyPageHeaderImport}"></div>
+<div class="MyPageHeader-Container">
+    <div class="MyPageHeader-Section">
+        <header class= "MyPageHeader-Header">
+            <div class="MyPageHeader-wrapper1">
+                <div class="MyPageHeader-wrapper2">
+                    <div class="MyPageHeader-Contents-wrapper">
+                        <a href="#">
+                            <div class="MyPageHeader-Logo">
+                                <span class="MyPageHeader-Logo-wrap">
+                                    pickitup
+                                </span>
+                            </div>
+                        </a>
+                        <div class="MyPageHeader-Space1"></div>
+                        <div class="MyPageHeader-Search-Wrap">
+                            <div class="MyPageHeader-Search-Wrap1">
+                                <div class="MyPageHeader-Search-Wrap2">
+                                    <div class="MyPageSearch-Box">
+                                        <div class="MyPageSearch-Box-Back">
+                                            <div class="MyPageSearch-Flex">
+                                                <p class="MyPageSearchHolder">찾으시는 플로깅이 있나요?</p>
+                                                <span class="MyPageS-Icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="css-skwyyj">
+                                                        <path d="m22.925 21.16-5.605-5.605A8.453 8.453 0 0 0 19 10.5 8.5 8.5 0 0 0 10.5 2 8.5 8.5 0 0 0 2 10.5a8.5 8.5 0 0 0 8.5 8.5c1.895 0 3.64-.63 5.055-1.68l5.605 5.605c.1.1.255.1.355 0l1.415-1.415a.246.246 0 0 0-.005-.35ZM4.5 10.5c0-3.31 2.69-6 6-6s6 2.69 6 6-2.69 6-6 6-6-2.69-6-6Z" class="css-sy7xp0"></path>
+                                                    </svg>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="MyPageHeader-RightSide-Wrapper">
+                        <div class="MyPageHeader-RightSide-Wrapper1">
+                            <div class="MyPageHeader-RightSide-Wrapper2">
+                                <div class="MyPage-Space2"></div>
+                                <div class="MyPage-Space2"></div>
+                                <a href="#">
+                                    <span class="MyPageHeartIcon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="css-uxrfz2">
+                                            <path d="M21.141 3.91A6.262 6.262 0 0 0 16.654 2c-1.621 0-3.252.635-4.488 1.91-.06.06-.11.125-.165.19-.055-.06-.105-.13-.165-.19A6.263 6.263 0 0 0 7.35 2c-1.621 0-3.252.635-4.488 1.91-2.481 2.545-2.481 6.67 0 9.21l8.935 8.79c.06.06.135.09.21.09.075 0 .15-.03.21-.09l8.935-8.79c2.467-2.54 2.467-6.665-.01-9.21Zm-1.78 7.35-7.37 7.245-7.369-7.245c-1.47-1.525-1.466-3.99.015-5.51A3.73 3.73 0 0 1 7.33 4.605c1.005 0 2.19.505 2.996 1.25.73.68 1.066 1.235 1.361 1.655.03.045.125.215.3.215s.27-.175.305-.22c.296-.425.63-.975 1.356-1.655.806-.75 1.991-1.25 2.997-1.25a3.74 3.74 0 0 1 2.696 1.145c1.486 1.525 1.491 3.99.02 5.514Z" class="css-17ivn46"></path>
+                                        </svg>
+                                    </span>
+                                </a>
+                                <div class="MyPage-Space2"></div>
+                                <a href="#">
+                                    <div class="MyPageCoupontIcon"> 
+                                    <span class="MyPageCoupontIcon11">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="css-uxrfz2">
+                                            <path d="M19.5 6.001v2.257a4.5 4.5 0 0 0-2 3.747c0 1.55.785 2.932 2 3.747v2.257h-15v-2.257a4.5 4.5 0 0 0 2-3.747c0-1.55-.785-2.932-2-3.747V6h15ZM21.905 3.5H2.095A.095.095 0 0 0 2 3.595v6.174c0 .13.105.23.235.245C3.23 10.129 4 10.974 4 12s-.77 1.871-1.765 1.986c-.13.015-.235.115-.235.245v6.174c0 .055.045.095.095.095h19.81a.095.095 0 0 0 .095-.095v-6.174c0-.13-.105-.23-.235-.245A1.998 1.998 0 0 1 20 12c0-1.026.77-1.871 1.765-1.986.13-.015.235-.115.235-.245V3.595a.098.098 0 0 0-.095-.095Z" class="css-17ivn46">
+                                        </path>
+                                    </svg>
+                                    </span>
+                                    <div class="CouponNum">
+                                        <div class="CoupunNumWrap"></div> 
+                                        <p class="CouponOneIcon">1</p>
+                                     </div>
+                                </div>
+                                </a>
+                                <div class="MyPage-Space2"></div>
+                                <div class="MyPageProfileWrap">
+                                    <div class="MyPageProfileWrap1">
+                                        <div class="MyPageProfileImage">
+                                            <div class="MyPageProfileImage1">
+                                                <img src="" class="PPPImage">
+                                            </div>
+                                        </div>
+                                        <div class="EmptySpacing3"></div>
+                                        <span class="DropDownBtn">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="css-uxrfz2">
+                                                <path d="m21.93 15.175-1.415 1.415c-.1.1-.255.1-.355 0l-8.155-8.155-8.16 8.16c-.1.1-.255.1-.355 0L2.075 15.18c-.1-.1-.1-.255 0-.355l9.75-9.75c.1-.1.255-.1.355 0l9.75 9.745c.1.1.1.26 0 .355Z" class="css-17ivn46"></path>
+                                            </svg>
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="https://kit.fontawesome.com/3e4acc40f3.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/assets/css/mypage_style.css">
+    <link rel="stylesheet" href="/assets/css/MyPageHeader.css">
+    <link rel="stylesheet" href="/assets/css/MyPageFooter.css"> <!--아직미구현-->
+    <title>회원정보수정</title>
+
+</head>
+
+<body class="user-info-change-body">
+
+<div id="my_modal2" class="my_modal2">
+    <h1 class="modal-in">
+        <div class="modal-in1">정말 Pick it up을 떠나실 건가요?</div>
+        <div class="modal-in2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                    viewBox="0 0 24 24">
+            <path
+                    d="M18.5 4L12 10.5 5.5 4 4 5.5l6.5 6.5L4 18.5 5.5 20l6.5-6.5 6.5 6.5 1.5-1.5-6.5-6.5L20 5.5 18.5 4z"
+                    fill="#cacaca"></path>
+        </svg></div>
+    </h1>
+    <form action="#">
+        <div color="#666666" font-weight="bold" class="modal-in3">회원탈퇴 신청 전 아래 사항을
+            확인 부탁드립니다 😊</div>
+        <div color="#666666" class="modal-in3">1. 신청일부터 5일 후 회원탈퇴가 처리되며, 회원탈퇴 처리 전까지
+            고객센터(https://class101.channel.io)에서 그 신청을 철회할 수 있습니다.</div>
+        <div color="#666666" class="modal-in3">2. 회원탈퇴 후 기존 계정으로 회원가입을 신청할 수 없습니다.
+        </div>
+        <div color="#666666" class="modal-in3">3. 배송/교환/반품 중인 상품이 있는 경우 신청할 수 없습니다.
+        </div>
+        <div color="#666666" class="modal-in3">4. 회원탈퇴 시 회원이
+            가진 포인트 및 권리는 모두 소멸합니다. 회원탈퇴 후 포인트 사용이 불가하므로 필요한 경우 탈퇴 전에 확인해주세요.</div>
+        <div color="#666666" class="modal-in3">5. 회원탈퇴 시 회사가 보관하고 있는 회원 데이터는 모두
+            영구적으로 삭제됩니다. 다만, 관련 법령에 따라 회사가 보관할 의무가 있는 정보 또는 자료는 일정기간 동안 보관됩니다.</div>
+        <div color="#666666" class="modal-in3">6. 회원탈퇴 후 Pick it up에 게시한 게시물을 편집하거나 삭제할
+            수 없습니다. 필요한 경우 신청 전 게시물을 편집하거나 삭제해주세요.</div>
+        <div class="modal-in4">
+            <h4 class="modal-in5">떠나시기 전에</h4>
+            <div class="modal-in6">이유를 알려주세요</div>
+            <div class="modal-by"><textarea class="modal-textarea"
+                                            placeholder="탈퇴하시려는 이유를 알려주세요. 소중한 의견을 반영하여 더 나은 서비스를 만들도록 노력하겠습니다" name="reason"
+                                            autocomplete="off" style="border-radius: 3px; margin-top: 4px;"></textarea></div>
+            <div class="modal-by2">
+                <div class="modal-by3">혹시 도와드릴 수 있는 문제일까요?</div>
+                <div class="modal-by4">
+                    <div color="#ff3d00" class="modal-by5">Pick it up에게 문의하기</div><svg
+                        xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24">
+                    <path fill-rule="evenodd" d="M8.5 18.5l6-6.5-6-6.5L10 4l7.5 8-7.5 8-1.5-1.5z"
+                          fill="#ff3d00"></path>
+                </svg>
+                </div>
+            </div>
+        </div>
+        <div class="modal-by6">
+            <div font-weight="bold" class="modal-by7">계정을 삭제하시겠어요?</div><button type="button"
+                                                                                class="modal-by8" color="default"
+                                                                                fill="true"><span class="modal-by9">Pick it up 계속 사용하기</span></button><button type="submit"
+                                                                                                                                                              class="modal-by10" color="orange"
+                                                                                                                                                              fill="true"><span class="modal-by11">계정 삭제하기</span></button>
+        </div>
+    </form>
+
+    <a class="modal_close_btn2" id="modal_close_btn2">닫기</a>
+</div>
+<div id="mypage-total-inside-user">
+    <div id="mypage-wrap">
+        <div class="myinfo-list">
+            <div class="first-info-forms">
+                <div class="top-bar">
+                    <div class="top-bar2"><a target="_self" class="top-bar3" href="/me">마이페이지</a></div>
+                    <div class="title-divide"></div>
+                    <div disabled="" class="top-bar-middle"><a target="_self" class="top-bar-middle2"
+                                                               href="/me/edit">프로필 수정</a></div>
+                </div>
+                <div class="user-info-profile"><label class="sc-1d23226d-0 jeRPsg"><input type="file"
+                                                                                          class="user-profile-change" accept="image/*">
+                    <div size="88" class="info-change1">
+                        <div size="88" class="info-change2"><span class="info-change3">
+                                        <picture class="JCHSH => info-change4"><img sizes="100vw" src="https://class101.net/images/default-user.png
+                                            "></picture>
+                                    </span></div>
+                        <div class="info-change5"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                       fill="none" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd"
+                                  d="M4 21a1 1 0 01-1-1v-4a1 1 0 01.293-.707l11-11a3.83 3.83 0 015.414 0 3.83 3.83 0 010 5.414l-11 11A1 1 0 018 21H4zm1-2h2.586l.707-.707-2.586-2.586-.707.707V19z"
+                                  fill="#FFF"></path>
+                        </svg></div>
+                    </div>
+                </label></div>
+                <form action="#">
+                    <div class="info-input1">
+                        <div class="info-input2"><label class="info-input3 user_change" id="user_e_mail">이메일</label>
+                            <div class="info-input4"><input class="info-input5" type="text"
+                                                            placeholder="이메일@naver.com" readonly></div>
+                        </div>
+                    </div>
+                    <div class="info-input1">
+                        <div class="info-input2"><label class="info-input3 user_change"
+                                                        id="user_nickname">닉네임</label>
+                            <div class="info-input4"><input class="info-input5 nickname" id="nickname" type="text" placeholder="kyg"
+                            ></div>
+                        </div>
+                    </div>
+                    <div class="info-input1">
+                        <div class="info-input2"><label class="info-input3" id="user_phone">휴대폰 번호</label>
+                            <div class="info-phone1 address-info">
+                                <div class="info-input6"><input class="info-phone2" type="text" placeholder="010-5642-4774"></div>
+                                <button type="button" class="user-info-phone-change-btn " color="default"
+                                        fill="false"><span class="user-info-ch1 phone-modi">수정</span></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-input1">
+                        <div class="info-input2"><label class="info-input3">주소</label>
+                            <div class="info-phone1 ">
+                                <div class="info-input6"><input class="info-phone2 input-data address-info"
+                                                                type="text" id="state" placeholder="주소"></div>
+                                <button type="input" class="user-info-phone-change-btn"
+                                        color="default"><span class="user-info-ch1 btnCertify">검색</span></button>
+                            </div>
+                            <div class="adrr-second">
+                                <input class="info-input5 input-data address2 state-detail" type="text"
+                                       id="state-detail" placeholder="상세주소">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modify-con"><button type="submit" class="modify-checking checking-modify"
+                                                    id="modi-ok" color="orange" fill="true" disabled="true"><span
+                            class="sc-89f01919-1 jwNHGa">수정하기</span></button></div>
+            </div>
+            </form>
+            <div class="bottom-line"></div>
+            <div class="out-confirm-q">
+                <div class="out-confirm-q2"><input type="button" class="out-confirm-b" color="default" value="회원탈퇴"
+                                                   fill="true" onclick="document.getElementById('popup_open_btn2').click();">
+                    <button id="popup_open_btn2">팝업창 띄어 줘염</button>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script>
+    function modal(id) {
+        var zIndex = 9999;
+        var modal = document.getElementById(id);
+
+        // 모달 div 뒤에 희끄무레한 레이어
+        var bg = document.createElement('div');
+        bg.setStyle({
+            position: 'fixed',
+            zIndex: zIndex,
+            left: '0px',
+            top: '0px',
+            width: '100%',
+            height: '100%',
+            overflow: 'auto',
+            // 레이어 색갈은 여기서 바꾸면 됨
+            backgroundColor: 'rgba(0,0,0,0.4)'
+        });
+        document.body.append(bg);
+
+        // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
+        modal.querySelector('.modal_close_btn2').addEventListener('click', function () {
+            bg.remove();
+            modal.style.display = 'none';
+        });
+
+        modal.querySelector('.modal-by8').addEventListener('click', function () {
+            bg.remove();
+            modal.style.display = 'none';
+        });
+
+        modal.setStyle({
+            position: 'fixed',
+            display: 'block',
+            boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+
+            // 시꺼먼 레이어 보다 한칸 위에 보이기
+            zIndex: zIndex + 1,
+
+            // div center 정렬
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            msTransform: 'translate(-50%, -50%)',
+            webkitTransform: 'translate(-50%, -50%)'
+        });
+
+        $(".modal-in2").on("click", function () {
+            bg.remove();
+            $("#my_modal2").attr("style", "display:none");
+        });
+
+    }
+
+    // Element 에 style 한번에 오브젝트로 설정하는 함수 추가
+    Element.prototype.setStyle = function (styles) {
+        for (var k in styles) this.style[k] = styles[k];
+        return this;
+    };
+
+    document.getElementById('popup_open_btn2').addEventListener('click', function () {
+        // 모달창 띄우기
+        modal('my_modal2');
+    });
+</script>
+
+<script>
+    function getImageFiles(e) {
+        const uploadFiles = [];
+        const files = e.currentTarget.files;
+        const imagePreview = document.querySelector('.info-change4');
+        const docFrag = new DocumentFragment();
+
+        // 파일 타입 검사
+        [...files].forEach(file => {
+            if (!file.type.match("image/.*")) {
+                alert('이미지 파일만 업로드가 가능합니다.');
+                return
+            }
+
+            // 파일 갯수 검사
+            if ([...files].length < 7) {
+                uploadFiles.push(file);
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const preview = createElement(e, file);
+                    imagePreview.replaceChildren(preview);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+
+    function createElement(e, file) {
+        const li = document.createElement('li');
+        const img = document.createElement('img');
+        img.setAttribute('src', e.target.result);
+        img.setAttribute('data-file', file.name);
+        li.appendChild(img);
+
+        return li;
+    }
+
+    const realUpload = document.querySelector('.user-profile-change');
+    const upload = document.querySelector('.info-change2');
+
+    upload.addEventListener('click', () => realUpload.click());
+
+    realUpload.addEventListener('change', getImageFiles);
+</script>
+
+
+<script>
+
+    let ph1 = document.querySelector("#nickname");
+    let mph1 = ph1.placeholder;
+
+    let ph2 = document.querySelector("#state");
+    let mph2 = ph2.placeholder;
+    let ph3 = document.querySelector("#state-detail");
+    let mph3 = ph3.placeholder;
+
+
+    $(function(){
+        $("#nickname").on('input', function(){
+            if($("#nickname").val()=='' || $("#nickname").val()===mph1 || $("#nickname").val().trim() == ""){
+                $("#modi-ok").attr("disabled", true);
+            } else{
+                $("#modi-ok").attr("disabled", false);
+            }
+        });
+    })
+
+
+    $(function(){
+        $("#state-detail").on('input', function(){
+            if($("#state").val() != ""){
+                if($("#state-detail").val()==''){
+                    $("#modi-ok").attr("disabled", true);
+                } else{
+                    $("#modi-ok").attr("disabled", false);
+                }
+            }
+        });
+    })
+
+
+</script>
+
+
+</body>
+<script src="mypage.js"></script>
+
+</html>
