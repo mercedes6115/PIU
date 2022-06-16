@@ -2,14 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.pickitup.mapper.product.productFile.ProductMapper">
     <!--상품 리스트-->
-    <select id="getList">
+    <select id="getList" resultType="productVO">
     SELECT
         NUM, NAME, CONTENT, CATEGORY, PRICE, STOCK,
         ORIGIN, MANUFACTURER, SUPPLIER, REGIST_DATE
     FROM TBL_PRODUCT
     ORDER BY REGIST_DATE DESC
     </select>
-    <select id="getDetail">
+    <select id="getDetail" resultType="productVO">
     SELECT
         NUM, NAME, CONTENT, CATEGORY, PRICE, STOCK,
         ORIGIN, MANUFACTURER, SUPPLIER, REGIST_DATE
@@ -27,28 +27,24 @@
             SEQ_PRODUCT.NEXTVAL,#{name},#{content},#{category},#{price},
             #{stock},#{origin},#{manufacturer},#{supplier},SYSDATE
         )
-    FROM TBL_PRODUCT
     </insert>
     <update id="update">
-    UPDATE TBL_PRODUCT
+   UPDATE TBL_PRODUCT
     SET
-        NAME=#{name},
-        CONTENT=#{content},
-        CATEGORY=#{category},
-        PRICE=#{price},
-        STOCK=#{stock},
-        ORIGIN=#{origin},
-        MANUFACTURER=#{manufacturer},
-        SUPPLIER=#{supplier},
-        REGIST_DATE=SYSDATE,
-    WHERE NUM=#{num};
-
+    NAME = #{name},
+    CONTENT = #{content},
+    CATEGORY = #{category},
+    PRICE = #{price},
+    STOCK = #{stock},
+    ORIGIN = #{origin},
+    MANUFACTURER = #{manufacturer},
+    SUPPLIER = #{supplier},
+    REGIST_DATE = SYSDATE
+    WHERE NUM=#{num}
     </update>
     <update id="delete">
-    UPDATE TBL_PRODUCT
-    SET
-        STATUS=#{status}
-    WHERE NUM=#{num};
+    DELETE FROM TBL_PRODUCT
+    WHERE NUM=#{num}
     </update>
 </mapper>
 

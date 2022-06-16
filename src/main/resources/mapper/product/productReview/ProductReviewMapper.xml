@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.pickitup.mapper.product.productReview.ProductReviewMapper">
-    <select id="getList">
+    <select id="getList" resultType="productReviewVO">
     SELECT NUM, CONTENT, REGIST_DATE, UPDATE_DATE, STATUS, USER_NUM, PRODUCT_NUM
     FROM TBL_PRODUCT_REVIEW
     ORDER BY REGIST_DATE DESC
     </select>
-    <select id="getDetail">
+    <select id="getDetail" resultType="productReviewVO">
     SELECT NUM,CONTENT, REGIST_DATE, UPDATE_DATE, STATUS, USER_NUM, PRODUCT_NUM
     FROM TBL_PRODUCT_REVIEW
     WHERE NUM=#{num}
@@ -27,11 +27,8 @@
     UPDATE TBL_PRODUCT_REVIEW
     SET
         CONTENT=#{content},
-        REGIST_DATE=SYSDATE,
-        UPDATE_DATE=SYSDATE,
-        USER_NUM=#{userNum},
-        PRODUCT_NUM=#{productNum}
-    WHERE NUM=#{num};
+        UPDATE_DATE=SYSDATE
+    WHERE NUM=#{num}
     </update>
     <delete id="delete">
     DELETE FROM TBL_PRODUCT_REVIEW
