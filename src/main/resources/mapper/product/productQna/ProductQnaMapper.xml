@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.pickitup.mapper.product.productQna.ProductQnaMapper">
-    <select id="getList">
+    <select id="getList" resultType="productQnaVO">
     SELECT
         NUM, CONTENT, REGIST_DATE, UPDATE_DATE,
         STATUS, USER_NUM, PRODUCT_NUM
     FROM TBL_PRODUCT_QNA
     ORDER BY UPDATE_DATE DESC
     </select>
-    <select id="getDetail">
+    <select id="getDetail" resultType="productQnaVO">
     SELECT
         NUM, CONTENT, REGIST_DATE, UPDATE_DATE,
         STATUS, USER_NUM, PRODUCT_NUM
@@ -19,27 +19,24 @@
     INSERT INTO TBL_PRODUCT_QNA
         (
             NUM, CONTENT, REGIST_DATE, UPDATE_DATE,
-            STATUS, USER_NUM, PRODUCT_NUM
+            USER_NUM, PRODUCT_NUM
         )
     VALUES
         (
             SEQ_PRODUCT_QNA.NEXTVAL, #{content},
-            SYSDATE, SYSDATE, '', #{userNum}, #{productNum}
+            SYSDATE, SYSDATE, #{userNum}, #{productNum}
         )
     </insert>
     <update id="update">
     UPDATE TBL_PRODUCT_QNA
     SET
     CONTENT=#{content},
-    REGIST_DATE=SYSDATE,
-    UPDATE_DATE=SYSDATE,
-    USER_NUM=#{userNum},
-    PRODUCT_NUM=#{productNum}
-    WHERE NUM=#{num};
+    UPDATE_DATE=SYSDATE
+    WHERE NUM=#{num}
     </update>
     <delete id="delete">
     DELETE FROM TBL_PRODUCT_QNA
-    WHERE NUM=#{num};
+    WHERE NUM=#{num}
     </delete>
 </mapper>
 
