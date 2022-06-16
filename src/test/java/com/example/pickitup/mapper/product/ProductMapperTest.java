@@ -20,7 +20,7 @@ public class ProductMapperTest {
 //
 //    @Test
 //    public void getDetailTest(){
-//        productMapper.getDetail(22L);
+//        productMapper.getDetail(23L);
 //    }
 //
 //    @Test
