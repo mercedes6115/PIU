@@ -16,7 +16,9 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class CompanyService {
+
+
+public class TempCompanyService {
     private final CompanyDAO companyDAO;
     private final ProjectQnaDAO projectQnaDAO;
     private final ProjectQnaCommentDAO projectQnaCommentDAO;

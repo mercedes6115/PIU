@@ -22,7 +22,6 @@ public class RController {
 
     }
 
-
     // qr생성
     @PostMapping("/qr")
     public void addQr(){

@@ -15,7 +15,7 @@
 <div class="root">
 
     <!-- sidebar -->
-    <div th:replace="~{/admin/adminSideBar :: adminSideBarImport}"></div>
+    <div th:replace="~{/admin/adminSideBar :: AdminSideBarImport}"></div>
 
     <!-- content -->
     <div id="container">
@@ -206,10 +206,6 @@
         }
     });
 
-    $(document).ready(function () {
-        $('#sidebar').load("adminSideBar.html");
-
-    })
 </script>
-
+<script th:replace="~{/admin/adminSideBar :: AdminSideBarJSImport}"></script>
 </html>

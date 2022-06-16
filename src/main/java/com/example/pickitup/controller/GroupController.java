@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @Slf4j
-@RequestMapping("/pickitup/group/*")
+@RequestMapping("/group/*")
 public class GroupController {
 
 

@@ -24,7 +24,7 @@
 <div class="root">
 
     <!-- sidebar -->
-    <div th:replace="~{/admin/adminSideBar :: adminSideBarImport}"></div>
+    <div th:replace="~{/admin/adminSideBar :: AdminSideBarImport}"></div>
     <!-- sidebar -->
 
     <!-- content -->
@@ -197,10 +197,7 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $(document).ready(function () {
-        $('#sidebar').load("adminSideBar.html");
 
-    })
 
     $('#userDisabled').on("click", function (e) {
 
@@ -244,5 +241,5 @@
     });
 
 </script>
-
+<script th:replace="~{/admin/adminSideBar :: AdminSideBarJSImport}"></script>
 </html>
