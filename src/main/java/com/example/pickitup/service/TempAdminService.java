@@ -18,7 +18,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class AdminService {
+public class TempAdminService {
 
     private final UserDAO userDAO;
     private final ApplyDAO applyDAO;

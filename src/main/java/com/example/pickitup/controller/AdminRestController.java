@@ -2,25 +2,17 @@ package com.example.pickitup.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-@RestController
+@Controller
 @Slf4j
-@RequestMapping("/pickitup/*")
+@RequestMapping("/adminR/*")
 @RequiredArgsConstructor
-public class RController {
+public class AdminRestController {
 
-    // 댓글
-    @PostMapping("/comment")
-    public void addComment(){
-
-    }
-
-    // 문의글
-    @PostMapping("/reply")
-    public void addQnA() {
-
-    }
 
     // qr생성
     @PostMapping("/qr")
@@ -40,15 +32,11 @@ public class RController {
 
     }
 
-    // 찜추가
-    @PostMapping("/jjim")
-    public void addJjim(){
+    // 문의글 답변
+    @PostMapping("/comment")
+    public void addComment(){
 
     }
 
-    // 찜해제
-    @DeleteMapping("/jjim")
-    public void removeJjim(){
 
-    }
 }
