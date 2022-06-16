@@ -3,6 +3,7 @@ package com.example.pickitup.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -34,6 +35,13 @@ public class AdminController {
 
     }
 
+    // 관리자 게시물 등록 폼
+    @PostMapping("/boardWrite")
+    public void boardWriteForm(){
+
+    }
+
+
     // 관리자 주문 목록
     @GetMapping("/orderList")
     public void orderList(){
@@ -46,9 +54,15 @@ public class AdminController {
 
     }
 
-    // 관리자 프로젝트 생성
+    // 관리자 프로젝트 생성 폼
     @GetMapping("/projectCreate")
     public void projectCreate(){
+
+    }
+
+    // 관리자 프로젝트 생성
+    @PostMapping("/projectCreate")
+    public void projectCreateForm(){
 
     }
 
@@ -61,6 +75,12 @@ public class AdminController {
     // 관리자 상품 등록
     @GetMapping("/productRegister")
     public void productRegister(){
+
+    }
+
+    // 관리자 상품 등록
+    @PostMapping("/productRegister")
+    public void productRegisterForm(){
 
     }
 
