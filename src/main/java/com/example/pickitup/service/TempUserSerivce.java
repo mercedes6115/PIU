@@ -61,14 +61,6 @@ public class TempUserSerivce {
         return jjimDAO.getProductList(userNum);
     }
 
-    // 내가 찜한 프로젝트의 찜 개수
-    public List<Integer> countMyJjimProject(Long userNum) {
-        List<ProjectVO> projectVOList = jjimDAO.getProjectList(userNum);
-        List<Integer> countJjimProject = new ArrayList<>();
-
-
-    }
-
     // 찜 등록
     public void registerJjim(JjimVO jjimVO) {
         jjimDAO.register(jjimVO);
