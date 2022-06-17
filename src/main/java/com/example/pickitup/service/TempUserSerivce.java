@@ -93,6 +93,10 @@ public class TempUserSerivce {
         return latestDAO.updateProduct(latestVO);
     }
 
+    // 내가 구매한 상품 목록
+    public List<ProductVO> getInProjectList(Long userNum) {
+        return userDAO.getInProjectList(userNum);
+    }
 
     // orderDAO
     // 주문 등록
