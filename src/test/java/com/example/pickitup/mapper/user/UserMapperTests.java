@@ -61,6 +61,11 @@ public class UserMapperTests {
         log.info("수정"+ userMapper.update(userVO));
     }
 
+    @Test
+    public void getInProductListTest(){
+        userMapper.getInProductList(2L);
+    }
+
 
 
 
