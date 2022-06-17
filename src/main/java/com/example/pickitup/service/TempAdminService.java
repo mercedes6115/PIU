@@ -7,6 +7,7 @@ import com.example.pickitup.domain.dao.user.*;
 import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.product.productFile.ProductFileVO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
+import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 import com.example.pickitup.domain.vo.user.ApplyVO;
 import com.example.pickitup.domain.vo.user.CompanyVO;
 import com.example.pickitup.domain.vo.user.OrderVO;
