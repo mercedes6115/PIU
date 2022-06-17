@@ -18,32 +18,33 @@
         ]]>
     </select>-->
 
-
-    <select id="getDetail" resultType="userVo">
+<!--마이페이지, 관리자 사용-->
+    <select id="getDetail" resultType="userVO">
         SELECT
         NUM, EMAIL, NICKNAME,PHONE, ADDRESS, PROFILE_FILE_NAME, PROFILE_UPLOAD_PATH, POINT, REGIST_DATE
         FROM TBL_USER
         WHERE NUM=#{num}
     </select>
-
+<!--회원 가입-->
     <insert id="insert">
         INSERT INTO TBL_USER
-        (NUM, EMAIL, PASSWORD, NICKNAME, PHONE, ADDRESS, PROFILE_FILE_NAME, PROFILE_UPLOAD_PATH,REGIST_DATE)
-        VALUES(SEQ_USER.NEXTVAL,#{email}, #{password}, #{nickname}, #{phone}, #{address}, #{profileFileName}, #{profileUploadPath}, SYSDATE)
+        (NUM, EMAIL, PASSWORD, NICKNAME, PHONE, ADDRESS, REGIST_DATE)
+        VALUES(SEQ_USER.NEXTVAL,#{email}, #{password}, #{nickname}, #{phone}, #{address}, SYSDATE)
     </insert>
-
+<!--회원탈퇴-->
     <delete id="delete">
         DELETE FROM TBL_USER
         WHERE NUM=#{num}
     </delete>
 
-<!--    -->
+<!--  회원 수정  -->
     <update id="update">
         UPDATE TBL_USER
         SET EMAIL=#{email}, PASSWORD=#{password}, NICKNAME=#{nickname}, PHONE=#{phone},ADDRESS=#{address},
         PROFILE_FILE_NAME=#{profileFileName}, PROFILE_UPLOAD_PATH=#{profileUploadPath}, REGIST_DATE=SYSDATE
         WHERE NUM=#{num}
     </update>
+
 
     <!-- 사용자가 구매한 상품 목록-->
     <select id="getInProductList" resultType="productVO">
@@ -55,6 +56,13 @@
         ORDER BY ord.NUM DESC
     </select>
 
+
+
+    <select id="login" resultType="_int">
+        SELECT COUNT(NUM)
+        FROM TBL_USER
+        WHERE EMAIL=#{email} AND PASSWORD=#{password}
+    </select>
 
 
 
