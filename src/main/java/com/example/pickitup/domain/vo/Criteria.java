@@ -28,6 +28,9 @@ public class Criteria {
                 .queryParam("pageNum", this.pageNum)
                 .queryParam("amount", this.amount)
                 .queryParam("type", this.type)
+                .queryParam("type1", this.type)
+                .queryParam("type2", this.type)
+                .queryParam("type3", this.type)
                 .queryParam("keyword", this.keyword);
 
         return builder.toUriString();
