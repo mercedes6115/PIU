@@ -48,7 +48,9 @@ public class TempUserSerivce {
     }
 
     // 로그인 -> select count-> read() 사용?
-
+    public int loginUser(String email, String password){
+        return userDAO.login(email,password);
+    }
 
     // jjimDAO
     // 나의 프로젝트 찜 목록

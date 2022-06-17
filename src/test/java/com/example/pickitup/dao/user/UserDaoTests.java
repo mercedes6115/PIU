@@ -1,5 +1,6 @@
-package com.example.pickitup.domain.dao.user;
+package com.example.pickitup.dao.user;
 
+import com.example.pickitup.domain.dao.user.UserDAO;
 import com.example.pickitup.domain.vo.user.UserVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
