@@ -19,10 +19,4 @@ public class JjimDaoTests {
 
     @Test
     public void getProductListTest() { jjimDAO.getProductList(2L); }
-
-    @Test
-    public void countProjectTest() {jjimDAO.countJjimProject(2L);}
-
-    @Test
-    public void countProductTest() {jjimDAO.countJjimProduct(2L);}
 }
