@@ -20,8 +20,13 @@ public class ProductReviewService {
     }
 
     // 리뷰 상세보기 -> 수정
-    public ProductReviewVO read(Long num){
-        return productReviewDAO.read(num);
+//    public ProductReviewVO read(Long num){
+//        return productReviewDAO.read(num);
+//    }
+
+    // 리뷰 작성하기
+    public void insert(ProductReviewVO productReviewVO){
+        productReviewDAO.insert(productReviewVO);
     }
 
     // 리뷰 수정하기

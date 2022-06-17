@@ -17,5 +17,6 @@ public class ProductVO {
     private String supplier;
     private String registDate;
     private String status;
+    private Long jjimCount;
 
 }
