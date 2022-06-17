@@ -21,4 +21,7 @@ public class TempUserServiceTests {
     public void getProductListTest() {
         tempUserSerivce.getJjimProductList(2L);
     }
+
+    @Test
+    public void getInProductListTest() { tempUserSerivce.getInProjectList(2L);}
 }
