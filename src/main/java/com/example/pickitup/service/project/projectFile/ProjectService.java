@@ -38,4 +38,15 @@ public class ProjectService {
         return projectDAO.remove(num);
     }
 
+
+    // 프로젝트 목록(찜순)
+    public List<ProjectVO> getListJJim(){
+        return projectDAO.getListJJim();
+    }
+    // 프로젝트 목록(포인트순)
+    public List<ProjectVO> getListPoint(){
+        return projectDAO.getListPoint();
+    }
+
+
 }

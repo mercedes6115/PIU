@@ -56,7 +56,7 @@ public class UserDaoTests {
         }
     }
 
-
-
-
+    public void getInProductTest() {
+        userDAO.getInProjectList(2L);
+    }
 }

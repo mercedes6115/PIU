@@ -1,6 +1,8 @@
 package com.example.pickitup.mapper.user;
 
 import com.example.pickitup.domain.vo.Criteria;
+import com.example.pickitup.domain.vo.product.productFile.ProductVO;
+import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 import com.example.pickitup.domain.vo.user.UserVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -29,6 +31,11 @@ public interface UserMapper {
     public int login(@Param("email") String email,@Param("password") String password);
 
 // 포인트 적립?
+
+//  유저가 참여한 플로깅 목록
+    public List<ProductVO> getInProductList(Long userNum);
+
+//  유저가 구매한 상품 목록
 
 }
 

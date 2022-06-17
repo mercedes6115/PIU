@@ -67,4 +67,5 @@ public class TempUserServiceTests {
     }
 
 
+    public void getInProductListTest() { tempUserSerivce.getInProjectList(2L);}
 }
