@@ -23,21 +23,21 @@
             <h2>유저관리</h2>
         </div>
         <div class="searchBox" id="userSearchBox">
-            <form id="userSearchForm">
+            <form id="userSearchForm" th:object="${criteria}">
                 <table id="searchTbl">
 
                     <tr>
                         <th>검색어</th>
                         <td>
                             <select>
-                                <option>일반</option>
-                                <option>단체</option>
+                                <option value="user" th:selected="*{type} == 'USER'">일반</option>
+                                <option value="group" th:selected="*{type} == 'GROUP'">단체</option>
                             </select>
                             <select>
-                                <option>이름</option>
-                                <option>휴대폰번호</option>
+                                <option value="name" th:selected="*{type1}=='NAME'">이름</option>
+                                <option value="phone" th:selected="*{type1}=='PHONE'">휴대폰번호</option>
                             </select>
-                            <input type="text">
+                            <input type="text" value="" name="keyword">
                         </td>
                     </tr>
 
@@ -45,9 +45,9 @@
                         <th>구매금액/건수</th>
                         <td>
                             <select>
-                                <option>전체</option>
-                                <option>총 주문금액</option>
-                                <option>총 주문건수</option>
+                                <option th:selected="*{type2}=='TOTAL2'" >전체</option>
+                                <option th:selected="*{type2}=='ORDERPRICE2'">총 주문금액</option>
+                                <option th:selected="*{type2}=='ORDERCOUNT2'">총 주문건수</option>
                             </select>
                         </td>
 
@@ -63,9 +63,9 @@
                         <th>승인상태</th>
                         <td>
                             <select>
-                                <option>전체</option>
-                                <option>승인</option>
-                                <option>미승인</option>
+                                <option th:selected="*{type3}=='TOTAL3'">전체</option>
+                                <option th:selected="*{type3}=='AUTH3'">승인</option>
+                                <option th:selected="*{type3}=='UNAUTH3'">미승인</option>
                             </select>
                         </td>
                     </tr>
