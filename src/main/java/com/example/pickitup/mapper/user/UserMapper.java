@@ -26,7 +26,7 @@ public interface UserMapper {
     public boolean delete(Long num);
 
 //    로그인
-    public UserVO login(@Param("email") String email,@Param("password") String password);
+    public int login(@Param("email") String email,@Param("password") String password);
 
 // 포인트 적립?
 
