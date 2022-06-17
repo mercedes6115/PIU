@@ -1,7 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.pickitup.mapper.user.JjimMapper">
+    <select id="getProjectList" resultType="projectVO">
+        SELECT proj.NUM, proj.TITLE, proj.CONTENT, proj.COURSE, proj.TERRAIN, proj.POINT, proj.APPROVAL, proj.STARTTIME, proj.ENDTIME, proj.START_ADDRESS, proj.END_ADDRESS, proj.DISTANCE, proj.QR, proj.REGIST_DATE, proj.UPDATE_DATE, proj.STATUS, proj.COMPANY_NUM, proj.USER_NUM
+	        FROM TBL_JJIM jj
+	            INNER JOIN TBL_PROJECT proj ON jj.PROJECT_NUM = proj.NUM
+	            INNER JOIN TBL_USER u ON jj.USER_NUM = u.NUM
+            WHERE jj.USER_NUM = #{userNum}
+        ORDER BY jj.NUM DESC
+    </select>
 
+    <select id="getProductList" resultType="productVO">
+        SELECT prod.NUM, prod.NAME, prod.CONTENT, prod.CATEGORY, prod.PRICE, prod.STOCK, prod.ORIGIN, prod.MANUFACTURER, prod.SUPPLIER, prod.REGIST_DATE, prod.STATUS
+	        FROM TBL_JJIM jj
+	            INNER JOIN TBL_PRODUCT prod ON jj.PRODUCT_NUM = prod.NUM
+	            INNER JOIN TBL_USER u ON jj.USER_NUM = u.NUM
+            WHERE jj.USER_NUM = #{userNum}
+        ORDER BY jj.NUM DESC
+    </select>
+
+    <select id="countMyJjimProject" resultType="_int">
+        SELECT COUNT(jj.USER_NUM)
+	    FROM TBL_JJIM jj
+	    WHERE jj.PROJECT_NUM = #{projectNum}
+    </select>
+
+    <select id="countMyJjimProduct" resultType="_int">
+        SELECT COUNT(jj.USER_NUM)
+	    FROM TBL_JJIM jj
+	    WHERE jj.PRODUCT_NUM = #{productNum}
+    </select>
 </mapper>
 
 
