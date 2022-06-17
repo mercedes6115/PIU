@@ -7,6 +7,7 @@ import com.example.pickitup.domain.dao.user.*;
 import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.product.productFile.ProductFileVO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
+import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 import com.example.pickitup.domain.vo.user.ApplyVO;
 import com.example.pickitup.domain.vo.user.CompanyVO;
 import com.example.pickitup.domain.vo.user.OrderVO;
@@ -82,9 +83,9 @@ public class TempAdminService {
 
     // productDAO
     // 상품 목록 - 관리자용
-    public List<ProductVO> getProductList(Criteria criteria){
-        return productDAO.getProductList(criteria);
-    }
+//    public List<ProductVO> getProductList(Criteria criteria){
+//        return productDAO.getProductList(criteria);
+//    }
 
     // 상품 등록하기 - 관리자용
     public void registerProduct(ProductVO productVO){
