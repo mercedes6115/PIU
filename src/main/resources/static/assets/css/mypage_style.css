@@ -2069,6 +2069,7 @@ svg:not(:root) {
 .jjim-wrap {
     display: flex;
     font-size: 8px;
+    align-items: center;
 }
 
 .jjim-plus {
