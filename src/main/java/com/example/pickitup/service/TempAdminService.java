@@ -83,9 +83,9 @@ public class TempAdminService {
 
     // productDAO
     // 상품 목록 - 관리자용
-    public List<ProductVO> getProductList(Criteria criteria){
-        return productDAO.getProductList(criteria);
-    }
+//    public List<ProductVO> getProductList(Criteria criteria){
+//        return productDAO.getProductList(criteria);
+//    }
 
     // 상품 등록하기 - 관리자용
     public void registerProduct(ProductVO productVO){

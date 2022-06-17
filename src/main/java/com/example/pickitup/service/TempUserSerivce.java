@@ -2,11 +2,13 @@ package com.example.pickitup.service;
 
 import com.example.pickitup.domain.dao.user.*;
 import com.example.pickitup.domain.vo.Criteria;
+import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 import com.example.pickitup.domain.vo.user.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -50,13 +52,21 @@ public class TempUserSerivce {
 
     // jjimDAO
     // 나의 프로젝트 찜 목록
-    public List<JjimVO> getJjimProjectList(Long userNum) {
+    public List<ProjectVO> getJjimProjectList(Long userNum) {
         return jjimDAO.getProjectList(userNum);
     }
 
     // 나의 상품 찜 목록
-    public List<JjimVO> getJjimProductList(Long userNum) {
+    public List<ProductVO> getJjimProductList(Long userNum) {
         return jjimDAO.getProductList(userNum);
+    }
+
+    // 내가 찜한 프로젝트의 찜 개수
+    public List<Integer> countMyJjimProject(Long userNum) {
+        List<ProjectVO> projectVOList = jjimDAO.getProjectList(userNum);
+        List<Integer> countJjimProject = new ArrayList<>();
+
+
     }
 
     // 찜 등록
