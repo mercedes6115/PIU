@@ -32,14 +32,12 @@ public class Criteria {
                 .queryParam("type2", this.type)
                 .queryParam("type3", this.type)
                 .queryParam("keyword", this.keyword);
-
         return builder.toUriString();
     }
 
     public String[] getTypes(){
         return type == null ? new String[] {} : type.split("");
     }
-
 }
 
 
