@@ -19,6 +19,12 @@ public interface JjimMapper {
     //   찜한 게시물 테이블 등록
     public void insert(JjimVO jjimVO);
 
+    //  프로젝트의 찜 개수 보기
+    public int countMyJjimProject(Long projectNum);
+
+    // 상품의 찜 개수 보기
+    public int countMyJjimProduct(Long productNum);
+
     // registDate update 해주기 
     // projectNum하고 userNum을 주세요
 //    해당 외래키로 registDate sysdate할 예정

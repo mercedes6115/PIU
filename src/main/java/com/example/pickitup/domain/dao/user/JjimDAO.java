@@ -25,6 +25,12 @@ public class JjimDAO {
         return jjimMapper.getProductList(userNum);
     }
 
+    // 프로젝트의 찜 개수
+    public int countJjimProject(Long projectNum) { return jjimMapper.countMyJjimProject(projectNum);}
+
+    // 상품의 찜 개수
+    public int countJjimProduct(Long productNum) { return jjimMapper.countMyJjimProduct(productNum);}
+
     // 찜 등록
     public void register(JjimVO jjimVO){
         jjimMapper.insert(jjimVO);

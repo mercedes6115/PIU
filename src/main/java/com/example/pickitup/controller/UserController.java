@@ -20,7 +20,9 @@ public class UserController {
     // 마이페이지 메인
     @GetMapping("/myPage")
     public String mypage(Model model){
-
+        model.addAttribute("jjimProjectList", tempUserSerivce.getJjimProjectList(2L));
+        model.addAttribute("jjimProductList", tempUserSerivce.getJjimProductList(2L));
+        return "/user/myPage";
     }
 
     // 마이페이지 포인트

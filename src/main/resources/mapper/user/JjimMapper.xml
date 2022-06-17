@@ -6,7 +6,7 @@
 	        FROM TBL_JJIM jj
 	            INNER JOIN TBL_PROJECT proj ON jj.PROJECT_NUM = proj.NUM
 	            INNER JOIN TBL_USER u ON jj.USER_NUM = u.NUM
-            WHERE jj.USER_NUM = 2
+            WHERE jj.USER_NUM = #{userNum}
         ORDER BY jj.NUM DESC
     </select>
 
@@ -15,8 +15,20 @@
 	        FROM TBL_JJIM jj
 	            INNER JOIN TBL_PRODUCT prod ON jj.PRODUCT_NUM = prod.NUM
 	            INNER JOIN TBL_USER u ON jj.USER_NUM = u.NUM
-            WHERE jj.USER_NUM = 2
+            WHERE jj.USER_NUM = #{userNum}
         ORDER BY jj.NUM DESC
+    </select>
+
+    <select id="countMyJjimProject" resultType="_int">
+        SELECT COUNT(jj.USER_NUM)
+	    FROM TBL_JJIM jj
+	    WHERE jj.PROJECT_NUM = #{projectNum}
+    </select>
+
+    <select id="countMyJjimProduct" resultType="_int">
+        SELECT COUNT(jj.USER_NUM)
+	    FROM TBL_JJIM jj
+	    WHERE jj.PRODUCT_NUM = #{productNum}
     </select>
 </mapper>
 

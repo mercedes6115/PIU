@@ -20,4 +20,14 @@ public class JjimMapperTests {
     public void getProductListTest() {
         jjimMapper.getProductList(2L);
     }
+
+    @Test
+    public void getCountMyJjimProjectTest() {
+        jjimMapper.countMyJjimProject(2L);
+    }
+
+    @Test
+    public void getCountMyJjimProductTest() {
+        jjimMapper.countMyJjimProduct(2L);
+    }
 }

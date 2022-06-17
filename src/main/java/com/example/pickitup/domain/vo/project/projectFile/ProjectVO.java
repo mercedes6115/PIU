@@ -3,6 +3,8 @@ package com.example.pickitup.domain.vo.project.projectFile;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 @Data
 public class ProjectVO {
@@ -24,6 +26,6 @@ public class ProjectVO {
     private String status;
     private Long companyNum;
     private Long userNum;
-
+    private Long jjimCount;
 
 }
