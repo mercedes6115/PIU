@@ -1,20 +1,6 @@
 package com.example.pickitup.mapper.product.productQna;
 
 import com.example.pickitup.domain.vo.product.productQna.ProductQnaVO;
-
-
-import lombok.Data;
-import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Component;
-
-import org.apache.ibatis.annotations.Mapper;
-
-
-
-import java.util.List;
-
-
-
 import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
@@ -28,13 +14,13 @@ public interface ProductQnaMapper {
 //    관리자에서 필요함 관리자가 댓글 달아준것만 리스트 업
     public ProductQnaVO getDetail(Long productNum);
 
-    //    qna 삽입
+    //    qna 삽입 -> 일반 유저, 관리자
     public void insert(ProductQnaVO productQnaVO);
 
-    //    qna 수정하기
+    //    qna 수정하기 ->일반 유저, 관리자
     public boolean update(ProductQnaVO productQnaVO);
 
-    //    qna 삭제하기 qna 글 기본키 받아오기
+    //    qna 삭제하기 qna 글 기본키 받아오기 ->일반유저,관리자
     public boolean delete(Long num);
 
 }
