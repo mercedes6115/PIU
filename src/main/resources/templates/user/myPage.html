@@ -199,8 +199,8 @@
 
                             <div class="join-plogging-wrap">
                                 <ul class="yslides_1">
-                                    <li class="join-plogging-lists">
-                                        <div class="join-plogging-list">
+                                    <li class="join-plogging-lists" th:each="project:${inProjectList}">
+                                        <div class="join-plogging-list" th:object="${project}">
                                             <div class="join-plogging-item">
                                                 <a class="join-plogging-a" href="#">
                                                     <div class="join-plogging-content">
@@ -213,12 +213,10 @@
                                                         </div>
                                                         <div class="join-plogging-list-summary">
                                                             <div class="join-plogging-list-title">
-                                                                <p class="join-plogging-title-name">
-                                                                    A 단체
+                                                                <p class="join-plogging-title-name" th:text="*{title}">
                                                                 </p>
                                                             </div>
-                                                            <div class="join-plogging-list-content">
-                                                                환경을 지키는 운동법 플로깅
+                                                            <div class="join-plogging-list-content" th:text="*{content}">
                                                             </div>
                                                             <div class="jjim-wrap">
                                                                 <div class="jjim-plus">
@@ -232,7 +230,7 @@
                                                                         </svg>
                                                                     </div>
                                                                 </div>
-                                                                90
+                                                                <p th:text="*{jjimCount}"></p>
                                                             </div>
                                                         </div>
                                                     </div>

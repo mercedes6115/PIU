@@ -19,4 +19,5 @@ public class ProductVO {
     private String status;
     private Long jjimCount;
 
+    
 }
