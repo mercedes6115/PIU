@@ -46,7 +46,39 @@
     </update>
 
 
-
+    <select id="getList" resultType="userVO">
+        <![CDATA[
+        SELECT NUM, EMAIL, PASSWORD, NICKNAME, PHONE,ADDRESS,PROFILE_FILE_NAME, PROFILE_UPLOAD_PATH, POINT, REGIST_DATE
+        FROM
+        (
+            SELECT /*+ INDEX_DESC(TBL_USER SYS_C007219) */
+            ROWNUM RN, NUM, EMAIL, PASSWORD, NICKNAME, PHONE, ADDRESS, PROFILE_FILE_NAME,PROFILE_UPLOAD_PATH,POINT,REGIST_DATE
+            FROM TBL_USER
+            WHERE
+        ]]>
+        <trim prefix="(" prefixOverrides="OR" suffix=") AND">
+            <foreach item="type" collection="types">
+                <trim prefix="OR">
+                    <choose>
+                        <when test="type == 'T'.toString()">
+                            (BOARD_TITLE LIKE '%'||#{keyword}||'%')
+                        </when>
+                        <when test="type == 'C'.toString()">
+                            (BOARD_CONTENT LIKE '%'||#{keyword}||'%')
+                        </when>
+                        <when test="type == 'W'.toString()">
+                            (BOARD_WRITER LIKE '%'||#{keyword}||'%')
+                        </when>
+                    </choose>
+                </trim>
+            </foreach>
+        </trim>
+        <![CDATA[
+            ROWNUM <= #{pageNum} * #{amount}
+        )
+        WHERE RN > (#{pageNum} - 1) * #{amount}
+        ]]>
+    </select>
 
 
 

@@ -11,7 +11,7 @@ public class ProjectVO {
     private String content;
     private String course;
     private String terrain;
-    private String point;
+    private Long point;
     private String approval;
     private String startTime;
     private String endTime;

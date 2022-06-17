@@ -26,11 +26,11 @@ public class UserMapperTests {
     @Test
     public void insertTest(){
         UserVO userVO = new UserVO();
-        userVO.setEmail("a45665n@naber.com");
-        userVO.setPassword("1222");
-        userVO.setNickname("nickname");
-        userVO.setPhone("01055555555");
-        userVO.setAddress("서울특별시 용산구 청파동");
+        userVO.setEmail("a1848n@naver.com");
+        userVO.setPassword("1233");
+        userVO.setNickname("nickname84");
+        userVO.setPhone("010555555");
+        userVO.setAddress("서울특별시 용산구 청파동5");
         userVO.setProfileFileName("dd");
         userVO.setProfileUploadPath("ff");
         userMapper.insert(userVO);
