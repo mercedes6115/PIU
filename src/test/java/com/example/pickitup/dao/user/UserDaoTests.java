@@ -14,6 +14,9 @@ public class UserDaoTests {
 
     @Test
     public void getInProductTest() {
-        userDAO.getInProjectList(2L);
+        userDAO.getInProductList(2L);
     }
+
+    @Test
+    public void getInProjectTest() {userDAO.getInProjectList(2L);}
 }

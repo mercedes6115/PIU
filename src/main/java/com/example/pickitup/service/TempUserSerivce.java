@@ -94,7 +94,12 @@ public class TempUserSerivce {
     }
 
     // 내가 구매한 상품 목록
-    public List<ProductVO> getInProjectList(Long userNum) {
+    public List<ProductVO> getInProductList(Long userNum) {
+        return userDAO.getInProductList(userNum);
+    }
+
+    // 내가 참여한 플로깅 목록
+    public List<ProjectVO> getInProjectList(Long userNum) {
         return userDAO.getInProjectList(userNum);
     }
 

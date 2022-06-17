@@ -56,6 +56,15 @@
         ORDER BY ord.NUM DESC
     </select>
 
+    <!-- 사용자가 참여한 플로깅 목록 -->
+    <select id="getInProjectList" resultType="projectVO">
+        SELECT proj.NUM, proj.TITLE, proj.CONTENT, proj.COURSE, proj.TERRAIN, proj.POINT, proj.APPROVAL, proj.STARTTIME, proj.ENDTIME, proj.START_ADDRESS, proj.END_ADDRESS, proj.DISTANCE, proj.QR, proj.REGIST_DATE, proj.UPDATE_DATE, proj.STATUS, proj.COMPANY_NUM, proj.USER_NUM, proj.JJIM_COUNT, proj.PROJECT_DATE
+	        FROM TBL_PROJECT proj
+	            INNER JOIN TBL_APPLY app ON app.PROJECT_NUM = proj.NUM
+	            INNER JOIN TBL_USER u ON u.NUM = app.USER_NUM
+            WHERE u.NUM = #{userNum}
+        ORDER BY app.NUM  DESC
+    </select>
 
 
     <select id="login" resultType="_int">
