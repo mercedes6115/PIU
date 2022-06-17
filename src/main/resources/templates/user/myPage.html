@@ -361,7 +361,7 @@
                                                                         </svg>
                                                                     </div>
                                                                 </div>
-                                                                90
+                                                                <p th:text="*{jjimCount}" ></p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -391,8 +391,8 @@
                             </div>
                             <div class="pay-store-wrap">
                                 <ul class="yslides_4">
-                                    <li class="pay-store-lists">
-                                        <div class="pay-store-list">
+                                    <li class="pay-store-lists" th:each="product:${inProductList}">
+                                        <div class="pay-store-list" th:object="${product}">
                                             <div class="pay-store-item">
                                                 <a class="pay-store-a" href="#">
                                                     <div class="pay-store-content">
@@ -405,12 +405,10 @@
                                                         </div>
                                                         <div class="pay-store-list-summary">
                                                             <div class="pay-store-list-title">
-                                                                <p class="pay-store-title-name">
-                                                                    이미래
+                                                                <p class="pay-store-title-name" th:text="*{name}">
                                                                 </p>
                                                             </div>
-                                                            <div class="pay-store-list-content">
-                                                                꽃 flower
+                                                            <div class="pay-store-list-content" th:text="*{content}">
                                                             </div>
                                                             <div class="jjim-wrap">
                                                                 <div class="jjim-plus">
@@ -424,7 +422,7 @@
                                                                         </svg>
                                                                     </div>
                                                                 </div>
-                                                                90
+                                                                <p th:text="*{jjimCount}" ></p>
                                                             </div>
                                                             <div class="space-enter">
                                                             </div>
@@ -560,7 +558,7 @@
                                                                         </svg>
                                                                     </div>
                                                                 </div>
-                                                                90
+                                                                <p th:text="*{jjimCount}"></p>
                                                             </div>
                                                             <div class="space-enter">
                                                             </div>

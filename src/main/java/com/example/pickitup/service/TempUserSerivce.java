@@ -48,7 +48,9 @@ public class TempUserSerivce {
     }
 
     // 로그인 -> select count-> read() 사용?
-
+    public int loginUser(String email, String password){
+        return userDAO.login(email,password);
+    }
 
     // jjimDAO
     // 나의 프로젝트 찜 목록
@@ -59,14 +61,6 @@ public class TempUserSerivce {
     // 나의 상품 찜 목록
     public List<ProductVO> getJjimProductList(Long userNum) {
         return jjimDAO.getProductList(userNum);
-    }
-
-    // 내가 찜한 프로젝트의 찜 개수
-    public List<Integer> countMyJjimProject(Long userNum) {
-        List<ProjectVO> projectVOList = jjimDAO.getProjectList(userNum);
-        List<Integer> countJjimProject = new ArrayList<>();
-
-
     }
 
     // 찜 등록
@@ -101,6 +95,10 @@ public class TempUserSerivce {
         return latestDAO.updateProduct(latestVO);
     }
 
+    // 내가 구매한 상품 목록
+    public List<ProductVO> getInProjectList(Long userNum) {
+        return userDAO.getInProjectList(userNum);
+    }
 
     // orderDAO
     // 주문 등록
