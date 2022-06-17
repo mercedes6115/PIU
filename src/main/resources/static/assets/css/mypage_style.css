@@ -358,7 +358,7 @@ top-bar * {
 }
 
 .modal-by6 {
-    margin-top: 63px;
+    margin-top: 35px;
 }
 
 .modal-by7 {
@@ -367,7 +367,7 @@ top-bar * {
     color: rgb(26, 26, 26);
     line-height: 24px;
     letter-spacing: -0.3px;
-    margin: 0px;
+    margin-bottom: 15px;
 }
 
 .modal-by8 {
@@ -3676,7 +3676,8 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 .my-point-gold3 {
     font-family: 'Noto Sans KR', sans-serif;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .my-point-gold4 {
@@ -3685,16 +3686,37 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
     -webkit-box-align: center;
     align-items: center;
 }
+.my-point-gold4-by {
+    font-family: 'Noto Sans KR', sans-serif;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
 
 .my-point-gold5 {
     font-family: 'Noto Sans KR', sans-serif;
-    font-size: 18px;
+    font-size: 24px;
     font-weight: bold;
     color: rgb(26, 26, 26);
     line-height: 24px;
     letter-spacing: -0.45px;
     margin: 0px;
-    display: block;
+    display: inline-block;
+    margin-block-start: 1.33em;
+    margin-block-end: 1.33em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.my-point-gold5-by {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 15px;
+    font-weight: normal;
+    color: rgb(183, 180, 180);
+    line-height: 24px;
+    letter-spacing: -0.45px;
+    margin: 0px;
+    display: inline-block;
     margin-block-start: 1.33em;
     margin-block-end: 1.33em;
     margin-inline-start: 0px;
@@ -3736,8 +3758,8 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 .my-point-gold9 {
     font-family: 'Noto Sans KR', sans-serif;
     margin-bottom: 4px;
-    font-size: 14px;
-    font-weight: normal;
+    font-size: 18px;
+    font-weight: bold;
     color: rgb(26, 26, 26);
     line-height: 20px;
     letter-spacing: -0.15px;
@@ -3745,8 +3767,8 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 
 .my-point-gold10 {
     font-family: 'Noto Sans KR', sans-serif;
-    color: rgb(253, 126, 20);
-    font-size: 11px;
+    color: rgb(156, 152, 148);
+    font-size: 14px;
     font-weight: 600;
     line-height: 16px;
     letter-spacing: normal;
@@ -3792,8 +3814,8 @@ ul.yslides_1, ul.yslides_2, ul.yslides_3, ul.yslides_4, ul.yslides_5, ul.yslides
 
 .my-point-gold13 {
     font-family: 'Noto Sans KR', sans-serif;
-    font-size: 11px;
-    font-weight: normal;
+    font-size: 20px;
+    font-weight: bold;
     color: rgb(58, 58, 58);
     line-height: 16px;
     letter-spacing: normal;
@@ -4220,6 +4242,7 @@ th.point-change-date {
 }
 
 .modal3-top-div {
+    display: inline-block;
     flex: 0 0 auto;
     margin-bottom: 16px;
     color: rgb(162, 162, 162);

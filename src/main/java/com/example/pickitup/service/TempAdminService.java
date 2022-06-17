@@ -7,6 +7,7 @@ import com.example.pickitup.domain.dao.user.*;
 import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.product.productFile.ProductFileVO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
+import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 import com.example.pickitup.domain.vo.user.ApplyVO;
 import com.example.pickitup.domain.vo.user.CompanyVO;
 import com.example.pickitup.domain.vo.user.OrderVO;
@@ -18,8 +19,9 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class AdminService {
 
+
+public class TempAdminService {
     private final UserDAO userDAO;
     private final ApplyDAO applyDAO;
     private final JjimDAO jjimDAO;

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.pickitup.mapper.product.productQna.ProductQnaCommentMapper">
+    <select id="getList" resultType="productQnaCommentVO">
+    SELECT
+        NUM, CONTENT, REGIST_DATE, UPDATE_DATE, STATUS, USER_NUM, QNA_NUM
+    FROM TBL_PRODUCT_QNA_COMMENT
+    </select>
+    <insert id="insert">
+    INSERT INTO TBL_PRODUCT_QNA_COMMENT
+        (NUM, CONTENT, REGIST_DATE, UPDATE_DATE, USER_NUM, QNA_NUM)
+    VALUES
+        (
+            SEQ_PRODUCT_QNA_COMMENT.NEXTVAL, #{content}, SYSDATE ,
+            SYSDATE , #{userNum}, #{qnaNum}
+        )
+    </insert>
+    <update id="update">
+    UPDATE TBL_PRODUCT_QNA_COMMENT
+    SET
+        CONTENT=#{content},
+        UPDATE_DATE=SYSDATE
+    WHERE NUM=#{num}
+    </update>
+    <delete id="delete">
+    DELETE FROM TBL_PRODUCT_QNA_COMMENT
+    WHERE NUM=#{num}
+    </delete>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

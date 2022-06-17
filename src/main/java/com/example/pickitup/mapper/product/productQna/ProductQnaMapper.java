@@ -1,20 +1,9 @@
 package com.example.pickitup.mapper.product.productQna;
 
 import com.example.pickitup.domain.vo.product.productQna.ProductQnaVO;
-<<<<<<< HEAD
-import lombok.Data;
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Component;
-=======
-import org.apache.ibatis.annotations.Mapper;
->>>>>>> 4c3d9a75aec40aeab71564a5ee5b31fefbc2a083
-
-
-<<<<<<< HEAD
-=======
 import java.util.List;
 
->>>>>>> 4c3d9a75aec40aeab71564a5ee5b31fefbc2a083
 @Mapper
 public interface ProductQnaMapper {
     //    qna 전체 띄우기 무한 스크롤
@@ -25,13 +14,13 @@ public interface ProductQnaMapper {
 //    관리자에서 필요함 관리자가 댓글 달아준것만 리스트 업
     public ProductQnaVO getDetail(Long productNum);
 
-    //    qna 삽입
+    //    qna 삽입 -> 일반 유저, 관리자
     public void insert(ProductQnaVO productQnaVO);
 
-    //    qna 수정하기
+    //    qna 수정하기 ->일반 유저, 관리자
     public boolean update(ProductQnaVO productQnaVO);
 
-    //    qna 삭제하기 qna 글 기본키 받아오기
+    //    qna 삭제하기 qna 글 기본키 받아오기 ->일반유저,관리자
     public boolean delete(Long num);
 
 }

@@ -19,7 +19,7 @@ public class ProductQnaDAO {
         return productQnaMapper.getList(productNum);
     }
 
-    // QnA 상세보기
+    // QnA 상세보기 --> productNum 이 아니라 Num을 가져와야하는거아님?
     public ProductQnaVO read(Long productNum){
         return productQnaMapper.getDetail(productNum);
     }

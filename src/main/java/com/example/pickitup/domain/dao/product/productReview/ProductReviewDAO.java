@@ -16,12 +16,17 @@ public class ProductReviewDAO {
 
     // 리뷰 리스트 -> 수정
     public List<ProductReviewVO> getList(Long productNum){
-        productReviewMapper.getList(productNum);
+        return productReviewMapper.getList();
     }
 
     // 리뷰 상세보기 -> 수정
-    public ProductReviewVO read(Long num){
-        return productReviewMapper.getDetail(num);
+//    public ProductReviewVO read(Long num){
+//        return productReviewMapper.getDetail(num);
+//    }
+
+    // 리뷰작성
+    public void insert(ProductReviewVO productReviewVO){
+        productReviewMapper.insert(productReviewVO);
     }
 
     // 리뷰 수정하기
