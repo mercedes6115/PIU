@@ -1,7 +1,10 @@
 package com.example.pickitup.controller;
 
+import com.example.pickitup.service.TempUserSerivce;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,12 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @Slf4j
+@RequiredArgsConstructor
 @RequestMapping("/user/*")
 public class UserController {
+    private final TempUserSerivce tempUserSerivce;
 
     // 마이페이지 메인
     @GetMapping("/myPage")
-    public void mypage(){
+    public String mypage(Model model){
 
     }
 
