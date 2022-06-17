@@ -61,6 +61,15 @@ public class UserMapperTests {
         log.info("수정"+ userMapper.update(userVO));
     }
 
+//    @Test
+//    public boolean login(String email, String password){
+//        return userMapper.login("ddd","dddd");
+//    }
+    @Test
+    public void loginTest(){
+        userMapper.login("ddd","dddd");
+    }
+
 
 
 
