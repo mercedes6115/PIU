@@ -45,12 +45,11 @@
                         <th>구매금액/건수</th>
                         <td>
                             <select>
-                                <option th:selected="*{type2}=='TOTAL2'" >전체</option>
-                                <option th:selected="*{type2}=='ORDERPRICE2'">총 주문금액</option>
-                                <option th:selected="*{type2}=='ORDERCOUNT2'">총 주문건수</option>
+                                <option>전체</option>
+                                <option th:selected="*{type2}=='ORDERPRICE'">총 주문금액</option>
+                                <option th:selected="*{type2}=='ORDERCOUNT'">총 주문건수</option>
                             </select>
                         </td>
-
                     </tr>
                     <tr>
                         <th>가입일</th>

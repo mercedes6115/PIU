@@ -1,10 +1,15 @@
 package com.example.pickitup.controller;
 
+import com.example.pickitup.domain.vo.Criteria;
+import com.example.pickitup.domain.vo.dto.PageDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.xml.ws.Service;
 
 @Controller
 @Slf4j
@@ -86,13 +91,21 @@ public class AdminController {
 
     // 관리자 유저 목록
     @GetMapping("/userList")
-    public void userList(){
-
+    public void userList(Criteria criteria, Model model){
+        log.info("==========");
+        log.info("===List===");
+        log.info("==========");
+//        model.addAttribute("boardList")
+        model.addAttribute("pageDTO",new PageDTO(criteria,24));
     }
+
+
 
     // 관리자 유저 상세보기
     @GetMapping("/userDetail")
-    public void userDetail(){}
+    public void userDetail(){
+
+    }
 
 
 
