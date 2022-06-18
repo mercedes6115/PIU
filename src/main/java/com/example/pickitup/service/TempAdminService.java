@@ -5,6 +5,7 @@ import com.example.pickitup.domain.dao.product.productFile.ProductDAO;
 import com.example.pickitup.domain.dao.product.productFile.ProductFileDAO;
 import com.example.pickitup.domain.dao.user.*;
 import com.example.pickitup.domain.vo.Criteria;
+import com.example.pickitup.domain.vo.dto.UserDTO;
 import com.example.pickitup.domain.vo.product.productFile.ProductFileVO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
@@ -47,7 +48,7 @@ public class TempAdminService {
 
     // userDAO
     // 유저 목록
-    public List<UserVO> getList(Criteria criteria) {
+    public List<UserDTO> getList(Criteria criteria) {
         return userDAO.getList(criteria);
     }
 
@@ -69,9 +70,9 @@ public class TempAdminService {
 
     // companyDAO
     // 단체 목록
-    public List<CompanyVO> getList(){
-        return companyDAO.getList();
-    }
+//    public List<CompanyVO> getList(){
+//        return companyDAO.getList();
+//    }
 
 
     // jjimDAO

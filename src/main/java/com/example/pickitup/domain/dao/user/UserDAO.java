@@ -1,6 +1,7 @@
 package com.example.pickitup.domain.dao.user;
 
 import com.example.pickitup.domain.vo.Criteria;
+import com.example.pickitup.domain.vo.dto.UserDTO;
 import com.example.pickitup.domain.vo.user.UserVO;
 import com.example.pickitup.mapper.user.UserMapper;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +16,7 @@ public class UserDAO {
     private final UserMapper userMapper;
 
     // 유저 목록(관리자용)
-    public List<UserVO> getList(Criteria criteria){
+    public List<UserDTO> getList(Criteria criteria){
         return userMapper.getList(criteria);
     }
 

@@ -18,6 +18,8 @@ public class Criteria {
     private String type2;
     private String type3;
     private String keyword;
+    private String startDate;
+    private String endDate;
 
     public Criteria() {
         this(1, 10);
@@ -36,6 +38,8 @@ public class Criteria {
                 .queryParam("type1", this.type1)
                 .queryParam("type2", this.type2)
                 .queryParam("type3", this.type3)
+                .queryParam("startDate", this.startDate)
+                .queryParam("endDate", this.endDate)
                 .queryParam("keyword", this.keyword);
         return builder.toUriString();
     }
@@ -43,10 +47,9 @@ public class Criteria {
 
     public Map<String,String> getTypesAdd() {
         Map<String,String> userTypes= new HashMap<String,String>();
-        userTypes.put("type",type);
         userTypes.put("type1",type1);
-        userTypes.put("type2",type2);
-        userTypes.put("type3",type3);
+        userTypes.put("startDate",startDate);
+        userTypes.put("endDate",endDate);
         return userTypes;
     }
 

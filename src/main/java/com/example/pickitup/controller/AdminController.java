@@ -2,6 +2,9 @@ package com.example.pickitup.controller;
 
 import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.dto.PageDTO;
+import com.example.pickitup.domain.vo.dto.UserDTO;
+import com.example.pickitup.service.TempAdminService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +17,9 @@ import javax.xml.ws.Service;
 @Controller
 @Slf4j
 @RequestMapping("/admin/*")
+@RequiredArgsConstructor
 public class AdminController {
+    private final TempAdminService tempAdminService;
 
     // 관리자 로그인
     @GetMapping("/login")
@@ -96,6 +101,7 @@ public class AdminController {
         log.info("===List===");
         log.info("==========");
 //        model.addAttribute("boardList")
+        model.addAttribute( tempAdminService.getList(criteria));
         model.addAttribute("pageDTO",new PageDTO(criteria,24));
     }
 

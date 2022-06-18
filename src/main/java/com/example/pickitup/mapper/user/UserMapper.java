@@ -1,6 +1,7 @@
 package com.example.pickitup.mapper.user;
 
 import com.example.pickitup.domain.vo.Criteria;
+import com.example.pickitup.domain.vo.dto.UserDTO;
 import com.example.pickitup.domain.vo.user.UserVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -10,8 +11,8 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
 
-//    유저 목록
-    public  List<UserVO> getList(Criteria criteria);
+//    유저 목록 관리자용
+    public  List<UserDTO> getList(Criteria criteria);
 
 //    일반 유저 가입
     public void insert(UserVO userVO);

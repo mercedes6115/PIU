@@ -46,21 +46,46 @@
     </update>
 
 
-    <select id="getList" resultType="userVO">
+    <select id="getList" resultType="userDTO">
         <![CDATA[
-        SELECT NUM, EMAIL, PASSWORD, NICKNAME, PHONE,ADDRESS,PROFILE_FILE_NAME, PROFILE_UPLOAD_PATH, POINT, REGIST_DATE
+        SELECT NUM,NICKNAME,EMAIL,REGIST_DATE ,PHONE,ADDRESS
         FROM
         (
             SELECT /*+ INDEX_DESC(TBL_USER SYS_C007219) */
-            ROWNUM RN, NUM, EMAIL, PASSWORD, NICKNAME, PHONE, ADDRESS, PROFILE_FILE_NAME, PROFILE_UPLOAD_PATH, POINT, REGIST_DATE
+            ROWNUM RN, NUM,NICKNAME,EMAIL,REGIST_DATE ,PHONE,ADDRESS
             FROM TBL_USER
-            WHERE
         ]]>
         <trim prefix="(" prefixOverrides="OR" suffix=") AND">
             <choose>
-                <when test="type"></when>
+                <when test="type1 == 'NAME'.toString()">
+                    (NICKNAME LIKE '%'||#{keyword}||'%')
+                </when>
+                <when test="type1 == 'PHONE'.toString()">
+                    (PHONE LIKE '%'||#{keyword}||'%')
+                </when>
             </choose>
         </trim>
+        <![CDATA[
+        WHERE REGIST_DATE >= date(#{startDate}) AND REGIST_DATE <= date(#{endDate})
+        ]]>
+        UNION ALL
+
+        SELECT /*+ INDEX_DESC(TBL_USER SYS_C007219) */
+        ROWNUM RN, NUM,NICKNAME,EMAIL,REGIST_DATE ,PHONE,ADDRESS
+        FROM TBL_COMPANY
+        <trim prefix="(" prefixOverrides="OR" suffix=") AND">
+            <choose>
+                <when test="type1 == 'NAME'.toString()">
+                    (NICKNAME LIKE '%'||#{keyword}||'%')
+                </when>
+                <when test="type1 == 'PHONE'.toString()">
+                    (PHONE LIKE '%'||#{keyword}||'%')
+                </when>
+            </choose>
+        </trim>
+        <![CDATA[
+        WHERE REGIST_DATE >= date(#{startDate}) AND REGIST_DATE <= date(#{endDate})
+        ]]>
         <![CDATA[
             ROWNUM <= #{pageNum} * #{amount}
         )

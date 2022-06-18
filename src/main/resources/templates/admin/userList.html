@@ -23,7 +23,7 @@
             <h2>유저관리</h2>
         </div>
         <div class="searchBox" id="userSearchBox">
-            <form id="userSearchForm" th:object="${criteria}">
+            <form id="userSearchForm" action ="/admin/userList/" method="get" th:object="${criteria}">
                 <table id="searchTbl">
 
                     <tr>
@@ -54,8 +54,8 @@
                     <tr>
                         <th>가입일</th>
                         <td>
-                            <input type="date" name="" id="">
-                            <input type="date" name="" id="">
+                            <input type="date" name="startDate" th:*{startDate}==id="">
+                            <input type="date" name="endDate" id="">
                         </td>
                     </tr>
                     <tr>
@@ -204,6 +204,12 @@
 
         }
     });
+
+    $('#userSearchBtn').on("click", function (e) {
+        $("form").submit();
+    });
+
+
 
 </script>
 <script th:replace="~{/admin/adminSideBar :: AdminSideBarJSImport}"></script>
