@@ -1,27 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.pickitup.mapper.project.projectFile.ProjectMapper">
-    <insert id="insert">
-        INSERT INTO TBL_PROJECT
-        (NUM,TITLE,CONTENT,COURSE,TERRAIN,POINT,STARTTIME,ENDTIME,START_ADDRESS,END_ADDRESS,DISTANCE,COMPANY_NUM,USER_NUM)
-        VALUES(SEQ_PROJECT.NEXTVAL, #{title}, #{content}, #{course}, #{terrain}, #{point}, #{startTime}, #{endTime}, #{startAddress}, #{endAddress}, #{distance}, #{companyNum}, #{userNum})
+
+    <!-- 프로젝트 전체 목록   -->
+    <select id="getList" resultType="projectVO">
+    SELECT NUM, TITLE, CONTENT, COURSE, TERRAIN, POINT, APPROVAL, STARTTIME, ENDTIME, START_ADDRESS, END_ADDRESS, DISTANCE, QR, REGIST_DATE, UPDATE_DATE, STATUS, COMPANY_NUM, USER_NUM
+    FROM TBL_PROJECT
+    </select>
+
+    <!--  특정 유저가 신청한 프로젝트 목록 -->
+    <select id="getUserProjectList" resultType="projectVO">
+    SELECT NUM, TITLE, CONTENT, COURSE, TERRAIN, POINT, APPROVAL, STARTTIME, ENDTIME, START_ADDRESS, END_ADDRESS, DISTANCE, QR, REGIST_DATE, UPDATE_DATE, STATUS, COMPANY_NUM, USER_NUM
+    FROM TBL_PROJECT WHERE COMPANY_NUM = #{companyNum}
+    </select>
+
+    <!-- 프로젝트 상세 정보  -->
+    <select id="getDetail" resultType="projectVO">
+    SELECT NUM, TITLE, CONTENT, COURSE, TERRAIN, POINT, APPROVAL, STARTTIME, ENDTIME, START_ADDRESS, END_ADDRESS, DISTANCE, QR, REGIST_DATE, UPDATE_DATE, STATUS, COMPANY_NUM, USER_NUM
+    FROM TBL_PROJECT WHERE NUM = #{num}
+    </select>
+
+    <!-- 프로젝트 등록  -->
+    <insert id="insert" parameterType="projectVO">
+    INSERT INTO TBL_PROJECT
+    (NUM, TITLE, CONTENT, COURSE, TERRAIN, POINT, APPROVAL, STARTTIME, ENDTIME, START_ADDRESS, END_ADDRESS, DISTANCE, QR, REGIST_DATE, UPDATE_DATE, STATUS, COMPANY_NUM, USER_NUM)
+    VALUES
+    (SEQ_PROJECT.NEXTVAL, #{title}, #{content}, #{course}, #{terrain}, #{point}, #{approval}, #{startTime} , #{endTime}, #{startAddress}, #{endAddress}, #{distance}, #{qr}, SYSDATE, SYSDATE, '1' , #{companyNum}, #{userNum})
     </insert>
+
+    <!-- 프로젝트 수정  -->
+    <update id="update" parameterType="projectVO">
+    UPDATE TBL_PROJECT
+    SET
+    TITLE = #{title}, CONTENT = #{content}, COURSE = #{course}, TERRAIN = #{terrain}, POINT = #{point}, APPROVAL = #{approval}, STARTTIME = #{startTime} , ENDTIME = #{endTime},
+    START_ADDRESS = #{startAddress}, END_ADDRESS = #{endAddress}, DISTANCE = #{distance}, QR = #{qr}, UPDATE_DATE = SYSDATE, STATUS = #{status}
+    WHERE NUM = #{num}
+    </update>
+
+
+    <!-- 프로젝트 삭제 -->
+    <delete id="delete" parameterType="long">
+    DELETE FROM TBL_PROJECT WHERE NUM = #{num}
+    </delete>
+
+
+    <!-- 프로젝트 찜순 목록(상위 10개)   -->
+    <select id="getListJJim" resultType="projectVO">
+    <![CDATA[
+        SELECT NUM, TITLE, CONTENT, JJIM_COUNT
+        FROM (
+            SELECT * FROM TBL_PROJECT  ORDER BY JJIM_COUNT DESC
+        )
+        WHERE ROWNUM <=10
+        ]]>
+    </select>
+
+    <!-- 프로젝트 포인트순 목록(상위 10개)   -->
+    <select id="getListPoint" resultType="projectVO">
+    <![CDATA[
+        SELECT NUM, TITLE, CONTENT, POINT
+        FROM (
+            SELECT * FROM TBL_PROJECT  ORDER BY POINT DESC
+        )
+        WHERE ROWNUM <=10
+        ]]>
+    </select>
+
+    <!--    -->
+    <!--    <select id="test">-->
+    <!--        SELECT UUID, UPLOAD_PATH, FILE_NAME-->
+    <!--        FROM TBL_PROJECT_FILE-->
+    <!--        WHERE PROJECT_NUM = #{NUM}-->
+    <!--    </select>-->
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
