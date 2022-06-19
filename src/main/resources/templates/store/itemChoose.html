@@ -43,7 +43,8 @@
 
                     <div class="flex" style="justify-content: space-between;">
                         <div>총 결제 포인트</div>
-                        <div class="pay_point flex"> <p class="total_price"></p>P</div>
+                        <div class="pay_point flex"> <p class="total_price" th:text="|*{price}|">P</p></div>
+                        <input type="hidden" name="ogprice" th:value="*{price}">
                         <input name="totalitems" type="hidden">
                         <input name="totalpayment" type="hidden">
                     </div>
@@ -73,8 +74,8 @@
     //수량및  아이템 가격 초기화
     let $oper = $('.item_amount').find('button');
     let $amount = 1;
-    let $item_price = 700;
-    $('.total_price').text($amount*$item_price);  //700 대신 상품 가격입력
+    let $item_price = parseInt($('.total_price').text());
+    $('.total_price').text($amount*$item_price + "P");  //700 대신 상품 가격입력
     $('input[name="totalitems"]').val($amount);
     $('input[name="totalpayment"]').val($amount*$item_price);
 
@@ -84,14 +85,14 @@
             if( $('.item_amount_input').attr("value") > 1){
                 $('.item_amount_input').attr("value",$amount-1);
                 $amount=$amount-1
-                $('.total_price').empty().text($amount*$item_price);
+                $('.total_price').empty().text($amount*$item_price + "P");
                 $('input[name="totalitems"]').val($amount);
                 $('input[name="totalpayment"]').val($amount*$item_price);
             }
         }else if($(this).hasClass('plus')){
             $('.item_amount_input').attr("value",$amount+1);
             $amount=$amount+1
-            $('.total_price').empty().text($amount*$item_price);
+            $('.total_price').empty().text($amount*$item_price + "P");
             $('input[name="totalitems"]').val($amount);
             $('input[name="totalpayment"]').val($amount*$item_price);
         }

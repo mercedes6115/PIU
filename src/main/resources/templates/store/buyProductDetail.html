@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <link rel="stylesheet" href="/assets/css/buyProductDetail.css"/>
-<body>
+<body style="background-color: #f8f8f9;">
     <div class="root">
         <div class="wrapper-1">
             <div class="wrapper-product">
@@ -42,7 +42,7 @@
                             
                             <div class="bill-way-wrapper" id="bill-price-wrpper">
                                 <p class="bill-wrapper-left">상품 금액</p>
-                                <p class="bill-wrapper-right" id="product-price" th:text="|*{product.totalpayment}P|"></p>
+                                <p class="bill-wrapper-right" id="product-price" th:text="|*{product.ogprice}P|"></p>
                             </div>
                             <div class="bill-way-wrapper" id="bill-count-wrpper">
                                 <p class="bill-wrapper-left">상품 갯수</p>

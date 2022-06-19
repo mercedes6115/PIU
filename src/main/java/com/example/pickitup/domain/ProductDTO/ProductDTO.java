@@ -10,4 +10,5 @@ public class ProductDTO {
     private String itemimg;
     private String totalitems;
     private String totalpayment;
+    private Long ogprice;
 }

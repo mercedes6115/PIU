@@ -239,7 +239,7 @@
             <!-- 주문 사이드바 -->
             <div class="store_detail_right">
                 <div class="pay_bar">
-                    <form action="" th:object="${product}">
+                    <form action="/store/itemChoose" method="post" th:object="${product}">
                         <div class="pay_bar_category" th:text="*{category}"></div>
                         <div class="pay_bar_item_description" th:text="*{name}"></div>
                         <div th:text="*{content}"></div>
@@ -275,6 +275,15 @@
                                 ios_share
                                 </span><p style="font-weight: normal; font-size: 14px; margin: 0;">&nbsp; 공유하기</p></div>
                         </div>
+                        <input type="hidden" value="상품번호" th:field="*{num}">
+                        <input type="hidden" value="카테고리" th:field="*{category}">
+                        <input type="hidden" value="상품이름" th:field="*{name}">
+                        <input type="hidden" value="가격" th:field="*{price}">
+                        <input type="hidden" value="수량" th:field="*{stock}">
+                        <input type="hidden" value="원산지" th:field="*{origin}">
+                        <input type="hidden" value="제조사" th:field="*{manufacturer}">
+                        <input type="hidden" value="공급처" th:field="*{supplier}">
+
                         <div><input class="toBuy" type="submit" value="구매하기" style="cursor: pointer;"></div>
                     </form>
                 </div>
