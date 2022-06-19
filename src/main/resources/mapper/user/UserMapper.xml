@@ -138,8 +138,7 @@
                     </where>
         )
     </select>
-<<<<<<< HEAD
-=======
+
 
     <select id="emailMatching" resultType="_int">
         SELECT COUNT(EMAIL)
@@ -152,9 +151,6 @@
         WHERE EMAIL=#{email}
     </select>
 
-
-
->>>>>>> 0be161574f9b7550a3dbca6a35c48073d0a37c4a
 </mapper>
 
 
