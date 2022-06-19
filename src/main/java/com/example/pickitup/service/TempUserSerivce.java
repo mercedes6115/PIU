@@ -1,5 +1,8 @@
 package com.example.pickitup.service;
 
+import com.example.pickitup.domain.dao.product.productFile.ProductDAO;
+import com.example.pickitup.domain.dao.project.projectFile.ProjectDAO;
+import com.example.pickitup.domain.dao.project.projectFile.ProjectFileDAO;
 import com.example.pickitup.domain.dao.user.*;
 import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
@@ -16,13 +19,14 @@ import java.util.List;
 
 
 public class TempUserSerivce {
-
-
     private final UserDAO userDAO;
     private final ApplyDAO applyDAO;
     private final JjimDAO jjimDAO;
     private final LatestDAO latestDAO;
     private final OrderDAO orderDAO;
+    private final ProjectFileDAO projectFileDAO;
+    private final ProjectDAO projectDAO;
+    private final ProductDAO productDAO;
 
 
     // userDAO
@@ -48,6 +52,16 @@ public class TempUserSerivce {
     }
 
     // 로그인 -> select count-> read() 사용?
+
+    // 내가 구매한 상품 목록
+    public List<ProductVO> getInProductList(Long userNum) {
+        return userDAO.getInProductList(userNum);
+    }
+
+    // 내가 참여한 플로깅 목록
+    public List<ProjectVO> getInProjectList(Long userNum) {
+        return userDAO.getInProjectList(userNum);
+    }
 
 
     // jjimDAO
@@ -93,15 +107,7 @@ public class TempUserSerivce {
         return latestDAO.updateProduct(latestVO);
     }
 
-    // 내가 구매한 상품 목록
-    public List<ProductVO> getInProductList(Long userNum) {
-        return userDAO.getInProductList(userNum);
-    }
 
-    // 내가 참여한 플로깅 목록
-    public List<ProjectVO> getInProjectList(Long userNum) {
-        return userDAO.getInProjectList(userNum);
-    }
 
     // orderDAO
     // 주문 등록

@@ -39,6 +39,8 @@ public class ProductDAO {
         return productMapper.delete(num);
     }
 
+    // 상품 상세보기
+    public ProductVO getDetail(Long num) { return productMapper.getDetail(num);}
 
     // 상품 개수 - 관리자용
 

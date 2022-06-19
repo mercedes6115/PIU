@@ -24,6 +24,7 @@ public class ProjectMapperTests {
         log.info("TEST"+projectMapper.getDetail(1L));
 
     }
+
     //
 
 }

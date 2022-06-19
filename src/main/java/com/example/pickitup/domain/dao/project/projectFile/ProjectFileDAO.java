@@ -32,4 +32,7 @@ public class ProjectFileDAO {
     public void remove(Long projectNum){
         projectFileMapper.delete(projectNum);
     }
+
+    // 프로젝트에 등록된 썸네일 가져오기
+    public ProjectFileVO findByProjectNum(Long projectNum) { return projectFileMapper.findByProjectNum(projectNum);}
 }

@@ -61,5 +61,8 @@ public class ProductDaoTest {
 //        log.info("DELETE FAIL");
 //    }
 
-
+    @Test
+    public void getDetailTest() {
+        productDAO.getDetail(2L);
+    }
 }

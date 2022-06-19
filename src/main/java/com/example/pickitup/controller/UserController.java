@@ -1,5 +1,9 @@
 package com.example.pickitup.controller;
 
+import com.example.pickitup.domain.vo.dto.PageDTO;
+import com.example.pickitup.domain.vo.dto.PointDTO;
+import com.example.pickitup.domain.vo.product.productFile.ProductVO;
+import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 import com.example.pickitup.service.TempUserSerivce;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -9,6 +13,9 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @Slf4j
@@ -29,7 +36,20 @@ public class UserController {
 
     // 마이페이지 포인트
     @GetMapping("/myPoint")
-    public void mypoint(){
+    public void mypoint(Model model){
+        List<ProductVO> productVOList = tempUserSerivce.getInProductList(2L);
+        List<ProjectVO> projectVOList = tempUserSerivce.getInProjectList(2L);
+
+        List<PointDTO> pointDTOList = new ArrayList<PointDTO>();
+        for(ProductVO productVO : productVOList) {
+            for(PointDTO pointDTO : pointDTOList) {
+                pointDTO.setPoint(productVO.getPrice());
+
+            }
+        }
+
+        log.info("구매한 상품 개수 : " + productVOList.size());
+        log.info("참여한 프로젝트 개수 : " + projectVOList.size());
 
     }
 

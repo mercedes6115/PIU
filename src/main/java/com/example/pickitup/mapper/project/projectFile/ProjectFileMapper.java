@@ -13,6 +13,9 @@ public interface ProjectFileMapper {
     //    해당 후기글에 작성 도중에 창을 닫는 경우 저장 경로에서 사진 지우기
     public  List<ProjectFileVO> getOldFiles();
 
+    //  프로젝트의 썸네일 가져오기
+    public ProjectFileVO findByProjectNum(Long projectNum);
+
     //    사진 입력
     public void insert(ProjectFileVO projectFileVO);
 
