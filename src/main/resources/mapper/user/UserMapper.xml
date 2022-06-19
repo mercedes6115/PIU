@@ -127,7 +127,7 @@
             FROM TBL_COMPANY
                     <where>
                             <if test="type1 == 'nickname'.toString()">
-                                NAME LIKE '%'||#{keyword}||'%'
+                                NICKNAME LIKE '%'||#{keyword}||'%'
                             </if>
                             <if test="type1 == 'phone'.toString()">
                                 AND PHONE LIKE '%'||#{keyword}||'%'
