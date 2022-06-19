@@ -26,13 +26,13 @@ public class UserMapperTests {
     @Test
     public void insertTest(){
         UserVO userVO = new UserVO();
-        userVO.setEmail("a45665n@naber.com");
-        userVO.setPassword("1222");
-        userVO.setNickname("nickname");
-        userVO.setPhone("01055555555");
-        userVO.setAddress("서울특별시 용산구 청파동");
+        userVO.setEmail("a1848n@naver.com");
+        userVO.setPassword("134312");
+        userVO.setNickname("nickname77");
+        userVO.setPhone("010-5325-6785");
+        userVO.setAddress("서울특별시 용산구 청파동58");
         userVO.setProfileFileName("dd");
-        userVO.setProfileUploadPath("ff");
+        userVO.setProfileUploadPath("rr");
         userMapper.insert(userVO);
     }
 
@@ -61,6 +61,18 @@ public class UserMapperTests {
         log.info("수정"+ userMapper.update(userVO));
     }
 
+    @Test
+    public void getList(){
+        Criteria criteria = new Criteria();
+        criteria.setType1("nickname");
+        criteria.setKeyword("admin");
+        criteria.setAmount(10);
+        criteria.setPageNum(1);
+        criteria.setStartDate("2022-06-16");
+        criteria.setEndDate("2022-06-18");
+        userMapper.getList(criteria);
+
+    }
 
     @Test
     public void getInProductListTest() {

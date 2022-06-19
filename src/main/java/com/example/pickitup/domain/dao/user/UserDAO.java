@@ -1,7 +1,11 @@
 package com.example.pickitup.domain.dao.user;
 
 import com.example.pickitup.domain.vo.Criteria;
+<<<<<<< HEAD
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
+=======
+import com.example.pickitup.domain.vo.dto.UserDTO;
+>>>>>>> piu5
 import com.example.pickitup.domain.vo.user.UserVO;
 import com.example.pickitup.mapper.user.UserMapper;
 import lombok.RequiredArgsConstructor;
@@ -16,10 +20,13 @@ public class UserDAO {
     private final UserMapper userMapper;
 
     // 유저 목록(관리자용)
-    public List<UserVO> getList(Criteria criteria){
+    public List<UserDTO> getList(Criteria criteria){
         return userMapper.getList(criteria);
     }
 
+    public int getTotal(Criteria criteria){
+        return userMapper.getTotal(criteria);
+    }
     // 일반 유저 가입
     public void register(UserVO userVO){
         userMapper.insert(userVO);
