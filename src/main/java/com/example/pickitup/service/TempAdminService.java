@@ -52,6 +52,10 @@ public class TempAdminService {
         return userDAO.getList(criteria);
     }
 
+    public int getTotal(Criteria criteria){
+        return userDAO.getTotal(criteria);
+    }
+
     // 유저 상세보기
     public UserVO readUserInfo(Long num) {
         return userDAO.read(num);

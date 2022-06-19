@@ -13,6 +13,8 @@ public interface UserMapper {
 
 //    유저 목록 관리자용
     public  List<UserDTO> getList(Criteria criteria);
+//    유저,회사 전체 목록 총 합
+    public int getTotal(Criteria criteria);
 
 //    일반 유저 가입
     public void insert(UserVO userVO);

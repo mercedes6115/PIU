@@ -101,8 +101,11 @@ public class AdminController {
         log.info("===List===");
         log.info("==========");
 //        model.addAttribute("boardList")
-        model.addAttribute( tempAdminService.getList(criteria));
-        model.addAttribute("pageDTO",new PageDTO(criteria,24));
+        model.addAttribute( "userList",tempAdminService.getList(criteria));
+        model.addAttribute("pageDTO",new PageDTO(criteria,(tempAdminService.getTotal(criteria))));
+        //tempAdminService.getList(criteria)).size())
+        // 검색결과에 따라 페이징할 리스트의 길이가 달라지기 때문에 바로
+                                                                        // 리스트의 사이즈를 구해줘서 total로 넘겨준다
     }
 
 

@@ -2,6 +2,7 @@ package com.example.pickitup.domain.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -20,6 +21,7 @@ public class Criteria {
     private String keyword;
     private String startDate;
     private String endDate;
+    private int total;
 
     public Criteria() {
         this(1, 10);
@@ -40,17 +42,18 @@ public class Criteria {
                 .queryParam("type3", this.type3)
                 .queryParam("startDate", this.startDate)
                 .queryParam("endDate", this.endDate)
-                .queryParam("keyword", this.keyword);
+                .queryParam("keyword", this.keyword)
+                .queryParam("total", this.total);
         return builder.toUriString();
     }
 
-
-    public Map<String,String> getTypesAdd() {
-        Map<String,String> userTypes= new HashMap<String,String>();
-        userTypes.put("type1",type1);
-        userTypes.put("startDate",startDate);
-        userTypes.put("endDate",endDate);
-        return userTypes;
+    public Map<String,String> getTypes() {
+        Map<String,String> getTypes= new HashMap<String,String>();
+        getTypes.put("type1",type1);
+        getTypes.put("startDate",startDate);
+        getTypes.put("endDate",endDate);
+        getTypes.put("keyword",keyword);
+        return getTypes;
     }
 
 

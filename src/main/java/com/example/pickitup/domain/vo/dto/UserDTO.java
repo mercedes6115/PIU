@@ -17,6 +17,8 @@ public class UserDTO{
     private String registDate;
     private String phone;
     private String address;
+    private String type1;
+    private String keyword;
 
 
 }

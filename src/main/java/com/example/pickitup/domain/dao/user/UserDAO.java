@@ -20,6 +20,9 @@ public class UserDAO {
         return userMapper.getList(criteria);
     }
 
+    public int getTotal(Criteria criteria){
+        return userMapper.getTotal(criteria);
+    }
     // 일반 유저 가입
     public void register(UserVO userVO){
         userMapper.insert(userVO);
