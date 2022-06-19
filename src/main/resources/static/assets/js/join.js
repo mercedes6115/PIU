@@ -76,35 +76,6 @@ $("#emailCheck").on("click",function () {
 
 })
 
-//  db처리를 할수 없으므 테스트용으로 주석처리
-// // 이메일 중복 확인(메세지 출력)
-// $uemail.blur(function () {
-//     let $uemailval = $uemail.val();
-//     if (!$uemailval) { // 아이디 입력칸이 비어 있을 경우
-//         $('span#emailCheck_text').empty().text("아이디를 입력해 주세요").css("color", "red");
-//         emailPass = false;
-//         return;
-//     } else {
-//         checkEmail(); 
-//         $.ajax({
-//             url: "/컨트롤러 경로",
-//             type: "post",
-//             data: {email: $uemailval},
-//             success: function (result) {
-//                 if (!result) {
-//                     $('span#emailCheck_text').empty().text("사용 가능한 아이디 입니다.").css("color", "green");
-//                     emailPass = true;
-//                 } else {
-//                     $('span#emailCheck_text').empty().text("이미 사용 중인 아이디 입니다.").css("color", "red");
-//                     emailPass = false;
-//                 }
-//             },
-//             error: function (xhr, status, er) {
-//                 console.log(xhr, status, er);
-//             }
-//         })
-//     }
-// });
 
 // 비밀번호 확인검사
 $upw2.blur(function () {
