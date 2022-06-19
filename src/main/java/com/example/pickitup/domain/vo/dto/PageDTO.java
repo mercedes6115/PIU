@@ -16,6 +16,12 @@ public class PageDTO {
     private int realEnd;
     private int pageCount;
     private boolean prev, next;
+    private Long num;
+    private String nickname;
+    private String email;
+    private String registDate;
+    private String phone;
+    private String address;
 
     private int total;
 
