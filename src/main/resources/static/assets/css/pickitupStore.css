@@ -20,7 +20,7 @@ p{
 @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
 
 @font-face {
-    font-family: 'SDSamliphopangche_Basic';
+    font-family: 'SDSamliRphopangche_Basic';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Basic.woff') format('woff');
     font-weight: normal;
     font-style: normal;
@@ -365,6 +365,7 @@ li.active{
 }
 .store_categories a{
     text-decoration: none;
+    color: black;
 }
 .store_categories a:visited{
     color: black;
@@ -432,6 +433,7 @@ li.active{
 }
 .item a{
     text-decoration: none;
+    color: black;
 }
 .item a:visited{
     color: black;
@@ -771,6 +773,9 @@ li.active{
 }
 .qnas{
     position: relative;
+    border-bottom: 1px solid #80808017;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
 }
 .qna_reply{
     position: relative;

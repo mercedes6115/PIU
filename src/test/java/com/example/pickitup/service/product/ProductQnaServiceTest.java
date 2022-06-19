@@ -15,7 +15,7 @@ public class ProductQnaServiceTest {
 
     @Test
     public void getListTest(){
-        productQnaService.getList(23L);
+        productQnaService.getList(61L);
     }
 
     @Test

@@ -13,10 +13,10 @@ public class ProductReviewServiceTest {
     @Autowired
     private ProductReviewService productReviewService;
 //
-//    @Test
-//    public void getListTest(){
-//        productReviewService.getList(24L);
-//    }
+    @Test
+    public void getListTest(){
+        productReviewService.getList(24L);
+    }
 
 //    @Test
 //    public void updateTest(){
