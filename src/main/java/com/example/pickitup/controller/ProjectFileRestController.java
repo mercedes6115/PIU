@@ -1,6 +1,5 @@
 package com.example.pickitup.controller;
 
-
 import com.example.pickitup.domain.vo.project.projectFile.ProjectFileVO;
 import com.example.pickitup.service.TempProjectService;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +15,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
+
 
 @Controller
 @Slf4j
@@ -24,6 +23,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProjectFileRestController {
     private final TempProjectService tempProjectService;
+
 
     @GetMapping("/thumbnail")
     @ResponseBody

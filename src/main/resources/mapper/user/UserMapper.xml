@@ -45,6 +45,14 @@
         WHERE NUM=#{num}
     </update>
 
+<!--    ROWNUM : SELECT문에서 사용되어지는 가상컬럼이다.-->
+<!--    가상컬럼이란 물리적으로 테이블에 저장된 값이 아니라-->
+<!--    SELECT문에서 FROM절과 WHERE절에 의해서 해당 데이타가-->
+<!--    선별된 직후에 1부터 차례대로 증가하면서 부여된 일시적인 값이다.-->
+<!--    - ROWNUM은 1,2,3,....N 값이 부여된다.-->
+<!--    - ROWNUM은 일시적으로 할당되는 값이다.-->
+<!--    - ROWNUM은 값이 할당되어지는 순서가 있다.-->
+
 
     <!-- 사용자가 구매한 상품 목록-->
     <select id="getInProductList" resultType="productVO">
@@ -74,6 +82,86 @@
     </select>
 
 
+    <select id="getList"  resultType="userDTO">
+    SELECT NICKNAME,EMAIL,REGIST_DATE ,PHONE,ADDRESS
+    FROM
+    (
+        SELECT ROWNUM RN,NICKNAME,EMAIL,REGIST_DATE ,PHONE,ADDRESS
+            FROM(
+                SELECT
+                NUM,NICKNAME,EMAIL,REGIST_DATE ,PHONE,ADDRESS
+                FROM TBL_USER
+                    <where>
+                            <if test="type1 == 'nickname'.toString()">
+                                NICKNAME LIKE '%'||#{keyword}||'%'
+                            </if>
+                            <if test="type1 == 'phone'.toString()">
+                                AND PHONE LIKE '%'||#{keyword}||'%'
+                            </if>
+                            <if test="startDate != null">
+                                AND (REGIST_DATE BETWEEN #{startDate} AND #{endDate})
+                            </if>
+                    </where>
+
+
+                UNION ALL
+
+                SELECT
+                NUM,NICKNAME,EMAIL,REGIST_DATE ,PHONE,ADDRESS
+                FROM TBL_COMPANY
+                    <where>
+                            <if test="type1 == 'nickname'.toString()">
+                                NICKNAME LIKE '%'||#{keyword}||'%'
+                            </if>
+                            <if test="type1 == 'phone'.toString()">
+                                AND PHONE LIKE '%'||#{keyword}||'%'
+                            </if>
+                            <if test="startDate != null">
+                                AND (REGIST_DATE BETWEEN #{startDate} AND #{endDate})
+                            </if>
+
+                    </where>
+            )
+        <![CDATA[
+        WHERE ROWNUM <= #{pageNum} * #{amount}
+    )
+    WHERE RN > (#{pageNum} - 1) * #{amount}
+        ]]>
+
+    </select>
+
+    <!-- 위 테이블의 총 개수-->
+    <select id="getTotal" resultType="_int">
+        SELECT SUM(CNT) FROM
+        (   SELECT COUNT(*) AS CNT
+            FROM TBL_USER
+                    <where>
+                            <if test="type1 == 'nickname'.toString()">
+                                NICKNAME LIKE '%'||#{keyword}||'%'
+                            </if>
+                            <if test="type1 == 'phone'.toString()">
+                                AND PHONE LIKE '%'||#{keyword}||'%'
+                            </if>
+                            <if test="startDate != null">
+                                AND (REGIST_DATE BETWEEN #{startDate} AND #{endDate})
+                            </if>
+                    </where>
+            UNION ALL
+            SELECT COUNT(*)
+            FROM TBL_COMPANY
+                    <where>
+                            <if test="type1 == 'nickname'.toString()">
+                                NICKNAME LIKE '%'||#{keyword}||'%'
+                            </if>
+                            <if test="type1 == 'phone'.toString()">
+                                AND PHONE LIKE '%'||#{keyword}||'%'
+                            </if>
+                            <if test="startDate != null">
+                                AND (REGIST_DATE BETWEEN #{startDate} AND #{endDate})
+                            </if>
+                    </where>
+        )
+    </select>
 
 
 

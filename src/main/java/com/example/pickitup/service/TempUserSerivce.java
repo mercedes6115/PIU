@@ -53,6 +53,7 @@ public class TempUserSerivce {
 
     // 로그인 -> select count-> read() 사용?
 
+
     // 내가 구매한 상품 목록
     public List<ProductVO> getInProductList(Long userNum) {
         return userDAO.getInProductList(userNum);
@@ -61,6 +62,11 @@ public class TempUserSerivce {
     // 내가 참여한 플로깅 목록
     public List<ProjectVO> getInProjectList(Long userNum) {
         return userDAO.getInProjectList(userNum);
+    }
+
+
+    public int loginUser(String email, String password){
+        return userDAO.login(email,password);
     }
 
 
