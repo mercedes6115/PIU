@@ -66,6 +66,7 @@ public class UserMapperTests {
     public void getInProductListTest() {
         userMapper.getInProductList(2L);
     }
+
 //    @Test
 //    public boolean login(String email, String password){
 //        return userMapper.login("ddd","dddd");

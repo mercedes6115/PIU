@@ -24,6 +24,8 @@ public class UserController {
         model.addAttribute("jjimProductList", tempUserSerivce.getJjimProductList(2L));
         model.addAttribute("inProductList",tempUserSerivce.getInProductList(2L));
         model.addAttribute("inProjectList",tempUserSerivce.getInProjectList(2L));
+        model.addAttribute("seenProductList",tempUserSerivce.getLatestProductList(2L));
+        model.addAttribute("seenProjectList",tempUserSerivce.getLatestProjectList(2L));
         return "/user/myPage";
     }
 
