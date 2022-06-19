@@ -48,4 +48,8 @@ public class ProductQnaMapperTest {
 //        productQnaMapper.delete(25L);
 //    }
 
+    @Test
+    public void countTest(){
+        productQnaMapper.count(61L);
+    }
 }

@@ -40,4 +40,6 @@ public class ProductQnaDAO {
         return productQnaMapper.delete(num);
     }
 
+    public int count(Long productNum){return productQnaMapper.count(productNum);}
+
 }

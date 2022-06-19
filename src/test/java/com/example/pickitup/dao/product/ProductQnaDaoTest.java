@@ -54,4 +54,9 @@ public class ProductQnaDaoTest {
 //        }
 //        log.info("DELETE FAIL");
 //    }
+
+    @Test
+    public void countTest(){
+        productQnaDAO.count(61L);
+    }
 }
