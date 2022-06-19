@@ -55,6 +55,7 @@ $upw.blur(function () {
 //             success: function (result) {
 //                 if (!result) {
 //                     $('span#emailCheck_text').empty().text("사용 가능한 아이디 입니다.").css("color", "green");
+//                      checkEmail();
 //                     emailPass = true;
 //                 } else {
 //                     $('span#emailCheck_text').empty().text("이미 사용 중인 아이디 입니다.").css("color", "red");

@@ -24,8 +24,12 @@ public class MainController {
 //        model.addAttribute("projectListThumb", projectFileService.getList());   // 사진 가져오기
         model.addAttribute("projectListJJim", projectService.getListJJim());  // 내용가져오기
 
+        model.addAttribute("projectListPoint", projectService.getListPoint());  // 내용가져오기
+
         return "/main/main";
     }
+
+
 
 
 }
