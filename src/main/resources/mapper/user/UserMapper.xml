@@ -2,21 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.pickitup.mapper.user.UserMapper">
 
-<!--    <select id="getList" resultType="boardVO">
-        <![CDATA[
-        SELECT
-        ROWNUM RN, NUM, EMAIL, PASSWORD, NICKNAME,PHONE, ADDRESS, PROFILE_FILE_NAME, PROFILE_UPLOAD_PATH,POINT, REGIST_DATE
-        FROM
-        (
-            SELECT /*+ INDEX_DESC(TBL_USER SYS_C007234) */
-            ROWNUM RN, NUM, EMAIL, PASSWORD, NICKNAME,PHONE, ADDRESS, PROFILE_FILE_NAME, PROFILE_UPLOAD_PATH,POINT, REGIST_DATE
-            FROM TBL_USER
-            WHERE ROWNUM <= #{pageNum} * #{amount}
-        )
-        WHERE
-        WHERE RN > (#{pageNum} - 1) * #{amount}
-        ]]>
-    </select>-->
 
 <!--마이페이지, 관리자 사용-->
     <select id="getDetail" resultType="userVO">
@@ -163,6 +148,16 @@
         )
     </select>
 
+    <select id="emailMatching" resultType="_int">
+        SELECT COUNT(EMAIL)
+        FROM
+            (SELECT EMAIL
+            FROM TBL_USER
+            UNION
+            SELECT EMAIL
+            FROM TBL_COMPANY )
+        WHERE EMAIL=#{email}
+    </select>
 
 
 

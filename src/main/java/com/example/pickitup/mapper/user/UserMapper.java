@@ -42,7 +42,15 @@ public interface UserMapper {
     public List<ProductVO> getInProductList(Long userNum);
 
 //  유저가 구매한 상품 목록
+
     public List<ProjectVO> getInProjectList(Long userNum);
+
+
+
+//  이메일 중복검사
+    public int emailMatching(@Param("email") String email);
+
+
 }
 
 
