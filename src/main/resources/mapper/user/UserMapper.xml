@@ -77,11 +77,6 @@
         WHERE EMAIL=#{email} AND PASSWORD=#{password}
     </select>
 
-
-
-
-
-
 </mapper>
 
 
