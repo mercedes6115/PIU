@@ -9,7 +9,7 @@ public class CompanyVO {
     private Long num;
     private String email;
     private String password;
-    private String name;
+    private String nickname;
     private String phone;
     private String businessPhone;
     private String address;
