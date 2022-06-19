@@ -65,7 +65,16 @@
     </select>
 
 
-
+    <select id="emailMatching" resultType="_int">
+        SELECT COUNT(EMAIL)
+        FROM
+            (SELECT EMAIL
+            FROM TBL_USER
+            UNION
+            SELECT EMAIL
+            FROM TBL_COMPANY )
+        WHERE EMAIL=#{email}
+    </select>
 
 
 
