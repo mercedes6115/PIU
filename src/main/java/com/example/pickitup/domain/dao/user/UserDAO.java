@@ -1,11 +1,8 @@
 package com.example.pickitup.domain.dao.user;
 
 import com.example.pickitup.domain.vo.Criteria;
-<<<<<<< HEAD
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
-=======
 import com.example.pickitup.domain.vo.dto.UserDTO;
->>>>>>> piu5
 import com.example.pickitup.domain.vo.user.UserVO;
 import com.example.pickitup.mapper.user.UserMapper;
 import lombok.RequiredArgsConstructor;

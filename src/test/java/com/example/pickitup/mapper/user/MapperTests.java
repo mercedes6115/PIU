@@ -21,7 +21,7 @@ public class MapperTests {
         projectVO.setContent("산갈사람");
         projectVO.setCourse("C");
         projectVO.setTerrain("산");
-        projectVO.setPoint("1111");
+        projectVO.setPoint(1111l);
         projectVO.setStartTime("18:00:00");
         projectVO.setEndTime("16:00:00");
         projectVO.setStartAddress("역삼역1번출구");

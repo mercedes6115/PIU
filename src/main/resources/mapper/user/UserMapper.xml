@@ -53,7 +53,7 @@
 <!--    - ROWNUM은 일시적으로 할당되는 값이다.-->
 <!--    - ROWNUM은 값이 할당되어지는 순서가 있다.-->
 
-<<<<<<< HEAD
+
     <!-- 사용자가 구매한 상품 목록-->
     <select id="getInProductList" resultType="productVO">
         SELECT prod.NUM, prod.NAME, prod.CONTENT, prod.CATEGORY, prod.PRICE, prod.STOCK, prod.ORIGIN, prod.MANUFACTURER, prod.SUPPLIER, prod.REGIST_DATE, prod.STATUS, prod.JJIM_COUNT
@@ -72,7 +72,7 @@
         WHERE EMAIL=#{email} AND PASSWORD=#{password}
     </select>
 
-=======
+
     <select id="getList"  resultType="userDTO">
     SELECT NICKNAME,EMAIL,REGIST_DATE ,PHONE,ADDRESS
     FROM
@@ -93,7 +93,7 @@
                                 AND (REGIST_DATE BETWEEN #{startDate} AND #{endDate})
                             </if>
                     </where>
->>>>>>> piu5
+
 
                 UNION ALL
 

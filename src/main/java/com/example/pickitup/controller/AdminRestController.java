@@ -67,8 +67,7 @@ public class AdminRestController {
         Date date = new Date();
         return sdf.format(date);
     }
-<<<<<<< HEAD
+
+
 }
-=======
-}
->>>>>>> piu5
+
