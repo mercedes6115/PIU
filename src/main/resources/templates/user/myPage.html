@@ -264,8 +264,8 @@
 
                             <div class="visited-plogging-wrap">
                                 <ul class="yslides_2">
-                                    <li class="visited-plogging-lists">
-                                        <div class="visited-plogging-list">
+                                    <li class="visited-plogging-lists" th:each="project:${seenProjectList}">
+                                        <div class="visited-plogging-list" th:object="${project}">
                                             <div class="visited-plogging-item">
                                                 <a class="visited-plogging-a" href="#">
                                                     <div class="visited-plogging-content">
@@ -278,12 +278,10 @@
                                                         </div>
                                                         <div class="visited-plogging-list-summary">
                                                             <div class="visited-plogging-list-title">
-                                                                <p class="visited-plogging-title-name">
-                                                                    L 단체
+                                                                <p class="visited-plogging-title-name" th:text="*{title}">
                                                                 </p>
                                                             </div>
-                                                            <div class="visited-plogging-list-content">
-                                                                걸으면서 지키자
+                                                            <div class="visited-plogging-list-content" th:text="*{content}">
                                                             </div>
                                                             <div class="jjim-wrap">
                                                                 <div class="jjim-plus">
@@ -297,7 +295,7 @@
                                                                         </svg>
                                                                     </div>
                                                                 </div>
-                                                                90
+
                                                             </div>
                                                         </div>
                                                     </div>
