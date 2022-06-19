@@ -18,7 +18,7 @@
         <!--헤더 -->
    
     <!-- 반응형 구매하기 폼태그 -->
-    <form action="" th:object="${product}">
+    <form action="/store/itemChoose" method="post" th:object="${product}">
         <div class="pay_bar_media" style="text-align: center;">
             <div class="flex" style="width: 100%;">
                 <div style="width: 7%; padding-left: 10px;"><span class="material-symbols-outlined pointer jjim-ajax" style="font-size: 40px; padding-top: 15px;">
@@ -27,11 +27,14 @@
                 <input class="toBuy" type="submit" value="구매하기" style="width: 90%; height: 50px;">
             </div>
         </div>
-        <input type="hidden" value="카테고리"> 
-        <input type="hidden" value="상품이름"> 
-        <input type="hidden" value="가격"> 
-        <input type="hidden" value="수량"> 
-        <input type="hidden" value="등..">  
+        <input type="hidden" value="상품번호" th:field="*{num}">
+        <input type="hidden" value="카테고리" th:field="*{category}">
+        <input type="hidden" value="상품이름" th:field="*{name}">
+        <input type="hidden" value="가격" th:field="*{price}">
+        <input type="hidden" value="수량" th:field="*{stock}">
+        <input type="hidden" value="원산지" th:field="*{origin}">
+        <input type="hidden" value="제조사" th:field="*{manufacturer}">
+        <input type="hidden" value="공급처" th:field="*{supplier}">
     </form>
 
     <div class="store_detail">
@@ -146,7 +149,7 @@
                                     <!-- 각 리뷰-->
                                     <div class="ProductReviews"></div>
                                     <!-- 각 리뷰-->
-                                    <a class="moveReviewTotal"><span class="goTomoveReviewTotal">63개의 후기 더보기</span></a>
+                                    <a class="moveReviewTotal"><span class="goTomoveReviewTotal" th:text="|*{count-4}개의 후기 더보기|"></span></a>
                                 </section>
                             </div>
                         </div>
@@ -236,7 +239,7 @@
             <!-- 주문 사이드바 -->
             <div class="store_detail_right">
                 <div class="pay_bar">
-                        <form action="" th:object="${product}">
+                    <form action="" th:object="${product}">
                         <div class="pay_bar_category" th:text="*{category}"></div>
                         <div class="pay_bar_item_description" th:text="*{name}"></div>
                         <div th:text="*{content}"></div>
@@ -433,34 +436,6 @@
         }
     });
     //------------------------------------------------------------------------------------------
-    //------------------------------------------------------------------------------------------
-    //------------------------------------------------------------------------------------------
-
-
-    // //문의 리스트 js
-    //  function showQuestionList(page){
-    //     questionService.getQuestionList({bno: boardBno, page: page}, function(total, list){
-    //         let str = "";
-
-    //         if(list == null || list.length == 0){
-    //             replyUL.html("");
-    //             return;
-    //         }
-
-    //         $.each(list, function(i, reply){
-    //             str += '<div class="flex" style="align-items: center;">';
-    //             str += '<div class="profile_img"><img src="/src/main/resources/static/images/1.jpg" style="width: 100%; height: 100%;"></div>';
-    //             str += '<div>';
-    //             str += '<div class="small_and_gray" style="color: black;">배고프다</div>';
-    //             str += '<div class="small_and_gray">2022.06.08</div>';
-    //             str += '</div></div>';
-    //             str += '<div class="space"></div>';
-    //             str += '<div class="small_and_gray" style="color: black;"><p>초록색 고무장갑 특 엑스 라지는 없나요?</p></div>';
-    //         });
-
-    //         $('.qnas').html(str);
-    //     });
-    // }
 
     
  // 리뷰 이미지 모달
@@ -525,10 +500,10 @@
     });
 })();
 
-//     //scroll top
-// $('.toTop').click(function(){
-//     $('html, body').animate({scrollTop : 0},300);
-// });
+    //scroll top
+$('.gototop').click(function(){
+    $('html, body').animate({scrollTop : 0},300);
+});
 
      //문의 쓰기
      $('.question-container').css("display","none");
@@ -561,7 +536,7 @@
             }
         });
 
-        showQuestionList(1); //다시 리스트 리프레쉬
+        // showQuestionList(1); //다시 리스트 리프레쉬
     })
     //취소 버튼 클릭시
     $('.question-cancel').click(function(){
@@ -639,6 +614,12 @@
                 
             }
         })
+    })
+
+    // 리뷰로 이동 페이지
+    $('.moveReviewTotal').click(function (e) {
+        e.preventDefault();
+        location.href = "/store/goReviewList/" + productNum;
     })
     
 

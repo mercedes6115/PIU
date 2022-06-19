@@ -20,7 +20,7 @@ public class ProductServiceTest {
 //    }
 //    @Test
 //    public void getDetailTest(){
-//        productService.getDetail(23L);
+//        productService.getDetail(61L);
 //    }
 
 //    @Test

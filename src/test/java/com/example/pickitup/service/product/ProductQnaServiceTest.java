@@ -53,4 +53,9 @@ public class ProductQnaServiceTest {
         }
     }
 
+    @Test
+    public void countTest(){
+        productQnaService.count(61L);
+    }
+
 }

@@ -40,4 +40,8 @@ public class ProductQnaService {
         return productQnaDAO.remove(num);
     }
 
+    public int count(Long productNum){
+        return productQnaDAO.count(productNum);
+    }
+
 }
