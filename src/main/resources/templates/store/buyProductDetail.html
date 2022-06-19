@@ -8,13 +8,13 @@
     <title>Document</title>
 </head>
 <link rel="stylesheet" href="/assets/css/buyProductDetail.css"/>
-<body>
+<body style="background-color: #f8f8f9;">
     <div class="root">
         <div class="wrapper-1">
             <div class="wrapper-product">
                 <div class="title-wrapper">
                     <h1 class="font-check">주문이 완료되었습니다</h1>
-                    <div style="margin-bottom: 20px;">단순생활 천연거품 입욕제 아로마 배스밤</div>
+                    <div style="margin-bottom: 20px;" th:text="*{product.itemname}"></div>
                 </div>
                 <div class="title-wrapper">
                     <div class="title-category">
@@ -24,7 +24,7 @@
                         <div class="title-divide"></div>
                         <div class="title-category-detail" aria-disabled="false"><a class="to_prodectList_detail" style="color: rgb(26, 26, 26); cursor:default">주문 상세</a></div>
                     </div>
-                    <h3 class="font-check">2022.06.11(페이지 이동시 받아오기) 주문 상세 내역</h3>
+                    <h3 class="font-check"><div id="current_date"></div></h3>
                 </div>
                 <div class="divide"></div>
                 <div class="product-bill-wrapper">
@@ -42,11 +42,11 @@
                             
                             <div class="bill-way-wrapper" id="bill-price-wrpper">
                                 <p class="bill-wrapper-left">상품 금액</p>
-                                <p class="bill-wrapper-right" id="product-price">100원</p>
+                                <p class="bill-wrapper-right" id="product-price" th:text="|*{product.ogprice}P|"></p>
                             </div>
                             <div class="bill-way-wrapper" id="bill-count-wrpper">
                                 <p class="bill-wrapper-left">상품 갯수</p>
-                                <p class="bill-wrapper-right" id="product-count">2개</p>
+                                <p class="bill-wrapper-right" id="product-count" th:text="|*{product.totalitems}개|"></p>
                             </div>
 
                             <div class="bill-way-wrapper" id="bill-deliver">
@@ -57,7 +57,7 @@
 
                             <div class="bill-way-wrapper" id="bill-total">
                                 <p class="bill-wrapper-left">총 결제 금액</p>
-                                <p class="bill-wrapper-right" id="product-detail-total">200원</p>
+                                <p class="bill-wrapper-right" id="product-detail-total" th:text="|*{product.totalpayment}P|"></p>
                             </div>
                         </div>
                     </div>
@@ -68,23 +68,34 @@
                     <div class="bill-way-detail-wrapper">
                         <div class="bill-way-wrapper" id="bill-price-wrpper">
                             <p class="bill-wrapper-left">받는분</p>
-                            <p class="bill-wrapper-right" id="userName">이름</p>
+                            <p class="bill-wrapper-right" id="userName" th:text="*{userinfo.nickname}"></p>
                         </div>
                         <div class="bill-way-wrapper" id="bill-price-wrpper">
                             <p class="bill-wrapper-left">연락처</p>
-                            <p class="bill-wrapper-right" id="userPhone">010-0000-0000</p>
+                            <p class="bill-wrapper-right" id="userPhone" th:text="*{userinfo.phone}"></p>
                         </div>
                         <div class="bill-way-wrapper" id="bill-price-wrpper">
                             <p class="bill-wrapper-left">주소</p>
-                            <p class="bill-wrapper-right" id="userState">서울 어딘가 아파트 0층 0호</p>
+                            <p class="bill-wrapper-right" id="userState" th:text="|*{userinfo.address} *{userinfo.address2}|"></p>
+                        </div>
+                        <div class="bill-way-wrapper" id="bill-price-wrpper">
+                            <p class="bill-wrapper-left">배송 요청사항</p>
+                            <p class="bill-wrapper-right" id="userState" th:text="|*{userinfo.memo}|"></p>
                         </div>
                     </div>
                 </div>
                 <div class="button_wrapper" style="padding: 24px;">
-                    <div id="go_to_new_product"><a href="/컨트롤러/productList" target="_self">다른 상품 보러가기</a></div>
+                    <div id="go_to_new_product"><a href="/store/main" target="_self">다른 상품 보러가기</a></div>
                 </div>
             </div>
         </div>
     </div>   
 </body>
+<script>
+    date = new Date();
+    year = date.getFullYear();
+    month = date.getMonth() + 1;
+    day = date.getDate();
+    document.getElementById("current_date").innerHTML = year + "." + month + "." + day + "&nbsp 주문 상세 내역";
+</script>
 </html>

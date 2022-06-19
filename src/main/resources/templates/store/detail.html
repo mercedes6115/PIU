@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/assets/css/header.css" />
-    <link rel="stylesheet" href="/assets/css/footer.css" />
+    <link rel="stylesheet" href="/assets/css/Header.css" />
+    <link rel="stylesheet" href="/assets/css/Footer.css" />
     <link rel="stylesheet" href="/assets/css/pickitupStore.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 
@@ -18,7 +18,7 @@
         <!--헤더 -->
    
     <!-- 반응형 구매하기 폼태그 -->
-    <form action="">
+    <form action="/store/itemChoose" method="post" th:object="${product}">
         <div class="pay_bar_media" style="text-align: center;">
             <div class="flex" style="width: 100%;">
                 <div style="width: 7%; padding-left: 10px;"><span class="material-symbols-outlined pointer jjim-ajax" style="font-size: 40px; padding-top: 15px;">
@@ -27,11 +27,14 @@
                 <input class="toBuy" type="submit" value="구매하기" style="width: 90%; height: 50px;">
             </div>
         </div>
-        <input type="hidden" value="카테고리"> 
-        <input type="hidden" value="상품이름"> 
-        <input type="hidden" value="가격"> 
-        <input type="hidden" value="수량"> 
-        <input type="hidden" value="등..">  
+        <input type="hidden" value="상품번호" th:field="*{num}">
+        <input type="hidden" value="카테고리" th:field="*{category}">
+        <input type="hidden" value="상품이름" th:field="*{name}">
+        <input type="hidden" value="가격" th:field="*{price}">
+        <input type="hidden" value="수량" th:field="*{stock}">
+        <input type="hidden" value="원산지" th:field="*{origin}">
+        <input type="hidden" value="제조사" th:field="*{manufacturer}">
+        <input type="hidden" value="공급처" th:field="*{supplier}">
     </form>
 
     <div class="store_detail">
@@ -83,8 +86,8 @@
                         </div>
                         <div class="space"></div>
                         <div id="toitem_intro">
-                            <img src="/src/main/resources/static/images/5.jpg">
-                            <img src="/src/main/resources/static/images/5.jpg">
+                            <img src="/static/images/5.jpg">
+                            <img src="/src/main/resources/static/images/chun.png">
                             <img src="/src/main/resources/static/images/5.jpg">
                             <img src="/src/main/resources/static/images/5.jpg">
                             <img src="/src/main/resources/static/images/5.jpg">
@@ -143,113 +146,10 @@
                                         </div>
                                     </div>
                                     <div style="margin : 40px 0px;"></div>
-                                    <div class="readReviews">
-                                        <div class="readReviewForm">
-                                            <div class="readReview">
-                                                <a href="#" class="moveReviewDetail">
-                                                    <div class="reviewDetailProfile">
-                                                        <div class="reviewProfileForm">
-                                                            <span class="reviewProfile">
-                                                                <picture class="profile">
-                                                                
-                                                                    <img src="/src/main/resources/static/images/chun.png" alt="">
-                                                                </picture>
-                                                            </span>
-                                                        </div>
-                                                        <div class="reviewNameDate">
-                                                            <div class="reviewName">짜리킴</div>
-                                                            <div class="reviewDate">5월 31일</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="profileMargin"></div>
-                                                    <div class="reviewContentForm">
-                                                        <pre class="reviewContent">집구하는 신혼부부입니다. 강의 덕분에 그동안 집구하면서 무엇을 잘못했는지, 앞으로는 어떤 전략으로 구해야 하는지 확실히 알게 되었어요! 일찍 완강했으면 좋았을 것을... 지금이라도 이 댓글을 보시는 분들! 집 구하시는 분이라면 언능 완강하세요~ 그리 길지도 않고 필요한 정보만 있어서 정말 도움이 됩니다! 매번 실습을 하면 현실파악에 더 도움이 되고요! 추천합니다
-                                                        </pre>
-                                                        <div class="reviewContentMargin"></div>
-                                                    </div>
-                                                </a>                                       
-                                            </div>
-                                        </div>
-                                        <div class="readReviewForm">
-                                            <div class="readReview">
-                                                <a href="#" class="moveReviewDetail">
-                                                    <div class="reviewDetailProfile">
-                                                        <div class="reviewProfileForm">
-                                                            <span class="reviewProfile">
-                                                                <picture class="profile">
-                                                                
-                                                                    <img src="/src/main/resources/static/images/chun.png" alt="">
-                                                                </picture>
-                                                            </span>
-                                                        </div>
-                                                        <div class="reviewNameDate">
-                                                            <div class="reviewName">짜리킴</div>
-                                                            <div class="reviewDate">5월 31일</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="profileMargin"></div>
-                                                    <div class="reviewContentForm">
-                                                        <pre class="reviewContent">집구하는 신혼부부입니다. 강의 덕분에 그동안 집구하면서 무엇을 잘못했는지, 앞으로는 어떤 전략으로 구해야 하는지 확실히 알게 되었어요! 일찍 완강했으면 좋았을 것을... 지금이라도 이 댓글을 보시는 분들! 집 구하시는 분이라면 언능 완강하세요~ 그리 길지도 않고 필요한 정보만 있어서 정말 도움이 됩니다! 매번 실습을 하면 현실파악에 더 도움이 되고요! 추천합니다
-                                                        </pre>
-                                                        <div class="reviewContentMargin"></div>
-                                                    </div>
-                                                </a>                                       
-                                            </div>
-                                        </div>
-                                        <div class="readReviewForm">
-                                            <div class="readReview">
-                                                <a href="#" class="moveReviewDetail">
-                                                    <div class="reviewDetailProfile">
-                                                        <div class="reviewProfileForm">
-                                                            <span class="reviewProfile">
-                                                                <picture class="profile">
-                                                                
-                                                                    <img src="/src/main/resources/static/images/chun.png" alt="">
-                                                                </picture>
-                                                            </span>
-                                                        </div>
-                                                        <div class="reviewNameDate">
-                                                            <div class="reviewName">짜리킴</div>
-                                                            <div class="reviewDate">5월 31일</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="profileMargin"></div>
-                                                    <div class="reviewContentForm">
-                                                        <pre class="reviewContent">집구하는 신혼부부입니다. 강의 덕분에 그동안 집구하면서 무엇을 잘못했는지, 앞으로는 어떤 전략으로 구해야 하는지 확실히 알게 되었어요! 일찍 완강했으면 좋았을 것을... 지금이라도 이 댓글을 보시는 분들! 집 구하시는 분이라면 언능 완강하세요~ 그리 길지도 않고 필요한 정보만 있어서 정말 도움이 됩니다! 매번 실습을 하면 현실파악에 더 도움이 되고요! 추천합니다
-                                                        </pre>
-                                                        <div class="reviewContentMargin"></div>
-                                                    </div>
-                                                </a>                                       
-                                            </div>
-                                        </div>
-                                        <div class="readReviewForm">
-                                            <div class="readReview">
-                                                <a href="#" class="moveReviewDetail">
-                                                    <div class="reviewDetailProfile">
-                                                        <div class="reviewProfileForm">
-                                                            <span class="reviewProfile">
-                                                                <picture class="profile">
-                                                                
-                                                                    <img src="/src/main/resources/static/images/chun.png" alt="">
-                                                                </picture>
-                                                            </span>
-                                                        </div>
-                                                        <div class="reviewNameDate">
-                                                            <div class="reviewName">짜리킴</div>
-                                                            <div class="reviewDate">5월 31일</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="profileMargin"></div>
-                                                    <div class="reviewContentForm">
-                                                        <pre class="reviewContent">집구하는 신혼부부입니다. 강의 덕분에 그동안 집구하면서 무엇을 잘못했는지, 앞으로는 어떤 전략으로 구해야 하는지 확실히 알게 되었어요! 일찍 완강했으면 좋았을 것을... 지금이라도 이 댓글을 보시는 분들! 집 구하시는 분이라면 언능 완강하세요~ 그리 길지도 않고 필요한 정보만 있어서 정말 도움이 됩니다! 매번 실습을 하면 현실파악에 더 도움이 되고요! 추천합니다
-                                                        </pre>
-                                                        <div class="reviewContentMargin"></div>
-                                                    </div>
-                                                </a>                                       
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <a class="moveReviewTotal"><span class="goTomoveReviewTotal">63개의 후기 더보기</span></a>
+                                    <!-- 각 리뷰-->
+                                    <div class="ProductReviews"></div>
+                                    <!-- 각 리뷰-->
+                                    <a class="moveReviewTotal"><span class="goTomoveReviewTotal" th:text="|*{count-4}개의 후기 더보기|"></span></a>
                                 </section>
                             </div>
                         </div>
@@ -275,46 +175,46 @@
                             </div>
                             <div class="space"></div>
                         <!-- 문의 보내기 ajax -->
-                            
 
+                            <div class="ProductQnas"></div>
                             <!-- 댓글 하나 -->
-                            <div class="qnas">
-                                <div class="flex" style="align-items: center;">
-                                    <div class="profile_img"><img src="/src/main/resources/static/images/1.jpg" style="width: 100%; height: 100%;"></div>
-                                    <div class="id_and_date" style="flex-direction: column;">
-                                        <div class="admin_id" style="color: black;">배고프다</div>
-                                        <div class="admin_date">2022.06.08</div>
-                                    </div>
-                                </div>
-                                <div class="space"></div>
-                                <div class="small_and_gray"><p class="user_question">초록색 고무장갑 특 엑스 라지는 없나요?</p></div>
-                                <div class="space"></div>
-                                <div class="qna_replys">
-                                    <div class="qna_reply">
-                                        <div class="flex" style="align-items: center;">
-                                            <div class="admin_profile_img"><img src="/src/main/resources/static/images/4.jpg"></div>
-                                            <div class="flex id_and_date">
-                                                <div class="admin_id">관리자 아이디 &nbsp;</div>
-                                                <div class="admin_date">2022.06.11</div>
-                                            </div>
-                                        </div>
-                                        <div class="small_and_gray" style="color: black;">
-                                            <p class="admin_comment"> 네 고객님 초록색 고무장갑 특 엑스 라지가 없으셔서 많이 당황하셨죠? 금방 재고가 들어올 예정이니 구독과 알람설정 부탁드려요!</p>
-                                        </div>
-                                        <div class="space"></div>
-                                    </div>
-                                </div>
-                                <div class="flex" style="position: relative; align-items: center; height: 48px;">
-                                    <div class="do_admin_comment">
-                                        <div class="flex">
-                                            <input class="doComment" type="text" placeholder="관리자만 입력할 수 있습니다">
-                                            <div class="send_plane" style="width: 20px; height: 20px;"><span class="material-symbols-outlined">
-                                                send
-                                                </span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+<!--                            <div class="qnas">-->
+<!--                                <div class="flex" style="align-items: center;">-->
+<!--                                    <div class="profile_img"><img src="/src/main/resources/static/images/1.jpg" style="width: 100%; height: 100%;"></div>-->
+<!--                                    <div class="id_and_date" style="flex-direction: column;">-->
+<!--                                        <div class="admin_id" style="color: black;">배고프다</div>-->
+<!--                                        <div class="admin_date">2022.06.08</div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="space"></div>-->
+<!--                                <div class="small_and_gray"><p class="user_question">초록색 고무장갑 특 엑스 라지는 없나요?</p></div>-->
+<!--                                <div class="space"></div>-->
+<!--                                <div class="qna_replys">-->
+<!--                                    <div class="qna_reply">-->
+<!--                                        <div class="flex" style="align-items: center;">-->
+<!--                                            <div class="admin_profile_img"><img src="/src/main/resources/static/images/4.jpg"></div>-->
+<!--                                            <div class="flex id_and_date">-->
+<!--                                                <div class="admin_id">관리자 아이디 &nbsp;</div>-->
+<!--                                                <div class="admin_date">2022.06.11</div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="small_and_gray" style="color: black;">-->
+<!--                                            <p class="admin_comment"> 네 고객님 초록색 고무장갑 특 엑스 라지가 없으셔서 많이 당황하셨죠? 금방 재고가 들어올 예정이니 구독과 알람설정 부탁드려요!</p>-->
+<!--                                        </div>-->
+<!--                                        <div class="space"></div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="flex" style="position: relative; align-items: center; height: 48px;">-->
+<!--                                    <div class="do_admin_comment">-->
+<!--                                        <div class="flex">-->
+<!--                                            <input class="doComment" type="text" placeholder="관리자만 입력할 수 있습니다">-->
+<!--                                            <div class="send_plane" style="width: 20px; height: 20px;"><span class="material-symbols-outlined">-->
+<!--                                                send-->
+<!--                                                </span></div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
                             <div class="space_line"></div>
                             <!-- 댓글 끝 -->
                         </div>
@@ -339,28 +239,29 @@
             <!-- 주문 사이드바 -->
             <div class="store_detail_right">
                 <div class="pay_bar">
-                        <form action="">
-                        <div class="pay_bar_category">주방용품</div>
-                        <div class="pay_bar_item_description">지금까지 이런 색은 없었다 초록이 고무장갑!!</div>
+                    <form action="/store/itemChoose" method="post" th:object="${product}">
+                        <div class="pay_bar_category" th:text="*{category}"></div>
+                        <div class="pay_bar_item_description" th:text="*{name}"></div>
+                        <div th:text="*{content}"></div>
                         <div class="free_ship_box">
                             <div class="small_and_gray gray_box">무료배송</div>
                         </div>
                         <div class="space"></div>
                         <div class="space-8 flex justify-content">
-                            <div>배송예정일 : </div>
-                            <div> 2~3일 소요</div>
+                            <div>공급사 : </div>
+                            <div th:text="*{supplier}"> 2~3일 소요</div>
                         </div>
                         <div class="space-8 flex justify-content">
-                            <div>제품 사이즈 :</div>
-                            <div> 소/중/대</div>
+                            <div>제조사 :</div>
+                            <div th:text="*{manufacturer}"></div>
                         </div>
                         <div class="space-8 flex justify-content">
                             <div>원산지 :</div>
-                            <div>대한민국</div>
+                            <div th:text="*{origin}"></div>
                         </div>
                         <div class="space-8 flex justify-content">
                             <div style="color: rgb(253, 48, 73);">차감포인트 : </div>
-                            <div><strong>700P</strong></div>
+                            <div><strong th:text="|*{price}P|"></strong></div>
                         </div>
                     <!-- ---------------------------웹 일떄 ------------------------------------------------>
 
@@ -374,6 +275,15 @@
                                 ios_share
                                 </span><p style="font-weight: normal; font-size: 14px; margin: 0;">&nbsp; 공유하기</p></div>
                         </div>
+                        <input type="hidden" value="상품번호" th:field="*{num}">
+                        <input type="hidden" value="카테고리" th:field="*{category}">
+                        <input type="hidden" value="상품이름" th:field="*{name}">
+                        <input type="hidden" value="가격" th:field="*{price}">
+                        <input type="hidden" value="수량" th:field="*{stock}">
+                        <input type="hidden" value="원산지" th:field="*{origin}">
+                        <input type="hidden" value="제조사" th:field="*{manufacturer}">
+                        <input type="hidden" value="공급처" th:field="*{supplier}">
+
                         <div><input class="toBuy" type="submit" value="구매하기" style="cursor: pointer;"></div>
                     </form>
                 </div>
@@ -423,54 +333,118 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-<script>
-    //  //리뷰 리스트 js
-    //  function showReviewList(page){
-    //     reviewService.getReviewList({bno: boardBno, page: page}, function(total, list){
-    //         let str = "";
+<!--<script src="/static/assets/js/store.js"></script>-->
+<script th:inline="javascript">
+    let productNum = [[${product.num}]];
+    //--------------------------------------------------------- 리뷰 가져오기 ajax
+    $.ajax({
+        url: "/store/reviewList/" + productNum,
+        type: "get",
+        dataType: "json",
+        success: function(reviewVO){
+            let str = "";
+            if(reviewVO.length==0){
+                str += "현재 댓글이 없습니다.";
+                $('.ProductReviews').html(str);
+                return;
+            }
+            for (let i = 0 ; i < 4 ; i++){
+                str += "<div class=\"readReviews\">";
+                str += "<div class=\"readReviewForm\">";
+                str += "<div class=\"readReview\">";
+                str += "<a href=\"#\" class=\"moveReviewDetail\">";
+                str += "<div class=\"reviewDetailProfile\">";
+                str += "<div class=\"reviewProfileForm\">";
+                str += "<span class=\"reviewProfile\">";
+                str += "<picture class=\"profile\">";
+                str += "<img src=\"/src/main/resources/static/images/chun.png\" alt=\"\">";
+                str += "</picture>";
+                str += "</span>";
+                str += "</div>";
+                str += "<div class=\"reviewNameDate\">";
+                str += "<div class=\"reviewName\">"+reviewVO[i].userNum+"</div>";
+                str += "<div class=\"reviewDate\">"+reviewVO[i].updateDate+"</div>";
+                str += "</div>";
+                str += "</div>";
+                str += "<div class=\"profileMargin\"></div>";
+                str += "<div class=\"reviewContentForm\">";
+                str += "<pre class=\"reviewContent\">"+reviewVO[i].content;
+                str += "</pre>";
+                str += "<div class=\"reviewContentMargin\"></div>";
+                str += "</div>";
+                str += "</a>";
+                str += "</div>";
+                str += "</div>";
+                str += "</div>";
+            }
 
-    //         if(list == null || list.length == 0){
-    //             replyUL.html("");
-    //             return;
-    //         }
-
-    //         $.each(list, function(i, reply){
-    //             str += '<div> <div class="flex" style="align-items: flex-end;">';
-    //             str += '<div class="profile_img"><img src="/src/main/resources/static/images/2.jpg" style="width: 100%; height: 100%;"></div>';
-    //             str += '<div class="small_and_gray">닉네임뭐짓지&nbsp;•&nbsp;</div>';
-    //             str += '<div class="small_and_gray">2022-06-08</div></div>';
-    //             str += '<div>이 장갑끼고 스키장에 다녀왔어요!! 그래도 여전히 튼튼합니다!</div>';
-    //             str += '<div style="width: 200px; height:100px"><img src="/src/main/resources/static/images/5.jpg" style="width: 100%; height: 100%;"></div> </div>';
-    //             str += '<div class="space_line"></div>';
-    //         });
-    //         $('.toitem_review').html(str);
-    //     });
-    // }
-
-    // //문의 리스트 js
-    //  function showQuestionList(page){
-    //     questionService.getQuestionList({bno: boardBno, page: page}, function(total, list){
-    //         let str = "";
-
-    //         if(list == null || list.length == 0){
-    //             replyUL.html("");
-    //             return;
-    //         }
-
-    //         $.each(list, function(i, reply){
-    //             str += '<div class="flex" style="align-items: center;">';
-    //             str += '<div class="profile_img"><img src="/src/main/resources/static/images/1.jpg" style="width: 100%; height: 100%;"></div>';
-    //             str += '<div>';
-    //             str += '<div class="small_and_gray" style="color: black;">배고프다</div>';
-    //             str += '<div class="small_and_gray">2022.06.08</div>';
-    //             str += '</div></div>';
-    //             str += '<div class="space"></div>';
-    //             str += '<div class="small_and_gray" style="color: black;"><p>초록색 고무장갑 특 엑스 라지는 없나요?</p></div>';
-    //         });
-
-    //         $('.qnas').html(str);
-    //     });
-    // }
+            // $.each(reviewVO, function(i, review){
+            // });
+            $('.ProductReviews').html(str);
+        }
+    });
+    //------------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------
+    //--------------------------------문의 가져오기 ajax-----------------------------
+    //문의 리스트 js
+    $.ajax({
+        url: "/store/qnaList/" + productNum,
+        type: "get",
+        dataType: "json",
+        success: function(qnaVO){
+            let str = "";
+            if(qnaVO.length==0){
+                str += "현재 문의가 없습니다.";
+                $('.ProductQnas').html(str);
+                return;
+            }
+            $.each(qnaVO, function(i, qna){
+                str += "<div class=\"qnas\">";
+                str += "<div class=\"flex\" style=\"align-items: center;\">";
+                str += "<div class=\"profile_img\"><img src=\"/src/main/resources/static/images/1.jpg\" style=\"width: 100%; height: 100%;\"></div>";
+                str += "<div class=\"id_and_date\" style=\"flex-direction: column;\">";
+                str += "<div class=\"admin_id\" style=\"color: black;\">"+qna.userNum+"</div>";
+                str += "<div class=\"admin_date\">"+qna.updateDate+"</div>";
+                str += "</div>";
+                str += "</div>";
+                str += "<div class=\"space\"></div>";
+                str += "<div class=\"small_and_gray\"><p class=\"user_question\">"+qna.content+"</p></div>";
+                str += "<div class=\"space\"></div>";
+                str += "<div class=\"qna_replys\">";
+                str += "<div class=\"qna_reply\">";
+                str += "<div class=\"flex\" style=\"align-items: center;\">";
+                str += "<div class=\"admin_profile_img\"><img src=\"/src/main/resources/static/images/4.jpg\"></div>";
+                str += "<div class=\"flex id_and_date\">";
+                str += "<div class=\"admin_id\">관리자 아이디 &nbsp;</div>";
+                str += "<div class=\"admin_date\">2022.06.11</div>";
+                str += "</div>";
+                str += "</div>";
+                str += "<div class=\"small_and_gray\" style=\"color: black;\">";
+                str += "<p class=\"admin_comment\"> 네 고객님 초록색 고무장갑 특 엑스 라지가 없으셔서 많이 당황하셨죠? 금방 재고가 들어올 예정이니 구독과 알람설정 부탁드려요!</p>";
+                str += "</div>";
+                str += "<div class=\"space\"></div>";
+                str += "</div>";
+                str += "</div>";
+                str += "<div class=\"flex\" style=\"position: relative; align-items: center; height: 48px;\">";
+                str += "<div class=\"do_admin_comment\">";
+                str += "<div class=\"flex\">";
+                str += "<input class=\"doComment\" type=\"text\" placeholder=\"관리자만 입력할 수 있습니다\">";
+                str += "<div class=\"send_plane\" style=\"width: 20px; height: 20px;\"><span class=\"material-symbols-outlined\">";
+                str += "send";
+                str += " </span></div>";
+                str += "</div>";
+                str += "</div>";
+                str += "</div>";
+                str += "</div>";
+            });
+            $('.ProductQnas').html(str);
+            // $.each(reviewVO, function(i, review){
+            // });
+            $('.ProductReviews').html(str);
+        }
+    });
+    //------------------------------------------------------------------------------------------
 
     
  // 리뷰 이미지 모달
@@ -536,7 +510,7 @@
 })();
 
     //scroll top
-$('.toTop').click(function(){
+$('.gototop').click(function(){
     $('html, body').animate({scrollTop : 0},300);
 });
 
@@ -571,7 +545,7 @@ $('.toTop').click(function(){
             }
         });
 
-        showQuestionList(1); //다시 리스트 리프레쉬
+        // showQuestionList(1); //다시 리스트 리프레쉬
     })
     //취소 버튼 클릭시
     $('.question-cancel').click(function(){
@@ -650,6 +624,12 @@ $('.toTop').click(function(){
             }
         })
     })
+
+    // 리뷰로 이동 페이지
+    $('.moveReviewTotal').click(function (e) {
+        e.preventDefault();
+        location.href = "/store/goReviewList/" + productNum;
+    })
     
 
     //--------------------------- 공유하기 api----------------------------------
@@ -722,7 +702,12 @@ $('.toTop').click(function(){
               $('.share_container').css("display","none");
 
          }
+
+
+
+
+
+
+
   </script>
-
-
 </html>
