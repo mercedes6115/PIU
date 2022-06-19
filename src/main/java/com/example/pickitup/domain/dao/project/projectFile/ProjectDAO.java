@@ -39,4 +39,13 @@ public class ProjectDAO {
         return projectMapper.delete(num);
     }
 
+    // 프로젝트 목록(찜순)
+    public List<ProjectVO> getListJJim(){
+        return projectMapper.getListJJim();
+    }
+    // 프로젝트 목록(포인트순)
+    public List<ProjectVO> getListPoint(){
+        return projectMapper.getListPoint();
+    }
+
 }

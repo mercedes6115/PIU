@@ -1,32 +1,42 @@
-package com.example.pickitup.dao.user;
+package com.example.pickitup.service.user;
 
-import com.example.pickitup.domain.dao.user.UserDAO;
 import com.example.pickitup.domain.vo.user.UserVO;
+import com.example.pickitup.service.TempUserSerivce;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
 @Slf4j
-public class UserDaoTests {
+@SpringBootTest
+public class TempUserServiceTests {
     @Autowired
-    private UserDAO userDAO;
+    private TempUserSerivce tempUserSerivce;
+
+    @Test
+    public void getProjectListTest() {
+        tempUserSerivce.getJjimProjectList(2L);
+    }
+
+    @Test
+    public void getProductListTest() {
+        tempUserSerivce.getJjimProductList(2L);
+    }
 
     @Test
     public void getDetail(){
-        log.info("한명의 유저" + userDAO.read(22L));
+        log.info("한명의 유저" + tempUserSerivce.readUserInfo(2L));
     }
 
     @Test
     public void insertTest(){
         UserVO userVO = new UserVO();
-        userVO.setEmail("a45665n@naber.com");
-        userVO.setPassword("dfdf");
-        userVO.setNickname("nickname");
+        userVO.setEmail("bbbb@aaaa");
+        userVO.setPassword("aaaa");
+        userVO.setNickname("aaaaa");
         userVO.setPhone("5454544545");
-        userVO.setAddress("서울특별시 용산구 갈월");
-        userDAO.register(userVO);
+        userVO.setAddress("aaaaaa 용산구 갈월");
+        tempUserSerivce.registerUser(userVO);
     }
 
     @Test
@@ -40,23 +50,22 @@ public class UserDaoTests {
         userVO.setAddress("서울특별시 zdfgdfg 역삼동");
         userVO.setProfileFileName("adfffaaa");
         userVO.setProfileUploadPath("fffffff");
-        log.info("수정"+ userDAO.update(userVO));
+        log.info("수정"+ tempUserSerivce.updateUserInfo(userVO));
     }
 
     @Test
     public void deleteTest(){
-        log.info("삭제"+userDAO.remove(22L));
+        log.info("삭제"+tempUserSerivce.removeUser(22L));
     }
 
     @Test
     public void loginTest(){
         int check=1;
-        if(check==userDAO.login("ddd","dddd")){
+        if(check==tempUserSerivce.loginUser("ddd","dddd")){
             log.info("로그인 성공");
         }
     }
 
-    public void getInProductTest() {
-        userDAO.getInProjectList(2L);
-    }
+
+    public void getInProductListTest() { tempUserSerivce.getInProjectList(2L);}
 }

@@ -1,25 +1,22 @@
-package com.example.pickitup.mapper.user;
+package com.example.pickitup.dao.user;
 
+import com.example.pickitup.domain.dao.user.JjimDAO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
 @Slf4j
-public class JjimMapperTests {
+@SpringBootTest
+public class JjimDaoTests {
     @Autowired
-    private JjimMapper jjimMapper;
+    private JjimDAO jjimDAO;
 
     @Test
     public void getProjectListTest() {
-        jjimMapper.getProjectList(2L);
+        jjimDAO.getProjectList(2L);
     }
 
     @Test
-    public void getProductListTest() {
-        jjimMapper.getProductList(2L);
-    }
-
-
+    public void getProductListTest() { jjimDAO.getProductList(2L); }
 }

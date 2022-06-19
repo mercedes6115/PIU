@@ -2,11 +2,13 @@ package com.example.pickitup.service;
 
 import com.example.pickitup.domain.dao.user.*;
 import com.example.pickitup.domain.vo.Criteria;
+import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 import com.example.pickitup.domain.vo.user.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -46,16 +48,18 @@ public class TempUserSerivce {
     }
 
     // 로그인 -> select count-> read() 사용?
-
+    public int loginUser(String email, String password){
+        return userDAO.login(email,password);
+    }
 
     // jjimDAO
     // 나의 프로젝트 찜 목록
-    public List<JjimVO> getJjimProjectList(Long userNum) {
+    public List<ProjectVO> getJjimProjectList(Long userNum) {
         return jjimDAO.getProjectList(userNum);
     }
 
     // 나의 상품 찜 목록
-    public List<JjimVO> getJjimProductList(Long userNum) {
+    public List<ProductVO> getJjimProductList(Long userNum) {
         return jjimDAO.getProductList(userNum);
     }
 
@@ -91,6 +95,10 @@ public class TempUserSerivce {
         return latestDAO.updateProduct(latestVO);
     }
 
+    // 내가 구매한 상품 목록
+    public List<ProductVO> getInProjectList(Long userNum) {
+        return userDAO.getInProjectList(userNum);
+    }
 
     // orderDAO
     // 주문 등록
