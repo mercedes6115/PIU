@@ -43,21 +43,21 @@
             <h2>프로젝트 등록</h2>
         </div>
         <div class="searchBox">
-            <form id="projectCreateForm">
+            <form id="projectCreateForm" action="/adminR/create" method="post" enctype="multipart/form-data">
                 <table class="projectCreateTbl">
                     <tr>
                         <th colspan="3">유형선택</th>
                         <td colspan="4">
                             <select>
-                                <option>코스</option>
-                                <option>장소</option>
+                                <option value="Course">코스</option>
+                                <option value="Location">장소</option>
                             </select>
                             <select>
-                                <option>지형</option>
-                                <option>산</option>
-                                <option>바다</option>
-                                <option>평지</option>
-                                <option>기타</option>
+                                <option value="TERRAIN">지형</option>
+                                <option value="MOUNTAIN">산</option>
+                                <option value="COAST">바다</option>
+                                <option value="GROUND">평지</option>
+                                <option value="ETC">기타</option>
                             </select>
 
                         </td>
@@ -65,7 +65,7 @@
                     <tr>
                         <th colspan="3">플로깅제목</th>
                         <td colspan="4">
-                            <input type="text" name="" id="projectTitle">
+                            <input type="text" name="title" id="projectTitle">
                             <span title="현재글자수/최대글자수">[
                                     <strong id="titleCount">0</strong>
                                     / 250 ]
@@ -76,7 +76,7 @@
                     </tr>
                     <tr>
                         <th colspan="3">플로깅내용</th>
-                        <td colspan="4"><textarea name="" id="" cols="100" rows="5" required></textarea></td>
+                        <td colspan="4"><textarea name="content"  cols="100" rows="5" required></textarea></td>
                     </tr>
                     <tr>
                         <!-- 코스일 경우 출발지, 도착지, 장소일 경우 주소 -->
@@ -87,20 +87,20 @@
                                 <div>
                                     <button type="button" class="locationBtn" id="startPoint">주소검색</button>
                                     <span>출발지: </span><span class="startPoint"></span>
-                                    <input type="text" name="" id="startPoint" hidden>
+                                    <input type="text" name="startAddress"  id="startPoint"hidden>
                                 </div>
 
                                 <div>
                                     <button type="button" class="locationBtn" id="endPoint">주소검색</button>
                                     <span>도착지: </span><span class="endPoint"></span>
                                 </div>
-                                <input type="text" name="" id="endPoint" hidden>
+                                <input type="text" name="endAddress" id="endPoint" hidden>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <th colspan="3">플로깅이미지</th>
-                        <td colspan="4"><input type="file" name="" id="" required></td>
+                        <td colspan="4"><input type="file" name="fileName" required></td>
                     </tr>
                     <tr>
 
@@ -108,26 +108,22 @@
                         <td colspan="1" style="width: 40px; text-align: center;">
                             시작
                         </td>
-                        <td colspan="1" style="width: 300px;"><input type="datetime-local" name="" id=""
+                        <td colspan="1" style="width: 300px;"><input type="datetime-local" name="startTime"
                                                                      class="dateSelect" required></td>
                         <td colspan="1" style="width: 40px; text-align: center;">종료</td>
-                        <td colspan="1" style="width: 300px;"><input type="datetime-local" name="" id=""
+                        <td colspan="1" style="width: 300px;"><input type="datetime-local" name="endTime"
                                                                      class="dateSelect" required></td>
                     </tr>
                     <tr>
                         <th colspan="3">포인트</th>
-                        <td colspan="4"><input type="number" name="" id="" required><span> point</span></td>
+                        <td colspan="4"><input type="number" name="point" required><span> point</span></td>
                     </tr>
 
                     <tr>
                         <th colspan="3">모집자 정보</th>
-                        <td colspan="4"><textarea name="" id="" cols="100" rows="5" required></textarea></td>
+                        <td colspan="4"><textarea name="" cols="100" rows="5" required></textarea></td>
+                    </tr>
 
-                    </tr>
-                    <tr>
-                        <th colspan="3">모집자 정보 첨부파일</th>
-                        <td colspan="4"><input type="file" name="" id="" required></td>
-                    </tr>
                 </table>
                 <div class="btnBox">
                     <button type="button" id="productSearchBtn">프로젝트 등록</button>
@@ -145,10 +141,7 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 
-    $(document).ready(function () {
-        $('#sidebar').load("adminSideBar.html");
 
-    });
 
     function getAddress(point) {
         new daum.Postcode({
@@ -178,7 +171,7 @@
         }
     });
 
-    $('#projectTitle').keypress(function () {
+    $('#projectTitle').keyup(function () {
         console.log('hello');
         let projectTitle = $('#projectTitle').val();
         if (projectTitle) {
