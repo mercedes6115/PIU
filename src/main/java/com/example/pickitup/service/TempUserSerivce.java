@@ -94,12 +94,12 @@ public class TempUserSerivce {
 
     // latestDAO
     // 최근에 본 프로젝트 목록
-    public List<LatestVO> getLatestProjectList(Long userNum) {
+    public List<ProjectVO> getLatestProjectList(Long userNum) {
         return latestDAO.getProjectList(userNum);
     }
 
     // 최근에 본 상품 목록
-    public List<LatestVO> getLatestProductList(Long userNum) {
+    public List<ProductVO> getLatestProductList(Long userNum) {
         return latestDAO.getProductList(userNum);
     }
 

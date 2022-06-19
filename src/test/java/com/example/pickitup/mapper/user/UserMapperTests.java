@@ -44,7 +44,7 @@ public class UserMapperTests {
 
     @Test
     public void getDetailTest(){
-        log.info("한 개"+ userMapper.getDetail(2L));
+        userMapper.getDetail(2L);
     }
 
     @Test
@@ -78,6 +78,7 @@ public class UserMapperTests {
     public void getInProductListTest() {
         userMapper.getInProductList(2L);
     }
+
 //    @Test
 //    public boolean login(String email, String password){
 //        return userMapper.login("ddd","dddd");
