@@ -125,5 +125,13 @@ public class AdminController {
     }
 
 
+    // 관리자 유저 문의 글 보기
+    @GetMapping("/userQnA")
+    public void userQnA(){
+
+    }
+
+
+
 
 }

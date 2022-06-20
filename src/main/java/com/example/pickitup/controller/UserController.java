@@ -129,4 +129,14 @@ public class UserController {
     public void delete(){
 
     }
+
+    @GetMapping("/guide")
+    public void guide(){
+
+    }
+
+    @GetMapping("/center")
+    public void center(){
+
+    }
 }
