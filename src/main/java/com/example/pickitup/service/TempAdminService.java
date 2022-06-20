@@ -9,10 +9,7 @@ import com.example.pickitup.domain.vo.dto.UserDTO;
 import com.example.pickitup.domain.vo.product.productFile.ProductFileVO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
-import com.example.pickitup.domain.vo.user.ApplyVO;
-import com.example.pickitup.domain.vo.user.CompanyVO;
-import com.example.pickitup.domain.vo.user.OrderVO;
-import com.example.pickitup.domain.vo.user.UserVO;
+import com.example.pickitup.domain.vo.user.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -135,6 +132,26 @@ public class TempAdminService {
     // 주문 목록 (mapper 추가 및 변경)
     public List<OrderVO> getOrderList(Criteria criteria){
         return orderDAO.getList(criteria);
+    }
+
+    //관리자 공지 등록
+    public void registerWrite(AdminBoardVO adminBoardVO) {
+        userDAO.registerWrite(adminBoardVO);
+    }
+
+    //관리자 공지 리스트
+    public List<AdminBoardVO> getNoticeList(Criteria criteria){
+        return userDAO.getNoticeList(criteria);
+    }
+
+    //관리자 공지 상세보기
+    public AdminBoardVO getReadDetail(Long num){
+        return userDAO.getReadDetail(num);
+    }
+
+    //관리자 공지 총 개수
+    public int getNoticeTotal() {
+        return userDAO.getNoticeTotal();
     }
 
 
