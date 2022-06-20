@@ -15,8 +15,8 @@ public class UserVO {
     private String phone;
     private String address;
 
-    private String address2;
-    private String memo;
+    private String addressDetail;
+    private String userComment;
 
     private String profileFileName;
     private String profileUploadPath;

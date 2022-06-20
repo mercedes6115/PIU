@@ -1,6 +1,6 @@
 package com.example.pickitup.controller;
 
-import com.example.pickitup.domain.ProductDTO.ProductDTO;
+import com.example.pickitup.domain.vo.dto.ProductDTO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 import com.example.pickitup.domain.vo.product.productQna.ProductQnaVO;
 import com.example.pickitup.domain.vo.product.productReview.ProductReviewVO;
@@ -11,8 +11,6 @@ import com.example.pickitup.service.product.productQna.ProductQnaService;
 import com.example.pickitup.service.product.productReview.ProductReviewService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.dom4j.rule.Mode;
-import org.slf4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
