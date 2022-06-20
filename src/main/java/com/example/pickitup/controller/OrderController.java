@@ -7,8 +7,8 @@ import com.example.pickitup.domain.vo.user.OrderVO;
 import com.example.pickitup.domain.vo.user.UserVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
 //
 //import java.util.HashMap;
 //import java.util.Locale;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 public class OrderController {
 
 
-    public void store(UserVO userVO, OrderVO orderVO,ProductVO productVO){
+    public void store(UserVO userVO, OrderVO orderVO, ProductVO productVO){
         userVO.getNickname();
         userVO.getPhone();
         userVO.getAddress();
