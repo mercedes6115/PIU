@@ -13,8 +13,8 @@
 <!--회원 가입-->
     <insert id="insert">
         INSERT INTO TBL_USER
-        (NUM, EMAIL, PASSWORD, NICKNAME, PHONE, ADDRESS, REGIST_DATE)
-        VALUES(SEQ_USER.NEXTVAL,#{email}, #{password}, #{nickname}, #{phone}, #{address}, SYSDATE)
+        (NUM, EMAIL, PASSWORD, NICKNAME, PHONE, ADDRESS,ADDRESS_DETAIL, REGIST_DATE)
+        VALUES(SEQ_USER.NEXTVAL,#{email}, #{password}, #{nickname}, #{phone}, #{address},#{addressDetail}, SYSDATE)
     </insert>
 <!--회원탈퇴-->
     <delete id="delete">
@@ -26,7 +26,7 @@
     <update id="update">
         UPDATE TBL_USER
         SET EMAIL=#{email}, PASSWORD=#{password}, NICKNAME=#{nickname}, PHONE=#{phone},ADDRESS=#{address},
-        PROFILE_FILE_NAME=#{profileFileName}, PROFILE_UPLOAD_PATH=#{profileUploadPath}, REGIST_DATE=SYSDATE
+        ADDRESS_DETAIL=#{addressDetail},PROFILE_FILE_NAME=#{profileFileName}, PROFILE_UPLOAD_PATH=#{profileUploadPath}, REGIST_DATE=SYSDATE
         WHERE NUM=#{num}
     </update>
 
