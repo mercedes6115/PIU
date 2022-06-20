@@ -39,4 +39,10 @@ public class ProductReviewService {
         return productReviewDAO.remove(num);
     }
 
+
+    //리뷰 갯수
+    public int count(Long productNum){
+        return productReviewDAO.count(productNum);
+    }
+
 }

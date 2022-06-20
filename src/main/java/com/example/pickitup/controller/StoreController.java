@@ -15,6 +15,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -36,7 +38,7 @@ public class StoreController {
     // 스토어 상세페이지
     @GetMapping("/detail")
     public void storeDetail(Long num ,Model model){
-        model.addAttribute("count",productQnaService.count(num));
+        model.addAttribute("count",productReviewService.count(num));
         model.addAttribute("product",productService.getDetail(num));
     }
 
@@ -50,11 +52,7 @@ public class StoreController {
     @GetMapping("/goReviewList/{productNum}")
     public String goReviewList(@PathVariable("productNum") Long productNum,Model model){
         model.addAttribute("products",productService.getDetail(productNum));
-        log.info("------------------------1------------------");
-        log.info("-----------------------2--------------");
-        log.info(productService.getDetail(productNum).toString());
-        log.info("----------------------3-----------");
-        log.info("-----------------------4--------");
+        model.addAttribute("productNum",productNum);
         model.addAttribute("reviews",productReviewService.getList(productNum));
         return "/store/reviewList";
     }
@@ -114,4 +112,9 @@ public class StoreController {
         model.addAttribute("product",productDTO);
     }
 
+    private String getFolder(){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        Date date = new Date();
+        return sdf.format(date);
+    }
 }

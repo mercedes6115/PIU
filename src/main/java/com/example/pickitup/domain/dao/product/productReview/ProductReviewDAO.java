@@ -39,4 +39,7 @@ public class ProductReviewDAO {
         return productReviewMapper.delete(num);
     }
 
+    //리뷰 갯수 구하기
+    public int count(Long productNum){return productReviewMapper.count(productNum);}
+
 }

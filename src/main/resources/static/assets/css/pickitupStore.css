@@ -594,7 +594,7 @@ li.active{
 .nav_item{
     z-index: 10;
     position: sticky;
-    top: 78px;
+    top: 122px;
     background-color: white;
     display: flex;
     border-bottom: 1px solid rgba(128, 128, 128, 0.058);
@@ -1414,8 +1414,8 @@ label[for='attach3'] div.thumb3{
     margin-right: 5px;
   }
   .review_modify img{
-    width: 23px;
-    height: 23px;
+    width: 19px;
+    height: 19px;
   }
   .review_delete img{
     width: 27px;

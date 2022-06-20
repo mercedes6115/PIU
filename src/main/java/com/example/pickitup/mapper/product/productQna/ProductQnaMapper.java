@@ -23,5 +23,5 @@ public interface ProductQnaMapper {
     //    qna 삭제하기 qna 글 기본키 받아오기 ->일반유저,관리자
     public boolean delete(Long num);
 
-    public int count(Long productNum);
+
 }
