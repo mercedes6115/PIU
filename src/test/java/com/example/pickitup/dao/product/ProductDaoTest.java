@@ -18,6 +18,10 @@ public class ProductDaoTest {
 //    public void getListTest(){
 //        productDAO.getList().stream().map(ProductVO::toString).forEach(log::info);
 //    }
+//    @Test
+//    public void getDetail(){
+//        productDAO.getDetail(23L);
+//    }
 //
 //    @Test
 //    public void registerTest(){

@@ -10,7 +10,7 @@ import java.util.List;
 @Mapper
 public interface ProductReviewMapper {
     //    하나의 상품 리뷰 리스트 , 무한 스크롤
-    public List<ProductReviewVO> getList();
+    public List<ProductReviewVO> getList(Long num);
 
     //  하나의 리뷰 상세보기
 //    public ProductReviewVO getDetail(Long num);

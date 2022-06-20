@@ -12,13 +12,16 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class ProductService {
-
     private final ProductDAO productDAO;
 
 
     // 상품 목록
     public List<ProductVO> getList(){
         return productDAO.getList();
+    }
+    // 상품 디테일
+    public ProductVO getDetail(Long num){
+        return productDAO.getDetail(num);
     }
 
     // 상품 목록 - 관리자용

@@ -15,8 +15,8 @@ public class ProductReviewFileDAO {
     private final ProductReviewFileMapper productReviewFileMapper;
 
     // 파일 경로 가져오기(mapper 매서드명 수정)
-    public List<ProductReviewFileVO> findProductReviewNum(Long num) {
-        return productReviewFileMapper.findProjectReviewNum(num);
+    public List<ProductReviewFileVO> findByProductReviewNum(Long productReviewNum) {
+        return productReviewFileMapper.findByProductReviewNum(productReviewNum);
     }
 
     // 해당 후기글 작성 도중 창을 이동할 경우 저장 경로에서 사진 지우기

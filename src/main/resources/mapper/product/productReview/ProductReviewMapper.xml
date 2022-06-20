@@ -4,6 +4,7 @@
     <select id="getList" resultType="productReviewVO">
     SELECT NUM, CONTENT, REGIST_DATE, UPDATE_DATE, STATUS, USER_NUM, PRODUCT_NUM
     FROM TBL_PRODUCT_REVIEW
+    WHERE PRODUCT_NUM=#{productNum}
     ORDER BY REGIST_DATE DESC
     </select>
     <select id="getDetail" resultType="productReviewVO">
