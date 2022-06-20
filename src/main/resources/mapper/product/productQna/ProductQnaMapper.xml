@@ -41,11 +41,7 @@
     WHERE NUM=#{num}
     </delete>
 
-    <select id="count" resultType="_int">
-    SELECT COUNT(NUM)
-    FROM TBL_PRODUCT_REVIEW
-    WHERE PRODUCT_NUM = #{productNum}
-    </select>
+
 </mapper>
 
 

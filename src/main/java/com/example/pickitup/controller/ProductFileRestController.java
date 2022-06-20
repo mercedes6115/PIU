@@ -12,10 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -23,6 +20,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -81,6 +79,7 @@ public class ProductFileRestController {
     @ResponseBody
     public byte[] getFile(String fileName) throws IOException{
         File file = new File("C:/upload/", fileName);
+        log.info(file.getPath());
         return FileCopyUtils.copyToByteArray(file);
     }
 
@@ -116,9 +115,9 @@ public class ProductFileRestController {
         if(file.exists()){ file.delete(); }
     }
 
-    @GetMapping("/list")
+    @GetMapping("/list/{productNum}")
     @ResponseBody
-    public List<ProductFileVO> findByProductNum(Long productNum){
+    public List<ProductFileVO> findByProductNum(@PathVariable("productNum") Long productNum){
         log.info("get file list....... : " + productNum);
         return productFileService.findByProductNum(productNum);
     }
