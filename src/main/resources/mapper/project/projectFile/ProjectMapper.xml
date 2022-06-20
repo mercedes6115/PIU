@@ -37,22 +37,6 @@
     WHERE NUM = #{num}
     </update>
 
-</mapper>
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> piu5
-
-
     <!-- 프로젝트 삭제 -->
     <delete id="delete" parameterType="long">
     DELETE FROM TBL_PROJECT WHERE NUM = #{num}
@@ -81,10 +65,15 @@
         ]]>
     </select>
 
-    <!--    -->
-    <!--    <select id="test">-->
-    <!--        SELECT UUID, UPLOAD_PATH, FILE_NAME-->
-    <!--        FROM TBL_PROJECT_FILE-->
-    <!--        WHERE PROJECT_NUM = #{NUM}-->
-    <!--    </select>-->
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
