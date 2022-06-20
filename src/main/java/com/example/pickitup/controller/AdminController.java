@@ -3,6 +3,7 @@ package com.example.pickitup.controller;
 import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.dto.PageDTO;
 import com.example.pickitup.domain.vo.dto.UserDTO;
+import com.example.pickitup.domain.vo.user.AdminBoardVO;
 import com.example.pickitup.service.TempAdminService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.xml.ws.Service;
 
@@ -47,8 +50,13 @@ public class AdminController {
 
     // 관리자 게시물 등록 폼
     @PostMapping("/boardWrite")
-    public void boardWriteForm(){
-
+    public RedirectView boardWriteForm(AdminBoardVO adminBoardVO, RedirectAttributes rttr){
+        log.info("====================");
+        log.info("/boardWriteForm");
+        log.info("====================");
+        tempAdminService.registerWrite(adminBoardVO);
+        rttr.addFlashAttribute("num", adminBoardVO.getNum());
+        return new RedirectView("/admin/main");
     }
 
 
