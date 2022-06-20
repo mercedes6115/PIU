@@ -38,27 +38,6 @@
     WHERE NUM = #{num}
     </update>
 
-    <insert id="insert">
-        INSERT INTO TBL_PROJECT
-        (NUM,TITLE,CONTENT,COURSE,TERRAIN,POINT,START_ADDRESS,END_ADDRESS,DISTANCE,COMPANY_NUM,USER_NUM)
-        VALUES(SEQ_PROJECT.NEXTVAL, #{title}, #{content}, #{course}, #{terrain}, #{point}, #{startAddress}, #{endAddress}, #{distance}, #{companyNum}, #{userNum})
-    </insert>
-</mapper>
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> piu5
-
-
     <!-- 프로젝트 삭제 -->
     <delete id="delete" parameterType="long">
     DELETE FROM TBL_PROJECT WHERE NUM = #{num}
@@ -86,11 +65,4 @@
         WHERE ROWNUM <=10
         ]]>
     </select>
-
-    <!--    -->
-    <!--    <select id="test">-->
-    <!--        SELECT UUID, UPLOAD_PATH, FILE_NAME-->
-    <!--        FROM TBL_PROJECT_FILE-->
-    <!--        WHERE PROJECT_NUM = #{NUM}-->
-    <!--    </select>-->
 </mapper>

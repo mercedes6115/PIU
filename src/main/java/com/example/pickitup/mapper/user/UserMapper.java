@@ -49,22 +49,4 @@ public interface UserMapper {
 
 //  이메일 중복검사
     public int emailMatching(@Param("email") String email);
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
