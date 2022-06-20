@@ -84,34 +84,6 @@
                              </tr>
                          </th:block>
                      </ul>
-
-<!--                     <ul>-->
-<!--                         <li>-->
-<!--                             <div class="item">-->
-<!--                                 <span class="material-symbols-outlined jjim jjim-ajax">-->
-<!--                                     favorite-->
-<!--                                     </span>-->
-<!--&lt;!&ndash;                                 <a href="pickitupStoreDetail.html"><img src="/src/main/resources/static/images/1.jpg">&ndash;&gt;-->
-<!--                                     <ul></ul>-->
-<!--                                     <div class="flex" style="flex-direction: column; margin: 12px 0;">-->
-<!--                                         <div>-->
-<!--                                             <p class="store_main_item_title">[아시아 종묘] 코코넛 화분</p>-->
-<!--                                         </div>-->
-<!--                                         <div style="margin-top: 6px; height: 16px;">-->
-<!--                                             <p class="store_main_item_category">아시아 화분</p>-->
-<!--                                         </div>-->
-<!--                                             <div><span class="material-symbols-outlined" style="font-size: 12px;">-->
-<!--                                                 favorite-->
-<!--                                                 </span></div>-->
-<!--                                             </div>-->
-<!--                                     <div style="height: 18px;">-->
-<!--                                         <p class="store_item_price">800P</p>-->
-<!--                                     </div>-->
-<!--                                 </a>-->
-<!--                             </div>-->
-<!--                         </li>-->
-<!--                     </ul>-->
-                     <!--  목록 리스트 끝 -->
                  </div>
              </div>
              <div class="gototop">
@@ -119,7 +91,6 @@
                      vertical_align_top
                      </span >
              </div> 
-             
          </div>
      </section>
  </div>
@@ -165,15 +136,15 @@
     //
     //
     //
-    // //정상웹 일때
-    // $('.store_categories li').click(function(){
-    //     $('.store_categories li').removeClass('active');
-    //     if($(this).hasClass('active')){
-    //         $(this).removeClass('active');
-    //     }else{
-    //         $(this).addClass('active');
-    //     }
-    // })
+    //정상웹 일때
+    $('.store_categories li').click(function(){
+        $('.store_categories li').removeClass('active');
+        if($(this).hasClass('active')){
+            $(this).removeClass('active');
+        }else{
+            $(this).addClass('active');
+        }
+    })
     //
     // //반응형 웹
     // $('.media_store_categories input').click(function(){

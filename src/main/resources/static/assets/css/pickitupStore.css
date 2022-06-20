@@ -1048,12 +1048,13 @@ textarea{
     background-color: rgba(109, 109, 113, 0.312);
 }
 .item_choose_main{
-    max-width: 640px;
+    max-width: 592px;
     width: 80%;
     display: block;
     margin: 0 auto;
     height: 100%;
     background-color: white;
+    padding: 24px;
 }
 .item_select{
     width: 100%;
