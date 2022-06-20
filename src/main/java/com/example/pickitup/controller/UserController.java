@@ -95,8 +95,9 @@ public class UserController {
 
     // 일반 유저 회원가입 폼
     @PostMapping("/join")
-    public void joinForm(UserVO userVO){
+    public String joinForm(UserVO userVO){
         tempUserSerivce.registerUser(userVO);
+        return "/user/login";
     }
 
     // 단체 유저 회원가입
@@ -120,8 +121,8 @@ public class UserController {
 
     // 로그인 폼
     @PostMapping("/login")
-    public void loginForm(){
-
+    public String loginForm(){
+        return
     }
 
     // 회원탈퇴

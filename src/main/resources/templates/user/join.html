@@ -21,7 +21,7 @@ pom.xml에서 dependency 추가
 <div class="root">
     <div class="wrapper-1">
         <div class="wrapper">
-            <form method="post" action="/user/join" id="joinForm" onsubmit="return false; ">
+            <form method="post" action="/user/join" id="joinForm" onsubmit="return false;">
                 <div class="join-firststep">
                     <div class="wrapper-title"><h1 class="join-title">회원가입</h1><span
                             class="join-title-type">(일반회원)</span></div>
@@ -65,7 +65,7 @@ pom.xml에서 dependency 추가
                             <input name="address" class="input-data" type="text" id="state" placeholder="주소">
                             <input type="button" class="btnCertify" value="검색"/>
                         </div>
-                        <input class="input-data" type="text" id="state-detail" placeholder="상세주소">
+                        <input name="addressDetail" class="input-data" type="text" id="state-detail" placeholder="상세주소">
                     </div>
                     <input type="button" class="submit_button" id="submit-user" value="다음"/>
                 </div>
