@@ -14,15 +14,12 @@ public class UserVO {
     private String nickname;
     private String phone;
     private String address;
-
-    private String address2;
-    private String memo;
-
+    private String addressDetail;
     private String profileFileName;
     private String profileUploadPath;
     private String point;
     private String registDate;
-
+    private String category;
 
 
 }
