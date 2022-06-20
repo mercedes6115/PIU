@@ -5,6 +5,7 @@ import com.example.pickitup.domain.dao.project.projectFile.ProjectDAO;
 import com.example.pickitup.domain.dao.project.projectFile.ProjectFileDAO;
 import com.example.pickitup.domain.dao.user.*;
 import com.example.pickitup.domain.vo.Criteria;
+import com.example.pickitup.domain.vo.dto.PointDTO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 import com.example.pickitup.domain.vo.user.*;
@@ -52,7 +53,6 @@ public class TempUserSerivce {
     }
 
     // 로그인 -> select count-> read() 사용?
-
 
     // 내가 구매한 상품 목록
     public List<ProductVO> getInProductList(Long userNum) {
@@ -149,6 +149,16 @@ public class TempUserSerivce {
         return applyDAO.read(num);
     }
 
+    // 포인트 획득 목록
+    public List<PointDTO> successProject(Long userNum) {
+        List<ApplyVO> applyVOList = applyDAO.successProject(userNum);   // 완주한 프로젝트 목록
+        List<PointDTO> pointDTOList = new ArrayList<>();                // pointDTO 값 받을 빈 pointDTOList 선언
+        for(ApplyVO applyVO : applyVOList) {                            // 반복
+            ProjectVO projectVO = projectDAO.read(applyVO.getProjectNum());     // 완주한 프로젝트의 프로젝트 번호를 이용해 프로젝트 상세정보 갖고 옴
+            pointDTOList.add(new PointDTO(projectVO.getTitle(), applyVO.getRegistDate(), projectVO.getPoint()));    // 필요한 column값들만 삽입
+        }
+        return pointDTOList;    // 값 반환
+    }
 
     // orderDAO
     // 주문 목록(관리자용)

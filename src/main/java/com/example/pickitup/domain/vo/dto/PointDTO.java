@@ -15,4 +15,9 @@ public class PointDTO {
     private String pointDate;
     private Long point;
 
+    public PointDTO(String title, String pointDate, Long point) {
+        this.title = title;
+        this.pointDate = pointDate;
+        this.point = point;
+    }
 }

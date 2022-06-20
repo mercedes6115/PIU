@@ -43,20 +43,7 @@ public class UserController {
     // 마이페이지 포인트
     @GetMapping("/myPoint")
     public void mypoint(Model model){
-        List<ProductVO> productVOList = tempUserSerivce.getInProductList(2L);
-        List<ProjectVO> projectVOList = tempUserSerivce.getInProjectList(2L);
-
-        List<PointDTO> pointDTOList = new ArrayList<PointDTO>();
-        for(ProductVO productVO : productVOList) {
-            for(PointDTO pointDTO : pointDTOList) {
-                pointDTO.setPoint(productVO.getPrice());
-
-            }
-        }
-
-        log.info("구매한 상품 개수 : " + productVOList.size());
-        log.info("참여한 프로젝트 개수 : " + projectVOList.size());
-
+        model.addAttribute("successProject",tempUserSerivce.successProject(2L));
     }
 
     // 마이페이지 QnA

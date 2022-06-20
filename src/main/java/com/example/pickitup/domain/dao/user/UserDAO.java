@@ -54,7 +54,8 @@ public class UserDAO {
         return userMapper.getInProductList(userNum);
     }
 
-    public List<ProjectVO> getInProjectList(Long userNum) {
+    // 유저가 참여한 프로젝트 목록록
+   public List<ProjectVO> getInProjectList(Long userNum) {
         return userMapper.getInProjectList(userNum);
     }
 

@@ -1,11 +1,14 @@
 package com.example.pickitup.service.user;
 
+import com.example.pickitup.domain.vo.dto.PointDTO;
 import com.example.pickitup.domain.vo.user.UserVO;
 import com.example.pickitup.service.TempUserSerivce;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
 
 @Slf4j
 @SpringBootTest
@@ -64,6 +67,13 @@ public class TempUserServiceTests {
         if(check==tempUserSerivce.loginUser("ddd","dddd")){
             log.info("로그인 성공");
         }
+    }
+
+    @Test
+    public void successProjectTest() {
+
+        List<PointDTO> pointDTOList = tempUserSerivce.successProject(2L);
+        log.info("결과값 : " + pointDTOList);
     }
 
 

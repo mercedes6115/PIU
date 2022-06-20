@@ -82,6 +82,11 @@
     WHERE PRODUCT_NUM=#{productNum}
     </select>
 
+    <select id="boughtItem" resultType="orderVO">
+        SELECT NUM, TOTAL, COUNTING, REGIST_DATE, PRODUCT_NUM, USER_NUM, STATUS, USER_COMMENT, ADDRESS_COMMENT
+        FROM TBL_ORDER
+        WHERE USER_NUM = #{userNum} AND STATUS = '1'
+    </select>
 </mapper>
 
 
