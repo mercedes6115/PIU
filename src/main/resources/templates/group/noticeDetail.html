@@ -7,113 +7,111 @@
     <title>공지사항</title>
     <link rel="stylesheet" href="/assets/css/groupPage.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <style>
+        .nContentContainer>p>img {
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
-    <div class="groupPageFrame">        
-        <div class="groupPageTitleFrame">
-            <div class="groupPageTitleForm">
-                <header class="groupPageHeaderFrame">
-                    <div class="groupPageHeaderForm">
-                        <span class="material-symbols-outlined">directions_walk</span>                                                        
-                        <a href="#" class="groupPageHeader">Plogger Center</a>
-                        <div class="groupPageProfileFrame">
-                            <div class="groupPageProfileForm">
-                                <div class="groupPageProfileContainer">
-                                    <picture class="groupPageProfile">
-                                        <source srcset="/images/chun2.png" media="all and (min-width: 1024px)" >
-                                        <img src="/images/chun2.png" class="profileImage" alt="">
-                                    </picture>
-                                </div>
+<div class="groupPageFrame">
+    <div class="groupPageTitleFrame">
+        <div class="groupPageTitleForm">
+            <header class="groupPageHeaderFrame">
+                <div class="groupPageHeaderForm">
+                    <span class="material-symbols-outlined">directions_walk</span>
+                    <a href="#" class="groupPageHeader">Plogger Center</a>
+                    <div class="groupPageProfileFrame">
+                        <div class="groupPageProfileForm">
+                            <div class="groupPageProfileContainer">
+                                <picture class="groupPageProfile">
+                                    <source srcset="/images/chun2.png" media="all and (min-width: 1024px)" >
+                                    <img src="/images/chun2.png" class="profileImage" alt="">
+                                </picture>
                             </div>
                         </div>
                     </div>
-                </header>
-            </div>
-            <div class="boundary"></div>
+                </div>
+            </header>
         </div>
-        <div class="groupPageBodyFrame">
-            <div class="groupPageSidebarFrame">
-                <div class="groupPageSidebarForm">
-                    <div class="groupPageSidebarList">
-                        <div class="groupPageSidebar">
-                            <div class="groupPageSidebars">
-                                <div class="sNoticeFrame">
-                                    <div class="sNoticeForm">
-                                        <span class="material-symbols-outlined">notifications</span>
-                                        <div class="margin"></div>
-                                        <a class="sTitle" href="notice.html">공지사항</a>
-                                    </div>
+        <div class="boundary"></div>
+    </div>
+    <div class="groupPageBodyFrame">
+        <div class="groupPageSidebarFrame">
+            <div class="groupPageSidebarForm">
+                <div class="groupPageSidebarList">
+                    <div class="groupPageSidebar">
+                        <div class="groupPageSidebars">
+                            <div class="sNoticeFrame">
+                                <div class="sNoticeForm">
+                                    <span class="material-symbols-outlined">notifications</span>
+                                    <div class="margin"></div>
+                                    <a class="sTitle" href="notice.html">공지사항</a>
                                 </div>
-                                <div class="sGroupInfoFrame">
-                                    <div class="sGroupInfoForm">
-                                        <span class="material-symbols-outlined">group</span>                                                                                        
-                                        <div class="margin"></div>
-                                        <a class="sTitle" href="#">단체 정보</a> 
-                                    </div>
+                            </div>
+                            <div class="sGroupInfoFrame">
+                                <div class="sGroupInfoForm">
+                                    <span class="material-symbols-outlined">group</span>
+                                    <div class="margin"></div>
+                                    <a class="sTitle" href="#">단체 정보</a>
                                 </div>
-                                <div class="sProjectFrame">
-                                    <div class="sProjectForm">
-                                        <div class="sProjectTitleForm">
-                                            <span class="material-symbols-outlined">list</span>                                                                                                
-                                            <div class="margin"></div>
-                                            <a class="sTitle" href="main.html">플로깅</a>
-                                        </div>
-                                        <span id="listClose" class="material-symbols-outlined show">expand_less</span>                        
-                                    </div>
-                                </div>
-                                <div class="sProjectContainer">
-                                    <a class="sProjectList" href="main.html">전체 플로깅</a>
-                                    <a class="sProjectQna" href="#">플로깅 문의</a>
-                                </div>                                
-                                <div class="sGuideFrame">
-                                    <div class="sGuideForm">
-                                        <span class="material-symbols-outlined">help_center</span>                                                                                        
+                            </div>
+                            <div class="sProjectFrame">
+                                <div class="sProjectForm">
+                                    <div class="sProjectTitleForm">
+                                        <span class="material-symbols-outlined">list</span>
                                         <div class="margin"></div>
-                                        <a class="sTitle" href="#">플로거 가이드 센터</a> 
+                                        <a class="sTitle" href="main.html">플로깅</a>
                                     </div>
+                                    <span id="listClose" class="material-symbols-outlined show">expand_less</span>
+                                </div>
+                            </div>
+                            <div class="sProjectContainer">
+                                <a class="sProjectList" href="main.html">전체 플로깅</a>
+                                <a class="sProjectQna" href="#">플로깅 문의</a>
+                            </div>
+                            <div class="sGuideFrame">
+                                <div class="sGuideForm">
+                                    <span class="material-symbols-outlined">help_center</span>
+                                    <div class="margin"></div>
+                                    <a class="sTitle" href="#">플로거 가이드 센터</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="sideBarBoundary"></div>
                     </div>
-                </div>                   
+                    <div class="sideBarBoundary"></div>
+                </div>
             </div>
-            <div class="groupPageMainFrame">
-                <div class="groupPageMainForm">
-                    <div class="groupPageNoticeForm">
-                        <h4 class="gpNoticeTitle">공지사항</h4>
-                        <div class="nDetailTitleBoundary"></div>
-                        <div class="nTitleContainer">
-                            <div class="nTitleBox">
-                                <h6 class="nDetailTitle">공지사항1</h6>
-                                <p class="nDetailDate">2022. 5. 9</p>
-                            </div>
+        </div>
+        <div class="groupPageMainFrame">
+            <div class="groupPageMainForm">
+                <div class="groupPageNoticeForm" th:object="${adminBoard}">
+                    <h4 class="gpNoticeTitle">공지사항</h4>
+                    <div class="nDetailTitleBoundary"></div>
+                    <div class="nTitleContainer">
+                        <div class="nTitleBox">
+                            <h6 class="nDetailTitle" th:utext="*{title}"></h6>
+                            <h6 class="nDetailDate" th:utext="*{registDate}"></h6>
                         </div>
-                        <div class="nDetailBoundary"></div>
-                        <div class="nContentContainer">
-                            <p class="nContent">공지사항입니다!</p>
-                            <p class="nContent">공지사항입니다!</p>
-                            <p class="nContent">공지사항입니다!</p>
-                            <p class="nContent">공지사항입니다!</p>
-                            <p class="nContent">공지사항입니다!</p>
-                            <p class="nContent">공지사항입니다!</p>
-                            <p class="nContent">공지사항입니다!</p>
-                            <p class="nContent">공지사항입니다!</p>
-                        </div>
-                        <div class="nDetailBoundary"></div>
-                        <div class="nDetailBoundary"></div>
-                        <div class="backListBtnFrame">
-                            <a class="backListBtnForm" href="notice.html">
+                    </div>
+                    <div class="nDetailBoundary"></div>
+                    <div class="nContentContainer">
+                        <p rows="6" style="width: 100%" readonly class="nContent" th:utext="*{content}"></p>
+                    </div>
+                    <div class="nDetailBoundary"></div>
+                    <div class="nDetailBoundary"></div>
+                    <div class="backListBtnFrame">
+                        <a class="backListBtnForm" href="notice.html">
                                 <span class="backListBtnBox">
                                     <span class="material-symbols-outlined" id="returnList">keyboard_return</span>
                                     <span class="backListBtn">목록으로</span>                                                                               
                                 </span>
-                            </a>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
-    </div>                        
+    </div>
+</div>
 </body>
 </html>
