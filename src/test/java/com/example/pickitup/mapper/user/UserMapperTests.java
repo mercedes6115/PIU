@@ -70,6 +70,7 @@ public class UserMapperTests {
         criteria.setPageNum(1);
         criteria.setStartDate("2022-06-16");
         criteria.setEndDate("2022-06-18");
+        criteria.setType("user");
         userMapper.getList(criteria);
 
     }

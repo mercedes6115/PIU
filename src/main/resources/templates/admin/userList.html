@@ -28,38 +28,35 @@
                     <tr>
                         <th>검색어</th>
                         <td>
-                            <select>
-                                <option value="user" th:selected="*{type} == 'USER'">일반</option>
-                                <option value="group" th:selected="*{type} == 'GROUP'">단체</option>
+                            <select name="type">
+                                <option value="total" th:selected="*{type} == 'total'">전체</option>
+                                <option value="user" th:selected="*{type} == 'user'">유저</option>
+                                <option value="company" th:selected="*{type} == 'company'">단체</option>
                             </select>
                             <select name="type1">
                                 <option value="nickname"   th:selected="*{type1} == 'nickname'">이름</option>
                                 <option value="phone"  th:selected="*{type1} == 'phone'">휴대폰번호</option>
                             </select>
-                            <input type="text" value="" name="keyword" th:value="*{keyword}">
+                            <input type="text" value="" name="keyword" th:value="*{keyword}" >
                         </td>
                     </tr>
                     <tr>
-                        <th>구매금액/건수</th>
+                        <th>주소</th>
                         <td>
-                            <select>
-                                <option>전체</option>
-                                <option th:selected="*{type2}=='ORDERPRICE'">총 주문금액</option>
-                                <option th:selected="*{type2}=='ORDERCOUNT'">총 주문건수</option>
-                            </select>
+                            <input type="text" value="" name="keyword1" th:value="*{keyword1}" >
                         </td>
                     </tr>
                     <tr>
                         <th>가입일</th>
                         <td>
-                            <input type="date" name="startDate"  id="">
-                            <input type="date" name="endDate"  id="">
+                            <input type="date" name="startDate"  id="" >
+                            <input type="date" name="endDate"  id="" >
                         </td>
                     </tr>
                     <tr>
                         <th>승인상태</th>
                         <td>
-                            <select>
+                            <select name="type3" required>
                                 <option th:selected="*{type3}=='TOTAL3'">전체</option>
                                 <option th:selected="*{type3}=='AUTH3'">승인</option>
                                 <option th:selected="*{type3}=='UNAUTH3'">미승인</option>
@@ -69,7 +66,7 @@
                     <tr>
                         <th>SNS 연동</th>
                         <td>
-                            <span>전체</span><input type="radio" name="snsCheck" id="" checked>
+                            <span>전체</span><input type="radio" name="snsCheck" id="" >
                             <span>카카오톡</span><input type="radio" name="snsCheck" id="">
                         </td>
                     </tr>
@@ -116,7 +113,8 @@
 
                     <td><input type="checkbox" class="userCheck"></td>
                     <td th:text="${userStat.index}"></td>
-                    <td>단체</td>
+                    <td th:if="*{category}=='user'" th:text="유저"></td>
+                    <td th:if="*{category}=='company'" th:text="회사"></td>
                     <td>활성화</td>
                     <td>승인완료</td>
                     <td th:text ="*{nickname}"></td>
@@ -133,32 +131,32 @@
 
             </table>
             <div th:object="${pageDTO}" class="paging" style="text-align: center">
-                <a class="changePage" th:href="*{startPage - 1}" th:if="*{prev}"><span class="changePages">&lt;</span></a>
-
+                <a class="changePage" th:href="*{startPage - 1}" th:if="*{prev}">&lt;</a>
                 <th:block th:each="num:${#numbers.sequence(pageDTO.startPage, pageDTO.endPage)}">
-                    <span class= "changePages" th:if="${num == pageDTO.criteria.pageNum}" th:text="${num}"></span>
-                    <a class="changePage" th:href="${num}" th:unless="${num == pageDTO.criteria.pageNum}"><span class="changePages" th:text="${num}"></span></a>
+                    <a class= "changePages"  href="javascript:void(0);" th:if="${num == pageDTO.criteria.pageNum}" th:text="${num}"></a>
+                    <a class="changePage" th:href="${num}" th:unless="${num == pageDTO.criteria.pageNum}" th:text="${num}"></a>
                 </th:block>
-                <a class="changePage" th:href="*{endPage + 1}" th:if="*{next}"><span class="changePages">&gt;</span></a>
-                <span class="changePages" th:text="*{criteria.pageNum}"></span>
-                <a class="changePage" th:href="*{criteria.pageNum + 1}" th:if="*{criteria.pageNum < realEnd}"><span class="changePages">&gt;</span></a>
+                <a class="changePage" th:href="*{endPage + 1}" th:if="*{next}">&gt;</a>
+                <a class="changePage" th:href="*{criteria.pageNum + 1}" th:if="*{criteria.pageNum < realEnd}">&gt;</a>
             </div>
 
         </div>
             </div>
         </div>
 
-        <form action="/admin/userList" name="pageForm" th:object="${criteria}">
+        <form action="/admin/userList"  method="get" id="pageForm" th:object="${criteria}">
             <input type="hidden" th:field="*{pageNum}">
             <input type="hidden" th:field="*{amount}">
-            <input type="hidden" th:field="*{total}">
-            <input type="hidden" th:field="*{startDate}">
-            <input type="hidden" th:field="*{endDate}">
-            <input type="hidden" th:field="*{keyword}">
-            <input type="hidden" th:field="*{type1}">
+            <input type="hidden" th:field="*{total}" th:value="*{total}">
+            <input type="hidden" th:field="*{startDate}" th:value="*{startDate}">
+            <input type="hidden" th:field="*{endDate}" th:value="*{endDate}">
+            <input type="hidden" th:field="*{keyword}" th:value="*{keyword}">
+            <input type="hidden" th:field="*{keyword1}" th:value="*{keyword1}">
+            <input type="hidden" th:field="*{type1}" th:value="*{type1}">
+            <input type="hidden" th:field="*{type}" th:value="*{type}">
+
         </form>
     </div>
-
 
 </div>
 </body>
@@ -168,8 +166,8 @@
     //타임리프에서 필드값으로 해당 유저의 번호 뿌려줄것
     $("a.changePage").click(function(e){
         e.preventDefault();
-        $(pageForm).find("input[name='pageNum']").val($(this).attr("href"));
-        $(pageForm).submit();
+        $("#pageForm").find("input[name='pageNum']").val($(this).attr("href"));
+        $("#pageForm").submit();
     });
     // 비활성화 버튼 클릭시
     $('#userDisabled').on("click", function (e) {
@@ -185,7 +183,6 @@
 
                 }
             });
-
 
         } else {
 

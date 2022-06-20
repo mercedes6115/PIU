@@ -100,12 +100,36 @@ public class AdminController {
         log.info("==========");
         log.info("===List===");
         log.info("==========");
+        log.info("====="+criteria.getEndDate());
+        log.info("====="+criteria.getKeyword());
+        log.info("====="+criteria.getStartDate());
+        log.info("====="+criteria.getType());
+        log.info("====="+criteria.getType1());
+        // 아무조건없이 검색했을경우 그에 해당하는 전체적인 목록을 출력해야하기에 =""로 넘어온값은 동적 쿼리에서 null로 인식하지 않아서 null로바꿔줘야함
+        if(criteria.getType()=="total"){
+            criteria.setType(null);
+        }
+        if(criteria.getEndDate()==""){
+                criteria.setStartDate(null);
+            }
+        if(criteria.getEndDate()==""){
+            criteria.setEndDate(null);
+        }
+
+        if(criteria.getType()==""){
+            criteria.setType(null);
+        }
+        if(criteria.getType1()=="") {
+            criteria.setType1(null);
+        }
+
+
 //        model.addAttribute("boardList")
         model.addAttribute( "userList",tempAdminService.getList(criteria));
         model.addAttribute("pageDTO",new PageDTO(criteria,(tempAdminService.getTotal(criteria))));
         //tempAdminService.getList(criteria)).size())
         // 검색결과에 따라 페이징할 리스트의 길이가 달라지기 때문에 바로
-                                                                        // 리스트의 사이즈를 구해줘서 total로 넘겨준다
+        // 리스트의 사이즈를 구해줘서 total로 넘겨준다
     }
 
 

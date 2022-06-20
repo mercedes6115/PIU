@@ -22,6 +22,6 @@
         <typeAlias type="com.example.pickitup.domain.vo.project.projectQna.ProjectQnaVO" alias="projectQnaVO"/>
         <typeAlias type="com.example.pickitup.domain.vo.project.projectReview.ProjectReviewFileVO" alias="projectReviewFileVO"/>
         <typeAlias type="com.example.pickitup.domain.vo.project.projectReview.ProjectReviewVO" alias="projectReviewVO"/>
-        <typeAlias type="com.example.pickitup.domain.vo.dto.PageDTO" alias="userDTO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.dto.UserDTO" alias="userDTO"/>
     </typeAliases>
 </configuration>
