@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.pickitup.mapper.project.projectFile.ProjectMapper">
-<<<<<<< HEAD
 
     <!-- 프로젝트 전체 목록   -->
     <select id="getList" resultType="projectVO">
@@ -37,27 +36,6 @@
     START_ADDRESS = #{startAddress}, END_ADDRESS = #{endAddress}, DISTANCE = #{distance}, QR = #{qr}, UPDATE_DATE = SYSDATE, STATUS = #{status}
     WHERE NUM = #{num}
     </update>
-=======
-    <insert id="insert">
-        INSERT INTO TBL_PROJECT
-        (NUM,TITLE,CONTENT,COURSE,TERRAIN,POINT,START_ADDRESS,END_ADDRESS,DISTANCE,COMPANY_NUM,USER_NUM)
-        VALUES(SEQ_PROJECT.NEXTVAL, #{title}, #{content}, #{course}, #{terrain}, #{point}, #{startAddress}, #{endAddress}, #{distance}, #{companyNum}, #{userNum})
-    </insert>
-</mapper>
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> piu5
-
 
     <!-- 프로젝트 삭제 -->
     <delete id="delete" parameterType="long">
@@ -87,10 +65,15 @@
         ]]>
     </select>
 
-    <!--    -->
-    <!--    <select id="test">-->
-    <!--        SELECT UUID, UPLOAD_PATH, FILE_NAME-->
-    <!--        FROM TBL_PROJECT_FILE-->
-    <!--        WHERE PROJECT_NUM = #{NUM}-->
-    <!--    </select>-->
 </mapper>
+
+
+
+
+
+
+
+
+
+
+

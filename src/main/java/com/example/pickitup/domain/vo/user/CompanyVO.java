@@ -13,10 +13,13 @@ public class CompanyVO {
     private String phone;
     private String businessPhone;
     private String address;
+    private String addressDetail;
     private String businessNumber;
     private String approval;
     private String registDate;
     private String profileFileName;
     private String profileUploadPath;
+    private String category;
+
 
 }

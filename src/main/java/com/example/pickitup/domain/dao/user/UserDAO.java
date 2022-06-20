@@ -3,6 +3,7 @@ package com.example.pickitup.domain.dao.user;
 import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 import com.example.pickitup.domain.vo.dto.UserDTO;
+import com.example.pickitup.domain.vo.user.AdminBoardVO;
 import com.example.pickitup.domain.vo.user.UserVO;
 import com.example.pickitup.mapper.user.UserMapper;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +17,26 @@ import java.util.List;
 public class UserDAO {
 
     private final UserMapper userMapper;
+
+    //    관리자 공지등록
+    public void registerWrite(AdminBoardVO adminBoardVO) {
+        userMapper.write(adminBoardVO);
+    }
+
+    // 관리자 공지 리스트 보기
+    public List<AdminBoardVO> getNoticeList(Criteria criteria){
+        return userMapper.getNoticeList(criteria);
+    }
+
+    //    관리자 공지 상세보기
+    public AdminBoardVO getReadDetail(Long num){
+        return userMapper.getNoticeDetail(num);
+    }
+
+    // 관리자 공지글 총개수
+    public int getNoticeTotal(){
+        return userMapper.getNoticeTotal();
+    }
 
     // 유저 목록(관리자용)
     public List<UserDTO> getList(Criteria criteria){
