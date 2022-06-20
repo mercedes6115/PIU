@@ -44,17 +44,17 @@
                     <div class="detail_item_img">
                         <img src="/src/main/resources/static/images/5.jpg">
                         <div class="space"></div>
-                        <div class="item_description_media">
-                            <div class="small_and_gray" style="color: black;">주방용품</div>
+                        <div class="item_description_media" th:object="${product}">
+                            <div class="small_and_gray" style="color: black;" th:text="*{category}"></div>
                             <div class="space"></div>
                             <div class="item_description">
-                                <div class="item_title" style="font-weight: 700;">초록색 고무장갑 20P</div>
+                                <div class="item_title" style="font-weight: 700;" th:text="*{content}"></div>
                             </div>
                             <div class="small_and_gray gray_box">무료배송</div>
                             <div class="space"></div>
                             <div class="flex" style="justify-content: space-between;">
                                 <div style="font-size: 14px;">판매가</div>
-                                <div class="pay_point">700P</div>
+                                <div class="pay_point" th:text="|*{price}P|"></div>
                             </div>
 
                             <!-- ------------------------------반응형---------------------------------- -->
@@ -177,44 +177,6 @@
                         <!-- 문의 보내기 ajax -->
 
                             <div class="ProductQnas"></div>
-                            <!-- 댓글 하나 -->
-<!--                            <div class="qnas">-->
-<!--                                <div class="flex" style="align-items: center;">-->
-<!--                                    <div class="profile_img"><img src="/src/main/resources/static/images/1.jpg" style="width: 100%; height: 100%;"></div>-->
-<!--                                    <div class="id_and_date" style="flex-direction: column;">-->
-<!--                                        <div class="admin_id" style="color: black;">배고프다</div>-->
-<!--                                        <div class="admin_date">2022.06.08</div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div class="space"></div>-->
-<!--                                <div class="small_and_gray"><p class="user_question">초록색 고무장갑 특 엑스 라지는 없나요?</p></div>-->
-<!--                                <div class="space"></div>-->
-<!--                                <div class="qna_replys">-->
-<!--                                    <div class="qna_reply">-->
-<!--                                        <div class="flex" style="align-items: center;">-->
-<!--                                            <div class="admin_profile_img"><img src="/src/main/resources/static/images/4.jpg"></div>-->
-<!--                                            <div class="flex id_and_date">-->
-<!--                                                <div class="admin_id">관리자 아이디 &nbsp;</div>-->
-<!--                                                <div class="admin_date">2022.06.11</div>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                        <div class="small_and_gray" style="color: black;">-->
-<!--                                            <p class="admin_comment"> 네 고객님 초록색 고무장갑 특 엑스 라지가 없으셔서 많이 당황하셨죠? 금방 재고가 들어올 예정이니 구독과 알람설정 부탁드려요!</p>-->
-<!--                                        </div>-->
-<!--                                        <div class="space"></div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div class="flex" style="position: relative; align-items: center; height: 48px;">-->
-<!--                                    <div class="do_admin_comment">-->
-<!--                                        <div class="flex">-->
-<!--                                            <input class="doComment" type="text" placeholder="관리자만 입력할 수 있습니다">-->
-<!--                                            <div class="send_plane" style="width: 20px; height: 20px;"><span class="material-symbols-outlined">-->
-<!--                                                send-->
-<!--                                                </span></div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
                             <div class="space_line"></div>
                             <!-- 댓글 끝 -->
                         </div>
