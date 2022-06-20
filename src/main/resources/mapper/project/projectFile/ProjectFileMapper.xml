@@ -1,10 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.pickitup.mapper.project.projectFile.ProjectFileMapper">
+    <insert id="insert">
+    INSERT INTO TBL_PROJECT_FILE
+        (
+            UUID, UPLOAD_PATH, FILE_NAME, PROJECT_NUM
+        )
+    VALUES
+        (
+            #{uuid},#{uploadPath},#{fileName},#{projectNum}
+        )
+    </insert>
+
+    <delete id="delete">
+    DELETE FROM TBL_PROJECT_FILE
+    WHERE UUID=#{uuid}
+    </delete>
+
     <select id="findByProjectNum" resultType="projectFileVO">
         SELECT UUID, UPLOAD_PATH, FILE_NAME, PROJECT_NUM
         FROM TBL_PROJECT_FILE
-        WHERE PROJECT_NUM = #{projectNum} AND ROWNUM = 1
+        WHERE PROJECT_NUM = #{projectNum}
     </select>
 </mapper>
 

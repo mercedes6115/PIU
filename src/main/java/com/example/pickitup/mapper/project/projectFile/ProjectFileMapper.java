@@ -14,13 +14,13 @@ public interface ProjectFileMapper {
     public  List<ProjectFileVO> getOldFiles();
 
     //  프로젝트의 썸네일 가져오기
-    public ProjectFileVO findByProjectNum(Long projectNum);
+    public List<ProjectFileVO> findByProjectNum(Long projectNum);
 
     //    사진 입력
     public void insert(ProjectFileVO projectFileVO);
 
     //    사진 삭제(후기 수정시에 호출)
-    public void delete(Long projectReviewNum);
+    public void delete(String uuid);
 
 
 
