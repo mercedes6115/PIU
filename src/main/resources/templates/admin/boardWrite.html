@@ -30,16 +30,17 @@
             <h2>공지사항 등록</h2>
         </div>
         <div class="searchBox">
-            <form id="boardWriteForm">
+            <form id="boardWriteForm" method="post" action="/admin/boardWrite" enctype="multipart/form-data">
                 <table>
+                    <input type="text" value="0" name="userNum" style="display: none">
 
                     <tr>
-                        <td><span>제목</span><input type="text" name="" id="boardTitle"></td>
+                        <td><span>제목</span><input type="text" name="title" id="boardTitle"></td>
                     </tr>
 
                     <!-- floala 에디터 -->
                     <tr>
-                        <td><textarea id="summernote" name=""></textarea></td>
+                        <td><textarea id="summernote" name="content"></textarea></td>
                     </tr>
                 </table>
 
@@ -47,7 +48,7 @@
 
         </div>
         <div class="btnBox">
-            <button type="button" id="boardWriteBtn">등록</button>
+            <button type="button" id="boardWriteBtn" onclick="document.getElementById('boardWriteForm').submit();">등록</button>
         </div>
     </div>
 </div>
@@ -66,11 +67,15 @@
 <script>
 
     // 툴바중에 필요 없는것 정리
-    $('#summernote').summernote({
-        placeholder: '내용을 입력해주세요',
-        tabsize: 2,
-        height: 300
+    $(document).ready(function() {
+        $('#summernote').summernote({
+            placeholder: '내용을 입력해주세요',
+            tabsize: 2,
+            height: 300,
+        });
     });
+
+
 </script>
 
 

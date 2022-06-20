@@ -1,6 +1,9 @@
 package com.example.pickitup.service.user;
 
+import com.example.pickitup.domain.vo.Criteria;
+import com.example.pickitup.domain.vo.user.AdminBoardVO;
 import com.example.pickitup.domain.vo.user.UserVO;
+import com.example.pickitup.service.TempAdminService;
 import com.example.pickitup.service.TempUserSerivce;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -12,6 +15,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class TempUserServiceTests {
     @Autowired
     private TempUserSerivce tempUserSerivce;
+
+    @Autowired
+    private TempAdminService tempAdminService;
 
     @Test
     public void getProjectListTest() {
@@ -68,4 +74,33 @@ public class TempUserServiceTests {
 
 
     public void getInProductListTest() { tempUserSerivce.getInProjectList(2L);}
+
+
+    @Test
+    public void registerWriteTest(){
+        AdminBoardVO adminBoardVO = new AdminBoardVO();
+        adminBoardVO.setTitle("service 새로운 공지글 제목");
+        adminBoardVO.setContent("service 새로운 공지글 내용");
+        adminBoardVO.setUserNum(0L);
+
+        tempAdminService.registerWrite(adminBoardVO);
+
+        log.info("게시글 번호 : " + adminBoardVO.getNum());
+    }
+
+    @Test
+    public void getNoticeListTest(){
+        tempAdminService.getNoticeList(new Criteria()).stream().map(AdminBoardVO::toString).forEach(log::info);
+    }
+
+    @Test
+    public void getReadDetailTest(){
+        Long num = 30L;
+        tempAdminService.getReadDetail(num);
+    }
+
+    @Test
+    public void getNoticeTotal(){
+        log.info("총 개수 : " + tempAdminService.getNoticeTotal());
+    }
 }

@@ -150,6 +150,41 @@
         WHERE EMAIL=#{email}
     </select>
 
+    <select id="getNoticeList" resultType="adminBoardVO">
+        <![CDATA[
+        SELECT NUM, TITLE, CONTENT, USER_NUM, REGIST_DATE, UPDATE_DATE
+        FROM
+        (
+            SELECT /*+ INDEX_DESC(TBL_ADMIN_BOARD SYS_C007273) */
+            ROWNUM RN, NUM, TITLE, CONTENT, USER_NUM, REGIST_DATE, UPDATE_DATE
+            FROM TBL_ADMIN_BOARD
+            WHERE ROWNUM <= #{pageNum} * #{amount}
+        )
+        WHERE RN > (#{pageNum} - 1) * #{amount}
+        ]]>
+        ORDER BY REGIST_DATE DESC
+    </select>
+
+    <select id="getNoticeTotal" resultType="_int">
+        SELECT COUNT(NUM) FROM TBL_ADMIN_BOARD
+    </select>
+
+    <select id="getNoticeDetail" resultType="adminBoardVO">
+        SELECT
+        NUM, TITLE, CONTENT, REGIST_DATE, UPDATE_DATE, STATUS, USER_NUM
+        FROM TBL_ADMIN_BOARD
+        WHERE NUM = #{num}
+    </select>
+
+    <insert id="write">
+        <selectKey keyProperty="num" resultType="long" order="BEFORE">
+            SELECT SEQ_ADMIN_BOARD.NEXTVAL FROM DUAL
+        </selectKey>
+        INSERT INTO TBL_ADMIN_BOARD
+        (NUM, TITLE, CONTENT, USER_NUM)
+        VALUES(#{num}, #{title}, #{content}, #{userNum})
+    </insert>
+
 
 
 </mapper>
