@@ -1,5 +1,6 @@
 package com.example.pickitup.controller;
 
+import com.example.pickitup.domain.vo.user.UserVO;
 import com.example.pickitup.service.TempUserSerivce;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -94,8 +95,8 @@ public class UserController {
 
     // 일반 유저 회원가입 폼
     @PostMapping("/join")
-    public void joinForm(){
-
+    public void joinForm(UserVO userVO){
+        tempUserSerivce.registerUser(userVO);
     }
 
     // 단체 유저 회원가입

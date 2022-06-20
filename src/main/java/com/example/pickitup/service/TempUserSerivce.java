@@ -52,6 +52,11 @@ public class TempUserSerivce {
         return userDAO.login(email,password);
     }
 
+    //  이메일 중복검사
+    public int emailcheck(String email){
+        return userDAO.emailcheck(email);
+    };
+
     // jjimDAO
     // 나의 프로젝트 찜 목록
     public List<ProjectVO> getJjimProjectList(Long userNum) {

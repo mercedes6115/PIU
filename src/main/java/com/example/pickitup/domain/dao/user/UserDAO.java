@@ -6,6 +6,7 @@ import com.example.pickitup.domain.vo.dto.UserDTO;
 import com.example.pickitup.domain.vo.user.UserVO;
 import com.example.pickitup.mapper.user.UserMapper;
 import lombok.RequiredArgsConstructor;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -53,4 +54,9 @@ public class UserDAO {
     public int login(String email, String password){
         return userMapper.login(email,password);
     }
+
+    //  이메일 중복검사
+    public int emailcheck(String email){
+        return userMapper.emailMatching(email);
+    };
 }
