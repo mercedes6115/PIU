@@ -17,6 +17,11 @@ public class ProductReviewMapperTest {
 //    public void getListTest(){
 //        productReviewMapper.getList().stream().map(ProductReviewVO::toString).forEach(log::info);
 //    }
+
+    @Test
+    public void getListTest(){
+        productReviewMapper.getList(24L);
+    }
 //
 //    @Test
 //    public void insertTest(){

@@ -1,7 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.pickitup.mapper.product.productFile.ProductFileMapper">
-    
+    <insert id="insert">
+    INSERT INTO TBL_PRODUCT_FILE
+        (
+            UUID, UPLOAD_PATH, FILE_NAME, PRODUCT_NUM
+        )
+    VALUES
+        (
+            #{uuid},#{uploadPath},#{fileName},#{productNum}
+        )
+    </insert>
+
+    <delete id="delete">
+    DELETE FROM TBL_PRODUCT_FILE
+    WHERE UUID=#{uuid}
+    </delete>
+
+    <select id="findByProductNum" resultType="productFileVO">
+    SELECT UUID, UPLOAD_PATH, FILE_NAME, PRODUCT_NUM
+    FROM TBL_PRODUCT_FILE
+    WHERE PRODUCT_NUM=#{productNum}
+    </select>
+
 </mapper>
 
 

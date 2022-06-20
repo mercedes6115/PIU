@@ -1,10 +1,35 @@
 //------------------------------공통----------------------//
 
 //scroll top
-$('.toTop').click(function(){
-    $('html, body').animate({scrollTop : 0},300);
-});
+// $('.gotoTop').click(function(){
+//     $('html, body').animate({scrollTop : 0},300);
+// });
+let replyService = (function(){
+    function getList(productNum, callback, error){
+        // let page = param.page || 1;
+        // $.getJSON("/reply/list/" + param.bno + "/" + page, function(replyPageDTO){
+        //     if(callback){
+        //         callback(replyPageDTO.total, replyPageDTO.list);
+        //     }
+        // }).fail(function(xhr, status, er){
+        //     if(error){
+        //         error(er);
+        //     }
+        // });
+        $.ajax({
+            url: "/reviewList/" + productNum,
+            type: "get",
+            dataType: "json",
+            success: function(productReviewVO){
+                if(callback){
+                    callback(productReviewVO);
+                }
+            }
+        });
+    }
 
+    return {getList: getList};
+})();
 // -------------------------payment 페이지-------------------//
 
 //개인정보 동의 모달

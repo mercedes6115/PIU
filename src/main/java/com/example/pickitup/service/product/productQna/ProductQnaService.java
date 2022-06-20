@@ -20,8 +20,8 @@ public class ProductQnaService {
     }
 
     // QnA 상세보기
-    public ProductQnaVO read(Long productNum){
-        return productQnaDAO.read(productNum);
+    public ProductQnaVO read(Long num){
+        return productQnaDAO.read(num);
     }
 
 
@@ -38,6 +38,10 @@ public class ProductQnaService {
     // QnA 삭제
     public boolean remove(Long num){
         return productQnaDAO.remove(num);
+    }
+
+    public int count(Long productNum){
+        return productQnaDAO.count(productNum);
     }
 
 }

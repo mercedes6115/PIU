@@ -12,7 +12,7 @@ public interface ProductQnaMapper {
 
     //    qan 상세보기 class101에 없음 qna+comment 세트로 불러옴
 //    관리자에서 필요함 관리자가 댓글 달아준것만 리스트 업
-    public ProductQnaVO getDetail(Long productNum);
+    public ProductQnaVO getDetail(Long num);
 
     //    qna 삽입 -> 일반 유저, 관리자
     public void insert(ProductQnaVO productQnaVO);
@@ -23,4 +23,5 @@ public interface ProductQnaMapper {
     //    qna 삭제하기 qna 글 기본키 받아오기 ->일반유저,관리자
     public boolean delete(Long num);
 
+    public int count(Long productNum);
 }
