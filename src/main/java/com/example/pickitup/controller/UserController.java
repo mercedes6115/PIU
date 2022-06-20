@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,8 +43,8 @@ public class UserController {
 
     // 마이페이지 포인트
     @GetMapping("/myPoint")
-    public void mypoint(Model model){
-        model.addAttribute("successProject",tempUserSerivce.successProject(2L));
+    public void mypoint(Model model) throws ParseException {
+        model.addAttribute("changePoint",tempUserSerivce.changePoint(2L));
     }
 
     // 마이페이지 QnA

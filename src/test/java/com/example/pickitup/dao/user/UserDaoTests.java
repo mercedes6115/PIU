@@ -1,6 +1,8 @@
 package com.example.pickitup.dao.user;
 
 import com.example.pickitup.domain.dao.user.UserDAO;
+import com.example.pickitup.domain.vo.Criteria;
+import com.example.pickitup.domain.vo.user.AdminBoardVO;
 import com.example.pickitup.domain.vo.user.UserVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -62,4 +64,33 @@ public class UserDaoTests {
 
     @Test
     public void getInProjectTest() {userDAO.getInProjectList(2L);}
+
+    public void registerWriteTest(){
+        AdminBoardVO adminBoardVO = new AdminBoardVO();
+        adminBoardVO.setTitle("DAO새로운 공지글 제목2");
+        adminBoardVO.setContent("DAO새로운 공지글 내용2");
+        adminBoardVO.setUserNum(0L);
+
+        userDAO.registerWrite(adminBoardVO);
+
+        log.info("게시글 번호 : " + adminBoardVO.getNum());
+    }
+
+    @Test
+    public void getReadDetailTest(){
+        Long num = 12L;
+        userDAO.getReadDetail(num);
+    }
+
+
+    @Test
+    public void getNoticeListTest(){
+        userDAO.getNoticeList(new Criteria()).stream().map(AdminBoardVO::toString).forEach(log::info);
+    }
+
+    @Test
+    public void getNoticeTotalTest(){
+        log.info("총 개수 : " + userDAO.getNoticeTotal());
+    }
+
 }

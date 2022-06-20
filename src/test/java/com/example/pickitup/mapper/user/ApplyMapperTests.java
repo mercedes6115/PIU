@@ -13,4 +13,7 @@ public class ApplyMapperTests {
 
     @Test
     public void successProjectTest() { applyMapper.successProject(2L);}
+
+    @Test
+    public void countApplyTest() { applyMapper.countApply(21L);}
 }

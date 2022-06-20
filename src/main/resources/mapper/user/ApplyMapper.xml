@@ -7,6 +7,12 @@
         FROM TBL_APPLY
         WHERE USER_NUM = #{userNum} AND APPROACH ='2'
     </select>
+
+    <select id="countApply" resultType="long">
+        SELECT COUNT(NUM)
+        FROM TBL_APPLY app
+        WHERE app.PROJECT_NUM = #{projectNum}
+    </select>
 </mapper>
 
 

@@ -62,35 +62,15 @@
                                 <div font-weight="bold" class="my-point-gold5-by">포인트 내역은 최근 10건까지만 표시됩니다.</div>
                             </div>
                         </div>
-                        <section class="point-pay-list">
-                            <div class="my-point-gold6">
+                        <section class="point-pay-list" th:each="pointDTO:${changePoint}">
+                            <div class="my-point-gold6" th:object="${pointDTO}">
                                 <div class="my-point-gold8">
-                                    <div class="my-point-gold9">에코 플로깅</div>
-                                    <div font-weight="600" class="my-point-gold10">2022-06-16</div>
+                                    <div class="my-point-gold9" th:text="*{title}"></div>
+                                    <div font-weight="600" class="my-point-gold10" th:text="*{#dates.format(pointDate, 'yyyy-MM-dd')}"></div>
                                 </div>
-                                <div class="my-point-gold13">+1000</div>
+                                <div class="my-point-gold13"th:text="*{point}"></div>
                             </div>
-                            <div class="my-point-gold6">
-                                <div class="my-point-gold8">
-                                    <div class="my-point-gold9">에코 플로깅</div>
-                                    <div font-weight="600" class="my-point-gold10">2022-06-16</div>
-                                </div>
-                                <div class="my-point-gold13">+1000</div>
-                            </div>
-                            <div class="my-point-gold6">
-                                <div class="my-point-gold8">
-                                    <div class="my-point-gold9">에코 플로깅</div>
-                                    <div font-weight="600" class="my-point-gold10">2022-06-16</div>
-                                </div>
-                                <div class="my-point-gold13">+1000</div>
-                            </div>
-                            <div class="my-point-gold6">
-                                <div class="my-point-gold8">
-                                    <div class="my-point-gold9">에코 플로깅</div>
-                                    <div font-weight="600" class="my-point-gold10">2022-06-16</div>
-                                </div>
-                                <div class="my-point-gold13">+1000</div>
-                            </div>
+
                         </section>
                     </div>
 
@@ -113,5 +93,7 @@
 
 <!--640px푸터 필요-->
 </body>
+<script>
 
+</script>
 </html>
