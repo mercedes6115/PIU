@@ -18,6 +18,10 @@ public class ProductServiceTest {
 //    public void getListTest(){
 //        productService.getList();
 //    }
+//    @Test
+//    public void getDetailTest(){
+//        productService.getDetail(61L);
+//    }
 
 //    @Test
 //    public void registerTest(){

@@ -59,7 +59,8 @@ public class OrderMapperTests {
         log.info("상품별 개수: "  +orderMapper.countProductOrder(22L));
     }
 
-
+    @Test
+    public void boughtItemTest() {orderMapper.boughtItem(2L);}
 
 
 }

@@ -2,6 +2,7 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0/EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
+        <typeAlias type="com.example.pickitup.domain.vo.user.AdminBoardVO" alias="adminBoardVO"/>
         <typeAlias type="com.example.pickitup.domain.vo.user.ApplyVO" alias="applyVO"/>
         <typeAlias type="com.example.pickitup.domain.vo.user.CompanyVO" alias="companyVO"/>
         <typeAlias type="com.example.pickitup.domain.vo.user.JjimVO" alias="jjimVO"/>
@@ -23,5 +24,8 @@
         <typeAlias type="com.example.pickitup.domain.vo.project.projectReview.ProjectReviewFileVO" alias="projectReviewFileVO"/>
         <typeAlias type="com.example.pickitup.domain.vo.project.projectReview.ProjectReviewVO" alias="projectReviewVO"/>
         <typeAlias type="com.example.pickitup.domain.vo.dto.PageDTO" alias="userDTO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.dto.AdminBoardPageDTO" alias="adminboardDTO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.dto.PointDTO" alias="pointDTO"/>
+
     </typeAliases>
 </configuration>

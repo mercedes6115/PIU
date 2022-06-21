@@ -21,10 +21,10 @@ public class ProductQnaMapperTest {
 //        productQnaMapper.getList(21L).stream().map(ProductQnaVO::toString).forEach(log::info);
 //    }
 //
-//    @Test
-//    public void getDetailTest(){
-//        productQnaMapper.getDetail(23L);
-//    }
+    @Test
+    public void getDetailTest(){
+        productQnaMapper.getList(61L);
+    }
 //
 //    @Test
 //    public void insertTest(){
@@ -48,4 +48,8 @@ public class ProductQnaMapperTest {
 //        productQnaMapper.delete(25L);
 //    }
 
+//    @Test
+//    public void countTest(){
+//        productQnaMapper.count(61L);
+//    }
 }
