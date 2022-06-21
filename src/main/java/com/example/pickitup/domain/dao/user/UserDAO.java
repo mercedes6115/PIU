@@ -88,4 +88,9 @@ public class UserDAO {
     public int emailcheck(String email){
         return userMapper.emailMatching(email);
     };
+
+    //  비밀번호 수정
+    public boolean updatePW(String email){
+        return userMapper.updatePW(email);
+    };
 }

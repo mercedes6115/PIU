@@ -200,6 +200,12 @@
         VALUES(#{num}, #{title}, #{content}, #{userNum})
     </insert>
 
+    <!--  회원 수정  -->
+    <update id="updatePW">
+        UPDATE TBL_USER
+        SET PASSWORD=#{password}
+        WHERE EMAIL=#{email}
+    </update>
 
 </mapper>
 
