@@ -42,7 +42,8 @@
             <div class="store_detail_left">
                 <div class="detail_item">
                     <div class="detail_item_img">
-                        <img src="/src/main/resources/static/images/5.jpg">
+                        <!--<img src="/images/5.jpg">-->
+                        <div class="mainImage"></div>
                         <div class="space"></div>
                         <div class="item_description_media" th:object="${product}">
                             <div class="small_and_gray" style="color: black;" th:text="*{category}"></div>
@@ -86,20 +87,16 @@
                         </div>
                         <div class="space"></div>
                         <div id="toitem_intro">
-                            <img src="/static/images/5.jpg">
-                            <img src="/src/main/resources/static/images/chun.png">
-                            <img src="/src/main/resources/static/images/5.jpg">
-                            <img src="/src/main/resources/static/images/5.jpg">
-                            <img src="/src/main/resources/static/images/5.jpg">
-                            <img src="/src/main/resources/static/images/5.jpg">
-                            <img src="/src/main/resources/static/images/5.jpg">
-                            <img src="/src/main/resources/static/images/5.jpg">
+                            <div class="subImage"></div>
                         </div>
                         <div id="toitem_review">
                             <div class="reviewForm">
                                 <section class="review">
                                     <div class="reviewHead">
-                                        <div class="highlight">실제 구매 후기</div>    
+                                        <div class="highlight" style="display: flex; justify-content: space-between">
+                                            <p>실제 구매 후기</p>
+                                            <div style=" margin-right: 5%;"><a class="goToReviewWrite">리뷰작성</a></div>
+                                        </div>
                                     </div>
                                     <div class="wrapImage">
                                         <div class="reviewImages">
@@ -160,21 +157,10 @@
                         <div id="toitem_question">
                             <div class="flex" style="align-items: center; justify-content: space-between;">
                                 <p class="highlight">문의</p>
-                                <div style=" margin-right: 5%;"><input class="btn_qnaToadmin" type="button" value="문의하기"></div>
+<!--                                문의하기 a 태그에 num 태워서 보내기-->
+                                <div style=" margin-right: 5%;"><a class="btn_qnaToadmin">문의하기</a></div>
                             </div>
                             <div class="space"></div>
-                            <!-- 문의 보내기 ajax -->
-                            <div class="question-container">
-                                <div class="flex">
-                                    <div class="write-question"><textarea class="question" name="" id="" rows="10"></textarea></div>
-                                    <div class="write-after-question">
-                                        <button class="question-finish">작성 완료</button>
-                                        <button class="question-cancel">취소</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="space"></div>
-                        <!-- 문의 보내기 ajax -->
 
                             <div class="ProductQnas"></div>
                             <div class="space_line"></div>
@@ -185,7 +171,7 @@
                             <div class="space"></div>
                             <div class="flex" style="justify-content: center;">
                                 <div class="return_policy flex">
-                                    <div><img src="/src/main/resources/static/images/refund.png"></div>
+                                    <div><img src="/images/refund.png"></div>
                                     <div>저희는 포인트로 결제하는 방식이며 배송이 무료이기 때문에 <span style="color: red;">환불 및 교환</span>은 어렵습니다.
                                         <br>상품 및 배송 정보를 잘 확인하고 구매하여 주세요.!</div>
                                     
@@ -293,7 +279,7 @@
       <div th:replace="~{/main/Footer :: FooterImport}"></div>
     
 </body>
-<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <!--<script src="/static/assets/js/store.js"></script>-->
 <script th:inline="javascript">
@@ -310,7 +296,12 @@
                 $('.ProductReviews').html(str);
                 return;
             }
-            for (let i = 0 ; i < 4 ; i++){
+            if(reviewVO.length<4){
+                maxlength = reviewVO.length;
+            }else{
+                maxlength=4;
+            }
+            for (let i = 0 ; i < maxlength ; i++){
                 str += "<div class=\"readReviews\">";
                 str += "<div class=\"readReviewForm\">";
                 str += "<div class=\"readReview\">";
@@ -319,7 +310,7 @@
                 str += "<div class=\"reviewProfileForm\">";
                 str += "<span class=\"reviewProfile\">";
                 str += "<picture class=\"profile\">";
-                str += "<img src=\"/src/main/resources/static/images/chun.png\" alt=\"\">";
+                str += "<img src=\"/images/chun.png\" alt=\"\">";
                 str += "</picture>";
                 str += "</span>";
                 str += "</div>";
@@ -346,7 +337,35 @@
         }
     });
     //------------------------------------------------------------------------------------------
+    //메인 사진걸기
+        $.ajax({
+            url: "/productFile/list/"+productNum,
+            type : "get",
+            success : function (files) {
+                let str = "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
+                $(".mainImage").html(str);
+                // $("img#"+productNum).attr("src", "/upload/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName )
+            }
+        })
     //------------------------------------------------------------------------------------------
+    // 상세 페이지 사진 걸기
+    $.ajax({
+        url: "/productFile/list/"+productNum,
+        type : "get",
+        success : function (files) {
+            let str ="";
+            if(files.length>1){
+                for(let i =0; i< files.length;i++){
+                    str += "<img src='/productFile/display?fileName=" + files[i].uploadPath + "/s_" + files[i].uuid + "_"  + files[i].fileName + "'>";
+                    $(".subImage").append(str);
+                }
+            }else{
+                str += "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
+                $(".mainImage").html(str);
+            }
+            // $("img#"+productNum).attr("src", "/upload/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName )
+        }
+    })
     //------------------------------------------------------------------------------------------
     //--------------------------------문의 가져오기 ajax-----------------------------
     //문의 리스트 js
@@ -364,7 +383,7 @@
             $.each(qnaVO, function(i, qna){
                 str += "<div class=\"qnas\">";
                 str += "<div class=\"flex\" style=\"align-items: center;\">";
-                str += "<div class=\"profile_img\"><img src=\"/src/main/resources/static/images/1.jpg\" style=\"width: 100%; height: 100%;\"></div>";
+                str += "<div class=\"profile_img\"><img src=\"/images/1.jpg\" style=\"width: 100%; height: 100%;\"></div>";
                 str += "<div class=\"id_and_date\" style=\"flex-direction: column;\">";
                 str += "<div class=\"admin_id\" style=\"color: black;\">"+qna.userNum+"</div>";
                 str += "<div class=\"admin_date\">"+qna.updateDate+"</div>";
@@ -376,7 +395,7 @@
                 str += "<div class=\"qna_replys\">";
                 str += "<div class=\"qna_reply\">";
                 str += "<div class=\"flex\" style=\"align-items: center;\">";
-                str += "<div class=\"admin_profile_img\"><img src=\"/src/main/resources/static/images/4.jpg\"></div>";
+                str += "<div class=\"admin_profile_img\"><img src=\"/images/4.jpg\"></div>";
                 str += "<div class=\"flex id_and_date\">";
                 str += "<div class=\"admin_id\">관리자 아이디 &nbsp;</div>";
                 str += "<div class=\"admin_date\">2022.06.11</div>";
@@ -403,7 +422,7 @@
             $('.ProductQnas').html(str);
             // $.each(reviewVO, function(i, review){
             // });
-            $('.ProductReviews').html(str);
+            // $('.ProductReviews').html(str);
         }
     });
     //------------------------------------------------------------------------------------------
@@ -476,47 +495,7 @@ $('.gototop').click(function(){
     $('html, body').animate({scrollTop : 0},300);
 });
 
-     //문의 쓰기
-     $('.question-container').css("display","none");
-    $('.write-after-question').hide();
-    //글쓰기 버튼 클릭시
-    $('.btn_qnaToadmin').click(function(){
-        $('.question-container textarea').val("");
-        $('.question-container input').val("");
-        $('.btn_qnaToadmin').hide();
-        $('.write-after-question').show();
-        $('.question-container').css("display","block");
-    })
-    //작성완료 버튼 클릭시
-    $('.question-finish').click(function(){
-        //문의 추가
-        $.ajax({
-            url: "",
-            type: "post",
-            data: JSON.stringify(question),
-            contentType: "application/json",
-            success: function(result){
-               if(callback){
-                   callback(result);
-               }
-            },
-            error: function(xhr, status, er){
-                if(error){
-                    error(xhr, status, er);
-                }
-            }
-        });
 
-        // showQuestionList(1); //다시 리스트 리프레쉬
-    })
-    //취소 버튼 클릭시
-    $('.question-cancel').click(function(){
-        $('.btn_qnaToadmin').show();
-        $('.write-after-question').hide();
-        $('.question-container').css("display","none");
-    })
-
-    
        //상품 상세 링크
        
        let $as = $('.nav_item').find('a');
@@ -592,7 +571,18 @@ $('.gototop').click(function(){
         e.preventDefault();
         location.href = "/store/goReviewList/" + productNum;
     })
-    
+
+    // 리뷰작성 이동 페이지
+    $('.goToReviewWrite').click(function (e) {
+        e.preventDefault();
+        location.href = "/store/reviewWrite?num="+productNum;
+    })
+
+    //문의 작성 이동페이지
+    $('.btn_qnaToadmin').click(function (e) {
+        e.preventDefault();
+        location.href = "/store/qnaWrite?productNum="+productNum;
+    })
 
     //--------------------------- 공유하기 api----------------------------------
     

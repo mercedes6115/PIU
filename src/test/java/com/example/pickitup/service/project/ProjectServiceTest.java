@@ -22,4 +22,5 @@ public class ProjectServiceTest {
         log.info(projectService.getListPoint().toString());
     }
 
+
 }

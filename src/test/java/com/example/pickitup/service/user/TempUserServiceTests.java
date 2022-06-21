@@ -1,15 +1,26 @@
 package com.example.pickitup.service.user;
 
+
+import com.example.pickitup.domain.vo.dto.PointDTO;
+
 import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.adminVO.AdminBoardDTO;
 import com.example.pickitup.domain.vo.user.AdminBoardVO;
 import com.example.pickitup.domain.vo.user.UserVO;
 import com.example.pickitup.service.TempAdminService;
 import com.example.pickitup.service.TempUserSerivce;
+import edu.emory.mathcs.backport.java.util.Collections;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
 
 @Slf4j
 @SpringBootTest
@@ -73,6 +84,15 @@ public class TempUserServiceTests {
         }
     }
 
+    @Test
+    public void changePointTest() throws ParseException {
+        List<PointDTO> pointDTOList = tempUserSerivce.changePoint(2L);
+        pointDTOList.sort(Comparator.comparing(PointDTO::getPointDate).reversed());
+        log.info("결과 : " + pointDTOList);
+    }
+
+    @Test
+    public void countApplyTest() {tempUserSerivce.applyCount();}
 
     public void getInProductListTest() { tempUserSerivce.getInProjectList(2L);}
 

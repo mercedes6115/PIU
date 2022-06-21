@@ -29,4 +29,5 @@ public class ProjectVO {
     private Long jjimCount;
     private String projectDate;
 
+    private List<ProjectFileVO> fileList;
 }

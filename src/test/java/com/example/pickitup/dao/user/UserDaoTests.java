@@ -60,11 +60,12 @@ public class UserDaoTests {
     }
 
     public void getInProductTest() {
-        userDAO.getInProjectList(2L);
+        userDAO.getInProductList(2L);
     }
 
     @Test
-    public void registerWriteTest() {
+    public void registerWriteTest () {
+
         AdminBoardVO adminBoardVO = new AdminBoardVO();
         adminBoardVO.setTitle("DAO새로운 공지글 제목2");
         adminBoardVO.setContent("DAO새로운 공지글 내용2");
@@ -73,34 +74,36 @@ public class UserDaoTests {
         userDAO.registerWrite(adminBoardVO);
 
         log.info("게시글 번호 : " + adminBoardVO.getNum());
+        }
+
+        @Test
+        public void getReadDetailTest () {
+            Long num = 12L;
+            userDAO.getReadDetail(num);
+        }
+
+
+        @Test
+        public void getNoticeListTest () {
+            userDAO.getNoticeList(new Criteria()).stream().map(AdminBoardDTO::toString).forEach(log::info);
+        }
+
+        @Test
+        public void getNoticeTotalTest () {
+            log.info("공지글 총 개수 : " + userDAO.getNoticeTotal());
+        }
+
+
+        @Test
+        public void getAdminBoardCountTest () {
+            log.info("adminboard 글 총 개수 : " + userDAO.getAdminBoardCount(new Criteria(1, 10)));
+        }
+
+        @Test
+        public void getAdminboardListTest () {
+            userDAO.getAdminboardList(new Criteria(1, 10));
+        }
+
+
     }
 
-    @Test
-    public void getReadDetailTest() {
-        Long num = 12L;
-        userDAO.getReadDetail(num);
-    }
-
-
-    @Test
-    public void getNoticeListTest() {
-        userDAO.getNoticeList(new Criteria()).stream().map(AdminBoardDTO::toString).forEach(log::info);
-    }
-
-    @Test
-    public void getNoticeTotalTest() {
-        log.info("공지글 총 개수 : " + userDAO.getNoticeTotal());
-    }
-
-    @Test
-    public void getAdminBoardCountTest() {
-        log.info("adminboard 글 총 개수 : " + userDAO.getAdminBoardCount(new Criteria(1, 10)));
-    }
-
-    @Test
-    public void getAdminboardListTest() {
-        userDAO.getAdminboardList(new Criteria(1, 10));
-    }
-
-
-}
