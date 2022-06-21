@@ -2,6 +2,7 @@ package com.example.pickitup.controller;
 
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaVO;
+import com.example.pickitup.domain.vo.project.projectReview.ProjectReviewVO;
 import com.example.pickitup.domain.vo.user.ApplyVO;
 import com.example.pickitup.domain.vo.user.JjimVO;
 import com.example.pickitup.service.ProjectService;
@@ -109,6 +110,20 @@ public class ProjectController {
 
 
     }
+
+    // 리뷰작성
+    @GetMapping("/review/add")
+    public String addReview(){
+        return "/project/projectReviewWrite";
+
+    }
+
+    // 리뷰작성폼
+    @PostMapping("/review/add")
+    public void addReviewForm(ProjectReviewVO projectReviewVO){
+        projectService.registerReview(projectReviewVO);
+    }
+
 
 
 }

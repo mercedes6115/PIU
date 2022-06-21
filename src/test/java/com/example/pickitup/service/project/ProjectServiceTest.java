@@ -1,6 +1,6 @@
 package com.example.pickitup.service.project;
 
-import com.example.pickitup.service.project.projectFile.ProjectService;
+import com.example.pickitup.service.ProjectService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

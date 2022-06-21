@@ -1,8 +1,11 @@
 package com.example.pickitup.service;
 
 import com.example.pickitup.domain.dao.project.projectFile.ProjectDAO;
+import com.example.pickitup.domain.dao.project.projectFile.ProjectFileDAO;
 import com.example.pickitup.domain.dao.project.projectQna.ProjectQnaCommentDAO;
 import com.example.pickitup.domain.dao.project.projectQna.ProjectQnaDAO;
+import com.example.pickitup.domain.dao.project.projectReview.ProjectReviewDAO;
+import com.example.pickitup.domain.dao.project.projectReview.ProjectReviewFileDAO;
 import com.example.pickitup.domain.dao.user.ApplyDAO;
 import com.example.pickitup.domain.dao.user.JjimDAO;
 import com.example.pickitup.domain.vo.Criteria;
@@ -10,10 +13,13 @@ import com.example.pickitup.domain.vo.dto.ProjectMainDTO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaCommentVO;
 import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaVO;
+import com.example.pickitup.domain.vo.project.projectReview.ProjectReviewFileVO;
+import com.example.pickitup.domain.vo.project.projectReview.ProjectReviewVO;
 import com.example.pickitup.domain.vo.user.ApplyVO;
 import com.example.pickitup.domain.vo.user.JjimVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -30,6 +36,9 @@ public class ProjectService {
     private final ProjectQnaCommentDAO projectQnaCommentDAO;
     private final JjimDAO jjimDAO;
     private final ApplyDAO applyDAO;
+    private final ProjectReviewDAO projectReviewDAO;
+    private final ProjectReviewFileDAO projectReviewFileDAO;
+    private final ProjectFileDAO projectFileDAO;
 
     // 프로젝트 목록(관리자용)
     public List<ProjectVO> getList(){
@@ -100,6 +109,41 @@ public class ProjectService {
     // 프로젝트 참가자 상태 변경
 
 
+//
+//    // 리뷰 등록
+//    @Transactional(rollbackFor = Exception.class)
+//    public void registerReview(ProjectReivewVO projectReivewVO) {
+//        //게시글 추가
+//        boardDAO.register(boardVO);
+//        //게시글에 업로드된 첨부파일 정보 중 게시글 번호를 따로 추가
+//        if(boardVO.getFileList() != null) {
+//            boardVO.getFileList().forEach(fileVO -> {
+//                fileVO.setBoardBno(boardVO.getBoardBno());
+//                fileDAO.register(fileVO);
+//            });
+//        }
+//    }
+
+    // 파일
+    @Transactional(rollbackFor = Exception.class)
+    public void registerReview(ProjectReviewVO projectReviewVO) {
+        //게시글 추가
+        projectReviewDAO.register(projectReviewVO);
+        //게시글에 업로드된 첨부파일 정보 중 게시글 번호를 따로 추가
+        if (projectReviewVO.getFileList() != null) {
+            projectReviewVO.getFileList().forEach(projectReviewFileVO -> {
+//                projectReviewFileVO.setProjectNum(boardVO.getBoardBno());
+                projectReviewFileVO.setProjectReviewNum(34L);
+                projectReviewFileDAO.register(projectReviewFileVO);
+            });
+        }
+    }
+
+
+    // 파일 테스트
+    public void testFile(ProjectReviewFileVO projectReviewFileVO){
+        projectReviewFileDAO.register(projectReviewFileVO);
+    }
 
     // 프로젝트 목록(찜순)
     public List<ProjectMainDTO> getListJJim() throws ParseException {
