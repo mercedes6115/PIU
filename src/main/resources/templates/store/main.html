@@ -115,6 +115,7 @@
         location.href = "/store/detail?num="+$(this).attr('href');
     })
 
+    //메인 사진 받아오기
     $('.goDetail').each(function(i, h) {
         let productNum=$(this).attr("href");
         $.ajax({
