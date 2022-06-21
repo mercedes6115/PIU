@@ -175,8 +175,7 @@
                                                 </div>                                                
                                                 <div class="showListBodyFrame">
                                                     <div class="showListBodyForm">
-                                                        <!-- 프로젝트 목록 -->
-                                                        <div class="showListBody" th:each="project:${projectList}">
+                                                        <div class="showListBody">
                                                             <div class="showListBody1">
                                                                 <div class="sbCheckBoxFrame">
                                                                     <label class="sbCheckBoxForm">
@@ -185,7 +184,6 @@
                                                                     </label>
                                                                 </div>
                                                             </div>
-
                                                             <div class="showListBody2">
                                                                 <div class="sbImageFrame">
                                                                     <div class="sbImageForm">
@@ -204,36 +202,34 @@
                                                             </div>
                                                             <div class="showListBody3">
                                                                 <div class="sbTitleForm">
-                                                                    <p class="sbTitle" th:text="${project.title}"></p>
+                                                                    <p class="sbTitle">다 같이 줍자!</p>
                                                                 </div>
                                                             </div>
                                                             <div class="showListBody4">
                                                                 <div class="sbStateFrame">
                                                                     <div class="sbStateForm">
-                                                                        <p class="sbState" id="agreeState" th:if="${project.approval.equals('0')}" th:text="|승인대기|"></p>
-                                                                        <p class="sbState" id="agreeState" th:if="${project.approval.equals('1')}" th:text="|승인완료|"></p>
-                                                                        <p class="sbState" id="agreeState" th:if="${project.approval.equals('2')}" th:text="|승인거절|"></p>
+                                                                        <p class="sbState" id="agreeState">승인 대기</p>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="showListBody5">
                                                                 <div class="sbTerrainForm">
-                                                                    <p class="sbTerrain" th:text="${project.terrain}"></p>
+                                                                    <p class="sbTerrain">산</p>
                                                                 </div>
                                                             </div>
                                                             <div class="showListBody6">
                                                                 <div class="sbCourseFrame">
-                                                                    <p class="sbCousre" th:text="${project.course}"></p>
+                                                                    <p class="sbCousre">코스</p>
                                                                 </div>
                                                             </div>
                                                             <div class="showListBody7">
                                                                 <div class="sbPointFrame">
-                                                                    <p class="sbPoint" th:text="${project.point}"></p>
+                                                                    <p class="sbPoint">300p</p>
                                                                 </div>
                                                             </div>
                                                             <div class="showListBody8">                                                                
                                                                 <div class="sbDateFrame">
-                                                                    <p class="sbDate" th:text="${project.registDate}"></p>
+                                                                    <p class="sbDate">2022. 6. 12. 오후 4:35</p>                                                                    
                                                                 </div>
                                                             </span>
                                                             </div>
@@ -255,24 +251,110 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>                                                               
-                                                            </div>
+                                                            </div>                                                    
+                                                        </div>     
                                                             <!-- 수정 삭제 들어갈 자리  -->
-                                                            <div class="showMoreFrame" id="showMore">
-                                                                <div class="showMoreForm">
-                                                                    <div class="modifyForm">
-                                                                        <button type="button" class="moveProjectModify"><span class="material-symbols-outlined pmBtn">build</span>수정</button>
-                                                                    </div>
-                                                                    <div class="deleteForm">
-                                                                        <button type="button" class="deleteProjectBtn"><span class="material-symbols-outlined pdBtn">delete</span>삭제</button>
-
+                                                    <div class="showMoreFrame" id="showMore">                                                
+                                                        <div class="showMoreForm">
+                                                            <div class="modifyForm">                                                                                                                                                                                                                               
+                                                                <button type="button" class="moveProjectModify"><span class="material-symbols-outlined pmBtn">build</span>수정</button>
+                                                            </div>
+                                                            <div class="deleteForm">
+                                                                <button type="button" class="deleteProjectBtn"><span class="material-symbols-outlined pdBtn">delete</span>삭제</button>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="showListBody">
+                                                        <div class="showListBody1">
+                                                            <div class="sbCheckBoxFrame">
+                                                                <label class="sbCheckBoxForm">
+                                                                    <span class="material-symbols-outlined" id="checkBoxBtn">check_box_outline_blank</span>
+                                                                    <input type="checkbox" class="oneCheck">                                                                                                                                                       
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="showListBody2">
+                                                            <div class="sbImageFrame">
+                                                                <div class="sbImageForm">
+                                                                    <div class="sbImageContainer">
+                                                                        <div class="sbImageBox">
+                                                                            <div class="sbImageWrap">
+                                                                                <picture class="sbImageShow">
+                                                                                    <source srcset="/src/main/resources/static/images/chun.png" media="all and (min-width: 1024px)" >
+                                                                                    <img src="/src/main/resources/static/images/chun.png" class="sbImage" alt="">
+                                                                                </picture>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-
                                                         </div>
-
-
-
+                                                        <div class="showListBody3">
+                                                            <div class="sbTitleForm">
+                                                                <p class="sbTitle">다 같이 줍자!</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="showListBody4">
+                                                            <div class="sbStateFrame">
+                                                                <div class="sbStateForm">
+                                                                    <p class="sbState" id="agreeState">승인 대기</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="showListBody5">
+                                                            <div class="sbTerrainForm">
+                                                                <p class="sbTerrain">산</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="showListBody6">
+                                                            <div class="sbCourseFrame">
+                                                                <p class="sbCousre">코스</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="showListBody7">
+                                                            <div class="sbPointFrame">
+                                                                <p class="sbPoint">300p</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="showListBody8">                                                                
+                                                            <div class="sbDateFrame">
+                                                                <p class="sbDate">2022. 6. 12. 오후 4:35</p>                                                                    
+                                                            </div>
+                                                        </span>
+                                                        </div>
+                                                        <div class="showListBody9">
+                                                            <div class="sbMoreFrame">
+                                                                <div class="sbMoreForm">
+                                                                    <div class="seeApplier" id="seeApplierBox">    
+                                                                        <button class="qrCheckFrame" id="qrCheck">
+                                                                            <span class="qrCheckForm">
+                                                                                <span class="qrCheck">회원목록</span>
+                                                                            </span>
+                                                                        </button>
+                                                                    </div>                                                                            
+                                                                    <div class="moreBoundary"></div>
+                                                                    <div class="sbMoreContainer" id="sbMoreContainer">
+                                                                        <button class="sbMoreBox" id="showMoreBtn">
+                                                                            <span class="material-symbols-outlined">more_horiz</span>                                                                                                                                                                                
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>                                                               
+                                                        </div>                                                    
+                                                    </div>     
+                                                        <!-- 수정 삭제 들어갈 자리  -->
+                                                <div class="showMoreFrame" id="showMore">                                                
+                                                    <div class="showMoreForm">
+                                                        <div class="modifyForm">                                                                                                                                                                                                                               
+                                                            <button type="button" class="moveProjectModify"><span class="material-symbols-outlined pmBtn">build</span>수정</button>
+                                                        </div>
+                                                        <div class="deleteForm">
+                                                            <button type="button" class="deleteProjectBtn"><span class="material-symbols-outlined pdBtn">delete</span>삭제</button>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                                 </div>
                                                                 
                                                             </div>                                                    

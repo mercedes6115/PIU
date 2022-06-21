@@ -3,10 +3,11 @@ package com.example.pickitup.domain.vo.project.projectFile;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 @Data
 public class ProjectVO {
-
     private Long num;
     private String title;
     private String content;
@@ -30,5 +31,5 @@ public class ProjectVO {
     private String summary;
     private String companyComment;
 
-
+    private List<ProjectFileVO> fileList;
 }

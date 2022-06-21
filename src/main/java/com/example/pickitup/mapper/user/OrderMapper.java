@@ -24,6 +24,7 @@ public interface OrderMapper {
     public int countOrder();
     public int countProductOrder(@Param("productNum") Long productNum);
 
+    public List<OrderVO> boughtItem(Long userNum);
 
 
 

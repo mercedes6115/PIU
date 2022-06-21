@@ -29,7 +29,7 @@ public class ProjectFileDAO {
     };
 
     // 사진 삭제 (mapper 매개변수 수정)
-    public void remove(Long projectNum){
+    public void remove(String projectNum){
         projectFileMapper.delete(projectNum);
     }
 }
