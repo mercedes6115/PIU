@@ -44,7 +44,7 @@ public class GroupController {
         log.info("================================");
         log.info(criteria.toString());
         log.info("================================");
-        model.addAttribute("adminBoard", tempAdminService.getReadDetail(33L));
+        model.addAttribute("adminBoard", tempAdminService.getReadDetail(51L));
     }
 
     // 그룹 마이페이지

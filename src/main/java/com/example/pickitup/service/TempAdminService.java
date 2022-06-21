@@ -5,6 +5,7 @@ import com.example.pickitup.domain.dao.product.productFile.ProductDAO;
 import com.example.pickitup.domain.dao.product.productFile.ProductFileDAO;
 import com.example.pickitup.domain.dao.user.*;
 import com.example.pickitup.domain.vo.Criteria;
+import com.example.pickitup.domain.vo.adminVO.AdminBoardDTO;
 import com.example.pickitup.domain.vo.dto.UserDTO;
 import com.example.pickitup.domain.vo.product.productFile.ProductFileVO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
@@ -140,7 +141,7 @@ public class TempAdminService {
     }
 
     //관리자 공지 리스트
-    public List<AdminBoardVO> getNoticeList(Criteria criteria){
+    public List<AdminBoardDTO> getNoticeList(Criteria criteria){
         return userDAO.getNoticeList(criteria);
     }
 
@@ -154,6 +155,15 @@ public class TempAdminService {
         return userDAO.getNoticeTotal();
     }
 
+    //관리자 adminboard 게시글 총 개수
+    public int getAdminBoardCount(Criteria criteria) {
+        return userDAO.getAdminBoardCount(criteria);
+    }
+
+    //관리자 adminboard 글 리스트 뽑아오기
+    public List<AdminBoardVO> getAdminboardList(Criteria criteria){
+        return userDAO.getAdminboardList(criteria);
+    }
 
 
 }
