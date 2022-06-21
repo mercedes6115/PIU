@@ -200,8 +200,7 @@
         WHERE EMAIL=#{email}
     </select>
 
-<<<<<<< HEAD
-=======
+
 
     <select id="getNoticeList" resultType="adminBoardVO">
         SELECT NUM, TITLE, CATEGORY, CONTENT, USER_NUM, REGIST_DATE, UPDATE_DATE
@@ -265,7 +264,9 @@
                 AND WRITER LIKE '%'||#{keyword}||'%'
             </if>
             <if test="startDate != null">
-                AND (REGIST_DATE BETWEEN #{startDate} AND #{endDate})
+                <![CDATA[AND (TO_CHAR(REGIST_DATE,'yyyy-mm-dd hh24:mi:ss') >
+                  (#{startDate}||'00:00:00') AND (TO_CHAR(REGIST_DATE,'yyyy-mm-dd hh24:mi:ss') < #{endDate}||'23:59:59'))
+                  ]]>
             </if>
         </where>
     </select>
@@ -298,16 +299,18 @@
                 AND WRITER LIKE '%'||#{keyword}||'%'
             </if>
             <if test="startDate != null">
-                AND (REGIST_DATE BETWEEN #{startDate} AND #{endDate})
+                <![CDATA[AND (TO_CHAR(REGIST_DATE,'yyyy-mm-dd hh24:mi:ss') >
+                  (#{startDate}||'00:00:00') AND (TO_CHAR(REGIST_DATE,'yyyy-mm-dd hh24:mi:ss') < #{endDate}||'23:59:59'))
+                  ]]>
             </if>
         </where>
+        ORDER BY REGIST_DATE DESC
     </select>
 
 
 
 
 
->>>>>>> 8bc837790cff09d96c60ff35d2eddbfdd1aee1db
 </mapper>
 
 
