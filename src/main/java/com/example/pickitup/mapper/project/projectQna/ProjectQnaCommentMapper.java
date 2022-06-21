@@ -20,6 +20,8 @@ public interface ProjectQnaCommentMapper {
     
 //    qna 답글 삭제하기 qna 글 기본키 받아오기
     public boolean delete(Long num);
-    
+
+//    qna 글에 달린 답변
+    public List<ProjectQnaCommentVO> getComment(Long qnaNum);
 
 }

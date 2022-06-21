@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 public class AdminBoardVO {
     private Long num;
     private String title;
-    private String category;
     private String content;
     private String registDate;
     private String updateDate;

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Data
+
 public class ProductFileVO {
     private String uuid;
     private String uploadPath;

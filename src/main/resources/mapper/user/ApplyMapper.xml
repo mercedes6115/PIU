@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.pickitup.mapper.user.ApplyMapper">
-<!-- 포인트 획득한 플로깅 목록 -->
-    <select id="successProject" resultType="applyVO">
-        SELECT NUM, APPROACH, REGIST_DATE, PROJECT_NUM, USER_NUM
-        FROM TBL_APPLY
-        WHERE USER_NUM = #{userNum} AND APPROACH ='2'
+    <select id="">
+
     </select>
 
-    <select id="countApply" resultType="long">
-        SELECT COUNT(NUM)
-        FROM TBL_APPLY app
-        WHERE app.PROJECT_NUM = #{projectNum}
-    </select>
+
 </mapper>
 
 

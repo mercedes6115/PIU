@@ -20,7 +20,7 @@ p{
 @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
 
 @font-face {
-    font-family: 'SDSamliRphopangche_Basic';
+    font-family: 'SDSamliphopangche_Basic';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Basic.woff') format('woff');
     font-weight: normal;
     font-style: normal;
@@ -365,7 +365,6 @@ li.active{
 }
 .store_categories a{
     text-decoration: none;
-    color: black;
 }
 .store_categories a:visited{
     color: black;
@@ -433,7 +432,6 @@ li.active{
 }
 .item a{
     text-decoration: none;
-    color: black;
 }
 .item a:visited{
     color: black;
@@ -567,7 +565,7 @@ li.active{
 }
 .detail_item_img img{
     width: 99%;
-    height: 776px;
+    border: 1px solid;
 }
 .pay_bar{
     position: sticky;
@@ -589,11 +587,12 @@ li.active{
 .order_img img{
     width: 94px;
     height: 94px;
+    border: 1px solid;
 }
 .nav_item{
     z-index: 10;
     position: sticky;
-    top: 122px;
+    top: 78px;
     background-color: white;
     display: flex;
     border-bottom: 1px solid rgba(128, 128, 128, 0.058);
@@ -652,17 +651,8 @@ li.active{
     width: 100%;
     height: 100%;
     border: 1px solid;
-}
-.ProductReviews{
-    display: flex;
-    flex-flow: wrap;
-}
-.readReviews{
-    width: 50%;
-}
 
-
-
+}
 
 .btn_qna{
     border: none;
@@ -682,29 +672,9 @@ li.active{
     border-radius: 3px;
     cursor: pointer;
     padding: 6px 7px;
-    color: black;
-}
-.btn_qnaToadmin:visited{
-    color: black;
+    
 }
 .btn_qnaToadmin:hover{
-    background-color: rgba(128, 128, 128, 0.248);
-}
-
-.goToReviewWrite{
-    font-size: 11px;
-    font-weight: normal;
-    background-color: white;
-    border: 1px solid rgba(0,0,0,0.15);
-    border-radius: 3px;
-    cursor: pointer;
-    padding: 6px 7px;
-    color: black;
-}
-.goToReviewWrite:visited{
-    color: black;
-}
-.goToReviewWrite:hover{
     background-color: rgba(128, 128, 128, 0.248);
 }
 .doComment{
@@ -801,9 +771,6 @@ li.active{
 }
 .qnas{
     position: relative;
-    border-bottom: 1px solid #80808017;
-    padding-bottom: 20px;
-    margin-bottom: 20px;
 }
 .qna_reply{
     position: relative;
@@ -909,8 +876,7 @@ textarea{
     width: 640px;
     margin: 0 auto;
     background-color: white;
-     padding-bottom: 15px;
-    
+    padding-bottom: 15px;
  }
  .user_review{
     width: 90%;
@@ -1077,13 +1043,12 @@ textarea{
     background-color: rgba(109, 109, 113, 0.312);
 }
 .item_choose_main{
-    max-width: 592px;
+    max-width: 640px;
     width: 80%;
     display: block;
     margin: 0 auto;
     height: 100%;
     background-color: white;
-    padding: 24px;
 }
 .item_select{
     width: 100%;
@@ -1095,21 +1060,19 @@ textarea{
 }
 
 .item_img{
-    width: 146px;
-    height: 146px;
+    width: 150px;
     margin-right: 15px;
 }
 .item_img img{
     width: 100%;
-    height: 100%;
 }
 
 .amount_btn{
     position: absolute;
     top: 47%; 
     transform: translateY(-50%);
-    padding: 0 9px;
-    font-size: 25px;
+    padding: 0 12px;
+    font-size: 30px;
     background-color: rgba(182, 184, 186, 0.139);
     border: none;
 }
@@ -1122,7 +1085,6 @@ textarea{
     font-family: "Noto Sans KR";
     width: 640px;
     margin: 0 auto;
-    background-color: white;
 }
 .receiver{
     font-size: 14px;
@@ -1186,7 +1148,7 @@ textarea{
     padding: 4px 0px;
 }
 .personaddrbtn{
-    height: 44px;
+    height: 46px; 
     padding: 0; 
     margin: 0;
     width: 85px;
@@ -1445,8 +1407,8 @@ label[for='attach3'] div.thumb3{
     margin-right: 5px;
   }
   .review_modify img{
-    width: 19px;
-    height: 19px;
+    width: 23px;
+    height: 23px;
   }
   .review_delete img{
     width: 27px;

@@ -33,10 +33,4 @@ public class ApplyDAO {
     public boolean update(Long approach, Long userNum){
         return applyMapper.update(approach, userNum);
     }
-
-    // 완주한 프로젝트 목록
-    public List<ApplyVO> successProject(Long userNum) { return applyMapper.successProject(userNum);}
-
-    // 총 신청자 수
-    public Long countApply(Long projectNum) { return applyMapper.countApply(projectNum);}
 }

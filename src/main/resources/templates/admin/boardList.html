@@ -5,140 +5,78 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/assets/css/admin_style.css">
-
     <title>게시물 목록</title>
 </head>
 <link rel="stylesheet" href="/assets/css/admin_style.css">
 <link rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
-<!--
+
+<!-- 
 1. 검색명(상품명, 상품번호, )
 2. 카테고리
 3. 상품 등록일
-4. 진열상태
+4. 진열상태 
 5. 재고상태
 
  -->
 
 <body>
 <div th:replace="~{/admin/adminSideBar :: AdminSideBarImport}"></div>
-
 <div class="root">
+
+
+
     <!-- content -->
     <div id="container">
         <div>
             <h2>게시물 목록</h2>
         </div>
         <div class="searchBox" id="boardSearchBox">
-            <form id="boardSearchForm" action="/admin/boardList/" method="get" >
+            <form id="boardSearchForm">
                 <table>
                     <tr>
                         <th>기간</th>
                         <td>
-                            <div id="my_calen">
-                                <div class="main-cal">
-                                    <div class="calen" >
-
-                                        <!-- search -->
-                                        <table class="searchBoxCal">
-                                            <colgroup>
-                                                <col width="123px">
-                                                <col width="*">
-                                            </colgroup>
-                                            <div class="calcal" >
-                                                <ul class="searchDate" style="margin: 0; padding: 0; margin-bottom: 10px; display: flex; ">
-                                                    <li>
-                                                <span class="chkbox2">
-                                                    <input type="radio"  name= "dataType" id="dateType1" onclick="setSearchDate('0d')"/>
-                                                    <label for="dateType1">당일</label>
-                                                </span>
-                                                    </li>
-                                                    <li>
-                                                <span class="chkbox2">
-                                                    <input type="radio"  name= "dataType" id="dateType3" onclick="setSearchDate('1w')"/>
-                                                    <label for="dateType3">1주</label>
-                                                </span>
-                                                    </li>
-                                                    <li>
-                                                <span class="chkbox2">
-                                                    <input type="radio"  name= "dataType" id="dateType4" onclick="setSearchDate('2w')"/>
-                                                    <label for="dateType4">2주</label>
-                                                </span>
-                                                    </li>
-                                                    <li>
-                                                <span class="chkbox2">
-                                                    <input type="radio"  name= "dataType" id="dateType5" onclick="setSearchDate('1m')"/>
-                                                    <label for="dateType5">1개월</label>
-                                                </span>
-                                                    </li>
-                                                    <li>
-                                                <span class="chkbox2">
-                                                    <input type="radio"  name= "dataType" id="dateType6" onclick="setSearchDate('3m')"/>
-                                                    <label for="dateType6">3개월</label>
-                                                </span>
-                                                    </li>
-                                                    <li>
-                                                <span class="chkbox2">
-                                                    <input type="radio"  name= "dataType" id="dateType7" onclick="setSearchDate('6m')"/>
-                                                    <label for="dateType7">6개월</label>
-                                                </span>
-                                                    </li>
-                                                    <li>
-                                                <span class="chkbox2">
-                                                    <input type="radio"  name= "dataType" id="dateType8" onclick="setSearchDate('1y')"/>
-                                                    <label for="dateType8">1년</label>
-                                                </span>
-                                                    </li>
-                                                </ul>
-
-                                                <div class="clearfix">
-                                                    <!-- 시작일 -->
-                                                    <span class="dset">
-                                                <input type="text" class="datepicker inpType" name="startDate" id="startDate" style="width: 140px;">
-                                            </span>
-                                                    <span class="demi">~</span>
-                                                    <!-- 종료일 -->
-                                                    <span class="dset">
-                                                <input type="text" class="datepicker inpType" name="endDate" id="endDate" style="width: 140px;">
-                                            </span>
-                                                </div>
-                                            </div>
-                                        </table>
-                                    </div>
-                                </div>
+                            <div class="dateSelect" id="boardDateSelect">
+                                <a class="btnDate" href="">오늘</a>
+                                <a class="btnDate" href="">3일</a>
+                                <a class="btnDate" href="">7일</a>
+                                <a class="btnDate" href="">1개월</a>
+                                <a class="btnDate" href="">3개월</a>
+                                <a class="btnDate" href="">1년</a>
+                                <a class="btnDate" href="">전체</a>
                             </div>
                         </td>
                     </tr>
-                    <tr th:object="${criteria}">
+                    <tr>
                         <th>게시판 선택</th>
                         <td>
-                            <select name="type3">
-                                <option value="all" th:selected="*{type3} == 'all'">전체</option>
-                                <option value="notice" th:selected="*{type3} == 'notice'">공지사항</option>
-                                <option value="createrQna" th:selected="*{type3} == 'createrQna'">크리에이터센터 문의</option>
-                                <option value="productQna" th:selected="*{type3} == 'productQna'">스토어 문의</option>
-                                <option value="projectQna" th:selected="*{type3} == 'projectQna'">프로젝트 문의</option>
+                            <select>
+                                <option>전체</option>
+                                <option>공지사항</option>
+                                <option>크리에이터센터 문의</option>
+                                <option>스토어 문의</option>
+                                <option>프로젝트 문의</option>
                             </select>
                         </td>
                     </tr>
-                    <tr th:object="${criteria}">
+                    <tr>
                         <th>게시글 찾기</th>
                         <td>
-                            <select name="type2">
-                                <option value="title" th:selected="*{type2} == 'title'">제목</option>
-                                <option value="content" th:selected="*{type2} == 'content'">내용</option>
-                                <option value="writer" th:selected="*{type2} == 'writer'">작성자</option>
+                            <select>
+                                <option>제목</option>
+                                <option>내용</option>
+                                <option>작성자</option>
                             </select>
-                            <input type="text" value="" name="keyword" th:value="*{keyword}">
+                            <input type="text" name="" id="">
                         </td>
                     </tr>
                     <tr>
                         <th>답변상태</th>
                         <td>
-                            <span>전체</span><input type="radio"  id="" checked>
-                            <span>답변 대기</span><input type="radio"  id="">
-                            <span>답변 완료</span><input type="radio"  id="">
+                            <span>전체</span><input type="radio" name="answerStatus" id="" checked>
+                            <span>답변 대기</span><input type="radio" name="answerStatus" id="">
+                            <span>답변 완료</span><input type="radio" name="answerStatus" id="">
                         </td>
                     </tr>
                 </table>
@@ -152,17 +90,17 @@
         <div class="listBox">
             <table id="orderTbl">
                 <tr>
-                    <div class="listTitle" th:object="${adminBoardPageDTO}">
+                    <div class="listTitle">
                             <span>[총
-                                <strong th:text="*{adminBoardCount}"></strong>개]
-                                </span>
+                                <strong>2</strong>
+                                개]</span>
 
 
                         <td colspan="12">
                             <div class="listTitle">
-                                <a href="" class="listBtn" id="adminBoardDelete">삭제</a>
-                                <a href="" class="listBtn" id="noticeFix">공지지정</a>
-                                <a href="" class="listBtn" id="noticeOut">공지해제</a>
+                                <a href="" class="listBtn">삭제</a>
+                                <a href="" class="listBtn">공지지정</a>
+                                <a href="" class="listBtn">공지해제</a>
 
                             </div>
                         </td>
@@ -184,236 +122,48 @@
                     <th scope="col">상태</th>
                     <th scope="col">상세보기</th>
                 </tr>
-                <th:block th:each="adminbaord, adminboardStat:${adminboardList}">
-                <tr th:object="${adminbaord}">
+                <tr>
                     <td><input type="checkbox"></td>
-                    <td th:text="${adminboardStat.index}+1"></td>
-                    <td><span th:if="*{category == '1'}">상품문의</span>
-                        <span th:if="*{category == '2'}">프로젝트문의</span>
-                        <span th:if="*{category == '3'}">크리에이터문의</span>
-                        <span th:if="*{category == '4'}">공지사항</span>
-                    </td>
-                    <td th:text="*{title}"></td>
-                    <td th:text="*{registDate}"></td>
-                    <td th:text="*{status}"></td>
+                    <td>1</td>
+                    <td>공지사항</td>
+                    <td>단체 사용자들 안내</td>
+                    <td>2022-06-12</td>
+                    <td>공지 지정</td>
                     <!-- 상품 상세보기로 이동 -->
                     <td><a href="#">상세보기</a></td>
                 </tr>
-                </th:block>
+                <tr>
+
+                </tr>
 
             </table>
 
         </div>
         <!-- 페이징 처리 -->
-
-    <!--    <div th:object="${AdminBoardPageDTO}" class="paging" style="text-align: center">
-            <a class="changePage" th:href="*{startPage - 1}" th:if="*{prev}"><span>&lt;</span></a>
-            <th:block th:each="num:${#numbers.sequence(AdminBoardPageDTO.startPage, AdminBoardPageDTO.endPage)}">
-                <span th:if="${num == AdminBoardPageDTO.criteria.pageNum}" th:text="${num}"></span>
-                <a class="changePage" th:href="${num}" th:unless="${num == AdminBoardPageDTO.criteria.pageNum}"><span th:text="${num}"></span></a>
-            </th:block>
-            <a class="changePage" th:href="*{endPage + 1}" th:if="*{next}"><span>&gt;</span></a>
-            &lt;!&ndash;<span class="changePages" th:text="*{criteria.pageNum}"></span>
-            <a class="changePage" th:href="*{criteria.pageNum + 1}" th:if="*{criteria.pageNum < realEnd}"><span class="changePages">&gt;</span></a>&ndash;&gt;
-        </div>
-
-        <div class="small-width" style="text-align: center; height: 27px;">
-            <a class="changePage" th:href="*{criteria.pageNum - 1}" th:if="*{criteria.pageNum > 1}"><code>&lt;</code></a>
-            <code th:text="*{criteria.pageNum}"></code>
-            <a class="changePage" th:href="*{criteria.pageNum + 1}" th:if="*{criteria.pageNum < realEnd}"><code>&gt;</code></a>
-        </div>-->
-
-        <!--<div class="paging">
+        <div class="paging">
             <a href="#">&lt;</a>
             <a href="#">1</a>
             <a href="#">2</a>
             <a href="#">3</a>
             <a href="#">&gt;</a>
-        </div>-->
-        <form action="/admin/boardList" name="pageForm" th:object="${criteria}">
-            <input type="hidden" th:field="*{pageNum}">
-            <input type="hidden" th:field="*{amount}">
-            <input type="hidden" th:field="*{total}">
-            <input type="hidden" th:field="*{startDate}">
-            <input type="hidden" th:field="*{endDate}">
-            <input type="hidden" th:field="*{keyword}">
-            <input type="hidden" th:field="*{type2}">
-        </form>
+        </div>
     </div>
 
 
 </div>
-
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-<!-- datepicker 한국어로 -->
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/datepicker-ko.js"></script>
-<script th:inline="javascript">
-
-    //타임리프에서 필드값으로 해당 유저의 번호 뿌려줄것
-    $("a.changePage").click(function(e){
-        e.preventDefault();
-        $(pageForm).find("input[name='pageNum']").val($(this).attr("href"));
-        $(pageForm).submit();
-    });
-
-
-    $('#orderSearchBtn').on("click", function (e) {
-        $("#boardSearchForm").submit();
-    });
-
-
-</script>
-
-
 <script>
-    $(document).ready(function() {
-        //datepicker 한국어로 사용하기 위한 언어설정
-        $.datepicker.setDefaults($.datepicker.regional['ko']);
-        // Datepicker
-        $(".datepicker").datepicker({
-            showButtonPanel: true,
-            dateFormat: "yy-mm-dd",
-            onClose : function ( selectedDate ) {
-                var eleId = $(this).attr("id");
-                var optionName = "";
-                if(eleId.indexOf("StartDate") > 0) {
-                    eleId = eleId.replace("StartDate", "EndDate");
-                    optionName = "minDate";
-                } else {
-                    eleId = eleId.replace("EndDate", "StartDate");
-                    optionName = "maxDate";
-                }
-                $("#"+eleId).datepicker( "option", optionName, selectedDate );
-                $(".searchDate").find(".chkbox2").removeClass("on");
-            }
-        });
-        //시작일.
-        $('#startDate').datepicker("option","onClose", function( selectedDate ) {
-            // 시작일 datepicker가 닫힐때
-            // 종료일의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
-            $("#endDate").datepicker( "option", "minDate", selectedDate );
-            $(".searchDate").find(".chkbox2").removeClass("on");
-        });
-        //종료일.
-        $('#endDate').datepicker("option","onClose", function( selectedDate ) {
-            // 종료일 datepicker가 닫힐때
-            // 시작일의 선택할수있는 최대 날짜(maxDate)를 선택한 종료일로 지정
-            $("#startDate").datepicker( "option", "maxDate", selectedDate );
-            $(".searchDate").find(".chkbox2").removeClass("on");
-        });
-        $(".dateclick").dateclick();    // DateClick
-        $(".searchDate").schDate();        // searchDate
-    });
-    // Search Date
-    jQuery.fn.schDate = function(){
-        var $obj = $(this);
-        var $chk = $obj.find("input[type=radio]");
-        $chk.click(function(){
-            $('input:not(:checked)').parent(".chkbox2").removeClass("on");
-            $('input:checked').parent(".chkbox2").addClass("on");
-        });
-    };
-    // DateClick
-    jQuery.fn.dateclick = function(){
-        var $obj = $(this);
-        $obj.click(function(){
-            $(this).parent().find("input").focus();
-        });
-    }
-    function setSearchDate(start){
-        var num = start.substring(0,1);
-        var str = start.substring(1,2);
-        var today = new Date();
-        var year = today.getFullYear();
-        var month = today.getMonth() + 1;
-        var day = today.getDate();
-        var endDate = $.datepicker.formatDate('yy-mm-dd', today);
-        $('#endDate').val(endDate);
-        if(str == 'd'){
-            today.setDate(today.getDate() - num);
-        }else if (str == 'w'){
-            today.setDate(today.getDate() - (num*7));
-        }else if (str == 'y'){
-            today.setDate(today.getDate() -(num*364));
-        }else if (str == 'm'){
-            today.setMonth(today.getMonth() - num);
-            today.setDate(today.getDate() + 1);
-        }
-        var startDate = $.datepicker.formatDate('yy-mm-dd', today);
-        $('#startDate').val(startDate);
-        // 종료일은 시작일 이전 날짜 선택하지 못하도록 비활성화
-        $("#endDate").datepicker( "option", "minDate", startDate );
-        // 시작일은 종료일 이후 날짜 선택하지 못하도록 비활성화
-        $("#startDate").datepicker( "option", "maxDate", endDate );
-    }
-</script>
 
-<script>
 
     // 삭제 버튼 클릭시
-    $('#adminBoardDelete').on("click", function (e) {
-        e.preventDefault();
-        if (confirm("해당 게시글을 삭제 하시겠습니까?")) {
 
-            // 게시글 삭제 처리
-            $.ajax({
-                url: "",
-                type: "post",
-                data: {adminboardVO: adminboardVO},
-                success: function () {
-
-                }
-            });
-
-
-        } else {
-
-        }
-    });
 
     // 공지 지정 버튼 클릭시
-    $('#noticeFix').on("click", function (e) {
-        e.preventDefault();
-        if (confirm("해당 게시글을 공지사항으로 지정합니까?")) {
 
-            // 게시글 삭제 처리
-            $.ajax({
-                url: "",
-                type: "post",
-                data: {adminboardVO: adminboardVO},
-                success: function () {
-
-                }
-            });
-
-
-        } else {
-
-        }
-    });
 
     // 공지 해제 버튼 클릭시
-    $('#noticeOut').on("click", function (e) {
-        e.preventDefault();
-        if (confirm("해당 게시글을 공지사항에서 해제합니까?")) {
 
-            // 게시글 삭제 처리
-            $.ajax({
-                url: "",
-                type: "post",
-                data: {adminboardVO: adminboardVO},
-                success: function () {
-
-                }
-            });
-
-
-        } else {
-
-        }
-    });
 
 </script>
 <script th:replace="~{/admin/adminSideBar :: AdminSideBarJSImport}"></script>

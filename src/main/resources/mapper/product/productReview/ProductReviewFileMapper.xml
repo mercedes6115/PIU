@@ -1,25 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.pickitup.mapper.product.productReview.ProductReviewFileMapper">
-    <select id="findByProductReviewNum" resultType="productReviewFileVO">
-        SELECT UUID, UPLOAD_PATH, FILE_NAME, REVIEW_NUM
-        FROM TBL_PRODUCT_REVIEW_FILE
-        WHERE REVIEW_NUM=#{productReviewNum}
-    </select>
-    <insert id="insert">
-        INSERT INTO TBL_PRODUCT_REVIEW_FILE
-            (
-                UUID, UPLOAD_PATH, FILE_NAME, REVIEW_NUM
-            )
-        VALUES
-            (
-                #{uuid},#{uploadPath},#{fileName},#{productReviewNum}
-            )
-    </insert>
-    <delete id="delete">
-    DELETE FROM TBL_PRODUCT_REVIEW_FILE
-    WHERE UUID=#{uuid};
-    </delete>
+    
 </mapper>
 
 

@@ -1,8 +1,6 @@
 package com.example.pickitup.service.user;
 
 import com.example.pickitup.domain.dao.user.JjimDAO;
-import com.example.pickitup.domain.vo.product.productFile.ProductVO;
-import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 import com.example.pickitup.domain.vo.user.JjimVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,12 +14,12 @@ public class JjimService {
     private final JjimDAO jjimDAO;
 
     // 나의 프로젝트 찜 목록
-    public List<ProjectVO> getProjectList(Long userNum){
+    public List<JjimVO> getProjectList(Long userNum){
         return jjimDAO.getProjectList(userNum);
     }
 
     // 나의 상품 찜 목록
-    public List<ProductVO> getProductList(Long userNum){
+    public List<JjimVO> getProductList(Long userNum){
         return jjimDAO.getProductList(userNum);
     }
 
