@@ -21,5 +21,4 @@ public class CompanyVO {
     private String profileUploadPath;
     private String category;
 
-
 }

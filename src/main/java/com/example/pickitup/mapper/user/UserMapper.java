@@ -10,6 +10,7 @@ import com.example.pickitup.domain.vo.dto.UserDTO;
 
 import com.example.pickitup.domain.vo.user.AdminBoardVO;
 import com.example.pickitup.domain.vo.user.UserVO;
+import org.apache.catalina.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -54,7 +55,7 @@ public interface UserMapper {
     public boolean delete(Long num);
 
 //    로그인
-    public int login(@Param("email") String email,@Param("password") String password);
+    public UserVO login(@Param("email") String email, @Param("password") String password);
 
 // 포인트 적립?
 

@@ -55,7 +55,8 @@ public class RController {
     }
     //이메일 중복확인
     @PostMapping("/emailMatching")
-    public int match(@RequestBody String email){
+    public int match(@RequestParam String email){
+        log.info("email test 띄워짐? : "+email.toString());
         return tempUserSerivce.emailcheck(email);
     }
 }
