@@ -20,6 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.model.IModel;
 
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -102,20 +103,17 @@ public class StoreController {
     @ResponseBody
     @GetMapping("/qnaCommentList/{qnaNum}")
     public List<ProductQnaCommentVO> qnaCommentList(@PathVariable("qnaNum") Long qnaNum){
-        log.info("--------------------------------------------------");
-        log.info("--------------------------------------------------");
-        log.info(qnaNum.toString());
-        log.info("--------------------------------------------------");
-        log.info("--------------------------------------------------");
         return productQnaCommentService.getList(qnaNum);
     }
 
-//    // 스토어 문의 댓글 작성
-//    @GetMapping("/qnaWrite")
-//    public void qnaCommentWrite(Long productNum, Model model){
-//        //유저 정보도 같이 보내야함
-//        model.addAttribute("productNum",productNum);
-//    }
+    // 스토어 문의 댓글 작성 (관리자 권한)
+    @ResponseBody
+    @PostMapping(value = "/qnaCommentWrite", consumes = "application/json")
+    public String qnaCommentWrite(@RequestBody ProductQnaCommentVO productQnaCommentVO)  throws UnsupportedEncodingException {
+        //유저 정보도 같이 보내야함(관리자)
+        productQnaCommentService.register(productQnaCommentVO);
+        return "success";
+    }
 //
 //    // 스토어 문의 댓글 작성 폼
 //    @PostMapping("/qnaWrite")
