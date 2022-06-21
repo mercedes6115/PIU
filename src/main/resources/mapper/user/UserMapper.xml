@@ -6,7 +6,7 @@
 <!--마이페이지, 관리자 사용-->
     <select id="getDetail" resultType="userVO">
         SELECT
-        NUM, EMAIL, NICKNAME,PHONE, ADDRESS, PROFILE_FILE_NAME, PROFILE_UPLOAD_PATH, POINT, REGIST_DATE
+        NUM, EMAIL, NICKNAME,PHONE, ADDRESS, PROFILE_FILE_NAME, PROFILE_UPLOAD_PATH, POINT, REGIST_DATE,CATEGORY
         FROM TBL_USER
         WHERE NUM=#{num}
     </select>

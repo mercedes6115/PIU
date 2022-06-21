@@ -34,33 +34,31 @@
                         <td th:if="*{category}=='company'" th:text="*{email}"></td>
                     </tr>
                     <tr>
-                        <td th:if="*{category}=='user'" th:text="닉네임"></td>
-                        <td th:if="*{category}=='company'" th:text="단체명"></td>
-                    </tr>
-                    <tr>
                         <th th:if="*{category}=='user'" th:text="닉네임"></th>
                         <th th:if="*{category}=='company'" th:text="단체명"></th>
-                        <td><input type="text" name="" id="" value="02-123-1234"></td>
+                        <td><input type="text" name="" id="" th:value="*{nickname}"></td>
+                    </tr>
+                    <tr>
+                        <th th:if="*{category}=='user'" th:text="전화번호"></th>
+                        <th th:if="*{category}=='company'" th:text="단체번호"></th>
+                        <td><input type="text" name="" id="" th:value="*{phone}"></td>
 
-                    </tr>
-                    <tr>
-                        <th th:if="*{category}=='user'" th:text="닉네임"></th>
-                        <th th:if="*{category}=='company'" th:text="단체명"></th>
-                        <td><input type="text" name="" id="" value="02-123-1234"></td>
                     </tr>
                     <tr>
                         <th th:if="*{category}=='user'" th:text="회원주소"></th>
                         <th th:if="*{category}=='company'" th:text="단체주소"></th>
-                        <td><input type="text" name="" id="" th:value="*{adderss}"></td>
+                        <td><input type="text" name="" id="" th:value="*{address}"></td>
                     </tr>
                     <tr>
-                        <th th:if>단체 사업자번호</th>
-                        <td><input type="text" name="" id="" value="111-11-11111"></td>
+                        <th th:if="*{category}=='user'" th:text="사업자번호"></th>
+                        <th th:if="*{category}=='company'" th:text="사업자번호"></th>
+                        <td><input type="text" name="" id="" th:if="*{category}=='company'" th:value="*{businessNumber}">
+                        <input type="text" name="" id=""  th:if="*{category}=='user'" value="일반 회원은 사업자 번호가 없습니다"></td>
                     </tr>
                 </form>
                 <tr>
                     <th>등록날짜</th>
-                    <td th:text="*{registDate}">2021-06-13 17:29</td>
+                    <td th:text="*{registDate}"></td>
                 </tr>
                 <tr>
                     <th>상태</th>
@@ -77,7 +75,6 @@
                     </td>
                 </tr>
             </table>
-
             <div>
                 <h2>사용정보</h2>
             </div>

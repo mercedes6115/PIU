@@ -189,14 +189,15 @@ public class AdminController {
     public void userDetail(Long num,String category, ProductCriteria productCriteria, Model model){
         log.info("성공"+num);
         log.info("성공"+category);
+
+        //받아온 카테고리를 통하여 일반유저인지 단체유저인지 확인
         if(category.equals("user")){
             model.addAttribute("detailVO",tempAdminService.readUserInfo(num));
         }
         if(category.equals("company")) {
             model.addAttribute("detailVO", tempCompanyService.readCompanyInfo(num));
         }
-        log.info("sssss"+tempAdminService.readUserInfo(num).toString());
-        log.info("sssss"+tempCompanyService.readCompanyInfo(num).toString());
+
     }
 
 
