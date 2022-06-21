@@ -1,6 +1,7 @@
 package com.example.pickitup.mapper.user;
 
 import com.example.pickitup.domain.vo.Criteria;
+import com.example.pickitup.domain.vo.user.AdminBoardVO;
 import com.example.pickitup.domain.vo.user.UserVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -44,7 +45,7 @@ public class UserMapperTests {
 
     @Test
     public void getDetailTest(){
-        log.info("한 개"+ userMapper.getDetail(2L));
+        userMapper.getDetail(2L);
     }
 
     @Test
@@ -78,6 +79,7 @@ public class UserMapperTests {
     public void getInProductListTest() {
         userMapper.getInProductList(2L);
     }
+
 //    @Test
 //    public boolean login(String email, String password){
 //        return userMapper.login("ddd","dddd");
@@ -88,7 +90,40 @@ public class UserMapperTests {
 
     }
 
+    //관리자 공지 등록
+    @Test
+    public void writeTest(){
+        AdminBoardVO adminBoardVO = new AdminBoardVO();
+        adminBoardVO.setTitle("새로운 공지글 제목2");
+        adminBoardVO.setContent("새로운 공지글 내용2");
+        adminBoardVO.setUserNum(0L);
 
+        userMapper.write(adminBoardVO);
+
+        log.info("게시글 번호 : " + adminBoardVO.getNum());
+    }
+
+    //공지리스트
+    @Test
+    public void getNoticeListTest(){
+        userMapper.getNoticeList(new Criteria(1, 10));
+
+    }
+
+    //공지상세보기
+    @Test
+    public void getNoticeDetailTest(){
+        Long num = 10L;
+        log.info(userMapper.getNoticeDetail(num).toString());
+        log.info("***************************************************");
+        log.info(userMapper.getNoticeDetail(10L).getContent());
+        log.info("***************************************************");
+    }
+
+    @Test
+    public void getNoticeTotalTest(){
+        userMapper.getNoticeTotal();
+    }
 
 
 

@@ -7,6 +7,7 @@ import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 
 import com.example.pickitup.domain.vo.dto.UserDTO;
 
+import com.example.pickitup.domain.vo.user.AdminBoardVO;
 import com.example.pickitup.domain.vo.user.UserVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -15,6 +16,18 @@ import java.util.List;
 
 @Mapper
 public interface UserMapper {
+
+    //    관리자 공지등록
+    public void write(AdminBoardVO adminBoardVO);
+
+    //    관리자 공지상세보기
+    public AdminBoardVO getNoticeDetail(Long num);
+
+    //    관리자 공지리스트보기
+    public List<AdminBoardVO> getNoticeList(Criteria criteria);
+
+    //    관리자 공지사항 총갯수
+    public int getNoticeTotal();
 
 //    유저 목록 관리자용
     public  List<UserDTO> getList(Criteria criteria);
@@ -43,24 +56,10 @@ public interface UserMapper {
 
 //  유저가 구매한 상품 목록
 
+    public List<ProjectVO> getInProjectList(Long userNum);
+
+
 
 //  이메일 중복검사
     public int emailMatching(@Param("email") String email);
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

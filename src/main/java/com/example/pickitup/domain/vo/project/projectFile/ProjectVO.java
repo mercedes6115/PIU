@@ -30,4 +30,5 @@ public class ProjectVO {
     private String projectDate;
     private Long applyCount;
 
+    private List<ProjectFileVO> fileList;
 }

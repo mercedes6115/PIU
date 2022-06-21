@@ -24,4 +24,6 @@ public interface ProductReviewMapper {
     //    리뷰 삭제하기 ->일반유저, 관리자
     public boolean delete(Long num);
 
+    public int count(Long productNum);
+
 }

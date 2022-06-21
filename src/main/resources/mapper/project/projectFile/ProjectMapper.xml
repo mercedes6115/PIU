@@ -37,7 +37,6 @@
     WHERE NUM = #{num}
     </update>
 
-
     <!-- 프로젝트 삭제 -->
     <delete id="delete" parameterType="long">
     DELETE FROM TBL_PROJECT WHERE NUM = #{num}
@@ -86,6 +85,6 @@
     <!--        FROM TBL_PROJECT_FILE-->
     <!--        WHERE PROJECT_NUM = #{NUM}-->
     <!--    </select>-->
-
-
+    
 </mapper>
+
