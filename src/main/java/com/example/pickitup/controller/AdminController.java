@@ -1,11 +1,11 @@
 package com.example.pickitup.controller;
 
 import com.example.pickitup.domain.vo.Criteria;
-<<<<<<< HEAD
+
 import com.example.pickitup.domain.vo.ProductCriteria;
-=======
+
 import com.example.pickitup.domain.vo.dto.AdminBoardPageDTO;
->>>>>>> 8bc837790cff09d96c60ff35d2eddbfdd1aee1db
+
 import com.example.pickitup.domain.vo.dto.PageDTO;
 import com.example.pickitup.domain.vo.dto.ProductPageDTO;
 import com.example.pickitup.domain.vo.dto.UserDTO;
@@ -17,15 +17,15 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-<<<<<<< HEAD
+
 import org.springframework.web.bind.annotation.*;
-=======
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
->>>>>>> 8bc837790cff09d96c60ff35d2eddbfdd1aee1db
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.xml.ws.Service;
@@ -198,8 +198,7 @@ public class AdminController {
         log.info("sssss"+tempAdminService.readUserInfo(num).toString());
         log.info("sssss"+tempCompanyService.readCompanyInfo(num).toString());
     }
-<<<<<<< HEAD
-=======
+
 
 
     // 관리자 유저 문의 글 보기
@@ -211,5 +210,5 @@ public class AdminController {
 
 
 
->>>>>>> 8bc837790cff09d96c60ff35d2eddbfdd1aee1db
+
 }

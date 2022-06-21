@@ -1,15 +1,10 @@
 package com.example.pickitup.service;
-
-
 import com.example.pickitup.domain.dao.product.productFile.ProductDAO;
 import com.example.pickitup.domain.dao.product.productFile.ProductFileDAO;
 import com.example.pickitup.domain.dao.user.*;
 import com.example.pickitup.domain.vo.Criteria;
-<<<<<<< HEAD
 import com.example.pickitup.domain.vo.ProductCriteria;
-=======
 import com.example.pickitup.domain.vo.adminVO.AdminBoardDTO;
->>>>>>> 8bc837790cff09d96c60ff35d2eddbfdd1aee1db
 import com.example.pickitup.domain.vo.dto.UserDTO;
 import com.example.pickitup.domain.vo.product.productFile.ProductFileVO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;

@@ -20,10 +20,7 @@ public class UserVO {
     private String point;
     private String registDate;
     private String category;
-<<<<<<< HEAD
 
-=======
->>>>>>> 8bc837790cff09d96c60ff35d2eddbfdd1aee1db
 
 
 }
