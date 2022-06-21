@@ -73,13 +73,13 @@
 
 
     <select id="getList"  resultType="userDTO">
-    SELECT NICKNAME,EMAIL,REGIST_DATE ,PHONE,ADDRESS
+    SELECT NUM,NICKNAME,EMAIL,REGIST_DATE ,PHONE,ADDRESS,CATEGORY
     FROM
     (
-        SELECT ROWNUM RN,NICKNAME,EMAIL,REGIST_DATE ,PHONE,ADDRESS
+        SELECT ROWNUM RN,NUM,NICKNAME,EMAIL,REGIST_DATE ,PHONE,ADDRESS,CATEGORY
             FROM(
                 SELECT
-                NUM,NICKNAME,EMAIL,REGIST_DATE ,PHONE,ADDRESS
+                NUM,NICKNAME,EMAIL,REGIST_DATE ,PHONE,ADDRESS,CATEGORY
                 FROM TBL_USER
                     <where>
                             <if test="type1 == 'nickname'.toString()">
@@ -88,16 +88,16 @@
                             <if test="type1 == 'phone'.toString()">
                                 AND PHONE LIKE '%'||#{keyword}||'%'
                             </if>
-                            <if test="startDate != null">
+                            <if test="keyword1 != null">
+                                AND ADDRESS LIKE '%'||#{keyword1}||'%'
+                            </if>
+                            <if test="startDate != null and endDate != null">
                                 AND (REGIST_DATE BETWEEN #{startDate} AND #{endDate})
                             </if>
                     </where>
-
-
                 UNION ALL
-
                 SELECT
-                NUM,NICKNAME,EMAIL,REGIST_DATE ,PHONE,ADDRESS
+                NUM,NICKNAME,EMAIL,REGIST_DATE ,PHONE,ADDRESS,CATEGORY
                 FROM TBL_COMPANY
                     <where>
                             <if test="type1 == 'nickname'.toString()">
@@ -106,17 +106,30 @@
                             <if test="type1 == 'phone'.toString()">
                                 AND PHONE LIKE '%'||#{keyword}||'%'
                             </if>
+                            <if test="keyword1 != null">
+                                AND ADDRESS LIKE '%'||#{keyword1}||'%'
+                            </if>
                             <if test="startDate != null">
                                 AND (REGIST_DATE BETWEEN #{startDate} AND #{endDate})
                             </if>
-
                     </where>
             )
         <![CDATA[
         WHERE ROWNUM <= #{pageNum} * #{amount}
+            ]]>
+        <choose>
+            <when test="type == 'user'.toString()">
+                AND CATEGORY = 'user'
+            </when>
+            <when test="type == 'company'.toString()">
+                AND CATEGORY = 'company'
+            </when>
+        </choose>
     )
+        <![CDATA[
     WHERE RN > (#{pageNum} - 1) * #{amount}
         ]]>
+
 
     </select>
 
@@ -135,7 +148,18 @@
                             <if test="startDate != null">
                                 AND (REGIST_DATE BETWEEN #{startDate} AND #{endDate})
                             </if>
+                            <if test="keyword1 != null">
+                                AND ADDRESS LIKE '%'||#{keyword1}||'%'
+                            </if>
                     </where>
+                    <choose>
+                        <when test="type=='user'.toString()">
+                            AND CATEGORY='user'
+                        </when>
+                        <when test="type=='company'.toString()">
+                            AND CATEGORY='company'
+                        </when>
+                    </choose>
             UNION ALL
             SELECT COUNT(*)
             FROM TBL_COMPANY
@@ -146,12 +170,24 @@
                             <if test="type1 == 'phone'.toString()">
                                 AND PHONE LIKE '%'||#{keyword}||'%'
                             </if>
+                            <if test="keyword1 != null">
+                                AND ADDRESS LIKE '%'||#{keyword1}||'%'
+                            </if>
                             <if test="startDate != null">
                                 AND (REGIST_DATE BETWEEN #{startDate} AND #{endDate})
                             </if>
                     </where>
+                    <choose>
+                        <when test="type=='user'.toString()">
+                            AND CATEGORY='user'
+                        </when>
+                        <when test="type=='company'.toString()">
+                            AND CATEGORY='company'
+                        </when>
+                    </choose>
         )
     </select>
+
 
     <select id="emailMatching" resultType="_int">
         SELECT COUNT(EMAIL)
@@ -164,6 +200,8 @@
         WHERE EMAIL=#{email}
     </select>
 
+<<<<<<< HEAD
+=======
 
     <select id="getNoticeList" resultType="adminBoardVO">
         SELECT NUM, TITLE, CATEGORY, CONTENT, USER_NUM, REGIST_DATE, UPDATE_DATE
@@ -269,6 +307,7 @@
 
 
 
+>>>>>>> 8bc837790cff09d96c60ff35d2eddbfdd1aee1db
 </mapper>
 
 
