@@ -29,9 +29,16 @@
                     <tr>
                         <th>검색어</th>
                         <td>
+<<<<<<< HEAD
                             <select>
                                 <option>일반</option>
                                 <option>단체</option>
+=======
+                            <select name="type">
+                                <option value="total" th:selected="*{type} == 'total'">전체</option>
+                                <option value="user" th:selected="*{type} == 'user'">유저</option>
+                                <option value="company" th:selected="*{type} == 'company'">단체</option>
+>>>>>>> 3c95ef56a8c609bd027606cac82202479ffe8fac
                             </select>
                             <select>
                                 <option>이름</option>
@@ -42,37 +49,53 @@
                     </tr>
 
                     <tr>
-                        <th>구매금액/건수</th>
+                        <th>주소</th>
                         <td>
+<<<<<<< HEAD
                             <select>
                                 <option>전체</option>
                                 <option>총 주문금액</option>
                                 <option>총 주문건수</option>
                             </select>
+=======
+                            <input type="text" value="" name="keyword1" th:value="*{keyword1}" >
+>>>>>>> 3c95ef56a8c609bd027606cac82202479ffe8fac
                         </td>
 
                     </tr>
                     <tr>
                         <th>가입일</th>
                         <td>
+<<<<<<< HEAD
                             <input type="date" name="" id="">
                             <input type="date" name="" id="">
+=======
+                            <input type="date" name="startDate"  id="" >
+                            <input type="date" name="endDate"  id="" >
+>>>>>>> 3c95ef56a8c609bd027606cac82202479ffe8fac
                         </td>
                     </tr>
                     <tr>
                         <th>승인상태</th>
                         <td>
+<<<<<<< HEAD
                             <select>
                                 <option>전체</option>
                                 <option>승인</option>
                                 <option>미승인</option>
+=======
+                            <select name="type3" required>
+                                <option th:selected="*{type3}=='TOTAL3'">전체</option>
+                                <option th:selected="*{type3}=='AUTH3'">승인</option>
+                                <option th:selected="*{type3}=='UNAUTH3'">미승인</option>
+>>>>>>> 3c95ef56a8c609bd027606cac82202479ffe8fac
                             </select>
                         </td>
                     </tr>
                     <tr>
                         <th>SNS 연동</th>
                         <td>
-                            <span>전체</span><input type="radio" name="snsCheck" id="" checked>
+                            <span>전체</span><input type="radio" name="snsCheck" id="" >
                             <span>카카오톡</span><input type="radio" name="snsCheck" id="">
                         </td>
                     </tr>
@@ -114,10 +137,21 @@
                     <th scope="col">포인트</th>
                     <th scope="col"></th>
                 </tr>
+<<<<<<< HEAD
                 <tr>
                     <td><input type="checkbox" class="userCheck"></td>
                     <td>1</td>
                     <td>단체</td>
+=======
+<!--            https://ifuwanna.tistory.com/200 Stat선언하여 rownum을 대신하여 출력-->
+                <th:block  th:each="user,userStat:${userList}">
+                    <tr th:object="${user}">
+
+                    <td><input type="checkbox" class="userCheck"></td>
+                    <td th:text="${userStat.index}"></td>
+                    <td th:if="*{category}=='user'" th:text="유저"></td>
+                    <td th:if="*{category}=='company'" th:text="회사"></td>
+>>>>>>> 3c95ef56a8c609bd027606cac82202479ffe8fac
                     <td>활성화</td>
                     <td>승인완료</td>
                     <td>해바라기봉사단</td>
@@ -126,6 +160,7 @@
                     <td>02-123-1234</td>
                     <td>서울</td>
                     <td></td>
+<<<<<<< HEAD
                     <td><a href="userDetail.html" class="userDetail">상세보기</a></td>
                 </tr>
                 <tr>
@@ -141,10 +176,15 @@
                     <td>서울</td>
                     <td>110point</td>
                     <td><a href="userDetail.html" class="userDetail">상세보기</a></td>
+=======
+                    <td><a th:href="@{/admin/userDetail(num=*{num},category=*{category})}" class="userDetail">상세보기</a></td>
+
+>>>>>>> 3c95ef56a8c609bd027606cac82202479ffe8fac
                 </tr>
                 <!-- 더미 데이터 -->
 
             </table>
+<<<<<<< HEAD
             <div class="paging">
                 <a href="#">&lt;</a>
                 <a href="#">1</a>
@@ -154,8 +194,33 @@
             </div>
         </div>
 
-    </div>
+=======
+            <div th:object="${pageDTO}" class="paging" style="text-align: center">
+                <a class="changePage" th:href="*{startPage - 1}" th:if="*{prev}">&lt;</a>
+                <th:block th:each="num:${#numbers.sequence(pageDTO.startPage, pageDTO.endPage)}">
+                    <a class= "changePages"  href="javascript:void(0);" th:if="${num == pageDTO.criteria.pageNum}" th:text="${num}"></a>
+                    <a class="changePage" th:href="${num}" th:unless="${num == pageDTO.criteria.pageNum}" th:text="${num}"></a>
+                </th:block>
+                <a class="changePage" th:href="*{endPage + 1}" th:if="*{next}">&gt;</a>
+                <a class="changePage" th:href="*{criteria.pageNum + 1}" th:if="*{criteria.pageNum < realEnd}">&gt;</a>
+            </div>
+        </div>
+            </div>
+        </div>
 
+        <form action="/admin/userList"  method="get" id="pageForm" th:object="${criteria}">
+            <input type="hidden" th:field="*{pageNum}">
+            <input type="hidden" th:field="*{amount}">
+            <input type="hidden" th:field="*{total}" th:value="*{total}">
+            <input type="hidden" th:field="*{startDate}" th:value="*{startDate}">
+            <input type="hidden" th:field="*{endDate}" th:value="*{endDate}">
+            <input type="hidden" th:field="*{keyword}" th:value="*{keyword}">
+            <input type="hidden" th:field="*{keyword1}" th:value="*{keyword1}">
+            <input type="hidden" th:field="*{type1}" th:value="*{type1}">
+            <input type="hidden" th:field="*{type}" th:value="*{type}">
+        </form>
+>>>>>>> 3c95ef56a8c609bd027606cac82202479ffe8fac
+    </div>
 
 </div>
 </body>
@@ -163,10 +228,17 @@
 <script>
 
     //타임리프에서 필드값으로 해당 유저의 번호 뿌려줄것
+<<<<<<< HEAD
 
+=======
+    $("a.changePage").click(function(e){
+        e.preventDefault();
+        $("#pageForm").find("input[name='pageNum']").val($(this).attr("href"));
+        $("#pageForm").submit();
+    });
+>>>>>>> 3c95ef56a8c609bd027606cac82202479ffe8fac
     // 비활성화 버튼 클릭시
     $('#userDisabled').on("click", function (e) {
-
         if (confirm("해당 유저를 비활성화 하시겠습니까?")) {
 
             // 해당 유저 비활성화 
@@ -175,17 +247,12 @@
                 type: "post",
                 data: {userNumber: $userNumber},
                 success: function () {
-
                 }
             });
-
-
         } else {
 
         }
     });
-
-
     // 승인 버튼 클릭시
     $('#userApprove').on("click", function (e) {
         if (confirm("해당 유저를 승인 하시겠습니까?")) {
@@ -199,13 +266,25 @@
 
                 }
             });
-
-
         } else {
 
         }
     });
 
+<<<<<<< HEAD
+=======
+</script>
+<script>
+    $('#userSearchBtn').on("click", function (e) {
+        $("#userSearchForm").submit();
+    });
+
+    // $("a.userDetail").click(function(e){
+    //     e.preventDefault();
+    //     console.log("$(this).attr('href')");
+    //     location.href = "/admin/userDetail" + "?num="+$(this).attr('href');
+    // });
+>>>>>>> 3c95ef56a8c609bd027606cac82202479ffe8fac
 </script>
 <script th:replace="~{/admin/adminSideBar :: AdminSideBarJSImport}"></script>
 </html>
