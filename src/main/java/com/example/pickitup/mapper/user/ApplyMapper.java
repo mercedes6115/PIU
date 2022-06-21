@@ -21,8 +21,4 @@ public interface ApplyMapper {
 //    approach 1-출발 2-도착
     public boolean update(Long approach, Long userNum);
 
-    public List<ApplyVO> successProject(Long userNum);
-
-    // 프로젝트 총 신청자 수
-    public Long countApply(Long projectNum);
 }

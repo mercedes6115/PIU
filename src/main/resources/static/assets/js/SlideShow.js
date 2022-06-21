@@ -1,11 +1,15 @@
+
+
+console.log("asdasd");
 let slide1 = document.querySelector('.slides1');
 let slideImg1 = document.querySelectorAll('.slides1 li');
-let currentIdx1 = 0;
+currentIdx1 = 0;
 slideCount1 = slideImg1.length;
 
 
 prev1 = document.querySelector('.prev1'); //이전 버튼
 next1 = document.querySelector('.next1'); //다음 버튼
+console.log(prev1,next1);
 slideWidth1 = 276; //슬라이드이미지 넓이
 slideMargin1 = 20; //슬라이드 끼리의 마진값
 makeClone1(); // 처음이미지와 마지막 이미지 복사 함수
@@ -20,40 +24,44 @@ function makeClone1() {
 }
 
 function initfunction1() {
-  slide1.style.width = (slideWidth1 + slideMargin1) * (slideCount1+2) + 'px';
+  slide1.style.width = (slideWidth1 + slideMargin1) * (slideCount1) + 'px';
   slide1.style.left = -(slideWidth1 + slideMargin1) + 'px';
 }
 
 next1.addEventListener('click', function () {
   //다음 버튼 눌렀을때
-  if (currentIdx1 <= slideCount1-4) {
+
+  if (currentIdx1 <= slideCount1 - 1) {
     //슬라이드이동
+    console.log("Asdasss");
     slide1.style.left = -(currentIdx1 + 2) * (slideWidth1 + slideMargin1) + 'px';
     slide1.style.transition = `${0.5}s ease-out`; //이동 속도
   }
-  if (currentIdx1 == slideCount1-4) {
+  if (currentIdx1 == slideCount1 - 1) {
     //마지막 슬라이드 일때
     setTimeout(function () {
       //0.5초동안 복사한 첫번째 이미지에서, 진짜 첫번째 위치로 이동
       slide1.style.left = -(slideWidth1 + slideMargin1) + 'px';
       slide1.style.transition = `${0}s ease-out`;
-    }, 0);
+    }, 500);
     currentIdx1 = -1;
   }
   currentIdx1 += 1;
 });
 prev1.addEventListener('click', function () {
   //이전 버튼 눌렀을때
+  console.log(currentIdx);
   if (currentIdx1 >= 0) {
     slide1.style.left = -currentIdx1* (slideWidth1 + slideMargin1) + 'px';
     slide1.style.transition = `${0.5}s ease-out`;
   }
-  if (currentIdx1 == 0) {
+  if (currentIdx == 0) {
     setTimeout(function () {
-      slide1.style.left = -(slideCount1-3) * (slideWidth1 + slideMargin1) + 'px';
+      slide1.style.left = -slideCount1 * (slideWidth1 + slideMargin1) + 'px';
       slide1.style.transition = `${0}s ease-out`;
-    }, 0)
-    currentIdx1 = slideCount1-3;
+
+    }, 500);
+    currentIdx1 = slideCount1;
   }
   currentIdx1 -= 1;
 });
@@ -63,8 +71,8 @@ prev1.addEventListener('click', function () {
 
 let slide2 = document.querySelector('.slides2');
 let slideImg2 = document.querySelectorAll('.slides2 li');
-let currentIdx2 = 0;
-slideCount2 = slideImg2.length;
+currentIdx2 = 0;
+slideCount2 = slideImg1.length;
 prev2 = document.querySelector('.prev2'); //이전 버튼
 next2 = document.querySelector('.next2'); //다음 버튼
 slideWidth2 = 276; //슬라이드이미지 넓이
@@ -73,7 +81,7 @@ makeClone2(); // 처음이미지와 마지막 이미지 복사 함수
 initfunction2(); //슬라이드 넓이와 위치값 초기화 함수
 
 function makeClone2() {
-  let cloneSlide_first2 = slideImg2[0].cloneNode(true);
+  let cloneSlide_first2 = slideImg1[0].cloneNode(true);
   let cloneSlide_last2 = slide2.lastElementChild.cloneNode(true);
   slide2.append(cloneSlide_first2);
   slide2.insertBefore(cloneSlide_last2, slide2.firstElementChild);
@@ -84,34 +92,34 @@ function initfunction2() {
 }
 next2.addEventListener('click', function () {
   //다음 버튼 눌렀을때
-  if (currentIdx2 <= slideCount2 - 4) {
+  if (currentIdx2 <= slideCount2 - 1) {
     //슬라이드이동
     slide2.style.left = -(currentIdx2 + 2) * (slideWidth2 + slideMargin2) + 'px';
     slide2.style.transition = `${0.5}s ease-out`; //이동 속도
   }
-  if (currentIdx2 == slideCount2 - 4) {
+  if (currentIdx2 == slideCount2 - 1) {
     //마지막 슬라이드 일때
     setTimeout(function () {
       //0.5초동안 복사한 첫번째 이미지에서, 진짜 첫번째 위치로 이동
       slide2.style.left = -(slideWidth2 + slideMargin2) + 'px';
       slide2.style.transition = `${0}s ease-out`;
-    }, 0);
+    }, 500);
     currentIdx2 = -1;
   }
   currentIdx2 += 1;
 });
 prev2.addEventListener('click', function () {
   //이전 버튼 눌렀을때
-  // console.log(currentIdx2);
+  console.log(currentIdx2);
   if (currentIdx2 >= 0) {
     slide2.style.left = -currentIdx2 * (slideWidth2 + slideMargin2) + 'px';
     slide2.style.transition = `${0.5}s ease-out`;
   }
   if (currentIdx2 == 0) {
     setTimeout(function () {
-      slide2.style.left = -(slideCount2-3) * (slideWidth2 + slideMargin2) + 'px';
+      slide2.style.left = -slideCount2 * (slideWidth2 + slideMargin2) + 'px';
       slide2.style.transition = `${0}s ease-out`;
-    }, 0);
+    }, 500);
     currentIdx2 = slideCount2;
   }
   currentIdx2 -= 1;
@@ -128,7 +136,7 @@ prev2.addEventListener('click', function () {
 
 let slide3 = document.querySelector('.slides3');
 let slideImg3 = document.querySelectorAll('.slides3 li');
-let currentIdx3 = 0;
+currentIdx3 = 0;
 slideCount3 = slideImg3.length;
 prev3 = document.querySelector('.prev3'); //이전 버튼
 next3 = document.querySelector('.next3'); //다음 버튼
@@ -149,19 +157,19 @@ function initfunction3() {
 }
 next3.addEventListener('click', function () {
   //다음 버튼 눌렀을때
-  if (currentIdx3 <= slideCount3 - 4) {
-    // console.log(currentIdx3);
+  if (currentIdx3 <= slideCount3 - 1) {
+    console.log(currentIdx3);
     //슬라이드이동
     slide3.style.left = -(currentIdx3 + 2) * (slideWidth3 + slideMargin3) + 'px';
     slide3.style.transition = `${0.5}s ease-out`; //이동 속도
   }
-  if (currentIdx3 == slideCount3 - 4) {
+  if (currentIdx3 == slideCount3 - 1) {
     //마지막 슬라이드 일때
     setTimeout(function () {
       //0.5초동안 복사한 첫번째 이미지에서, 진짜 첫번째 위치로 이동
       slide3.style.left = -(slideWidth3 + slideMargin3) + 'px';
       slide3.style.transition = `${0}s ease-out`;
-    }, 0);
+    }, 500);
     currentIdx3 = -1;
   }
   currentIdx3 += 1;
@@ -174,9 +182,9 @@ prev3.addEventListener('click', function () {
   }
   if (currentIdx3 == 0) {
     setTimeout(function () {
-      slide3.style.left = -(slideCount3-3) * (slideWidth3 + slideMargin3) + 'px';
+      slide3.style.left = -slideCount3 * (slideWidth3 + slideMargin3) + 'px';
       slide3.style.transition = `${0}s ease-out`;
-    }, 0);
+    }, 500);
     currentIdx3 = slideCount3;
   }
   currentIdx3 -= 1;

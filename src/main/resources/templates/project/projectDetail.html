@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -7,18 +7,20 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="/assets/css/projectDetail.css" />
-    <link rel="stylesheet" href="/assets/css/header.css" />
+    <link rel="stylesheet" href="/assets/css/Header.css"/>
+    <link rel="stylesheet" href="/assets/css/Footer.css"/>
+    <link rel="stylesheet" href="/assets/css/pickitupStore.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     
 </head>
-<body>
-  <div id="HeaderImport"></div>
 
-    <div class="allFrame">
+<body>
+<div th:replace="~{/main/Header :: HeaderImport}"></div>
+    <div class="allFrame" th:object="${project}" id="projectDetail">
         <div class="readFrame">
             <div class="readForm">
-                <div class="readDetail">
+                <div class="readDetail" >
                     <div class="ploggingImageForm">
                         <div class ="ploggingImage">
                             <picture class="ploggingImg">
@@ -49,11 +51,11 @@
                         <h2 class="projectInfo">플로깅 정보</h2>
                         <dl class="infoDetail">
                             <dt class="courseInfo">코스/장소</dt>
-                            <dd class="course">코스</dd>
+                            <dd class="course" th:text="*{course}"></dd>
                             <dt class="terrainInfo">지형</dt>
-                            <dd class="terrain">산</dd>
+                            <dd class="terrain" th:text="*{terrain}"></dd>
                             <dt class="pointInfo">포인트</dt>
-                            <dd class="point">200p</dd>
+                            <dd class="point" th:text="*{point}"></dd>
                         </dl>
                     </section>    
                     
@@ -62,7 +64,8 @@
                             <h3 class="pIntroduceTitle">
                                 플로깅을<br>소개합니다.
                             </h3>
-                        </div>                        
+                        </div>
+                            <!-- 플로깅 소개, 이미지 -->
                             <picture class="pIntroduceContent">
                                 <source srcset="../../static/images/plogging1.png" media="all and (min-width: 1024px)" >
                                 <img src="/images/plogging1.png" alt="">
@@ -70,7 +73,8 @@
                             <picture class="pIntroduceContent">
                                 <source srcset="/images/plogging2.png" media="all and (min-width: 1024px)" >
                                 <img src="/images/plogging2.png" alt="">
-                            </picture>                                                    
+                            </picture>
+                        <div th:text="*{content}"></div>
                     </div>
                     <div class="gIntroduceFrame">                        
                         <div class="gIntroduceTitleFrame">
@@ -78,7 +82,8 @@
                                 <h3 font-weight="normal" class="gIntroduceTitle">
                                     기업
                                     <br>
-                                    <strong>한국산업인력공단</strong>
+                                    <!-- 단체명 -->
+                                    <strong th:text="*{name}"></strong>
                                     입니다.
                                 </h3>
                                 <div class="gIntroduceProfileFrame">
@@ -90,50 +95,21 @@
                                     </span>
                                 </div>
                             </div>
-                        </div>        
-                        <div class="gIntroduceContentFrame">
-                            부동산읽어주는남자 정태익입니다
-현재 4개의 회사를 운영하며 투자자, 교육자, 상담가, 유튜버를 하고 있습니다.
-
-저는 지금도 어릴 때 반지하에서 살았던 기억이 생생합니다. 크리스마스 즈음이었는데 작은 창문 사이로 눈이 오는 것을 보면서 뛸 뜻이 기뻐했던 장면 말이죠.
-
-
-
-작은 쪽창 너머로 넓은 세상이 있었지만 대다수의 사람들은 그 쪽창이 세상의 전부인 줄 알고 삽니다. 저의 어린 시절이 그랬듯이요.
-
-
-
-우리 모두가 수백억 부자가 되는 것을 꿈꾸지는 않습니다.
-
-우리 가족이 편하게 살 수 있을 집이 하나 있었으면 좋겠고, 이왕 사는 것 가격도 올라서 막연하지만 미래 노후대비도 좀 되었으면 싶습니다. 자식이 공부는 좀 잘했으면 싶지만, 내가 수백억 부자가 되고 싶은 것까지는 아닌게 우리네 삶입니다.
-
-
-
-그런데 그런 소박한 목표도 쉽지가 않습니다.
-
-누구 하나 제대로 알려주지를 않으니까요. 부모님도 모르고, 친구들도 모르고, 회사 동료들도 잘 모릅니다.
-
-집을 어떻게 사야 하는 건지도 모르겠고 법은 복잡하다는데 중개사, 수리업자, 임차인같은 사람 상대는 겁부터 납니다.
-
-
-
-그런 분들에게 목표를 이루는 시작이 되어 드리고 싶었습니다. 반지하 살던 꼬마에게 밖의 세상은 엄청 넓고 너는 달라질 수 있다고, 21살의 나에게 이렇게 하는게 부자가 되는 준비를 하는 길이라고, 누군가 답을 줬었다면 나의 인생은 좀 더 달라졌을텐데라고 생각한 적이 많습니다.
-
-
-
-저도 누군가에게는 그 답을 드리는 사람이 되고 싶습니다.
-
-그 이야기와 노하우를 클래스 101에서 알려드릴게요.
+                        </div>
+                        <!-- 단체 소개 -->
+                        <div class="gIntroduceContentFrame" th:text="*{companyComment}">
                         </div>
                     </div>
                     <div class="qnaFrame">
                         <div class="qnaTitle">
                             <h3>문의하기</h3>
+                            <a th:href="@{/project/qnaWrite?num={num}(num = ${project.num})}">문의하기</a>
                         </div>
                         <div class="qnaListForm">
                             <div class="qnaList">
-                                <div class="qna">
-                                    <div class="question">
+                                <!--QnA -->
+                                <div class="qna" th:each="qna:${qna}">
+                                    <div class="question" >
                                         <div class="qUserProfileFrame">
                                             <section class="qUserProfileForm">
                                                 <div class="qUserProfileImgFrame">
@@ -144,102 +120,46 @@
                                                     </span>
                                                 </div>
                                                 <div class="qUserProfileNameFrame">
-                                                    <strong class="qUserProfileName">짜리킴</strong>
-                                                    <div class="qUserProfileDate">2022. 05. 26.</div>
+                                                    <strong class="qUserProfileName" th:text="${qna.nickname}"></strong>
+                                                    <div class="qUserProfileDate" th:text="${qna.updateDate}"></div>
                                                 </div>
                                             </section>
                                         </div>
                                         <div class="qContentFrame">
                                             <div class="qContentForm">                    
-                                                <div class="qContent">춘식이도 부자가 될 수 있을까요?</div>
+                                                <div class="qContent" th:text="${qna.content}"></div>
                                             </div>
                                         </div>
-                                        <div class="qContentAddFrame">                                        
-                                            <form class="qContentAddForm">
-                                                <div class="qContentAdd">
-                                                    <textarea class="qContentAddText" placeholder="댓글을 입력해주세요."></textarea>
-                                                    <button class="qContentAddBtn" type="submit">
-                                                        <span class="material-symbols-outlined">
-                                                            add
-                                                            </span>
-                                                    </button>
+                                        <div class="qna_replys">
+                                            <div class="qna_reply">
+                                                <div class="flex" style="align-items: center;">
+                                                    <div class="admin_profile_img"><img src="/src/main/resources/static/images/4.jpg"></div>
+                                                    <div class="flex id_and_date">
+                                                        <div class="admin_id" th:text="*{name}"></div>
+                                                        <div class="admin_date">2022.06.11</div>
+                                                    </div>
                                                 </div>
-                                            </form>                                        
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="qna">
-                                    <div class="question">
-                                        <div class="qUserProfileFrame">
-                                            <section class="qUserProfileForm">
-                                                <div class="qUserProfileImgFrame">
-                                                    <span class="qUserProfileImgForm">
-                                                        <picture class="qUserProfile">
-                                                            <img src="/images/chun.png" alt="">
-                                                        </picture>
-                                                    </span>
+                                                <div class="small_and_gray" style="color: #000000;">
+                                                    <!-- 문의글 답변 내용 -->
+                                                    <p class="admin_comment" th:name="${qna.num}"></p>
                                                 </div>
-                                                <div class="qUserProfileNameFrame">
-                                                    <strong class="qUserProfileName">짜리킴</strong>
-                                                    <div class="qUserProfileDate">2022. 05. 26.</div>
-                                                </div>
-                                            </section>
-                                        </div>
-                                        <div class="qContentFrame">
-                                            <div class="qContentForm">                    
-                                                <div class="qContent">춘식이도 부자가 될 수 있을까요?</div>
+                                                <div class="space"></div>
                                             </div>
                                         </div>
                                         <div class="qContentAddFrame">
-                                            <form class="qContentAddForm">
                                                 <div class="qContentAdd">
-                                                    <textarea class="qContentAddText" placeholder="댓글을 입력해주세요."></textarea>
-                                                    <button class="qContentAddBtn" type="submit">
-                                                        <span class="material-symbols-outlined">
+                                                    <!-- 댓글 등록 버튼 -->
+                                                    <textarea class="qContentAddText" placeholder="댓글을 입력해주세요." th:id="${qna.num}"  ></textarea>
+                                                    <button class="qContentAddBtn" type="button" th:name="${qna.num}">
+                                                        <span class="material-symbols-outlined" th:name="${qna.num}">
                                                             add
                                                             </span>
                                                     </button>
                                                 </div>
-                                            </form>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="qna">
-                                    <div class="question">
-                                        <div class="qUserProfileFrame">
-                                            <section class="qUserProfileForm">
-                                                <div class="qUserProfileImgFrame">
-                                                    <span class="qUserProfileImgForm">
-                                                        <picture class="qUserProfile">
-                                                            <img src="/images/chun.png" alt="">
-                                                        </picture>
-                                                    </span>
-                                                </div>
-                                                <div class="qUserProfileNameFrame">
-                                                    <strong class="qUserProfileName">짜리킴</strong>
-                                                    <div class="qUserProfileDate">2022. 05. 26.</div>
-                                                </div>
-                                            </section>
-                                        </div>
-                                        <div class="qContentFrame">
-                                            <div class="qContentForm">                    
-                                                <div class="qContent">춘식이도 부자가 될 수 있을까요?</div>
-                                            </div>
-                                        </div>
-                                        <div class="qContentAddFrame">
-                                            <form class="qContentAddForm">
-                                                <div class="qContentAdd">
-                                                    <textarea class="qContentAddText" placeholder="댓글을 입력해주세요."></textarea>
-                                                    <button class="qContentAddBtn" type="submit">
-                                                        <span class="material-symbols-outlined">
-                                                            add
-                                                            </span>
-                                                    </button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
+                                <!--QnA -->
                             </div>
                         </div>
                     </div>
@@ -260,31 +180,43 @@
                     <div class="readApplicantContainer">
                         <div class="readApplicateFrame">
                             <div class="readApplicantForm">
-                                <div class="readGroupInfoForm">한국산업인력공단</div>
-                                <h2 class="readApplicantTitle">
+                                <!-- 회사 이름-->
+                                <div class="readGroupInfoForm" th:text="*{name}">한국산업인력공단</div>
+                                <!-- 프로젝트명-->
+                                <h2 class="readApplicantTitle" th:text="*{title}">
                                     산뜻한 봄 바람과 함께 플로깅!<br>관악산 등산하며 자연도 느끼고 보호하기
                                 </h2>
                                 <div class="readApplicantCategory">
                                     <div class="readApplicantCourseForm">
-                                        <div class="readApplicantCourse">코스</div>
+                                        <!-- 코스/ 장소-->
+                                        <div class="readApplicantCourse" th:text="*{course}"></div>
                                     </div>
                                     <div class="readApplicantTerrainForm">
-                                        <div class="readApplicantTerrain">산</div>
+                                        <!-- 지형-->
+                                        <div class="readApplicantTerrain" th:text="*{terrain}"></div>
                                     </div>                                    
                                 </div>
                                 <div class="readApplicantContentFrame">
                                     <div class="readApplicantContentForm">
-                                        <p class="readApplicantContent">저희가 쓰레기 담을 봉투와 집게는 준비하니 몸만 오시면 됩니다!</p>
+                                        <!-- 간단한 설명 -->
+                                        <p class="readApplicantContent" th:text="*{summary}"></p>
                                     </div>
                                 </div>
                                 <div class="readApplicantAddressFrame">
                                     <div class="readApplicantAddressForm">
-                                        <p class="readApplicantAddress">출발지 들어갈 자리</p>
+                                        <!-- 출발지, 도착지 주소 -->
+                                        <div>
+                                        <p class="readApplicantAddress" th:text="|출발지: *{startAddress}|"></p>
+                                            <!-- 조건문 처리 -->
+                                            <p class="readApplicantAddress" th:if="${project.course.equals('코스')}" th:text="|도착지: *{endAddress}|"></p>
+                                        <p class="readApplicantAddress" th:if="${project.course.equals('코스')}" th:text="|거리: *{distance}|">3km</p>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="readApplicantDateFrame">
                                     <div class="readApplicantDataForm">
-                                        <div class="readApplicantDate">2022 - 06 - 18 (토)</div>                                        
+                                        <!-- 프로젝트 날짜 및 시간-->
+                                        <div class="readApplicantDate" th:text="*{projectDate}"></div>
                                     </div>
                                 </div>
                                 <div class="readApplicantPointFrame">
@@ -293,21 +225,24 @@
                                             <div class="readApplicantPointTitle">포인트 적립</div>
                                         </div>
                                         <div class="readApplicantPointAccumlateForm">
-                                            <h4 class="readApplicantPointAccumlate">300p</h4>
+                                            <!-- 프로젝트 포인트 -->
+                                            <h4 class="readApplicantPointAccumlate" th:text="|*{point} point|"></h4>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="readApplicantBtnFrame">
+                                    <!-- 찜 -->
                                     <div class="readApplicantBtnForm">
-                                        <button type="button" class="readApplicantLikeBtn">
+                                        <button type="button" class="readApplicantLikeBtn" th:id="*{num}">
                                             <div class="pLikeImage">
-                                                <span class="material-symbols-outlined">favorite</span>                                                                                                    
+                                                <span class="material-symbols-outlined" id="heart">favorite</span>
                                             </div>
-                                            <span class="pLikeCount">356</span>
+                                            <span class="pLikeCount" th:text="*{jjimCount}">356</span>
                                         </button>
                                     </div>
+                                    <!-- 공유하기 -->
                                     <div class="readApplicantBtnFormRight">
-                                        <button type="button" class="readApplicantShareBtn">
+                                        <button type="button" class="readApplicantShareBtn share_btn">
                                             <div class="pShareImage">
                                                 <span class="padding-t material-symbols-outlined">ios_share</span>                                                                                                                                                                                                           
                                             </div>
@@ -328,29 +263,64 @@
         </div>
     </div>
     <!-- 신청하기 모달창 -->
-    <form action="#">
     <div id="applyModal">
         <span class="applyInfo">신청하시면 취소하실 수 없습니다!<br>신중히 신청해주시기 바랍니다.<br></span>
         <input type="button" id="projectApplyBtn" class="projectApplyBtn" value="신청하기">
         <a class="modal_close_btn">X</a>
     </div>
-</form>
+<!-------------------------------- 공유하기 모달창---------------------------------------------------- -->
+<div class="share_container" style="font-family: Noto Sans KR;">
+    <div class="share">
+        <div class="share_header">
+            <div class="share_header_one">공유하기</div>
+            <div><span class="material-symbols-outlined close" style="font-size: 32px; font-weight: 600;">close</span></div>
+        </div>
+        <div class="share_contents">
+            <div class="share_content flex">
+                <div>
+                    <!-- 카카오톡 공유하기 -->
+                    <a id="kakao-link-btn" href="javascript:kakaoShare()">
+                        <img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png" />
+                    </a>
+                </div>
+                <a class="flex link-share" href="javascript:clipboardShare()">
+                    <div><span class="material-symbols-outlined">
+                                    link
+                                    </span></div>
+                    <div class="link_copy">&nbsp;링크&nbsp;복사하기</div>
+                </a>
+                <div class="link_inform">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-------------------------------- 공유하기 모달창------------------------------------------------------>
+<div th:replace="~{/main/Footer :: FooterImport}"></div>
 </body>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script th:inline="javascript">
 
-    
+    // 프로젝트 번호
+    let num = [[${project.num}]];
+    // 유저 번호(접속)
+    let userNum = 41;
+
+
+
     // 현재 위치 강조
     let $currentPlace = $('.menus').find('a');
     $currentPlace.click(function(){
         $currentPlace.removeClass('active');
         if(!$(this).hasClass('active')) {
-           $(this).addClass('active');
-       }
+            $(this).addClass('active');
+        }
     })
 
     // 내부 페이지 이동
-    
+
     var pIntroOffset = $(".pIntroduceFrame").offset().top - 150;
     var gIntroOffset = $(".gIntroduceFrame").offset().top - 200;
     var qnaOffset = $(".qnaFrame").offset().top - 150;
@@ -364,59 +334,59 @@
     }
 
     function modal(id) {
-    var zIndex = 9999;
-    var modal = document.getElementById(id);
+        var zIndex = 9999;
+        var modal = document.getElementById(id);
 
-    // 모달 div 뒤에 희끄무레한 레이어
-    var bg = document.createElement('div');
-    bg.setStyle({
-        position: 'fixed',
-        zIndex: zIndex,
-        left: '0px',
-        top: '0px',
-        width: '100%',
-        height: '100%',
-        overflow: 'auto',
-        // 레이어 색갈은 여기서 바꾸면 됨
-        backgroundColor: 'rgba(0,0,0,0.4)'
-    });
-    document.body.append(bg);
+        // 모달 div 뒤에 희끄무레한 레이어
+        var bg = document.createElement('div');
+        bg.setStyle({
+            position: 'fixed',
+            zIndex: zIndex,
+            left: '0px',
+            top: '0px',
+            width: '100%',
+            height: '100%',
+            overflow: 'auto',
+            // 레이어 색갈은 여기서 바꾸면 됨
+            backgroundColor: 'rgba(0,0,0,0.4)'
+        });
+        document.body.append(bg);
 
-    // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
-    modal.querySelector('.modal_close_btn').addEventListener('click', function() {
-        bg.remove();
-        modal.style.display = 'none';
-        console.log("들어옴");
-    });
+        // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
+        modal.querySelector('.modal_close_btn').addEventListener('click', function() {
+            bg.remove();
+            modal.style.display = 'none';
+            console.log("들어옴");
+        });
 
-    modal.setStyle({
-        position: 'fixed',
-        display: 'block',
-        boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+        modal.setStyle({
+            position: 'fixed',
+            display: 'block',
+            boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
 
-        // 시꺼먼 레이어 보다 한칸 위에 보이기
-        zIndex: zIndex + 1,
+            // 시꺼먼 레이어 보다 한칸 위에 보이기
+            zIndex: zIndex + 1,
 
-        // div center 정렬
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        msTransform: 'translate(-50%, -50%)',
-        webkitTransform: 'translate(-50%, -50%)'
-    });
-}
+            // div center 정렬
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            msTransform: 'translate(-50%, -50%)',
+            webkitTransform: 'translate(-50%, -50%)'
+        });
+    }
 
-// Element 에 style 한번에 오브젝트로 설정하는 함수 추가
-Element.prototype.setStyle = function(styles) {
-    for (var k in styles) this.style[k] = styles[k];
-    return this;
-};
+    // Element 에 style 한번에 오브젝트로 설정하는 함수 추가
+    Element.prototype.setStyle = function(styles) {
+        for (var k in styles) this.style[k] = styles[k];
+        return this;
+    };
 
 
     document.getElementById('applyBtn').addEventListener('click', function() {
         modal('applyModal')
     });
-    
+
     $(".moveIntroduce").click(function(){
         $("html, body").animate({scrollTop: pIntroOffset}, 0);
         console.log("들어옴");
@@ -430,6 +400,201 @@ Element.prototype.setStyle = function(styles) {
     $(".moveGuide").click(function(){
         $("html, body").animate({scrollTop: guideOffset}, 0);
     });
+
+
+    // 댓글 등록 버튼 클릭시(모집자 접속시)
+    $(document).ready(function() {
+
+        $('button.qContentAddBtn').on("click", function () {
+            let $qnaNum = $(this).attr('name');
+            let $content = $('#' + $qnaNum).val();
+            console.log($qnaNum);
+            console.log($content);
+            $.ajax({
+                url: "/projectQnA/add",
+                type: "post",
+                data: JSON.stringify({ content: $content, qnaNum: $qnaNum }),
+                contentType: "application/json;charset=UTF-8",
+                success: function(result){
+                    // $comment.html(result.content);
+                    alert('tjdrhd');
+                }
+
+            });
+            $('#' + $qnaNum).attr("disabled",true);
+            $(this).children('span').hide();
+
+        })
+    });
+
+
+    // 댓글 목록
+    function commentList(qnaNum, comment) {
+        $.ajax({
+            url: "/projectQnA/commentList/" + qnaNum,
+            type: "get",
+            success: function(result){
+                $(result).each(function (i, answer){
+                    $(comment).html(answer.content);
+                })
+            }
+        });
+    }
+
+    let comments = $('.admin_comment');
+    comments.each(function (i, comment) {
+        let qnaNum = $(comment).attr("name");
+        commentList(qnaNum, comment);
+    })
+
+    let jjimCheck = 0;
+    // 좋아요(프로젝트 번호, 유저 번호)
+    $('.readApplicantLikeBtn').on("click", function () {
+        if (jjimCheck == 0){
+        $.ajax({
+            url: "/project/jjim",
+            type: "post",
+            data: JSON.stringify({"userNum": userNum, "projectNum": num, "category": "2"}),
+            contentType: "application/json; charset=utf-8;",
+            success: function(){
+                // 하트 색상 변경
+                //
+
+                }
+            });
+            jjimCheck++;
+        return;
+
+        }else{
+            $.ajax({
+                url: "/project/jjim",
+                type: "delete",
+                data: JSON.stringify({"userNum": userNum, "projectNum": num}),
+                contentType: "application/json; charset=utf-8;",
+                success: function(){
+                    // 하트 색상 변경
+                    //
+
+                }
+            });
+            jjimCheck--;
+
+        }
+
+        });
+
+
+
+
+    // 지원하기
+    let apply = 0;
+    $('.projectApplyBtn').on("click", function () {
+        if( apply == 0){
+        $.ajax({
+            url: "/project/apply",
+            type: "post",
+            data: JSON.stringify({"userNum": userNum, "projectNum": num}),
+            contentType: "application/json; charset=utf-8;",
+            success: function(){
+                apply = 1;
+            }
+        });
+        }else{
+            alert('이미 신청완료 되었습니다');
+
+        }
+    })
+
+    //공유하기 모달창
+
+    $('.share_btn').click(function(){
+        $('.share_container').css("display","flex");
+    })
+
+    $('.close').click(function(){
+        $('.share_container').css("display","none");
+    })
+
+    shareModal = document.getElementsByClassName("share_container")[0];
+
+    window.onclick = function(event) {
+        if (event.target == shareModal) {
+            shareModal.style.display = "none";
+        }
+    }
+
+    //--------------------------- 공유하기 api----------------------------------
+
+    // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
+    Kakao.init('a976ec1bd79664fdd82edd1c18835ef7');
+
+    // SDK 초기화 여부를 판단합니다.
+    console.log(Kakao.isInitialized());
+    function kakaoShare() {
+
+        Kakao.Link.sendDefault({
+            objectType: 'feed',
+            content: {
+                title: '주방용품', //카카오공유하기 시 타이틀
+                description: '초록색이 좋아 고무장갑', //카카오공유하기 시 설명
+                imageUrl: 'http://127.0.0.1:5500/src/main/resources/static/images/5.jpg', //카카오공유하기 시 썸네일 이미지 경로
+                link: {
+                    mobileWebUrl: 'http://127.0.0.1:5500/src/main/resources/templates/product/pickitupStoreDetail.html', //카카오공유하기 시 클릭 후 이동 경로
+                    webUrl: 'http://127.0.0.1:5500/src/main/resources/templates/product/pickitupStoreDetail.html', //카카오공유하기 시 클릭 후 이동 경로
+                },
+            },
+            buttons: [
+                {
+                    title: '웹으로 보기',
+                    link: {
+                        mobileWebUrl: 'http://127.0.0.1:5500/src/main/resources/templates/product/pickitupStoreDetail.html', //카카오공유하기 시 클릭 후 이동 경로
+                        webUrl: 'http://127.0.0.1:5500/src/main/resources/templates/product/pickitupStoreDetail.html', //카카오공유하기 시 클릭 후 이동 경로
+                    },
+                },
+            ],
+            // 카카오톡 미설치 시 카카오톡 설치 경로이동
+            installTalk: true,
+
+        })
+        $('.share_container').css("display","none");
+    }
+
+
+
+
+    //  클립보드 복사하기
+    function clipboardShare() {
+        // 1. 새로운 element 생성
+        var tmpTextarea = document.createElement('textarea');
+
+        // 2. 해당 element에 복사하고자 하는 value 저장
+        tmpTextarea.value = window.location.href; //현재 url
+
+        // 3. 해당 element를 화면에 안보이는 곳에 위치
+        tmpTextarea.setAttribute('readonly', '');
+        tmpTextarea.style.position = 'absolute';
+        tmpTextarea.style.left = '-9999px';
+        document.body.appendChild(tmpTextarea);
+
+        // 4. 해당 element의 value를 시스템 함수를 호출하여 복사
+        tmpTextarea.select();
+        tmpTextarea.setSelectionRange(0, 9999);  // 셀렉트 범위 설정
+        var successChk = document.execCommand('copy');
+
+        // 5. 해당 element 삭제
+        document.body.removeChild(tmpTextarea);
+
+        // 클립보드 성공여부 확인
+        if(!successChk){
+            alert("클립보드 복사에 실패하였습니다.");
+        } else {
+            alert("클립보드에 복사가 완료되었습니다.");
+        }
+        $('.share_container').css("display","none");
+
+    }
+
+
 
 </script>
 </html>

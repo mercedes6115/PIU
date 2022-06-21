@@ -24,7 +24,7 @@
                 <div class="my-real-point-top3">
                     <div class="my-real-point-top6" style="display: flex;">
                         <div class="my-real-point-top7"><strong
-                                class="my-real-point-top8"><span th:text="${user.getPoint()}"></span></strong><span
+                                class="my-real-point-top8"><span>4000</span></strong><span
                                 class="my-real-point-top9">Point</span></div><img src="https://class101.net/images/eclipse.png"
                                                                                   class="my-real-point-top10">
                     </div>
@@ -62,14 +62,34 @@
                                 <div font-weight="bold" class="my-point-gold5-by">포인트 내역은 최근 10건까지만 표시됩니다.</div>
                             </div>
                         </div>
-                        <section class="point-pay-list" th:each="pointDTO:${changePoint}">
-                            <div class="my-point-gold6" th:object="${pointDTO}">
+                        <section class="point-pay-list">
+                            <div class="my-point-gold6">
                                 <div class="my-point-gold8">
-                                    <div class="my-point-gold9" th:text="*{title}"></div>
-                                    <div font-weight="600" class="my-point-gold10" th:text="*{#dates.format(pointDate, 'yyyy-MM-dd')}"></div>
+                                    <div class="my-point-gold9">에코 플로깅</div>
+                                    <div font-weight="600" class="my-point-gold10">2022-06-16</div>
                                 </div>
-                                <div class="my-point-gold13" th:if="*{category == '0'}" th:text="|+*{point}|" style="color:black"></div>
-                                <div class="my-point-gold13" th:unless="*{category == '0'}" th:text="|-*{point}|" style="color:red"></div>
+                                <div class="my-point-gold13">+1000</div>
+                            </div>
+                            <div class="my-point-gold6">
+                                <div class="my-point-gold8">
+                                    <div class="my-point-gold9">에코 플로깅</div>
+                                    <div font-weight="600" class="my-point-gold10">2022-06-16</div>
+                                </div>
+                                <div class="my-point-gold13">+1000</div>
+                            </div>
+                            <div class="my-point-gold6">
+                                <div class="my-point-gold8">
+                                    <div class="my-point-gold9">에코 플로깅</div>
+                                    <div font-weight="600" class="my-point-gold10">2022-06-16</div>
+                                </div>
+                                <div class="my-point-gold13">+1000</div>
+                            </div>
+                            <div class="my-point-gold6">
+                                <div class="my-point-gold8">
+                                    <div class="my-point-gold9">에코 플로깅</div>
+                                    <div font-weight="600" class="my-point-gold10">2022-06-16</div>
+                                </div>
+                                <div class="my-point-gold13">+1000</div>
                             </div>
                         </section>
                     </div>

@@ -29,20 +29,21 @@
         </div>
         <div class="space"></div>
         <section class="review_write_container">
-            <form action="/store/reviewWrite" method="post" id="registerForm" enctype="multipart/form-data">
+            <div>
                 <div>
                     <div class="flex p-24" style="align-items: center; padding-bottom: 15px;">
-                        <div class="profile_img"><img src="/images/chun2.png"></div>
+                        <div class="profile_img"><img src="/src/main/resources/static/images/chun2.png"></div>
                         <div class="flex justify-content" style="width: 100%; align-items: center;">
                             <div class="id_and_date">
-                                <div class="review_id" th:text="|춘식이|"></div>
-                                <div class="admin_date" id="admin_date"></div>
+                                <div class="review_id">춘식이</div>
+                                <div class="admin_date">2022-06-14</div>
                             </div>
                             <div><input class="btn_qnaToadmin" type="button" value="글등록"></div>
                         </div>
                     </div>
                     <div class="space flex" style="padding-left: 24px; justify-content: space-between;">
-                        <div class="review_item_title" th:text="|[${product.category}] &nbsp ${product.name}|">
+                        <div class="review_item_title">
+                            [주방용품] 춘식이가 좋아하는 초록색 고무장갑
                         </div>
                     </div>
                     <div style="margin-bottom: 10px;"></div>
@@ -60,25 +61,22 @@
                         <label for="attach3" class="flex">
                             <div class="thumb3">
                                 <div>+</div>
-                            </div>
+                            </div> 
                         </label>
                         <input type="file" id="attach1" class="attach1" style="display: none;">
                         <input type="file" id="attach2" class="attach2" style="display: none;" disabled>
                         <input type="file" id="attach3" class="attach3"style="display: none;" disabled>
                     </div>
-
+                    
                     <div class="admin_comment" style="font-size: 10px; margin-top:5px; margin-left: 24px;">첨부파일은 3개 까지만 가능합니다.</div>
 
                     <div style="margin-top: 8px;">
                         <div style="text-align: center;">
                             <textarea class="user_review" name="" id="" cols="30" rows="10" required></textarea>
                         </div>
-                    </div>
-                    <div class="reviewInfo">
-
-                    </div>
+                      
                 </div>
-            </form>
+            </div>
         </section>
     </div>
 
@@ -93,113 +91,35 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <script>
-    let productNum = [[${product.num}]];
-
- //첨부파일 input태그 가져오기
- const file1 = document.querySelector("input.attach1");
-    const file2 = document.querySelector("input.attach2");
-    const file3 = document.querySelector("input.attach3");
-    const thumbnail1 = document.querySelector("label[for='attach1'] div.thumb1");
-    const thumbnail2 = document.querySelector("label[for='attach2'] div.thumb2");
-    const thumbnail3 = document.querySelector("label[for='attach3'] div.thumb3");
+    //첨부파일 input태그 가져오기
+    const file = document.querySelector("input[type='file']");
+    const thumbnail = document.querySelectorAll("label[for='attach'] div.thumb");
     //첨부파일이 등록되었다면 change이벤트 발생
-    file1.addEventListener("change", function(event){
+    file.addEventListener("change", function(event){
         //특정 경로의 파일을 읽어올 때 사용.
-        let reader = new FileReader();
-            reader.readAsDataURL(event.target.files[0]);
-            reader.onload = function(event){
+        for(let i=0;i<thumbnail.length;i++){
+            let reader1 = new FileReader();
+            if(!event.target.files[i]){
+                return;
+            }
+            reader1.readAsDataURL(event.target.files[i]);
+            console.log(event.target.files[i]);
+            reader1.onload = function(event){
                 //등록된 파일의 경로에 작성된 파일의 타입검사
                 if(event.target.result.includes("image")){
                     console.log("이미지 파일입니다.");
-                    $(thumbnail1).text("");
                     //등록된 파일의 경로로 대체
-                    thumbnail1.style.backgroundImage = "url(\"" + event.target.result + "\")";
-                    file2.disabled = false;
-                    $(thumbnail2).css("background-color","white");
-                    number2()
+                    thumbnail[i].style.backgroundImage = "url(\"" + event.target.result + "\")";
                 }else{
                     alert("이미지 파일이 아닙니다.");
                     //미리 준비해놓은 이미지 경로로 대체
-                    $(thumbnail1).text("");
-                    thumbnail1.style.backgroundImage = "url(/images/error.png)";
+                    thumbnail[i].style.backgroundImage = "url(/images/error.png)";
                 }
+            
             }
-
-        let formData =   new FormData();
-        let inputFile = $("input#attach1");
-        let files = inputFile[0].files;
-        console.log(files);
-        formData.append("uploadFiles", files);
-
-        $.ajax({
-            url: "/productFile/upload",
-            type: "post",
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function(files){
-                alert("success");
-                showUploadResult(files);
-            }
-        });
+            thumbnail[i].style.display = "block";
+        }
     });
-
-    function number2(){
-        file2.addEventListener("change", function(event){
-            //특정 경로의 파일을 읽어올 때 사용.
-            let reader = new FileReader();
-                reader.readAsDataURL(event.target.files[0]);
-                reader.onload = function(event){
-                    //등록된 파일의 경로에 작성된 파일의 타입검사
-                    if(event.target.result.includes("image")){
-                        console.log("이미지 파일입니다.");
-                        $(thumbnail2).text("");
-                        //등록된 파일의 경로로 대체
-                        thumbnail2.style.backgroundImage = "url(\"" + event.target.result + "\")";
-                        file3.disabled=false;
-                        $(thumbnail3).css("background-color","white");
-                        number3();
-                    }else{
-                        alert("이미지 파일이 아닙니다.");
-                        $(thumbnail2).text("");
-                        //미리 준비해놓은 이미지 경로로 대체
-                        thumbnail2.style.backgroundImage = "url(/images/error.png)";
-                    }
-                }
-        });
-    }
-
-    function number3(){
-        file3.addEventListener("change", function(event){
-            //특정 경로의 파일을 읽어올 때 사용.
-            let reader = new FileReader();
-                reader.readAsDataURL(event.target.files[0]);
-                reader.onload = function(event){
-                    //등록된 파일의 경로에 작성된 파일의 타입검사
-                    if(event.target.result.includes("image")){
-                        console.log("이미지 파일입니다.");
-                        $(thumbnail3).text("");
-                        //등록된 파일의 경로로 대체
-                        thumbnail3.style.backgroundImage = "url(\"" + event.target.result + "\")";
-                    }else{
-                        alert("이미지 파일이 아닙니다.");
-                        //미리 준비해놓은 이미지 경로로 대체
-                        $(thumbnail3).text("");
-                        thumbnail3.style.backgroundImage = "url(/images/error.png)";
-                    }
-                }
-        });
-    }
-
-    $('.review-header-left').click(function () {
-        location.href ="/store/detail?num="+productNum;
-    })
-
-     //현재날짜 띄우기
-     date = new Date();
-     year = date.getFullYear();
-     month = date.getMonth() + 1;
-     day = date.getDate();
-     document.getElementById("admin_date").innerHTML = year + "." + month + "." + day;
 </script>
+
 </html>

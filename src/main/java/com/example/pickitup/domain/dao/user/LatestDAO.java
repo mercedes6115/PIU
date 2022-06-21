@@ -1,7 +1,5 @@
 package com.example.pickitup.domain.dao.user;
 
-import com.example.pickitup.domain.vo.product.productFile.ProductVO;
-import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 import com.example.pickitup.domain.vo.user.LatestVO;
 import com.example.pickitup.mapper.user.LatestMapper;
 import lombok.RequiredArgsConstructor;
@@ -16,12 +14,12 @@ public class LatestDAO {
     private final LatestMapper latestMapper;
 
     // 최근에 본 프로젝트 목록
-    public List<ProjectVO> getProjectList(Long userNum){
+    public List<LatestVO> getProjectList(Long userNum){
         return latestMapper.getProjectList(userNum);
     }
 
     // 최근에 본 상품 목록
-    public List<ProductVO> getProductList(Long userNum){
+    public List<LatestVO> getProductList(Long userNum){
         return latestMapper.getProductList(userNum);
     }
 

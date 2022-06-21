@@ -1,23 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.pickitup.mapper.user.LatestMapper">
-    <select id="getProjectList" resultType="projectVO">
-        SELECT proj.NUM, proj.TITLE, proj.CONTENT, proj.COURSE, proj.TERRAIN, proj.POINT, proj.APPROVAL, proj.STARTTIME, proj.ENDTIME, proj.START_ADDRESS, proj.END_ADDRESS, proj.DISTANCE, proj.QR, proj.REGIST_DATE, proj.UPDATE_DATE, proj.STATUS, proj.COMPANY_NUM, proj.USER_NUM, proj.JJIM_COUNT, proj.PROJECT_DATE
-	        FROM TBL_PROJECT proj
-	            INNER JOIN TBL_LATEST la ON la.PROJECT_NUM = proj.NUM
-	            INNER JOIN TBL_USER u ON u.NUM = la.USER_NUM
-            WHERE u.NUM = #{userNum}
-        ORDER BY la.NUM  DESC
-    </select>
-
-    <select id="getProductList" resultType="productVO">
-        SELECT prod.NUM, prod.NAME, prod.CONTENT, prod.CATEGORY, prod.PRICE, prod.STOCK, prod.ORIGIN, prod.MANUFACTURER, prod.SUPPLIER, prod.REGIST_DATE, prod.STATUS, prod.JJIM_COUNT
-	        FROM TBL_PRODUCT prod
-	            INNER JOIN TBL_LATEST la ON la.PRODUCT_NUM = prod.NUM
-	            INNER JOIN TBL_USER u ON u.NUM = la.USER_NUM
-            WHERE u.NUM = #{userNum}
-        ORDER BY la.NUM DESC
-    </select>
+    
 </mapper>
 
 

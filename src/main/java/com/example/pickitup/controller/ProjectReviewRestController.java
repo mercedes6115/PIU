@@ -9,5 +9,5 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Slf4j
 @RequestMapping("/projectReviewFile/*")
 @RequiredArgsConstructor
-public class ProjectReviewFileRestController {
+public class ProjectReviewRestController {
 }

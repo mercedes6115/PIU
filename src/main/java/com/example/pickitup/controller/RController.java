@@ -1,6 +1,5 @@
 package com.example.pickitup.controller;
 
-import com.example.pickitup.service.TempUserSerivce;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/pickitup/*")
 @RequiredArgsConstructor
 public class RController {
-    private final TempUserSerivce tempUserSerivce;
 
     // 댓글
     @PostMapping("/comment")
@@ -52,10 +50,5 @@ public class RController {
     @DeleteMapping("/jjim")
     public void removeJjim(){
 
-    }
-    //이메일 중복확인
-    @PostMapping("/emailMatching")
-    public int match(@RequestBody String email){
-        return tempUserSerivce.emailcheck(email);
     }
 }

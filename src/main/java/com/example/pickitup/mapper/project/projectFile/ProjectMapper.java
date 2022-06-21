@@ -16,7 +16,7 @@ public interface ProjectMapper {
     public List<ProjectVO> getProjectList(Criteria criteria);
 
 //  특정 유저의 프로젝트 목록
-    public List<ProjectVO> getUserProjectList(Long userNum);
+    public List<ProjectVO> getUserProjectList(Long companyNum, Criteria criteria);
 
 //  프로젝트 한개만 띄우기
     public ProjectVO getDetail(Long num);
@@ -30,13 +30,5 @@ public interface ProjectMapper {
 //  프로젝트 삭제하기
     public boolean delete(Long num);
 
-//    프로젝트 최대 찜순 가져오기
-    public List<ProjectVO> getListJJim();
-
-    //    프로젝트 최대 포인트순 가져오기
-    public List<ProjectVO> getListPoint();
-
-    //    프로젝트 최대 참가자순 가져오기
-    public List<ProjectVO> getListApply();
 
 }
