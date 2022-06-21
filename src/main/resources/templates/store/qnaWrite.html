@@ -15,7 +15,7 @@
 
 </head>
 <body style="font-family: 'Noto Sans KR'; background-color: rgb(248, 248, 249) !important;" >
-<div class="review-container" th:object="${product}"> <!--전체 컨테이너-->
+<div class="review-container"> <!--전체 컨테이너-->
     <div class="reviews-wrap"> <!--헤더 컨테이너-->
         <div class="flex review_header" > <!--header 컨테이너-->
             <div class="review-header-left"><span class="material-symbols-outlined review-header-left" style="font-weight: 700; font-size: 20px; margin-top: 5px;">
@@ -23,7 +23,7 @@
                     </span>
             </div>
             <div style="width: 100%;">
-                <h5>상품 후기 작성</h5>
+                <h5>상품 문의 작성</h5>
             </div>
         </div>
     </div>
@@ -37,53 +37,21 @@
                         <div class="id_and_date">
                             <div class="review_id" th:text="|춘식이|"></div>
                             <div class="admin_date" id="admin_date"></div>
+                            <input type="text" name="userNum" th:value="22">
+                            <input type="text" name="productNum" th:value="${productNum}">
                         </div>
-                        <div><input class="btn_qnaToadmin" type="button" value="글등록"></div>
+                        <div><input class="btn_qnaToadmin" type="submit" value="글등록"></div>
                     </div>
                 </div>
-                <div class="space flex" style="padding-left: 24px; justify-content: space-between;">
-<!--                    <div class="review_item_title" th:text="|[${product.category}] &nbsp ${product.name}|">-->
-<!--                    </div>-->
-                </div>
-                <div style="margin-bottom: 10px;"></div>
-<!--                <div class="flex" style="text-align: left; padding: 0  0 10px 24px;">-->
-<!--                    <label for="attach1" class="flex">-->
-<!--                        <div class="thumb1">-->
-<!--                            <div>+</div>-->
-<!--                        </div>-->
-<!--                    </label>-->
-<!--                    <label for="attach2" class="flex">-->
-<!--                        <div class="thumb2">-->
-<!--                            <div>+</div>-->
-<!--                        </div>-->
-<!--                    </label>-->
-<!--                    <label for="attach3" class="flex">-->
-<!--                        <div class="thumb3">-->
-<!--                            <div>+</div>-->
-<!--                        </div>-->
-<!--                    </label>-->
-<!--                    <input type="file" id="attach1" class="attach1" style="display: none;">-->
-<!--                    <input type="file" id="attach2" class="attach2" style="display: none;" disabled>-->
-<!--                    <input type="file" id="attach3" class="attach3"style="display: none;" disabled>-->
-<!--                </div>-->
-
-<!--                <div class="admin_comment" style="font-size: 10px; margin-top:5px; margin-left: 24px;">첨부파일은 3개 까지만 가능합니다.</div>-->
-
                 <div style="margin-top: 8px;">
                     <div style="text-align: center;">
-                        <textarea class="user_review" name="" id="" cols="30" rows="10" required></textarea>
+                        <textarea class="user_review" name="content" id="" cols="30" rows="10" required></textarea>
                     </div>
-                </div>
-                <div class="reviewInfo">
-
                 </div>
             </div>
         </form>
     </section>
 </div>
-
-
-
 <div class="gototop">
         <span class="material-symbols-outlined toTop" style="font-size: 35px;">
             vertical_align_top
@@ -93,11 +61,9 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script th:inline="javascript">
-    let productNum = [[${product.num}]];
+    let productNum = [[${productNum}]];
 
-    $(".btn_qnaToadmin").click(function () {
-        alert("er");
-    })
+
     console.log("들어옴");
     //현재날짜 띄우기
     date = new Date();
@@ -110,6 +76,11 @@
     $('.review-header-left').click(function () {
         location.href ="/store/detail?num="+productNum;
     });
+
+    // $('.btn_qnaToadmin').click(function (e) {
+    //     e.preventDefault();
+    //     location.href = "/store/detail?num="+productNum;
+    // })
 
 </script>
 </html>

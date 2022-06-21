@@ -40,9 +40,10 @@ public class StoreController {
 
     // 스토어 상세페이지
     @GetMapping("/detail")
-    public void storeDetail(Long num ,Model model){
+    public String storeDetail(Long num ,Model model){
         model.addAttribute("count",productReviewService.count(num));
         model.addAttribute("product",productService.getDetail(num));
+        return "/store/detail";
     }
 
     // 스토어 리뷰 목록
@@ -83,13 +84,15 @@ public class StoreController {
     // 스토어 문의 작성
     @GetMapping("/qnaWrite")
     public void qnaWrite(Long productNum, Model model){
-        model.addAttribute("product",productQnaService.getList(productNum));
+        //유저 정보도 같이 보내야함
+        model.addAttribute("productNum",productNum);
     }
 
     // 스토어 문의 작성 폼
     @PostMapping("/qnaWrite")
-    public void qnaWriteForm(){
-
+    public String qnaWriteForm(ProductQnaVO productQnaVO, Model model){
+        productQnaService.register(productQnaVO);
+        return storeDetail(productQnaVO.getProductNum(), model);
     }
 
     // 스토어 결제 정보 입력
