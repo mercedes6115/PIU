@@ -17,7 +17,7 @@ public class CompanyMapperTests {
         CompanyVO companyVO=new CompanyVO();
         companyVO.setEmail("1111@1111");
         companyVO.setPassword("1111");
-        companyVO.setName("가화");
+        companyVO.setNickname("가화");
         companyVO.setPhone("01022222222");
         companyVO.setBusinessPhone("023334444");
         companyVO.setAddress("서울시 은평구");

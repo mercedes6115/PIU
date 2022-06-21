@@ -28,5 +28,6 @@ public class ProjectVO {
     private Long userNum;
     private Long jjimCount;
     private String projectDate;
+    private Long applyCount;
 
 }
