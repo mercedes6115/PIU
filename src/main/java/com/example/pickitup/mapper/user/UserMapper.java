@@ -2,6 +2,7 @@ package com.example.pickitup.mapper.user;
 
 import com.example.pickitup.domain.vo.Criteria;
 
+import com.example.pickitup.domain.vo.adminVO.AdminBoardDTO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 
@@ -24,10 +25,16 @@ public interface UserMapper {
     public AdminBoardVO getNoticeDetail(Long num);
 
     //    관리자 공지리스트보기
-    public List<AdminBoardVO> getNoticeList(Criteria criteria);
+    public List<AdminBoardDTO> getNoticeList(Criteria criteria);
 
     //    관리자 공지사항 총갯수
     public int getNoticeTotal();
+
+    //    ADMINBOARD에 총 게시글 수 가져오기
+    public int getAdminBoardCount(Criteria criteria);
+
+    //    ADMINBOARD에 게시글 리스트 가져오기
+    public List<AdminBoardVO> getAdminboardList(Criteria criteria);
 
 //    유저 목록 관리자용
     public  List<UserDTO> getList(Criteria criteria);

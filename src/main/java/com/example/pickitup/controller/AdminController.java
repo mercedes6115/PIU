@@ -1,6 +1,7 @@
 package com.example.pickitup.controller;
 
 import com.example.pickitup.domain.vo.Criteria;
+import com.example.pickitup.domain.vo.dto.AdminBoardPageDTO;
 import com.example.pickitup.domain.vo.dto.PageDTO;
 import com.example.pickitup.domain.vo.dto.UserDTO;
 import com.example.pickitup.domain.vo.user.AdminBoardVO;
@@ -38,8 +39,12 @@ public class AdminController {
 
     // 관리자 게시물 목록
     @GetMapping("/boardList")
-    public void boardList(){
-
+    public void boardList(Criteria criteria, Model model){
+        log.info("==========");
+        log.info("===List===");
+        log.info("==========");
+        model.addAttribute("adminboardList", tempAdminService.getAdminboardList(criteria));
+        model.addAttribute("adminBoardPageDTO",new AdminBoardPageDTO(criteria, (tempAdminService.getAdminBoardCount(criteria))));
     }
 
     // 관리자 게시물 등록
@@ -123,6 +128,14 @@ public class AdminController {
     public void userDetail(){
 
     }
+
+
+    // 관리자 유저 문의 글 보기
+    @GetMapping("/userQnA")
+    public void userQnA(){
+
+    }
+
 
 
 

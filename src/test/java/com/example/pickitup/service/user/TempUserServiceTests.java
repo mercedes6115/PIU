@@ -4,6 +4,7 @@ package com.example.pickitup.service.user;
 import com.example.pickitup.domain.vo.dto.PointDTO;
 
 import com.example.pickitup.domain.vo.Criteria;
+import com.example.pickitup.domain.vo.adminVO.AdminBoardDTO;
 import com.example.pickitup.domain.vo.user.AdminBoardVO;
 import com.example.pickitup.domain.vo.user.UserVO;
 import com.example.pickitup.service.TempAdminService;
@@ -108,7 +109,7 @@ public class TempUserServiceTests {
 
     @Test
     public void getNoticeListTest(){
-        tempAdminService.getNoticeList(new Criteria()).stream().map(AdminBoardVO::toString).forEach(log::info);
+        tempAdminService.getNoticeList(new Criteria()).stream().map(AdminBoardDTO::toString).forEach(log::info);
     }
 
     @Test
@@ -118,7 +119,18 @@ public class TempUserServiceTests {
     }
 
     @Test
-    public void getNoticeTotal(){
+    public void getNoticeTotalTest(){
         log.info("총 개수 : " + tempAdminService.getNoticeTotal());
     }
+
+    @Test
+    public void getAdminBoardCountTest() {
+        log.info("adminboard 글 총개수 : " + tempAdminService.getAdminBoardCount(new Criteria(1,10)));
+    }
+
+    @Test
+    public void getAdminboardListTest(){
+        tempAdminService.getAdminboardList(new Criteria());
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.example.pickitup.domain.dao.user;
 
 import com.example.pickitup.domain.vo.Criteria;
+import com.example.pickitup.domain.vo.adminVO.AdminBoardDTO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
@@ -27,7 +28,7 @@ public class UserDAO {
     }
 
     // 관리자 공지 리스트 보기
-    public List<AdminBoardVO> getNoticeList(Criteria criteria){
+    public List<AdminBoardDTO> getNoticeList(Criteria criteria){
         return userMapper.getNoticeList(criteria);
     }
 
@@ -40,6 +41,17 @@ public class UserDAO {
     public int getNoticeTotal(){
         return userMapper.getNoticeTotal();
     }
+
+    // 관리자 adminboard 글 총개수
+    public int getAdminBoardCount(Criteria criteria){
+        return userMapper.getAdminBoardCount(criteria);
+    }
+
+    // 관리자 adminboard 글 목록 가져오기
+    public List<AdminBoardVO> getAdminboardList(Criteria criteria){
+        return userMapper.getAdminboardList(criteria);
+    }
+
 
     // 유저 목록(관리자용)
     public List<UserDTO> getList(Criteria criteria){
