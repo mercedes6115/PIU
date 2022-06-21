@@ -2,7 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.pickitup.mapper.project.projectFile.ProjectMapper">
 
-
     <!-- 프로젝트 전체 목록   -->
     <select id="getList" resultType="projectVO">
     SELECT NUM, TITLE, CONTENT, COURSE, TERRAIN, POINT, APPROVAL, STARTTIME, ENDTIME, START_ADDRESS, END_ADDRESS, DISTANCE, QR, REGIST_DATE, UPDATE_DATE, STATUS, COMPANY_NUM, USER_NUM
@@ -47,7 +46,7 @@
     <!-- 프로젝트 찜순 목록(상위 10개)   -->
     <select id="getListJJim" resultType="projectVO">
     <![CDATA[
-        SELECT NUM, TITLE, CONTENT, JJIM_COUNT
+        SELECT NUM, TITLE, project_Date, JJIM_COUNT
         FROM (
             SELECT * FROM TBL_PROJECT  ORDER BY JJIM_COUNT DESC
         )
@@ -58,12 +57,34 @@
     <!-- 프로젝트 포인트순 목록(상위 10개)   -->
     <select id="getListPoint" resultType="projectVO">
     <![CDATA[
-        SELECT NUM, TITLE, CONTENT, POINT
+        SELECT NUM, TITLE, project_Date, POINT
         FROM (
             SELECT * FROM TBL_PROJECT  ORDER BY POINT DESC
         )
         WHERE ROWNUM <=10
         ]]>
     </select>
+
+    <!-- 프로젝트 참가자순 목록   -->
+    <select id="getListApply" resultType="projectVO">
+    <![CDATA[
+    select *
+    from(
+    SELECT * FROM
+        (SELECT PROJECT_NUM, COUNT(PROJECT_NUM) APPLYCOUNT  FROM TBL_APPLY a
+        GROUP BY a.PROJECT_NUM) a JOIN TBL_PROJECT p
+        ON a.PROJECT_NUM = p.NUM
+        ORDER BY APPLYCOUNT DESC)
+        WHERE ROWNUM <=10
+        ]]>
+    </select>
+
+    <!--    -->
+    <!--    <select id="test">-->
+    <!--        SELECT UUID, UPLOAD_PATH, FILE_NAME-->
+    <!--        FROM TBL_PROJECT_FILE-->
+    <!--        WHERE PROJECT_NUM = #{NUM}-->
+    <!--    </select>-->
+
 </mapper>
 

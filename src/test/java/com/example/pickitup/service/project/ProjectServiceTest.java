@@ -6,20 +6,27 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.text.ParseException;
+
 @SpringBootTest
 @Slf4j
 public class ProjectServiceTest {
     @Autowired
     private ProjectService projectService;
 
-    @Test
-    public void getListJJimTest(){
-        log.info(projectService.getListJJim().toString());
-    }
+//    @Test
+//    public void getListJJimTest(){
+//        log.info(projectService.getListJJim().toString());
+//    }
+//
+//    @Test
+//    public void getListPointTest(){
+//        log.info(projectService.getListPoint().toString());
+//    }
 
     @Test
-    public void getListPointTest(){
-        log.info(projectService.getListPoint().toString());
+    public void getListApplyTest() throws ParseException {
+        log.info(projectService.getListApply().toString());
     }
 
 

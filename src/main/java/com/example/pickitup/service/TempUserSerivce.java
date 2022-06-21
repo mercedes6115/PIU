@@ -6,7 +6,6 @@ import com.example.pickitup.domain.dao.project.projectFile.ProjectFileDAO;
 import com.example.pickitup.domain.dao.user.*;
 import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.dto.PointDTO;
-import com.example.pickitup.domain.vo.dto.ProjectDTO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 import com.example.pickitup.domain.vo.user.*;
@@ -174,16 +173,6 @@ public class TempUserSerivce {
 
         return pointDTOList.subList(0,10);    // 값 반환
     }
-    // 각 프로젝트 신청자 수
-    public List<ProjectDTO> applyCount() {
-        List<ProjectVO> projectVOList = projectDAO.getList();
-        List<ProjectDTO> projectDTOList = new ArrayList<>();
-        for(ProjectVO projectVO : projectVOList) {
-            projectDTOList.add(new ProjectDTO(projectVO.getNum(), projectVO.getTitle(), projectVO.getTerrain(),projectVO.getPoint(),projectVO.getCompanyNum(),projectVO.getJjimCount(),projectVO.getProjectDate(),applyDAO.countApply(projectVO.getNum())));
-        }
-
-        return projectDTOList;
-    }
 
 
     // orderDAO
@@ -207,6 +196,13 @@ public class TempUserSerivce {
 
     // 내 후기 목록
 
+
+
+
+    // 유저 비밀번호 수정
+    public boolean updatePW(String email) {
+        return userDAO.updatePW(email);
+    }
 
 
 }

@@ -10,6 +10,7 @@ import com.example.pickitup.domain.vo.user.UserVO;
 import com.example.pickitup.service.TempUserSerivce;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -73,16 +74,22 @@ public class UserController {
 
     }
 
+
+    @PostMapping("/findPw")
+    public void updatePwForm(@Param("email") String email){
+        tempUserSerivce.updatePW(email);
+    }
+
     // 비밀번호 재설정
     @GetMapping("/updatePw")
     public void updatePw(){
-
     }
+
 
     // 비밀번호 재설정 폼
     @PostMapping("/updatePw")
-    public void updatePwForm(){
-
+    public void updatePwForm2(@Param("email") String email){
+        tempUserSerivce.updatePW(email);
     }
 
     // 회원정보 수정 전 비밀번호 확인

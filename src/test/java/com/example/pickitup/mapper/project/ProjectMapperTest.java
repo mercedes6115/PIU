@@ -21,4 +21,9 @@ public class ProjectMapperTest {
     public void getListPointTest(){
         log.info(projectMapper.getListPoint().toString());
     }
+
+    @Test
+    public void getListApplyTest(){
+        log.info(projectMapper.getListApply().toString());
+    }
 }

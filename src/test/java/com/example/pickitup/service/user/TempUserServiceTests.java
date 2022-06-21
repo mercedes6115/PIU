@@ -91,8 +91,6 @@ public class TempUserServiceTests {
         log.info("결과 : " + pointDTOList);
     }
 
-    @Test
-    public void countApplyTest() {tempUserSerivce.applyCount();}
 
     public void getInProductListTest() { tempUserSerivce.getInProjectList(2L);}
 

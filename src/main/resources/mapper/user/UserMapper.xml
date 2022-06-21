@@ -192,6 +192,14 @@
         VALUES(#{num}, #{category}, #{title}, #{content}, #{userNum})
     </insert>
 
+
+    <!--  회원 수정  -->
+    <update id="updatePW">
+        UPDATE TBL_USER
+        SET PASSWORD=#{password}
+        WHERE EMAIL=#{email}
+    </update>
+
     <!-- ADMINBOARD에 총 게시글 수 가져오기-->
     <select id="getAdminBoardCount" resultType="_int">
         SELECT COUNT(NUM)
