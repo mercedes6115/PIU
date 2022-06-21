@@ -68,9 +68,10 @@ public class StoreController {
 
     // 스토어 리뷰 작성 폼
     @PostMapping("/reviewWrite")
-    public void reviewWriteForm(Long productNum, Model model){
-////        model.addAttribute("user", productNum); 유저의 정보 가져와야함.?? 어떻게??
+    public void reviewWriteForm(ProductReviewVO productReviewVO, Model model){
+//        model.addAttribute("user", productNum); 유저의 정보 가져와야함.?? 어떻게??
 //        model.addAttribute("product",productService.getDetail(productNum));
+        productReviewService.insert(productReviewVO);
     }
     // 스토어 문의 목록
     @ResponseBody
@@ -81,8 +82,8 @@ public class StoreController {
 
     // 스토어 문의 작성
     @GetMapping("/qnaWrite")
-    public void qnaWrite(){
-
+    public void qnaWrite(Long productNum, Model model){
+        model.addAttribute("product",productQnaService.getList(productNum));
     }
 
     // 스토어 문의 작성 폼

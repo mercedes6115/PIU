@@ -29,6 +29,7 @@
         </div>
         <div class="space"></div>
         <section class="review_write_container">
+            <form action="/store/reviewWrite" method="post" id="registerForm" enctype="multipart/form-data">
                 <div>
                     <div class="flex p-24" style="align-items: center; padding-bottom: 15px;">
                         <div class="profile_img"><img src="/images/chun2.png"></div>
@@ -72,9 +73,12 @@
                         <div style="text-align: center;">
                             <textarea class="user_review" name="" id="" cols="30" rows="10" required></textarea>
                         </div>
+                    </div>
+                    <div class="reviewInfo">
 
+                    </div>
                 </div>
-            </div>
+            </form>
         </section>
     </div>
 
@@ -119,9 +123,25 @@
                     $(thumbnail1).text("");
                     thumbnail1.style.backgroundImage = "url(/images/error.png)";
                 }
-
             }
 
+        let formData =   new FormData();
+        let inputFile = $("input#attach1");
+        let files = inputFile[0].files;
+        console.log(files);
+        formData.append("uploadFiles", files);
+
+        $.ajax({
+            url: "/productFile/upload",
+            type: "post",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(files){
+                alert("success");
+                showUploadResult(files);
+            }
+        });
     });
 
     function number2(){

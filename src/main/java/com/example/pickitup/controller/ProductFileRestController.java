@@ -37,6 +37,8 @@ public class ProductFileRestController {
     @PostMapping("/upload")
     @ResponseBody
     public List<ProductFileVO> upload(MultipartFile[] uploadFiles) throws IOException {
+        log.info("들어옴");
+        log.info(uploadFiles[0].toString());
         String uploadFolder = "C:/upload";
         ArrayList<ProductFileVO> files = new ArrayList<>();
 
@@ -121,4 +123,6 @@ public class ProductFileRestController {
         log.info("get file list....... : " + productNum);
         return productFileService.findByProductNum(productNum);
     }
+
+
 }
