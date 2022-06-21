@@ -1,5 +1,11 @@
 package com.example.pickitup.controller;
 
+
+import com.example.pickitup.domain.vo.dto.PageDTO;
+import com.example.pickitup.domain.vo.dto.PointDTO;
+import com.example.pickitup.domain.vo.product.productFile.ProductVO;
+import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
+
 import com.example.pickitup.domain.vo.user.UserVO;
 import com.example.pickitup.service.TempUserSerivce;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +16,10 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @Slf4j
@@ -23,14 +33,20 @@ public class UserController {
     public String mypage(Model model){
         model.addAttribute("jjimProjectList", tempUserSerivce.getJjimProjectList(2L));
         model.addAttribute("jjimProductList", tempUserSerivce.getJjimProductList(2L));
-        model.addAttribute("inProductList",tempUserSerivce.getInProjectList(2L));
+        model.addAttribute("inProductList",tempUserSerivce.getInProductList(2L));
+        model.addAttribute("inProjectList",tempUserSerivce.getInProjectList(2L));
+        model.addAttribute("seenProductList",tempUserSerivce.getLatestProductList(2L));
+        model.addAttribute("seenProjectList",tempUserSerivce.getLatestProjectList(2L));
+        model.addAttribute("getDetail",tempUserSerivce.readUserInfo(2L));
         return "/user/myPage";
     }
 
     // 마이페이지 포인트
     @GetMapping("/myPoint")
-    public void mypoint(){
-
+    public String mypoint(Model model) throws ParseException {
+        model.addAttribute("changePoint",tempUserSerivce.changePoint(2L));
+        model.addAttribute("user",tempUserSerivce.readUserInfo(2L));
+        return "/user/myPoint";
     }
 
     // 마이페이지 QnA

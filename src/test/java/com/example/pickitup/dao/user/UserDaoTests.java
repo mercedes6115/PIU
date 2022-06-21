@@ -59,10 +59,12 @@ public class UserDaoTests {
     }
 
     public void getInProductTest() {
-        userDAO.getInProjectList(2L);
+        userDAO.getInProductList(2L);
     }
 
     @Test
+    public void getInProjectTest() {userDAO.getInProjectList(2L);}
+
     public void registerWriteTest(){
         AdminBoardVO adminBoardVO = new AdminBoardVO();
         adminBoardVO.setTitle("DAO새로운 공지글 제목2");
@@ -90,4 +92,5 @@ public class UserDaoTests {
     public void getNoticeTotalTest(){
         log.info("총 개수 : " + userDAO.getNoticeTotal());
     }
+
 }

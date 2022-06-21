@@ -26,5 +26,6 @@ public class ProductVO {
 //    fileList[i].uploadPath
 //    fileList[i].uuid
 //    fileList[i].image
+
     private List<ProductFileVO> fileList;
 }
