@@ -19,5 +19,4 @@ public interface ProjectFileMapper {
     //    사진 삭제(후기 수정시에 호출)
     public void delete(Long projectNum);
 
-
 }
