@@ -38,4 +38,5 @@ public class ProjectReviewDAO {
     public boolean remove(Long num){
         return projectReviewMapper.delete(num);
     }
+
 }

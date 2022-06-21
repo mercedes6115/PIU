@@ -22,4 +22,5 @@ public class UserVO {
     private String category;
 
 
+
 }

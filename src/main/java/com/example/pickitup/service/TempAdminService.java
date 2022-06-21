@@ -1,18 +1,15 @@
 package com.example.pickitup.service;
-
-
 import com.example.pickitup.domain.dao.product.productFile.ProductDAO;
 import com.example.pickitup.domain.dao.product.productFile.ProductFileDAO;
 import com.example.pickitup.domain.dao.user.*;
 import com.example.pickitup.domain.vo.Criteria;
+import com.example.pickitup.domain.vo.ProductCriteria;
+import com.example.pickitup.domain.vo.adminVO.AdminBoardDTO;
 import com.example.pickitup.domain.vo.dto.UserDTO;
 import com.example.pickitup.domain.vo.product.productFile.ProductFileVO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
-import com.example.pickitup.domain.vo.user.ApplyVO;
-import com.example.pickitup.domain.vo.user.CompanyVO;
-import com.example.pickitup.domain.vo.user.OrderVO;
-import com.example.pickitup.domain.vo.user.UserVO;
+import com.example.pickitup.domain.vo.user.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -69,6 +66,18 @@ public class TempAdminService {
     // 유저 탈퇴
     public boolean removeUser(Long num) {
         return userDAO.remove(num);
+    }
+
+
+
+    // 상품목록 가져오기 관리자용
+    public List<ProductVO> getProductList(ProductCriteria productCriteria){
+        return productDAO.getProductList(productCriteria);
+    }
+
+    // 전체개수 가져오기 관리자용
+    public int getTotal(){
+        return productDAO.getTotal();
     }
 
 
@@ -137,6 +146,35 @@ public class TempAdminService {
         return orderDAO.getList(criteria);
     }
 
+    //관리자 공지 등록
+    public void registerWrite(AdminBoardVO adminBoardVO) {
+        userDAO.registerWrite(adminBoardVO);
+    }
+
+    //관리자 공지 리스트
+    public List<AdminBoardDTO> getNoticeList(Criteria criteria){
+        return userDAO.getNoticeList(criteria);
+    }
+
+    //관리자 공지 상세보기
+    public AdminBoardVO getReadDetail(Long num){
+        return userDAO.getReadDetail(num);
+    }
+
+    //관리자 공지 총 개수
+    public int getNoticeTotal() {
+        return userDAO.getNoticeTotal();
+    }
+
+    //관리자 adminboard 게시글 총 개수
+    public int getAdminBoardCount(Criteria criteria) {
+        return userDAO.getAdminBoardCount(criteria);
+    }
+
+    //관리자 adminboard 글 리스트 뽑아오기
+    public List<AdminBoardVO> getAdminboardList(Criteria criteria){
+        return userDAO.getAdminboardList(criteria);
+    }
 
 
 }

@@ -76,11 +76,11 @@
                         </div>
                         <div class="bill-way-wrapper" id="bill-price-wrpper">
                             <p class="bill-wrapper-left">주소</p>
-                            <p class="bill-wrapper-right" id="userState" th:text="|*{userinfo.address} *{userinfo.address2}|"></p>
+                            <p class="bill-wrapper-right" id="userState" th:text="|*{userinfo.address} *{userinfo.addressDetail}|"></p>
                         </div>
                         <div class="bill-way-wrapper" id="bill-price-wrpper">
                             <p class="bill-wrapper-left">배송 요청사항</p>
-                            <p class="bill-wrapper-right" id="userState" th:text="|*{userinfo.memo}|"></p>
+                            <p class="bill-wrapper-right" id="userState" th:text="|${addressComment}|"></p>
                         </div>
                     </div>
                 </div>

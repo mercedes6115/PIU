@@ -29,12 +29,12 @@ public class CompanyDaoTests {
         companyVO.setProfileUploadPath("2131");
         companyDAO.register(companyVO);
     }
-
-    @Test
-    public void loginTest(){
-        int check=1;
-        if(check==companyDAO.login("1111@1111","1111")){
-            log.info("로그인 성공");
-        }
-    }
+//
+//    @Test
+//    public void loginTest(){
+//        int check=1;
+//        if(check==companyDAO.login("1111@1111","1111")){
+//            log.info("로그인 성공");
+//        }
+//    }
 }
