@@ -161,8 +161,8 @@
                                 <div style=" margin-right: 5%;"><a class="btn_qnaToadmin">문의하기</a></div>
                             </div>
                             <div class="space"></div>
-
                             <div class="ProductQnas"></div>
+                            <div class="qnaComments"></div>
                             <div class="space_line"></div>
                             <!-- 댓글 끝 -->
                         </div>
@@ -375,6 +375,7 @@
         dataType: "json",
         success: function(qnaVO){
             let str = "";
+
             if(qnaVO.length==0){
                 str += "현재 문의가 없습니다.";
                 $('.ProductQnas').html(str);
@@ -394,16 +395,31 @@
                 str += "<div class=\"space\"></div>";
                 str += "<div class=\"qna_replys\">";
                 str += "<div class=\"qna_reply\">";
-                str += "<div class=\"flex\" style=\"align-items: center;\">";
-                str += "<div class=\"admin_profile_img\"><img src=\"/images/4.jpg\"></div>";
-                str += "<div class=\"flex id_and_date\">";
-                str += "<div class=\"admin_id\">관리자 아이디 &nbsp;</div>";
-                str += "<div class=\"admin_date\">2022.06.11</div>";
-                str += "</div>";
-                str += "</div>";
-                str += "<div class=\"small_and_gray\" style=\"color: black;\">";
-                str += "<p class=\"admin_comment\"> 네 고객님 초록색 고무장갑 특 엑스 라지가 없으셔서 많이 당황하셨죠? 금방 재고가 들어올 예정이니 구독과 알람설정 부탁드려요!</p>";
-                str += "</div>";
+                (function (i) {
+                    $.ajax({
+                        url:"/store/qnaCommentList/"+qna.num,
+                        type : "get",
+                        async:false,
+                        success : function (qnaCommentLists) {
+                            $.each(qnaCommentLists, function (i, comment) {
+                                console.log(comment.num)
+                                console.log(comment.content)
+                                console.log(comment.qnaNum)
+                                str += "<div class=\"flex\" style=\"align-items: center;\">";
+                                str += "<div class=\"admin_profile_img\"><img src=\"/images/4.jpg\"></div>";
+                                str += "<div class=\"flex id_and_date\">";
+                                str += "<div class=\"admin_id\">" + comment.num + "&nbsp; </div>";
+                                str += "<div class=\"admin_date\">" + comment.updateDate + "</div>";
+                                str += "</div>";
+                                str += "</div>";
+                                str += "<div class=\"small_and_gray\" style=\"color: black;\">";
+                                str += "<p class=\"admin_comment\">" + comment.content + "</p>";
+                                str += "</div>";
+                            })
+
+                        }
+                    })
+                })(i);
                 str += "<div class=\"space\"></div>";
                 str += "</div>";
                 str += "</div>";
@@ -418,8 +434,12 @@
                 str += "</div>";
                 str += "</div>";
                 str += "</div>";
+                // console.log("qnaNum = "+qna.num)
+
+
             });
             $('.ProductQnas').html(str);
+
             // $.each(reviewVO, function(i, review){
             // });
             // $('.ProductReviews').html(str);

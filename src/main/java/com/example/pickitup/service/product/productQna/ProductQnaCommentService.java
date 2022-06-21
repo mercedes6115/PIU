@@ -16,8 +16,8 @@ public class ProductQnaCommentService {
 
     // 답변한 문의 목록 가져오기(관리자)
     // 쿼리 조건문?
-    public List<ProductQnaCommentVO> getList(Criteria criteria){
-        return productQnaCommentDAO.getList(criteria);
+    public List<ProductQnaCommentVO> getList(Long qna_num){
+        return productQnaCommentDAO.getList(qna_num);
     }
 
     // 문의글 답변
