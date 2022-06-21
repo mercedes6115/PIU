@@ -72,9 +72,12 @@
                                              <div style="margin-top: 6px; height: 16px;">
                                                  <p class="store_main_item_category" th:text="*{category}"></p>
                                              </div>
-                                             <div><span class="material-symbols-outlined" style="font-size: 12px;">
-                                                 favorite
-                                                 </span></div>
+                                             <div style="display: flex; align-items: end; margin-top: 5px">
+                                                 <span class="material-symbols-outlined" style="font-size: 12px;">
+                                                     favorite
+                                                 </span>
+                                                 <small style="font-size: 11px; margin-left: 5px">300..</small>
+                                             </div>
                                          </div>
                                          <div style="height: 18px;">
                                              <p class="store_item_price" th:text="|*{price}P|"></p>
