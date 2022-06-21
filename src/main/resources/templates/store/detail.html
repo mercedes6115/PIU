@@ -87,14 +87,7 @@
                         </div>
                         <div class="space"></div>
                         <div id="toitem_intro">
-                            <img src="/static/images/5.jpg">
-                            <img src="/src/main/resources/static/images/chun.png">
-                            <img src="/src/main/resources/static/images/5.jpg">
-                            <img src="/src/main/resources/static/images/5.jpg">
-                            <img src="/src/main/resources/static/images/5.jpg">
-                            <img src="/src/main/resources/static/images/5.jpg">
-                            <img src="/src/main/resources/static/images/5.jpg">
-                            <img src="/src/main/resources/static/images/5.jpg">
+                            <div class="subImage"></div>
                         </div>
                         <div id="toitem_review">
                             <div class="reviewForm">
@@ -345,8 +338,6 @@
     });
     //------------------------------------------------------------------------------------------
     //메인 사진걸기
-    // $('.mainImage').each(function(i, h) {
-    //     let productNum=$(this).attr("href");
         $.ajax({
             url: "/productFile/list/"+productNum,
             type : "get",
@@ -356,8 +347,25 @@
                 // $("img#"+productNum).attr("src", "/upload/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName )
             }
         })
-    // })
     //------------------------------------------------------------------------------------------
+    // 상세 페이지 사진 걸기
+    $.ajax({
+        url: "/productFile/list/"+productNum,
+        type : "get",
+        success : function (files) {
+            let str ="";
+            if(files.length>1){
+                for(let i =0; i< files.length;i++){
+                    str += "<img src='/productFile/display?fileName=" + files[i].uploadPath + "/s_" + files[i].uuid + "_"  + files[i].fileName + "'>";
+                    $(".subImage").append(str);
+                }
+            }else{
+                str += "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
+                $(".mainImage").html(str);
+            }
+            // $("img#"+productNum).attr("src", "/upload/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName )
+        }
+    })
     //------------------------------------------------------------------------------------------
     //--------------------------------문의 가져오기 ajax-----------------------------
     //문의 리스트 js
