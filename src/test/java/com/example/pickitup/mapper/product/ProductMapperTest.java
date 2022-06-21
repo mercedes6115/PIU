@@ -57,6 +57,11 @@ public class ProductMapperTest {
 //        productMapper.delete(21L);
 //    }
 
+    @Test
+    public void countTest(){
+        productMapper.count();
+    }
+
 
 
 }

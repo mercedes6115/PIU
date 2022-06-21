@@ -39,6 +39,7 @@ public class StoreController {
     // 스토어 메인페이지
     @GetMapping("/main")
     public void storeMain(Model model){
+        model.addAttribute("productsCount",productService.count());
         model.addAttribute("productlist",productService.getList());
     }
 
