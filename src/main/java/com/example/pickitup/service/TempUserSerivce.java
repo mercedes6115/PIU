@@ -48,7 +48,7 @@ public class TempUserSerivce {
     }
 
     // 로그인 -> select count-> read() 사용?
-    public int loginUser(String email, String password){
+    public UserVO loginUser(String email, String password){
         return userDAO.login(email,password);
     }
 

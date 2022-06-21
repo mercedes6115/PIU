@@ -51,7 +51,7 @@ public class UserDAO {
     }
 
     // 로그인 -> select count-> read() 사용?
-    public int login(String email, String password){
+    public UserVO login(String email, String password){
         return userMapper.login(email,password);
     }
 

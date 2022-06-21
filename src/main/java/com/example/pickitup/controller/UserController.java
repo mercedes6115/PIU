@@ -1,15 +1,17 @@
 package com.example.pickitup.controller;
 
+import com.example.pickitup.domain.vo.user.CompanyVO;
 import com.example.pickitup.domain.vo.user.UserVO;
+import com.example.pickitup.service.TempCompanyService;
 import com.example.pickitup.service.TempUserSerivce;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 @Slf4j
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/user/*")
 public class UserController {
     private final TempUserSerivce tempUserSerivce;
+    private final TempCompanyService tempCompanyService;
 
     // 마이페이지 메인
     @GetMapping("/myPage")
@@ -96,6 +99,8 @@ public class UserController {
     // 일반 유저 회원가입 폼
     @PostMapping("/join")
     public String joinForm(UserVO userVO){
+        userVO.setPhone(String.join("",userVO.getPhone().split("-")));
+        log.info(userVO.getPhone());
         tempUserSerivce.registerUser(userVO);
         return "/user/login";
     }
@@ -108,7 +113,14 @@ public class UserController {
 
     // 단체 유저 회원가입 폼
     @PostMapping("/joinGroup")
-    public void joinGroupForm(){
+    public void joinGroupForm(CompanyVO companyVO){
+        companyVO.setPhone(String.join("",companyVO.getPhone().split("-")));
+        companyVO.setBusinessPhone(String.join("",companyVO.getBusinessPhone().split("-")));
+        companyVO.setProfileUploadPath("null");
+        companyVO.setProfileFileName("null");
+        log.info(companyVO.getPhone());
+        log.info(companyVO.getBusinessPhone());
+        tempCompanyService.registerCompany(companyVO);
 
     }
 
@@ -121,8 +133,15 @@ public class UserController {
 
     // 로그인 폼
     @PostMapping("/login")
-    public String loginForm(){
-        return
+    public RedirectView loginForm(String email, String password, RedirectAttributes rttr){
+        UserVO userVO=tempUserSerivce.loginUser(email, password);
+        if(userVO!=null){
+            rttr.addFlashAttribute("num", userVO.getNum());
+            rttr.addFlashAttribute("nickname", userVO.getNickname());
+            return new RedirectView("/main/main");
+        }
+
+        return new RedirectView("/user/login");
     }
 
     // 회원탈퇴

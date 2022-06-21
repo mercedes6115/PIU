@@ -8,17 +8,9 @@ let phonePass = false;
 let statePass = false;
 let phoneCheckPass = false; // sms 확인용
 let corpPass = false;
+let businessNumberPass=false;
+let businessPhonePass=false;
 
-// $uemail.bind("propertychange change keyup paste input", function() {
-//     let $uemailval = $uemail.val();
-//     if (!$uemailval) { // 아이디 입력칸이 비어 있을 경우
-//         $('span#emailCheck_text').empty().text("아이디를 입력해 주세요").css("color", "red");
-//         emailPass = false;
-//         return;
-//     } else {
-//         checkEmail();
-//     }
-// });
 
 //input에 keyup 이벤트 등록
 $uemail.bind("change keyup input", function(){
@@ -141,6 +133,29 @@ $("input#name").blur(function () {
     }
 });
 
+// 기업번호
+$("input#businessNumber").blur(function () {
+    if (!$("input#businessNumber").val()) {
+        $('span#businessNumberCheck_text').text("사업자번호 입력해주세요").css("color", "red");
+        businessNumberPass = false;
+        return;
+    } else {
+        $('span#businessNumberCheck_text').text(" "); //입력시 삭제
+        businessNumberPass = true;
+    }
+});
+// 기업 전화번호
+$("input#phone-corp").blur(function () {
+    if (!$("input#phone-corp").val()) {
+        $('span#businessPhoneCheck_text').text("사업자번호 입력해주세요").css("color", "red");
+        businessPhonePass = false;
+        return;
+    } else {
+        $('span#businessPhoneCheck_text').text(" "); //입력시 삭제
+        businessPhonePass = true;
+    }
+});
+
 // 전화번호확인 (추가기능 수정 필요)
 $("input#phone").blur(function () {
     if (!$("input#phone").val()) {
@@ -156,11 +171,16 @@ $("input#phone").blur(function () {
 $("#phone").bind("change keyup input", function() {
     $(this).val( $(this).val().replace(/[^0-9]/g, "").replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})$/,"$1-$2-$3").replace("--", "-") );
 });
+$("#phone-corp").bind("change keyup input", function() {
+    $(this).val( $(this).val().replace(/[^0-9]/g, "").replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})$/,"$1-$2-$3").replace("--", "-") );
+});
+
 
 
 // 먼저 썻던 전화번호, 인증폼에서 이용
 $("#phone").change(function () {
     $('#phone2').val($(this).val());
+    $('#phone').val().replace(/-/g, "");
 });
 
 // 주소확인 (추가기능 수정 필요)
@@ -270,7 +290,7 @@ $("#submit-user-final").on("click", function () {
         alert('휴대폰 인증이 완료되지 않았습니다');
         return;
     }
-    $('#phone').val().replace(/-/g, "");
+
     console.log($('#joinForm'));
     joinForm.submit();
     alert("환영합니다. 회원가입이 완료되었습니다.");

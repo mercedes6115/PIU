@@ -28,7 +28,7 @@ public interface CompanyMapper {
 
 //    public
 
-    public int login(@Param("email") String email,@Param("password") String password);
+    public CompanyVO login(@Param("email") String email,@Param("password") String password);
 
 
 }

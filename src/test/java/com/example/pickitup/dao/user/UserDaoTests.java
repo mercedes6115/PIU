@@ -50,8 +50,7 @@ public class UserDaoTests {
 
     @Test
     public void loginTest(){
-        int check=1;
-        if(check==userDAO.login("ddd","dddd")){
+        if(userDAO.login("ddd","dddd")!=null){
             log.info("로그인 성공");
         }
     }

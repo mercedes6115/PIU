@@ -51,10 +51,12 @@
 
 
 
-    <select id="login" resultType="_int">
-        SELECT COUNT(NUM)
+    <select id="login" resultType="userVO">
+
+        SELECT NUM, NICKNAME
         FROM TBL_USER
         WHERE EMAIL=#{email} AND PASSWORD=#{password}
+
     </select>
 
 
