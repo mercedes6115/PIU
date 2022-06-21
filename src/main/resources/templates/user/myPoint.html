@@ -24,7 +24,7 @@
                 <div class="my-real-point-top3">
                     <div class="my-real-point-top6" style="display: flex;">
                         <div class="my-real-point-top7"><strong
-                                class="my-real-point-top8"><span>4000</span></strong><span
+                                class="my-real-point-top8"><span th:text="${user.getPoint()}"></span></strong><span
                                 class="my-real-point-top9">Point</span></div><img src="https://class101.net/images/eclipse.png"
                                                                                   class="my-real-point-top10">
                     </div>
@@ -70,7 +70,6 @@
                                 </div>
                                 <div class="my-point-gold13"th:text="*{point}"></div>
                             </div>
-
                         </section>
                     </div>
 
@@ -93,7 +92,8 @@
 
 <!--640px푸터 필요-->
 </body>
-<script>
+<script th:inline="javascript">
+    console.log([[${changePoint.getCategory()}]]);
 
 </script>
 </html>

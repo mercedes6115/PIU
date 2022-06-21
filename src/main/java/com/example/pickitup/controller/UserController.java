@@ -43,8 +43,10 @@ public class UserController {
 
     // 마이페이지 포인트
     @GetMapping("/myPoint")
-    public void mypoint(Model model) throws ParseException {
+    public String mypoint(Model model) throws ParseException {
         model.addAttribute("changePoint",tempUserSerivce.changePoint(2L));
+        model.addAttribute("user",tempUserSerivce.readUserInfo(2L));
+        return "/user/myPoint";
     }
 
     // 마이페이지 QnA

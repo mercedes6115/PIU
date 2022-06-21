@@ -24,13 +24,6 @@ import java.util.Date;
 public class ProjectFileRestController {
     private final TempProjectService tempProjectService;
 
-
-    @GetMapping("/thumbnail")
-    @ResponseBody
-    public ProjectFileVO getThumbnail(Long projectNum) {
-        return tempProjectService.getThumbnail(projectNum);
-    }
-
     @GetMapping("/display")
     @ResponseBody
     public byte[] getFile(String fileName) throws IOException {

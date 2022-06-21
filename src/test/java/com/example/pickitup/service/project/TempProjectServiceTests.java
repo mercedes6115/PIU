@@ -12,8 +12,4 @@ public class TempProjectServiceTests {
     @Autowired
     private TempProjectService tempProjectService;
 
-    @Test
-    public void getThumbnailTest() {
-        tempProjectService.getThumbnail(22L);
-    }
 }

@@ -15,6 +15,4 @@ import java.util.List;
 
 public class TempProjectService {
     private final ProjectFileDAO projectFileDAO;
-
-    public ProjectFileVO getThumbnail(Long projectNum) { return projectFileDAO.findByProjectNum(projectNum);}
 }
