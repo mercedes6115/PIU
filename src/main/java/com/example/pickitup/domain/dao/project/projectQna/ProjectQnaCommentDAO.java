@@ -20,12 +20,6 @@ public class ProjectQnaCommentDAO {
         return projectQnaCommentMapper.getList(criteria);
     }
 
-
-    // 답글 조회
-    public List<ProjectQnaCommentVO> getComment(Long qnaNum){
-        return projectQnaCommentMapper.getComment(qnaNum);
-    }
-
     // qna 답글 달기(모집자, 관리자)
     public void register(ProjectQnaCommentVO projectQnaCommentVO){
         projectQnaCommentMapper.insert(projectQnaCommentVO);

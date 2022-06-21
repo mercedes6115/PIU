@@ -49,6 +49,12 @@ public class TempCompanyService {
         return projectQnaDAO.getList(projectNum);
     }
 
+    // qna 상세보기 -> 수정
+    public ProjectQnaVO readProjectQnA(Long projectNum){
+        return projectQnaDAO.read(projectNum);
+    }
+
+
 
     // projectQnaCommentDAO
     // 관리자가 답변한 qna 전체 목록

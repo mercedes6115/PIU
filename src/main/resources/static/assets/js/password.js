@@ -1,3 +1,5 @@
+let emailPass=false; // 인증성공시 true(테스트중)
+
 
 //FindPessword js
 function chkEM() {
@@ -13,6 +15,15 @@ function chkEM() {
 		} else {
 			alert('올바른 이메일을 입력해주세요.');
 		}
+    emailPass=true; // 테스트용 클릭시 화면전환 조건 true
+
+    if (!emailPass) {
+        alert("이메일 인증이 완료되지 않았습니다");
+        return false;
+    } else {
+        $("#password-firststep").hide();
+        $("#password-secondstep").show();
+    }
 
 }
 
@@ -30,16 +41,23 @@ function checkFilled() {
 }
 //PatchPassword js
 function chkPW() {
-
-    if ($("#ChangePW").val().length < 8) {
-        alert("8자리이상으로 입력해주세요.");
+    emailPass=true; // 테스트용 클릭시 화면전환 조건 true
+    // if ($("#ChangePW").val().length < 8) {
+    //     alert("8자리이상으로 입력해주세요.");
+    //     return false;
+    // } else if ($("#ChangePW").val() != $("#ChagePWCheck").val()) {
+    //     alert("비밀번호가 일치하지 않습니다.");
+    //     return false;
+    // } else if ($("#ChangePW").val() == $("#ChagePWCheck").val()) {
+    //     alert("비밀번호 변경 완료되었습니다.");
+    //     return true;
+    // }
+    if (!emailPass) {
+        alert("이메일 인증이 완료되지 않았습니다");
         return false;
-    } else if ($("#ChangePW").val() != $("#ChagePWCheck").val()) {
-        alert("비밀번호가 일치하지 않습니다.");
-        return false;
-    } else if ($("#ChangePW").val() == $("#ChagePWCheck").val()) {
-        alert("비밀번호 변경 완료되었습니다.");
-        return true;
+    } else {
+        $("#password-firststep").hide();
+        $("#password-secondstep").show();
     }
 
 }
@@ -79,3 +97,16 @@ function PPcheckFilled(){
     }
     
 }
+
+
+//
+// // 인증시 화면 전환
+// (".hpasswordEnter").on("click", function (e) {
+//     if (!emailPass) {
+//         alert("이메일 인증이 완료되지 않았습니다");
+//         return false;
+//     } else {
+//         $("#password-firststep").hide();
+//         $("#password-secondstep").show();
+//     }
+// });
