@@ -5,6 +5,7 @@ import com.example.pickitup.domain.dao.product.productFile.ProductDAO;
 import com.example.pickitup.domain.dao.product.productFile.ProductFileDAO;
 import com.example.pickitup.domain.dao.user.*;
 import com.example.pickitup.domain.vo.Criteria;
+import com.example.pickitup.domain.vo.ProductCriteria;
 import com.example.pickitup.domain.vo.dto.UserDTO;
 import com.example.pickitup.domain.vo.product.productFile.ProductFileVO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
@@ -69,6 +70,18 @@ public class TempAdminService {
     // 유저 탈퇴
     public boolean removeUser(Long num) {
         return userDAO.remove(num);
+    }
+
+
+
+    // 상품목록 가져오기 관리자용
+    public List<ProductVO> getProductList(ProductCriteria productCriteria){
+        return productDAO.getProductList(productCriteria);
+    }
+
+    // 전체개수 가져오기 관리자용
+    public int getTotal(){
+        return productDAO.getTotal();
     }
 
 

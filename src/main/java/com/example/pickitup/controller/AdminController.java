@@ -1,17 +1,20 @@
 package com.example.pickitup.controller;
 
 import com.example.pickitup.domain.vo.Criteria;
+import com.example.pickitup.domain.vo.ProductCriteria;
 import com.example.pickitup.domain.vo.dto.PageDTO;
+import com.example.pickitup.domain.vo.dto.ProductPageDTO;
 import com.example.pickitup.domain.vo.dto.UserDTO;
 import com.example.pickitup.service.TempAdminService;
+import com.example.pickitup.service.TempCompanyService;
+import com.example.pickitup.service.TempProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.xml.ws.Service;
 
 @Controller
@@ -20,6 +23,8 @@ import javax.xml.ws.Service;
 @RequiredArgsConstructor
 public class AdminController {
     private final TempAdminService tempAdminService;
+    private final TempProductService tempProductService;
+    private final TempCompanyService tempCompanyService;
 
     // 관리자 로그인
     @GetMapping("/login")
@@ -78,7 +83,30 @@ public class AdminController {
 
     // 관리자 상품 목록
     @GetMapping("/productList")
-    public void productList(){
+    public void productList(ProductCriteria productCriteria, Model model){
+        log.info("=============");
+        log.info("===Product===");
+        log.info("=============");
+
+        // 아무조건없이 검색했을경우 그에 해당하는 전체적인 목록을 출력해야하기에 =""로 넘어온값은 동적 쿼리에서 null로 인식하지 않아서 null로바꿔줘야함
+        if(productCriteria.getType()=="total"){
+            productCriteria.setType(null);
+        }
+        if(productCriteria.getEndDate()==""){
+            productCriteria.setStartDate(null);
+        }
+        if(productCriteria.getEndDate()==""){
+            productCriteria.setEndDate(null);
+        }
+        if(productCriteria.getType()==""){
+            productCriteria.setType(null);
+        }
+        if(productCriteria.getType1()=="") {
+            productCriteria.setType1(null);
+        }
+
+        model.addAttribute( "productList",tempAdminService.getProductList(productCriteria));
+        model.addAttribute("productPageDTO",new ProductPageDTO(productCriteria,(tempAdminService.getTotal())));
 
     }
 
@@ -136,10 +164,16 @@ public class AdminController {
 
     // 관리자 유저 상세보기
     @GetMapping("/userDetail")
-    public void userDetail(){
-
+    public void userDetail(Long num,String category, ProductCriteria productCriteria, Model model){
+        log.info("성공"+num);
+        log.info("성공"+category);
+        if(category.equals("user")){
+            model.addAttribute("detailVO",tempAdminService.readUserInfo(num));
+        }
+        if(category.equals("company")) {
+            model.addAttribute("detailVO", tempCompanyService.readCompanyInfo(num));
+        }
+        log.info("sssss"+tempAdminService.readUserInfo(num).toString());
+        log.info("sssss"+tempCompanyService.readCompanyInfo(num).toString());
     }
-
-
-
 }

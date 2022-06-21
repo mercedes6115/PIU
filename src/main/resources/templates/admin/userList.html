@@ -37,7 +37,7 @@
                                 <option value="nickname"   th:selected="*{type1} == 'nickname'">이름</option>
                                 <option value="phone"  th:selected="*{type1} == 'phone'">휴대폰번호</option>
                             </select>
-                            <input type="text" value="" name="keyword" th:value="*{keyword}" >
+                            <input type="text" value="" name="keyword" th:value="*{keyword}">
                         </td>
                     </tr>
                     <tr>
@@ -107,7 +107,7 @@
                     <th scope="col">포인트</th>
                     <th scope="col"></th>
                 </tr>
-<!--                https://ifuwanna.tistory.com/200 Stat선언하여 rownum을 대신하여 출력-->
+<!--            https://ifuwanna.tistory.com/200 Stat선언하여 rownum을 대신하여 출력-->
                 <th:block  th:each="user,userStat:${userList}">
                     <tr th:object="${user}">
 
@@ -123,7 +123,7 @@
                     <td th:text="*{phone}"></td>
                     <td th:text="*{address}"></td>
                     <td></td>
-                    <td><a href="/admin/userDetail" class="userDetail">상세보기</a></td>
+                    <td><a th:href="@{/admin/userDetail(num=*{num},category=*{category})}" class="userDetail">상세보기</a></td>
 
                 </tr>
                 </th:block>
@@ -139,7 +139,6 @@
                 <a class="changePage" th:href="*{endPage + 1}" th:if="*{next}">&gt;</a>
                 <a class="changePage" th:href="*{criteria.pageNum + 1}" th:if="*{criteria.pageNum < realEnd}">&gt;</a>
             </div>
-
         </div>
             </div>
         </div>
@@ -154,7 +153,6 @@
             <input type="hidden" th:field="*{keyword1}" th:value="*{keyword1}">
             <input type="hidden" th:field="*{type1}" th:value="*{type1}">
             <input type="hidden" th:field="*{type}" th:value="*{type}">
-
         </form>
     </div>
 
@@ -171,7 +169,6 @@
     });
     // 비활성화 버튼 클릭시
     $('#userDisabled').on("click", function (e) {
-
         if (confirm("해당 유저를 비활성화 하시겠습니까?")) {
 
             // 해당 유저 비활성화 
@@ -180,16 +177,12 @@
                 type: "post",
                 data: {userNumber: $userNumber},
                 success: function () {
-
                 }
             });
-
         } else {
 
         }
     });
-
-
     // 승인 버튼 클릭시
     $('#userApprove').on("click", function (e) {
         if (confirm("해당 유저를 승인 하시겠습니까?")) {
@@ -203,19 +196,22 @@
 
                 }
             });
-
-
         } else {
 
         }
     });
 
+</script>
+<script>
     $('#userSearchBtn').on("click", function (e) {
         $("#userSearchForm").submit();
     });
 
-
-
+    // $("a.userDetail").click(function(e){
+    //     e.preventDefault();
+    //     console.log("$(this).attr('href')");
+    //     location.href = "/admin/userDetail" + "?num="+$(this).attr('href');
+    // });
 </script>
 <script th:replace="~{/admin/adminSideBar :: AdminSideBarJSImport}"></script>
 </html>
