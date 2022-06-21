@@ -1,14 +1,22 @@
 package com.example.pickitup.service;
 
+import com.example.pickitup.domain.dao.product.productFile.ProductDAO;
+import com.example.pickitup.domain.dao.project.projectFile.ProjectDAO;
+import com.example.pickitup.domain.dao.project.projectFile.ProjectFileDAO;
 import com.example.pickitup.domain.dao.user.*;
 import com.example.pickitup.domain.vo.Criteria;
+import com.example.pickitup.domain.vo.dto.PointDTO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 import com.example.pickitup.domain.vo.user.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.awt.*;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -16,13 +24,14 @@ import java.util.List;
 
 
 public class TempUserSerivce {
-
-
     private final UserDAO userDAO;
     private final ApplyDAO applyDAO;
     private final JjimDAO jjimDAO;
     private final LatestDAO latestDAO;
     private final OrderDAO orderDAO;
+    private final ProjectFileDAO projectFileDAO;
+    private final ProjectDAO projectDAO;
+    private final ProductDAO productDAO;
 
 
     // userDAO
@@ -48,7 +57,19 @@ public class TempUserSerivce {
     }
 
     // 로그인 -> select count-> read() 사용?
-    public int loginUser(String email, String password){
+
+    // 내가 구매한 상품 목록
+    public List<ProductVO> getInProductList(Long userNum) {
+        return userDAO.getInProductList(userNum);
+    }
+
+    // 내가 참여한 플로깅 목록
+    public List<ProjectVO> getInProjectList(Long userNum) {
+        return userDAO.getInProjectList(userNum);
+    }
+
+
+    public UserVO loginUser(String email, String password){
         return userDAO.login(email,password);
     }
 
@@ -56,6 +77,7 @@ public class TempUserSerivce {
     public int emailcheck(String email){
         return userDAO.emailcheck(email);
     };
+
 
     // jjimDAO
     // 나의 프로젝트 찜 목록
@@ -76,12 +98,12 @@ public class TempUserSerivce {
 
     // latestDAO
     // 최근에 본 프로젝트 목록
-    public List<LatestVO> getLatestProjectList(Long userNum) {
+    public List<ProjectVO> getLatestProjectList(Long userNum) {
         return latestDAO.getProjectList(userNum);
     }
 
     // 최근에 본 상품 목록
-    public List<LatestVO> getLatestProductList(Long userNum) {
+    public List<ProductVO> getLatestProductList(Long userNum) {
         return latestDAO.getProductList(userNum);
     }
 
@@ -100,10 +122,7 @@ public class TempUserSerivce {
         return latestDAO.updateProduct(latestVO);
     }
 
-    // 내가 구매한 상품 목록
-    public List<ProductVO> getInProjectList(Long userNum) {
-        return userDAO.getInProjectList(userNum);
-    }
+
 
     // orderDAO
     // 주문 등록
@@ -134,6 +153,27 @@ public class TempUserSerivce {
         return applyDAO.read(num);
     }
 
+    // 포인트 변동 내역
+    public List<PointDTO> changePoint(Long userNum) throws ParseException {
+        List<ApplyVO> applyVOList = applyDAO.successProject(userNum); // 완주한 프로젝트 목록
+        List<OrderVO> orderVOList = orderDAO.boughtItem(userNum); // 구매한 상품 목록
+        List<PointDTO> pointDTOList = new ArrayList<>();    // pointDTO 값 받을 빈 pointDTOList 선언
+        List<PointDTO> pointDTOList10 = new ArrayList<>();
+        for(ApplyVO applyVO : applyVOList) {                            // 반복
+            ProjectVO projectVO = projectDAO.read(applyVO.getProjectNum());     // 완주한 프로젝트의 프로젝트 번호를 이용해 프로젝트 상세정보 갖고 옴
+            pointDTOList.add(new PointDTO(projectVO.getTitle(), applyVO.getRegistDate(), projectVO.getPoint(), "0"));    // 필요한 column값들만 삽입
+            // 프로젝트는 category = 0
+        }
+        for(OrderVO orderVO : orderVOList) {
+            ProductVO productVO = productDAO.getDetail(orderVO.getProductNum());
+            pointDTOList.add(new PointDTO(productVO.getName(), orderVO.getRegistDate(), productVO.getPrice(), "1"));
+            // 상품은 category = 1
+        }
+        pointDTOList.sort(Comparator.comparing(PointDTO::getPointDate).reversed());
+
+        return pointDTOList.subList(0,10);    // 값 반환
+    }
+
 
     // orderDAO
     // 주문 목록(관리자용)
@@ -156,6 +196,13 @@ public class TempUserSerivce {
 
     // 내 후기 목록
 
+
+
+
+    // 유저 비밀번호 수정
+    public boolean updatePW(String email) {
+        return userDAO.updatePW(email);
+    }
 
 
 }

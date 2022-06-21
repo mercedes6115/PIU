@@ -1,6 +1,8 @@
 package com.example.pickitup.service.user;
 
 import com.example.pickitup.domain.dao.user.LatestDAO;
+import com.example.pickitup.domain.vo.product.productFile.ProductVO;
+import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 import com.example.pickitup.domain.vo.user.LatestVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,12 +16,12 @@ public class LatestService {
     private final LatestDAO latestDAO;
 
     // 최근에 본 프로젝트 목록
-    public List<LatestVO> getProjectList(Long userNum){
+    public List<ProjectVO> getProjectList(Long userNum){
         return latestDAO.getProjectList(userNum);
     }
 
     // 최근에 본 상품 목록
-    public List<LatestVO> getProductList(Long userNum){
+    public List<ProductVO> getProductList(Long userNum){
         return latestDAO.getProductList(userNum);
     }
 

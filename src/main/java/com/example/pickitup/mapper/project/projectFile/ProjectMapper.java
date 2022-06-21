@@ -29,7 +29,10 @@ public interface ProjectMapper {
 //    프로젝트 최대 찜순 가져오기
     public List<ProjectVO> getListJJim();
 
-//    프로젝트 최대 포인트순 가져오기
+    //    프로젝트 최대 포인트순 가져오기
     public List<ProjectVO> getListPoint();
+
+    //    프로젝트 최대 참가자순 가져오기
+    public List<ProjectVO> getListApply();
 
 }
