@@ -79,6 +79,11 @@
         ]]>
     </select>
 
+    <select id="getList" resultType="productVO">
+        SELECT NUM, NAME, CONTENT, CATEGORY, PRICE, STOCK, ORIGIN, MANUFACTURER, SUPPLIER, REGIST_DATE, STATUS, JJIM_COUNT
+        FROM TBL_PRODUCT
+    </select>
+    
     <select id="getTotal" resultType="_int">
         SELECT count(NUM)
         FROM TBL_PRODUCT
