@@ -12,21 +12,18 @@ public interface ProductMapper {
     //    상품 전부 띄우기
     public List<ProductVO> getList();
 
-
     //
-    public List<ProductVO> getProductList(Criteria criteria);
-
     public List<ProductVO> getProductList(Criteria criteria);
 
     //    상품 한개만 띄우기 (상세보기)
     public ProductVO getDetail(Long num);
 
-    //    상품 등록하기
+    //    상품 등록하기 ->관리자
     public void insert(ProductVO productVO);
 
-    //    상품 수정하기
+    //    상품 수정하기 ->관리자
     public boolean update(ProductVO productVO);
 
-    //    상품 삭제하기
+    //    상품 삭제하기 ->관리자
     public boolean delete(Long num);
 }

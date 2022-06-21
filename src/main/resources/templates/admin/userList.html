@@ -23,49 +23,46 @@
             <h2>유저관리</h2>
         </div>
         <div class="searchBox" id="userSearchBox">
-            <form id="userSearchForm">
+            <form id="userSearchForm" action ="/admin/userList/" method="get" th:object="${criteria}">
                 <table id="searchTbl">
-
                     <tr>
                         <th>검색어</th>
                         <td>
                             <select>
-                                <option>일반</option>
-                                <option>단체</option>
+                                <option value="user" th:selected="*{type} == 'USER'">일반</option>
+                                <option value="group" th:selected="*{type} == 'GROUP'">단체</option>
                             </select>
-                            <select>
-                                <option>이름</option>
-                                <option>휴대폰번호</option>
+                            <select name="type1">
+                                <option value="nickname"   th:selected="*{type1} == 'nickname'">이름</option>
+                                <option value="phone"  th:selected="*{type1} == 'phone'">휴대폰번호</option>
                             </select>
-                            <input type="text">
+                            <input type="text" value="" name="keyword" th:value="*{keyword}">
                         </td>
                     </tr>
-
                     <tr>
                         <th>구매금액/건수</th>
                         <td>
                             <select>
                                 <option>전체</option>
-                                <option>총 주문금액</option>
-                                <option>총 주문건수</option>
+                                <option th:selected="*{type2}=='ORDERPRICE'">총 주문금액</option>
+                                <option th:selected="*{type2}=='ORDERCOUNT'">총 주문건수</option>
                             </select>
                         </td>
-
                     </tr>
                     <tr>
                         <th>가입일</th>
                         <td>
-                            <input type="date" name="" id="">
-                            <input type="date" name="" id="">
+                            <input type="date" name="startDate"  id="">
+                            <input type="date" name="endDate"  id="">
                         </td>
                     </tr>
                     <tr>
                         <th>승인상태</th>
                         <td>
                             <select>
-                                <option>전체</option>
-                                <option>승인</option>
-                                <option>미승인</option>
+                                <option th:selected="*{type3}=='TOTAL3'">전체</option>
+                                <option th:selected="*{type3}=='AUTH3'">승인</option>
+                                <option th:selected="*{type3}=='UNAUTH3'">미승인</option>
                             </select>
                         </td>
                     </tr>
@@ -84,9 +81,9 @@
         </div>
         <div class="listBox" id="userList">
             <h2>회원 목록</h2>
-            <div class="searchResult">
+            <div class="searchResult" th:object="${pageDTO}">
                     <span>[총 회원수
-                        <strong>2</strong>명]</span>
+                        <strong th:text="*{total}"></strong>명]</span>
                 <span>검색결과 0건</span>
             </div>
             <table>
@@ -97,7 +94,6 @@
                             <button type="button" class="listBtn" id="userApprove">승인</button>
                         </div>
                     </td>
-
                 </tr>
 
                 <tr>
@@ -114,56 +110,67 @@
                     <th scope="col">포인트</th>
                     <th scope="col"></th>
                 </tr>
-                <tr>
+<!--                https://ifuwanna.tistory.com/200 Stat선언하여 rownum을 대신하여 출력-->
+                <th:block  th:each="user,userStat:${userList}">
+                    <tr th:object="${user}">
+
                     <td><input type="checkbox" class="userCheck"></td>
-                    <td>1</td>
+                    <td th:text="${userStat.index}"></td>
                     <td>단체</td>
                     <td>활성화</td>
                     <td>승인완료</td>
-                    <td>해바라기봉사단</td>
-                    <td>flower@naver.com</td>
-                    <td>2022-06-10</td>
-                    <td>02-123-1234</td>
-                    <td>서울</td>
+                    <td th:text ="*{nickname}"></td>
+                    <td th:text="*{email}"></td>
+                    <td th:text="*{registDate}"></td>
+                    <td th:text="*{phone}"></td>
+                    <td th:text="*{address}"></td>
                     <td></td>
-                    <td><a href="userDetail.html" class="userDetail">상세보기</a></td>
+                    <td><a href="/admin/userDetail" class="userDetail">상세보기</a></td>
+
                 </tr>
-                <tr>
-                    <td><input type="checkbox" class="userCheck"></td>
-                    <td>2</td>
-                    <td>일반</td>
-                    <td>활성화</td>
-                    <td></td>
-                    <td>서길동</td>
-                    <td>gilgil@naver.com</td>
-                    <td>2022-06-10</td>
-                    <td>010-1111-1234</td>
-                    <td>서울</td>
-                    <td>110point</td>
-                    <td><a href="userDetail.html" class="userDetail">상세보기</a></td>
-                </tr>
+                </th:block>
                 <!-- 더미 데이터 -->
 
             </table>
-            <div class="paging">
-                <a href="#">&lt;</a>
-                <a href="#">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">&gt;</a>
+            <div th:object="${pageDTO}" class="paging" style="text-align: center">
+                <a class="changePage" th:href="*{startPage - 1}" th:if="*{prev}"><span class="changePages">&lt;</span></a>
+
+                <th:block th:each="num:${#numbers.sequence(pageDTO.startPage, pageDTO.endPage)}">
+                    <span class= "changePages" th:if="${num == pageDTO.criteria.pageNum}" th:text="${num}"></span>
+                    <a class="changePage" th:href="${num}" th:unless="${num == pageDTO.criteria.pageNum}"><span class="changePages" th:text="${num}"></span></a>
+                </th:block>
+                <a class="changePage" th:href="*{endPage + 1}" th:if="*{next}"><span class="changePages">&gt;</span></a>
+                <span class="changePages" th:text="*{criteria.pageNum}"></span>
+                <a class="changePage" th:href="*{criteria.pageNum + 1}" th:if="*{criteria.pageNum < realEnd}"><span class="changePages">&gt;</span></a>
+            </div>
+
+        </div>
             </div>
         </div>
 
+        <form action="/admin/userList" name="pageForm" th:object="${criteria}">
+            <input type="hidden" th:field="*{pageNum}">
+            <input type="hidden" th:field="*{amount}">
+            <input type="hidden" th:field="*{total}">
+            <input type="hidden" th:field="*{startDate}">
+            <input type="hidden" th:field="*{endDate}">
+            <input type="hidden" th:field="*{keyword}">
+            <input type="hidden" th:field="*{type1}">
+        </form>
     </div>
 
 
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
+<script th:inline="javascript">
 
     //타임리프에서 필드값으로 해당 유저의 번호 뿌려줄것
-
+    $("a.changePage").click(function(e){
+        e.preventDefault();
+        $(pageForm).find("input[name='pageNum']").val($(this).attr("href"));
+        $(pageForm).submit();
+    });
     // 비활성화 버튼 클릭시
     $('#userDisabled').on("click", function (e) {
 
@@ -205,6 +212,12 @@
 
         }
     });
+
+    $('#userSearchBtn').on("click", function (e) {
+        $("#userSearchForm").submit();
+    });
+
+
 
 </script>
 <script th:replace="~{/admin/adminSideBar :: AdminSideBarJSImport}"></script>

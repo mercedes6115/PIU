@@ -12,7 +12,6 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class ProductService {
-
     private final ProductDAO productDAO;
 
 
@@ -20,11 +19,15 @@ public class ProductService {
     public List<ProductVO> getList(){
         return productDAO.getList();
     }
+    // 상품 디테일
+    public ProductVO getDetail(Long num){
+        return productDAO.getDetail(num);
+    }
 
     // 상품 목록 - 관리자용
-    public List<ProductVO> getProductList(Criteria criteria){
-        return productDAO.getProductList(criteria);
-    }
+//    public List<ProductVO> getProductList(Criteria criteria){
+//        return productDAO.getProductList(criteria);
+//    }
 
     // 상품 등록하기 - 관리자용
     public void register(ProductVO productVO){

@@ -1,6 +1,7 @@
 package com.example.pickitup.mapper.user;
 
 import com.example.pickitup.domain.vo.Criteria;
+import com.example.pickitup.domain.vo.user.AdminBoardVO;
 import com.example.pickitup.domain.vo.user.UserVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -26,13 +27,13 @@ public class UserMapperTests {
     @Test
     public void insertTest(){
         UserVO userVO = new UserVO();
-        userVO.setEmail("a45665n@naber.com");
-        userVO.setPassword("1222");
-        userVO.setNickname("nickname");
-        userVO.setPhone("01055555555");
-        userVO.setAddress("서울특별시 용산구 청파동");
+        userVO.setEmail("a1848n@naver.com");
+        userVO.setPassword("134312");
+        userVO.setNickname("nickname77");
+        userVO.setPhone("010-5325-6785");
+        userVO.setAddress("서울특별시 용산구 청파동58");
         userVO.setProfileFileName("dd");
-        userVO.setProfileUploadPath("ff");
+        userVO.setProfileUploadPath("rr");
         userMapper.insert(userVO);
     }
 
@@ -44,7 +45,7 @@ public class UserMapperTests {
 
     @Test
     public void getDetailTest(){
-        log.info("한 개"+ userMapper.getDetail(2L));
+        userMapper.getDetail(2L);
     }
 
     @Test
@@ -61,9 +62,81 @@ public class UserMapperTests {
         log.info("수정"+ userMapper.update(userVO));
     }
 
+    @Test
+    public void getList(){
+        Criteria criteria = new Criteria();
+        criteria.setType1("nickname");
+        criteria.setKeyword("admin");
+        criteria.setAmount(10);
+        criteria.setPageNum(1);
+        criteria.setStartDate("2022-06-16");
+        criteria.setEndDate("2022-06-18");
+        userMapper.getList(criteria);
 
+    }
 
+    @Test
+    public void getInProductListTest() {
+        userMapper.getInProductList(2L);
+    }
 
+//    @Test
+//    public boolean login(String email, String password){
+//        return userMapper.login("ddd","dddd");
+//    }
+    @Test
+    public void loginTest(){
+        userMapper.login("ddd","dddd");
+
+    }
+
+    //관리자 공지 등록
+    @Test
+    public void writeTest(){
+        AdminBoardVO adminBoardVO = new AdminBoardVO();
+        adminBoardVO.setTitle("새로운 공지글 제목2");
+        adminBoardVO.setContent("새로운 공지글 내용2");
+        adminBoardVO.setUserNum(0L);
+
+        userMapper.write(adminBoardVO);
+
+        log.info("게시글 번호 : " + adminBoardVO.getNum());
+    }
+
+    //공지리스트
+    @Test
+    public void getNoticeListTest(){
+        userMapper.getNoticeList(new Criteria(1, 10));
+
+    }
+
+    //공지상세보기
+    @Test
+    public void getNoticeDetailTest(){
+        Long num = 34L;
+        log.info(userMapper.getNoticeDetail(num).toString());
+        log.info("***************************************************");
+        log.info(userMapper.getNoticeDetail(34L).getContent());
+        log.info("***************************************************");
+    }
+
+    //공지사항 개수
+    @Test
+    public void getNoticeTotalTest(){
+        userMapper.getNoticeTotal();
+    }
+
+    //ADMINBOARD에 총 게시글 수 가져오기
+    @Test
+    public void getAdminBoardCountTest(){
+        userMapper.getAdminBoardCount(new Criteria(1,10));
+    }
+
+    //ADMINBOARD에 게시글 리스트 가져오기
+    @Test
+    public void getAdminboardListTest() {
+        userMapper.getAdminboardList(new Criteria(1,10));
+    }
 
 
 }
