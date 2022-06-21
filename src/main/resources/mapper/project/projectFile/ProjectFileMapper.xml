@@ -18,9 +18,9 @@
     </delete>
 
     <select id="findByProjectNum" resultType="projectFileVO">
-        SELECT UUID, UPLOAD_PATH, FILE_NAME, PROJECT_NUM
-        FROM TBL_PROJECT_FILE
-        WHERE PROJECT_NUM = #{projectNum}
+    SELECT UUID, UPLOAD_PATH, FILE_NAME, PROJECT_NUM
+    FROM TBL_PROJECT_FILE
+    WHERE PROJECT_NUM = #{projectNum}
     </select>
 </mapper>
 

@@ -68,7 +68,8 @@
                                     <div class="my-point-gold9" th:text="*{title}"></div>
                                     <div font-weight="600" class="my-point-gold10" th:text="*{#dates.format(pointDate, 'yyyy-MM-dd')}"></div>
                                 </div>
-                                <div class="my-point-gold13"th:text="*{point}"></div>
+                                <div class="my-point-gold13" th:if="*{category == '0'}" th:text="|+*{point}|" style="color:black"></div>
+                                <div class="my-point-gold13" th:unless="*{category == '0'}" th:text="|-*{point}|" style="color:red"></div>
                             </div>
                         </section>
                     </div>
@@ -92,8 +93,5 @@
 
 <!--640px푸터 필요-->
 </body>
-<script th:inline="javascript">
-    console.log([[${changePoint.getCategory()}]]);
 
-</script>
 </html>

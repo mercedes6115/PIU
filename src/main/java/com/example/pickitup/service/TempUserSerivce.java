@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import java.awt.*;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
@@ -157,17 +158,21 @@ public class TempUserSerivce {
     public List<PointDTO> changePoint(Long userNum) throws ParseException {
         List<ApplyVO> applyVOList = applyDAO.successProject(userNum); // 완주한 프로젝트 목록
         List<OrderVO> orderVOList = orderDAO.boughtItem(userNum); // 구매한 상품 목록
-        List<PointDTO> pointDTOList = new ArrayList<>();                // pointDTO 값 받을 빈 pointDTOList 선언
+        List<PointDTO> pointDTOList = new ArrayList<>();    // pointDTO 값 받을 빈 pointDTOList 선언
+        List<PointDTO> pointDTOList10 = new ArrayList<>();
         for(ApplyVO applyVO : applyVOList) {                            // 반복
             ProjectVO projectVO = projectDAO.read(applyVO.getProjectNum());     // 완주한 프로젝트의 프로젝트 번호를 이용해 프로젝트 상세정보 갖고 옴
             pointDTOList.add(new PointDTO(projectVO.getTitle(), applyVO.getRegistDate(), projectVO.getPoint(), "0"));    // 필요한 column값들만 삽입
+            // 프로젝트는 category = 0
         }
         for(OrderVO orderVO : orderVOList) {
             ProductVO productVO = productDAO.getDetail(orderVO.getProductNum());
             pointDTOList.add(new PointDTO(productVO.getName(), orderVO.getRegistDate(), productVO.getPrice(), "1"));
+            // 상품은 category = 1
         }
         pointDTOList.sort(Comparator.comparing(PointDTO::getPointDate).reversed());
-        return pointDTOList;    // 값 반환
+
+        return pointDTOList.subList(0,10);    // 값 반환
     }
     // 각 프로젝트 신청자 수
     public List<ProjectDTO> applyCount() {
