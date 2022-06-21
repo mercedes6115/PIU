@@ -20,10 +20,10 @@ public class ProductQnaDaoTest {
 //        productQnaDAO.getList(23L).stream().map(ProductQnaVO::toString).forEach(log::info);
 //    }
 //
-//    @Test
-//    public void readTest(){
-//        productQnaDAO.read(26L);
-//    }
+    @Test
+    public void readTest(){
+        productQnaDAO.getList(26L);
+    }
 
 //    @Test
 //    public void registerTest(){
@@ -53,5 +53,10 @@ public class ProductQnaDaoTest {
 //            return;
 //        }
 //        log.info("DELETE FAIL");
+//    }
+
+//    @Test
+//    public void countTest(){
+//        productQnaDAO.count(61L);
 //    }
 }

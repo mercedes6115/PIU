@@ -1,8 +1,13 @@
 package com.example.pickitup.domain.dao.user;
 
 import com.example.pickitup.domain.vo.Criteria;
+import com.example.pickitup.domain.vo.adminVO.AdminBoardDTO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
+
+import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
+
 import com.example.pickitup.domain.vo.dto.UserDTO;
+import com.example.pickitup.domain.vo.user.AdminBoardVO;
 import com.example.pickitup.domain.vo.user.UserVO;
 import com.example.pickitup.mapper.user.UserMapper;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +21,37 @@ import java.util.List;
 public class UserDAO {
 
     private final UserMapper userMapper;
+
+    //    관리자 공지등록
+    public void registerWrite(AdminBoardVO adminBoardVO) {
+        userMapper.write(adminBoardVO);
+    }
+
+    // 관리자 공지 리스트 보기
+    public List<AdminBoardDTO> getNoticeList(Criteria criteria){
+        return userMapper.getNoticeList(criteria);
+    }
+
+    //    관리자 공지 상세보기
+    public AdminBoardVO getReadDetail(Long num){
+        return userMapper.getNoticeDetail(num);
+    }
+
+    // 관리자 공지글 총개수
+    public int getNoticeTotal(){
+        return userMapper.getNoticeTotal();
+    }
+
+    // 관리자 adminboard 글 총개수
+    public int getAdminBoardCount(Criteria criteria){
+        return userMapper.getAdminBoardCount(criteria);
+    }
+
+    // 관리자 adminboard 글 목록 가져오기
+    public List<AdminBoardVO> getAdminboardList(Criteria criteria){
+        return userMapper.getAdminboardList(criteria);
+    }
+
 
     // 유저 목록(관리자용)
     public List<UserDTO> getList(Criteria criteria){
@@ -46,8 +82,13 @@ public class UserDAO {
     }
 
     // 유저가 구매한 상품 목록
-    public List<ProductVO> getInProjectList(Long userNum) {
+    public List<ProductVO> getInProductList(Long userNum) {
         return userMapper.getInProductList(userNum);
+    }
+
+    // 유저가 참여한 프로젝트 목록록
+   public List<ProjectVO> getInProjectList(Long userNum) {
+        return userMapper.getInProjectList(userNum);
     }
 
     // 로그인 -> select count-> read() 사용?
@@ -58,5 +99,10 @@ public class UserDAO {
     //  이메일 중복검사
     public int emailcheck(String email){
         return userMapper.emailMatching(email);
+    };
+
+    //  비밀번호 수정
+    public boolean updatePW(String email){
+        return userMapper.updatePW(email);
     };
 }

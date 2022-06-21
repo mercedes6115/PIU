@@ -16,7 +16,7 @@ public class ProductReviewDAO {
 
     // 리뷰 리스트 -> 수정
     public List<ProductReviewVO> getList(Long productNum){
-        return productReviewMapper.getList();
+        return productReviewMapper.getList(productNum);
     }
 
     // 리뷰 상세보기 -> 수정
@@ -38,5 +38,8 @@ public class ProductReviewDAO {
     public boolean remove(Long num){
         return productReviewMapper.delete(num);
     }
+
+    //리뷰 갯수 구하기
+    public int count(Long productNum){return productReviewMapper.count(productNum);}
 
 }

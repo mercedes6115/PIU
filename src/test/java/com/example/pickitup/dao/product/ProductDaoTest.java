@@ -18,6 +18,10 @@ public class ProductDaoTest {
 //    public void getListTest(){
 //        productDAO.getList().stream().map(ProductVO::toString).forEach(log::info);
 //    }
+//    @Test
+//    public void getDetail(){
+//        productDAO.getDetail(23L);
+//    }
 //
 //    @Test
 //    public void registerTest(){
@@ -61,5 +65,8 @@ public class ProductDaoTest {
 //        log.info("DELETE FAIL");
 //    }
 
-
+    @Test
+    public void getDetailTest() {
+        productDAO.getDetail(2L);
+    }
 }

@@ -19,6 +19,10 @@ public class ProductDAO {
     public List<ProductVO> getList(){
         return productMapper.getList();
     }
+    //상품 하나의 디테일
+    public ProductVO getDetail(Long num){
+        return productMapper.getDetail(num);
+    }
 
     // 상품 목록 - 관리자용
     public List<ProductVO> getProductList(ProductCriteria productCriteria){

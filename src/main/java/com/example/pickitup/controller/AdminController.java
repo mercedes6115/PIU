@@ -1,10 +1,15 @@
 package com.example.pickitup.controller;
 
 import com.example.pickitup.domain.vo.Criteria;
+<<<<<<< HEAD
 import com.example.pickitup.domain.vo.ProductCriteria;
+=======
+import com.example.pickitup.domain.vo.dto.AdminBoardPageDTO;
+>>>>>>> 8bc837790cff09d96c60ff35d2eddbfdd1aee1db
 import com.example.pickitup.domain.vo.dto.PageDTO;
 import com.example.pickitup.domain.vo.dto.ProductPageDTO;
 import com.example.pickitup.domain.vo.dto.UserDTO;
+import com.example.pickitup.domain.vo.user.AdminBoardVO;
 import com.example.pickitup.service.TempAdminService;
 import com.example.pickitup.service.TempCompanyService;
 import com.example.pickitup.service.TempProductService;
@@ -12,7 +17,15 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.*;
+=======
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
+>>>>>>> 8bc837790cff09d96c60ff35d2eddbfdd1aee1db
 
 import javax.servlet.http.HttpServletRequest;
 import javax.xml.ws.Service;
@@ -40,8 +53,12 @@ public class AdminController {
 
     // 관리자 게시물 목록
     @GetMapping("/boardList")
-    public void boardList(){
-
+    public void boardList(Criteria criteria, Model model){
+        log.info("==========");
+        log.info("===List===");
+        log.info("==========");
+        model.addAttribute("adminboardList", tempAdminService.getAdminboardList(criteria));
+        model.addAttribute("adminBoardPageDTO",new AdminBoardPageDTO(criteria, (tempAdminService.getAdminBoardCount(criteria))));
     }
 
     // 관리자 게시물 등록
@@ -52,8 +69,13 @@ public class AdminController {
 
     // 관리자 게시물 등록 폼
     @PostMapping("/boardWrite")
-    public void boardWriteForm(){
-
+    public RedirectView boardWriteForm(AdminBoardVO adminBoardVO, RedirectAttributes rttr){
+        log.info("====================");
+        log.info("/boardWriteForm");
+        log.info("====================");
+        tempAdminService.registerWrite(adminBoardVO);
+        rttr.addFlashAttribute("num", adminBoardVO.getNum());
+        return new RedirectView("/admin/main");
     }
 
 
@@ -176,4 +198,18 @@ public class AdminController {
         log.info("sssss"+tempAdminService.readUserInfo(num).toString());
         log.info("sssss"+tempCompanyService.readCompanyInfo(num).toString());
     }
+<<<<<<< HEAD
+=======
+
+
+    // 관리자 유저 문의 글 보기
+    @GetMapping("/userQnA")
+    public void userQnA(){
+
+    }
+
+
+
+
+>>>>>>> 8bc837790cff09d96c60ff35d2eddbfdd1aee1db
 }

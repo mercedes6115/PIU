@@ -6,15 +6,17 @@
         NUM, CONTENT, REGIST_DATE, UPDATE_DATE,
         STATUS, USER_NUM, PRODUCT_NUM
     FROM TBL_PRODUCT_QNA
+    WHERE PRODUCT_NUM=#{productNum}
     ORDER BY UPDATE_DATE DESC
     </select>
-    <select id="getDetail" resultType="productQnaVO">
-    SELECT
-        NUM, CONTENT, REGIST_DATE, UPDATE_DATE,
-        STATUS, USER_NUM, PRODUCT_NUM
-    FROM TBL_PRODUCT_QNA
-    WHERE NUM=#{num}
-    </select>
+<!--    <select id="getDetail" resultType="productQnaVO">-->
+<!--    SELECT-->
+<!--        NUM, CONTENT, REGIST_DATE, UPDATE_DATE,-->
+<!--        STATUS, USER_NUM, PRODUCT_NUM-->
+<!--    FROM TBL_PRODUCT_QNA-->
+<!--    WHERE PRODUCT_NUM=#{productNum}-->
+<!--    ORDER BY UPDATE_DATE DESC-->
+<!--    </select>-->
     <insert id="insert">
     INSERT INTO TBL_PRODUCT_QNA
         (
@@ -38,6 +40,8 @@
     DELETE FROM TBL_PRODUCT_QNA
     WHERE NUM=#{num}
     </delete>
+
+
 </mapper>
 
 

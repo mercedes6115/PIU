@@ -5,15 +5,16 @@ import com.example.pickitup.domain.dao.product.productFile.ProductDAO;
 import com.example.pickitup.domain.dao.product.productFile.ProductFileDAO;
 import com.example.pickitup.domain.dao.user.*;
 import com.example.pickitup.domain.vo.Criteria;
+<<<<<<< HEAD
 import com.example.pickitup.domain.vo.ProductCriteria;
+=======
+import com.example.pickitup.domain.vo.adminVO.AdminBoardDTO;
+>>>>>>> 8bc837790cff09d96c60ff35d2eddbfdd1aee1db
 import com.example.pickitup.domain.vo.dto.UserDTO;
 import com.example.pickitup.domain.vo.product.productFile.ProductFileVO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
-import com.example.pickitup.domain.vo.user.ApplyVO;
-import com.example.pickitup.domain.vo.user.CompanyVO;
-import com.example.pickitup.domain.vo.user.OrderVO;
-import com.example.pickitup.domain.vo.user.UserVO;
+import com.example.pickitup.domain.vo.user.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -124,8 +125,8 @@ public class TempAdminService {
 
     // productFileDAO
     // 파일 경로 가져오기 -> mapper 수정
-    public List<ProductFileVO> findProjectReviewNum(Long num) {
-        return productFileDAO.findProjectReviewNum(num);
+    public List<ProductFileVO> findByProductNum(Long productNum) {
+        return productFileDAO.findByProductNum(productNum);
     }
 
     // 해당 후기글 작성 도중 창을 이동할 경우 저장 경로에서 사진 지우기
@@ -139,8 +140,8 @@ public class TempAdminService {
     };
 
     // 사진 삭제(mapper 매개변수 수정)
-    public void removeProductImg(Long productNum){
-        productFileDAO.remove(productNum);
+    public void removeProductImg(String uuid){
+        productFileDAO.remove(uuid);
     }
 
 
@@ -150,6 +151,35 @@ public class TempAdminService {
         return orderDAO.getList(criteria);
     }
 
+    //관리자 공지 등록
+    public void registerWrite(AdminBoardVO adminBoardVO) {
+        userDAO.registerWrite(adminBoardVO);
+    }
+
+    //관리자 공지 리스트
+    public List<AdminBoardDTO> getNoticeList(Criteria criteria){
+        return userDAO.getNoticeList(criteria);
+    }
+
+    //관리자 공지 상세보기
+    public AdminBoardVO getReadDetail(Long num){
+        return userDAO.getReadDetail(num);
+    }
+
+    //관리자 공지 총 개수
+    public int getNoticeTotal() {
+        return userDAO.getNoticeTotal();
+    }
+
+    //관리자 adminboard 게시글 총 개수
+    public int getAdminBoardCount(Criteria criteria) {
+        return userDAO.getAdminBoardCount(criteria);
+    }
+
+    //관리자 adminboard 글 리스트 뽑아오기
+    public List<AdminBoardVO> getAdminboardList(Criteria criteria){
+        return userDAO.getAdminboardList(criteria);
+    }
 
 
 }

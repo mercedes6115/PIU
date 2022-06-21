@@ -15,7 +15,7 @@ public class ProductQnaServiceTest {
 
     @Test
     public void getListTest(){
-        productQnaService.getList(23L);
+        productQnaService.getList(61L);
     }
 
     @Test
@@ -52,5 +52,10 @@ public class ProductQnaServiceTest {
             log.info("실패");
         }
     }
+
+//    @Test
+//    public void countTest(){
+//        productQnaService.count(61L);
+//    }
 
 }

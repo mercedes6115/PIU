@@ -9,11 +9,22 @@ let statePass = false;
 let phoneCheckPass = false; // sms 확인용
 let corpPass = false;
 
+// $uemail.bind("propertychange change keyup paste input", function() {
+//     let $uemailval = $uemail.val();
+//     if (!$uemailval) { // 아이디 입력칸이 비어 있을 경우
+//         $('span#emailCheck_text').empty().text("아이디를 입력해 주세요").css("color", "red");
+//         emailPass = false;
+//         return;
+//     } else {
+//         checkEmail();
+//     }
+// });
 
-// db처리를 할수 없으므 테스트용으로 주석처리
-// 이메일 중복 확인(메세지 출력)
-$uemail.blur(function () {
+//input에 keyup 이벤트 등록
+$uemail.blur(function(){
+    //keyup 이벤트 발생 시 해당 input의 value 가져오기.
     let $uemailval = $uemail.val();
+    //실시간 검색이 필요한 table의 모든 행(tr) 숨김 처리
     if (!$uemailval) { // 아이디 입력칸이 비어 있을 경우
         $('span#emailCheck_text').empty().text("아이디를 입력해 주세요").css("color", "red");
         emailPass = false;
@@ -23,10 +34,10 @@ $uemail.blur(function () {
     }
 });
 
-// 이메일 휴요성 검사
+// 이메일 유효성 검사
 function checkEmail(){
     var email =  $('input#email').value
-    var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+    var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+/;
     if(exptext.test(email)==false){
         //이메일 형식이 알파벳+숫자@알파벳+숫자.알파벳+숫자 형식이 아닐경우
         $('span#emailCheck_text').empty().text("이메일 형식이 아닙니다.").css("color", "green");
@@ -38,20 +49,22 @@ function checkEmail(){
     }
 }
 
-// 비밀번호 유효성검사
-function checkPw(){
-    if($("input#password").val().length < 8){
-        $('span#pwCheck_text_first').text("8자 이상 입력해주세요").css("color", "red");
-        $('span#pwCheck_text').text(" ").css("color", "red");
-    }else{
-        $('span#pwCheck_text_first').text("가능한 비밀번호 형식입니다").css("color", "green");
-    }
-}
 
-// 비밀번호 유효성 검사 적용
-$upw.blur(function () {
-    checkPw();
-})
+
+
+// db처리를 할수 없으므 테스트용으로 주석처리
+// 이메일 중복 확인(메세지 출력)
+// $uemail.blur(function () {
+//     let $uemailval = $uemail.val();
+//     if (!$uemailval) { // 아이디 입력칸이 비어 있을 경우
+//         $('span#emailCheck_text').empty().text("아이디를 입력해 주세요").css("color", "red");
+//         emailPass = false;
+//         return;
+//     } else {
+//         checkEmail();
+//     }
+// });
+
 
 
 $("#emailCheck").on("click",function () {
@@ -76,6 +89,20 @@ $("#emailCheck").on("click",function () {
 
 })
 
+// 비밀번호 유효성검사
+function checkPw(){
+    if($("input#password").val().length < 8){
+        $('span#pwCheck_text_first').text("8자 이상 입력해주세요").css("color", "red");
+        $('span#pwCheck_text').text(" ").css("color", "red");
+    }else{
+        $('span#pwCheck_text_first').text("가능한 비밀번호 형식입니다").css("color", "green");
+    }
+}
+
+// 비밀번호 유효성 검사 적용
+$upw.blur(function () {
+    checkPw();
+})
 
 // 비밀번호 확인검사
 $upw2.blur(function () {
@@ -92,7 +119,7 @@ $upw2.blur(function () {
         pwPass = false;
         return;
     } else {
-        $('span#pwCheck_text').empty().text("사용가능한 비밀번호입니다").css("color", "green");
+        $('span#pwCheck_text').empty().text("비밀번호가 일치합니다.").css("color", "green");
         pwPass = true;
     }
 });
