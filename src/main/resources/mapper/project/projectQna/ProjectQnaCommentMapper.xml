@@ -1,7 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="com.example.pickitup.mapper.project.projectQna.ProjectQnaCommentMapper">
-    
+
+
+    <select id="getComment" resultType="projectQnaCommentVO">
+        SELECT NUM, CONTENT, REGIST_DATE, UPDATE_DATE, USER_NUM, COMPANY_NUM, QNA_NUM
+        FROM TBL_PROJECT_QNA_COMMENT
+        WHERE QNA_NUM = #{qnaNum}
+    </select>
+
+
+    <insert id="insert" parameterType="projectQnaCommentVO">
+        INSERT INTO TBL_PROJECT_QNA_COMMENT
+        (NUM, CONTENT, REGIST_DATE, UPDATE_DATE, QNA_NUM)
+        VALUES(SEQ_PROJECT_QNA_COMMENT.NEXTVAL, #{content}, SYSDATE , SYSDATE , #{qnaNum})
+    </insert>
+
+    <delete id="delete" parameterType="long">
+       DELETE FROM TBL_PROJECT_QNA_COMMENT
+       WHERE NUM=#{num}
+    </delete>
+
+    <update id="update" parameterType="projectQnaCommentVO">
+        UPDATE TBL_PROJECT_QNA_COMMENT
+        SET
+        CONTENT = #{content}, UPDATE_DATE = SYSDATE
+        WHERE NUM = #{num}
+    </update>
+
+
 </mapper>
 
 

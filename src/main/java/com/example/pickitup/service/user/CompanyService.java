@@ -14,9 +14,9 @@ public class CompanyService {
     private final CompanyDAO companyDAO;
 
     // 단체 목록
-//    public List<CompanyVO> getList(){
-//        return companyDAO.getList();
-//    }
+    public List<CompanyVO> getList(){
+        return companyDAO.getList();
+    }
 
     // 단체 회원가입
     public void register(CompanyVO companyVO){

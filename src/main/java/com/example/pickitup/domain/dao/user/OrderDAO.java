@@ -35,7 +35,4 @@ public class OrderDAO {
 
     // 주문 개수 - 관리자용
 
-    // 주문한 상품 목록
-    public List<OrderVO> boughtItem(Long userNum) { return orderMapper.boughtItem(userNum);}
-
 }

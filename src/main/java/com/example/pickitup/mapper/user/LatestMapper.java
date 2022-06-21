@@ -1,7 +1,5 @@
 package com.example.pickitup.mapper.user;
 
-import com.example.pickitup.domain.vo.product.productFile.ProductVO;
-import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 import com.example.pickitup.domain.vo.user.LatestVO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -11,10 +9,10 @@ import java.util.List;
 public interface LatestMapper {
 
     // 내가 최근본 프로젝트 리스트 보이기
-    public List<ProjectVO> getProjectList(Long userNum);
+    public List<LatestVO> getProjectList(Long userNum);
 
     // 내가 최근본 상품 리스트 보이기
-    public List<ProductVO> getProductList(Long userNum);
+    public List<LatestVO> getProductList(Long userNum);
 
     // 최근 본 게시물 테이블 등록
     public void insert(LatestVO latestVO);

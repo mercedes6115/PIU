@@ -1,13 +1,8 @@
 package com.example.pickitup.domain.vo;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.util.UriComponentsBuilder;
-
-import java.util.*;
 
 //Criteria : 검색의 기준
 @Component
@@ -16,13 +11,7 @@ public class Criteria {
     private int pageNum;
     private int amount;
     private String type;
-    private String type1;
-    private String type2;
-    private String type3;
     private String keyword;
-    private String startDate;
-    private String endDate;
-    private int total;
 
     public Criteria() {
         this(1, 10);
@@ -38,26 +27,14 @@ public class Criteria {
                 .queryParam("pageNum", this.pageNum)
                 .queryParam("amount", this.amount)
                 .queryParam("type", this.type)
-                .queryParam("type1", this.type1)
-                .queryParam("type2", this.type2)
-                .queryParam("type3", this.type3)
-                .queryParam("startDate", this.startDate)
-                .queryParam("endDate", this.endDate)
-                .queryParam("keyword", this.keyword)
-                .queryParam("total", this.total);
+                .queryParam("keyword", this.keyword);
+
         return builder.toUriString();
     }
 
-    public Map<String,String> getTypes() {
-        Map<String,String> getTypes= new HashMap<String,String>();
-        getTypes.put("type1",type1);
-        getTypes.put("startDate",startDate);
-        getTypes.put("endDate",endDate);
-        getTypes.put("keyword",keyword);
-        return getTypes;
+    public String[] getTypes(){
+        return type == null ? new String[] {} : type.split("");
     }
-
-
 
 }
 

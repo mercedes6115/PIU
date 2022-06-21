@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Data
-
 public class ProjectQnaVO {
     private Long num;
     private String content;
@@ -14,4 +13,5 @@ public class ProjectQnaVO {
     private Long userNum;
     private Long projectNum;
 
+    private String nickname;
 }
