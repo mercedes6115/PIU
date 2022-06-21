@@ -14,8 +14,8 @@ public class ProjectFileDAO {
 
     private final ProjectFileMapper projectFileMapper;
     // 파일 경로 가져오기
-    public List<ProjectFileVO> findByProjectNum(Long projectNum) {
-        return projectFileMapper.findByProjectNum(projectNum);
+    public List<ProjectFileVO> findProjectNum(Long num) {
+        return projectFileMapper.findProjectNum(num);
     }
 
     // 해당 후기글 작성 도중 창을 이동할 경우 저장 경로에서 사진 지우기
@@ -29,9 +29,7 @@ public class ProjectFileDAO {
     };
 
     // 사진 삭제 (mapper 매개변수 수정)
-    public void remove(String uuid){
-        projectFileMapper.delete(uuid);
+    public void remove(Long projectNum){
+        projectFileMapper.delete(projectNum);
     }
-
-
 }

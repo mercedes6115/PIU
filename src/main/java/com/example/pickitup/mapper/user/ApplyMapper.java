@@ -25,4 +25,6 @@ public interface ApplyMapper {
 
     // 프로젝트 총 신청자 수
     public Long countApply(Long projectNum);
+
+
 }

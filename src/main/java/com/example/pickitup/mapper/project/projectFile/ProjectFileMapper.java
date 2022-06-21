@@ -8,7 +8,7 @@ import java.util.List;
 @Mapper
 public interface ProjectFileMapper {
     //    해당 후기글 기본키로 file 객체 가져오기
-    public List<ProjectFileVO> findProjectReviewNum(Long projectNum);
+    public List<ProjectFileVO> findProjectNum(Long projectNum);
 
     //    해당 후기글에 작성 도중에 창을 닫는 경우 저장 경로에서 사진 지우기
     public  List<ProjectFileVO> getOldFiles();

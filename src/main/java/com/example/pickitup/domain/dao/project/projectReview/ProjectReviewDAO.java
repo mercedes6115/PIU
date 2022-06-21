@@ -16,7 +16,7 @@ public class ProjectReviewDAO {
 
     // 프로젝트 리뷰 목록 -> 수정
     public List<ProjectReviewVO> getList(Long projectNum){
-        return projectReviewMapper.getList();
+        return projectReviewMapper.getList(projectNum);
     }
 
     // 리뷰 상세보기
@@ -38,5 +38,4 @@ public class ProjectReviewDAO {
     public boolean remove(Long num){
         return projectReviewMapper.delete(num);
     }
-
 }
