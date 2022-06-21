@@ -158,12 +158,12 @@
     </select>
 
     <select id="getNoticeTotal" resultType="_int">
-        SELECT COUNT(NUM) FROM TBL_ADMIN_BOARD
+        SELECT COUNT(NUM) FROM TBL_ADMIN_BOARD WHERE CATEGORY = '4'
     </select>
 
     <select id="getNoticeDetail" resultType="adminBoardVO">
         SELECT
-        NUM, TITLE, CONTENT, REGIST_DATE, UPDATE_DATE, STATUS, USER_NUM
+        NUM, TITLE, CATEGORY, CONTENT, REGIST_DATE, UPDATE_DATE, STATUS, USER_NUM
         FROM TBL_ADMIN_BOARD
         WHERE NUM = #{num}
     </select>
@@ -176,6 +176,74 @@
         (NUM, CATEGORY, TITLE, CONTENT, USER_NUM)
         VALUES(#{num}, #{category}, #{title}, #{content}, #{userNum})
     </insert>
+
+    <!-- ADMINBOARD에 총 게시글 수 가져오기-->
+    <select id="getAdminBoardCount" resultType="_int">
+        SELECT COUNT(NUM)
+        FROM TBL_ADMIN_BOARD
+        <where>
+            <if test="type3 == 'notice'.toString()">
+                CATEGORY = '4'
+            </if>
+            <if test="type3 == 'createrQna'.toString()">
+                AND CATEGORY = '3'
+            </if>
+            <if test="type3 == 'productQna'.toString()">
+                AND CATEGORY = '2'
+            </if>
+            <if test="type3 == 'projectQna'.toString()">
+                AND CATEGORY = '1'
+            </if>
+            <if test="type2 == 'title'.toString()">
+                AND TITLE LIKE '%'||#{keyword}||'%'
+            </if>
+            <if test="type2 == 'content'.toString()">
+                AND CONTENT LIKE '%'||#{keyword}||'%'
+            </if>
+            <if test="type2 == 'writer'.toString()">
+                AND WRITER LIKE '%'||#{keyword}||'%'
+            </if>
+            <if test="startDate != null">
+                AND (REGIST_DATE BETWEEN #{startDate} AND #{endDate})
+            </if>
+        </where>
+    </select>
+
+
+    <!-- ADMINBOARD에 게시글 리스트 가져오기-->
+    <select id="getAdminboardList" resultType="adminboardDTO">
+        SELECT NUM, CATEGORY, CONTENT, TITLE, REGIST_DATE, USER_NUM, STATUS
+        FROM TBL_ADMIN_BOARD
+        <where>
+            <if test="type3 == 'notice'.toString()">
+                CATEGORY = '4'
+            </if>
+            <if test="type3 == 'createrQna'.toString()">
+                AND CATEGORY = '3'
+            </if>
+            <if test="type3 == 'productQna'.toString()">
+                AND CATEGORY = '2'
+            </if>
+            <if test="type3 == 'projectQna'.toString()">
+                AND CATEGORY = '1'
+            </if>
+            <if test="type2 == 'title'.toString()">
+                AND TITLE LIKE '%'||#{keyword}||'%'
+            </if>
+            <if test="type2 == 'content'.toString()">
+                AND CONTENT LIKE '%'||#{keyword}||'%'
+            </if>
+            <if test="type2 == 'writer'.toString()">
+                AND WRITER LIKE '%'||#{keyword}||'%'
+            </if>
+            <if test="startDate != null">
+                AND (REGIST_DATE BETWEEN #{startDate} AND #{endDate})
+            </if>
+        </where>
+    </select>
+
+
+
 
 
 
