@@ -74,15 +74,21 @@ public class UserController {
 
     }
 
+
+    @PostMapping("/findPw")
+    public void updatePwForm(@Param("email") String email){
+        tempUserSerivce.updatePW(email);
+    }
+
     // 비밀번호 재설정
     @GetMapping("/updatePw")
     public void updatePw(){
-
     }
+
 
     // 비밀번호 재설정 폼
     @PostMapping("/updatePw")
-    public void updatePwForm(@Param("email") String email){
+    public void updatePwForm2(@Param("email") String email){
         tempUserSerivce.updatePW(email);
     }
 
