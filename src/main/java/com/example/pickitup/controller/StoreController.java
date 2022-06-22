@@ -14,11 +14,9 @@ import com.example.pickitup.service.product.productQna.ProductQnaService;
 import com.example.pickitup.service.product.productReview.ProductReviewService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.thymeleaf.model.IModel;
 
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
@@ -38,9 +36,23 @@ public class StoreController {
 
     // 스토어 메인페이지
     @GetMapping("/main")
-    public void storeMain(Model model){
+    public void storeMain(String category,Model model){
+        if(category == ""){
+            category = null;
+        }
         model.addAttribute("productsCount",productService.count());
-        model.addAttribute("productlist",productService.getList());
+        model.addAttribute("productlist",productService.getList(category));
+    }
+
+    @ResponseBody
+    @PostMapping("/main")
+    public List<ProductVO> storepostMain(String category,Model model){
+        if(category == ""){
+            category = null;
+        }
+        model.addAttribute("productsCount",productService.count());
+        model.addAttribute("productlist",productService.getList(category));
+        return productService.getList(category);
     }
 
     // 스토어 상세페이지
