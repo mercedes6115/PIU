@@ -11,7 +11,7 @@ import java.util.List;
 @Mapper
 public interface ProductMapper {
     //    상품 전부 띄우기
-    public List<ProductVO> getList();
+    public List<ProductVO> getList(String category);
 
     //
     public List<ProductVO> getProductList(ProductCriteria productCriteria);

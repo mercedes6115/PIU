@@ -33,7 +33,7 @@ public class ProductReviewService {
         productReviewDAO.insert(productReviewVO);
         if(productReviewVO.getFileList() != null) {
             productReviewVO.getFileList().forEach(productReviewFileVO -> {
-                productReviewFileVO.setProductReviewNum(productReviewVO.getProductNum());
+                productReviewFileVO.setReviewNum(productReviewVO.getProductNum());
                 productReviewFileDAO.register(productReviewFileVO);
             });
         }

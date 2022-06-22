@@ -67,7 +67,7 @@ public class ProductFileRestController {
             file.transferTo(saveFile);
 
             if(checkImageType(saveFile)){
-                FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_" + uploadFileName));
+                FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "_" + uploadFileName));
                 Thumbnailator.createThumbnail(file.getInputStream(), thumbnail, 100, 100);
                 thumbnail.close();
 //                ProductFileVO.setImage(true);
