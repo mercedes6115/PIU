@@ -67,9 +67,15 @@ public class ProductDaoTest {
 //    }
 
     @Test
+
     public void countTest(){
         productDAO.count();
     }
 
+
+
+    public void getDetailTest() {
+        productDAO.getDetail(2L);
+    }
 
 }

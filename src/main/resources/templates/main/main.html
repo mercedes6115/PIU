@@ -129,7 +129,7 @@
                 <div class="hot-plogging-text">
                     <a href=#>
                         <div class="hot-plogging-text1">
-                            <img src="/assets/images/fire.png" style="width:25px">
+                            <img src="/images/fire.png" style="width:25px">
                             <h2 class="hot-plogging-text2">지금 가장 핫한 프로젝트</h2>
                         </div>
                     </a>
@@ -141,29 +141,32 @@
                             <th:block th:each="JJimList:${projectListJJim}">
                                 <li th:object="${JJimList}">
                                     <div class="plogging-thumbnail-wrap">
-                                        <img src="/images/poster1.png">
+<!--                                        <img src="/images/poster1.png">-->
+                                        <span class="Jjim-image" th:href="*{num}">
+                                        </span>
                                     </div>
                                     <div class="deadline"><span class="material-symbols-outlined"
                                                                 style="font-size: 14px; margin-left: 5px;">
                             alarm
                             </span>
                                         <div class="deadline-text">프로젝트 시작까지</div>
-                                        <div class="d-day">D-3</div>
+                                        <div class="d-day" th:text="*{projectDate}">D-3</div>
                                     </div>
-                                    <div class="plogging-location-text" th:text="*{title}"></div>
-                                    <div class="plogging-msg-text" th:text="*{content}"></div>
+                                    <div class="plogging-location-text" th:text="*{terrain}"></div>
+                                    <div class="plogging-msg-text" th:text="*{title}"></div>
                                     <!-- <div class="jjims-and-likes" ><div class="last-wrap"></div>12312</div> -->
                                     <div class="jjims-and-likes">
                                         <div class="last-wrap">
                                             <div class="heart-icon">
-                                                <div class="heart-svg" style="display: flex;"  >
+                                                <div class="heart-svg" style="display: flex;">
                                                     <svg class="hearts" xmlns="http://www.w3.org/2000/svg" width="12"
                                                          height="12" fill="none" viewBox="0 0 24 24">
                                                         <path fill-rule="evenodd"
                                                               d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z"
                                                               fill="#d7d7d7"></path>
                                                     </svg>
-                                                    <div style="margin-top: 1px;margin-left: 2px;" th:text="*{jjimCount}"></div>
+                                                    <div style="margin-top: 1px;margin-left: 2px;"
+                                                         th:text="*{jjimCount}"></div>
                                                 </div>
 
                                             </div>
@@ -196,39 +199,40 @@
                     <div class="hot-plogging-text">
                         <a href=#>
                             <div class="hot-plogging-text1">
-                                <img src="/images/running.png" style="width:40px">
-                                <h2 class="hot-plogging-text2">지금 가장 참여가 많은 프로젝트</h2>
+                                <img src="/images/coin.png" style="width:50px">
+                                <h2 class="hot-plogging-text2">지금 가장 알찬 프로젝트</h2>
                             </div>
                         </a>
                     </div>
                     <div id="slideShow2">
                         <ul class="slides2">
                             <th:block th:each="PointList:${projectListPoint}">"
-                            <li th:object="${PointList}">
-                            <div class="plogging-thumbnail-wrap">
-                                <img src="/images/poster1.png">
-                            </div>
-                            <div class="deadline"><span class="material-symbols-outlined"
-                                                        style="font-size: 14px; margin-left: 5px;">
+                                <li th:object="${PointList}">
+                                    <div class="plogging-thumbnail-wrap">
+                                        <img src="/images/poster1.png">
+                                    </div>
+                                    <div class="deadline"><span class="material-symbols-outlined"
+                                                                style="font-size: 14px; margin-left: 5px;">
                             alarm
                             </span>
-                                <div class="deadline-text">프로젝트 시작까지</div>
-                                <div class="d-day">D-3</div>
-                            </div>
-                            <div class="plogging-location-text" th:text="*{title}">강남구청</div>
-                            <div class="plogging-msg-text" th:text="*{title}"></div>
-                            <!-- <div class="jjims-and-likes" ><div class="last-wrap"></div>12312</div> -->
-                            <div class="jjims-and-likes">
-                                <div class="last-wrap">
-                                    <div class="heart-icon">
-                                        <div class="heart-svg">
-                                            P
-                                        </div>
-                                        <div style="margin-top: 1px;margin-left: 2px;" th:text="*{point}"></div>
+                                        <div class="deadline-text">프로젝트 시작까지</div>
+                                        <div class="d-day" th:text="*{projectDate}">D-3</div>
                                     </div>
-                                </div>
-                            </div>
-                        </li>
+                                    <div class="plogging-location-text" th:text="*{terrain}"></div>
+                                    <div class="plogging-msg-text" th:text="*{title}"></div>
+                                    <!-- <div class="jjims-and-likes" ><div class="last-wrap"></div>12312</div> -->
+                                    <div class="jjims-and-likes">
+                                        <div class="last-wrap">
+                                            <div class="heart-icon">
+                                                <div class="heart-svg">
+                                                    P
+                                                </div>
+                                                <div style="margin-top: 1px;margin-left: 2px;" th:text="*{point}"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </th:block>
                         </ul>
                         <p class="controller2">
                             <!-- &lang: 왼쪽 방향 화살표 &rang: 오른쪽 방향 화살표 -->
@@ -246,429 +250,46 @@
             </div>
         </div>
         <div class="plogging-wrapper">
-            <div>
                 <div class="plogging-margin">
                     <section>
                         <div class="hot-plogging-text">
                             <a href=#>
                                 <div class="hot-plogging-text1">
-                                    <img src="/images/coin.png" style="width:50px">
-                                    <h2 class="hot-plogging-text2">지금 가장 알찬 프로젝트</h2>
+                                    <img src="/images/running.png" style="width:40px">
+                                    <h2 class="hot-plogging-text2">지금 가장 참여가 많은 프로젝트</h2>
                                 </div>
                             </a>
                         </div>
                         <div id="slideShow3">
                             <ul class="slides3">
-                                <li>
-                                    <div class="plogging-thumbnail-wrap">
-                                        <img src="/images/poster1.png">
-                                    </div>
-                                    <div class="deadline"><span class="material-symbols-outlined"
-                                                                style="font-size: 14px; margin-left: 5px;">
+                                <th:block th:each="ApplyList:${projectListApply}">"
+                                    <li th:object="${ApplyList}">
+                                        <div class="plogging-thumbnail-wrap">
+                                            <img src="/images/poster1.png">
+                                        </div>
+                                        <div class="deadline"><span class="material-symbols-outlined"
+                                                                    style="font-size: 14px; margin-left: 5px;">
                                     alarm
                                     </span>
-                                        <div class="deadline-text">프로젝트 시작까지</div>
-                                        <div class="d-day">D-3</div>
-                                    </div>
-                                    <div class="plogging-location-text">강남구청</div>
-                                    <div class="plogging-msg-text">강남구청과 함께하는 대모산 클린 하이킹</div>
-                                    <!-- <div class="jjims-and-likes" ><div class="last-wrap"></div>12312</div> -->
-                                    <div class="jjims-and-likes">
-                                        <div class="last-wrap">
-                                            <div class="heart-icon">
-                                                <div class="heart-svg">
-                                                    <svg class="hearts" xmlns="http://www.w3.org/2000/svg" width="12"
-                                                         height="12" fill="none" viewBox="0 0 24 24">
-                                                        <path fill-rule="evenodd"
-                                                              d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z"
-                                                              fill="#d7d7d7"></path>
-                                                    </svg>
+                                            <div class="deadline-text">프로젝트 시작까지</div>
+                                            <div class="d-day" th:text="*{projectDate}">D-3</div>
+                                        </div>
+                                        <div class="plogging-location-text" th:text="*{terrain}">강남구청</div>
+                                        <div class="plogging-msg-text" th:text="*{title}">강남구청과 함께하는 대모산 클린 하이킹</div>
+                                        <!-- <div class="jjims-and-likes" ><div class="last-wrap"></div>12312</div> -->
+                                        <div class="jjims-and-likes">
+                                            <div class="last-wrap">
+                                                <div class="heart-icon">
+                                                    <div class="heart-svg">
+                                                        人
+                                                    </div>
+                                                    <div style="margin-top: 1px;margin-left: 2px;"
+                                                         th:text="*{applyCount}"></div>
                                                 </div>
-                                                14919
-                                            </div>
-                                            <div class="likes-wrap">
-                                                <div class="likes-svg">
-                                                    <svg class="likes" xmlns="http://www.w3.org/2000/svg" width="12"
-                                                         height="12" fill="none" viewBox="0 0 24 24">
-                                                        <path fill-rule="evenodd"
-                                                              d="M2 10.68c0-.691.503-1.251 1.135-1.251h2.273V22H3.135C2.508 22 2 21.427 2 20.749V10.68zm11.361-2.508h6.366c1.255 0 2.272 1.126 2.272 2.514 0 .151-.012.301-.037.45l-1.616 9.832C20.25 21.566 19.779 22 19.23 22H7.681V9.429L11.089 0c1.704 0 2.84 1.257 2.84 3.143 0 1.257-.189 2.933-.568 5.029z"
-                                                              fill="#d7d7d7"></path>
-                                                    </svg>
-                                                </div>
-                                                99%
                                             </div>
                                         </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="plogging-thumbnail-wrap">
-                                        <img src="/images/poster5.png">
-                                    </div>
-                                    <div class="deadline"><span class="material-symbols-outlined"
-                                                                style="font-size: 14px; margin-left: 5px;">
-                                alarm
-                                </span>
-                                        <div class="deadline-text">프로젝트 시작까지</div>
-                                        <div class="d-day">D-3</div>
-                                    </div>
-                                    <div class="plogging-location-text">강남구청</div>
-                                    <div class="plogging-msg-text">강남구청과 함께하는 대모산 클린 하이킹</div>
-                                    <!-- <div class="jjims-and-likes" ><div class="last-wrap"></div>12312</div> -->
-                                    <div class="jjims-and-likes">
-                                        <div class="last-wrap">
-                                            <div class="heart-icon">
-                                                <div class="heart-svg">
-                                                    <svg class="hearts" xmlns="http://www.w3.org/2000/svg" width="12"
-                                                         height="12" fill="none" viewBox="0 0 24 24">
-                                                        <path fill-rule="evenodd"
-                                                              d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z"
-                                                              fill="#d7d7d7"></path>
-                                                    </svg>
-                                                </div>
-                                                14919
-                                            </div>
-                                            <div class="likes-wrap">
-                                                <div class="likes-svg">
-                                                    <svg class="likes" xmlns="http://www.w3.org/2000/svg" width="12"
-                                                         height="12" fill="none" viewBox="0 0 24 24">
-                                                        <path fill-rule="evenodd"
-                                                              d="M2 10.68c0-.691.503-1.251 1.135-1.251h2.273V22H3.135C2.508 22 2 21.427 2 20.749V10.68zm11.361-2.508h6.366c1.255 0 2.272 1.126 2.272 2.514 0 .151-.012.301-.037.45l-1.616 9.832C20.25 21.566 19.779 22 19.23 22H7.681V9.429L11.089 0c1.704 0 2.84 1.257 2.84 3.143 0 1.257-.189 2.933-.568 5.029z"
-                                                              fill="#d7d7d7"></path>
-                                                    </svg>
-                                                </div>
-                                                99%
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="plogging-thumbnail-wrap">
-                                        <img src="/images/poster1.png">
-                                    </div>
-                                    <div class="deadline"><span class="material-symbols-outlined"
-                                                                style="font-size: 14px; margin-left: 5px;">
-                                alarm
-                                </span>
-                                        <div class="deadline-text">프로젝트 시작까지</div>
-                                        <div class="d-day">D-3</div>
-                                    </div>
-                                    <div class="plogging-location-text">강남구청</div>
-                                    <div class="plogging-msg-text">강남구청과 함께하는 대모산 클린 하이킹</div>
-                                    <!-- <div class="jjims-and-likes" ><div class="last-wrap"></div>12312</div> -->
-                                    <div class="jjims-and-likes">
-                                        <div class="last-wrap">
-                                            <div class="heart-icon">
-                                                <div class="heart-svg">
-                                                    <svg class="hearts" xmlns="http://www.w3.org/2000/svg" width="12"
-                                                         height="12" fill="none" viewBox="0 0 24 24">
-                                                        <path fill-rule="evenodd"
-                                                              d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z"
-                                                              fill="#d7d7d7"></path>
-                                                    </svg>
-                                                </div>
-                                                14919
-                                            </div>
-                                            <div class="likes-wrap">
-                                                <div class="likes-svg">
-                                                    <svg class="likes" xmlns="http://www.w3.org/2000/svg" width="12"
-                                                         height="12" fill="none" viewBox="0 0 24 24">
-                                                        <path fill-rule="evenodd"
-                                                              d="M2 10.68c0-.691.503-1.251 1.135-1.251h2.273V22H3.135C2.508 22 2 21.427 2 20.749V10.68zm11.361-2.508h6.366c1.255 0 2.272 1.126 2.272 2.514 0 .151-.012.301-.037.45l-1.616 9.832C20.25 21.566 19.779 22 19.23 22H7.681V9.429L11.089 0c1.704 0 2.84 1.257 2.84 3.143 0 1.257-.189 2.933-.568 5.029z"
-                                                              fill="#d7d7d7"></path>
-                                                    </svg>
-                                                </div>
-                                                99%
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="plogging-thumbnail-wrap">
-                                        <img src="/images/poster1.png">
-                                    </div>
-                                    <div class="deadline"><span class="material-symbols-outlined"
-                                                                style="font-size: 14px; margin-left: 5px;">
-                                alarm
-                                </span>
-                                        <div class="deadline-text">프로젝트 시작까지</div>
-                                        <div class="d-day">D-3</div>
-                                    </div>
-                                    <div class="plogging-location-text">강남구청</div>
-                                    <div class="plogging-msg-text">강남구청과 함께하는 대모산 클린 하이킹</div>
-                                    <!-- <div class="jjims-and-likes" ><div class="last-wrap"></div>12312</div> -->
-                                    <div class="jjims-and-likes">
-                                        <div class="last-wrap">
-                                            <div class="heart-icon">
-                                                <div class="heart-svg">
-                                                    <svg class="hearts" xmlns="http://www.w3.org/2000/svg" width="12"
-                                                         height="12" fill="none" viewBox="0 0 24 24">
-                                                        <path fill-rule="evenodd"
-                                                              d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z"
-                                                              fill="#d7d7d7"></path>
-                                                    </svg>
-                                                </div>
-                                                14919
-                                            </div>
-                                            <div class="likes-wrap">
-                                                <div class="likes-svg">
-                                                    <svg class="likes" xmlns="http://www.w3.org/2000/svg" width="12"
-                                                         height="12" fill="none" viewBox="0 0 24 24">
-                                                        <path fill-rule="evenodd"
-                                                              d="M2 10.68c0-.691.503-1.251 1.135-1.251h2.273V22H3.135C2.508 22 2 21.427 2 20.749V10.68zm11.361-2.508h6.366c1.255 0 2.272 1.126 2.272 2.514 0 .151-.012.301-.037.45l-1.616 9.832C20.25 21.566 19.779 22 19.23 22H7.681V9.429L11.089 0c1.704 0 2.84 1.257 2.84 3.143 0 1.257-.189 2.933-.568 5.029z"
-                                                              fill="#d7d7d7"></path>
-                                                    </svg>
-                                                </div>
-                                                99%
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="plogging-thumbnail-wrap">
-                                        <img src="/images/poster1.png">
-                                    </div>
-                                    <div class="deadline"><span class="material-symbols-outlined"
-                                                                style="font-size: 14px; margin-left: 5px;">
-                                alarm
-                                </span>
-                                        <div class="deadline-text">프로젝트 시작까지</div>
-                                        <div class="d-day">D-3</div>
-                                    </div>
-                                    <div class="plogging-location-text">강남구청</div>
-                                    <div class="plogging-msg-text">강남구청과 함께하는 대모산 클린 하이킹</div>
-                                    <!-- <div class="jjims-and-likes" ><div class="last-wrap"></div>12312</div> -->
-                                    <div class="jjims-and-likes">
-                                        <div class="last-wrap">
-                                            <div class="heart-icon">
-                                                <div class="heart-svg">
-                                                    <svg class="hearts" xmlns="http://www.w3.org/2000/svg" width="12"
-                                                         height="12" fill="none" viewBox="0 0 24 24">
-                                                        <path fill-rule="evenodd"
-                                                              d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z"
-                                                              fill="#d7d7d7"></path>
-                                                    </svg>
-                                                </div>
-                                                14919
-                                            </div>
-                                            <div class="likes-wrap">
-                                                <div class="likes-svg">
-                                                    <svg class="likes" xmlns="http://www.w3.org/2000/svg" width="12"
-                                                         height="12" fill="none" viewBox="0 0 24 24">
-                                                        <path fill-rule="evenodd"
-                                                              d="M2 10.68c0-.691.503-1.251 1.135-1.251h2.273V22H3.135C2.508 22 2 21.427 2 20.749V10.68zm11.361-2.508h6.366c1.255 0 2.272 1.126 2.272 2.514 0 .151-.012.301-.037.45l-1.616 9.832C20.25 21.566 19.779 22 19.23 22H7.681V9.429L11.089 0c1.704 0 2.84 1.257 2.84 3.143 0 1.257-.189 2.933-.568 5.029z"
-                                                              fill="#d7d7d7"></path>
-                                                    </svg>
-                                                </div>
-                                                99%
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="plogging-thumbnail-wrap">
-                                        <img src="/images/poster1.png">
-                                    </div>
-                                    <div class="deadline"><span class="material-symbols-outlined"
-                                                                style="font-size: 14px; margin-left: 5px;">
-                                alarm
-                                </span>
-                                        <div class="deadline-text">프로젝트 시작까지</div>
-                                        <div class="d-day">D-3</div>
-                                    </div>
-                                    <div class="plogging-location-text">강남구청</div>
-                                    <div class="plogging-msg-text">강남구청과 함께하는 대모산 클린 하이킹</div>
-                                    <!-- <div class="jjims-and-likes" ><div class="last-wrap"></div>12312</div> -->
-                                    <div class="jjims-and-likes">
-                                        <div class="last-wrap">
-                                            <div class="heart-icon">
-                                                <div class="heart-svg">
-                                                    <svg class="hearts" xmlns="http://www.w3.org/2000/svg" width="12"
-                                                         height="12" fill="none" viewBox="0 0 24 24">
-                                                        <path fill-rule="evenodd"
-                                                              d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z"
-                                                              fill="#d7d7d7"></path>
-                                                    </svg>
-                                                </div>
-                                                14919
-                                            </div>
-                                            <div class="likes-wrap">
-                                                <div class="likes-svg">
-                                                    <svg class="likes" xmlns="http://www.w3.org/2000/svg" width="12"
-                                                         height="12" fill="none" viewBox="0 0 24 24">
-                                                        <path fill-rule="evenodd"
-                                                              d="M2 10.68c0-.691.503-1.251 1.135-1.251h2.273V22H3.135C2.508 22 2 21.427 2 20.749V10.68zm11.361-2.508h6.366c1.255 0 2.272 1.126 2.272 2.514 0 .151-.012.301-.037.45l-1.616 9.832C20.25 21.566 19.779 22 19.23 22H7.681V9.429L11.089 0c1.704 0 2.84 1.257 2.84 3.143 0 1.257-.189 2.933-.568 5.029z"
-                                                              fill="#d7d7d7"></path>
-                                                    </svg>
-                                                </div>
-                                                99%
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="plogging-thumbnail-wrap">
-                                        <img src="/images/poster3.jpg">
-                                    </div>
-                                    <div class="deadline"><span class="material-symbols-outlined"
-                                                                style="font-size: 14px; margin-left: 5px;">
-                                alarm
-                                </span>
-                                        <div class="deadline-text">프로젝트 시작까지</div>
-                                        <div class="d-day">D-3</div>
-                                    </div>
-                                    <div class="plogging-location-text">강남구청</div>
-                                    <div class="plogging-msg-text">강남구청과 함께하는 대모산 클린 하이킹</div>
-                                    <!-- <div class="jjims-and-likes" ><div class="last-wrap"></div>12312</div> -->
-                                    <div class="jjims-and-likes">
-                                        <div class="last-wrap">
-                                            <div class="heart-icon">
-                                                <div class="heart-svg">
-                                                    <svg class="hearts" xmlns="http://www.w3.org/2000/svg" width="12"
-                                                         height="12" fill="none" viewBox="0 0 24 24">
-                                                        <path fill-rule="evenodd"
-                                                              d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z"
-                                                              fill="#d7d7d7"></path>
-                                                    </svg>
-                                                </div>
-                                                14919
-                                            </div>
-                                            <div class="likes-wrap">
-                                                <div class="likes-svg">
-                                                    <svg class="likes" xmlns="http://www.w3.org/2000/svg" width="12"
-                                                         height="12" fill="none" viewBox="0 0 24 24">
-                                                        <path fill-rule="evenodd"
-                                                              d="M2 10.68c0-.691.503-1.251 1.135-1.251h2.273V22H3.135C2.508 22 2 21.427 2 20.749V10.68zm11.361-2.508h6.366c1.255 0 2.272 1.126 2.272 2.514 0 .151-.012.301-.037.45l-1.616 9.832C20.25 21.566 19.779 22 19.23 22H7.681V9.429L11.089 0c1.704 0 2.84 1.257 2.84 3.143 0 1.257-.189 2.933-.568 5.029z"
-                                                              fill="#d7d7d7"></path>
-                                                    </svg>
-                                                </div>
-                                                99%
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="plogging-thumbnail-wrap">
-                                        <img src="/images/poster5.png">
-                                    </div>
-                                    <div class="deadline"><span class="material-symbols-outlined"
-                                                                style="font-size: 14px; margin-left: 5px;">
-                                alarm
-                                </span>
-                                        <div class="deadline-text">프로젝트 시작까지</div>
-                                        <div class="d-day">D-3</div>
-                                    </div>
-                                    <div class="plogging-location-text">강남구청</div>
-                                    <div class="plogging-msg-text">강남구청과 함께하는 대모산 클린 하이킹</div>
-                                    <!-- <div class="jjims-and-likes" ><div class="last-wrap"></div>12312</div> -->
-                                    <div class="jjims-and-likes">
-                                        <div class="last-wrap">
-                                            <div class="heart-icon">
-                                                <div class="heart-svg">
-                                                    <svg class="hearts" xmlns="http://www.w3.org/2000/svg" width="12"
-                                                         height="12" fill="none" viewBox="0 0 24 24">
-                                                        <path fill-rule="evenodd"
-                                                              d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z"
-                                                              fill="#d7d7d7"></path>
-                                                    </svg>
-                                                </div>
-                                                14919
-                                            </div>
-                                            <div class="likes-wrap">
-                                                <div class="likes-svg">
-                                                    <svg class="likes" xmlns="http://www.w3.org/2000/svg" width="12"
-                                                         height="12" fill="none" viewBox="0 0 24 24">
-                                                        <path fill-rule="evenodd"
-                                                              d="M2 10.68c0-.691.503-1.251 1.135-1.251h2.273V22H3.135C2.508 22 2 21.427 2 20.749V10.68zm11.361-2.508h6.366c1.255 0 2.272 1.126 2.272 2.514 0 .151-.012.301-.037.45l-1.616 9.832C20.25 21.566 19.779 22 19.23 22H7.681V9.429L11.089 0c1.704 0 2.84 1.257 2.84 3.143 0 1.257-.189 2.933-.568 5.029z"
-                                                              fill="#d7d7d7"></path>
-                                                    </svg>
-                                                </div>
-                                                99%
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="plogging-thumbnail-wrap">
-                                        <img src="/images/poster6.png">
-                                    </div>
-                                    <div class="deadline"><span class="material-symbols-outlined"
-                                                                style="font-size: 14px; margin-left: 5px;">
-                                alarm
-                                </span>
-                                        <div class="deadline-text">프로젝트 시작까지</div>
-                                        <div class="d-day">D-3</div>
-                                    </div>
-                                    <div class="plogging-location-text">강남구청</div>
-                                    <div class="plogging-msg-text">강남구청과 함께하는 대모산 클린 하이킹</div>
-                                    <!-- <div class="jjims-and-likes" ><div class="last-wrap"></div>12312</div> -->
-                                    <div class="jjims-and-likes">
-                                        <div class="last-wrap">
-                                            <div class="heart-icon">
-                                                <div class="heart-svg">
-                                                    <svg class="hearts" xmlns="http://www.w3.org/2000/svg" width="12"
-                                                         height="12" fill="none" viewBox="0 0 24 24">
-                                                        <path fill-rule="evenodd"
-                                                              d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z"
-                                                              fill="#d7d7d7"></path>
-                                                    </svg>
-                                                </div>
-                                                14919
-                                            </div>
-                                            <div class="likes-wrap">
-                                                <div class="likes-svg">
-                                                    <svg class="likes" xmlns="http://www.w3.org/2000/svg" width="12"
-                                                         height="12" fill="none" viewBox="0 0 24 24">
-                                                        <path fill-rule="evenodd"
-                                                              d="M2 10.68c0-.691.503-1.251 1.135-1.251h2.273V22H3.135C2.508 22 2 21.427 2 20.749V10.68zm11.361-2.508h6.366c1.255 0 2.272 1.126 2.272 2.514 0 .151-.012.301-.037.45l-1.616 9.832C20.25 21.566 19.779 22 19.23 22H7.681V9.429L11.089 0c1.704 0 2.84 1.257 2.84 3.143 0 1.257-.189 2.933-.568 5.029z"
-                                                              fill="#d7d7d7"></path>
-                                                    </svg>
-                                                </div>
-                                                99%
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="plogging-thumbnail-wrap">
-                                        <img src="/images/poster3.jpg">
-                                    </div>
-                                    <div class="deadline"><span class="material-symbols-outlined"
-                                                                style="font-size: 14px; margin-left: 5px;">
-                                alarm
-                                </span>
-                                        <div class="deadline-text">프로젝트 시작까지</div>
-                                        <div class="d-day">D-3</div>
-                                    </div>
-                                    <div class="plogging-location-text">강남구청</div>
-                                    <div class="plogging-msg-text">강남구청과 함께하는 대모산 클린 하이킹</div>
-                                    <!-- <div class="jjims-and-likes" ><div class="last-wrap"></div>12312</div> -->
-                                    <div class="jjims-and-likes">
-                                        <div class="last-wrap">
-                                            <div class="heart-icon">
-                                                <div class="heart-svg">
-                                                    <svg class="hearts" xmlns="http://www.w3.org/2000/svg" width="12"
-                                                         height="12" fill="none" viewBox="0 0 24 24">
-                                                        <path fill-rule="evenodd"
-                                                              d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z"
-                                                              fill="#d7d7d7"></path>
-                                                    </svg>
-                                                </div>
-                                                14919
-                                            </div>
-                                            <div class="likes-wrap">
-                                                <div class="likes-svg">
-                                                    <svg class="likes" xmlns="http://www.w3.org/2000/svg" width="12"
-                                                         height="12" fill="none" viewBox="0 0 24 24">
-                                                        <path fill-rule="evenodd"
-                                                              d="M2 10.68c0-.691.503-1.251 1.135-1.251h2.273V22H3.135C2.508 22 2 21.427 2 20.749V10.68zm11.361-2.508h6.366c1.255 0 2.272 1.126 2.272 2.514 0 .151-.012.301-.037.45l-1.616 9.832C20.25 21.566 19.779 22 19.23 22H7.681V9.429L11.089 0c1.704 0 2.84 1.257 2.84 3.143 0 1.257-.189 2.933-.568 5.029z"
-                                                              fill="#d7d7d7"></path>
-                                                    </svg>
-                                                </div>
-                                                99%
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
+                                    </li>
+                                </th:block>
                             </ul>
                             <p class="controller3">
                                 <!-- &lang: 왼쪽 방향 화살표 &rang: 오른쪽 방향 화살표 -->
@@ -692,7 +313,6 @@
                         </div>
                     </section>
                 </div>
-            </div>
         </div>
         <!--여기까지 메인 컨텐츠-->
 
@@ -705,7 +325,32 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="/assets/js/SlideShow.js"></script>
 <script src="/assets/js/Banner.js"></script>
+<script th:inline="javascript">
+    let str1 = "";
+    $(".Jjim-image").each(function (i, h) {
+        console.log("11111111111111111111111111111111111111111111111111111111111111111111111");
+        let projectNum = $(this).attr("href");
+        console.log("asdasaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        $.ajax({
+            url: "/projectFile/list/" + projectNum,
+            type: "get",
+            success: function (files) {
+                str1 += "<picture class='join-plogging-main-image'>";
+                str1 += "<img src='/projectFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_" + files[0].fileName + "'>";
+                str1 += "</picture>";
+                $(h).html(str);
+                str1 = "";
+            }
+        })
+    })
+</script>
 
+<script>
+    let nickname=[[${nickname}]];
+    if(nickname!=null){
+        alert(nickname+"님 어서오세요!");
+    }
+</script>
 
 </html>
 
