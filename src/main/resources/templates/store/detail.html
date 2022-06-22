@@ -103,33 +103,29 @@
                                              <div class ="reviewImageForm">                                        
                                                      <picture class="moveImage">
                                                         <source srcset="/src/main/resources/static/images/chun2.png" media="all and (min-width: 1024px)" >
-                                                        <img src="/src/main/resources/static/images/chun2.png" class="reviewImage" alt="">
-                                                     </picture>                                         
+                                                     </picture>
                                              </div>
-                                             <div class ="reviewImageForm">                                        
-                                                    <picture class="moveImage">
-                                                       <source srcset="/src/main/resources/static/images/chun3.png" media="all and (min-width: 1024px)" >
-                                                       <img src="/src/main/resources/static/images/chun3.png" class="reviewImage" alt="">
-                                                    </picture>                                        
-                                            </div>
-                                            <div class ="reviewImageForm">                                        
-                                                    <picture class="moveImage">
-                                                       <source srcset="/src/main/resources/static/images/chun6.png" media="all and (min-width: 1024px)" >
-                                                       <img src="/src/main/resources/static/images/chun6.png" class="reviewImage" alt="">
-                                                    </picture>                                        
-                                            </div>
-                                            <div class ="reviewImageForm">                                   
-                                                    <picture class="moveImage">
-                                                       <source srcset="/src/main/resources/static/images/chun8.png" media="all and (min-width: 1024px)" >
-                                                       <img src="/src/main/resources/static/images/chun8.png" class="reviewImage" alt="">
-                                                    </picture>                                        
-                                            </div>
-                                            <div class ="reviewImageForm">                                   
-                                                <picture class="moveImage">
-                                                   <source srcset="/src/main/resources/static/images/chun.png" media="all and (min-width: 1024px)" >
-                                                   <img src="/src/main/resources/static/images/chun.png" class="reviewImage" alt="">
-                                                </picture>                                        
-                                        </div>
+<!--                                             <div class ="reviewImageForm">                                        -->
+<!--                                                    <picture class="moveImage">-->
+<!--                                                       <source srcset="/src/main/resources/static/images/chun3.png" media="all and (min-width: 1024px)" >-->
+<!--                                                    </picture>                                        -->
+<!--                                            </div>-->
+<!--                                            <div class ="reviewImageForm">                                        -->
+<!--                                                    <picture class="moveImage">-->
+<!--                                                       <source srcset="/src/main/resources/static/images/chun6.png" media="all and (min-width: 1024px)" >-->
+<!--                                                    </picture>                                        -->
+<!--                                            </div>-->
+<!--                                            <div class ="reviewImageForm">                                   -->
+<!--                                                    <picture class="moveImage">-->
+<!--                                                       <source srcset="/src/main/resources/static/images/chun8.png" media="all and (min-width: 1024px)" >-->
+<!--                                                    </picture>                                        -->
+<!--                                            </div>-->
+<!--                                            <div class ="reviewImageForm">                                   -->
+<!--                                                <picture class="moveImage">-->
+<!--                                                   <source srcset="/src/main/resources/static/images/chun.png" media="all and (min-width: 1024px)" >-->
+<!--                                                   <img src="/src/main/resources/static/images/chun.png" class="reviewImage" alt="">-->
+<!--                                                </picture>                                        -->
+<!--                                            </div>  -->
                                         </div>
                                     </div>
                                     <div class="modalContainer">
@@ -146,7 +142,10 @@
                                     <!-- 각 리뷰-->
                                     <div class="ProductReviews"></div>
                                     <!-- 각 리뷰-->
-                                    <a class="moveReviewTotal"><span class="goTomoveReviewTotal" th:text="|*{count-4}개의 후기 더보기|"></span></a>
+                                    <a class="moveReviewTotal">
+                                        <span th:if="|*{count lt 4}|" th:text="|*{count}개의 후기 더보기|"></span>
+                                        <span th:if="|*{count gt 3}|" class="goTomoveReviewTotal" th:text="|*{count-4}개의 후기 더보기|"></span>
+                                    </a>
                                 </section>
                             </div>
                         </div>
@@ -289,7 +288,7 @@
         url: "/store/reviewList/" + productNum,
         type: "get",
         dataType: "json",
-        success: function(reviewVO){
+        success: function(reviewVO){   // 모든 리뷰 리스트
             let str = "";
             if(reviewVO.length==0){
                 str += "현재 댓글이 없습니다.";
@@ -316,6 +315,7 @@
                 str += "</div>";
                 str += "<div class=\"reviewNameDate\">";
                 str += "<div class=\"reviewName\">"+reviewVO[i].userNum+"</div>";
+                //여기서 ajax로  reviewVO[i].num을 가지고 와서
                 str += "<div class=\"reviewDate\">"+reviewVO[i].updateDate+"</div>";
                 str += "</div>";
                 str += "</div>";
@@ -330,10 +330,22 @@
                 str += "</div>";
                 str += "</div>";
             }
-
-            // $.each(reviewVO, function(i, review){
-            // });
             $('.ProductReviews').html(str);
+
+            for (let i =0; i< reviewVO.length;i++) {
+                $.ajax({
+                    url: "/productReviewFile/list/" + reviewVO[i].num,
+                    type: "get",
+                    success: function (files) {  //파일들의 리스트
+                        let text = "";
+                        $(files).each(function (i, file) {
+                            text += "<img src='/productReviewFile/display?fileName=" + file.uploadPath + "/" + file.uuid + "_" + file.fileName + "'>";
+                        })
+                        $(".moveImage").append(text);
+                    }
+                })
+            }
+
         }
     });
     //------------------------------------------------------------------------------------------
@@ -355,7 +367,7 @@
         success : function (files) {
             let str ="";
             if(files.length>1){
-                for(let i =0; i< files.length;i++){
+                for(let i =1; i< files.length;i++){
                     str += "<img src='/productFile/display?fileName=" + files[i].uploadPath + "/s_" + files[i].uuid + "_"  + files[i].fileName + "'>";
                     $(".subImage").append(str);
                 }

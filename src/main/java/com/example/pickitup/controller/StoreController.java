@@ -14,11 +14,9 @@ import com.example.pickitup.service.product.productQna.ProductQnaService;
 import com.example.pickitup.service.product.productReview.ProductReviewService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.thymeleaf.model.IModel;
 
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
@@ -38,9 +36,23 @@ public class StoreController {
 
     // 스토어 메인페이지
     @GetMapping("/main")
-    public void storeMain(Model model){
+    public void storeMain(String category,Model model){
+        if(category == ""){
+            category = null;
+        }
         model.addAttribute("productsCount",productService.count());
-        model.addAttribute("productlist",productService.getList());
+        model.addAttribute("productlist",productService.getList(category));
+    }
+
+    @ResponseBody
+    @PostMapping("/main")
+    public List<ProductVO> storepostMain(String category,Model model){
+        if(category == ""){
+            category = null;
+        }
+        model.addAttribute("productsCount",productService.count());
+        model.addAttribute("productlist",productService.getList(category));
+        return productService.getList(category);
     }
 
     // 스토어 상세페이지
@@ -74,10 +86,11 @@ public class StoreController {
 
     // 스토어 리뷰 작성 폼
     @PostMapping("/reviewWrite")
-    public void reviewWriteForm(ProductReviewVO productReviewVO, Model model){
+    public String reviewWriteForm(ProductReviewVO productReviewVO, Model model){
 //        model.addAttribute("user", productNum); 유저의 정보 가져와야함.?? 어떻게??
-//        model.addAttribute("product",productService.getDetail(productNum));
+        productReviewVO.setUserNum(22L);
         productReviewService.insert(productReviewVO);
+        return storeDetail(productReviewVO.getProductNum(), model);
     }
     // 스토어 문의 목록
     @ResponseBody
