@@ -1,6 +1,7 @@
 package com.example.pickitup.dao.user;
 
 import com.example.pickitup.domain.dao.user.UserDAO;
+import com.example.pickitup.domain.vo.AdminCriteria;
 import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.adminVO.AdminBoardDTO;
 import com.example.pickitup.domain.vo.user.AdminBoardVO;
@@ -84,7 +85,7 @@ public class UserDaoTests {
 
         @Test
         public void getNoticeListTest () {
-            userDAO.getNoticeList(new Criteria()).stream().map(AdminBoardDTO::toString).forEach(log::info);
+            userDAO.getNoticeList(new AdminCriteria()).stream().map(AdminBoardDTO::toString).forEach(log::info);
         }
 
         @Test
@@ -95,12 +96,17 @@ public class UserDaoTests {
 
         @Test
         public void getAdminBoardCountTest () {
-            log.info("adminboard 글 총 개수 : " + userDAO.getAdminBoardCount(new Criteria(1, 10)));
+            log.info("adminboard 글 총 개수 : " + userDAO.getAdminBoardCount(new AdminCriteria(1, 10)));
         }
 
         @Test
         public void getAdminboardListTest () {
-            userDAO.getAdminboardList(new Criteria(1, 10));
+            userDAO.getAdminboardList(new AdminCriteria(1, 10));
+        }
+
+        @Test
+        public void deleteByIdTest(){
+        userDAO.deleteById(49L);
         }
 
 

@@ -1,6 +1,8 @@
 package com.example.pickitup.controller;
 
+import com.example.pickitup.domain.vo.AdminCriteria;
 import com.example.pickitup.domain.vo.Criteria;
+import com.example.pickitup.domain.vo.dto.AdminBoardPageDTO;
 import com.example.pickitup.domain.vo.dto.PageDTO;
 import com.example.pickitup.service.TempAdminService;
 import lombok.RequiredArgsConstructor;
@@ -29,9 +31,9 @@ public class GroupController {
 
     // 그룹 공지사항
     @GetMapping("/notice")
-    public String notice(Criteria criteria, Model model){
-        model.addAttribute("adminBoardList", tempAdminService.getNoticeList(criteria));
-        model.addAttribute("pageDTO", new PageDTO(criteria, tempAdminService.getNoticeTotal()));
+    public String notice(AdminCriteria adminCriteria, Model model){
+        model.addAttribute("adminBoardList", tempAdminService.getNoticeList(adminCriteria));
+        model.addAttribute("pageDTO", new AdminBoardPageDTO(adminCriteria, tempAdminService.getNoticeTotal()));
         return "group/notice";
     }
 

@@ -1,5 +1,6 @@
 package com.example.pickitup.mapper.user;
 
+import com.example.pickitup.domain.vo.AdminCriteria;
 import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.user.AdminBoardVO;
 import com.example.pickitup.domain.vo.user.UserVO;
@@ -107,7 +108,7 @@ public class UserMapperTests {
     //공지리스트
     @Test
     public void getNoticeListTest(){
-        userMapper.getNoticeList(new Criteria(1, 10));
+        userMapper.getNoticeList(new AdminCriteria(1, 10));
 
     }
 
@@ -130,15 +131,20 @@ public class UserMapperTests {
     //ADMINBOARD에 총 게시글 수 가져오기
     @Test
     public void getAdminBoardCountTest(){
-        userMapper.getAdminBoardCount(new Criteria(1,10));
+        userMapper.getAdminBoardCount(new AdminCriteria(1,10));
     }
 
     //ADMINBOARD에 게시글 리스트 가져오기
     @Test
     public void getAdminboardListTest() {
-        userMapper.getAdminboardList(new Criteria(1,10));
+        userMapper.getAdminboardList(new AdminCriteria(1,10));
     }
 
+    //adminboard에서 선택한글 삭제 하기
+    @Test
+    public void getDeleteByIdTest(){
+        userMapper.deleteById(50L);
+    }
 
 }
 

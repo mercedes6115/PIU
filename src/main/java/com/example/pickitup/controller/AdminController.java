@@ -1,15 +1,18 @@
 package com.example.pickitup.controller;
 
+import com.example.pickitup.domain.vo.AdminCriteria;
 import com.example.pickitup.domain.vo.Criteria;
 
 import com.example.pickitup.domain.vo.ProductCriteria;
 
+import com.example.pickitup.domain.vo.adminVO.AdminBoardDTO;
 import com.example.pickitup.domain.vo.dto.AdminBoardPageDTO;
 
 import com.example.pickitup.domain.vo.dto.PageDTO;
 import com.example.pickitup.domain.vo.dto.ProductPageDTO;
 import com.example.pickitup.domain.vo.dto.UserDTO;
 import com.example.pickitup.domain.vo.user.AdminBoardVO;
+import com.example.pickitup.domain.vo.user.UserVO;
 import com.example.pickitup.service.TempAdminService;
 import com.example.pickitup.service.TempCompanyService;
 import com.example.pickitup.service.TempProductService;
@@ -28,7 +31,9 @@ import org.springframework.web.servlet.view.RedirectView;
 
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.xml.ws.Service;
+import java.util.List;
 
 @Controller
 @Slf4j
@@ -53,12 +58,23 @@ public class AdminController {
 
     // 관리자 게시물 목록
     @GetMapping("/boardList")
-    public void boardList(Criteria criteria, Model model){
+    public void boardList(AdminCriteria adminCriteria, Model model){
         log.info("==========");
         log.info("===List===");
         log.info("==========");
-        model.addAttribute("adminboardList", tempAdminService.getAdminboardList(criteria));
-        model.addAttribute("adminBoardPageDTO",new AdminBoardPageDTO(criteria, (tempAdminService.getAdminBoardCount(criteria))));
+        log.info("=====pagenum : "+adminCriteria.getPageNum());
+        log.info("=====amount : "+adminCriteria.getAmount());
+        log.info("====adminboardcount : " + adminCriteria.getAdminBoardCount());
+
+        if(adminCriteria.getEndDate()==""){
+            adminCriteria.setStartDate(null);
+        }
+        if(adminCriteria.getEndDate()==""){
+            adminCriteria.setEndDate(null);
+        }
+
+        model.addAttribute("adminboardList", tempAdminService.getAdminboardList(adminCriteria));
+        model.addAttribute("adminBoardPageDTO",new AdminBoardPageDTO(adminCriteria, (tempAdminService.getAdminBoardCount(adminCriteria))));
     }
 
     // 관리자 게시물 등록
@@ -77,6 +93,20 @@ public class AdminController {
         rttr.addFlashAttribute("num", adminBoardVO.getNum());
         return new RedirectView("/admin/main");
     }
+
+    // 관리자 adminboard 체크 삭제
+    @ResponseBody
+    @PostMapping("/deleteById")
+    public String deleteById(Long num, HttpServletRequest request){
+        String[] ajaxMsg = request.getParameterValues("valueArr");
+        int size = ajaxMsg.length;
+        for(int i = 0; i<size; i++){
+            num = Long.parseLong(ajaxMsg[i]);
+                tempAdminService.deleteById(num);
+            }
+        return "/admin/boardList";
+        }
+
 
 
     // 관리자 주문 목록

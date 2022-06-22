@@ -1,6 +1,7 @@
 package com.example.pickitup.service.user;
 
 
+import com.example.pickitup.domain.vo.AdminCriteria;
 import com.example.pickitup.domain.vo.dto.PointDTO;
 
 import com.example.pickitup.domain.vo.Criteria;
@@ -108,7 +109,7 @@ public class TempUserServiceTests {
 
     @Test
     public void getNoticeListTest(){
-        tempAdminService.getNoticeList(new Criteria()).stream().map(AdminBoardDTO::toString).forEach(log::info);
+        tempAdminService.getNoticeList(new AdminCriteria()).stream().map(AdminBoardDTO::toString).forEach(log::info);
     }
 
     @Test
@@ -124,12 +125,17 @@ public class TempUserServiceTests {
 
     @Test
     public void getAdminBoardCountTest() {
-        log.info("adminboard 글 총개수 : " + tempAdminService.getAdminBoardCount(new Criteria(1,10)));
+        log.info("adminboard 글 총개수 : " + tempAdminService.getAdminBoardCount(new AdminCriteria(1,10)));
     }
 
     @Test
     public void getAdminboardListTest(){
-        tempAdminService.getAdminboardList(new Criteria());
+        tempAdminService.getAdminboardList(new AdminCriteria());
+    }
+
+    @Test
+    public void deleteByIdTest(){
+        tempAdminService.deleteById(47L);
     }
 
 }
