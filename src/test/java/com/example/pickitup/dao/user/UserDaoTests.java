@@ -103,6 +103,7 @@ public class UserDaoTests {
             userDAO.getAdminboardList(new Criteria(1, 10));
         }
 
-
+        @Test
+        public void nicknameCheckTest() { log.info("결과 : " + userDAO.nicknameCheck("짜리킴"));}
     }
 

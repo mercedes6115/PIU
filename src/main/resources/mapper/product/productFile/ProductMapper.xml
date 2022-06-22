@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.pickitup.mapper.product.productFile.ProductMapper">
-<<<<<<< HEAD
+
     <!--상품 리스트-->
-    <select id="getList">
-=======
+<!--    <select id="getList">-->
+
     <!--상품 리스트 관리자용-->
     <select id="getProductList" resultType="productVO">
     <![CDATA[
->>>>>>> 3c95ef56a8c609bd027606cac82202479ffe8fac
     SELECT
         NUM, NAME, CONTENT, CATEGORY, PRICE, STOCK,
         ORIGIN, MANUFACTURER, SUPPLIER, REGIST_DATE
@@ -40,9 +39,6 @@
                     </when>
                 </choose>
                 <choose>
-                    <when test="type1 == 'total'.toString()">
-                        AND CATEGORY = '생활'
-                    </when>
                     <when test="type1 == 'life'.toString()">
                         AND CATEGORY = '생활'
                     </when>
@@ -89,6 +85,11 @@
         <![CDATA[
         WHERE RN > (#{pageNum} - 1) * #{amount}
         ]]>
+    </select>
+
+    <select id="getList" resultType="productVO">
+        SELECT NUM, NAME, CONTENT, CATEGORY, PRICE, STOCK, ORIGIN, MANUFACTURER, SUPPLIER, REGIST_DATE, STATUS, JJIM_COUNT
+        FROM TBL_PRODUCT
     </select>
 
     <select id="getTotal" resultType="_int">

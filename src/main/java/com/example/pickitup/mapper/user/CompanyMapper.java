@@ -2,6 +2,7 @@ package com.example.pickitup.mapper.user;
 
 import com.example.pickitup.domain.vo.user.CompanyVO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -27,11 +28,11 @@ public interface CompanyMapper {
 
 //    public
 
-<<<<<<< HEAD
-    public CompanyVO login(String email, String password);
-=======
-    public CompanyVO login(@Param("email") String email,@Param("password") String password);
->>>>>>> aaa195bbb080f46b8d59940d88f16a44bcfd8356
+
+//    public CompanyVO login(String email, String password);
+
+    public CompanyVO login(@Param("email") String email, @Param("password") String password);
+
 
 
 }

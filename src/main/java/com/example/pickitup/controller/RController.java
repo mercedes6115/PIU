@@ -1,5 +1,6 @@
 package com.example.pickitup.controller;
 
+import com.example.pickitup.service.TempUserSerivce;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/pickitup/*")
 @RequiredArgsConstructor
 public class RController {
+    private final TempUserSerivce tempUserSerivce;
 
     // 댓글
     @PostMapping("/comment")
@@ -51,13 +53,16 @@ public class RController {
     public void removeJjim(){
 
     }
-<<<<<<< HEAD
-=======
     //이메일 중복확인
     @PostMapping("/emailMatching")
     public int match(@RequestParam String email){
         log.info("email test 띄워짐? : "+email.toString());
         return tempUserSerivce.emailcheck(email);
     }
->>>>>>> aaa195bbb080f46b8d59940d88f16a44bcfd8356
+
+    //닉네임 중복확인
+    @PostMapping("/nicknameMatching")
+    public boolean nicknameMatch(@RequestParam String nickname){
+        return tempUserSerivce.nicknameCheck(nickname);
+    }
 }

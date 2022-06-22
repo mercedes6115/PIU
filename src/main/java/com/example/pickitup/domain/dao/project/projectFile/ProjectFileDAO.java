@@ -14,7 +14,7 @@ public class ProjectFileDAO {
 
     private final ProjectFileMapper projectFileMapper;
     // 파일 경로 가져오기
-    public List<ProjectFileVO> findProjectNum(Long num) {
+    public List<ProjectFileVO> findByProjectNum(Long num) {
         return projectFileMapper.findByProjectNum(num);
     }
 

@@ -12,8 +12,8 @@ public class ProjectFileDaoTests {
     @Autowired
     private ProjectFileDAO projectFileDAO;
 
-    @Test
-    public void findByProjectNum() {
-        projectFileDAO.findProjectNum(22L);
-    }
+//    @Test
+//    public void findByProjectNum() {
+//        projectFileDAO.findProjectNum(22L);
+//    }
 }

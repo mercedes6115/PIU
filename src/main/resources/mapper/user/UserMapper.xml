@@ -2,51 +2,35 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.pickitup.mapper.user.UserMapper">
 
-<!--    <select id="getList" resultType="boardVO">
-        <![CDATA[
-        SELECT
-        ROWNUM RN, NUM, EMAIL, PASSWORD, NICKNAME,PHONE, ADDRESS, PROFILE_FILE_NAME, PROFILE_UPLOAD_PATH,POINT, REGIST_DATE
-        FROM
-        (
-            SELECT /*+ INDEX_DESC(TBL_USER SYS_C007234) */
-            ROWNUM RN, NUM, EMAIL, PASSWORD, NICKNAME,PHONE, ADDRESS, PROFILE_FILE_NAME, PROFILE_UPLOAD_PATH,POINT, REGIST_DATE
-            FROM TBL_USER
-            WHERE ROWNUM <= #{pageNum} * #{amount}
-        )
-        WHERE
-        WHERE RN > (#{pageNum} - 1) * #{amount}
-        ]]>
-    </select>-->
 
-
-    <select id="getDetail" resultType="userVo">
+<!--마이페이지, 관리자 사용-->
+    <select id="getDetail" resultType="userVO">
         SELECT
-        NUM, EMAIL, NICKNAME,PHONE, ADDRESS, PROFILE_FILE_NAME, PROFILE_UPLOAD_PATH, POINT, REGIST_DATE
+        NUM, EMAIL, NICKNAME,PHONE, ADDRESS, PROFILE_FILE_NAME, PROFILE_UPLOAD_PATH, POINT, REGIST_DATE, CATEGORY, ADDRESS_DETAIL
         FROM TBL_USER
         WHERE NUM=#{num}
     </select>
-
+<!--회원 가입-->
     <insert id="insert">
         INSERT INTO TBL_USER
-        (NUM, EMAIL, PASSWORD, NICKNAME, PHONE, ADDRESS, PROFILE_FILE_NAME, PROFILE_UPLOAD_PATH,REGIST_DATE)
-        VALUES(SEQ_USER.NEXTVAL,#{email}, #{password}, #{nickname}, #{phone}, #{address}, #{profileFileName}, #{profileUploadPath}, SYSDATE)
+        (NUM, EMAIL, PASSWORD, NICKNAME, PHONE, ADDRESS,ADDRESS_DETAIL, REGIST_DATE)
+        VALUES(SEQ_USER.NEXTVAL,#{email}, #{password}, #{nickname}, #{phone}, #{address},#{addressDetail}, SYSDATE)
     </insert>
-
+<!--회원탈퇴-->
     <delete id="delete">
         DELETE FROM TBL_USER
         WHERE NUM=#{num}
     </delete>
 
-<!--    -->
+<!--  회원 수정  -->
     <update id="update">
         UPDATE TBL_USER
         SET EMAIL=#{email}, PASSWORD=#{password}, NICKNAME=#{nickname}, PHONE=#{phone},ADDRESS=#{address},
-        PROFILE_FILE_NAME=#{profileFileName}, PROFILE_UPLOAD_PATH=#{profileUploadPath}, REGIST_DATE=SYSDATE
+        ADDRESS_DETAIL=#{addressDetail},PROFILE_FILE_NAME=#{profileFileName}, PROFILE_UPLOAD_PATH=#{profileUploadPath}, REGIST_DATE=SYSDATE,
+        CATEGORY=#{category}
         WHERE NUM=#{num}
     </update>
 
-<<<<<<< HEAD
-=======
 <!--    ROWNUM : SELECT문에서 사용되어지는 가상컬럼이다.-->
 <!--    가상컬럼이란 물리적으로 테이블에 저장된 값이 아니라-->
 <!--    SELECT문에서 FROM절과 WHERE절에 의해서 해당 데이타가-->
@@ -219,6 +203,16 @@
         WHERE EMAIL=#{email}
     </select>
 
+    <select id="nicknameMatching" resultType="_int">
+        SELECT COUNT(NICKNAME)
+        FROM
+            (SELECT NICKNAME
+            FROM TBL_USER
+            UNION
+            SELECT NICKNAME
+            FROM TBL_COMPANY )
+        WHERE NICKNAME=#{nickname}
+    </select>
 
 
     <select id="getNoticeList" resultType="adminBoardVO">
@@ -327,7 +321,6 @@
     </select>
 
 
->>>>>>> 3c95ef56a8c609bd027606cac82202479ffe8fac
 
 
 

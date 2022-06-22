@@ -13,7 +13,7 @@
     <select id="findByProjectNum" resultType="projectFileVO">
         SELECT UUID, UPLOAD_PATH, FILE_NAME, PROJECT_NUM
         FROM TBL_PROJECT_FILE
-        WHERE UUID = #{projectNum}
+        WHERE PROJECT_NUM = #{projectNum}
     </select>
 
     <select id="getOldFiles" resultType="projectFileVO">

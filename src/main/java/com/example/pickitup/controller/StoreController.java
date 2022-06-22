@@ -34,12 +34,13 @@ import java.util.List;
 @Controller
 @Slf4j
 @RequestMapping("/store/*")
+@RequiredArgsConstructor
 public class StoreController {
 
 
     // 스토어 메인페이지
-    @GetMapping("/main")
-    public void storeMain(){
+//    @GetMapping("/main")
+//    public void storeMain(){
 
 
     private final ProductService productService;
@@ -56,7 +57,7 @@ public class StoreController {
         }
         model.addAttribute("productsCount",productService.count());
 
-        model.addAttribute("productlist",productService.getList());
+//        model.addAttribute("productlist",productService.getList());
 
 
         model.addAttribute("productlist",productService.getList(category));
@@ -76,9 +77,9 @@ public class StoreController {
 
     // 스토어 상세페이지
     @GetMapping("/detail")
-
-    public void storeDetail(){
-
+//
+//    public void storeDetail(){
+//
 
     public String storeDetail(Long num ,Model model){
         model.addAttribute("count",productReviewService.count(num));
@@ -101,10 +102,10 @@ public class StoreController {
 
     // 스토어 리뷰 작성 폼
     @PostMapping("/reviewWrite")
-
-    public void reviewWriteForm(){
-
-    public void reviewWriteForm(ProductReviewVO productReviewVO, Model model){
+//
+//    public void reviewWriteForm(){
+//
+//    public void reviewWriteForm(ProductReviewVO productReviewVO, Model model){
 
     public String reviewWriteForm(ProductReviewVO productReviewVO, Model model){
 
