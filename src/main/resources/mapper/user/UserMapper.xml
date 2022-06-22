@@ -64,12 +64,42 @@
     </select>
 
 
-    <select id="login" resultType="userVO">
+    <select id="login" resultType="userDTO">
 
-        SELECT NUM, NICKNAME
+        SELECT NUM, NICKNAME, CATEGORY, EMAIL
+        FROM
+        (SELECT NUM, NICKNAME, CATEGORY, PASSWORD ,EMAIL
         FROM TBL_USER
+        UNION
+        SELECT NUM, NICKNAME, CATEGORY , PASSWORD, EMAIL
+        FROM TBL_COMPANY)
         WHERE EMAIL=#{email} AND PASSWORD=#{password}
 
+
+    </select>
+
+<!--이메일 중복 체크-->
+    <select id="emailMatching" resultType="_int">
+        SELECT COUNT(EMAIL)
+        FROM
+            (SELECT EMAIL
+            FROM TBL_USER
+            UNION
+            SELECT EMAIL
+            FROM TBL_COMPANY )
+        WHERE EMAIL=#{email}
+    </select>
+
+    <!--닉네임 중복 체크-->
+    <select id="nicknameMatching" resultType="_int">
+        SELECT COUNT(NICKNAME)
+        FROM
+            (SELECT NICKNAME
+            FROM TBL_USER
+            UNION
+            SELECT NICKNAME
+            FROM TBL_COMPANY )
+        WHERE NICKNAME=#{nickname}
     </select>
 
 
@@ -191,16 +221,7 @@
     </select>
 
 
-    <select id="emailMatching" resultType="_int">
-        SELECT COUNT(EMAIL)
-        FROM
-            (SELECT EMAIL
-            FROM TBL_USER
-            UNION
-            SELECT EMAIL
-            FROM TBL_COMPANY )
-        WHERE EMAIL=#{email}
-    </select>
+
 
 
 

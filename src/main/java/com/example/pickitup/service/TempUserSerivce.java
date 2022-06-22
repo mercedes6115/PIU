@@ -6,6 +6,7 @@ import com.example.pickitup.domain.dao.project.projectFile.ProjectFileDAO;
 import com.example.pickitup.domain.dao.user.*;
 import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.dto.PointDTO;
+import com.example.pickitup.domain.vo.dto.UserDTO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 import com.example.pickitup.domain.vo.user.*;
@@ -69,13 +70,17 @@ public class TempUserSerivce {
     }
 
 
-    public UserVO loginUser(String email, String password){
+    public UserDTO loginUser(String email, String password){
         return userDAO.login(email,password);
     }
 
     //  이메일 중복검사
     public int emailcheck(String email){
-        return userDAO.emailcheck(email);
+        return userDAO.emailCheck(email);
+    };
+    //  닉네임 중복검사
+    public int nicknameCheck(String nickname){
+        return userDAO.nicknameCheck(nickname);
     };
 
 

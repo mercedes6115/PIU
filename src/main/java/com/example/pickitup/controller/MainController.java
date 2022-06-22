@@ -1,8 +1,8 @@
 package com.example.pickitup.controller;
 
-import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 import com.example.pickitup.service.project.projectFile.ProjectFileService;
 import com.example.pickitup.service.project.projectFile.ProjectService;
+import com.example.pickitup.Util.SessionManager;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -10,11 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 
 @Controller
 @Slf4j
@@ -23,37 +20,15 @@ import java.util.List;
 public class MainController {
     private final ProjectService projectService;
     private final ProjectFileService projectFileService;
-
-
+    private final SessionManager sessionManager;
 
     // 메인페이지
     @GetMapping("/main")
-    public String main(Model model) throws ParseException {
+    public String main(HttpServletRequest request,Model model) throws ParseException {
+       boolean checkLogin= sessionManager.checkSession(request.getSession());
+       model.addAttribute("checkLogin",checkLogin);
+       return "/main/main";
 
-//        List<ProjectVO> aaaa = projectService.getListJJim();
-//
-//        for(ProjectVO aa : aaaa) {
-//            String strDate = aa.getProjectDate();  // 기준 날짜 데이터 (("yyyy-MM-dd")의 형태)
-//            String todayFm = new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())); // 오늘날짜
-//
-//            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//
-//            Date date = new Date(dateFormat.parse(strDate).getTime());
-//            Date today = new Date(dateFormat.parse(todayFm).getTime());
-//
-//            long calculate = date.getTime() - today.getTime();
-//
-//            int Ddays = (int) (calculate / ( 24*60*60*1000));
-////            aa.setDday(Ddays);
-//            System.out.println("두 날짜 차이일 : " + Ddays);
-//
-////            dDayMap.put(v,  Ddays);
-//
-//        }
-//
-////        model.addAttribute("dDayMap" , dDayMap);
-
-        return test(model);
     }
 
 
@@ -67,6 +42,8 @@ public class MainController {
 
         return "/main/main";
     }
+
+
 
 
 

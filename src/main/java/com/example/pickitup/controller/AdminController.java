@@ -41,8 +41,8 @@ public class AdminController {
 
     // 관리자 로그인
     @GetMapping("/login")
-    public void login(){
-
+    public String login(){
+        return "/admin/main";
     }
 
     // 관리자 메인

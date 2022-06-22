@@ -55,7 +55,7 @@ public interface UserMapper {
     public boolean delete(Long num);
 
 //    로그인
-    public UserVO login(@Param("email") String email, @Param("password") String password);
+    public UserDTO login(@Param("email") String email, @Param("password") String password);
 
 // 포인트 적립?
 
@@ -70,6 +70,8 @@ public interface UserMapper {
 
 //  이메일 중복검사
     public int emailMatching(@Param("email") String email);
+//  닉네임 중복검사
+    public int nicknameMatching(@Param("nickname") String nickname);
 
 //    비밀번호 변경
     public boolean updatePW(@Param("email") String email);
