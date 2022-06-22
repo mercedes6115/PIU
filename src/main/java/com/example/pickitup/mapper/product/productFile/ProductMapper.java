@@ -29,4 +29,7 @@ public interface ProductMapper {
 
     //    상품 삭제하기 ->관리자
     public boolean delete(Long num);
+
+    // 상품 전체 개수
+    public int count();
 }

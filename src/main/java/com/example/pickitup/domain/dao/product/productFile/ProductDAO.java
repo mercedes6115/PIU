@@ -50,6 +50,9 @@ public class ProductDAO {
 
 
     // 상품 개수 - 관리자용
+    public int count(){
+        return productMapper.count();
+    }
 
 
 }
