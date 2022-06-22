@@ -18,10 +18,10 @@ public class ProductMapperTest {
 //        productMapper.getList(null).stream().map(ProductVO::toString).forEach(log::info);
 //    }
 //
-//    @Test
-//    public void getDetailTest(){
-//        productMapper.getDetail(23L);
-//    }
+    @Test
+    public void getDetailTest(){
+        productMapper.getDetail(2L);
+    }
 //
 //    @Test
 //    public void insertTest(){

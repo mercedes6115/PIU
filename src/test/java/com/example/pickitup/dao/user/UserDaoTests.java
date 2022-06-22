@@ -2,6 +2,7 @@ package com.example.pickitup.dao.user;
 
 import com.example.pickitup.domain.dao.user.UserDAO;
 import com.example.pickitup.domain.vo.Criteria;
+import com.example.pickitup.domain.vo.adminVO.AdminBoardDTO;
 import com.example.pickitup.domain.vo.user.AdminBoardVO;
 import com.example.pickitup.domain.vo.user.UserVO;
 import lombok.extern.slf4j.Slf4j;
@@ -16,12 +17,12 @@ public class UserDaoTests {
     private UserDAO userDAO;
 
     @Test
-    public void getDetail(){
+    public void getDetail() {
         log.info("한명의 유저" + userDAO.read(22L));
     }
 
     @Test
-    public void insertTest(){
+    public void insertTest() {
         UserVO userVO = new UserVO();
         userVO.setEmail("a45665n@naber.com");
         userVO.setPassword("dfdf");
@@ -32,7 +33,7 @@ public class UserDaoTests {
     }
 
     @Test
-    public void updateTest(){
+    public void updateTest() {
         UserVO userVO = new UserVO();
         userVO.setNum(2L);
         userVO.setEmail("fgdg@naber.com");
@@ -42,28 +43,28 @@ public class UserDaoTests {
         userVO.setAddress("서울특별시 zdfgdfg 역삼동");
         userVO.setProfileFileName("adfffaaa");
         userVO.setProfileUploadPath("fffffff");
-        log.info("수정"+ userDAO.update(userVO));
+        log.info("수정" + userDAO.update(userVO));
     }
 
     @Test
-    public void deleteTest(){
-        log.info("삭제"+userDAO.remove(22L));
+    public void deleteTest() {
+        log.info("삭제" + userDAO.remove(22L));
     }
 
     @Test
     public void loginTest(){
-        int check=1;
-        if(check==userDAO.login("ddd","dddd")){
+        if(userDAO.login("ddd","dddd")!=null){
             log.info("로그인 성공");
         }
     }
 
     public void getInProductTest() {
-        userDAO.getInProjectList(2L);
+        userDAO.getInProductList(2L);
     }
 
     @Test
-    public void registerWriteTest(){
+    public void registerWriteTest () {
+
         AdminBoardVO adminBoardVO = new AdminBoardVO();
         adminBoardVO.setTitle("DAO새로운 공지글 제목2");
         adminBoardVO.setContent("DAO새로운 공지글 내용2");
@@ -72,22 +73,36 @@ public class UserDaoTests {
         userDAO.registerWrite(adminBoardVO);
 
         log.info("게시글 번호 : " + adminBoardVO.getNum());
+        }
+
+        @Test
+        public void getReadDetailTest () {
+            Long num = 12L;
+            userDAO.getReadDetail(num);
+        }
+
+
+        @Test
+        public void getNoticeListTest () {
+            userDAO.getNoticeList(new Criteria()).stream().map(AdminBoardDTO::toString).forEach(log::info);
+        }
+
+        @Test
+        public void getNoticeTotalTest () {
+            log.info("공지글 총 개수 : " + userDAO.getNoticeTotal());
+        }
+
+
+        @Test
+        public void getAdminBoardCountTest () {
+            log.info("adminboard 글 총 개수 : " + userDAO.getAdminBoardCount(new Criteria(1, 10)));
+        }
+
+        @Test
+        public void getAdminboardListTest () {
+            userDAO.getAdminboardList(new Criteria(1, 10));
+        }
+
+
     }
 
-    @Test
-    public void getReadDetailTest(){
-        Long num = 12L;
-        userDAO.getReadDetail(num);
-    }
-
-
-    @Test
-    public void getNoticeListTest(){
-        userDAO.getNoticeList(new Criteria()).stream().map(AdminBoardVO::toString).forEach(log::info);
-    }
-
-    @Test
-    public void getNoticeTotalTest(){
-        log.info("총 개수 : " + userDAO.getNoticeTotal());
-    }
-}
