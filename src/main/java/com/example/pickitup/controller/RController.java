@@ -59,4 +59,10 @@ public class RController {
         log.info("email test 띄워짐? : "+email.toString());
         return tempUserSerivce.emailcheck(email);
     }
+
+    //닉네임 중복확인
+    @PostMapping("/nicknameMatching")
+    public boolean nicknameMatch(@RequestParam String nickname){
+        return tempUserSerivce.nicknameCheck(nickname);
+    }
 }

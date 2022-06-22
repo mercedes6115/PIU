@@ -100,14 +100,16 @@ public class UserController {
 
     // 회원 정보 수정
     @GetMapping("/infoUpdate")
-    public void infoUpdate(){
-
+    public void infoUpdate(Model model){
+        model.addAttribute("user", tempUserSerivce.readUserInfo(2L));
     }
 
     // 회원 정보 수정 폼
     @PostMapping("/infoUpdate")
-    public void infoUpdateForm(){
+    public RedirectView infoUpdateForm(UserVO userVO, RedirectAttributes rttr){
+        tempUserSerivce.updateUserInfo(userVO);
 
+        return new RedirectView("/user/myPage");
     }
 
     // 일반 유저 회원가입

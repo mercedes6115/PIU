@@ -6,7 +6,7 @@
 <!--마이페이지, 관리자 사용-->
     <select id="getDetail" resultType="userVO">
         SELECT
-        NUM, EMAIL, NICKNAME,PHONE, ADDRESS, PROFILE_FILE_NAME, PROFILE_UPLOAD_PATH, POINT, REGIST_DATE
+        NUM, EMAIL, NICKNAME,PHONE, ADDRESS, PROFILE_FILE_NAME, PROFILE_UPLOAD_PATH, POINT, REGIST_DATE, CATEGORY, ADDRESS_DETAIL
         FROM TBL_USER
         WHERE NUM=#{num}
     </select>
@@ -26,7 +26,8 @@
     <update id="update">
         UPDATE TBL_USER
         SET EMAIL=#{email}, PASSWORD=#{password}, NICKNAME=#{nickname}, PHONE=#{phone},ADDRESS=#{address},
-        ADDRESS_DETAIL=#{addressDetail},PROFILE_FILE_NAME=#{profileFileName}, PROFILE_UPLOAD_PATH=#{profileUploadPath}, REGIST_DATE=SYSDATE
+        ADDRESS_DETAIL=#{addressDetail},PROFILE_FILE_NAME=#{profileFileName}, PROFILE_UPLOAD_PATH=#{profileUploadPath}, REGIST_DATE=SYSDATE,
+        CATEGORY=#{category}
         WHERE NUM=#{num}
     </update>
 
@@ -202,6 +203,16 @@
         WHERE EMAIL=#{email}
     </select>
 
+    <select id="nicknameMatching" resultType="_int">
+        SELECT COUNT(NICKNAME)
+        FROM
+            (SELECT NICKNAME
+            FROM TBL_USER
+            UNION
+            SELECT NICKNAME
+            FROM TBL_COMPANY )
+        WHERE NICKNAME=#{nickname}
+    </select>
 
 
     <select id="getNoticeList" resultType="adminBoardVO">

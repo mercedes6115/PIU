@@ -48,6 +48,7 @@ public class TempUserSerivce {
 
     // 유저 정보 수정
     public boolean updateUserInfo(UserVO userVO) {
+
         return userDAO.update(userVO);
     }
 
@@ -78,6 +79,8 @@ public class TempUserSerivce {
         return userDAO.emailcheck(email);
     };
 
+    //  닉네임 중복검사
+    public boolean nicknameCheck(String nickname) {return userDAO.nicknameCheck(nickname);}
 
     // jjimDAO
     // 나의 프로젝트 찜 목록
