@@ -129,6 +129,10 @@
         STATUS=#{status}
     WHERE NUM=#{num};
     </update>
+
+    <select id="count" resultType="_int">
+    SELECT COUNT(NUM) FROM TBL_PRODUCT
+    </select>
 </mapper>
 
 

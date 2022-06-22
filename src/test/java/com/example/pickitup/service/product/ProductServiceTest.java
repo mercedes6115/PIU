@@ -56,4 +56,9 @@ public class ProductServiceTest {
 //    public void deleteTest(){
 //        productService.remove(23L);
 //    }
+
+    @Test
+    public void countTest(){
+        productService.count();
+    }
 }

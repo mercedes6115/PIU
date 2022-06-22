@@ -51,7 +51,7 @@
              <div class="store_items">
                  <div class="onetime">
                      <h4 class="items_header">전체 상품 목록 &nbsp;</h4>
-                     <p class="item_headerp">600개</p>
+                     <p class="item_headerp" th:text="|${productsCount} 개|"></p>
                  </div>
                  <div class="all_items">
 
@@ -282,6 +282,7 @@
                                                  favorite
                                                  </span></div>
                                              </div>
+<<<<<<< HEAD
                                      <div style="height: 18px;">
                                          <p class="store_item_price">800P</p>
                                      </div>
@@ -320,6 +321,14 @@
                                      <div class="flex" style="flex-direction: column; margin: 12px 0;">
                                          <div>
                                              <p class="store_main_item_title">[아시아 종묘] 코코넛 화분</p>
+=======
+                                             <div style="display: flex; align-items: end; margin-top: 5px">
+                                                 <span class="material-symbols-outlined" style="font-size: 12px;">
+                                                     favorite
+                                                 </span>
+                                                 <small style="font-size: 11px; margin-left: 5px">300..</small>
+                                             </div>
+>>>>>>> aaa195bbb080f46b8d59940d88f16a44bcfd8356
                                          </div>
                                          <div style="margin-top: 6px; height: 16px;">
                                              <p class="store_main_item_category">아시아 화분</p>
@@ -359,6 +368,52 @@
     $('.toTop').click(function(){
         $('html, body').animate({scrollTop : 0},300);
     });
+<<<<<<< HEAD
+=======
+
+    $('.goDetail').click(function (e) {
+        e.preventDefault();
+        location.href = "/store/detail?num="+$(this).attr('href');
+    })
+
+    //메인 사진 받아오기
+    $('.goDetail').each(function(i, h) {
+        let productNum=$(this).attr("href");
+        $.ajax({
+            url: "/productFile/list/"+productNum,
+            type : "get",
+            success : function (files) {
+                // let str = "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
+                let str = "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
+                $(h).html(str);
+                // $("img#"+productNum).attr("src", "/upload/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName )
+            }
+        })
+    })
+    // function showUploadResult(files){
+    //     let str ="";
+    //     $(files).each(function(i, file){
+    //         str += "<li data-filename='" + file.fileName + "' data-uuid='" + file.uuid + "' data-uploadpath='" + file.uploadPath + "' data-image='" + file.image + "'>";
+    //         if(file.image){
+    //             str += "<a href=\"javascript:showImage(\'" + file.uploadPath + "/" + file.uuid + "_" + file.fileName +"\');\"><img src='/upload/display?fileName=" + file.uploadPath + "/s_" + file.uuid + "_"  + file.fileName + "'></a>";
+    //         }else{
+    //             str += "<a href='/upload/download?fileName=" + file.uploadPath + "/" + file.uuid + "_" + file.fileName + "'><img src='/images/attach.png' width='100'></a>";
+    //         }
+    //         str += "<p>" + file.fileName + "</p>"
+    //         str += "</li>"
+    //     });
+    //     $uploadResult.html(str);
+    // }
+
+    // (function(){
+    //     $.getJSON("/upload/list", {productNum: 23}, function(list){
+    //         showUploadResult(list);})
+    // })();
+
+
+    //
+    //
+>>>>>>> aaa195bbb080f46b8d59940d88f16a44bcfd8356
     //정상웹 일때
     $('.store_categories li').click(function(){
         $('.store_categories li').removeClass('active');
@@ -385,6 +440,7 @@
         }else{
             $(this).addClass("red");
         }
+<<<<<<< HEAD
 
         // $.ajax({
         //     url : "", //찜table 연결하는곳
@@ -399,6 +455,13 @@
                 
         //     }
         // })
+=======
+    });
+
+    // 카테고리 클릭시 ajax
+    $(".store_categories ul li").click(function (e) {
+        e.preventDefault();
+>>>>>>> aaa195bbb080f46b8d59940d88f16a44bcfd8356
     })
 </script>
 

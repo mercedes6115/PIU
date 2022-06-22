@@ -40,4 +40,20 @@ public class UserDAO {
     }
 
     // 로그인 -> select count-> read() 사용?
+<<<<<<< HEAD
+=======
+    public UserVO login(String email, String password){
+        return userMapper.login(email,password);
+    }
+
+    //  이메일 중복검사
+    public int emailcheck(String email){
+        return userMapper.emailMatching(email);
+    };
+
+    //  비밀번호 수정
+    public boolean updatePW(String email){
+        return userMapper.updatePW(email);
+    };
+>>>>>>> aaa195bbb080f46b8d59940d88f16a44bcfd8356
 }

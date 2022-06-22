@@ -78,8 +78,7 @@ public class TempUserServiceTests {
 
     @Test
     public void loginTest(){
-        int check=1;
-        if(check==tempUserSerivce.loginUser("ddd","dddd")){
+        if(tempUserSerivce.loginUser("ddd","dddd")!=null){
             log.info("로그인 성공");
         }
     }

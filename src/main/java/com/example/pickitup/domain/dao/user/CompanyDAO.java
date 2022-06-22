@@ -34,4 +34,10 @@ public class CompanyDAO {
     }
 
     // 로그인 select count -> read 사용?
+<<<<<<< HEAD
+=======
+    public CompanyVO login(String email, String password){
+        return companyMapper.login(email,password);
+    }
+>>>>>>> aaa195bbb080f46b8d59940d88f16a44bcfd8356
 }

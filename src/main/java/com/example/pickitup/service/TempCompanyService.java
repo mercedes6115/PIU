@@ -41,6 +41,9 @@ public class TempCompanyService {
         return companyDAO.remove(num);
     }
 
+    public CompanyVO loginCompany(String email, String password){
+        return companyDAO.login(email,password);
+    }
 
 
     // projectQnaDAO
