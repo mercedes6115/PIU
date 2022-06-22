@@ -44,6 +44,7 @@
                     <div class="space flex" style="padding-left: 24px; justify-content: space-between;">
                         <div class="review_item_title" th:text="|[${product.category}] &nbsp ${product.name}|">
                         </div>
+                        <input type="hidden" name="productNum" th:value="${product.num}">
                     </div>
                     <div style="margin-bottom: 10px;"></div>
                     <div class="flex" style="text-align: left; padding: 0  0 10px 24px;">
@@ -71,7 +72,7 @@
 
                     <div style="margin-top: 8px;">
                         <div style="text-align: center;">
-                            <textarea class="user_review" name="" id="" cols="30" rows="10" required></textarea>
+                            <textarea class="user_review" name="content" id="" cols="30" rows="10" required></textarea>
                         </div>
                     </div>
                     <div class="reviewInfo">
@@ -124,24 +125,6 @@
                     thumbnail1.style.backgroundImage = "url(/images/error.png)";
                 }
             }
-
-        let formData =   new FormData();
-        let inputFile = $("input#attach1");
-        let files = inputFile[0].files;
-        console.log(files);
-        formData.append("uploadFiles", files);
-
-        $.ajax({
-            url: "/productFile/upload",
-            type: "post",
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function(files){
-                alert("success");
-                showUploadResult(files);
-            }
-        });
     });
 
     function number2(){
@@ -217,9 +200,10 @@
             contentType: false,
             processData: false,
             success: function(files){
-                alert('asdf');
+                alert('업로드성공');
             }
         });
+        registerForm.submit();
     });
 </script>
 </html>

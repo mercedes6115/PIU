@@ -86,10 +86,19 @@ public class StoreController {
 
     // 스토어 리뷰 작성 폼
     @PostMapping("/reviewWrite")
-    public void reviewWriteForm(ProductReviewVO productReviewVO, Model model){
+    public String reviewWriteForm(ProductReviewVO productReviewVO, Model model){
 //        model.addAttribute("user", productNum); 유저의 정보 가져와야함.?? 어떻게??
 //        model.addAttribute("product",productService.getDetail(productNum));
+        log.info("====================");
+        log.info("====================");
+        log.info("----------------------------------------");
+        log.info(productReviewVO.getProductNum().toString());
+        log.info("content" + productReviewVO.getContent());
+        log.info("----------------------------------------");
+        log.info("----------------------------------------");
+        productReviewVO.setUserNum(22L);
         productReviewService.insert(productReviewVO);
+        return storeDetail(productReviewVO.getProductNum(), model);
     }
     // 스토어 문의 목록
     @ResponseBody
