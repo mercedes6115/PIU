@@ -3,6 +3,7 @@ package com.example.pickitup.dao.product;
 import com.example.pickitup.domain.dao.product.productFile.ProductDAO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 import com.example.pickitup.mapper.product.productFile.ProductMapper;
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,7 +67,15 @@ public class ProductDaoTest {
 //    }
 
     @Test
+
+    public void countTest(){
+        productDAO.count();
+    }
+
+
+
     public void getDetailTest() {
         productDAO.getDetail(2L);
     }
+
 }

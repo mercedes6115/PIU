@@ -1,5 +1,7 @@
 package com.example.pickitup.controller;
 
+<<<<<<< HEAD
+=======
 import com.example.pickitup.domain.vo.dto.PageDTO;
 import com.example.pickitup.domain.vo.dto.PointDTO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
@@ -9,45 +11,41 @@ import com.example.pickitup.domain.vo.user.UserVO;
 import com.example.pickitup.service.TempCompanyService;
 import com.example.pickitup.service.TempUserSerivce;
 import lombok.RequiredArgsConstructor;
+>>>>>>> aaa195bbb080f46b8d59940d88f16a44bcfd8356
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
+<<<<<<< HEAD
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+=======
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
-
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.List;
+>>>>>>> aaa195bbb080f46b8d59940d88f16a44bcfd8356
 
 @Controller
 @Slf4j
-@RequiredArgsConstructor
 @RequestMapping("/user/*")
 public class UserController {
+<<<<<<< HEAD
+=======
     private final TempUserSerivce tempUserSerivce;
     private final TempCompanyService tempCompanyService;
+>>>>>>> aaa195bbb080f46b8d59940d88f16a44bcfd8356
 
     // 마이페이지 메인
     @GetMapping("/myPage")
-    public String mypage(Model model){
-        model.addAttribute("jjimProjectList", tempUserSerivce.getJjimProjectList(2L));
-        model.addAttribute("jjimProductList", tempUserSerivce.getJjimProductList(2L));
-        model.addAttribute("inProductList",tempUserSerivce.getInProductList(2L));
-        model.addAttribute("inProjectList",tempUserSerivce.getInProjectList(2L));
-        model.addAttribute("seenProductList",tempUserSerivce.getLatestProductList(2L));
-        model.addAttribute("seenProjectList",tempUserSerivce.getLatestProjectList(2L));
-        model.addAttribute("getDetail",tempUserSerivce.readUserInfo(2L));
-        return "/user/myPage";
+    public void mypage(){
+
     }
 
     // 마이페이지 포인트
     @GetMapping("/myPoint")
-    public String mypoint(Model model) throws ParseException {
-        model.addAttribute("changePoint",tempUserSerivce.changePoint(2L));
-        model.addAttribute("user",tempUserSerivce.readUserInfo(2L));
-        return "/user/myPoint";
+    public void mypoint(){
+
     }
 
     // 마이페이지 QnA
@@ -74,22 +72,16 @@ public class UserController {
 
     }
 
-
-    @PostMapping("/findPw")
-    public void updatePwForm(@Param("email") String email){
-        tempUserSerivce.updatePW(email);
-    }
-
     // 비밀번호 재설정
     @GetMapping("/updatePw")
     public void updatePw(){
-    }
 
+    }
 
     // 비밀번호 재설정 폼
     @PostMapping("/updatePw")
-    public void updatePwForm2(@Param("email") String email){
-        tempUserSerivce.updatePW(email);
+    public void updatePwForm(){
+
     }
 
     // 회원정보 수정 전 비밀번호 확인
@@ -118,11 +110,16 @@ public class UserController {
 
     // 일반 유저 회원가입 폼
     @PostMapping("/join")
+<<<<<<< HEAD
+    public void joinForm(){
+
+=======
     public String joinForm(UserVO userVO){
         userVO.setPhone(String.join("",userVO.getPhone().split("-")));
         log.info(userVO.getPhone());
         tempUserSerivce.registerUser(userVO);
         return "/user/login";
+>>>>>>> aaa195bbb080f46b8d59940d88f16a44bcfd8356
     }
 
     // 단체 유저 회원가입
@@ -167,16 +164,6 @@ public class UserController {
     // 회원탈퇴
     @DeleteMapping("/delete")
     public void delete(){
-
-    }
-
-    @GetMapping("/guide")
-    public void guide(){
-
-    }
-
-    @GetMapping("/center")
-    public void center(){
 
     }
 }
