@@ -141,3 +141,12 @@ body {
   .join-input-table{
     display: block;
   }
+
+ .emailCheck{
+     border: 1px solid rgb(239, 239, 239);
+     background-color: rgb(222, 222, 222);
+     width: 25%;
+     font-size: 14px;
+     padding: 0px 16px;
+     cursor: pointer;
+ }
