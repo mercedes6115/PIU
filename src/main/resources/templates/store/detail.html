@@ -319,6 +319,9 @@
                 str += "</div>";
                 str += "<div class=\"reviewNameDate\">";
                 str += "<div class=\"reviewName\">"+reviewVO[i].userNum+"</div>";
+
+                //여기서 ajax로  reviewVO[i].num을 가지고 와서
+
                 str += "<div class=\"reviewDate\">"+reviewVO[i].updateDate+"</div>";
                 str += "</div>";
                 str += "</div>";
@@ -333,9 +336,6 @@
                 str += "</div>";
                 str += "</div>";
             }
-
-            // $.each(reviewVO, function(i, review){
-            // });
             $('.ProductReviews').html(str);
         }
     });
@@ -358,7 +358,7 @@
         success : function (files) {
             let str ="";
             if(files.length>1){
-                for(let i =0; i< files.length;i++){
+                for(let i =1; i< files.length;i++){
                     str += "<img src='/productFile/display?fileName=" + files[i].uploadPath + "/s_" + files[i].uuid + "_"  + files[i].fileName + "'>";
                     $(".subImage").append(str);
                 }

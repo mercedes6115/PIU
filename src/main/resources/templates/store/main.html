@@ -19,7 +19,7 @@
 
    <div class="media_store_categories">
            <ul style="display: flex; list-style: none;">
-               <li class="active"><a href="/store/main" th:value="전체">전체</a></li>
+               <li class="active"><a href="" th:value="전체">전체</a></li>
                <li><a href="생활">생활</a></li>
                <li><a href="주방">주방</a></li>
                <li><a href="욕실">욕실</a></li>
@@ -56,33 +56,31 @@
                  </div>
                  <div class="all_items">
                      <ul>
-                         <li>
-                             <div class=\"item\">
-                             <span class=\"material-symbols-outlined jjim jjim-ajax\">
-                             favorite
-                             </span>
-                             <a class=\"goDetail\" th:href=\""+list.num+"\"></a>
-                             <div class=\"flex\" style=\"flex-direction: column; margin: 12px 0;\">
-                             <div>
-                             <p class=\"store_main_item_title\" th:text=\""+list.name+"\"></p>
-                             </div>
-                             <div style=\"margin-top: 6px; height: 16px;\">
-                             <p class=\"store_main_item_category\" th:text=\""+list.category+"\"></p>
-                             </div>
-                             <div style=\"display: flex; align-items: end; margin-top: 5px\">
-                             <span class=\"material-symbols-outlined\" style=\"font-size: 12px;\">
-                             favorite
-                             </span>
-                             <small style=\"font-size: 11px; margin-left: 5px\">"+list.jjimCount+"</small>";
-                             </div>
-                             </div>
-                             <div style=height: 18px;>
-                             <p class=\"store_item_price\" th:text=|list.price|></p>
-                             </div>
-                             </a>
-                             </div>
-
-                         </li>
+<!--                         <li>-->
+<!--                             <div class="item">-->
+<!--                                 <span class="material-symbols-outlined jjim jjim-ajax">-->
+<!--                                     favorite-->
+<!--                                     </span>-->
+<!--                                 <a class="goDetail" th:href="*{num}"></a>-->
+<!--                                 <div class="flex" style="flex-direction: column; margin: 12px 0;">-->
+<!--                                     <div>-->
+<!--                                         <p class="store_main_item_title" th:text="*{name}"></p>-->
+<!--                                     </div>-->
+<!--                                     <div style="margin-top: 6px; height: 16px;">-->
+<!--                                         <p class="store_main_item_category" th:text="*{category}"></p>-->
+<!--                                     </div>-->
+<!--                                     <div style="display: flex; align-items: end; margin-top: 5px">-->
+<!--                                                 <span class="material-symbols-outlined" style="font-size: 12px;">-->
+<!--                                                     favorite-->
+<!--                                                 </span>-->
+<!--                                         <small style="font-size: 11px; margin-left: 5px">300..</small>-->
+<!--                                     </div>-->
+<!--                                 </div>-->
+<!--                                 <div style="height: 18px;">-->
+<!--                                     <p class="store_item_price" th:text="|*{price}P|"></p>-->
+<!--                                 </div>-->
+<!--                             </div>-->
+<!--                         </li>-->
                      </ul>
                  </div>
              </div>
@@ -109,22 +107,63 @@
         $('html, body').animate({scrollTop : 0},300);
     });
 
-    $('.goDetail').click(function (e) {
+    //이미지를 눌렀을떄
+    $('.all_items ul').on("click", ".goDetail" , function (e) {
         e.preventDefault();
-        location.href = "/store/detail?num="+$(this).attr('href');
+        location.href = "/store/detail?num="+$(this)[0].getAttribute('th:href');
     })
-    showmain();
-    function showmain(){
+
+
+    let category = "";
+    showmain(category);
+    function showmain(category){
         $.ajax({
             url : "/store/main",
             type: "post",
-            data : {category : $(this).attr("href")},
+            data : {category : category},
             success: function (lists) {
                 let str = "";
                 $(lists).each(function (i, list) {
-
+                    str += "<li>";
+                    str += "<div class=\"item\">";
+                    str += "<span class=\"material-symbols-outlined jjim jjim-ajax\">";
+                    str += "favorite";
+                    str += "</span>";
+                    str += "<a class=\"goDetail\" th:href=\""+list.num+"\" style=\"cursor:pointer\">";
+                    (function (i) {
+                        $.ajax({
+                            url: "/productFile/list/"+list.num,
+                            type : "get",
+                            async:false,  // ajax 안에 ajax를 사용할때는 동기식으로 바꿔줘야함
+                            success : function (files) {
+                                // let str = "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
+                                str += "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
+                                // $("img#"+productNum).attr("src", "/upload/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName )
+                            }
+                        })
+                    })(i);
+                    str += "</a>";
+                    str += "<div class=\"flex\" style=\"flex-direction: column; margin: 12px 0;\">";
+                    str += "<div>";
+                    str += "<p class=\"store_main_item_title\">"+list.name+"</p>";
+                    str += "</div>";
+                    str += "<div style=\"margin-top: 6px; height: 16px;\">";
+                    str += "<p class=\"store_main_item_category\">"+list.category+"</p>";
+                    str += "</div>";
+                    str += "<div style=\"display: flex; align-items: end; margin-top: 5px\">";
+                    str += "<span class=\"material-symbols-outlined\" style=\"font-size: 12px;\">";
+                    str += "favorite";
+                    str += "</span>";
+                    str += "<small style=\"font-size: 11px; margin-left: 5px\">300..</small>";
+                    str += "</div>";
+                    str += "</div>";
+                    str += "<div style=\"height: 18px;\">";
+                    str += "<p class=\"store_item_price\">"+list.price+"P</p>";
+                    str += "</div>";
+                    str += "</div>";
+                    str += "</li>";
                 })
-                $('.all_items ul li').html(str);
+                $('.all_items ul').html(str);
             }
         })
     }
@@ -133,56 +172,30 @@
     // 메인 ajax
     $('.store_categories a').click(function (e) {
         e.preventDefault();
-        $.ajax({
-                url : "/store/main",
-                type: "post",
-                data : {category : $(this).attr("href")},
-                success: function (lists) {
-                    let str = "";
-                   $(lists).each(function (i, list) {
-                      str += "<div class=\"item\">";
-                      str += "<span class=\"material-symbols-outlined jjim jjim-ajax\">";
-                      str += "favorite";
-                      str += "</span>";
-                      str += "<a class=\"goDetail\" th:href=\""+list.num+"\"></a>";
-                      str += "<div class=\"flex\" style=\"flex-direction: column; margin: 12px 0;\">";
-                      str += "<div>";
-                      str += "<p class=\"store_main_item_title\" th:text=\""+list.name+"\"></p>";
-                      str += "</div>";
-                      str += "<div style=\"margin-top: 6px; height: 16px;\">";
-                      str += "<p class=\"store_main_item_category\" th:text=\""+list.category+"\"></p>";
-                      str += "</div>";
-                      str += "<div style=\"display: flex; align-items: end; margin-top: 5px\">";
-                      str += "<span class=\"material-symbols-outlined\" style=\"font-size: 12px;\">";
-                      str += "favorite";
-                      str += "</span>";
-                      str += "<small style=\"font-size: 11px; margin-left: 5px\">"+list.jjimCount+"</small>";
-                      str += "</div>";
-                      str += "</div>";
-                      str += "<div style=\"height: 18px;\">";
-                      str += "<p class=\"store_item_price\" th:text=\"|"+list.price+"|\"></p>";
-                      str += "</div>";
-                      str += "</a>";
-                      str += "</div>";
-                   })
-                    $('.all_items ul li').html(str);
-                }
-        })
+        let category = $(this).attr('href');
+        showmain(category);
     })
-    $('.goDetail').each(function(i, h) {
-        //메인 사진 받아오기
-        let productNum=$(this).attr("href");
-        $.ajax({
-            url: "/productFile/list/"+productNum,
-            type : "get",
-            success : function (files) {
-                // let str = "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
-                let str = "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
-                $(h).html(str);
-                // $("img#"+productNum).attr("src", "/upload/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName )
-            }
-        })
+    // 메인 ajax
+    $('.media_store_categories a').click(function (e) {
+        e.preventDefault();
+        let category = $(this).attr('href');
+        showmain(category);
     })
+
+    // $('.goDetail').each(function(i, h) {
+    //     //메인 사진 받아오기
+    //     let productNum=$(this).attr("href");
+    //     $.ajax({
+    //         url: "/productFile/list/"+productNum,
+    //         type : "get",
+    //         success : function (files) {
+    //             // let str = "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
+    //             let str = "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
+    //             $(h).html(str);
+    //             // $("img#"+productNum).attr("src", "/upload/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName )
+    //         }
+    //     })
+    // })
 
     //정상웹 일때
     $('.store_categories li').click(function(){
@@ -205,7 +218,7 @@
     })
 
     //찜 ajax
-    $('.jjim-ajax').click(function() {
+    $('.all_items').on("click","jjim-ajax",function() {
         if ($(this).hasClass("red")) {
             $(this).removeClass("red");
         } else {

@@ -524,7 +524,7 @@ li.active a{
     .media_store_categories ul li a:hover{
         color: #1F89FF;
     }
-    .media_store_categories ul li.active{
+    .media_store_categories ul li.active a{
         color: #1F89FF;
     }
     .jjim{
