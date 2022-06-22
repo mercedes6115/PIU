@@ -16,8 +16,8 @@ public class ProductService {
 
 
     // 상품 목록
-    public List<ProductVO> getList(){
-        return productDAO.getList();
+    public List<ProductVO> getList(String category){
+        return productDAO.getList(category);
     }
     // 상품 디테일
     public ProductVO getDetail(Long num){
