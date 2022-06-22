@@ -146,7 +146,6 @@
                                     <!-- 각 리뷰-->
                                     <div class="ProductReviews"></div>
                                     <!-- 각 리뷰-->
-                                    <a class="moveReviewTotal"><span class="goTomoveReviewTotal" th:text="|*{count-4}개의 후기 더보기|"></span></a>
                                     <a class="moveReviewTotal">
                                         <span th:if="|*{count lt 4}|" th:text="|*{count}개의 후기 더보기|"></span>
                                         <span th:if="|*{count gt 3}|" class="goTomoveReviewTotal" th:text="|*{count-4}개의 후기 더보기|"></span>
