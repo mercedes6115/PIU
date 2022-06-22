@@ -2,6 +2,7 @@ package com.example.pickitup.controller;
 
 import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.dto.PageDTO;
+import com.example.pickitup.service.ProjectService;
 import com.example.pickitup.service.TempAdminService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,11 +20,13 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/group/*")
 public class GroupController {
     private final TempAdminService tempAdminService;
+    private final ProjectService projectService;
 
 
     // 그룹 메인
     @GetMapping("/main")
-    public void main(){
+    public void main(Model model, Criteria criteria){
+        model.addAttribute("projectList", projectService.getProjectList(10L,criteria ));
 
     }
 

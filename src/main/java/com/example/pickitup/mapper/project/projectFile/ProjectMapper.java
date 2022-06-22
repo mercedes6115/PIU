@@ -14,6 +14,9 @@ public interface ProjectMapper {
 //
     public List<ProjectVO> getProjectList(Criteria criteria);
 
+//  특정 유저의 프로젝트 목록
+    public List<ProjectVO> getUserProjectList(Long companyNum, Criteria criteria);
+
 //    프로젝트 한개만 띄우기
     public ProjectVO getDetail(Long num);
 

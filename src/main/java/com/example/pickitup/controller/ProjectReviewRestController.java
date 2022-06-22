@@ -1,36 +1,21 @@
 package com.example.pickitup.controller;
 
-
-import com.example.pickitup.domain.vo.product.productFile.ProductFileVO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectFileVO;
-import com.example.pickitup.service.product.productFile.ProductFileService;
-
-import com.example.pickitup.domain.vo.product.productReview.ProductReviewFileVO;
-import com.example.pickitup.service.product.productReview.ProductReviewFileService;
-
+import com.example.pickitup.domain.vo.project.projectReview.ProjectReviewFileVO;
+import com.example.pickitup.service.ProjectService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import net.coobird.thumbnailator.Thumbnailator;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
-
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
@@ -40,42 +25,34 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-@RestController
+@Controller
 @Slf4j
-@RequestMapping("/productReviewFile/*")
+@RequestMapping("/projectReviewFile/*")
 @RequiredArgsConstructor
-public class ProductReviewFileRestController {
-    private final ProductReviewFileService productReviewFileService;
+public class ProjectReviewRestController {
+
+    private final ProjectService projectService;
 
     @PostMapping("/upload")
     @ResponseBody
-    public List<ProductReviewFileVO> upload(MultipartFile[] uploadFiles) throws IOException {
-        log.info("들어옴");
-        log.info(uploadFiles[0].toString());
-        String uploadFolder = "C:/upload";
-        ArrayList<ProductReviewFileVO> files = new ArrayList<>();
+    public List<ProjectReviewFileVO> upload(MultipartFile[] uploadFiles) throws IOException {
+        String uploadFolder = "/Users/minmin/aigb_0900_sms/upload/";
+        ArrayList<ProjectReviewFileVO> files = new ArrayList<>();
 
 //        yyyy/MM/dd 경로 만들기
         File uploadPath = new File(uploadFolder, getFolder());
         if(!uploadPath.exists()){uploadPath.mkdirs();}
 
         for(MultipartFile file : uploadFiles){
-            ProductReviewFileVO productReviewFileVO = new ProductReviewFileVO();
+            ProjectReviewFileVO projectReviewFileVO = new ProjectReviewFileVO();
             String uploadFileName = file.getOriginalFilename();
 
             UUID uuid = UUID.randomUUID();
-            productReviewFileVO.setFileName(uploadFileName);
-            productReviewFileVO.setUuid(uuid.toString());
-            productReviewFileVO.setUploadPath(getFolder());
-            productReviewFileVO.setReviewNum(26L);
+            projectReviewFileVO.setFileName(uploadFileName);
+            projectReviewFileVO.setUuid(uuid.toString());
+            projectReviewFileVO.setUploadPath(getFolder());
 
             uploadFileName = uuid.toString() + "_" + uploadFileName;
-
-            log.info("--------------------------------");
-            log.info("Upload File Name : " + uploadFileName);
-            log.info("Upload File Size : " + file.getSize());
-
-//            ProductReviewFileVO.setFileSize(file.getSize());
 
             File saveFile = new File(uploadPath, uploadFileName);
             file.transferTo(saveFile);
@@ -84,19 +61,21 @@ public class ProductReviewFileRestController {
 //                FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_" + uploadFileName));
 //                Thumbnailator.createThumbnail(file.getInputStream(), thumbnail, 100, 100);
 //                thumbnail.close();
-////                ProductReviewFileVO.setImage(true);
+//                fileVO.setImage(true);
 //            }
-            files.add(productReviewFileVO);
-            productReviewFileService.register(productReviewFileVO);
+            files.add(projectReviewFileVO);
+            projectService.testFile(projectReviewFileVO);
         }
+
         return files;
     }
+
+
 
     @GetMapping("/display")
     @ResponseBody
     public byte[] getFile(String fileName) throws IOException{
         File file = new File("C:/upload/", fileName);
-        log.info(file.getPath());
         return FileCopyUtils.copyToByteArray(file);
     }
 
@@ -114,7 +93,7 @@ public class ProductReviewFileRestController {
     @GetMapping("/download")
     @ResponseBody
     public ResponseEntity<Resource> downloadFile(String fileName) throws UnsupportedEncodingException {
-        Resource resource = new FileSystemResource("C:/upload/" + fileName);
+        Resource resource = new FileSystemResource("/Users/minmin/aigb_0900_sms/upload/" + fileName);
         HttpHeaders header = new HttpHeaders();
         String name = resource.getFilename();
         name = name.substring(name.indexOf("_") + 1);
@@ -128,18 +107,14 @@ public class ProductReviewFileRestController {
         File file = new File("C:/upload/", fileName);
         if(file.exists()){ file.delete(); }
 
-        file = new File("C:/upload/", fileName.replace("_", ""));
+        file = new File("C:/upload/", fileName.replace("s_", ""));
         if(file.exists()){ file.delete(); }
     }
 
-    @GetMapping("/list/{productReviewNum}")
-    @ResponseBody
-    public List<ProductReviewFileVO> findByProductReviewNum(@PathVariable("productReviewNum") Long productReviewNum){
-        log.info("get file list....... : " + productReviewNum);
-        return productReviewFileService.findByProductReviewNum(productReviewNum);
-    }
-
-
-
-
+//    @GetMapping("/list")
+//    @ResponseBody
+//    public List<projectFileVO> getList(Long boardBno){
+//        log.info("get file list....... : " + boardBno);
+//        return projectService.getList(boardBno);
+//    }
 }

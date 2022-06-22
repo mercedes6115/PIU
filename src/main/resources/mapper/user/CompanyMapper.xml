@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.pickitup.mapper.user.CompanyMapper">
+<<<<<<< HEAD
+
+
+
+=======
     <!--회원 가입-->
     <insert id="insert">
         INSERT INTO TBL_COMPANY
@@ -19,6 +24,7 @@
         FROM TBL_COMPANY
         WHERE EMAIL=#{email} AND PASSWORD=#{password}
     </select>
+>>>>>>> 3c95ef56a8c609bd027606cac82202479ffe8fac
 </mapper>
 
 

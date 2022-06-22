@@ -14,6 +14,6 @@ public class ProjectFileDaoTests {
 
     @Test
     public void findByProjectNum() {
-        projectFileDAO.findByProjectNum(22L);
+        projectFileDAO.findProjectNum(22L);
     }
 }
