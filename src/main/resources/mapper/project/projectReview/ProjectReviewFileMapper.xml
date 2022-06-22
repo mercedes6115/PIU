@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.pickitup.mapper.project.projectReview.ProjectReviewFileMapper">
+
     <insert id="insert">
-        INSERT INTO TBL_PROJECT_REVIEW_FILE (UUID, UPLOAD_PATH, FILE_NAME)
-        VALUES (#{uuid}, #{uploadPath}, #{fileName})
+        INSERT INTO TBL_PROJECT_REVIEW_FILE (UUID, UPLOAD_PATH, FILE_NAME, PROJECT_REVIEW_NUM)
+        VALUES (#{uuid}, #{uploadPath}, #{fileName}, #{projectReviewNum})
     </insert>
 
     <delete id="delete">

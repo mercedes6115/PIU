@@ -47,8 +47,8 @@ public class ProjectService {
 
 
     // 프로젝트 목록(특정 단체 유저)
-    public List<ProjectVO> getProjectList(Long companyNum){
-        return projectDAO.getUserProjectList(companyNum, new Criteria());
+    public List<ProjectVO> getProjectList(Long companyNum, Criteria criteria){
+        return projectDAO.getUserProjectList(companyNum, criteria);
     }
 
     // 프로젝트 상세보기
@@ -135,6 +135,20 @@ public class ProjectService {
 //                projectReviewFileVO.setProjectNum(boardVO.getBoardBno());
                 projectReviewFileVO.setProjectReviewNum(34L);
                 projectReviewFileDAO.register(projectReviewFileVO);
+            });
+        }
+    }
+
+    // 하나의 트랜잭션에 여러 개의 DML이 있을 경우 한 개라도 오류 시 전체 ROLLBACK
+    @Transactional(rollbackFor = Exception.class)
+    public void registerProject (ProjectVO projectVO) {
+        //게시글 추가
+        projectDAO.register(projectVO);
+        //게시글에 업로드된 첨부파일 정보 중 게시글 번호를 따로 추가
+        if(projectVO.getFileList() != null) {
+            projectVO.getFileList().forEach(projectFileVO -> {
+                projectFileVO.setProjectNum(projectVO.getNum());
+                projectFileDAO.register(projectFileVO);
             });
         }
     }

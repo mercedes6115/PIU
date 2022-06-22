@@ -16,8 +16,6 @@ public class ProjectVO {
 
     // 체크
     private Long point;
-
-
     private String approval;
     private String startTime;
     private String endTime;
@@ -34,6 +32,9 @@ public class ProjectVO {
     private String name;
     private String summary;
     private String companyComment;
+    private String startAddressDetail;
+    private String endAddressDetail;
+
 
     // 체크
     private Long applyCount;

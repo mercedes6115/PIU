@@ -59,9 +59,11 @@ public class ProjectController {
     }
 
     // 프로젝트 등록 스텝 1
-    @GetMapping("/createStep1")
+    @GetMapping("/createStep")
     public void createStep1(){
     }
+
+
 //
 //    // 프로젝트 등록 스텝 2
 //    @GetMapping("/createStep2")
@@ -83,9 +85,9 @@ public class ProjectController {
 //    }
 
     // 프로젝트 등록 스텝 1
-    @PostMapping("/createStep1")
-    public void projectCreateStep1(){
-
+    @PostMapping("/createStep")
+    public void projectCreate(ProjectVO projectVO){
+        projectService.registerProject(projectVO);
     }
 
 
@@ -127,5 +129,6 @@ public class ProjectController {
 
 
     //
+
 
 }

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>프로젝트 생성</title>
-     <link rel="stylesheet" href="/assets/css/createProject.css" />
+    <link rel="stylesheet" href="/assets/css/createProject.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 </head>
 <body>
@@ -25,12 +25,12 @@
             <div class="cpProcessBar" style="transform: translateX(-100%);"></div>
         </div>
     </div>
-    <form action="">
-    <!--  컨테이너1  -->
-    <div class="cpBodyFrame" id="step1">
-        <div class="cpSidebarBoundary"></div>
-        <div class="cpSidebarFrame">
-            <div class="cpSidebarForm">
+    <form action="/project/createStep" method="post" enctype="multipart/form-data">
+        <!--  컨테이너1  -->
+        <div class="cpBodyFrame" id="step1">
+            <div class="cpSidebarBoundary"></div>
+            <div class="cpSidebarFrame">
+                <div class="cpSidebarForm">
                     <span class="sidebarStep1Frame">
                         <a class="sidebarStepForm">
                             <span class="sidebarStepBox">
@@ -41,7 +41,7 @@
                             </span>
                         </a>
                     </span>
-                <span class="sidebarStepFrame">
+                    <span class="sidebarStepFrame">
                         <a class="sidebarStepForm">
                             <span class="sidebarStepBox">
                                 <div class="sidebarCheckBox">
@@ -51,7 +51,7 @@
                             </span>
                         </a>
                     </span>
-                <span class="sidebarStepFrame">
+                    <span class="sidebarStepFrame">
                         <a class="sidebarStepForm">
                             <span class="sidebarStepBox">
                                 <div class="sidebarCheckBox">
@@ -61,7 +61,7 @@
                             </span>
                         </a>
                     </span>
-                <span class="sidebarStepFrame">
+                    <span class="sidebarStepFrame">
                         <a class="sidebarStepForm">
                             <span class="sidebarStepBox">
                                 <div class="sidebarCheckBox">
@@ -71,7 +71,7 @@
                             </span>
                         </a>
                     </span>
-                <span class="sidebarStepFrame">
+                    <span class="sidebarStepFrame">
                         <a class="sidebarStepForm">
                             <span class="sidebarStepBox">
                                 <div class="sidebarCheckBox">
@@ -81,20 +81,20 @@
                             </span>
                         </a>
                     </span>
+                </div>
             </div>
-        </div>
-        <div class="cpContentFrame">
-            <div class="cpContentForm">
-                <div class="cpContentContainer">
-                    <div class="basicInfoContainer">
-                        <div class="basicInfoBox">
-                            <h3 class="basicInfoText">프로젝트 기본정보를 입력해주세요</h3>
-                            <div class="basicInfoSubText">사용자들에게 프로젝트의 기본정보를 알려주세요!<br>지형과 거리에 따라 포인트가 추가 지급 됩니다.<br>( 산 : +100p, 바닷가 : +50p, 3km까지 100p 3km 초과 시 1km 마다 50p 추가 )
-                            </div>
+            <div class="cpContentFrame">
+                <div class="cpContentForm">
+                    <div class="cpContentContainer">
+                        <div class="basicInfoContainer">
+                            <div class="basicInfoBox">
+                                <h3 class="basicInfoText">프로젝트 기본정보를 입력해주세요</h3>
+                                <div class="basicInfoSubText">사용자들에게 프로젝트의 기본정보를 알려주세요!<br>지형과 거리에 따라 포인트가 추가 지급 됩니다.<br>( 산 : +100p, 바닷가 : +50p, 3km까지 100p 3km 초과 시 1km 마다 50p 추가 )
+                                </div>
 
                                 <div class="formTerrain">
                                     <label class="formTerrainLabel">지형</label>
-                                    <select class="formTerrainSelect">
+                                    <select class="formTerrainSelect" name="terrain">
                                         <option value hidden disalbed>지형을 입력해주세요.</option>
                                         <option class="mountain" value="mountain">산 ( +100p )</option>
                                         <option class="beach" value="beach">바닷가 ( + 50p )</option>
@@ -104,19 +104,19 @@
                                 <div class="formCourse">
                                     <label class="formCourseLabel">코스 / 장소</label>
                                     <div class="formCoureSelectBox">
-                                        <select class="formCourseSelect" id="selectCourse" onchange="ChangeValue()">
+                                        <select class="formCourseSelect" id="selectCourse" onchange="ChangeValue()" name="course">
                                             <option value="place">장소</option>
                                             <option value="course">코스 ( 3km까지 100p 3km 초과 시 1km 마다 50p 추가 )</option>
                                         </select>
                                         <div class="addressBox">
                                             <label class="formCourseLabel">출발지</label>
                                             <div class="addressForm">
-                                                <input type="text" id="start_address" placeholder="주소" readonly>
+                                                <input type="text" id="start_address" placeholder="주소" readonly name="startAddress">
                                                 <input type="button" class="find_address" id="find_start_address" value="주소 찾기">
                                             </div>
                                             <div style="width: 100%;">
                                                 <div style="width: 71%;">
-                                                    <input type="text" id="start_addressDetail" placeholder="상세주소">
+                                                    <input type="text" id="start_addressDetail" placeholder="상세주소" name="startAddressDetail" >
                                                 </div>
                                             </div>
                                         </div>
@@ -127,12 +127,12 @@
                                         <div class="addressBoxEnd">
                                             <label class="formCourseLabel">도착지</label>
                                             <div class="addressForm">
-                                                <input type="text" id="end_address" placeholder="주소" readonly>
+                                                <input type="text" id="end_address" placeholder="주소" readonly name="endAddress" >
                                                 <input type="button" class="end_address" id="find_end_address" value="주소 찾기">
                                             </div>
                                             <div style="width: 100%;">
                                                 <div style="width: 71%;">
-                                                    <input type="text" id="end_addressDetail" placeholder="상세주소">
+                                                    <input type="text" id="end_addressDetail" placeholder="상세주소" name="endAddressDetail">
                                                 </div>
                                             </div>
                                         </div>
@@ -140,30 +140,31 @@
                                             <div style="width: 71%; display: flex; justify-content: space-between;">
                                                 <div>예상 지급 포인트</div>
                                                 <div style="display: flex;"><p style="margin: 0;" id="distance_point"></p>P</div>
+                                                <input type="text" name="point" hidden="hidden">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
+            </div>
+            <div class="nextBtnFrame">
+                <button type="button" class="savePage">
+                    <span class="savePageBtn">저장하기</span>
+                </button>
+                <button type="submit" class="nextPage">
+                    <span class="nextPageBtn">다음</span>
+                </button>
+            </div>
         </div>
-        <div class="nextBtnFrame">
-            <button type="button" class="savePage">
-                <span class="savePageBtn">저장하기</span>
-            </button>
-            <button type="submit" class="nextPage">
-                <span class="nextPageBtn">다음</span>
-            </button>
-        </div>
-    </div>
-    <!-- 컨테이너 2  -->
-    <div class="cpBodyFrame" id="step2">
-        <div class="cpSidebarBoundary"></div>
-        <div class="cpSidebarFrame">
-            <div class="cpSidebarForm">
+        <!-- 컨테이너 2  -->
+        <div class="cpBodyFrame" id="step2">
+            <div class="cpSidebarBoundary"></div>
+            <div class="cpSidebarFrame">
+                <div class="cpSidebarForm">
                     <span class="sidebarStepFrame">
                         <a class="sidebarStepForm">
                             <span class="sidebarStepBox">
@@ -174,7 +175,7 @@
                             </span>
                         </a>
                     </span>
-                <span class="sidebarStep2Frame">
+                    <span class="sidebarStep2Frame">
                         <a class="sidebarStepForm">
                             <span class="sidebarStepBox">
                                 <div class="sidebarCheckBox">
@@ -184,7 +185,7 @@
                             </span>
                         </a>
                     </span>
-                <span class="sidebarStepFrame">
+                    <span class="sidebarStepFrame">
                         <a class="sidebarStepForm">
                             <span class="sidebarStepBox">
                                 <div class="sidebarCheckBox">
@@ -194,7 +195,7 @@
                             </span>
                         </a>
                     </span>
-                <span class="sidebarStepFrame">
+                    <span class="sidebarStepFrame">
                         <a class="sidebarStepForm">
                             <span class="sidebarStepBox">
                                 <div class="sidebarCheckBox">
@@ -204,7 +205,7 @@
                             </span>
                         </a>
                     </span>
-                <span class="sidebarStepFrame">
+                    <span class="sidebarStepFrame">
                         <a class="sidebarStepForm">
                             <span class="sidebarStepBox">
                                 <div class="sidebarCheckBox">
@@ -214,15 +215,15 @@
                             </span>
                         </a>
                     </span>
+                </div>
             </div>
-        </div>
-        <div class="cpContentFrame">
-            <div class="cpContentForm">
-                <div class="cpContentContainer">
-                    <!-- 프로젝트 생성 공용 틀 -->
-                    <div class="basicInfoBox">
-                        <h3 class="basicInfoText">프로젝트 특징이 잘 드러난<br>제목과 이미지를 보여주세요</h3>
-                        <div class="basicInfoSubText">감성적이면서도 프로젝트를 잘 표현하는 제목과 이미지를 등록해 주세요.</div>
+            <div class="cpContentFrame">
+                <div class="cpContentForm">
+                    <div class="cpContentContainer">
+                        <!-- 프로젝트 생성 공용 틀 -->
+                        <div class="basicInfoBox">
+                            <h3 class="basicInfoText">프로젝트 특징이 잘 드러난<br>제목과 이미지를 보여주세요</h3>
+                            <div class="basicInfoSubText">감성적이면서도 프로젝트를 잘 표현하는 제목과 이미지를 등록해 주세요.</div>
                             <div class="subImgFrame">
                                 <div class="subImgForm">
                                     <label class="subImgLabel">썸네일 이미지</label>
@@ -243,7 +244,7 @@
                                 <div class="subImgTitleInfo">
                                     <label class="subImgTitle">프로젝트 제목</label>
                                     <div class="subImgTitleFrame">
-                                        <input type="text" name="title" class="subTitleInput" placeholder="프로젝트의 특징이 잘 드러나는 제목을 지어주세요.">
+                                        <input type="text" name="title" class="subTitleInput" placeholder="프로젝트의 특징이 잘 드러나는 제목을 지어주세요." name="title">
                                     </div>
                                     <div class="subImgInfoFrame">
                                         <div class="subImgInfoQ">썸네일 이미지가 어디에 사용되나요?</div>
@@ -298,61 +299,61 @@
                                     <span class="nextPageBtn">다음</span>
                                 </button>
                             </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- 옆에 배너입니다 cpContentForm 끝나는 부분에 넣어주시면 됩니다 -->
-            <div class="cpThumbNailFrame">
-                <div class="cpThumbNailForm">
-                    <div class="cpThumbNailContainer">
-                        <div class="cpThumbNailBox">
-                            <div class="cpThumbNailInsertForm">
-                                <img src="/src/main/resources/static/images/add-photo-portrait.png" class="defaultImg">
+                <!-- 옆에 배너입니다 cpContentForm 끝나는 부분에 넣어주시면 됩니다 -->
+                <div class="cpThumbNailFrame">
+                    <div class="cpThumbNailForm">
+                        <div class="cpThumbNailContainer">
+                            <div class="cpThumbNailBox">
+                                <div class="cpThumbNailInsertForm">
+                                    <img src="/src/main/resources/static/images/add-photo-portrait.png" class="defaultImg">
+                                </div>
+                                <div class="cpThumbNailInfoForm">
+                                    <div class="cpThumbNailInfoBox">
+                                        <div class="cpThumbNailInfoName">by. 모집단체</div>
+                                    </div>
+                                    <div class="cpThumbNailInfoBox">
+                                        <div class="cpThumbNailInfoTerrain">지형을 선택해주세요</div>
+                                    </div>
+                                    <div class="cpThumbNailInfoBox">
+                                        <div class="cpThumbNailInfoCourse">진행 방식을 선택해주세요</div>
+                                    </div>
+                                    <h3 class="cpThumbNailInfoText"></h3>
+                                </div>
+                                <div class="cpThumbNailBlur"></div>
                             </div>
-                            <div class="cpThumbNailInfoForm">
-                                <div class="cpThumbNailInfoBox">
-                                    <div class="cpThumbNailInfoName">by. 모집단체</div>
-                                </div>
-                                <div class="cpThumbNailInfoBox">
-                                    <div class="cpThumbNailInfoTerrain">지형을 선택해주세요</div>
-                                </div>
-                                <div class="cpThumbNailInfoBox">
-                                    <div class="cpThumbNailInfoCourse">진행 방식을 선택해주세요</div>
-                                </div>
-                                <h3 class="cpThumbNailInfoText"></h3>
+                            <div class="cpThumbNailProgressBox">
+                                <span class="cpThumbNailProgressComplete"></span>
+                                <span class="cpThumbNailProgress"></span>
+                                <span class="cpThumbNailProgress"></span>
+                                <span class="cpThumbNailProgressLast"></span>
                             </div>
-                            <div class="cpThumbNailBlur"></div>
-                        </div>
-                        <div class="cpThumbNailProgressBox">
-                            <span class="cpThumbNailProgressComplete"></span>
-                            <span class="cpThumbNailProgress"></span>
-                            <span class="cpThumbNailProgress"></span>
-                            <span class="cpThumbNailProgressLast"></span>
-                        </div>
-                        <div class="cpThumbNailPrevBox"></div>
-                        <button type="button" class="thunmbPrevBtn">
+                            <div class="cpThumbNailPrevBox"></div>
+                            <button type="button" class="thunmbPrevBtn">
                                 <span class="thumbPrevForm">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M15.5 5.5l-6 6.5 6 6.5L14 20l-7.5-8L14 4l1.5 1.5z" fill="#FFF"></path></svg>
                                 </span>
-                        </button>
-                        <div class="cpThumbNailNextBox"></div>
-                        <button type="button" class="thumbNextBtn">
+                            </button>
+                            <div class="cpThumbNailNextBox"></div>
+                            <button type="button" class="thumbNextBtn">
                                 <span class="thumbNextForm">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M8.5 18.5l6-6.5-6-6.5L10 4l7.5 8-7.5 8-1.5-1.5z" fill="#FFF"></path></svg>
                                 </span>
-                        </button>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!--  컨테이너 3  -->
-    <div class="cpBodyFrame" id="step3">
-        <div class="cpSidebarBoundary"></div>
-        <div class="cpSidebarFrame">
-            <div class="cpSidebarForm">
+        <!--  컨테이너 3  -->
+        <div class="cpBodyFrame" id="step3">
+            <div class="cpSidebarBoundary"></div>
+            <div class="cpSidebarFrame">
+                <div class="cpSidebarForm">
                     <span class="sidebarStepFrame">
                         <a class="sidebarStepForm">
                             <span class="sidebarStepBox">
@@ -363,7 +364,7 @@
                             </span>
                         </a>
                     </span>
-                <span class="sidebarStepFrame">
+                    <span class="sidebarStepFrame">
                         <a class="sidebarStepForm">
                             <span class="sidebarStepBox">
                                 <div class="sidebarCheckBox">
@@ -373,7 +374,7 @@
                             </span>
                         </a>
                     </span>
-                <span class="sidebarStep3Frame">
+                    <span class="sidebarStep3Frame">
                         <a class="sidebarStepForm">
                             <span class="sidebarStepBox">
                                 <div class="sidebarCheckBox">
@@ -383,7 +384,7 @@
                             </span>
                         </a>
                     </span>
-                <span class="sidebarStepFrame">
+                    <span class="sidebarStepFrame">
                         <a class="sidebarStepForm">
                             <span class="sidebarStepBox">
                                 <div class="sidebarCheckBox">
@@ -393,7 +394,7 @@
                             </span>
                         </a>
                     </span>
-                <span class="sidebarStepFrame">
+                    <span class="sidebarStepFrame">
                         <a class="sidebarStepForm">
                             <span class="sidebarStepBox">
                                 <div class="sidebarCheckBox">
@@ -403,14 +404,14 @@
                             </span>
                         </a>
                     </span>
+                </div>
             </div>
-        </div>
-        <div class="cpContentFrame">
-            <div class="cpContentForm">
-                <div class="cpContentContainer">
-                    <div class="cpIntroduceFrame">
-                        <h3 class="cpIntroduceTitle">어떻게 진행하실 건가요?</h3>
-                        <div class="cpIntroduceTitleInfo">프로젝트 상세내용을 알려주세요.</div>
+            <div class="cpContentFrame">
+                <div class="cpContentForm">
+                    <div class="cpContentContainer">
+                        <div class="cpIntroduceFrame">
+                            <h3 class="cpIntroduceTitle">어떻게 진행하실 건가요?</h3>
+                            <div class="cpIntroduceTitleInfo">프로젝트 상세내용을 알려주세요.</div>
                             <div class="imgInsertBox1">
                                 <div class="imgInsertForm">
                                     <div class="imgInsertContainer">
@@ -452,6 +453,9 @@
                                         </label>
                                         <input class="attach3" id="attach3" type="file">
                                     </div>
+
+
+
                                 </div>
                             </div>
                             <div class="nextBtnFrame">
@@ -466,61 +470,61 @@
                                     <span class="nextPageBtn">다음</span>
                                 </button>
                             </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- 옆에 배너입니다 cpContentForm 끝나는 부분에 넣어주시면 됩니다 -->
-            <div class="cpThumbNailFrame">
-                <div class="cpThumbNailForm">
-                    <div class="cpThumbNailContainer">
-                        <div class="cpThumbNailBox">
-                            <div class="cpThumbNailInsertForm">
-                                <img src="/src/main/resources/static/images/add-photo-portrait.png" class="defaultImg">
+                <!-- 옆에 배너입니다 cpContentForm 끝나는 부분에 넣어주시면 됩니다 -->
+                <div class="cpThumbNailFrame">
+                    <div class="cpThumbNailForm">
+                        <div class="cpThumbNailContainer">
+                            <div class="cpThumbNailBox">
+                                <div class="cpThumbNailInsertForm">
+                                    <img src="/src/main/resources/static/images/add-photo-portrait.png" class="defaultImg">
+                                </div>
+                                <div class="cpThumbNailInfoForm">
+                                    <div class="cpThumbNailInfoBox">
+                                        <div class="cpThumbNailInfoName">by. 모집단체</div>
+                                    </div>
+                                    <div class="cpThumbNailInfoBox">
+                                        <div class="cpThumbNailInfoTerrain">지형을 선택해주세요</div>
+                                    </div>
+                                    <div class="cpThumbNailInfoBox">
+                                        <div class="cpThumbNailInfoCourse">진행 방식을 선택해주세요</div>
+                                    </div>
+                                    <h3 class="cpThumbNailInfoText"></h3>
+                                </div>
+                                <div class="cpThumbNailBlur"></div>
                             </div>
-                            <div class="cpThumbNailInfoForm">
-                                <div class="cpThumbNailInfoBox">
-                                    <div class="cpThumbNailInfoName">by. 모집단체</div>
-                                </div>
-                                <div class="cpThumbNailInfoBox">
-                                    <div class="cpThumbNailInfoTerrain">지형을 선택해주세요</div>
-                                </div>
-                                <div class="cpThumbNailInfoBox">
-                                    <div class="cpThumbNailInfoCourse">진행 방식을 선택해주세요</div>
-                                </div>
-                                <h3 class="cpThumbNailInfoText"></h3>
+                            <div class="cpThumbNailProgressBox">
+                                <span class="cpThumbNailProgressComplete"></span>
+                                <span class="cpThumbNailProgress"></span>
+                                <span class="cpThumbNailProgress"></span>
+                                <span class="cpThumbNailProgressLast"></span>
                             </div>
-                            <div class="cpThumbNailBlur"></div>
-                        </div>
-                        <div class="cpThumbNailProgressBox">
-                            <span class="cpThumbNailProgressComplete"></span>
-                            <span class="cpThumbNailProgress"></span>
-                            <span class="cpThumbNailProgress"></span>
-                            <span class="cpThumbNailProgressLast"></span>
-                        </div>
-                        <div class="cpThumbNailPrevBox"></div>
-                        <button type="button" class="thunmbPrevBtn">
+                            <div class="cpThumbNailPrevBox"></div>
+                            <button type="button" class="thunmbPrevBtn">
                                 <span class="thumbPrevForm">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M15.5 5.5l-6 6.5 6 6.5L14 20l-7.5-8L14 4l1.5 1.5z" fill="#FFF"></path></svg>
                                 </span>
-                        </button>
-                        <div class="cpThumbNailNextBox"></div>
-                        <button type="button" class="thumbNextBtn">
+                            </button>
+                            <div class="cpThumbNailNextBox"></div>
+                            <button type="button" class="thumbNextBtn">
                                 <span class="thumbNextForm">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M8.5 18.5l6-6.5-6-6.5L10 4l7.5 8-7.5 8-1.5-1.5z" fill="#FFF"></path></svg>
                                 </span>
-                        </button>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!--  컨테이너 4  -->
-    <div class="cpBodyFrame" id="step4">
-        <div class="cpSidebarBoundary"></div>
-        <div class="cpSidebarFrame">
-            <div class="cpSidebarForm">
+        <!--  컨테이너 4  -->
+        <div class="cpBodyFrame" id="step4">
+            <div class="cpSidebarBoundary"></div>
+            <div class="cpSidebarFrame">
+                <div class="cpSidebarForm">
                     <span class="sidebarStepFrame">
                         <a class="sidebarStepForm">
                             <span class="sidebarStepBox">
@@ -531,7 +535,7 @@
                             </span>
                         </a>
                     </span>
-                <span class="sidebarStepFrame">
+                    <span class="sidebarStepFrame">
                         <a class="sidebarStepForm">
                             <span class="sidebarStepBox">
                                 <div class="sidebarCheckBox">
@@ -541,7 +545,7 @@
                             </span>
                         </a>
                     </span>
-                <span class="sidebarStepFrame">
+                    <span class="sidebarStepFrame">
                         <a class="sidebarStepForm">
                             <span class="sidebarStepBox">
                                 <div class="sidebarCheckBox">
@@ -551,7 +555,7 @@
                             </span>
                         </a>
                     </span>
-                <span class="sidebarStep4Frame">
+                    <span class="sidebarStep4Frame">
                         <a class="sidebarStepForm">
                             <span class="sidebarStepBox">
                                 <div class="sidebarCheckBox">
@@ -561,7 +565,7 @@
                             </span>
                         </a>
                     </span>
-                <span class="sidebarStepFrame">
+                    <span class="sidebarStepFrame">
                         <a class="sidebarStepForm">
                             <span class="sidebarStepBox">
                                 <div class="sidebarCheckBox">
@@ -571,13 +575,13 @@
                             </span>
                         </a>
                     </span>
+                </div>
             </div>
-        </div>
-        <div class="cpContentFrame">
-            <div class="cpContentForm">
-                <div class="cpContentContainer">
-                    <div class="cpGroupIntroFrame">
-                        <h3 class="cpGroupIntroTitle">단체를 소개해 주세요</h3>
+            <div class="cpContentFrame">
+                <div class="cpContentForm">
+                    <div class="cpContentContainer">
+                        <div class="cpGroupIntroFrame">
+                            <h3 class="cpGroupIntroTitle">단체를 소개해 주세요</h3>
                             <div class="groupIntroProfileFrame">
                                 <label class="groupIntroProfileTitle">프로필</label>
                                 <label for="attach" class="groupIntroProfileInsertFrame" >
@@ -636,61 +640,61 @@
                                     <span class="nextPageBtn">다음</span>
                                 </button>
                             </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- 옆에 배너입니다 cpContentForm 끝나는 부분에 넣어주시면 됩니다 -->
-            <div class="cpThumbNailFrame">
-                <div class="cpThumbNailForm">
-                    <div class="cpThumbNailContainer">
-                        <div class="cpThumbNailBox">
-                            <div class="cpThumbNailInsertForm">
-                                <img src="/src/main/resources/static/images/add-photo-portrait.png" class="defaultImg">
+                <!-- 옆에 배너입니다 cpContentForm 끝나는 부분에 넣어주시면 됩니다 -->
+                <div class="cpThumbNailFrame">
+                    <div class="cpThumbNailForm">
+                        <div class="cpThumbNailContainer">
+                            <div class="cpThumbNailBox">
+                                <div class="cpThumbNailInsertForm">
+                                    <img src="/src/main/resources/static/images/add-photo-portrait.png" class="defaultImg">
+                                </div>
+                                <div class="cpThumbNailInfoForm">
+                                    <div class="cpThumbNailInfoBox">
+                                        <div class="cpThumbNailInfoName">by. 모집단체</div>
+                                    </div>
+                                    <div class="cpThumbNailInfoBox">
+                                        <div class="cpThumbNailInfoTerrain">지형을 선택해주세요</div>
+                                    </div>
+                                    <div class="cpThumbNailInfoBox">
+                                        <div class="cpThumbNailInfoCourse">진행 방식을 선택해주세요</div>
+                                    </div>
+                                    <h3 class="cpThumbNailInfoText"></h3>
+                                </div>
+                                <div class="cpThumbNailBlur"></div>
                             </div>
-                            <div class="cpThumbNailInfoForm">
-                                <div class="cpThumbNailInfoBox">
-                                    <div class="cpThumbNailInfoName">by. 모집단체</div>
-                                </div>
-                                <div class="cpThumbNailInfoBox">
-                                    <div class="cpThumbNailInfoTerrain">지형을 선택해주세요</div>
-                                </div>
-                                <div class="cpThumbNailInfoBox">
-                                    <div class="cpThumbNailInfoCourse">진행 방식을 선택해주세요</div>
-                                </div>
-                                <h3 class="cpThumbNailInfoText"></h3>
+                            <div class="cpThumbNailProgressBox">
+                                <span class="cpThumbNailProgressComplete"></span>
+                                <span class="cpThumbNailProgress"></span>
+                                <span class="cpThumbNailProgress"></span>
+                                <span class="cpThumbNailProgressLast"></span>
                             </div>
-                            <div class="cpThumbNailBlur"></div>
-                        </div>
-                        <div class="cpThumbNailProgressBox">
-                            <span class="cpThumbNailProgressComplete"></span>
-                            <span class="cpThumbNailProgress"></span>
-                            <span class="cpThumbNailProgress"></span>
-                            <span class="cpThumbNailProgressLast"></span>
-                        </div>
-                        <div class="cpThumbNailPrevBox"></div>
-                        <button type="button" class="thunmbPrevBtn">
+                            <div class="cpThumbNailPrevBox"></div>
+                            <button type="button" class="thunmbPrevBtn">
                                 <span class="thumbPrevForm">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M15.5 5.5l-6 6.5 6 6.5L14 20l-7.5-8L14 4l1.5 1.5z" fill="#FFF"></path></svg>
                                 </span>
-                        </button>
-                        <div class="cpThumbNailNextBox"></div>
-                        <button type="button" class="thumbNextBtn">
+                            </button>
+                            <div class="cpThumbNailNextBox"></div>
+                            <button type="button" class="thumbNextBtn">
                                 <span class="thumbNextForm">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M8.5 18.5l6-6.5-6-6.5L10 4l7.5 8-7.5 8-1.5-1.5z" fill="#FFF"></path></svg>
                                 </span>
-                        </button>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!--  컨테이너 5  -->
-    <div class="cpBodyFrame" id="step5">
-        <div class="cpSidebarBoundary"></div>
-        <div class="cpSidebarFrame">
-            <div class="cpSidebarForm">
+        <!--  컨테이너 5  -->
+        <div class="cpBodyFrame" id="step5">
+            <div class="cpSidebarBoundary"></div>
+            <div class="cpSidebarFrame">
+                <div class="cpSidebarForm">
                     <span class="sidebarStepFrame">
                         <a class="sidebarStepForm">
                             <span class="sidebarStepBox">
@@ -701,7 +705,7 @@
                             </span>
                         </a>
                     </span>
-                <span class="sidebarStepFrame">
+                    <span class="sidebarStepFrame">
                         <a class="sidebarStepForm">
                             <span class="sidebarStepBox">
                                 <div class="sidebarCheckBox">
@@ -711,7 +715,7 @@
                             </span>
                         </a>
                     </span>
-                <span class="sidebarStep3Frame">
+                    <span class="sidebarStep3Frame">
                         <a class="sidebarStepForm">
                             <span class="sidebarStepBox">
                                 <div class="sidebarCheckBox">
@@ -721,7 +725,7 @@
                             </span>
                         </a>
                     </span>
-                <span class="sidebarStepFrame">
+                    <span class="sidebarStepFrame">
                         <a class="sidebarStepForm">
                             <span class="sidebarStepBox">
                                 <div class="sidebarCheckBox">
@@ -731,7 +735,7 @@
                             </span>
                         </a>
                     </span>
-                <span class="sidebarStepFrame">
+                    <span class="sidebarStepFrame">
                         <a class="sidebarStepForm">
                             <span class="sidebarStepBox">
                                 <div class="sidebarCheckBox">
@@ -741,14 +745,14 @@
                             </span>
                         </a>
                     </span>
+                </div>
             </div>
-        </div>
-        <div class="cpContentFrame">
-            <div class="cpContentForm">
-                <div class="cpContentContainer">
-                    <div class="cpIntroduceFrame">
-                        <h3 class="cpIntroduceTitle">어떻게 진행하실 건가요?</h3>
-                        <div class="cpIntroduceTitleInfo">프로젝트 상세내용을 알려주세요.</div>
+            <div class="cpContentFrame">
+                <div class="cpContentForm">
+                    <div class="cpContentContainer">
+                        <div class="cpIntroduceFrame">
+                            <h3 class="cpIntroduceTitle">어떻게 진행하실 건가요?</h3>
+                            <div class="cpIntroduceTitleInfo">프로젝트 상세내용을 알려주세요.</div>
                             <div class="imgInsertBox1">
                                 <div class="imgInsertForm">
                                     <div class="imgInsertContainer">
@@ -804,56 +808,56 @@
                                     <span class="nextPageBtn">다음</span>
                                 </button>
                             </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- 옆에 배너입니다 cpContentForm 끝나는 부분에 넣어주시면 됩니다 -->
-            <div class="cpThumbNailFrame">
-                <div class="cpThumbNailForm">
-                    <div class="cpThumbNailContainer">
-                        <div class="cpThumbNailBox">
-                            <div class="cpThumbNailInsertForm">
-                                <img src="/src/main/resources/static/images/add-photo-portrait.png" class="defaultImg">
+                <!-- 옆에 배너입니다 cpContentForm 끝나는 부분에 넣어주시면 됩니다 -->
+                <div class="cpThumbNailFrame">
+                    <div class="cpThumbNailForm">
+                        <div class="cpThumbNailContainer">
+                            <div class="cpThumbNailBox">
+                                <div class="cpThumbNailInsertForm">
+                                    <img src="/src/main/resources/static/images/add-photo-portrait.png" class="defaultImg">
+                                </div>
+                                <div class="cpThumbNailInfoForm">
+                                    <div class="cpThumbNailInfoBox">
+                                        <div class="cpThumbNailInfoName">by. 모집단체</div>
+                                    </div>
+                                    <div class="cpThumbNailInfoBox">
+                                        <div class="cpThumbNailInfoTerrain">지형을 선택해주세요</div>
+                                    </div>
+                                    <div class="cpThumbNailInfoBox">
+                                        <div class="cpThumbNailInfoCourse">진행 방식을 선택해주세요</div>
+                                    </div>
+                                    <h3 class="cpThumbNailInfoText"></h3>
+                                </div>
+                                <div class="cpThumbNailBlur"></div>
                             </div>
-                            <div class="cpThumbNailInfoForm">
-                                <div class="cpThumbNailInfoBox">
-                                    <div class="cpThumbNailInfoName">by. 모집단체</div>
-                                </div>
-                                <div class="cpThumbNailInfoBox">
-                                    <div class="cpThumbNailInfoTerrain">지형을 선택해주세요</div>
-                                </div>
-                                <div class="cpThumbNailInfoBox">
-                                    <div class="cpThumbNailInfoCourse">진행 방식을 선택해주세요</div>
-                                </div>
-                                <h3 class="cpThumbNailInfoText"></h3>
+                            <div class="cpThumbNailProgressBox">
+                                <span class="cpThumbNailProgressComplete"></span>
+                                <span class="cpThumbNailProgress"></span>
+                                <span class="cpThumbNailProgress"></span>
+                                <span class="cpThumbNailProgressLast"></span>
                             </div>
-                            <div class="cpThumbNailBlur"></div>
-                        </div>
-                        <div class="cpThumbNailProgressBox">
-                            <span class="cpThumbNailProgressComplete"></span>
-                            <span class="cpThumbNailProgress"></span>
-                            <span class="cpThumbNailProgress"></span>
-                            <span class="cpThumbNailProgressLast"></span>
-                        </div>
-                        <div class="cpThumbNailPrevBox"></div>
-                        <button type="button" class="thunmbPrevBtn">
+                            <div class="cpThumbNailPrevBox"></div>
+                            <button type="button" class="thunmbPrevBtn">
                                 <span class="thumbPrevForm">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M15.5 5.5l-6 6.5 6 6.5L14 20l-7.5-8L14 4l1.5 1.5z" fill="#FFF"></path></svg>
                                 </span>
-                        </button>
-                        <div class="cpThumbNailNextBox"></div>
-                        <button type="button" class="thumbNextBtn">
+                            </button>
+                            <div class="cpThumbNailNextBox"></div>
+                            <button type="button" class="thumbNextBtn">
                                 <span class="thumbNextForm">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M8.5 18.5l6-6.5-6-6.5L10 4l7.5 8-7.5 8-1.5-1.5z" fill="#FFF"></path></svg>
                                 </span>
-                        </button>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </form>
 
 </div>
@@ -864,7 +868,7 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8460d42f853294e33918a26eaad645a2"></script>
 
 <script>
-    
+
     let endAddress = document.querySelector(".addressBoxEnd");
     function ChangeValue(){
         let selectCourse = document.getElementById("selectCourse");
@@ -896,7 +900,7 @@
                 }
             }).open();
         });
-            
+
     }
 
     let 출발 = [];
@@ -933,10 +937,10 @@
 
     })
 
-    // x,y 좌표 받아오기    
-    
+    // x,y 좌표 받아오기
 
-// 주소값과 번호를 받아와서  주소 값으로 좌표 생성, 번호로 어느것을 눌렀는지 확인.
+
+    // 주소값과 번호를 받아와서  주소 값으로 좌표 생성, 번호로 어느것을 눌렀는지 확인.
     function xy(ad,i){
         if(i==1){ //출발지 눌렀을떄
             naver.maps.Service.geocode({
@@ -945,38 +949,40 @@
                 if (status !== naver.maps.Service.Status.OK) {
                     return alert('Something wrong!');
                 }
-                
-            
+
+
                 var result = response.v2, // 검색 결과의 컨테이너
                     items = result.addresses; // 검색 결과의 배열
-                    
-                    try {
-                        $('#x'+i).val(items[0].x);  //주소의 x좌표값을 input에 삽입
-                        $('#y'+i).val(items[0].y);  //주소의 x좌표값을 input에 삽입
-                    } catch (error) {
-                        alert('요청하신 주소의 좌표를 찾을 수 없습니다.');
-                        document.getElementById("start_address").value = "";
-                        return;
-                    }
-                     
-                    if(출발.length==0){ //처음 장소 넣을때
-                        출발.push(items[0].x);
-                        출발.push(items[0].y);
-                     
-                        console.log(출발[0]);
-                        console.log(출발[1]);
-                       
-                     
-                    }else if(출발.length==2){ //출발지만 입력후 출발지 수정
-                        출발[0]=items[0].x;      //수정함
-                        출발[1]=items[0].y;      //수정함
-                        console.log(출발[0]);
-                        console.log(출발[1]);
-                    }
-                    if((출발.length + 도착.length) == 4){
-                        dist();
-                    }
+
+                try {
+                    $('#x'+i).val(items[0].x);  //주소의 x좌표값을 input에 삽입
+                    $('#y'+i).val(items[0].y);  //주소의 x좌표값을 input에 삽입
+                } catch (error) {
+                    alert('요청하신 주소의 좌표를 찾을 수 없습니다.');
+                    document.getElementById("start_address").value = "";
+                    return;
+                }
+
+                if(출발.length==0){ //처음 장소 넣을때
+                    출발.push(items[0].x);
+                    출발.push(items[0].y);
+
+                    console.log(출발[0]);
+                    console.log(출발[1]);
+
+
+                }else if(출발.length==2){ //출발지만 입력후 출발지 수정
+                    출발[0]=items[0].x;      //수정함
+                    출발[1]=items[0].y;      //수정함
+                    console.log(출발[0]);
+                    console.log(출발[1]);
+                }
+                if((출발.length + 도착.length) == 4){
+                    dist();
+                }
             });
+
+
         }else{ //도착지 눌렀을때.
             naver.maps.Service.geocode({
                 query: ad
@@ -984,18 +990,18 @@
                 if (status !== naver.maps.Service.Status.OK) {
                     return alert('Something wrong!');
                 }
-            
+
                 var result = response.v2, // 검색 결과의 컨테이너
                     items = result.addresses; // 검색 결과의 배열
 
-                    try {
-                        $('#x'+i).val(items[0].x);  //주소의 x좌표값을 input에 삽입
-                        $('#y'+i).val(items[0].y);  //주소의 x좌표값을 input에 삽입
-                    } catch (error) {
-                        alert('요청하신 주소의 좌표를 찾을 수 없습니다.');
-                        document.getElementById("end_address").value = "";
-                        return;
-                    }
+                try {
+                    $('#x'+i).val(items[0].x);  //주소의 x좌표값을 input에 삽입
+                    $('#y'+i).val(items[0].y);  //주소의 x좌표값을 input에 삽입
+                } catch (error) {
+                    alert('요청하신 주소의 좌표를 찾을 수 없습니다.');
+                    document.getElementById("end_address").value = "";
+                    return;
+                }
 
                 if(도착.length==0){ //처음 도착지 눌렀을때
                     도착.push(items[0].x);
@@ -1013,8 +1019,8 @@
             });
         }
     }
-    
-   function dist(){
+
+    function dist(){
         let distance_point =  Math.sqrt(Math.pow(출발[0]-도착[0],2) + Math.pow(출발[1]-도착[1],2));
         let distance = distance_point*111;
         let real_distance = Math.round(distance);  // km 단위
@@ -1024,70 +1030,64 @@
             real_point = default_point;
         }
         $('p#distance_point').empty().text(real_point);
-   }
+    }
 
+    function getMap(x1, y1, x2, y2) {
+        var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+            mapOption = {
+                center: new kakao.maps.LatLng(x1, y1), // 지도의 중심좌표
+                level: 3 // 지도의 확대 레벨
+            };
 
-   function getMap(x1, y1, x2, y2) {
+        var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
-       var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-           mapOption = {
-               center: new kakao.maps.LatLng(x1, y1), // 지도의 중심좌표
-               level: 3 // 지도의 확대 레벨
-           };
+        // 마커를 표시할 위치와 title 객체 배열입니다
+        var positions = [
+            {
+                title: '출발지',
+                latlng: new kakao.maps.LatLng(x1, y1)
+            },
+            {
+                title: '도착지',
+                latlng: new kakao.maps.LatLng(x2, y2)
+            }
+        ];
 
-       var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+        // 마커 이미지의 이미지 주소입니다
+        var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
 
-       // 마커를 표시할 위치와 title 객체 배열입니다
-       var positions = [
-           {
-               title: '출발지',
-               latlng: new kakao.maps.LatLng(x1, y1)
-           },
-           {
-               title: '도착지',
-               latlng: new kakao.maps.LatLng(x2, y2)
-           }
-       ];
+        for (var i = 0; i < positions.length; i ++) {
 
-       // 마커 이미지의 이미지 주소입니다
-       var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+            // 마커 이미지의 이미지 크기 입니다
+            var imageSize = new kakao.maps.Size(24, 35);
 
-       for (var i = 0; i < positions.length; i ++) {
+            // 마커 이미지를 생성합니다
+            var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 
-           // 마커 이미지의 이미지 크기 입니다
-           var imageSize = new kakao.maps.Size(24, 35);
-
-           // 마커 이미지를 생성합니다
-           var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
-
-           // 마커를 생성합니다
-           var marker = new kakao.maps.Marker({
-               map: map, // 마커를 표시할 지도
-               position: positions[i].latlng, // 마커를 표시할 위치
-               title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-               image : markerImage // 마커 이미지
-           });
-       }
-   }
-
-
-   let step = 1;
-
-    $('#step2').hide();
-    $('#step3').hide();
-    $('#step4').hide();
-    $('#step5').hide();
+            // 마커를 생성합니다
+            var marker = new kakao.maps.Marker({
+                map: map, // 마커를 표시할 지도
+                position: positions[i].latlng, // 마커를 표시할 위치
+                title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+                image : markerImage // 마커 이미지
+            });
+        }
+    }
 
 
     $('.nextPage').on("click", function () {
         step ++;
-
     })
 
     $('prevPage').on("click", function () {
         step --;
     })
 
+    $('#step1').hide();
+    $('#step2').hide();
+    $('#step3').show();
+    $('#step4').hide();
+    $('#step5').hide();
 
 
 
