@@ -4,13 +4,23 @@
     <!--회원 가입-->
     <insert id="insert">
         INSERT INTO TBL_COMPANY
-        (NUM, EMAIL, PASSWORD, NAME, PHONE, BUSINESS_PHONE, ADDRESS, BUSINESS_NUMBER, REGIST_DATE, PROFILE_FILE_NAME, PROFILE_UPLOAD_PATH)
+<<<<<<< HEAD
+        (NUM, EMAIL, PASSWORD,  NICKNAME, PHONE, BUSINESS_PHONE, ADDRESS,ADDRESS_DETAIL, BUSINESS_NUMBER, REGIST_DATE, PROFILE_FILE_NAME, PROFILE_UPLOAD_PATH)
+        VALUES(SEQ_COMPANY.NEXTVAL, #{email}, #{password}, #{nickname}, #{phone}, #{businessPhone}, #{address},#{addressDetail}, #{businessNumber} , SYSDATE, #{profileFileName}, #{profileUploadPath})
+=======
+        (NUM, EMAIL, PASSWORD, NICKNAME, PHONE, BUSINESS_PHONE, ADDRESS, BUSINESS_NUMBER, REGIST_DATE, PROFILE_FILE_NAME, PROFILE_UPLOAD_PATH)
         VALUES(SEQ_COMPANY.NEXTVAL, #{email}, #{password}, #{name}, #{phone}, #{businessPhone}, #{address}, #{businessNumber} , SYSDATE, #{profileFileName}, #{profileUploadPath})
+>>>>>>> 3c95ef56a8c609bd027606cac82202479ffe8fac
     </insert>
 
+    <select id="getDetail" resultType="companyVO">
+        SELECT NUM, EMAIL, PASSWORD, NICKNAME, PHONE, BUSINESS_PHONE, ADDRESS, BUSINESS_NUMBER, REGIST_DATE, PROFILE_FILE_NAME, PROFILE_UPLOAD_PATH,CATEGORY
+        FROM TBL_COMPANY
+        WHERE NUM=#{num}
+    </select>
 
     <select id="login" resultType="_int">
-        SELECT COUNT(NUM)
+        SELECT NUM, NICKNAME
         FROM TBL_COMPANY
         WHERE EMAIL=#{email} AND PASSWORD=#{password}
     </select>

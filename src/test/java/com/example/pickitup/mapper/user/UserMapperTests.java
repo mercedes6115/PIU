@@ -45,7 +45,7 @@ public class UserMapperTests {
 
     @Test
     public void getDetailTest(){
-        log.info("한 개"+ userMapper.getDetail(2L));
+        userMapper.getDetail(2L);
     }
 
     @Test
@@ -71,6 +71,7 @@ public class UserMapperTests {
         criteria.setPageNum(1);
         criteria.setStartDate("2022-06-16");
         criteria.setEndDate("2022-06-18");
+        criteria.setType("user");
         userMapper.getList(criteria);
 
     }
@@ -79,6 +80,7 @@ public class UserMapperTests {
     public void getInProductListTest() {
         userMapper.getInProductList(2L);
     }
+
 //    @Test
 //    public boolean login(String email, String password){
 //        return userMapper.login("ddd","dddd");
@@ -112,19 +114,30 @@ public class UserMapperTests {
     //공지상세보기
     @Test
     public void getNoticeDetailTest(){
-        Long num = 10L;
+        Long num = 34L;
         log.info(userMapper.getNoticeDetail(num).toString());
         log.info("***************************************************");
-        log.info(userMapper.getNoticeDetail(10L).getContent());
+        log.info(userMapper.getNoticeDetail(34L).getContent());
         log.info("***************************************************");
     }
 
+    //공지사항 개수
     @Test
     public void getNoticeTotalTest(){
         userMapper.getNoticeTotal();
     }
 
+    //ADMINBOARD에 총 게시글 수 가져오기
+    @Test
+    public void getAdminBoardCountTest(){
+        userMapper.getAdminBoardCount(new Criteria(1,10));
+    }
 
+    //ADMINBOARD에 게시글 리스트 가져오기
+    @Test
+    public void getAdminboardListTest() {
+        userMapper.getAdminboardList(new Criteria(1,10));
+    }
 
 
 }

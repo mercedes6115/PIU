@@ -1,6 +1,7 @@
 package com.example.pickitup.domain.dao.product.productFile;
 
 import com.example.pickitup.domain.vo.Criteria;
+import com.example.pickitup.domain.vo.ProductCriteria;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 import com.example.pickitup.mapper.product.productFile.ProductMapper;
@@ -24,10 +25,14 @@ public class ProductDAO {
     }
 
     // 상품 목록 - 관리자용
-    public List<ProductVO> getProductList(Criteria criteria){
-        return productMapper.getProductList(criteria);
+    public List<ProductVO> getProductList(ProductCriteria productCriteria){
+        return productMapper.getProductList(productCriteria);
     }
 
+    // 상품 전체 개수 가져오기 - 관리자용
+    public int getTotal(){
+        return  productMapper.getTotal();
+    }
     // 상품 등록하기 - 관리자용
     public void register(ProductVO productVO){
         productMapper.insert(productVO);
