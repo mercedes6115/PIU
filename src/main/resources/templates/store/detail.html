@@ -103,33 +103,29 @@
                                              <div class ="reviewImageForm">                                        
                                                      <picture class="moveImage">
                                                         <source srcset="/src/main/resources/static/images/chun2.png" media="all and (min-width: 1024px)" >
-                                                        <img src="/src/main/resources/static/images/chun2.png" class="reviewImage" alt="">
-                                                     </picture>                                         
+                                                     </picture>
                                              </div>
-                                             <div class ="reviewImageForm">                                        
-                                                    <picture class="moveImage">
-                                                       <source srcset="/src/main/resources/static/images/chun3.png" media="all and (min-width: 1024px)" >
-                                                       <img src="/src/main/resources/static/images/chun3.png" class="reviewImage" alt="">
-                                                    </picture>                                        
-                                            </div>
-                                            <div class ="reviewImageForm">                                        
-                                                    <picture class="moveImage">
-                                                       <source srcset="/src/main/resources/static/images/chun6.png" media="all and (min-width: 1024px)" >
-                                                       <img src="/src/main/resources/static/images/chun6.png" class="reviewImage" alt="">
-                                                    </picture>                                        
-                                            </div>
-                                            <div class ="reviewImageForm">                                   
-                                                    <picture class="moveImage">
-                                                       <source srcset="/src/main/resources/static/images/chun8.png" media="all and (min-width: 1024px)" >
-                                                       <img src="/src/main/resources/static/images/chun8.png" class="reviewImage" alt="">
-                                                    </picture>                                        
-                                            </div>
-                                            <div class ="reviewImageForm">                                   
-                                                <picture class="moveImage">
-                                                   <source srcset="/src/main/resources/static/images/chun.png" media="all and (min-width: 1024px)" >
-                                                   <img src="/src/main/resources/static/images/chun.png" class="reviewImage" alt="">
-                                                </picture>                                        
-                                        </div>
+<!--                                             <div class ="reviewImageForm">                                        -->
+<!--                                                    <picture class="moveImage">-->
+<!--                                                       <source srcset="/src/main/resources/static/images/chun3.png" media="all and (min-width: 1024px)" >-->
+<!--                                                    </picture>                                        -->
+<!--                                            </div>-->
+<!--                                            <div class ="reviewImageForm">                                        -->
+<!--                                                    <picture class="moveImage">-->
+<!--                                                       <source srcset="/src/main/resources/static/images/chun6.png" media="all and (min-width: 1024px)" >-->
+<!--                                                    </picture>                                        -->
+<!--                                            </div>-->
+<!--                                            <div class ="reviewImageForm">                                   -->
+<!--                                                    <picture class="moveImage">-->
+<!--                                                       <source srcset="/src/main/resources/static/images/chun8.png" media="all and (min-width: 1024px)" >-->
+<!--                                                    </picture>                                        -->
+<!--                                            </div>-->
+<!--                                            <div class ="reviewImageForm">                                   -->
+<!--                                                <picture class="moveImage">-->
+<!--                                                   <source srcset="/src/main/resources/static/images/chun.png" media="all and (min-width: 1024px)" >-->
+<!--                                                   <img src="/src/main/resources/static/images/chun.png" class="reviewImage" alt="">-->
+<!--                                                </picture>                                        -->
+<!--                                            </div>  -->
                                         </div>
                                     </div>
                                     <div class="modalContainer">
@@ -292,7 +288,7 @@
         url: "/store/reviewList/" + productNum,
         type: "get",
         dataType: "json",
-        success: function(reviewVO){
+        success: function(reviewVO){   // 모든 리뷰 리스트
             let str = "";
             if(reviewVO.length==0){
                 str += "현재 댓글이 없습니다.";
@@ -319,9 +315,7 @@
                 str += "</div>";
                 str += "<div class=\"reviewNameDate\">";
                 str += "<div class=\"reviewName\">"+reviewVO[i].userNum+"</div>";
-
                 //여기서 ajax로  reviewVO[i].num을 가지고 와서
-
                 str += "<div class=\"reviewDate\">"+reviewVO[i].updateDate+"</div>";
                 str += "</div>";
                 str += "</div>";
@@ -337,6 +331,21 @@
                 str += "</div>";
             }
             $('.ProductReviews').html(str);
+
+            for (let i =0; i< reviewVO.length;i++) {
+                $.ajax({
+                    url: "/productReviewFile/list/" + reviewVO[i].num,
+                    type: "get",
+                    success: function (files) {  //파일들의 리스트
+                        let text = "";
+                        $(files).each(function (i, file) {
+                            text += "<img src='/productReviewFile/display?fileName=" + file.uploadPath + "/" + file.uuid + "_" + file.fileName + "'>";
+                        })
+                        $(".moveImage").append(text);
+                    }
+                })
+            }
+
         }
     });
     //------------------------------------------------------------------------------------------

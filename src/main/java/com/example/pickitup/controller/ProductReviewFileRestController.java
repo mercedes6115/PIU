@@ -113,7 +113,7 @@ public class ProductReviewFileRestController {
         File file = new File("C:/upload/", fileName);
         if(file.exists()){ file.delete(); }
 
-        file = new File("C:/upload/", fileName.replace("s_", ""));
+        file = new File("C:/upload/", fileName.replace("_", ""));
         if(file.exists()){ file.delete(); }
     }
 
