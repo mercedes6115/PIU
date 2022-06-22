@@ -1,6 +1,7 @@
 package com.example.pickitup.mapper.product.productFile;
 
 import com.example.pickitup.domain.vo.Criteria;
+import com.example.pickitup.domain.vo.ProductCriteria;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 import org.apache.ibatis.annotations.Mapper;
@@ -13,7 +14,9 @@ public interface ProductMapper {
     public List<ProductVO> getList();
 
     //
-    public List<ProductVO> getProductList(Criteria criteria);
+    public List<ProductVO> getProductList(ProductCriteria productCriteria);
+
+    public int getTotal();
 
     //    상품 한개만 띄우기 (상세보기)
     public ProductVO getDetail(Long num);
@@ -26,4 +29,7 @@ public interface ProductMapper {
 
     //    상품 삭제하기 ->관리자
     public boolean delete(Long num);
+
+    // 상품 전체 개수
+    public int count();
 }

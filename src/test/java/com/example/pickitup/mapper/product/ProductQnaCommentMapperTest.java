@@ -15,10 +15,10 @@ public class ProductQnaCommentMapperTest {
     @Autowired
     private ProductQnaCommentMapper productQnaCommentMapper;
 
-//    @Test
-//    public void getListTest(){
-//        productQnaCommentMapper.getList(new Criteria()).stream().map(ProductQnaCommentVO::toString).forEach(log::info);
-//    }
+    @Test
+    public void getListTest(){
+        productQnaCommentMapper.getList(26L).stream().map(ProductQnaCommentVO::toString).forEach(log::info);
+    }
 //
 //    @Test
 //    public void insertTest(){

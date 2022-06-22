@@ -51,7 +51,7 @@
              <div class="store_items">
                  <div class="onetime">
                      <h4 class="items_header">전체 상품 목록 &nbsp;</h4>
-                     <p class="item_headerp">600개</p>
+                     <p class="item_headerp" th:text="|${productsCount} 개|"></p>
                  </div>
                  <div class="all_items">
                                      <!--  목록 리스트 시작 -->
@@ -72,9 +72,12 @@
                                              <div style="margin-top: 6px; height: 16px;">
                                                  <p class="store_main_item_category" th:text="*{category}"></p>
                                              </div>
-                                             <div><span class="material-symbols-outlined" style="font-size: 12px;">
-                                                 favorite
-                                                 </span></div>
+                                             <div style="display: flex; align-items: end; margin-top: 5px">
+                                                 <span class="material-symbols-outlined" style="font-size: 12px;">
+                                                     favorite
+                                                 </span>
+                                                 <small style="font-size: 11px; margin-left: 5px">300..</small>
+                                             </div>
                                          </div>
                                          <div style="height: 18px;">
                                              <p class="store_item_price" th:text="|*{price}P|"></p>
@@ -122,6 +125,7 @@
             url: "/productFile/list/"+productNum,
             type : "get",
             success : function (files) {
+                // let str = "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
                 let str = "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
                 $(h).html(str);
                 // $("img#"+productNum).attr("src", "/upload/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName )
@@ -178,21 +182,11 @@
             $(this).addClass("red");
         }
     });
-    //
-    //     // $.ajax({
-    //     //     url : "", //찜table 연결하는곳
-    //     //     type : "post",
-    //     //     data : "상품데이터",
-    //     //     contentType : "application/json",
-    //     //     dataType : "json",
-    //     //     success : function(){
-    //
-    //     //     },
-    //     //     error : function(xhr,status,er){
-    //
-    //     //     }
-    //     // })
-    // })
+
+    // 카테고리 클릭시 ajax
+    $(".store_categories ul li").click(function (e) {
+        e.preventDefault();
+    })
 </script>
 
 </html>

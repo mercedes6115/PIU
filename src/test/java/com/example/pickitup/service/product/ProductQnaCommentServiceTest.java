@@ -15,10 +15,10 @@ public class ProductQnaCommentServiceTest {
     @Autowired
     private ProductQnaCommentService productQnaCommentService;
 
-//    @Test
-//    public void getListTest(){
-//        productQnaCommentService.getList(new Criteria());
-//    }
+    @Test
+    public void getListTest(){
+        productQnaCommentService.getList(26L);
+    }
 
 //    @Test
 //    public void registerTest(){
