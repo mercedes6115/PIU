@@ -2030,7 +2030,7 @@ svg:not(:root) {
     transition: all 0.2s linear;
 }
 .visited-plogging-main-image:hover img, .jjim-plogging-main-image:hover img, .visited-store-main-image:hover img, .jjim-store-main-image:hover img, .join-plogging-main-image:hover img, .pay-store-main-image:hover img {
-    transform: scale(1.4);
+    transform: scale(1.2);
 }
 
 .visited-plogging-content, .jjim-plogging-content, .join-plogging-content, .visited-store-content ,.jjim-store-content, .pay-store-content {

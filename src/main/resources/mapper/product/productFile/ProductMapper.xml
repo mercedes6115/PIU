@@ -28,9 +28,6 @@
                     </when>
                 </choose>
                 <choose>
-                    <when test="type1 == 'total'.toString()">
-                        AND CATEGORY = '생활'
-                    </when>
                     <when test="type1 == 'life'.toString()">
                         AND CATEGORY = '생활'
                     </when>

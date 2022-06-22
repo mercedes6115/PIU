@@ -75,7 +75,7 @@ public class AdminController {
         log.info("====================");
         tempAdminService.registerWrite(adminBoardVO);
         rttr.addFlashAttribute("num", adminBoardVO.getNum());
-        return new RedirectView("/admin/main");
+        return new RedirectView("/admin/boardList");
     }
 
 
