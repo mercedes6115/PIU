@@ -141,14 +141,16 @@
                             <th:block th:each="JJimList:${projectListJJim}">
                                 <li th:object="${JJimList}">
                                     <div class="plogging-thumbnail-wrap">
-                                        <img src="/images/poster1.png">
+<!--                                        <img src="/images/poster1.png">-->
+                                        <span class="Jjim-image" th:href="*{num}">
+                                        </span>
                                     </div>
                                     <div class="deadline"><span class="material-symbols-outlined"
                                                                 style="font-size: 14px; margin-left: 5px;">
                             alarm
                             </span>
                                         <div class="deadline-text">프로젝트 시작까지</div>
-                                        <div class="d-day"  th:text="*{projectDate}">D-3</div>
+                                        <div class="d-day" th:text="*{projectDate}">D-3</div>
                                     </div>
                                     <div class="plogging-location-text" th:text="*{terrain}"></div>
                                     <div class="plogging-msg-text" th:text="*{title}"></div>
@@ -248,7 +250,6 @@
             </div>
         </div>
         <div class="plogging-wrapper">
-            <div>
                 <div class="plogging-margin">
                     <section>
                         <div class="hot-plogging-text">
@@ -262,31 +263,32 @@
                         <div id="slideShow3">
                             <ul class="slides3">
                                 <th:block th:each="ApplyList:${projectListApply}">"
-                                <li th:object="${ApplyList}">
-                                    <div class="plogging-thumbnail-wrap">
-                                        <img src="/images/poster1.png">
-                                    </div>
-                                    <div class="deadline"><span class="material-symbols-outlined"
-                                                                style="font-size: 14px; margin-left: 5px;">
+                                    <li th:object="${ApplyList}">
+                                        <div class="plogging-thumbnail-wrap">
+                                            <img src="/images/poster1.png">
+                                        </div>
+                                        <div class="deadline"><span class="material-symbols-outlined"
+                                                                    style="font-size: 14px; margin-left: 5px;">
                                     alarm
                                     </span>
-                                        <div class="deadline-text">프로젝트 시작까지</div>
-                                        <div class="d-day" th:text="*{projectDate}">D-3</div>
-                                    </div>
-                                    <div class="plogging-location-text" th:text="*{terrain}">강남구청</div>
-                                    <div class="plogging-msg-text" th:text="*{title}">강남구청과 함께하는 대모산 클린 하이킹</div>
-                                    <!-- <div class="jjims-and-likes" ><div class="last-wrap"></div>12312</div> -->
-                                    <div class="jjims-and-likes">
-                                        <div class="last-wrap">
-                                            <div class="heart-icon">
-                                                <div class="heart-svg">
-                                                    人
+                                            <div class="deadline-text">프로젝트 시작까지</div>
+                                            <div class="d-day" th:text="*{projectDate}">D-3</div>
+                                        </div>
+                                        <div class="plogging-location-text" th:text="*{terrain}">강남구청</div>
+                                        <div class="plogging-msg-text" th:text="*{title}">강남구청과 함께하는 대모산 클린 하이킹</div>
+                                        <!-- <div class="jjims-and-likes" ><div class="last-wrap"></div>12312</div> -->
+                                        <div class="jjims-and-likes">
+                                            <div class="last-wrap">
+                                                <div class="heart-icon">
+                                                    <div class="heart-svg">
+                                                        人
+                                                    </div>
+                                                    <div style="margin-top: 1px;margin-left: 2px;"
+                                                         th:text="*{applyCount}"></div>
                                                 </div>
-                                                <div style="margin-top: 1px;margin-left: 2px;" th:text="*{applyCount}"></div>
                                             </div>
                                         </div>
-                                    </div>
-                                </li>
+                                    </li>
                                 </th:block>
                             </ul>
                             <p class="controller3">
@@ -311,7 +313,6 @@
                         </div>
                     </section>
                 </div>
-            </div>
         </div>
         <!--여기까지 메인 컨텐츠-->
 
@@ -325,6 +326,26 @@
 <script src="/assets/js/SlideShow.js"></script>
 <script src="/assets/js/Banner.js"></script>
 <script th:inline="javascript">
+    let str1 = "";
+    $(".Jjim-image").each(function (i, h) {
+        console.log("11111111111111111111111111111111111111111111111111111111111111111111111");
+        let projectNum = $(this).attr("href");
+        console.log("asdasaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        $.ajax({
+            url: "/projectFile/list/" + projectNum,
+            type: "get",
+            success: function (files) {
+                str1 += "<picture class='join-plogging-main-image'>";
+                str1 += "<img src='/projectFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_" + files[0].fileName + "'>";
+                str1 += "</picture>";
+                $(h).html(str);
+                str1 = "";
+            }
+        })
+    })
+</script>
+
+<script>
     let nickname=[[${nickname}]];
     if(nickname!=null){
         alert(nickname+"님 어서오세요!");
