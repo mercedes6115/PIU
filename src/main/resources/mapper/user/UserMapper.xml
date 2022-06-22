@@ -308,7 +308,7 @@
         ORDER BY REGIST_DATE DESC
     </select>
 
-    
+
 </mapper>
 
 
