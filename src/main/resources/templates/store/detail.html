@@ -332,11 +332,11 @@
             }
             $('.ProductReviews').html(str);
 
-            for (let i =0; i< reviewVO.length;i++) {
+            for (let i =0; i< reviewVO.length;i++) {  //reviewVO = 10 개
                 $.ajax({
                     url: "/productReviewFile/list/" + reviewVO[i].num,
                     type: "get",
-                    success: function (files) {  //파일들의 리스트
+                    success: function (files) {  //파일들의 리스트 총 파일 13개
                         let text = "";
                         $(files).each(function (i, file) {
                             text += "<img src='/productReviewFile/display?fileName=" + file.uploadPath + "/" + file.uuid + "_" + file.fileName + "'>";
