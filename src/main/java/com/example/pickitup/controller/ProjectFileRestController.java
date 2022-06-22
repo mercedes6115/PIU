@@ -82,10 +82,11 @@ public class ProjectFileRestController {
         return FileCopyUtils.copyToByteArray(file);
     }
 
-    private boolean checkImageType(File file) throws IOException{
-        String contentType = Files.probeContentType(file.toPath());
-        return contentType.startsWith("image");
-    }
+//    private boolean checkImageType(File file) throws IOException{
+//        String contentType = Files.probeContentType(file.toPath());
+//        return contentType.startsWith("image");
+//    }
+
 
     private String getFolder(){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
