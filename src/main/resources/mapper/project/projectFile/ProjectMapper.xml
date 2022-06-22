@@ -46,22 +46,26 @@
     <!-- 프로젝트 찜순 목록(상위 10개)   -->
     <select id="getListJJim" resultType="projectVO">
     <![CDATA[
-        SELECT NUM, TITLE, project_Date, JJIM_COUNT
+        SELECT *
         FROM (
-            SELECT * FROM TBL_PROJECT  ORDER BY JJIM_COUNT DESC
-        )
-        WHERE ROWNUM <=10
+            SELECT * FROM TBL_PROJECT
+            WHERE project_Date >= SYSDATE
+            ORDER BY JJIM_COUNT DESC
+            )
+            WHERE ROWNUM <=10
         ]]>
     </select>
 
     <!-- 프로젝트 포인트순 목록(상위 10개)   -->
     <select id="getListPoint" resultType="projectVO">
     <![CDATA[
-        SELECT NUM, TITLE, project_Date, POINT
+        SELECT *
         FROM (
-            SELECT * FROM TBL_PROJECT  ORDER BY POINT DESC
-        )
-        WHERE ROWNUM <=10
+            SELECT * FROM TBL_PROJECT
+            WHERE project_Date >= SYSDATE
+            ORDER BY POINT DESC
+            )
+            WHERE ROWNUM <=10
         ]]>
     </select>
 
@@ -74,8 +78,9 @@
         (SELECT PROJECT_NUM, COUNT(PROJECT_NUM) APPLYCOUNT  FROM TBL_APPLY a
         GROUP BY a.PROJECT_NUM) a JOIN TBL_PROJECT p
         ON a.PROJECT_NUM = p.NUM
+        WHERE project_Date >= SYSDATE
         ORDER BY APPLYCOUNT DESC)
-        WHERE ROWNUM <=10
+    WHERE ROWNUM <=10
         ]]>
     </select>
 
