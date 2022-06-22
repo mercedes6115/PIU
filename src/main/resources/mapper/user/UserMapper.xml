@@ -64,10 +64,12 @@
     </select>
 
 
-    <select id="login" resultType="_int">
-        SELECT COUNT(NUM)
+    <select id="login" resultType="userVO">
+
+        SELECT NUM, NICKNAME
         FROM TBL_USER
         WHERE EMAIL=#{email} AND PASSWORD=#{password}
+
     </select>
 
 
@@ -263,7 +265,9 @@
                 AND WRITER LIKE '%'||#{keyword}||'%'
             </if>
             <if test="startDate != null">
-                AND (REGIST_DATE BETWEEN #{startDate} AND #{endDate})
+                <![CDATA[AND (TO_CHAR(REGIST_DATE,'yyyy-mm-dd hh24:mi:ss') >
+                  (#{startDate}||'00:00:00') AND (TO_CHAR(REGIST_DATE,'yyyy-mm-dd hh24:mi:ss') < #{endDate}||'23:59:59'))
+                  ]]>
             </if>
         </where>
     </select>
@@ -296,12 +300,15 @@
                 AND WRITER LIKE '%'||#{keyword}||'%'
             </if>
             <if test="startDate != null">
-                AND (REGIST_DATE BETWEEN #{startDate} AND #{endDate})
+                <![CDATA[AND (TO_CHAR(REGIST_DATE,'yyyy-mm-dd hh24:mi:ss') >
+                  (#{startDate}||'00:00:00') AND (TO_CHAR(REGIST_DATE,'yyyy-mm-dd hh24:mi:ss') < #{endDate}||'23:59:59'))
+                  ]]>
             </if>
         </where>
+        ORDER BY REGIST_DATE DESC
     </select>
 
-
+    
 </mapper>
 
 

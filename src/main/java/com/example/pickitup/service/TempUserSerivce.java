@@ -71,7 +71,7 @@ public class TempUserSerivce {
     }
 
 
-    public int loginUser(String email, String password){
+    public UserVO loginUser(String email, String password){
         return userDAO.login(email,password);
     }
 
