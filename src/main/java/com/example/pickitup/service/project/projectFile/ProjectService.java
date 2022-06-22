@@ -1,6 +1,8 @@
 package com.example.pickitup.service.project.projectFile;
 
 import com.example.pickitup.domain.dao.project.projectFile.ProjectDAO;
+import com.example.pickitup.domain.vo.ProjectCriteria;
+import com.example.pickitup.domain.vo.dto.ProjectDTO;
 import com.example.pickitup.domain.vo.dto.ProjectMainDTO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +25,15 @@ public class ProjectService {
     // 프로젝트 목록
     public List<ProjectVO> getList(){
         return projectDAO.getList();
+    }
+
+    // 관리자용 프로젝트 전체 목록
+    public List<ProjectDTO> getProjectList(ProjectCriteria projectCriteria){
+        return projectDAO.getProjectList(projectCriteria);
+    }
+
+    public int getProjectTotal(ProjectCriteria projectCriteria){
+        return projectDAO.getProjectTotal(projectCriteria);
     }
 
     // 프로젝트 상세보기

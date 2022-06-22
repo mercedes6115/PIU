@@ -1,6 +1,7 @@
 package com.example.pickitup.mapper.user;
 
 import com.example.pickitup.domain.vo.Criteria;
+import com.example.pickitup.domain.vo.OrderCriteria;
 import com.example.pickitup.domain.vo.user.OrderVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -33,7 +34,7 @@ public class OrderMapperTests {
 
     @Test
     public void getOrderListTest(){
-        log.info("주문 전체 목록 페이징"+ orderMapper.getList(new Criteria(1,10)));
+        log.info("주문 전체 목록 페이징"+ orderMapper.getList(new OrderCriteria(1,10)));
     }
 
     @Test

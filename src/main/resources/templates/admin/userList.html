@@ -110,7 +110,6 @@
 <!--            https://ifuwanna.tistory.com/200 Stat선언하여 rownum을 대신하여 출력-->
                 <th:block  th:each="user,userStat:${userList}">
                     <tr th:object="${user}">
-
                     <td><input type="checkbox" class="userCheck"></td>
                     <td th:text="${userStat.index}"></td>
                     <td th:if="*{category}=='user'" th:text="유저"></td>
@@ -124,7 +123,6 @@
                     <td th:text="*{address}"></td>
                     <td></td>
                     <td><a th:href="@{/admin/userDetail(num=*{num},category=*{category})}" class="userDetail">상세보기</a></td>
-
                 </tr>
                 </th:block>
                 <!-- 더미 데이터 -->

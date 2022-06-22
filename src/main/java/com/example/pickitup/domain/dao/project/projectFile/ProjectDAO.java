@@ -1,6 +1,8 @@
 package com.example.pickitup.domain.dao.project.projectFile;
 
 
+import com.example.pickitup.domain.vo.ProjectCriteria;
+import com.example.pickitup.domain.vo.dto.ProjectDTO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 import com.example.pickitup.mapper.project.projectFile.ProjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +20,14 @@ public class ProjectDAO {
     // 프로젝트 목록
     public List<ProjectVO> getList(){
         return projectMapper.getList();
+    }
+
+    public List<ProjectDTO> getProjectList(ProjectCriteria projectCriteria){
+        return projectMapper.getProjectList(projectCriteria);
+    }
+
+    public int getProjectTotal(ProjectCriteria projectCriteria){
+        return projectMapper.getProjectTotal(projectCriteria);
     }
 
     // 프로젝트 상세보기

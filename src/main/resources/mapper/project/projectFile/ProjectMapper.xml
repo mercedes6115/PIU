@@ -3,9 +3,119 @@
 <mapper namespace="com.example.pickitup.mapper.project.projectFile.ProjectMapper">
 
     <!-- 프로젝트 전체 목록   -->
-    <select id="getList" resultType="projectVO">
-    SELECT NUM, TITLE, CONTENT, COURSE, TERRAIN, POINT, APPROVAL, STARTTIME, ENDTIME, START_ADDRESS, END_ADDRESS, DISTANCE, QR, REGIST_DATE, UPDATE_DATE, STATUS, COMPANY_NUM, USER_NUM
-    FROM TBL_PROJECT
+<!--    <select id="getList" resultType="projectVO">-->
+<!--    SELECT NUM, TITLE, CONTENT, COURSE, TERRAIN, POINT, APPROVAL, STARTTIME, ENDTIME, START_ADDRESS, END_ADDRESS, DISTANCE, QR, REGIST_DATE, UPDATE_DATE, STATUS, COMPANY_NUM, USER_NUM-->
+<!--    FROM TBL_PROJECT-->
+<!--    </select>-->
+
+<!--    관리자용 프로젝트 전체 목록 불러오기-->
+    <select id="getProjectList" resultType="projectDTO">
+        SELECT RN,NUM,TITLE,CONTENT,TERRAIN,POINT,APPROVAL,REGIST_DATE,QR,UPDATE_DATE,START_ADDRESS,END_ADDRESS,NICKNAME,STARTTIME,ENDTIME,COURSE
+        FROM
+        (
+        SELECT ROWNUM RN, P.NUM AS NUM,P.TITLE AS TITLE,P.CONTENT AS CONTENT,P.TERRAIN TERRAIN ,P.POINT AS POINT,P.APPROVAL AS APPROVAL ,P.REGIST_DATE AS REGIST_DATE ,P.QR AS QR,P.UPDATE_DATE AS UPDATE_DATE ,P.COMPANY_NUM AS C ,P.START_ADDRESS AS START_ADDRESS, P.END_ADDRESS AS END_ADDRESS, C.NICKNAME AS NICKNAME,P.STARTTIME AS STARTTIME ,P.ENDTIME AS ENDTIME,P.COURSE AS COURSE
+        FROM TBL_PROJECT  P ,TBL_COMPANY  C
+        WHERE P.COMPANY_NUM = C.NUM
+        <![CDATA[
+        AND ROWNUM <= #{pageNum} * #{amount}
+            ]]>
+        )
+        WHERE RN > (#{pageNum} - 1) * #{amount}
+        <choose>
+            <when test="type=='title'.toString()">
+                AND TITLE LIKE '%'||#{keyword}||'%'
+            </when>
+            <when test="type=='num'.toString()">
+                AND NUM LIKE '%'||#{keyword}||'%'
+            </when>
+            <when test="type=='startAddress'.toString()">
+                AND START_ADDRESS LIKE '%'||#{keyword}||'%'
+            </when>
+            <when test="type=='nickname'.toString()">
+                AND NICKNAME LIKE '%'||#{keyword}||'%'
+            </when>
+        </choose>
+        <choose>
+            <when test="type1=='mountain'.toString()">
+                AND TERRAIN = '1'
+            </when>
+            <when test="type1=='coast'.toString()">
+                AND TERRAIN = '2'
+            </when>
+            <when test="type1=='ground'.toString()">
+                AND TERRAIN = '3'
+            </when>
+            <when test="type1=='etc'.toString()">
+                AND TERRAIN = '4'
+            </when>
+        </choose>
+        <choose>
+            <when test="type2=='registDate1'.toString() and startDate != null  ">
+                AND (REGIST_DATE BETWEEN #{startDate} AND #{endDate})
+            </when>
+            <when test="type2=='startDate1'.toString() and startDate != null">
+                AND (STARTTIME BETWEEN #{startDate} AND #{endDate})
+            </when>
+            <when test="type2=='endDate1'.toString() and startDate != null">
+                AND (ENDTIME BETWEEN #{startDate} AND #{endDate})
+            </when>
+            <when test="type2=='updateDate1'.toString() and startDate != null">
+                AND (UPDATE_DATE BETWEEN #{startDate} AND #{endDate})
+            </when>
+        </choose>
+
+    </select>
+
+    <select id="getProjectTotal" resultType="_int">
+        SELECT COUNT(NUM)
+        FROM
+        (
+        SELECT ROWNUM RN, P.NUM AS NUM,P.TITLE AS TITLE,P.CONTENT AS CONTENT,P.TERRAIN TERRAIN ,P.POINT AS POINT,P.APPROVAL AS APPROVAL ,P.REGIST_DATE AS REGIST_DATE ,P.QR AS QR,P.UPDATE_DATE AS UPDATE_DATE ,P.COMPANY_NUM AS C ,P.START_ADDRESS AS START_ADDRESS, P.END_ADDRESS AS END_ADDRESS, C.NICKNAME AS NICKNAME,P.STARTTIME AS STARTTIME ,P.ENDTIME AS ENDTIME
+        FROM TBL_PROJECT  P ,TBL_COMPANY  C
+        WHERE P.COMPANY_NUM = C.NUM
+        )
+        <choose>
+            <when test="type=='title'.toString()">
+                WHERE TITLE LIKE '%'||#{keyword}||'%'
+            </when>
+            <when test="type=='num'.toString()">
+                WHERE NUM LIKE '%'||#{keyword}||'%'
+            </when>
+            <when test="type=='startAddress'.toString()">
+                WHERE START_ADDRESS LIKE '%'||#{keyword}||'%'
+            </when>
+            <when test="type=='nickname'.toString()">
+                WHERE NICKNAME LIKE '%'||#{keyword}||'%'
+            </when>
+        </choose>
+        <choose>
+            <when test="type1=='mountain'.toString()">
+                AND TERRAIN = '1'
+            </when>
+            <when test="type1=='coast'.toString()">
+                AND TERRAIN = '2'
+            </when>
+            <when test="type1=='ground'.toString()">
+                AND TERRAIN = '3'
+            </when>
+            <when test="type1=='etc'.toString()">
+                AND TERRAIN = '4'
+            </when>
+        </choose>
+        <choose>
+            <when test="type2=='registDate1'.toString() and startDate != null">
+                AND (REGIST_DATE BETWEEN #{startDate} AND #{endDate})
+            </when>
+            <when test="type2=='startDate1'.toString() and startDate != null">
+                AND (STARTTIME BETWEEN #{startDate} AND #{endDate})
+            </when>
+            <when test="type2=='endDate1'.toString() and startDate != null">
+                AND (ENDTIME BETWEEN #{startDate} AND #{endDate})
+            </when>
+            <when test="type2=='updateDate1'.toString() and startDate != null">
+                AND (UPDATE_DATE BETWEEN #{startDate} AND #{endDate})
+            </when>
+        </choose>
     </select>
 
     <!--  특정 유저가 신청한 프로젝트 목록 -->
