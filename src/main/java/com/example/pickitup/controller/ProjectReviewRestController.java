@@ -12,10 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -56,10 +53,6 @@ public class ProjectReviewRestController {
             projectReviewFileVO.setUploadPath(getFolder());
 
             uploadFileName = uuid.toString() + "_" + uploadFileName;
-
-            log.info("--------------------------------");
-            log.info("Upload File Name : " + uploadFileName);
-            log.info("Upload File Size : " + file.getSize());
 
             File saveFile = new File(uploadPath, uploadFileName);
             file.transferTo(saveFile);

@@ -15,6 +15,5 @@ public class ProjectReviewVO {
     private String updateDate;
     private Long userNum;
     private Long projectNum;
-
     private List<ProjectReviewFileVO> fileList;
 }

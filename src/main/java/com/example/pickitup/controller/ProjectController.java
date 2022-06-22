@@ -103,13 +103,14 @@ public class ProjectController {
         projectService.removeJjim(jjimVO);
     }
 
+
     // 프로젝트 지원
     @PostMapping("/apply")
     @ResponseBody
     public void applyProject(@RequestBody ApplyVO applyVO){
 
-
     }
+
 
     // 리뷰작성
     @GetMapping("/review/add")
@@ -125,5 +126,6 @@ public class ProjectController {
     }
 
 
+    //
 
 }
