@@ -8,6 +8,7 @@ import com.example.pickitup.domain.vo.OrderCriteria;
 import com.example.pickitup.domain.vo.ProductCriteria;
 import com.example.pickitup.domain.vo.adminVO.AdminBoardDTO;
 import com.example.pickitup.domain.vo.dto.OrderDTO;
+import com.example.pickitup.domain.vo.dto.ProductDTO;
 import com.example.pickitup.domain.vo.dto.UserDTO;
 import com.example.pickitup.domain.vo.product.productFile.ProductFileVO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;

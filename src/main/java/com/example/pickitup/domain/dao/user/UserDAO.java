@@ -112,5 +112,5 @@ public class UserDAO {
     };
 
     //  닉네임 중복검사
-    public boolean nicknameCheck(String nickname) { return (userMapper.nicknameMatching(nickname) == 0);}
+    public int nicknameCheck(String nickname) { return userMapper.nicknameMatching(nickname);}
 }

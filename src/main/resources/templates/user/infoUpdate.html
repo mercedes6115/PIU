@@ -211,7 +211,7 @@
             type: "post",
             data: {nickname: $unicknameval},
             success: function (result) {
-                if(result) {
+                if(result === 1) {
                     $('#nicknameCheck_text').empty().text("사용 가능한 닉네임 입니다.").css("color", "green");
                     nicknamePass = true;
                 } else {

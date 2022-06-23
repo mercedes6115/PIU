@@ -65,7 +65,7 @@
     </select>
 
 
-    <select id="login" resultType="userVO">
+    <select id="login" resultType="userDTO">
 
         SELECT NUM, NICKNAME
         FROM TBL_USER
