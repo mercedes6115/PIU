@@ -3,6 +3,7 @@ package com.example.pickitup.domain.dao.user;
 import com.example.pickitup.domain.vo.AdminCriteria;
 import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.adminVO.AdminBoardDTO;
+import com.example.pickitup.domain.vo.dto.AdminBoardPageDTO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
@@ -39,8 +40,8 @@ public class UserDAO {
     }
 
     // 관리자 공지글 총개수
-    public int getNoticeTotal(){
-        return userMapper.getNoticeTotal();
+    public int getNoticeTotal(AdminCriteria adminCriteria){
+        return userMapper.getNoticeTotal(adminCriteria);
     }
 
     // 관리자 adminboard 글 총개수
@@ -53,9 +54,24 @@ public class UserDAO {
         return userMapper.getAdminboardList(adminCriteria);
     }
 
-    // 관리자 adminboard 글 삭제하기
-    public int deleteById(Long num) {
+    // 관리자 adminbaord 글 삭제하기
+    public int deleteById(Long num){
         return userMapper.deleteById(num);
+    }
+
+    // 관리자 adminboard 글 공지 해제하기
+    public int noticeCancel(Long num){
+        return userMapper.noticeCancel(num);
+    }
+
+    // 관리자 adminboard 글 공지 지정하기
+    public int noticeConfirm(Long num){
+        return userMapper.noticeConfirm(num);
+    }
+
+    //    관리자 게시물 관리에서 상세보기
+    public AdminBoardPageDTO getQnaReply(Long num){
+        return userMapper.getQnaReply(num);
     }
 
     // 유저 목록(관리자용)
@@ -92,7 +108,7 @@ public class UserDAO {
     }
 
     // 유저가 참여한 프로젝트 목록록
-   public List<ProjectVO> getInProjectList(Long userNum) {
+    public List<ProjectVO> getInProjectList(Long userNum) {
         return userMapper.getInProjectList(userNum);
     }
 

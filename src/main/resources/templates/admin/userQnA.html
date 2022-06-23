@@ -24,28 +24,24 @@
         </div>
         <div class="listBox" id="userDetail">
             <div>
-                <h2>기본정보</h2>
+                <h2>QnA 기본정보</h2>
             </div>
-            <table id="basicInfo">
+            <table id="basicInfo" th:object="${adminBoard}">
                     <tr>
                         <th>작성자</th>
-                        <td>gil@naver.com</td>
+                        <td th:utext="*{nickname}"></td>
                     </tr>
                     <tr>
-                        <th style="width: 16%;">원문제목</th>
-                        <td></td>
+                        <th style="width: 16%;">제목</th>
+                        <td th:utext="*{title}"></td>
                     </tr>
-                <tr>
-                    <th >원문내용</th>
-                    <td></td>
-                </tr>
                     <tr>
-                        <th>문의내용</th>
-                        <td></td>
+                        <th>문의한 내용</th>
+                        <td th:utext="*{content}"></td>
                     </tr>
                 <tr>
                     <th>문의날짜</th>
-                    <td>2021-06-13 17:29</td>
+                    <td th:utext="*{registDate}"></td>
                 </tr>
             </table>
 
