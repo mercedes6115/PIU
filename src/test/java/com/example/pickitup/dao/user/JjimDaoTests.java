@@ -36,4 +36,8 @@ public class JjimDaoTests {
 //        vo.setUserNum(22L);
 //        jjimDAO.remove(vo);
 //    }
+//    @Test
+//    public void getListTest(){
+//        jjimDAO.getList();
+//    }
 }

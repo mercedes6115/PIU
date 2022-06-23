@@ -35,4 +35,9 @@ public class JjimDAO {
         jjimMapper.delete(jjimVO);
     }
 
+    // 찜 전체 목록
+    public List<JjimVO> getList(){
+        return jjimMapper.getList();
+    }
+
 }

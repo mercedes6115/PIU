@@ -205,6 +205,14 @@ public class StoreController {
         return sdf.format(date);
     }
 
+    //찜 목록
+    @ResponseBody
+    @GetMapping("/jjim")
+    public List<JjimVO> listJjim(){
+       return jjimService.getList();
+    }
+
+
     // 찜추가
     @ResponseBody
     @PostMapping("/jjim")

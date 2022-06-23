@@ -28,4 +28,8 @@ public class JjimServeiceTest {
 //        vo.setProductNum(23L);
 //        jjimService.remove(vo);
 //    }
+    @Test
+    public void getListTest(){
+        jjimService.getList();
+    }
 }

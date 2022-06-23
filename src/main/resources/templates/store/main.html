@@ -126,8 +126,8 @@
 <!--<script src="/assets/js/store.js"></script>-->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script th:inline="javascript">
-    const $uploadResult = $(".item ul");
-
+    // 임시 유저 userNum = 22;
+    let userNum = 22;
     //찜 ajax
     $('.all_items').on("click",".jjim-ajax",function() {
         let productNum = $(this).attr("name");
@@ -139,9 +139,10 @@
             $.ajax({
                 url:"/store/jjim",
                 type:"post",
-                data: {userNum : 22, category: "1", productNum : productNum},
+                data: {userNum : userNum, category: "1", productNum : productNum},
                 success : function (result) {
                     alert("찜");
+                    // showmain($('.store_categories li.active a').attr("href"))
                 }
             })
 
@@ -153,9 +154,10 @@
             $.ajax({
                 url:"/store/jjim",
                 type:"delete",
-                data: {userNum : 22, category: "1", productNum : productNum},
+                data: {userNum : userNum, category: "1", productNum : productNum},
                 success : function (result) {
                     alert("찜 해제");
+                    // showmain($('.store_categories li.active a').attr("href"))
                 }
             })
         }
@@ -189,9 +191,38 @@
                 $(lists).each(function (i, list) {
                     str += "<li>";
                     str += "<div class=\"item\">";
+
+                    str += "<span class='heart'></span>"
                     str += "<span class=\"material-symbols-outlined jjim jjim-ajax\" name=\""+list.num+"\" style='color: #d3cdcd; font-weight: bold;'>";
                     str += "favorite";
                     str += "</span>";
+
+                    //여기서 ajax로 찜목록 가져오기 userNum와 productNum 가지고 List<JjimVO>형태로 받아옴
+                    // 각 jjim 들을 검사하면서. if(jjim.userNum = userNum && jjim.productNum=list.num){
+                    // 꽉찬하트  아니면 빈하트
+
+                    // $.ajax({
+                    //     url : "/store/jjim",
+                    //     type : "get",
+                    //     success : function (jjims) {
+                    //         let str = "";
+                    //         $(jjims).each(function (i, jjim) {
+                    //             if(list.num==jjim.productNum && jjim.userNum==userNum){
+                    //             }else{
+                    //                 console.log(jjim.productNum+"좋아요없음");
+                    //             }
+                    //
+                    //             // if(jjim.userNum==userNum && jjim.productNum==list.num){
+                    //             //
+                    //             // }else{
+                    //             //
+                    //             // }
+                    //         })
+                    //         $(".heart").html(str);
+                    //     }
+                    // })
+
+
                     str += "<a class=\"goDetail\" th:href=\""+list.num+"\" style=\"cursor:pointer\">";
                     (function (i) {
                         $.ajax({
@@ -244,21 +275,6 @@
         let category = $(this).attr('href');
         showmain(category);
     })
-
-    // $('.goDetail').each(function(i, h) {
-    //     //메인 사진 받아오기
-    //     let productNum=$(this).attr("href");
-    //     $.ajax({
-    //         url: "/productFile/list/"+productNum,
-    //         type : "get",
-    //         success : function (files) {
-    //             // let str = "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
-    //             let str = "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
-    //             $(h).html(str);
-    //             // $("img#"+productNum).attr("src", "/upload/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName )
-    //         }
-    //     })
-    // })
 
     //정상웹 일때
     $('.store_categories li').click(function(){
