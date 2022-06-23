@@ -30,7 +30,7 @@ public interface UserMapper {
     public List<AdminBoardDTO> getNoticeList(AdminCriteria adminCriteria);
 
     //    관리자 공지사항 총갯수
-    public int getNoticeTotal();
+    public int getNoticeTotal(AdminCriteria adminCriteria);
 
     //    ADMINBOARD에 총 게시글 수 가져오기
     public int getAdminBoardCount(AdminCriteria adminCriteria);

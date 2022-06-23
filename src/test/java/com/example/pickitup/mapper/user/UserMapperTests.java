@@ -125,7 +125,7 @@ public class UserMapperTests {
     //공지사항 개수
     @Test
     public void getNoticeTotalTest(){
-        userMapper.getNoticeTotal();
+        userMapper.getNoticeTotal(new AdminCriteria(1,10));
     }
 
     //ADMINBOARD에 총 게시글 수 가져오기

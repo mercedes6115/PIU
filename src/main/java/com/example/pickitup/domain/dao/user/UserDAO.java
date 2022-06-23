@@ -39,8 +39,8 @@ public class UserDAO {
     }
 
     // 관리자 공지글 총개수
-    public int getNoticeTotal(){
-        return userMapper.getNoticeTotal();
+    public int getNoticeTotal(AdminCriteria adminCriteria){
+        return userMapper.getNoticeTotal(adminCriteria);
     }
 
     // 관리자 adminboard 글 총개수

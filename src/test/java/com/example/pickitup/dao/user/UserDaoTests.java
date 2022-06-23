@@ -90,7 +90,7 @@ public class UserDaoTests {
 
         @Test
         public void getNoticeTotalTest () {
-            log.info("공지글 총 개수 : " + userDAO.getNoticeTotal());
+            log.info("공지글 총 개수 : " + userDAO.getNoticeTotal(new AdminCriteria(1,10)));
         }
 
 

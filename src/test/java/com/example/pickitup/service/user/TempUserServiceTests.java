@@ -120,7 +120,7 @@ public class TempUserServiceTests {
 
     @Test
     public void getNoticeTotalTest(){
-        log.info("총 개수 : " + tempAdminService.getNoticeTotal());
+        log.info("총 개수 : " + tempAdminService.getNoticeTotal(new AdminCriteria(1,10)));
     }
 
     @Test

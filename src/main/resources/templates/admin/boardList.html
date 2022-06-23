@@ -133,12 +133,12 @@
                             <input type="text" value="" name="keyword" th:value="*{keyword}">
                         </td>
                     </tr>
-                    <tr>
+                    <tr th:object="${adminCriteria}">
                         <th>답변상태</th>
                         <td>
-                            <span>전체</span><input type="radio"  id="" checked>
-                            <span>답변 대기</span><input type="radio"  id="">
-                            <span>답변 완료</span><input type="radio"  id="">
+                            <span>전체</span><input name="type1" type="radio" value="all" th:checked="*{type1} == 'all'" id="" checked>
+                            <span>답변 대기</span><input name="type1" value="noAnswer" th:checked="*{type1} == 'noAnswer'" type="radio"  id="">
+                            <span>답변 완료</span><input name="type1" value="answer" th:checked="*{type1} == 'answer'" type="radio"  id="">
                         </td>
                     </tr>
                 </table>
@@ -179,7 +179,7 @@
                     <th scope="col">선택</th>
                     <th scope="col">번호</th>
                     <th scope="col">분류</th>
-                    <th scope="col">
+                    <th scope="col" th:value="type3">
                         <span th:if="*{type3} == 'notice'">공지사항</span>
                         <span th:if="*{type3} == 'createrQna'">크리에이터제목</span>
                         <span th:if="*{type3} == 'projectQna'">프로젝트이름</span>
@@ -202,8 +202,8 @@
                     <td th:text="*{title}" th:value="*{title}"></td>
                     <td th:text="*{registDate}" th:value="*{registDate}"></td>
                     <td >
-                        <span th:if="*{category != '4' and answerStatus == '1'}">답변 대기</span>
-                        <span th:if="*{category != '4' and answerStatus == '2'}">답변 완료</span>
+                        <span th:if="*{category != '4' and answerStatus == '1'}" th:style="${'color:blue;'}">답변 대기</span>
+                        <span th:if="*{category != '4' and answerStatus == '2'}" th:style="${'color:red;'}">답변 완료</span>
                         <span th:if="*{category == '4' and status == '1'}" th:style="${'color:blue;'}">공지 지정</span>
                         <span th:if="*{category == '4' and status == '2'}" th:style="${'color:red;'}">공지 해제</span>
                     </td>
@@ -229,10 +229,10 @@
         <form action="/admin/boardList" name="pageForm" th:object="${adminCriteria}">
             <input type="hidden" th:field="*{pageNum}">
             <input type="hidden" th:field="*{amount}">
-            <input type="hidden" th:field="*{adminBoardCount}">
             <input type="hidden" th:field="*{startDate}">
             <input type="hidden" th:field="*{endDate}">
             <input type="hidden" th:field="*{keyword}">
+            <input type="hidden" th:field="*{type1}">
             <input type="hidden" th:field="*{type2}">
             <input type="hidden" th:field="*{type3}">
         </form>
@@ -248,6 +248,8 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/datepicker-ko.js"></script>
 <script th:inline="javascript">
 
+
+
     //타임리프에서 필드값으로 해당 유저의 번호 뿌려줄것
     $("a.changePage").click(function(e){
         e.preventDefault();
@@ -259,6 +261,8 @@
     $('#orderSearchBtn').on("click", function (e) {
         $("#boardSearchForm").submit();
     });
+
+
 
 
 </script>
@@ -358,7 +362,6 @@
                 console.log('list.length : ' + list.length);
                 console.log(("list[i] : " + list[i].value));
                 valueArr.push(list[i].value);            }
-
         console.log(valueArr);
             if (valueArr.length == 0) {
                 alert("삭제할 항목을 선택해 주세요.");

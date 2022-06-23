@@ -205,10 +205,26 @@
 
 
     <select id="getNoticeList" resultType="adminBoardVO">
-        SELECT NUM, TITLE, CATEGORY, CONTENT, USER_NUM, REGIST_DATE, UPDATE_DATE
+     SELECT NUM, TITLE, CATEGORY, CONTENT, USER_NUM, REGIST_DATE, UPDATE_DATE FROM
+    (
+    SELECT ROWNUM RN, NUM, TITLE, CATEGORY, CONTENT, USER_NUM, REGIST_DATE, UPDATE_DATE
+    FROM (
+    SELECT NUM, TITLE, CATEGORY, CONTENT, USER_NUM, REGIST_DATE, UPDATE_DATE FROM
+    TBL_ADMIN_BOARD
+            WHERE CATEGORY = '4' AND STATUS = '1'
+            ORDER BY REGIST_DATE DESC
+    )
+    <![CDATA[
+            WHERE ROWNUM <= #{pageNum} * #{amount}
+                ]]>
+            )
+            <![CDATA[
+        WHERE RN > (#{pageNum} - 1) * #{amount}
+            ]]>
+        /*SELECT NUM, TITLE, CATEGORY, CONTENT, USER_NUM, REGIST_DATE, UPDATE_DATE
         FROM TBL_ADMIN_BOARD
         WHERE CATEGORY = '4' AND STATUS = '1'
-        ORDER BY REGIST_DATE DESC
+        ORDER BY REGIST_DATE DESC*/
     </select>
 
     <select id="getNoticeTotal" resultType="_int">
@@ -256,6 +272,12 @@
             <if test="type3 == 'projectQna'.toString()">
                 AND CATEGORY = '1'
             </if>
+            <if test="type1 == 'noAnswer'.toString()">
+                AND ANSWER_STATUS = '1'
+            </if>
+            <if test="type1 == 'answer'.toString()">
+                AND ANSWER_STATUS = '2'
+            </if>
             <if test="type2 == 'title'.toString()">
                 AND TITLE LIKE '%'||#{keyword}||'%'
             </if>
@@ -292,6 +314,12 @@
             </if>
             <if test="type3 == 'projectQna'.toString()">
                 AND CATEGORY = '1'
+            </if>
+            <if test="type1 == 'noAnswer'.toString()">
+                AND ANSWER_STATUS = '1'
+            </if>
+            <if test="type1 == 'answer'.toString()">
+                AND ANSWER_STATUS = '2'
             </if>
             <if test="type2 == 'title'.toString()">
                 AND TITLE LIKE '%'||#{keyword}||'%'

@@ -163,8 +163,8 @@ public class TempAdminService {
     }
 
     //관리자 공지 총 개수
-    public int getNoticeTotal() {
-        return userDAO.getNoticeTotal();
+    public int getNoticeTotal(AdminCriteria adminCriteria) {
+        return userDAO.getNoticeTotal(adminCriteria);
     }
 
     //관리자 adminboard 게시글 총 개수

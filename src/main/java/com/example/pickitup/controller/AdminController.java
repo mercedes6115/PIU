@@ -75,6 +75,7 @@ public class AdminController {
 
         model.addAttribute("adminboardList", tempAdminService.getAdminboardList(adminCriteria));
         model.addAttribute("adminBoardPageDTO",new AdminBoardPageDTO(adminCriteria, (tempAdminService.getAdminBoardCount(adminCriteria))));
+
     }
 
     // 관리자 게시물 등록
@@ -91,13 +92,13 @@ public class AdminController {
         log.info("====================");
         tempAdminService.registerWrite(adminBoardVO);
         rttr.addFlashAttribute("num", adminBoardVO.getNum());
-        return new RedirectView("/admin/main");
+        return new RedirectView("/admin/boardList");
     }
 
     // 관리자 adminboard 체크 삭제
     @ResponseBody
     @PostMapping("/deleteById")
-    public String deleteById(Long num, HttpServletRequest request){
+    public String deleteById(Long num, Model model, AdminCriteria adminCriteria, HttpServletRequest request){
         String[] ajaxMsg = request.getParameterValues("valueArr");
         int size = ajaxMsg.length;
         for(int i = 0; i<size; i++){
