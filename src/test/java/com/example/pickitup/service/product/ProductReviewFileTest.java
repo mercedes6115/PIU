@@ -10,14 +10,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 @Slf4j
-public class ProductServiceFileTest {
+public class ProductReviewFileTest {
     @Autowired
     private ProductReviewFileService productReviewFileService;
 
-//    @Test
-//    public void findByProductReviewNumTest(){
-//        productReviewFileService.findByProductReviewNum(24L);
-//    }
+    @Test
+    public void findByProductReviewNumTest(){
+        productReviewFileService.findByProductReviewNum(24L);
+    }
 //
 //    @Test
 //    public void registerTest(){

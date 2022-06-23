@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 @Data
 @NoArgsConstructor
 public class ProjectMainDTO {
+    private Long num;
     private String title;
     private String terrain;
     private Long point;
@@ -15,7 +16,8 @@ public class ProjectMainDTO {
     private String projectDate;
     private Long applyCount;
 
-    public ProjectMainDTO(String title, String terrain, Long point, Long jjimCount, String projectDate, Long applyCount) {
+    public ProjectMainDTO(Long num,String title, String terrain, Long point, Long jjimCount, String projectDate, Long applyCount) {
+        this.num =num;
         this.title = title;
         this.terrain = terrain;
         this.point = point;

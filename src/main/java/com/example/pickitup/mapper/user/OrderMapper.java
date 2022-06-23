@@ -1,7 +1,11 @@
 package com.example.pickitup.mapper.user;
 
 import com.example.pickitup.domain.vo.Criteria;
+import com.example.pickitup.domain.vo.OrderCriteria;
+import com.example.pickitup.domain.vo.dto.OrderDTO;
+import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 import com.example.pickitup.domain.vo.user.OrderVO;
+import com.example.pickitup.domain.vo.user.UserVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -10,7 +14,11 @@ import java.util.List;
 @Mapper
 public interface OrderMapper {
 //    주문 전체 리스트
-    public List<OrderVO> getList(Criteria criteria);
+    public List<OrderDTO> getList(OrderCriteria orderCriteria);
+
+    public int getTotal(OrderCriteria orderCriteria);
+
+
 //    주문 등록
     public void insert(OrderVO orderVO);
 
@@ -27,6 +35,10 @@ public interface OrderMapper {
     public List<OrderVO> boughtItem(Long userNum);
 
 
+    //
+    public List<UserVO> getUser(Long num);
+    //    public int updateUser(UserVO userVO);
+    public List<ProductVO> getProduct(Long num);
 
 
 

@@ -31,10 +31,10 @@ public class OrderMapperTests {
         log.info("주문 상세 내용 " + orderMapper.getDetail(22L,21L));
     }
 
-    @Test
-    public void getOrderListTest(){
-        log.info("주문 전체 목록 페이징"+ orderMapper.getList(new Criteria(1,10)));
-    }
+//    @Test
+//    public void getOrderListTest(){
+//        log.info("주문 전체 목록 페이징"+ orderMapper.getList(new Criteria(1,10)));
+//    }
 
     @Test
     public void insertTest(){

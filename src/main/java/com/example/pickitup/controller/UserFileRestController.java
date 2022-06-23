@@ -48,6 +48,10 @@ public class UserFileRestController {
         return tempUserSerivce.readUserInfo(num);
     }
 
+<<<<<<< HEAD
+=======
+    //기업 회원가입 파일처리 메서드
+>>>>>>> 97af8ba92cd81ea9f5af9cd8303f1f14b87db28d
     @PostMapping("/businessFileUpload")
     @ResponseBody
     public Object businessFileUpload(MultipartFile uploadFile) throws IOException{

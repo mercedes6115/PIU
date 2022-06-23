@@ -107,25 +107,23 @@
                     <th scope="col">포인트</th>
                     <th scope="col"></th>
                 </tr>
-<!--            https://ifuwanna.tistory.com/200 Stat선언하여 rownum을 대신하여 출력-->
+                <!--            https://ifuwanna.tistory.com/200 Stat선언하여 rownum을 대신하여 출력-->
                 <th:block  th:each="user,userStat:${userList}">
                     <tr th:object="${user}">
-
-                    <td><input type="checkbox" class="userCheck"></td>
-                    <td th:text="${userStat.index}"></td>
-                    <td th:if="*{category}=='user'" th:text="유저"></td>
-                    <td th:if="*{category}=='company'" th:text="회사"></td>
-                    <td>활성화</td>
-                    <td>승인완료</td>
-                    <td th:text ="*{nickname}"></td>
-                    <td th:text="*{email}"></td>
-                    <td th:text="*{registDate}"></td>
-                    <td th:text="*{phone}"></td>
-                    <td th:text="*{address}"></td>
-                    <td></td>
-                    <td><a th:href="@{/admin/userDetail(num=*{num},category=*{category})}" class="userDetail">상세보기</a></td>
-
-                </tr>
+                        <td><input type="checkbox" class="userCheck"></td>
+                        <td th:text="${userStat.index}"></td>
+                        <td th:if="*{category}=='user'" th:text="유저"></td>
+                        <td th:if="*{category}=='company'" th:text="회사"></td>
+                        <td>활성화</td>
+                        <td>승인완료</td>
+                        <td th:text ="*{nickname}"></td>
+                        <td th:text="*{email}"></td>
+                        <td th:text="*{registDate}"></td>
+                        <td th:text="*{phone}"></td>
+                        <td th:text="*{address}"></td>
+                        <td></td>
+                        <td><a th:href="@{/admin/userDetail(num=*{num},category=*{category})}" class="userDetail">상세보기</a></td>
+                    </tr>
                 </th:block>
                 <!-- 더미 데이터 -->
 
@@ -140,21 +138,21 @@
                 <a class="changePage" th:href="*{criteria.pageNum + 1}" th:if="*{criteria.pageNum < realEnd}">&gt;</a>
             </div>
         </div>
-            </div>
-        </div>
-
-        <form action="/admin/userList"  method="get" id="pageForm" th:object="${criteria}">
-            <input type="hidden" th:field="*{pageNum}">
-            <input type="hidden" th:field="*{amount}">
-            <input type="hidden" th:field="*{total}" th:value="*{total}">
-            <input type="hidden" th:field="*{startDate}" th:value="*{startDate}">
-            <input type="hidden" th:field="*{endDate}" th:value="*{endDate}">
-            <input type="hidden" th:field="*{keyword}" th:value="*{keyword}">
-            <input type="hidden" th:field="*{keyword1}" th:value="*{keyword1}">
-            <input type="hidden" th:field="*{type1}" th:value="*{type1}">
-            <input type="hidden" th:field="*{type}" th:value="*{type}">
-        </form>
     </div>
+</div>
+
+<form action="/admin/userList"  method="get" id="pageForm" th:object="${criteria}">
+    <input type="hidden" th:field="*{pageNum}">
+    <input type="hidden" th:field="*{amount}">
+    <input type="hidden" th:field="*{total}" th:value="*{total}">
+    <input type="hidden" th:field="*{startDate}" th:value="*{startDate}">
+    <input type="hidden" th:field="*{endDate}" th:value="*{endDate}">
+    <input type="hidden" th:field="*{keyword}" th:value="*{keyword}">
+    <input type="hidden" th:field="*{keyword1}" th:value="*{keyword1}">
+    <input type="hidden" th:field="*{type1}" th:value="*{type1}">
+    <input type="hidden" th:field="*{type}" th:value="*{type}">
+</form>
+</div>
 
 </div>
 </body>
@@ -171,7 +169,7 @@
     $('#userDisabled').on("click", function (e) {
         if (confirm("해당 유저를 비활성화 하시겠습니까?")) {
 
-            // 해당 유저 비활성화 
+            // 해당 유저 비활성화
             $.ajax({
                 url: "",
                 type: "post",

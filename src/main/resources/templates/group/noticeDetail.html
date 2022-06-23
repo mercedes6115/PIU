@@ -114,4 +114,12 @@
     </div>
 </div>
 </body>
+
+<script th:inline="javascript">
+    let paging = [[${adminCriteria.listLink}]];
+
+    $(".backListBtn").click(function (e) {
+        location.replace("/notice")
+    })
+</script>
 </html>

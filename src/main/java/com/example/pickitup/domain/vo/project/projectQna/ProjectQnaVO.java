@@ -14,4 +14,6 @@ public class ProjectQnaVO {
     private Long userNum;
     private Long projectNum;
 
+    private String nickname;
+
 }

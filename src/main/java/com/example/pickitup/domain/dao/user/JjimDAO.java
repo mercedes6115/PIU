@@ -27,9 +27,12 @@ public class JjimDAO {
 
     // 찜 등록
     public void register(JjimVO jjimVO){
-        jjimMapper.insert(jjimVO);
+        jjimMapper.insertProject(jjimVO);
     }
 
-    // 찜 update -> 필요?
+    // 찜 해제
+    public void remove(JjimVO jjimVO){
+        jjimMapper.deleteProject(jjimVO);
+    }
 
 }

@@ -54,12 +54,12 @@
                     </div>
                 </div>
                 <div style="display: flex; justify-content: space-between;">
-                <a href="/user/findPw" class="findpw">비밀번호를 잊으셨나요?</a>
-                <div style="display: flex">
-                <a href="/user/join" class="joinus">일반회원 가입하기</a>
-                <p class="dash">/</p>
-                <a href="/user/joinGroup" class="joinus">회사회원 가입하기</a>
-                </div>
+                    <a href="/user/findPw" class="findpw">비밀번호를 잊으셨나요?</a>
+                    <div style="display: flex">
+                        <a href="/user/join" class="joinus">일반회원 가입하기</a>
+                        <p class="dash">/</p>
+                        <a href="/user/joinGroup" class="joinus">회사회원 가입하기</a>
+                    </div>
                 </div>
                 <button type="submit" class="loginbutton"> 로그인</button>
             </form>
@@ -75,6 +75,7 @@
 
 
 
+            <button type="button" class="kakaobutton">카카오톡 로그인 </button>
 
         </div>
     </div>
@@ -87,11 +88,11 @@
 <script src="/assets/js/login.js"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script type="text/javascript" th:inline="javascript">
+<script th:inline="javascript">
     let msg=[[${msg}]];
     if(msg!=null){
         alert(msg);
     }
-
 
 </script>
 </html>
