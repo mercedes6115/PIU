@@ -1,6 +1,7 @@
 package com.example.pickitup.controller;
 
 
+import com.example.pickitup.Util.EmailSend;
 import com.example.pickitup.domain.vo.dto.PageDTO;
 import com.example.pickitup.domain.vo.dto.PointDTO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
@@ -34,8 +35,8 @@ public class UserController {
     private final TempUserSerivce tempUserSerivce;
     private final TempCompanyService tempCompanyService;
     private final SessionManager sessionManager;
-//    @Resource
-//    private com.example.pickitup.Util.EmailSend emailSend;
+    @Resource
+    private EmailSend emailSend;
 
     // 마이페이지 메인
     @GetMapping("/myPage")
@@ -82,29 +83,31 @@ public class UserController {
 
     }
 
+    @PostMapping("/findPw")
+    public String findPWForm(String email, Model model) throws Exception {
+        log.info("전달받은 이메일 : " + email);
+        if(tempUserSerivce.emailcheck(email)==1){ //이메일 확인
+            model.addAttribute("msg","인증메일을 보냈습니다. 메일을 확인해 주세요");
+            emailSend.sendEmail(email);
+        }else{
+            model.addAttribute("msg","회원가입이 안된 이메일 입니다");
+        }
+        return "/user/findPw";
+    }
+
     // 비밀번호 재설정
     @GetMapping("/updatePw")
     public void updatePw(){
+        log.info("비밀번호 재설정 들어옴");
 
     }
-
-//    @PostMapping("/findPw")
-//    public String findPWForm(String email, Model model) throws Exception {
-//        log.info("전달받은 이메일 : " + email);
-//        if(tempUserSerivce.emailcheck(email)==1){ //이메일 확인
-//            model.addAttribute("msg","인증메일을 보냈습니다. 메일을 확인해 주세요");
-//            emailSend.sendEmail(email);
-//        }else{
-//            model.addAttribute("msg","회원가입이 안된 이메일 입니다");
-//        }
-//        return "/user/findPw";
-//    }
 
 
     // 비밀번호 재설정 폼
     @PostMapping("/updatePw")
-    public void updatePwForm(){
-
+    public RedirectView updatePwForm(String email, String password, String password2 ,RedirectAttributes rttr){
+        tempUserSerivce.updatePW(email,password);
+        return new RedirectView("/user/login");
     }
 
     // 회원정보 수정 전 비밀번호 확인

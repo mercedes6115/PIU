@@ -210,8 +210,8 @@ public class TempUserSerivce {
 
 
     // 유저 비밀번호 수정
-    public boolean updatePW(String email) {
-        return userDAO.updatePW(email);
+    public boolean updatePW(String email,String password) {
+        return userDAO.updatePW(email,password);
     }
 
 
