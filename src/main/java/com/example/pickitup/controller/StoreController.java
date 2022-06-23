@@ -65,9 +65,15 @@ public class StoreController {
 
     // 스토어 리뷰 목록
     @ResponseBody
-    @GetMapping("/reviewList/{productNum}")
-    public List<ProductReviewVO> reviewList(@PathVariable("productNum") Long productNum){
+    @GetMapping("/reviewLists/{productNum}")
+    public List<ProductReviewVO> reviewLists(@PathVariable("productNum") Long productNum){
        return productReviewService.getList(productNum);
+    }
+
+    @GetMapping("/reviewList")
+    public String reviewList(Long productNum, Model model){
+        model.addAttribute("reviews",productReviewService.getList(productNum));
+        return "/store/reviewList";
     }
 
     @GetMapping("/goReviewList/{productNum}")
@@ -75,7 +81,7 @@ public class StoreController {
         model.addAttribute("products",productService.getDetail(productNum));
         model.addAttribute("productNum",productNum);
         model.addAttribute("reviews",productReviewService.getList(productNum));
-        return "/store/reviewList";
+        return reviewList(productNum,model);
     }
 
     // 스토어 리뷰 작성
@@ -92,6 +98,14 @@ public class StoreController {
         productReviewService.insert(productReviewVO);
         return storeDetail(productReviewVO.getProductNum(), model);
     }
+
+    // 스토어 리뷰 작성
+    @ResponseBody
+    @GetMapping("/reviewDelete")
+    public void reviewDelete(Long num){
+        productReviewService.delete(num);
+    }
+
     // 스토어 문의 목록
     @ResponseBody
     @GetMapping("/qnaList/{productNum}")
@@ -124,17 +138,19 @@ public class StoreController {
     @ResponseBody
     @PostMapping(value = "/qnaCommentWrite", consumes = "application/json")
     public String qnaCommentWrite(@RequestBody ProductQnaCommentVO productQnaCommentVO)  throws UnsupportedEncodingException {
-        //유저 정보도 같이 보내야함(관리자)
+        //(관리자) 정보도 같이 보내야함
         productQnaCommentService.register(productQnaCommentVO);
         return "success";
     }
 //
-//    // 스토어 문의 댓글 작성 폼
-//    @PostMapping("/qnaWrite")
-//    public String qnaCommentWriteForm(ProductQnaVO productQnaVO, Model model){
-//        productQnaService.register(productQnaVO);
-//        return storeDetail(productQnaVO.getProductNum(), model);
-//    }
+    // 스토어 문의 댓글 삭제
+    // 관리자 번호와 같이 넘어와야함
+    @ResponseBody
+    @GetMapping("/qnaCommentDelete")
+    public String qnaCommentDeleteForm(Long qnaCommentNum){
+        productQnaCommentService.delete(qnaCommentNum);
+        return "success";
+    }
 
     // 스토어 결제 정보 입력
     @GetMapping("/payment")

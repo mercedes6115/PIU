@@ -37,12 +37,13 @@
                         <div class="flex">
                             <div class="profile_img"><img src="/images/5.jpg"></div>
                             <div class="review_id_and_date">
-                                <div class="review_id" th:text="*{userNum}"></div>
+                                <div class="review_id" th:text="|*{userNum}|"></div>
+                                <input type="hidden" class="reviewNumber" th:value="*{num}">
                                 <div class="review_date" th:text="*{updateDate}" ></div>
                             </div>
                             <div class="flex" style="margin-left: 10px; width: 100%; justify-content: flex-end; align-items: center;">
                                 <div class="review_modify"><a href="#"><img src="/images/modify.png"></a></div>
-                                <div class="review_delete"><a href="#"><img src="/images/delete.png"></a></div>
+                                <div class="review_delete" th:id="*{num}"><a href="#"><img src="/images/delete.png"></a></div>
                             </div>
                         </div>
                         <div style="margin-top: 10px;"></div>
@@ -52,7 +53,9 @@
                         </div>
                         <div class="review_content_container">
                             <p class="review_content" th:text="|*{content}|">
-                            <div style="margin-top:8px;"><img src="/images/5.jpg"></div>
+                            <div style="margin-top:8px;" th:class="*{num}">
+<!--                            여기에 사진 넣을자리-->
+                            </div>
                         </div>
                     </div>
                     <div style="width: 100%; justify-content: center; display: flex;">
@@ -76,54 +79,84 @@
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
  <script th:inline="javascript">
      let productNum = [[${productNum}]];
-
     //scroll top
     $('.gototop').click(function(){
         $('html, body').animate({scrollTop : 0},300);
     });
-    
-    //무한스크롤
-    $(window).on("scroll", function() { 
-	var scrollHeight = $(document).height();
-	var scrollPosition = $(window).height() + $(window).scrollTop();		
-    let str = "";
-    
-    //후기가 없을때까지
-        if (scrollPosition > scrollHeight -1) {	
-            //밑의 내용 위에 each 문에 넣기
-        str += "<div class=\"p-24\">";
-        str += "<div class=\"flex\">";
-        str += "<div class=\"profile_img\"><img src=\"/images/5.jpg\"></div>";
-        str += "<div class=\"review_id_and_date\">";
-        str += "<div class=\"review_id\" th:text=\"*{userNum}\" ></div>";
-        str += "<div class=\"review_date\" th:text=\"*{updateDate}\" ></div>";
-        str += "</div>";
-        str += "<div class=\"flex\" style=\"margin-left: 10px; width: 100%; justify-content: flex-end; align-items: center;\">";
-        str += "<div class=\"review_modify\"><a href=\"#\"><img src=\"/images/modify.png\"></a></div>";
-        str += "<div class=\"review_delete\"><a href=\"#\"><img src=\"/images/delete.png\"></a></div>";
-        str += "</div>";
-        str += "</div>";
-        str += "<div style=\"margin-top: 10px;\"></div>";
-        str += "<div style=\"margin-bottom: 12px;\">";
-        str += "<div class=\"review_item_name\">";
-        str += "[주방용품] 초록색 고무장갑  <!-- product를 가져오는데서 에러발생-->";
-        str += "</div>";
-        str += "</div>";
-        str += "<div class=\"review_content_container\">";
-        str += "<p class=\"review_content\" th:text=\"|*{content}|\">";
-        str += "<div style=\"margin-top:8px;\"><img src=\"/images/5.jpg\"></div>";
-        str += "</div>";
-        str += "</div>";
-        str += "<div style=\"width: 100%; justify-content: center; display: flex;\">";
-        str += "<div class=\"border_bottom_line\"></div>";
-        str += "</div>";
-            $(".reviewPlus").append(str);
-        }
-    });
 
-    $('.goBackToDetail').click(function (e) {
+     $('.reviewNumber').each(function (i, review) {
+         let cla = $(this).val();
+         $.ajax({
+             url: "/productReviewFile/list/" + cla,
+             type: "get",
+             success: function (files) {  //각 리뷰의 파일들
+                 let text = "";
+                 $(files).each(function (i, file) {
+                     text += "<img src='/productReviewFile/display?fileName=" + file.uploadPath + "/" + file.uuid + "_" + file.fileName + "'>";
+                 })
+                 $("."+cla+"").html(text);
+             }
+         })
+     })
+
+     $('.goBackToDetail').click(function (e) {
+         e.preventDefault();
+         location.href = "/store/detail?num="+productNum;
+     })
+
+     // 리뷰 삭제
+    $(".review_delete").on("click",function (e) {
         e.preventDefault();
-        location.href = "/store/detail?num="+productNum;
+        $.ajax({
+            url : "/store/reviewDelete?num="+$(this).attr("id"),
+            type: "get",
+            success : function (res) {
+                location.href = "/store/goReviewList/"+productNum;
+            }
+        })
     })
+
+
+
+    //무한스크롤
+    // $(window).on("scroll", function() {
+	// var scrollHeight = $(document).height();
+	// var scrollPosition = $(window).height() + $(window).scrollTop();
+    // let str = "";
+    //
+    // //후기가 없을때까지
+    //     if (scrollPosition > scrollHeight -1) {
+    //         //밑의 내용 위에 each 문에 넣기
+    //     str += "<div class=\"p-24\">";
+    //     str += "<div class=\"flex\">";
+    //     str += "<div class=\"profile_img\"><img src=\"/images/5.jpg\"></div>";
+    //     str += "<div class=\"review_id_and_date\">";
+    //     str += "<div class=\"review_id\" th:text=\"*{userNum}\" ></div>";
+    //     str += "<div class=\"review_date\" th:text=\"*{updateDate}\" ></div>";
+    //     str += "</div>";
+    //     str += "<div class=\"flex\" style=\"margin-left: 10px; width: 100%; justify-content: flex-end; align-items: center;\">";
+    //     str += "<div class=\"review_modify\"><a href=\"#\"><img src=\"/images/modify.png\"></a></div>";
+    //     str += "<div class=\"review_delete\"><a href=\"#\"><img src=\"/images/delete.png\"></a></div>";
+    //     str += "</div>";
+    //     str += "</div>";
+    //     str += "<div style=\"margin-top: 10px;\"></div>";
+    //     str += "<div style=\"margin-bottom: 12px;\">";
+    //     str += "<div class=\"review_item_name\">";
+    //     str += "[주방용품] 초록색 고무장갑  <!-- product를 가져오는데서 에러발생-->";
+    //     str += "</div>";
+    //     str += "</div>";
+    //     str += "<div class=\"review_content_container\">";
+    //     str += "<p class=\"review_content\" th:text=\"|*{content}|\">";
+    //     str += "<div style=\"margin-top:8px;\"><img src=\"/images/5.jpg\"></div>";
+    //     str += "</div>";
+    //     str += "</div>";
+    //     str += "<div style=\"width: 100%; justify-content: center; display: flex;\">";
+    //     str += "<div class=\"border_bottom_line\"></div>";
+    //     str += "</div>";
+    //         $(".reviewPlus").append(str);
+    //     }
+    // });
+
+
  </script>
 </html>

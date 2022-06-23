@@ -35,7 +35,6 @@ public class ProductReviewFileRestController {
     @PostMapping("/upload")
     @ResponseBody
     public List<ProductReviewFileVO> upload(MultipartFile[] uploadFiles) throws IOException {
-        log.info("들어옴");
         log.info(uploadFiles[0].toString());
         String uploadFolder = "C:/upload";
         ArrayList<ProductReviewFileVO> files = new ArrayList<>();
@@ -52,7 +51,7 @@ public class ProductReviewFileRestController {
             productReviewFileVO.setFileName(uploadFileName);
             productReviewFileVO.setUuid(uuid.toString());
             productReviewFileVO.setUploadPath(getFolder());
-            productReviewFileVO.setReviewNum(26L);
+//          productReviewFileVO.setReviewNum(70L);
 
             uploadFileName = uuid.toString() + "_" + uploadFileName;
 
@@ -72,7 +71,7 @@ public class ProductReviewFileRestController {
 ////                ProductReviewFileVO.setImage(true);
 //            }
             files.add(productReviewFileVO);
-            productReviewFileService.register(productReviewFileVO);
+//            productReviewFileService.register(productReviewFileVO);
         }
         return files;
     }

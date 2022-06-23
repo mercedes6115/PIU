@@ -100,11 +100,11 @@
                                     </div>
                                     <div class="wrapImage">
                                         <div class="reviewImages">
-                                             <div class ="reviewImageForm">                                        
-                                                     <picture class="moveImage">
-                                                        <source srcset="/src/main/resources/static/images/chun2.png" media="all and (min-width: 1024px)" >
-                                                     </picture>
-                                             </div>
+<!--                                             <div class ="reviewImageForm">                                        -->
+<!--                                                     <picture class="moveImage">-->
+<!--                                                        <source srcset="/src/main/resources/static/images/chun2.png" media="all and (min-width: 1024px)" >-->
+<!--                                                     </picture>-->
+<!--                                             </div>-->
 <!--                                             <div class ="reviewImageForm">                                        -->
 <!--                                                    <picture class="moveImage">-->
 <!--                                                       <source srcset="/src/main/resources/static/images/chun3.png" media="all and (min-width: 1024px)" >-->
@@ -143,7 +143,7 @@
                                     <div class="ProductReviews"></div>
                                     <!-- 각 리뷰-->
                                     <a class="moveReviewTotal">
-                                        <span th:if="|*{count lt 4}|" th:text="|*{count}개의 후기 더보기|"></span>
+                                        <span th:if="|*{count lt 4}|" th:text="|*{count}개 후기 보기|"></span>
                                         <span th:if="|*{count gt 3}|" class="goTomoveReviewTotal" th:text="|*{count-4}개의 후기 더보기|"></span>
                                     </a>
                                 </section>
@@ -285,7 +285,7 @@
     let productNum = [[${product.num}]];
     //--------------------------------------------------------- 리뷰 가져오기 ajax
     $.ajax({
-        url: "/store/reviewList/" + productNum,
+        url: "/store/reviewLists/" + productNum,
         type: "get",
         dataType: "json",
         success: function(reviewVO){   // 모든 리뷰 리스트
@@ -316,7 +316,7 @@
                 str += "<div class=\"reviewNameDate\">";
                 str += "<div class=\"reviewName\">"+reviewVO[i].userNum+"</div>";
                 //여기서 ajax로  reviewVO[i].num을 가지고 와서
-                str += "<div class=\"reviewDate\">"+reviewVO[i].updateDate+"</div>";
+                str += "<div class=\"reviewDate\">"+(reviewVO[i].updateDate).substring(0,10)+"</div>";
                 str += "</div>";
                 str += "</div>";
                 str += "<div class=\"profileMargin\"></div>";
@@ -339,15 +339,26 @@
                     success: function (files) {  //파일들의 리스트 총 파일 13개
                         let text = "";
                         $(files).each(function (i, file) {
+                            text += "<div class =\"reviewImageForm\">";
+                            text += "<picture class=\"moveImage\">";
+                            // text += "<source srcset=\"/images/chun2.png\" media=\"all and (min-width: 1024px)\" >";
                             text += "<img src='/productReviewFile/display?fileName=" + file.uploadPath + "/" + file.uuid + "_" + file.fileName + "'>";
+                            text += "</picture>";
+                            text += "</div>";
                         })
-                        $(".moveImage").append(text);
+                        $(".reviewImages").append(text);
                     }
                 })
             }
 
         }
     });
+
+    //------------------------------------------------------------------------------------------
+    //리뷰 사진 누르면 리뷰 보기 페이지 이동
+    $('.reviewImages').on("click","img",function (e) {
+        location.href = "/store/goReviewList/"+productNum;
+    })
     //------------------------------------------------------------------------------------------
     //메인 사진걸기
         $.ajax({
@@ -401,7 +412,7 @@
                     str += "<div class=\"profile_img\"><img src=\"/images/1.jpg\" style=\"width: 100%; height: 100%;\"></div>";
                     str += "<div class=\"id_and_date\" style=\"flex-direction: column;\">";
                     str += "<div class=\"admin_id\" style=\"color: black;\">"+qna.userNum+"</div>";
-                    str += "<div class=\"admin_date\">"+qna.updateDate+"</div>";
+                    str += "<div class=\"admin_date\">"+qna.updateDate.substring(0,10)+"</div>";
                     str += "</div>";
                     str += "</div>";
                     str += "<div class=\"space\"></div>";
@@ -418,9 +429,13 @@
                                 $.each(qnaCommentLists, function (i, comment) {
                                     str += "<div class=\"flex\" style=\"align-items: center;\">";
                                     str += "<div class=\"admin_profile_img\"><img src=\"/images/4.jpg\"></div>";
-                                    str += "<div class=\"flex id_and_date\">";
-                                    str += "<div class=\"admin_id\">" + comment.num + "&nbsp; </div>";
-                                    str += "<div class=\"admin_date\">" + comment.updateDate + "</div>";
+                                    str += "<div class=\"flex id_and_date\" style='width: 100%'>";
+                                    str += "<div class=\"admin_id\">관리자번호" + "&nbsp; </div>";
+                                    str += "<div class=\"admin_date\">" + comment.updateDate.substring(0,10) + "</div>";
+                                    str += "<div style='position: absolute; right: 0;'>";
+                                    str += "<a href='#' class=\"modify_adminComment\" style='margin-right: 5px;'>수정</a>";
+                                    str += "<a href=\""+comment.num+"\" class=\"delete_adminComment\">삭제</a>";
+                                    str += "</div>";
                                     str += "</div>";
                                     str += "</div>";
                                     str += "<div class=\"small_and_gray\" style=\"color: black;\">";
@@ -437,8 +452,8 @@
                     str += "<div class=\"flex\" style=\"position: relative; align-items: center; height: 48px;\">";
                     str += "<div class=\"do_admin_comment\">";
                     str += "<div class=\"flex\">";
-                    str += "<input class=\"doComment\" type=\"text\" placeholder=\"관리자만 입력할 수 있습니다\">";
-                    str += "<div class=\"send_plane\" id='"+ qna.num+ "' style=\"width: 20px; height: 20px;\"><span class=\"material-symbols-outlined\">";
+                    str += "<input class=\"doComment\" id='"+ qna.num+ "' type=\"text\" placeholder=\"관리자만 입력할 수 있습니다\">";
+                    str += "<div class=\"send_plane\" name='"+qna.num+"'  style=\"width: 20px; height: 20px;\"><span class=\"material-symbols-outlined\">";
                     str += "send";
                     str += " </span></div>";
                     str += "</div>";
@@ -455,15 +470,12 @@
     // 문의 댓글 작성 -- 관리자
 
     $('.ProductQnas').on("click", ".send_plane", function () {
-        const $content = $(".doComment").val();
-        const $qnaNum = $(".send_plane").attr("id");
-        console.log($content)
-        console.log($qnaNum)
+        const $content = $(".doComment#"+$(this).attr("name")+"").val();
+        const $qnaNum = $(this).attr("name");
         if(!$content){
             alert("내용을 입력해주세요.");
             return;
         }
-
         $.ajax({
            url:"/store/qnaCommentWrite",
            type:"post",
@@ -475,7 +487,21 @@
        })
     })
 
-    
+    // 문의의 관리자 댓글 삭제
+    $('.ProductQnas').on("click", ".delete_adminComment", function (e) {
+        e.preventDefault();
+        $.ajax({
+            url:"/store/qnaCommentDelete?qnaCommentNum="+$(this).attr("href"),
+            type : "get",
+            success : function (res) {
+                showQnaList();
+            }
+        })
+    })
+
+
+
+
  // 리뷰 이미지 모달
 //  (function() {
 //     let reviewImageList = document.querySelectorAll('.moveImage');

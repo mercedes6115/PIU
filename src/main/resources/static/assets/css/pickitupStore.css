@@ -1644,6 +1644,9 @@ footer{
     height: 100%;
     position: absolute;
 }
+.moveImage img{
+    border-radius: 3px;
+}
 
 .readReviews {
     display: flex;
@@ -1877,5 +1880,20 @@ footer{
 .review_content_container img{
     width: 192px;
     height: 108px;
-    border: 1px solid;
+    margin-right: 5px;
+    border-radius: 3px;
+}
+
+.modify_adminComment{
+    color: black;
+}
+.modify_adminComment:hover{
+    text-decoration: underline;
+}
+.delete_adminComment{
+    color: black;
+}
+.delete_adminComment:hover{
+    text-decoration: underline;
+
 }
