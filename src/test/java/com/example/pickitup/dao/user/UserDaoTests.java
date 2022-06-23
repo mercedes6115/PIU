@@ -109,6 +109,16 @@ public class UserDaoTests {
         userDAO.deleteById(49L);
         }
 
+        @Test
+        public void noticeCancelTest(){
+        userDAO.noticeCancel(59L);
+        }
+
+        @Test
+        public void noticeConfirmTest(){
+        userDAO.noticeConfirm(59L);
+        }
+
 
     }
 

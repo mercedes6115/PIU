@@ -146,6 +146,16 @@ public class UserMapperTests {
         userMapper.deleteById(50L);
     }
 
+    @Test
+    public void getNoticeCancelTest(){
+        userMapper.noticeCancel(58L);
+    }
+
+    @Test
+    public void getNoticeConfirmTest(){
+        userMapper.noticeConfirm(58L);
+    }
+
 }
 
 

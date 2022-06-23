@@ -41,6 +41,12 @@ public interface UserMapper {
     //    Adminboard에서 선택한것들 삭제
     public int deleteById(Long num);
 
+    //    AdminBoard에서 선택한것들 공지 지정해제
+    public int noticeCancel(Long num);
+
+    //    AdminBoard에서 선택한것들 공지 지정
+    public int noticeConfirm(Long num);
+
 //    유저 목록 관리자용
     public  List<UserDTO> getList(Criteria criteria);
 //    유저,회사 전체 목록 총 합

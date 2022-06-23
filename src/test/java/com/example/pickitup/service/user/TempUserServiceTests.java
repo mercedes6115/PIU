@@ -138,4 +138,14 @@ public class TempUserServiceTests {
         tempAdminService.deleteById(47L);
     }
 
+    @Test
+    public void noticeCancelTest() {
+        tempAdminService.noticeCancel(61L);
+    }
+
+    @Test
+    public void noticeConfirmTest(){
+        tempAdminService.noticeConfirm(61L);
+    }
+
 }

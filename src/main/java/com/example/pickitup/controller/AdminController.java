@@ -107,6 +107,32 @@ public class AdminController {
         return "/admin/boardList";
         }
 
+    // 관리자 adminboard 체크 공지 해제
+    @ResponseBody
+    @PostMapping("/noticeCancel")
+    public String noticeCancel(Long num, HttpServletRequest request){
+        String[] ajaxMsg = request.getParameterValues("valueArr");
+        int size = ajaxMsg.length;
+        for(int i = 0; i<size; i++){
+            num = Long.parseLong(ajaxMsg[i]);
+            tempAdminService.noticeCancel(num);
+        }
+        return "/admin/boardList";
+    }
+
+    // 관리자 adminboard 체크 공지 지정
+    @ResponseBody
+    @PostMapping("/noticeConfirm")
+    public String noticeConfirm(Long num, HttpServletRequest request){
+        String[] ajaxMsg = request.getParameterValues("valueArr");
+        int size = ajaxMsg.length;
+        for(int i = 0; i<size; i++){
+            num = Long.parseLong(ajaxMsg[i]);
+            tempAdminService.noticeConfirm(num);
+        }
+        return "/admin/boardList";
+    }
+
 
 
     // 관리자 주문 목록

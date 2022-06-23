@@ -182,5 +182,14 @@ public class TempAdminService {
         return userDAO.deleteById(num);
     }
 
+    //관리자 adminboard 글 공지 해제 하기
+    public int noticeCancel(Long num){
+        return userDAO.noticeCancel(num);
+    }
+
+    //관리자 adminboard 글 공지 지정 하기
+    public int noticeConfirm(Long num){
+        return userDAO.noticeConfirm(num);
+    }
 
 }

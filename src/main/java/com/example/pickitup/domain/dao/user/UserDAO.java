@@ -58,6 +58,16 @@ public class UserDAO {
         return userMapper.deleteById(num);
     }
 
+    // 관리자 adminboard 글 공지 해제하기
+    public int noticeCancel(Long num){
+        return userMapper.noticeCancel(num);
+    }
+
+    // 관리자 adminboard 글 공지 지정하기
+    public int noticeConfirm(Long num){
+        return userMapper.noticeConfirm(num);
+    }
+
 
     // 유저 목록(관리자용)
     public List<UserDTO> getList(Criteria criteria){
