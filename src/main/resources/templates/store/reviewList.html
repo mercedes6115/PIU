@@ -39,7 +39,7 @@
                         <div class="review_id_and_date">
                             <div class="review_id" th:text="|*{userNum}|"></div>
                             <input type="hidden" class="reviewNumber" th:value="*{num}">
-                            <div class="review_date" th:text="*{updateDate}" ></div>
+                            <div class="review_date" th:text="|${#strings.substring(review.updateDate,0,10)}|" ></div>
                         </div>
                         <div class="flex" style="margin-left: 10px; width: 100%; justify-content: flex-end; align-items: center;">
                             <div class="review_modify"><a href="#"><img src="/images/modify.png"></a></div>
