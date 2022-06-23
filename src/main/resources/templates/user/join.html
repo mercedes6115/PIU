@@ -21,19 +21,11 @@ pom.xml에서 dependency 추가
 <div class="root">
     <div class="wrapper-1">
         <div class="wrapper">
-<<<<<<< HEAD
-            <form method="post" action="/컨트롤러 경로/login.html" id="joinForm" onsubmit="return false;">
-=======
             <form method="post" action="/user/join" id="joinForm" >
->>>>>>> aaa195bbb080f46b8d59940d88f16a44bcfd8356
                 <div class="join-firststep">
                     <div class="wrapper-title"><h1 class="join-title">회원가입</h1><span
                             class="join-title-type">(일반회원)</span></div>
                     <div class="join-table">
-<<<<<<< HEAD
-                        <div class="join-table-title">이메일<span class="check-text" id="emailCheck_text"> </span></div>
-                        <div class="join-input-table"><input class="input-data" id="email" placeholder="example@example.com" type="text" onkeydown="CheckEnter(this.form,this)"/></div>
-=======
                         <div class="join-table-title">이메일
                             <span class="check-text" id="emailCheck_text"> </span></div>
                         <div class="join-input-table" style="display: flex;">
@@ -42,7 +34,6 @@ pom.xml에서 dependency 추가
                             <button id="emailCheck" type="button" class="emailCheck">중복확인</button>
 
                         </div>
->>>>>>> aaa195bbb080f46b8d59940d88f16a44bcfd8356
                     </div>
                     <div class="join-table">
                         <div class="join-table-title">비밀번호<span class="check-text" id="pwCheck_text_first"/></span></div>
@@ -50,32 +41,23 @@ pom.xml에서 dependency 추가
                     </div>
                     <div class="join-table">
                         <div class="join-table-title">비밀번호 재확인<span class="check-text" id="pwCheck_text"/></span></div>
-<<<<<<< HEAD
-                        <input class="input-data" id="password_check" placeholder="********" type="password" onkeydown="CheckEnter(this.form,this)" />
-                    </div>
-                    <div class="join-table">
-                        <div class="join-table-title">이름<span class="check-text" id="nameCheck_text"> </span></div>
-                        <input class="input-data" id="name" placeholder="홍길동" type="text" onkeydown="CheckEnter(this.form,this)"/>
-                    </div>
-                    <div class="join-table">
-                        <div class="join-table-title">전화번호<span class="check-text" id="phoneCheck_text"> </span></div>
-                        <input class="input-data" id="phone" placeholder="010-0000-0000" type="text" maxlength="13" onkeydown="CheckEnter(this.form,this)"/>
-=======
                         <input name="password" class="input-data" id="password_check" placeholder="********" type="password" />
                     </div>
                     <div class="join-table">
                         <div class="join-table-title">닉네임<span class="check-text" id="nameCheck_text"> </span></div>
-                        <input name="nickname" class="input-data" id="name" placeholder="홍길동" type="text" />
+                        <div class="join-input-table" style="display: flex;">
+                            <input name="nickname" class="input-data" id="nickname" placeholder="홍길동" type="text" />
+                            <button id="nameCheck" type="button" class="emailCheck">중복확인</button>
+                        </div>
                     </div>
                     <div class="join-table">
                         <div class="join-table-title">전화번호<span class="check-text" id="phoneCheck_text"> </span></div>
                         <input name="phone" class="input-data" id="phone" placeholder="010-0000-0000" type="text" maxlength="13"/>
->>>>>>> aaa195bbb080f46b8d59940d88f16a44bcfd8356
                     </div>
                     <div class="join-table">
                         <div class="join-table-title">주소</div>
                         <div style="display: flex; margin-top: 10px;margin-bottom: 5px;">
-                            <input class="input-data" type="text" id="state" placeholder="주소">
+                            <input name="address" class="input-data" type="text" id="state" placeholder="주소" readonly>
                             <input type="button" class="btnCertify" value="검색"/>
                         </div>
                         <input name="addressDetail" class="input-data" type="text" id="state-detail" placeholder="상세주소">

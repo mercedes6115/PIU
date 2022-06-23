@@ -117,11 +117,10 @@ public class UserMapperTests {
     }
 
     //공지리스트
-    @Test
-    public void getNoticeListTest(){
-        userMapper.getNoticeList(new Criteria(1, 10));
-
-    }
+//    @Test
+//    public void getNoticeListTest(){
+//        userMapper.getNoticeList(new Criteria(1, 10));
+//    }
 
     //공지상세보기
     @Test
@@ -140,16 +139,16 @@ public class UserMapperTests {
     }
 
     //ADMINBOARD에 총 게시글 수 가져오기
-    @Test
-    public void getAdminBoardCountTest(){
-        userMapper.getAdminBoardCount(new Criteria(1,10));
-    }
-
-    //ADMINBOARD에 게시글 리스트 가져오기
-    @Test
-    public void getAdminboardListTest() {
-        userMapper.getAdminboardList(new Criteria(1,10));
-    }
+//    @Test
+//    public void getAdminBoardCountTest(){
+//        userMapper.getAdminBoardCount(new Criteria(1,10));
+//    }
+//
+//    //ADMINBOARD에 게시글 리스트 가져오기
+//    @Test
+//    public void getAdminboardListTest() {
+//        userMapper.getAdminboardList(new Criteria(1,10));
+//    }
 
 
 }

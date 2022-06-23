@@ -1,6 +1,6 @@
 package com.example.pickitup.domain.vo.dto;
 
-import com.example.pickitup.domain.vo.Criteria;
+import com.example.pickitup.domain.vo.AdminCriteria;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Data
 @NoArgsConstructor
 public class AdminBoardPageDTO {
-    private Criteria criteria;
+    private AdminCriteria adminCriteria;
 
     private int startPage;
     private int endPage;
@@ -19,6 +19,7 @@ public class AdminBoardPageDTO {
     private Long num;
     private String title;
     private String category;
+    private String answerStatus;
     private String registDate;
     private String updateDate;
     private String status;
@@ -27,17 +28,17 @@ public class AdminBoardPageDTO {
 
     private int adminBoardCount;
 
-    public AdminBoardPageDTO(Criteria criteria, int adminBoardCount) {
-        this(criteria, 10, adminBoardCount);
+    public AdminBoardPageDTO(AdminCriteria adminCriteria, int adminBoardCount) {
+        this(adminCriteria, 10, adminBoardCount);
     }
 
-    public AdminBoardPageDTO(Criteria criteria, int pageCount, int adminBoardCount) {
-        this.criteria = criteria;
+    public AdminBoardPageDTO(AdminCriteria adminCriteria, int pageCount, int adminBoardCount) {
+        this.adminCriteria = adminCriteria;
         this.adminBoardCount = adminBoardCount;
 //        현재 페이지를 기준으로 소수점까지 모두 계산하여 보여질 마지막 페이지 번호를 구한다.
-        this.endPage = (int)Math.ceil(criteria.getPageNum() / (double)pageCount) * pageCount;
+        this.endPage = (int)Math.ceil(adminCriteria.getPageNum() / (double)pageCount) * pageCount;
         this.startPage = this.endPage - pageCount + 1;
-        this.realEnd = (int)Math.ceil((double)adminBoardCount / criteria.getAmount());
+        this.realEnd = (int)Math.ceil((double)adminBoardCount / adminCriteria.getAmount());
 
         if(realEnd < this.endPage){
             this.endPage = realEnd;
@@ -49,19 +50,3 @@ public class AdminBoardPageDTO {
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

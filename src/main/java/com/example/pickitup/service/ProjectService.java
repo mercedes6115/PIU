@@ -9,6 +9,8 @@ import com.example.pickitup.domain.dao.project.projectReview.ProjectReviewFileDA
 import com.example.pickitup.domain.dao.user.ApplyDAO;
 import com.example.pickitup.domain.dao.user.JjimDAO;
 import com.example.pickitup.domain.vo.Criteria;
+import com.example.pickitup.domain.vo.ProjectCriteria;
+import com.example.pickitup.domain.vo.dto.ProjectDTO;
 import com.example.pickitup.domain.vo.dto.ProjectMainDTO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaCommentVO;
@@ -47,14 +49,25 @@ public class ProjectService {
 
 
     // 프로젝트 목록(특정 단체 유저)
-    public List<ProjectVO> getProjectList(Long companyNum, Criteria criteria){
-        return projectDAO.getUserProjectList(companyNum, criteria);
+//    public List<ProjectVO> getProjectList(Long companyNum, ProjectCriteria projectCriteria){
+//        return projectDAO.getUserProjectList(companyNum, projectCriteria);
+//    }
+
+
+    // 관리자용 프로젝트 전체 목록
+    public List<ProjectDTO> getProjectList(ProjectCriteria projectCriteria){
+        return projectDAO.getProjectList(projectCriteria);
     }
 
     // 프로젝트 상세보기
     public ProjectVO read(Long num){
         return projectDAO.read(num);
     }
+
+    public int getProjectTotal(ProjectCriteria projectCriteria){
+        return projectDAO.getProjectTotal(projectCriteria);
+    }
+
 
     // 프로젝트 등록
     public void register(ProjectVO projectVO){
