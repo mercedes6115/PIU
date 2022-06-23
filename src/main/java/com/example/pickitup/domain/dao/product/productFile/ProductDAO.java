@@ -2,6 +2,7 @@ package com.example.pickitup.domain.dao.product.productFile;
 
 import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.ProductCriteria;
+import com.example.pickitup.domain.vo.dto.ProductDTO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 import com.example.pickitup.mapper.product.productFile.ProductMapper;

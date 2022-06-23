@@ -87,65 +87,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/assets/js/join.js"></script>
 <script>
-    let regex = new RegExp("(.*?)\.(exe|sh|zip|alz)");
-
-    function checkExtension(fileName, fileSize){
-        if(regex.test(fileName)){
-            alert("업로드 할 수 없는 파일의 형식입니다.");
-            return false;
-        }
-        if(fileSize >= 5242880){
-            alert("파일 사이즈 초과");
-            return false;
-        }
-        return true;
-    }
-
-    $("input[type='file']").on("change",function () {
-
-        let formData = new FormData();
-        let inputFile = $("input[name='uploadFile']");
-        let files = inputFile[0].files;
-        console.log(files);
-        for(let i=0; i<files.length; i++){
-            if(!checkExtension(files[i].name, files[i].size)){ return; }
-            formData.append("uploadFile", files[i]);
-        }
-        $.ajax({
-            url: "/userFile/businessFileUpload",
-            type: "post",
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function(data){
-                console.log(data);
-                console.log(data.profileFileName);
-                console.log(data.profileUploadPath);
-
-                $('input[name=profileFileName]').val(data.profileFileName);
-                $('input[name=profileUploadPath]').val(data.profileUploadPath);
-
-            }
-        });
-
-    })
-
-    // 입력받은 파일 이름 넘기기
-    $(document).ready(function(){
-        var fileTarget = $('.upload-hidden');
-
-        fileTarget.on('change', function(){
-            if(window.FileReader){
-                var filename = $(this)[0].files[0].name;
-            } else {
-                var filename = $(this).val().split('/').pop().split('\\').pop();
-            }
-
-            $(this).siblings('#business-number').val(filename);
-
-            corpPass =true;
-        });
-    });
+    
 
     // // 입력받은 파일 저장(컨트롤러)
     // $("#ex_filename").on("click", function(e){
