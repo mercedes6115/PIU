@@ -177,6 +177,12 @@ public class StoreController {
     public void payment(){
 
     }
+//    @GetMapping("/payment")
+//    public String payment(Long num){
+//        orderService.payment(num);
+//        return "/payment";
+//    }
+
 
     // 스토어 결제 정보 입력
     @PostMapping("/payment")

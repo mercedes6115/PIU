@@ -7,6 +7,7 @@ import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.OrderCriteria;
 import com.example.pickitup.domain.vo.ProductCriteria;
 import com.example.pickitup.domain.vo.adminVO.AdminBoardDTO;
+import com.example.pickitup.domain.vo.dto.AdminBoardPageDTO;
 import com.example.pickitup.domain.vo.dto.OrderDTO;
 import com.example.pickitup.domain.vo.dto.ProductDTO;
 import com.example.pickitup.domain.vo.dto.UserDTO;
@@ -158,9 +159,9 @@ public class TempAdminService {
     }
 
     //관리자 공지 리스트
-//    public List<AdminBoardDTO> getNoticeList(Criteria criteria){
-//        return userDAO.getNoticeList(criteria);
-//    }
+    public List<AdminBoardDTO> getNoticeList(AdminCriteria adminCriteria){
+        return userDAO.getNoticeList(adminCriteria);
+    }
 
     //관리자 공지 상세보기
     public AdminBoardVO getReadDetail(Long num){
@@ -168,8 +169,8 @@ public class TempAdminService {
     }
 
     //관리자 공지 총 개수
-    public int getNoticeTotal() {
-        return userDAO.getNoticeTotal();
+    public int getNoticeTotal(AdminCriteria adminCriteria) {
+        return userDAO.getNoticeTotal(adminCriteria);
     }
 
     //관리자 adminboard 게시글 총 개수
@@ -186,5 +187,21 @@ public class TempAdminService {
     public int deleteById(Long num) {
         return userDAO.deleteById(num);
     }
+
+    //관리자 adminboard 글 공지 해제 하기
+    public int noticeCancel(Long num){
+        return userDAO.noticeCancel(num);
+    }
+
+    //관리자 adminboard 글 공지 지정 하기
+    public int noticeConfirm(Long num){
+        return userDAO.noticeConfirm(num);
+    }
+
+    //관리자 게시물 관리에서 상세보기
+    public AdminBoardPageDTO getQnaReply(Long num){
+        return userDAO.getQnaReply(num);
+    }
+
 
 }
