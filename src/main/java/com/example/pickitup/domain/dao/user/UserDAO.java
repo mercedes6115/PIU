@@ -107,8 +107,8 @@ public class UserDAO {
     };
 
     //  비밀번호 수정
-    public boolean updatePW(String email){
-        return userMapper.updatePW(email);
+    public boolean updatePW(String email,String password){
+        return userMapper.updatePW(email,password);
     };
 
     //  닉네임 중복검사
