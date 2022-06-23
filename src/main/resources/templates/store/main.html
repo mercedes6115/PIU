@@ -201,27 +201,6 @@
                     // 각 jjim 들을 검사하면서. if(jjim.userNum = userNum && jjim.productNum=list.num){
                     // 꽉찬하트  아니면 빈하트
 
-                    // $.ajax({
-                    //     url : "/store/jjim",
-                    //     type : "get",
-                    //     success : function (jjims) {
-                    //         let str = "";
-                    //         $(jjims).each(function (i, jjim) {
-                    //             if(list.num==jjim.productNum && jjim.userNum==userNum){
-                    //             }else{
-                    //                 console.log(jjim.productNum+"좋아요없음");
-                    //             }
-                    //
-                    //             // if(jjim.userNum==userNum && jjim.productNum==list.num){
-                    //             //
-                    //             // }else{
-                    //             //
-                    //             // }
-                    //         })
-                    //         $(".heart").html(str);
-                    //     }
-                    // })
-
 
                     str += "<a class=\"goDetail\" th:href=\""+list.num+"\" style=\"cursor:pointer\">";
                     (function (i) {
@@ -258,6 +237,23 @@
                     str += "</li>";
                 })
                 $('.all_items ul').html(str);
+
+               $.ajax({
+                    url : "/store/jjim",
+                    type : "get",
+                    success : function (jjims) {
+                        let str = "";
+                        $(jjims).each(function (i, jjim) {
+                            if(jjim.userNum==userNum){
+                                if($(".jjim[name="+jjim.productNum+"]").hasClass("material-symbols-outlined")){
+                                    $(".jjim[name="+jjim.productNum+"]").removeClass("material-symbols-outlined");
+                                    $(".jjim[name="+jjim.productNum+"]").addClass("material-icons");
+                                    $(".jjim[name="+jjim.productNum+"]").css("color","red")
+                                }
+                            }
+                        })
+                    }
+                })
             }
         })
     }
