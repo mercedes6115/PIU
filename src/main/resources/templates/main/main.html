@@ -142,8 +142,8 @@
                                 <li th:object="${JJimList}">
                                     <div class="plogging-thumbnail-wrap">
 <!--                                        <img src="/images/poster1.png">-->
-                                        <span class="Jjim-image" th:href="*{num}">
-                                        </span>
+<!--                                        <span class="Jjim-image" th:href="*{num}">-->
+<!--                                        </span>-->
                                     </div>
                                     <div class="deadline"><span class="material-symbols-outlined"
                                                                 style="font-size: 14px; margin-left: 5px;">
@@ -345,7 +345,7 @@
     })
 </script>
 
-<script>
+<script th:inline="javascript">
     let nickname=[[${nickname}]];
     if(nickname!=null){
         alert(nickname+"님 어서오세요!");

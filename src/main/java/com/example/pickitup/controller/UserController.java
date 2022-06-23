@@ -150,18 +150,7 @@ public class UserController {
     public void joinGroup(){
 
     }
-
-    // 단체 유저 회원가입 폼
-    @PostMapping("/joinGroup")
-    public void joinGroupForm(CompanyVO companyVO){
-        companyVO.setPhone(String.join("",companyVO.getPhone().split("-")));
-        companyVO.setBusinessPhone(String.join("",companyVO.getBusinessPhone().split("-")));
-
-        log.info(companyVO.getPhone());
-        log.info(companyVO.getBusinessPhone());
-        tempCompanyService.registerCompany(companyVO);
-
-    }
+    
 
 
     // 로그인
@@ -209,6 +198,18 @@ public class UserController {
     // 회원탈퇴
     @DeleteMapping("/delete")
     public void delete(){
+
+    }
+
+    @PostMapping("/joinGroup")
+    public String joinGroupForm(CompanyVO companyVO){
+        companyVO.setPhone(String.join("",companyVO.getPhone().split("-")));
+        companyVO.setBusinessPhone(String.join("",companyVO.getBusinessPhone().split("-")));
+
+        log.info(companyVO.getPhone());
+        log.info(companyVO.getBusinessPhone());
+        tempCompanyService.registerCompany(companyVO);
+        return "/user/login";
 
     }
 }
