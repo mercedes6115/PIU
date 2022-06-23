@@ -149,5 +149,9 @@ public class TempUserServiceTests {
         tempAdminService.noticeConfirm(61L);
     }
 
+    @Test
+    public void getQnaReplyTest(){
+        tempAdminService.getQnaReply(125L);
+    }
 
 }

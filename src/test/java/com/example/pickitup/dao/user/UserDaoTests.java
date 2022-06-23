@@ -118,6 +118,11 @@ public class UserDaoTests {
     }
 
     @Test
+    public void getQnaReplyTest(){
+        userDAO.getQnaReply(125L);
+    }
+
+    @Test
     public void nicknameCheckTest() { log.info("결과 : " + userDAO.nicknameCheck("짜리킴"));}
 
 }

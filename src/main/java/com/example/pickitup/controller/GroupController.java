@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -43,12 +44,11 @@ public class GroupController {
 
     // 그룹 공지사항 상세보기
     @GetMapping("/noticeDetail")
-    public void noticeDetail(Long num, AdminCriteria adminCriteria, HttpServletRequest request, Model model){
+    public void noticeDetail(Long num, HttpServletRequest request, Model model){
         String requestURL = request.getRequestURI();
         log.info(requestURL.substring(requestURL.lastIndexOf("/")));
         log.info("*************");
         log.info("================================");
-        log.info(adminCriteria.toString());
         log.info("================================");
         model.addAttribute("adminBoard", tempAdminService.getReadDetail(num));
     }

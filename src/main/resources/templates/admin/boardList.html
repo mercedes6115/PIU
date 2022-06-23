@@ -181,10 +181,11 @@
                     <th scope="col">분류</th>
                     <th scope="col" th:value="type3">
                         <span th:if="*{type3} == 'notice'">공지사항</span>
-                        <span th:if="*{type3} == 'createrQna'">크리에이터제목</span>
-                        <span th:if="*{type3} == 'projectQna'">프로젝트이름</span>
-                        <span th:if="*{type3} == 'productQna'">상품이름</span>
-                        <span th:unless="*{type3} == 'all'">제목</span>
+                        <span th:if="*{type3} == 'createrQna'">크리에이터</span>
+                        <span th:if="*{type3} == 'projectQna'">프로젝트</span>
+                        <span th:if="*{type3} == 'productQna'">상품</span>
+                        <span th:if="*{type3} == 'all'"></span>
+                        <span th:unless="*{type3} == 'nothing'">제목</span>
                     </th>
                     <th scope="col">작성일</th>
                     <th scope="col">비 고</th>
@@ -208,7 +209,7 @@
                             <span th:if="*{category == '4' and status == '2'}" th:style="${'color:red;'}">공지 해제</span>
                         </td>
                         <!-- 상품 상세보기로 이동 -->
-                        <td><a href="#">상세보기</a></td>
+                        <td><a CLASS="getDetail" th:href="*{num}">상세보기</a></td>
                     </tr>
                 </th:block>
             </table>
@@ -247,7 +248,14 @@
 <!-- datepicker 한국어로 -->
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/datepicker-ko.js"></script>
 <script th:inline="javascript">
+    let num = [[${num}]];
+    let paging = [[${adminCriteria.listLink}]];
 
+    $("a.getDetail").click(function(e){
+        e.preventDefault();
+        location.href = "/admin/userQnA" + paging + "&num="+$(this).attr('href');
+        console.log("들어옴");
+    });
 
 
     //타임리프에서 필드값으로 해당 유저의 번호 뿌려줄것

@@ -168,6 +168,11 @@ public class UserMapperTests {
         userMapper.noticeConfirm(58L);
     }
 
+    @Test
+    public void getGetQnaReplyTest(){
+        userMapper.getQnaReply(125L);
+    }
+
 }
 
 

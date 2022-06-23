@@ -7,6 +7,7 @@ import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.OrderCriteria;
 import com.example.pickitup.domain.vo.ProductCriteria;
 import com.example.pickitup.domain.vo.adminVO.AdminBoardDTO;
+import com.example.pickitup.domain.vo.dto.AdminBoardPageDTO;
 import com.example.pickitup.domain.vo.dto.OrderDTO;
 import com.example.pickitup.domain.vo.dto.ProductDTO;
 import com.example.pickitup.domain.vo.dto.UserDTO;
@@ -195,6 +196,11 @@ public class TempAdminService {
     //관리자 adminboard 글 공지 지정 하기
     public int noticeConfirm(Long num){
         return userDAO.noticeConfirm(num);
+    }
+
+    //관리자 게시물 관리에서 상세보기
+    public AdminBoardPageDTO getQnaReply(Long num){
+        return userDAO.getQnaReply(num);
     }
 
 

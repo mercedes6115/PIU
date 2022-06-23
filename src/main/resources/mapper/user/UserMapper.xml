@@ -408,6 +408,13 @@
         WHERE NUM=#{num}
     </update>
 
+    <select id="getQnaReply" resultType="adminboardDTO">
+        SELECT TBL_USER.NICKNAME, TBL_ADMIN_BOARD.NUM, TBL_ADMIN_BOARD.TITLE, TBL_ADMIN_BOARD.CONTENT, TBL_ADMIN_BOARD.REGIST_DATE
+        FROM TBL_USER, TBL_ADMIN_BOARD
+        WHERE TBL_USER.NUM = TBL_ADMIN_BOARD.USER_NUM
+        AND TBL_ADMIN_BOARD.NUM = #{num}
+    </select>
+
 
 
 </mapper>

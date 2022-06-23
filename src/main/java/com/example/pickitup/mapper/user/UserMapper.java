@@ -4,6 +4,7 @@ import com.example.pickitup.domain.vo.AdminCriteria;
 import com.example.pickitup.domain.vo.Criteria;
 
 import com.example.pickitup.domain.vo.adminVO.AdminBoardDTO;
+import com.example.pickitup.domain.vo.dto.AdminBoardPageDTO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 
@@ -46,6 +47,9 @@ public interface UserMapper {
 
     //    AdminBoard에서 선택한것들 공지 지정
     public int noticeConfirm(Long num);
+
+    //    관리자 게시물 관리에서 상세보기
+    public AdminBoardPageDTO getQnaReply(Long num);
 
     //    유저 목록 관리자용
     public  List<UserDTO> getList(Criteria criteria);
