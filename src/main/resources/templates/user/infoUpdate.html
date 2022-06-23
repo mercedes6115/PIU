@@ -70,8 +70,10 @@
                     <input type="hidden" name="profileUploadPath" value="">
                     <div size="88" class="info-change1">
                         <div size="88" class="info-change2"><span class="info-change3">
-                                        <picture class="JCHSH => info-change4"><img sizes="100vw" src="https://class101.net/images/default-user.png
-                                            "></picture>
+                                        <picture class="JCHSH => info-change4" id="profileImage">
+<!--                                            <img sizes="100vw" src="https://class101.net/images/default-user.png">-->
+
+                                        </picture>
                                     </span></div>
                         <div class="info-change5"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                        fill="none" viewBox="0 0 24 24">
@@ -91,27 +93,6 @@
                     <div class="info-input1">
                         <div class="info-input2">
                             <div class="labelBox">
-                            <label class="info-input3 user_change" id="user_password">비밀번호</label>
-                            <span class="check-text" id="passwordCheck_text"></span>
-                            </div>
-                            <div class="info-input4"><input class="info-input5" id="uPassword" type="password" name="password"
-                                                            th:value="*{password}"></div>
-                        </div>
-                    </div>
-                    <div class="info-input1">
-                        <div class="info-input2">
-                            <div class="labelBox">
-                            <label class="info-input3 user_change" id="user_passwordCheck">비밀번호 확인</label>
-                            <span class="check-text" id="checkPasswordCheck_text"></span>
-                            </div>
-                            <div class="info-input4">
-                                <input class="info-input5" id="uPasswordCheck" type="password">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="info-input1">
-                        <div class="info-input2">
-                            <div class="labelBox">
                             <label class="info-input3 user_change" id="user_nickname">닉네임</label>
                             <span class="check-text" id="nicknameCheck_text"></span>
                             </div>
@@ -125,7 +106,7 @@
                     <div class="info-input1">
                         <div class="info-input2"><label class="info-input3" id="user_phone">휴대폰 번호</label>
                             <div class="info-phone1 address-info">
-                                <div class="info-input6"><input class="info-phone2" type="text" th:value="*{phone}" name="phone"></div>
+                                <div class="info-input6"><input class="info-phone2" type="text" th:value="*{phone}" name="phone" readonly></div>
                                 <button type="button" class="user-info-phone-change-btn " color="default" id="phoneChange"
                                         fill="false"><span class="user-info-ch1 phone-modi">수정</span></button>
                             </div>
@@ -179,6 +160,7 @@
                             </div>
                         </div>
                     </div>
+
                     <input type="hidden" th:value="*{profileFileName}" id="profileFileName" name="profileFileName">
                     <input type="hidden" th:value="*{profileUploadPath}" id="profileUploadPath" name="profileUploadPath">
                     <input type="hidden" th:value="*{point}" id="point" name="point">
@@ -197,10 +179,17 @@
         </div>
     </div>
 </div>
+</div>
 </body>
-<script>
+<script th:inline="javascript">
     let regex = new RegExp("(.*?)\.(exe|sh|zip|alz)");
+    let fileName = [[${user.profileFileName}]];
+    let uploadPath = [[${user.profileUploadPath}]];
 
+    let str = "<img sizes='100vw' width='100px' src='/userFile/display?fileName=" + uploadPath + "/"  + fileName + "'>";
+
+
+    $('#profileImage').html(str);
     function checkExtension(fileName, fileSize){
         if(regex.test(fileName)){
             alert("업로드 할 수 없는 파일의 형식입니다.");
@@ -302,50 +291,14 @@
         })
     });
 
-    // 비밀번호 유효성검사
-    function checkPw(){
-        console.log("들어옴");
-        if($('#uPassword').val().length < 8){
-            $('#passwordCheck_text').text("8자 이상 입력해주세요").css("color", "red");
-            $('#checkPasswordCheck_text').text(" ").css("color", "red");
-        }else{
-            $('#passwordCheck_text').text("가능한 비밀번호 형식입니다").css("color", "green");
-        }
-    }
 
-    // 비밀번호 유효성 검사 적용
-    $upw.blur(function () {
-        checkPw();
-    })
-
-    // 비밀번호 확인검사
-    $upw2.blur(function () {
-        let $upwval = $upw.val();
-        let $upw2val = $upw2.val();
-        if (!$upwval || !$upw2val) {
-            $('#checkPasswordCheck_text').text("비밀번호를 입력해주세요").css("color", "red");
-            pwPass = false;
-            return;
-        }else if($("#uPassword").val().length < 8){
-            $('#checkPasswordCheck_text').text("선 비밀번호 조건이 맞지 안습니다").css("color", "red");
-        }else if ($upwval != $upw2val) {
-            $('#checkPasswordCheck_text').text("비밀번호가 일치하지 않습니다").css("color", "red");
-            pwPass = false;
-            return;
-        } else {
-            $('#checkPasswordCheck_text').empty().text("비밀번호가 일치합니다.").css("color", "green");
-            pwPass = true;
-        }
-    });
 
     $('#modi-ok').on("click", function (e) {
-        if(!pwPass) {
-            alert("비밀번호를 다시 확인해주세요");
-            return false;
+
         // } else if(!phoneCheckPass) {
         //     alert("전화번호를 다시 확인해주세요");
         //     return false;
-        } else if(!nicknamePass) {
+        if(!nicknamePass) {
             alert("닉네임을 다시 확인해주세요");
             return false;
         }

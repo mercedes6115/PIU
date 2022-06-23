@@ -25,9 +25,8 @@
     <!--  회원 수정  -->
     <update id="update">
         UPDATE TBL_USER
-        SET EMAIL=#{email}, PASSWORD=#{password}, NICKNAME=#{nickname}, PHONE=#{phone},ADDRESS=#{address},
+        SET NICKNAME=#{nickname}, PHONE=#{phone},ADDRESS=#{address},
         ADDRESS_DETAIL=#{addressDetail},PROFILE_FILE_NAME=#{profileFileName}, PROFILE_UPLOAD_PATH=#{profileUploadPath}, REGIST_DATE=SYSDATE,
-        CATEGORY=#{category}
         WHERE NUM=#{num}
     </update>
 
