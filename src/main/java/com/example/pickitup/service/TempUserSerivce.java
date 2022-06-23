@@ -12,6 +12,7 @@ import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 import com.example.pickitup.domain.vo.user.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.awt.*;
 import java.text.ParseException;
@@ -69,7 +70,7 @@ public class TempUserSerivce {
         return userDAO.getInProjectList(userNum);
     }
 
-
+    //로그인
     public UserDTO loginUser(String email, String password){
         return userDAO.login(email,password);
     }
@@ -83,6 +84,22 @@ public class TempUserSerivce {
         return userDAO.nicknameCheck(nickname);
     };
 
+    //카카오톡 회원가입 유무
+    //    하나의 트랜잭션에 여러 개의 DML이 있을 경우 한 개라도 오류 시 전체 ROLLBACK
+    @Transactional(rollbackFor = Exception.class)
+    public UserVO kakaoLogin(UserVO userVO){
+        if(userDAO.emailCheck(userVO.getEmail())==0){
+            userDAO.kakaoinsert(userVO);
+
+            return userDAO.read(userVO.getNum());
+        }
+        return userDAO.kakaoDetail(userVO.getEmail());
+    }
+
+    // 카카오 로그인 즉시 회원가입
+    public UserVO kakaoinsert(UserVO userVO){
+        return userDAO.kakaoinsert(userVO);
+    }
 
     // jjimDAO
     // 나의 프로젝트 찜 목록

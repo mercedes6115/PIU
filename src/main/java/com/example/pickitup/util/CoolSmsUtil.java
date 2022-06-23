@@ -1,4 +1,4 @@
-package com.example.pickitup.util;
+package com.example.pickitup.Util;
 
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;

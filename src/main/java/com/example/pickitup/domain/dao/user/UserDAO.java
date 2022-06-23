@@ -109,4 +109,15 @@ public class UserDAO {
     public boolean updatePW(String email){
         return userMapper.updatePW(email);
     };
+
+    // 카카오 로그인 즉시 회원가입
+    public UserVO kakaoinsert(UserVO userVO){
+        return userMapper.kakaoinsert(userVO);
+    }
+
+    //    카카오톡 유저 로그인하자마자 이메일 중복 시 회원정보가져오기
+    public UserVO kakaoDetail(@Param("email") String email){
+        return userMapper.kakaoDetail(email);
+    }
+
 }

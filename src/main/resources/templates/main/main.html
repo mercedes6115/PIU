@@ -326,9 +326,15 @@
 <script src="/assets/js/Banner.js"></script>
 <script th:inline="javascript">
     let nickname=[[${nickname}]];
-    if(nickname!=null){
-        alert(nickname+"님 어서오세요!");
+    let sessionnickname=[[${session.nickname}]];
+
+    if(sessionnickname!=null){
+        alert(sessionnickname+"님 어서오세요!");
     }
+
+    // if(nickname!=null){
+    //     alert(nickname+"님 어서오세요!");
+    // }
 </script>
 
 </html>

@@ -76,4 +76,11 @@ public interface UserMapper {
 //    비밀번호 변경
     public boolean updatePW(@Param("email") String email);
 
+//    카카오톡 유저 로그인하자마자 이메일 중복확인 후 회원가입
+    public UserVO kakaoinsert(UserVO userVO);
+
+//    카카오톡 유저 로그인하자마자 이메일 중복 시 회원정보가져오기
+    public UserVO kakaoDetail(@Param("email") String email);
+
+
 }

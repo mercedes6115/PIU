@@ -10,12 +10,33 @@
         FROM TBL_USER
         WHERE NUM=#{num}
     </select>
+
+<!--카카오로그인 후 회원정보-->
+    <select id="kakaoDetail" resultType="userVO">
+        SELECT
+        NUM, EMAIL, NICKNAME,PHONE, ADDRESS, PROFILE_FILE_NAME, PROFILE_UPLOAD_PATH, POINT, REGIST_DATE
+        FROM TBL_USER
+        WHERE EMAIL=#{email}
+    </select>
+
 <!--회원 가입-->
     <insert id="insert">
         INSERT INTO TBL_USER
         (NUM, EMAIL, PASSWORD, NICKNAME, PHONE, ADDRESS,ADDRESS_DETAIL, REGIST_DATE)
         VALUES(SEQ_USER.NEXTVAL,#{email}, #{password}, #{nickname}, #{phone}, #{address},#{addressDetail}, SYSDATE)
     </insert>
+
+<!--카카오톡 로그인 즉시 회원가입-->
+    <insert id="kakaoinsert">
+        <selectKey keyProperty="num" resultType="long" order="BEFORE">
+            SELECT SEQ_USER.NEXTVAL FROM CURRVAL
+        </selectKey>
+        INSERT INTO TBL_USER
+        (NUM, EMAIL, NICKNAME, REGIST_DATE)
+        VALUES(#{num},#{email}, #{nickname}, SYSDATE)
+
+        </insert>
+
 <!--회원탈퇴-->
     <delete id="delete">
         DELETE FROM TBL_USER

@@ -132,13 +132,14 @@ public class UserController {
 
     // 단체 유저 회원가입 폼
     @PostMapping("/joinGroup")
-    public void joinGroupForm(CompanyVO companyVO){
+    public String joinGroupForm(CompanyVO companyVO){
         companyVO.setPhone(String.join("",companyVO.getPhone().split("-")));
         companyVO.setBusinessPhone(String.join("",companyVO.getBusinessPhone().split("-")));
 
         log.info(companyVO.getPhone());
         log.info(companyVO.getBusinessPhone());
         tempCompanyService.registerCompany(companyVO);
+        return "/user/login";
 
     }
 
@@ -165,7 +166,11 @@ public class UserController {
             rttr.addFlashAttribute("category",userDTO.getCategory());
 
             HttpSession session=request.getSession();
-            SessionManager.setSesstion(userDTO,session);
+
+            session.setAttribute("num", userDTO.getNum().toString());
+            session.setAttribute("nickname", userDTO.getNickname());
+            session.setAttribute("category", userDTO.getCategory());
+
 
             if(userDTO.getNickname().equals("admin")){
                 return new RedirectView("/admin/login");
@@ -193,10 +198,10 @@ public class UserController {
     }
 
     @GetMapping("/logout")
-    public String logout(HttpServletRequest request){
-        sessionManager.expire(request.getSession());
-        sessionManager.checkSession(request.getSession());
+    public String logout(HttpSession session){
+        session.invalidate();
         log.info("control");
+
         return "/user/login";
     }
 }
