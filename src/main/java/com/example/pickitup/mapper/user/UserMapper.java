@@ -84,8 +84,6 @@ public interface UserMapper {
 
     //  이메일 중복검사
     public int emailMatching(@Param("email") String email);
-//  닉네임 중복검사
-    public int nicknameMatching(@Param("nickname") String nickname);
 
     //  닉네임 중복검사
     public int nicknameMatching(@Param("nickname") String nickname);

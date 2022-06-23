@@ -47,10 +47,7 @@ public class UserRestController {
     @PostMapping("/nicknameMatching")
     public int nicknameMatch(@RequestParam String nickname){
         log.info("nickname test 띄워짐? : "+nickname);
-<<<<<<< HEAD
-=======
         log.info("ooooooooo"+tempUserSerivce.nicknameCheck(nickname));
->>>>>>> 97af8ba92cd81ea9f5af9cd8303f1f14b87db28d
         return tempUserSerivce.nicknameCheck(nickname);
     }
 }

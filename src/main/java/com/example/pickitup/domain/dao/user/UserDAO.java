@@ -141,8 +141,4 @@ public class UserDAO {
         return userMapper.kakaoDetail(email);
     }
 
-=======
-    //  닉네임 중복검사
-    public int nicknameCheck(String nickname) { return userMapper.nicknameMatching(nickname);}
->>>>>>> 97af8ba92cd81ea9f5af9cd8303f1f14b87db28d
 }

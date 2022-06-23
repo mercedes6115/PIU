@@ -1,15 +1,10 @@
 package com.example.pickitup.controller;
 
-<<<<<<< HEAD
 import com.example.pickitup.service.project.projectFile.ProjectFileService;
-import com.example.pickitup.service.project.projectFile.ProjectService;
-import com.example.pickitup.Util.SessionManager;
-=======
 
 import com.example.pickitup.service.ProjectService;
 import com.example.pickitup.service.project.projectFile.ProjectFileService;
 
->>>>>>> 97af8ba92cd81ea9f5af9cd8303f1f14b87db28d
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -29,7 +24,6 @@ public class MainController {
     private final ProjectService projectService;
     private final ProjectFileService projectFileService;
 
-<<<<<<< HEAD
     // 메인페이지
     @GetMapping("/main")
     public String main(HttpSession session, Model model) throws ParseException {
@@ -58,19 +52,13 @@ public class MainController {
 
 
     @GetMapping("/test")
-    public String test(Model model) throws ParseException {
-=======
-    @GetMapping("/main")
     public void test(Model model) throws ParseException {
->>>>>>> 97af8ba92cd81ea9f5af9cd8303f1f14b87db28d
 //        model.addAttribute("projectListThumb", projectFileService.getList());   // 사진 가져오기
         model.addAttribute("projectListJJim", projectService.getListJJim());  // 내용가져오기
         model.addAttribute("projectListPoint", projectService.getListPoint());  // 내용가져오기
         model.addAttribute("projectListApply", projectService.getListApply());  // 내용가져오기
 
     }
-
-
 
 
 

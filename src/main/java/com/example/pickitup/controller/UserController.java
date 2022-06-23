@@ -209,14 +209,6 @@ public class UserController {
         return new RedirectView("/user/login");
     }
 
-    // 로그아웃
-    @GetMapping("/logout")
-    public String logout(HttpServletRequest request){
-        sessionManager.expire(request.getSession());
-        sessionManager.checkSession(request.getSession());
-        log.info("control");
-        return "/user/login";
-    }
 
     // 회원탈퇴
     @DeleteMapping("/delete")
