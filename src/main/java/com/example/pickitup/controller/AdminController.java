@@ -16,6 +16,8 @@ import com.example.pickitup.service.TempUserSerivce;
 import com.example.pickitup.service.project.projectFile.ProjectService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,7 +31,8 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
-
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.xml.ws.Service;
@@ -192,6 +195,17 @@ public class AdminController {
 
     }
 
+    @PostMapping("/deleteProduct")
+    @ResponseBody
+    public void deleteProduct(Long num, HttpServletRequest request){
+        String[] ajaxMsg = request.getParameterValues("valueArr");
+        int size = ajaxMsg.length;
+        for(int i = 0; i<size; i++) {
+            num = Long.parseLong(ajaxMsg[i]);
+            tempAdminService.removeProduct(num);
+        }
+    }
+
     // 관리자 유저 목록
     @GetMapping("/userList")
     public void userList(Criteria criteria, Model model){
@@ -232,6 +246,97 @@ public class AdminController {
 
 
 
+
+    @PostMapping("/statusDisable")
+    @ResponseBody
+    public void statusDisable(HttpServletRequest request){
+        String[] ajaxMsg = request.getParameterValues("list");
+        String[] ajaxMsg1 = request.getParameterValues("list1");
+        for(int i=0; i< ajaxMsg.length;i++) {
+            if(ajaxMsg[i].equals("user")){
+                tempAdminService.UserStatusDisable(Long.parseLong(ajaxMsg1[i]));
+            }else{
+                tempAdminService.CompanyStatusDisable(Long.parseLong(ajaxMsg1[i]));
+            }
+        }
+    }
+
+    @PostMapping("/statusEnable")
+    @ResponseBody
+    public void statusEnable(HttpServletRequest request){
+
+        String[] ajaxMsg = request.getParameterValues("listEn");
+        String[] ajaxMsg1 = request.getParameterValues("listEn1");
+        for(int i=0; i< ajaxMsg.length;i++) {
+            if(ajaxMsg[i].equals("user")){
+                tempAdminService.UserStatusEnable(Long.parseLong(ajaxMsg1[i]));
+            }else{
+                tempAdminService.CompanyStatusEnable(Long.parseLong(ajaxMsg1[i]));
+            }
+        }
+    }
+
+
+    @PostMapping("/detailEnable")
+    @ResponseBody
+    public void detailEnable(HttpServletRequest request){
+        String category = request.getParameter("category");
+        String statNum = request.getParameter("stateNum");
+        log.info("==================="+category);
+        log.info("==================="+statNum);
+        if(category.equals("user")){
+            tempAdminService.UserStatusEnable(Long.parseLong(statNum));
+        }
+        if(category.equals("company")){
+            tempAdminService.CompanyStatusEnable(Long.parseLong(statNum));
+        }
+    }
+
+    @PostMapping("/detailDisable")
+    @ResponseBody
+    public void detaiDisable(HttpServletRequest request){
+        String category = request.getParameter("category");
+        String statNum = request.getParameter("stateNum");
+        log.info("==================="+category);
+        log.info("==================="+statNum);
+        if(category.equals("user")){
+            tempAdminService.UserStatusDisable(Long.parseLong(statNum));
+        }
+        if(category.equals("company")){
+            tempAdminService.CompanyStatusDisable(Long.parseLong(statNum));
+        }
+    }
+
+    @PostMapping("/detailApprovalEnable")
+    @ResponseBody
+    public void detailApprovalEnable(HttpServletRequest request){
+        String category = request.getParameter("category");
+        String statNum = request.getParameter("stateNum");
+
+        log.info("==================="+category);
+        log.info("==================="+statNum);
+        if(category.equals("user")){
+            tempAdminService.UserApprovalEnable(Long.parseLong(statNum));
+        }
+        if(category.equals("company")){
+            tempAdminService.CompanyApprovalEnable(Long.parseLong(statNum));
+        }
+    }
+
+    @PostMapping("/detailApprovalDisable")
+    @ResponseBody
+    public void detailApprovalDisable(HttpServletRequest request){
+        String category = request.getParameter("category");
+        String statNum = request.getParameter("stateNum");
+        log.info("==================="+category);
+        log.info("==================="+statNum);
+        if(category.equals("user")){
+            tempAdminService.UserApprovalDisable(Long.parseLong(statNum));
+        }
+        if(category.equals("company")){
+            tempAdminService.CompanyApprovalDisable(Long.parseLong(statNum));
+        }
+    }
     // 관리자 유저 상세보기
     @GetMapping("/userDetail")
     public void userDetail(Long num,String category, ProductCriteria productCriteria, Model model){
@@ -248,6 +353,23 @@ public class AdminController {
 
     }
 
+
+    @PostMapping("/modifyInfo")
+    @ResponseBody
+    public String modifyInfo(String password,String category,Long num){
+
+        log.info(password+"=================");
+        log.info(category+"=================");
+        log.info(num+"=================");
+        if(category.equals("user")){
+            tempUserSerivce.adminPwUpdate(password,num);
+        }
+        if(category.equals("company")){
+             tempUserSerivce.adminPwUpdate(password,num);
+        }
+        return"성공";
+
+    }
 
 
     // 관리자 유저 문의 글 보기

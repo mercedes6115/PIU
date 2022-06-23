@@ -143,7 +143,10 @@
             <td><input type="checkbox"></td>
             <td th:text="*{num}"></td>
             <td>
-                <div id="qrcode" th:text="*{num}">번 QR생성</div>
+                <form>
+                <button type="button" th:id="*{num}" onclick="makeQR(this.id)" th:text="*{num}+'번 QR생성'"></button>
+                <div th:id="qrcode+*{num}"></div>
+                </form>
             </td>
             <td th:text="*{course}"></td>
             <td th:text="*{terrain}"></td>
@@ -186,24 +189,24 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/assets/js/qrcode.js"></script>
+
 <script th:inline="javascript">
     // 접속한 와이파이ipV4로 접속해야함 localhost로 접속하면 127.0.0.1가져와서 모바일로 접속을 못함
     let ipV4=[[${ipV4}]];
 
-
     //접속한 와이파이 ipV4값을 가져와야 모바일로도 접속이 가능하기 때문에 localhost를 대신할 ipV4값을 가져오는지 확인
     console.log(ipV4);
-    // function makeQR() {
-        var qrcode = new QRCode(document.getElementById("qrcode"), {
-            text: "http://"+ipV4+":10010/user/login?num=",
+     function makeQR(qrnum) {
+        var qrcode = new QRCode(document.getElementById("qrcode"+qrnum), {
+            text: "http://"+ipV4+":10010/user/login?num="+qrnum,
             width: 100,  //가로
             height: 100, //세로
             colorDark: "#000000", //qr에서 어두운 색 (보통 검은색)
             colorLight: "#ffffff", //qr에서 밝은 색 (보통 하얀색) colorDark 보다 옅어야한다.
-            correctLevel: QRCode.CorrectLevel.H //qr코드 오류복원능력임 (L->M->Q->H)
+            correctLevel: QRCode.CorrectLevel.H //qr코드 오류복원능력 (L->M->Q->H)
         });
-    //}
-
+         $("#qrcode > img").css({"margin":"auto"});
+    }
 </script>
 <script>
     $('#userDisabled').on("click", function (e) {
@@ -238,6 +241,12 @@
 <script>
     $('#productSearchBtn').on("click", function (e) {
         $("#projectSearchForm").submit();
+    });
+
+    $("a.changePage").click(function(e){
+        e.preventDefault();
+        $("#pageForm").find("input[name='pageNum']").val($(this).attr("href"));
+        $("#pageForm").submit();
     });
 </script>
 <script th:replace="~{/admin/adminSideBar :: AdminSideBarJSImport}"></script>

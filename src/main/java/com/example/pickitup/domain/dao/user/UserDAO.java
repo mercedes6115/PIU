@@ -105,4 +105,22 @@ public class UserDAO {
     public boolean updatePW(String email){
         return userMapper.updatePW(email);
     };
+
+    public boolean updateUserAdminPW(String password, Long num){
+        return userMapper.adminPwUpdate(password,num);
+
+    }
+
+    public boolean UserStatusDisable(Long num) {// 비활성화
+        return userMapper.userStatusDisable(num);
+    }
+    public boolean UserStatusEnable(Long num) {// 비활성화
+        return userMapper.userStatusEnable(num);
+    }
+    public boolean UserApprovalDisable(Long num) {// 비활성화
+        return userMapper.userApprovalDisable(num);
+    }
+    public boolean UserApprovalEnable(Long num) {// 비활성화
+        return userMapper.userApprovalEnable(num);
+    }
 }

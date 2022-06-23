@@ -72,6 +72,10 @@ public class TempCompanyService {
         return projectQnaCommentDAO.update(projectQnaCommentVO);
     }
 
+    public boolean adminCompanyPwUpdate(String password,Long num){
+        return companyDAO.adminCompanyPwUpdate(password,num);
+    }
+
     // qna 답글 삭제
     public boolean remove(Long num){
         return projectQnaCommentDAO.remove(num);

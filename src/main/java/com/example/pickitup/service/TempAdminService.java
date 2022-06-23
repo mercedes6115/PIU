@@ -19,8 +19,6 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-
-
 public class TempAdminService {
     private final UserDAO userDAO;
     private final ApplyDAO applyDAO;
@@ -178,5 +176,33 @@ public class TempAdminService {
         return userDAO.getAdminboardList(criteria);
     }
 
+
+    // 관리자 단체,일반유저 승인/거절 활성화/비활성화
+
+    public boolean UserStatusDisable(Long num) {// 비활성화
+        return userDAO.UserStatusDisable(num);
+    }
+    public boolean UserStatusEnable(Long num) {// 비활성화
+        return userDAO.UserStatusEnable(num);
+    }
+    public boolean UserApprovalDisable(Long num) {// 비활성화
+        return userDAO.UserApprovalDisable(num);
+    }
+    public boolean UserApprovalEnable(Long num) {// 비활성화
+        return userDAO.UserApprovalEnable(num);
+    }
+
+    public boolean CompanyStatusDisable(Long num) {// 비활성화
+        return companyDAO.companyStatusDisable(num);
+    }
+    public boolean CompanyStatusEnable(Long num) {// 비활성화
+        return companyDAO.companyStatusEnable(num);
+    }
+    public boolean CompanyApprovalDisable(Long num) {// 비활성화
+        return companyDAO.companyApprovalDisable(num);
+    }
+    public boolean CompanyApprovalEnable(Long num) {// 비활성화
+        return companyDAO.companyApprovalEnable(num);
+    }
 
 }

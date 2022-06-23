@@ -28,5 +28,5 @@ public interface ProductMapper {
     public boolean update(ProductVO productVO);
 
     //    상품 삭제하기 ->관리자
-    public boolean delete(Long num);
+    public boolean deleteProduct(Long num);
 }

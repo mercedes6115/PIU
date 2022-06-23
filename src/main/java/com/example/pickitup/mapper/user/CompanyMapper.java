@@ -30,7 +30,12 @@ public interface CompanyMapper {
 
     public int login(@Param("email") String email,@Param("password") String password);
 
+    public boolean adminCompanyPwUpdate(String password,Long num);
 
+    public boolean companyStatusDisable(Long num); // 비활성화
+    public boolean companyStatusEnable(Long num); // 활성화
+    public boolean companyApprovalDisable(Long num); // 비활성화
+    public boolean companyApprovalEnable(Long num); // 활성화
 }
 
 

@@ -6,7 +6,7 @@
 <!--마이페이지, 관리자 사용-->
     <select id="getDetail" resultType="userVO">
         SELECT
-        NUM, EMAIL, NICKNAME,PHONE, ADDRESS, PROFILE_FILE_NAME, PROFILE_UPLOAD_PATH, POINT, REGIST_DATE,CATEGORY
+        NUM, EMAIL, PASSWORD,NICKNAME,PHONE, ADDRESS, PROFILE_FILE_NAME, PROFILE_UPLOAD_PATH, POINT, REGIST_DATE,CATEGORY,STATUS,APPROVAL
         FROM TBL_USER
         WHERE NUM=#{num}
     </select>
@@ -21,6 +21,15 @@
         DELETE FROM TBL_USER
         WHERE NUM=#{num}
     </delete>
+
+
+    <update id="adminPwUpdate">
+        UPDATE TBL_USER
+        SET PASSWORD=#{password}
+        WHERE NUM=#{num}
+    </update>
+
+
 
 <!--  회원 수정  -->
     <update id="update">
@@ -73,13 +82,13 @@
 
 
     <select id="getList"  resultType="userDTO">
-    SELECT NUM,NICKNAME,EMAIL,REGIST_DATE ,PHONE,ADDRESS,CATEGORY
+    SELECT NUM,NICKNAME,EMAIL,REGIST_DATE ,PHONE,ADDRESS,CATEGORY,POINT,STATUS,APPROVAL
     FROM
     (
-        SELECT ROWNUM RN,NUM,NICKNAME,EMAIL,REGIST_DATE ,PHONE,ADDRESS,CATEGORY
+        SELECT ROWNUM RN,NUM,NICKNAME,EMAIL,REGIST_DATE ,PHONE,ADDRESS,CATEGORY,POINT,STATUS,APPROVAL
             FROM(
                 SELECT
-                NUM,NICKNAME,EMAIL,REGIST_DATE ,PHONE,ADDRESS,CATEGORY
+                NUM,NICKNAME,EMAIL,REGIST_DATE ,PHONE,ADDRESS,CATEGORY,POINT,STATUS,APPROVAL
                 FROM TBL_USER
                     <where>
                             <if test="type1 == 'nickname'.toString()">
@@ -97,7 +106,7 @@
                     </where>
                 UNION ALL
                 SELECT
-                NUM,NICKNAME,EMAIL,REGIST_DATE ,PHONE,ADDRESS,CATEGORY
+                NUM,NICKNAME,EMAIL,REGIST_DATE ,PHONE,ADDRESS,CATEGORY,POINT,STATUS,APPROVAL
                 FROM TBL_COMPANY
                     <where>
                             <if test="type1 == 'nickname'.toString()">
@@ -301,6 +310,31 @@
         </where>
     </select>
 
+<!--    관리자용 유저 활성/비화성화 업데이트-->
+    <update id="userStatusEnable">
+        UPDATE TBL_USER
+        SET STATUS = '1'
+        WHERE NUM=#{num}
+    </update>
+
+    <update id="userStatusDisable">
+        UPDATE TBL_USER
+        SET STATUS = '0'
+        WHERE NUM=#{num}
+    </update>
+
+<!--    관리자용 승인/거절상태 업데이트-->
+    <update id="userApprovalEnable">
+        UPDATE TBL_USER
+        SET APPROVAL = '1'
+        WHERE NUM=#{num}
+    </update>
+
+    <update id="userApprovalDisable">
+        UPDATE TBL_USER
+        SET APPROVAL = '0'
+        WHERE NUM=#{num}
+    </update>
 
 </mapper>
 

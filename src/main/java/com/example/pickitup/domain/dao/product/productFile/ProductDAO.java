@@ -45,7 +45,7 @@ public class ProductDAO {
 
     // 상품 삭제하기 - 관리자용
     public boolean remove(Long num){
-        return productMapper.delete(num);
+        return productMapper.deleteProduct(num);
     }
 
 

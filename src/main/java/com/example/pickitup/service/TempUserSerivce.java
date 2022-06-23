@@ -209,5 +209,10 @@ public class TempUserSerivce {
         return userDAO.updatePW(email);
     }
 
+    // 관리자 페이지용 유저 비밀번호 수정
+    public boolean adminPwUpdate(String password,Long num) {
+        return userDAO.updateUserAdminPW(password,num);
+    }
+
 
 }

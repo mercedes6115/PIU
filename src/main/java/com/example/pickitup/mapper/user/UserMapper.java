@@ -30,6 +30,9 @@ public interface UserMapper {
     //    관리자 공지사항 총갯수
     public int getNoticeTotal();
 
+    //     관리자 유저 비밀번호 수정
+    public boolean adminPwUpdate(String password, Long num);
+
     //    ADMINBOARD에 총 게시글 수 가져오기
     public int getAdminBoardCount(Criteria criteria);
 
@@ -73,4 +76,10 @@ public interface UserMapper {
 //    비밀번호 변경
     public boolean updatePW(@Param("email") String email);
 
+// 관리자용 유저 활성화/비활성화
+
+    public boolean userStatusDisable(Long num); // 비활성화
+    public boolean userStatusEnable(Long num); // 활성화
+    public boolean userApprovalDisable(Long num); // 비활성화
+    public boolean userApprovalEnable(Long num); // 활성화
 }
