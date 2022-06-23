@@ -11,100 +11,100 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 </head>
 <body style="font-family: 'Noto Sans KR'; background-color: rgb(248, 248, 249) !important;">
-    <div class="review-container"> <!--전체 컨테이너-->
-        <div class="reviews-wrap"> <!--헤더 컨테이너-->
-            <div class="flex review_header" > <!--header 컨테이너-->
-                <div class="review-header-left"><a class="goBackToDetail"><span class="material-symbols-outlined review-header-left" style="font-weight: 700; font-size: 20px; margin-top: 5px;">
+<div class="review-container"> <!--전체 컨테이너-->
+    <div class="reviews-wrap"> <!--헤더 컨테이너-->
+        <div class="flex review_header" > <!--header 컨테이너-->
+            <div class="review-header-left"><a class="goBackToDetail"><span class="material-symbols-outlined review-header-left" style="font-weight: 700; font-size: 20px; margin-top: 5px;">
                     arrow_back_ios
                     </span></a>
-                </div>
-                <div style="width: 100%;">
-                    <h5>실제 구매 후기</h5>
-                </div>
+            </div>
+            <div style="width: 100%;">
+                <h5>실제 구매 후기</h5>
             </div>
         </div>
-        <div class="space"></div>
-        <div style="width: 640px; position: relative; margin: 0 auto;">
-            <div class="All_review_header" style="padding: 10px 0  0 24px;">
-                전체 리뷰
-            </div>
+    </div>
+    <div class="space"></div>
+    <div style="width: 640px; position: relative; margin: 0 auto;">
+        <div class="All_review_header" style="padding: 10px 0  0 24px;">
+            전체 리뷰
         </div>
-        <div class="review-wrapper" th:object="${reviews}">
-            <!-- 댓글 한개 -->
-            <th:block th:each="review:${reviews}">
-                <section class="allreveiws" th:object="${review}"> <!--실제 후기 컨테이너-->
-                    <div class="p-24">
-                        <div class="flex">
-                            <div class="profile_img"><img src="/images/5.jpg"></div>
-                            <div class="review_id_and_date">
-                                <div class="review_id" th:text="|*{userNum}|"></div>
-                                <input type="hidden" class="reviewNumber" th:value="*{num}">
-                                <div class="review_date" th:text="*{updateDate}" ></div>
-                            </div>
-                            <div class="flex" style="margin-left: 10px; width: 100%; justify-content: flex-end; align-items: center;">
-                                <div class="review_modify"><a href="#"><img src="/images/modify.png"></a></div>
-                                <div class="review_delete" th:id="*{num}"><a href="#"><img src="/images/delete.png"></a></div>
-                            </div>
+    </div>
+    <div class="review-wrapper" th:object="${reviews}">
+        <!-- 댓글 한개 -->
+        <th:block th:each="review:${reviews}">
+            <section class="allreveiws" th:object="${review}"> <!--실제 후기 컨테이너-->
+                <div class="p-24">
+                    <div class="flex">
+                        <div class="profile_img"><img src="/images/5.jpg"></div>
+                        <div class="review_id_and_date">
+                            <div class="review_id" th:text="|*{userNum}|"></div>
+                            <input type="hidden" class="reviewNumber" th:value="*{num}">
+                            <div class="review_date" th:text="*{updateDate}" ></div>
                         </div>
-                        <div style="margin-top: 10px;"></div>
-                        <div style="margin-bottom: 12px;">
-                            <div class="review_item_name" th:text="|[${products.category}] &nbsp ${products.name}|">
-                            </div>
-                        </div>
-                        <div class="review_content_container">
-                            <p class="review_content" th:text="|*{content}|">
-                            <div style="margin-top:8px;" th:class="*{num}">
-<!--                            여기에 사진 넣을자리-->
-                            </div>
+                        <div class="flex" style="margin-left: 10px; width: 100%; justify-content: flex-end; align-items: center;">
+                            <div class="review_modify"><a href="#"><img src="/images/modify.png"></a></div>
+                            <div class="review_delete" th:id="*{num}"><a href="#"><img src="/images/delete.png"></a></div>
                         </div>
                     </div>
-                    <div style="width: 100%; justify-content: center; display: flex;">
-                        <div class="border_bottom_line"></div>
+                    <div style="margin-top: 10px;"></div>
+                    <div style="margin-bottom: 12px;">
+                        <div class="review_item_name" th:text="|[${products.category}] &nbsp ${products.name}|">
+                        </div>
                     </div>
-                    <div class="reviewPlus"></div>
-                </section>
-            </th:block>
-        </div>
-       
-       
+                    <div class="review_content_container">
+                        <p class="review_content" th:text="|*{content}|">
+                        <div style="margin-top:8px;" th:class="*{num}">
+                            <!--                            여기에 사진 넣을자리-->
+                        </div>
+                    </div>
+                </div>
+                <div style="width: 100%; justify-content: center; display: flex;">
+                    <div class="border_bottom_line"></div>
+                </div>
+                <div class="reviewPlus"></div>
+            </section>
+        </th:block>
     </div>
 
-    <div class="gototop">
+
+</div>
+
+<div class="gototop">
         <span class="material-symbols-outlined toTop" style="font-size: 35px;">
             vertical_align_top
             </span>
-    </div>
-    <div th:replace="~{/main/Footer :: FooterImport}"></div>
+</div>
+<div th:replace="~{/main/Footer :: FooterImport}"></div>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
- <script th:inline="javascript">
-     let productNum = [[${productNum}]];
+<script th:inline="javascript">
+    let productNum = [[${productNum}]];
     //scroll top
     $('.gototop').click(function(){
         $('html, body').animate({scrollTop : 0},300);
     });
 
-     $('.reviewNumber').each(function (i, review) {
-         let cla = $(this).val();
-         $.ajax({
-             url: "/productReviewFile/list/" + cla,
-             type: "get",
-             success: function (files) {  //각 리뷰의 파일들
-                 let text = "";
-                 $(files).each(function (i, file) {
-                     text += "<img src='/productReviewFile/display?fileName=" + file.uploadPath + "/" + file.uuid + "_" + file.fileName + "'>";
-                 })
-                 $("."+cla+"").html(text);
-             }
-         })
-     })
+    $('.reviewNumber').each(function (i, review) {
+        let cla = $(this).val();
+        $.ajax({
+            url: "/productReviewFile/list/" + cla,
+            type: "get",
+            success: function (files) {  //각 리뷰의 파일들
+                let text = "";
+                $(files).each(function (i, file) {
+                    text += "<img src='/productReviewFile/display?fileName=" + file.uploadPath + "/" + file.uuid + "_" + file.fileName + "'>";
+                })
+                $("."+cla+"").html(text);
+            }
+        })
+    })
 
-     $('.goBackToDetail').click(function (e) {
-         e.preventDefault();
-         location.href = "/store/detail?num="+productNum;
-     })
+    $('.goBackToDetail').click(function (e) {
+        e.preventDefault();
+        location.href = "/store/detail?num="+productNum;
+    })
 
-     // 리뷰 삭제
+    // 리뷰 삭제
     $(".review_delete").on("click",function (e) {
         e.preventDefault();
         $.ajax({
@@ -120,8 +120,8 @@
 
     //무한스크롤
     // $(window).on("scroll", function() {
-	// var scrollHeight = $(document).height();
-	// var scrollPosition = $(window).height() + $(window).scrollTop();
+    // var scrollHeight = $(document).height();
+    // var scrollPosition = $(window).height() + $(window).scrollTop();
     // let str = "";
     //
     // //후기가 없을때까지
@@ -158,5 +158,5 @@
     // });
 
 
- </script>
+</script>
 </html>
