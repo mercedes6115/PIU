@@ -8,7 +8,7 @@ import java.util.List;
 public interface ProjectReviewMapper {
 
     //    하나의 프로젝트 리뷰 리스트 , 무한 스크롤
-    public List<ProjectReviewVO> getList();
+    public List<ProjectReviewVO> getList(Long projectNum);
 
     //  하나의 리뷰 상세보기
     public ProjectReviewVO getDetail(Long num);

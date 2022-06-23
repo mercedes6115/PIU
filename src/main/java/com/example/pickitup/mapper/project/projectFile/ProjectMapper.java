@@ -1,6 +1,8 @@
 package com.example.pickitup.mapper.project.projectFile;
 
 import com.example.pickitup.domain.vo.Criteria;
+import com.example.pickitup.domain.vo.ProjectCriteria;
+import com.example.pickitup.domain.vo.dto.ProjectDTO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -11,8 +13,15 @@ public interface ProjectMapper {
 
 //    프로젝트 전부 띄우기
     public List<ProjectVO> getList();
-//
-    public List<ProjectVO> getProjectList(Criteria criteria);
+
+//    관리자용 프로젝트 전체 목록
+    public List<ProjectDTO> getProjectList(ProjectCriteria projectCriteria);
+
+//    관리자용 프로젝트 전체 개수
+    public int getProjectTotal(ProjectCriteria projectCriteria);
+
+//  특정 유저의 프로젝트 목록
+    public List<ProjectVO> getUserProjectList(Long companyNum, ProjectCriteria projectCriteria);
 
 //    프로젝트 한개만 띄우기
     public ProjectVO getDetail(Long num);

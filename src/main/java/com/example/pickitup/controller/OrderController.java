@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/store.do/*")
 public class OrderController {
 
-
     public void store(UserVO userVO, OrderVO orderVO, ProductVO productVO){
         userVO.getNickname();
         userVO.getPhone();

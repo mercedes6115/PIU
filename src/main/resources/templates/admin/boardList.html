@@ -110,7 +110,7 @@
                             </div>
                         </td>
                     </tr>
-                    <tr th:object="${criteria}">
+                    <tr th:object="${adminCriteria}">
                         <th>게시판 선택</th>
                         <td>
                             <select name="type3">
@@ -122,7 +122,7 @@
                             </select>
                         </td>
                     </tr>
-                    <tr th:object="${criteria}">
+                    <tr th:object="${adminCriteria}">
                         <th>게시글 찾기</th>
                         <td>
                             <select name="type2">
@@ -160,7 +160,7 @@
 
                         <td colspan="12">
                             <div class="listTitle">
-                                <a href="" class="listBtn" id="adminBoardDelete">삭제</a>
+                                <a href="javascript:void(0);" class="listBtn" id="adminBoardDelete" onclick="deleteValue();">삭제</a>
                                 <a href="" class="listBtn" id="noticeFix">공지지정</a>
                                 <a href="" class="listBtn" id="noticeOut">공지해제</a>
 
@@ -173,71 +173,67 @@
                 </tr>
 
 
-                <tr>
+                <tr th:object="${adminCriteria}">
                     <!-- 생활, 주방, 욕실, 반려동물, 화장품, 식품, 문구, 원예  -->
 
-                    <th scope="col"></th>
+                    <th scope="col">선택</th>
                     <th scope="col">번호</th>
                     <th scope="col">분류</th>
-                    <th scope="col">제목</th>
+                    <th scope="col">
+                        <span th:if="*{type3} == 'notice'">공지사항</span>
+                        <span th:if="*{type3} == 'createrQna'">크리에이터제목</span>
+                        <span th:if="*{type3} == 'projectQna'">프로젝트이름</span>
+                        <span th:if="*{type3} == 'productQna'">상품이름</span>
+                        <span th:unless="*{type3} == 'all'">제목</span>
+                    </th>
                     <th scope="col">작성일</th>
-                    <th scope="col">상태</th>
+                    <th scope="col">비 고</th>
                     <th scope="col">상세보기</th>
                 </tr>
-                <th:block th:each="adminbaord, adminboardStat:${adminboardList}">
-                <tr th:object="${adminbaord}">
-                    <td><input type="checkbox"></td>
-                    <td th:text="${adminboardStat.index}+1"></td>
-                    <td><span th:if="*{category == '1'}">상품문의</span>
-                        <span th:if="*{category == '2'}">프로젝트문의</span>
-                        <span th:if="*{category == '3'}">크리에이터문의</span>
-                        <span th:if="*{category == '4'}">공지사항</span>
-                    </td>
-                    <td th:text="*{title}"></td>
-                    <td th:text="*{registDate}"></td>
-                    <td th:text="*{status}"></td>
-                    <!-- 상품 상세보기로 이동 -->
-                    <td><a href="#">상세보기</a></td>
-                </tr>
+                <th:block th:each="adminboard, adminboardStat:${adminboardList}">
+                    <tr th:object="${adminboard}">
+                        <td><input name="delList" type="checkbox" th:value="*{num}"></td>
+                        <td th:text="${adminboardStat.index}+1"></td>
+                        <td th:value="*{category}"><span th:if="*{category == '2'}">상품문의</span>
+                            <span th:if="*{category == '1'}">프로젝트문의</span>
+                            <span th:if="*{category == '3'}">크리에이터문의</span>
+                            <span th:if="*{category == '4'}">공지사항</span>
+                        </td>
+                        <td th:text="*{title}" th:value="*{title}"></td>
+                        <td th:text="*{registDate}" th:value="*{registDate}"></td>
+                        <td >
+                            <span th:if="*{category != '4' and answerStatus == '1'}">답변 대기</span>
+                            <span th:if="*{category != '4' and answerStatus == '2'}">답변 완료</span>
+                            <span th:if="*{category == '4'}">공지 사항</span>
+                        </td>
+                        <!-- 상품 상세보기로 이동 -->
+                        <td><a href="#">상세보기</a></td>
+                    </tr>
                 </th:block>
-
             </table>
+            <div th:object="${adminBoardPageDTO}" class="paging" style="text-align: center">
+                <a class="changePage" th:href="*{startPage - 1}" th:if="*{prev}">&lt;</a>
+                <th:block th:each="num:${#numbers.sequence(adminBoardPageDTO.startPage, adminBoardPageDTO.endPage)}">
+                    <a class= "changePages"  href="javascript:void(0);" th:if="${num == adminBoardPageDTO.adminCriteria.pageNum}" th:text="${num}"></a>
+                    <a class="changePage" th:href="${num}" th:unless="${num == adminBoardPageDTO.adminCriteria.pageNum}" th:text="${num}"></a>
+                </th:block>
+                <a class="changePage" th:href="*{endPage + 1}" th:if="*{next}">&gt;</a>
+                <a class="changePage" th:href="*{adminCriteria.pageNum + 1}" th:if="*{adminCriteria.pageNum < realEnd}">&gt;</a>
+            </div>
 
         </div>
         <!-- 페이징 처리 -->
 
-    <!--    <div th:object="${AdminBoardPageDTO}" class="paging" style="text-align: center">
-            <a class="changePage" th:href="*{startPage - 1}" th:if="*{prev}"><span>&lt;</span></a>
-            <th:block th:each="num:${#numbers.sequence(AdminBoardPageDTO.startPage, AdminBoardPageDTO.endPage)}">
-                <span th:if="${num == AdminBoardPageDTO.criteria.pageNum}" th:text="${num}"></span>
-                <a class="changePage" th:href="${num}" th:unless="${num == AdminBoardPageDTO.criteria.pageNum}"><span th:text="${num}"></span></a>
-            </th:block>
-            <a class="changePage" th:href="*{endPage + 1}" th:if="*{next}"><span>&gt;</span></a>
-            &lt;!&ndash;<span class="changePages" th:text="*{criteria.pageNum}"></span>
-            <a class="changePage" th:href="*{criteria.pageNum + 1}" th:if="*{criteria.pageNum < realEnd}"><span class="changePages">&gt;</span></a>&ndash;&gt;
-        </div>
 
-        <div class="small-width" style="text-align: center; height: 27px;">
-            <a class="changePage" th:href="*{criteria.pageNum - 1}" th:if="*{criteria.pageNum > 1}"><code>&lt;</code></a>
-            <code th:text="*{criteria.pageNum}"></code>
-            <a class="changePage" th:href="*{criteria.pageNum + 1}" th:if="*{criteria.pageNum < realEnd}"><code>&gt;</code></a>
-        </div>-->
-
-        <!--<div class="paging">
-            <a href="#">&lt;</a>
-            <a href="#">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">&gt;</a>
-        </div>-->
-        <form action="/admin/boardList" name="pageForm" th:object="${criteria}">
+        <form action="/admin/boardList" name="pageForm" th:object="${adminCriteria}">
             <input type="hidden" th:field="*{pageNum}">
             <input type="hidden" th:field="*{amount}">
-            <input type="hidden" th:field="*{total}">
+            <input type="hidden" th:field="*{adminBoardCount}">
             <input type="hidden" th:field="*{startDate}">
             <input type="hidden" th:field="*{endDate}">
             <input type="hidden" th:field="*{keyword}">
             <input type="hidden" th:field="*{type2}">
+            <input type="hidden" th:field="*{type3}">
         </form>
     </div>
 
@@ -352,68 +348,77 @@
 
 <script>
 
-    // 삭제 버튼 클릭시
-    $('#adminBoardDelete').on("click", function (e) {
-        e.preventDefault();
-        if (confirm("해당 게시글을 삭제 하시겠습니까?")) {
+    //삭제버튼 클릭시
+    function deleteValue() {
+        var url = "/admin/deleteById";
+        var valueArr =new Array();
+        let list = $("input[name='delList']:checked");
+        for(let i=0; i<list.length; i++){
+            console.log('list.length : ' + list.length);
+            console.log(("list[i] : " + list[i].value));
+            valueArr.push(list[i].value);            }
 
-            // 게시글 삭제 처리
-            $.ajax({
-                url: "",
-                type: "post",
-                data: {adminboardVO: adminboardVO},
-                success: function () {
+        console.log(valueArr);
+        if (valueArr.length == 0) {
+            alert("삭제할 항목을 선택해 주세요.");
+        }
+        else {
+            var chk = confirm("정말 삭제하시겠습니까?");
+            if(chk){
+                $.ajax({
+                    url: url,
+                    type: 'post',
+                    traditional: true,
+                    data: {
+                        valueArr: valueArr
+                    },
+                    success: function () {
+                        alert("삭제 성공");
+                        location.replace("/admin/boardList")
+                    }
+                });}
+
+
+            // 공지 지정 버튼 클릭시
+            $('#noticeFix').on("click", function (e) {
+                e.preventDefault();
+                if (confirm("해당 게시글을 공지사항으로 지정합니까?")) {
+
+                    // 게시글 삭제 처리
+                    $.ajax({
+                        url: "",
+                        type: "post",
+                        data: {adminboardVO: adminboardVO},
+                        success: function () {
+
+                        }
+                    });
+
+
+                } else {
 
                 }
             });
-
-
-        } else {
-
         }
-    });
-
-    // 공지 지정 버튼 클릭시
-    $('#noticeFix').on("click", function (e) {
-        e.preventDefault();
-        if (confirm("해당 게시글을 공지사항으로 지정합니까?")) {
-
-            // 게시글 삭제 처리
-            $.ajax({
-                url: "",
-                type: "post",
-                data: {adminboardVO: adminboardVO},
-                success: function () {
-
-                }
-            });
-
-
-        } else {
-
-        }
-    });
+    }
 
     // 공지 해제 버튼 클릭시
-    $('#noticeOut').on("click", function (e) {
-        e.preventDefault();
-        if (confirm("해당 게시글을 공지사항에서 해제합니까?")) {
+    /*        $('#noticeOut').on("click", function (e) {
+                e.preventDefault();
+                if (confirm("해당 게시글을 공지사항에서 해제합니까?")) {
 
-            // 게시글 삭제 처리
-            $.ajax({
-                url: "",
-                type: "post",
-                data: {adminboardVO: adminboardVO},
-                success: function () {
+                    // 게시글 삭제 처리
+                    $.ajax({
+                        url: "",
+                        type: "post",
+                        data: {adminboardVO: adminboardVO},
+                        success: function () {
 
-                }
-            });
+                        }
+                    });
+*/
 
 
-        } else {
-
-        }
-    });
 
 </script>
 <script th:replace="~{/admin/adminSideBar :: AdminSideBarJSImport}"></script>

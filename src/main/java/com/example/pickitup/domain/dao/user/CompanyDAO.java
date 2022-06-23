@@ -14,9 +14,9 @@ public class CompanyDAO {
     private final CompanyMapper companyMapper;
 
     // 단체 목록
-//    public List<CompanyVO> getList(){
-//        return companyMapper.getList();
-//    }
+    public List<CompanyVO> getList(){
+        return companyMapper.getList();
+    }
 
     // 단체 회원가입
     public void register(CompanyVO companyVO){
@@ -37,4 +37,5 @@ public class CompanyDAO {
     public CompanyVO login(String email, String password){
         return companyMapper.login(email,password);
     }
+
 }

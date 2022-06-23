@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 @Data
 @NoArgsConstructor
 public class ProjectMainDTO {
+
     private String title;
     private String terrain;
     private Long point;

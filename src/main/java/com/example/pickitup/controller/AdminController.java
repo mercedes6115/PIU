@@ -1,18 +1,11 @@
 package com.example.pickitup.controller;
 
-import com.example.pickitup.domain.vo.Criteria;
+import com.example.pickitup.domain.vo.*;
 
-import com.example.pickitup.domain.vo.ProductCriteria;
+import com.example.pickitup.domain.vo.dto.*;
 
-import com.example.pickitup.domain.vo.dto.AdminBoardPageDTO;
-
-import com.example.pickitup.domain.vo.dto.PageDTO;
-import com.example.pickitup.domain.vo.dto.ProductPageDTO;
-import com.example.pickitup.domain.vo.dto.UserDTO;
 import com.example.pickitup.domain.vo.user.AdminBoardVO;
-import com.example.pickitup.service.TempAdminService;
-import com.example.pickitup.service.TempCompanyService;
-import com.example.pickitup.service.TempProductService;
+import com.example.pickitup.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -23,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -38,7 +33,8 @@ public class AdminController {
     private final TempAdminService tempAdminService;
     private final TempProductService tempProductService;
     private final TempCompanyService tempCompanyService;
-
+    private final TempUserSerivce tempUserSerivce;
+    private final ProjectService projectService;
     // 관리자 로그인
     @GetMapping("/login")
     public void login(){
@@ -53,12 +49,20 @@ public class AdminController {
 
     // 관리자 게시물 목록
     @GetMapping("/boardList")
-    public void boardList(Criteria criteria, Model model){
+    public void boardList(AdminCriteria adminCriteria, Model model){
         log.info("==========");
         log.info("===List===");
         log.info("==========");
-        model.addAttribute("adminboardList", tempAdminService.getAdminboardList(criteria));
-        model.addAttribute("adminBoardPageDTO",new AdminBoardPageDTO(criteria, (tempAdminService.getAdminBoardCount(criteria))));
+
+        if(adminCriteria.getEndDate()==""){
+            adminCriteria.setStartDate(null);
+        }
+        if(adminCriteria.getEndDate()==""){
+            adminCriteria.setEndDate(null);
+        }
+        model.addAttribute("adminboardList", tempAdminService.getAdminboardList(adminCriteria));
+        model.addAttribute("adminBoardPageDTO",new AdminBoardPageDTO(adminCriteria, (tempAdminService.getAdminBoardCount(adminCriteria))));
+
     }
 
     // 관리자 게시물 등록
@@ -75,20 +79,74 @@ public class AdminController {
         log.info("====================");
         tempAdminService.registerWrite(adminBoardVO);
         rttr.addFlashAttribute("num", adminBoardVO.getNum());
-        return new RedirectView("/admin/main");
+        return new RedirectView("/admin/boardList");
     }
 
+    // 관리자 adminboard 체크 삭제
+    @ResponseBody
+    @PostMapping("/deleteById")
+    public String deleteById(Long num, HttpServletRequest request){
+        String[] ajaxMsg = request.getParameterValues("valueArr");
+        int size = ajaxMsg.length;
+        for(int i = 0; i<size; i++){
+            num = Long.parseLong(ajaxMsg[i]);
+            tempAdminService.deleteById(num);
+        }
+        return "/admin/boardList";
+    }
 
     // 관리자 주문 목록
     @GetMapping("/orderList")
-    public void orderList(){
+    public void orderList(OrderCriteria orderCriteria, Model model){
+        log.info("====================");
+        log.info("/orderList");
+        log.info("====================");
+        if(orderCriteria.getType()==""){
+            orderCriteria.setType(null);
+        }
+        if(orderCriteria.getType1()==""){
+            orderCriteria.setType1(null);
+        }
+        if(orderCriteria.getEndDate()==""){
+            orderCriteria.setStartDate(null);
+        }
+        if(orderCriteria.getEndDate()==""){
+            orderCriteria.setEndDate(null);
+        }
+
+        model.addAttribute("orderList",tempAdminService.getOrderList(orderCriteria));
+        model.addAttribute("orderPageDTO",new OrderPageDTO(orderCriteria,(tempUserSerivce.getOrderTotal(orderCriteria))));
+
 
     }
 
     // 관리자 프로젝트 목록
     @GetMapping("/projectList")
-    public void projectList(){
+    public void projectList(ProjectCriteria projectCriteria, Model model, HttpServletRequest request){
+        log.info("====================");
+        log.info("/projectList");
+        log.info("====================");
 
+        if(projectCriteria.getType()==""){
+            projectCriteria.setType(null);
+        }
+        if(projectCriteria.getType1()=="total"){
+            projectCriteria.setType1(null);
+        }
+        if(projectCriteria.getType2()==""){
+            projectCriteria.setType2(null);
+        }
+        if(projectCriteria.getEndDate()==""){
+            projectCriteria.setStartDate(null);
+        }
+        if(projectCriteria.getStartDate()==""){
+            projectCriteria.setEndDate(null);
+        }
+        request=((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+        log.info(request.getRemoteAddr()+"==========");
+        model.addAttribute( "projectList",projectService.getProjectList(projectCriteria));
+        model.addAttribute("projectPageDTO",new ProjectPageDTO(projectCriteria,(projectService.getProjectTotal(projectCriteria))));
+        model.addAttribute("ipV4",request.getRemoteAddr());
     }
 
     // 관리자 프로젝트 생성 폼
