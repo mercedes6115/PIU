@@ -7,17 +7,14 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Controller
 @Slf4j
@@ -50,4 +47,38 @@ public class UserFileRestController {
     public UserVO readUserInfo(@PathVariable("num") Long num){
         return tempUserSerivce.readUserInfo(num);
     }
+
+    //기업 회원가입 파일처리 메서드
+    @PostMapping("/businessFileUpload")
+    @ResponseBody
+    public Object businessFileUpload(MultipartFile uploadFile) throws IOException{
+        String uploadFolder="C:/upload";
+        //        yyyy/MM/dd 경로 만들기
+        File uploadPath = new File(uploadFolder, getFolder());
+        if(!uploadPath.exists()){uploadPath.mkdirs();}
+
+//        uploadFile.transferTo(new File(uploadFolder+"/"+uploadPath+ uploadFile.getOriginalFilename()));
+
+        Map<String,Object> map=new HashMap<String, Object>();
+
+        UserVO userVO=new UserVO();
+        String uploadFileName = uploadFile.getOriginalFilename();
+        UUID uuid = UUID.randomUUID();
+        uploadFileName = uuid.toString() + "_" + uploadFileName;
+        map.put("profileUploadPath",getFolder());
+        map.put("profileFileName",uploadFileName);
+
+//        userVO.setProfileFileName(uploadFileName);
+//        userVO.setProfileUploadPath(getFolder());
+
+        log.info("--------------------------------");
+        log.info("Upload File Name : " + uploadFileName);
+
+        File saveFile = new File(uploadPath, uploadFileName);
+        uploadFile.transferTo(saveFile);
+
+        return map;
+
+    }
+
 }

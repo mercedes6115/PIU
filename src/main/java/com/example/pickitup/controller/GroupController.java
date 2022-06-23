@@ -1,7 +1,9 @@
 package com.example.pickitup.controller;
 
+import com.example.pickitup.domain.vo.AdminCriteria;
 import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.dto.PageDTO;
+import com.example.pickitup.service.ProjectService;
 import com.example.pickitup.service.TempAdminService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,21 +21,22 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/group/*")
 public class GroupController {
     private final TempAdminService tempAdminService;
+    private final ProjectService projectService;
 
 
     // 그룹 메인
-    @GetMapping("/main")
-    public void main(){
-
-    }
+//    @GetMapping("/main")
+//    public void main(Model model, Criteria criteria){
+//        model.addAttribute("projectList", projectService.getProjectList(10L,criteria ));
+//    }
 
     // 그룹 공지사항
-    @GetMapping("/notice")
-    public String notice(Criteria criteria, Model model){
-        model.addAttribute("adminBoardList", tempAdminService.getNoticeList(criteria));
-        model.addAttribute("pageDTO", new PageDTO(criteria, tempAdminService.getNoticeTotal()));
-        return "group/notice";
-    }
+//    @GetMapping("/notice")
+//    public String notice(AdminCriteria adminCriteria, Model model){
+//        model.addAttribute("adminBoardList", tempAdminService.getNoticeList(criteria));
+//        model.addAttribute("pageDTO", new PageDTO(adminCriteria, tempAdminService.getNoticeTotal()));
+//        return "group/notice";
+//    }
 
     // 그룹 공지사항 상세보기
     @GetMapping("/noticeDetail")

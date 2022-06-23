@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.pickitup.mapper.product.productQna.ProductQnaCommentMapper">
+
     <select id="getList" resultType="productQnaCommentVO">
     SELECT
         NUM, CONTENT, REGIST_DATE, UPDATE_DATE, STATUS, USER_NUM, QNA_NUM
@@ -28,6 +29,7 @@
     DELETE FROM TBL_PRODUCT_QNA_COMMENT
     WHERE NUM=#{num}
     </delete>
+
 </mapper>
 
 

@@ -1,5 +1,6 @@
 package com.example.pickitup.domain.dao.user;
 
+import com.example.pickitup.domain.vo.AdminCriteria;
 import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.adminVO.AdminBoardDTO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
@@ -28,8 +29,8 @@ public class UserDAO {
     }
 
     // 관리자 공지 리스트 보기
-    public List<AdminBoardDTO> getNoticeList(Criteria criteria){
-        return userMapper.getNoticeList(criteria);
+    public List<AdminBoardDTO> getNoticeList(AdminCriteria adminCriteria){
+        return userMapper.getNoticeList(adminCriteria);
     }
 
     //    관리자 공지 상세보기
@@ -43,15 +44,19 @@ public class UserDAO {
     }
 
     // 관리자 adminboard 글 총개수
-    public int getAdminBoardCount(Criteria criteria){
-        return userMapper.getAdminBoardCount(criteria);
+    public int getAdminBoardCount(AdminCriteria adminCriteria){
+        return userMapper.getAdminBoardCount(adminCriteria);
     }
 
     // 관리자 adminboard 글 목록 가져오기
-    public List<AdminBoardVO> getAdminboardList(Criteria criteria){
-        return userMapper.getAdminboardList(criteria);
+    public List<AdminBoardVO> getAdminboardList(AdminCriteria adminCriteria){
+        return userMapper.getAdminboardList(adminCriteria);
     }
 
+    // 관리자 adminboard 글 삭제하기
+    public int deleteById(Long num) {
+        return userMapper.deleteById(num);
+    }
 
     // 유저 목록(관리자용)
     public List<UserDTO> getList(Criteria criteria){
@@ -73,12 +78,12 @@ public class UserDAO {
 
     // 유저 정보 수정
     public boolean update(UserVO userVO){
-        return userMapper.update(userVO);
+        return userMapper.update(userVO) != 0;
     }
 
     // 유저 탈퇴
     public boolean remove(Long num){
-        return userMapper.delete(num);
+        return userMapper.delete(num) !=0 ;
     }
 
     // 유저가 구매한 상품 목록
@@ -92,7 +97,7 @@ public class UserDAO {
     }
 
     // 로그인 -> select count-> read() 사용?
-    public UserVO login(String email, String password){
+    public UserDTO login(String email, String password){
         return userMapper.login(email,password);
     }
 
@@ -105,4 +110,7 @@ public class UserDAO {
     public boolean updatePW(String email){
         return userMapper.updatePW(email);
     };
+
+    //  닉네임 중복검사
+    public int nicknameCheck(String nickname) { return userMapper.nicknameMatching(nickname);}
 }

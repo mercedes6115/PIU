@@ -505,6 +505,19 @@
         }
     })
 
+
+    // 사진 불러오기
+
+        $.ajax({
+            url: "/projectFile/display/"+productNum,
+            type : "get",
+            success : function (files) {
+                let str = "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
+                $(h).html(str);
+                // $("img#"+productNum).attr("src", "/upload/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName )
+            }
+        })
+
     //공유하기 모달창
 
     $('.share_btn').click(function(){

@@ -2,6 +2,7 @@ package com.example.pickitup.controller;
 
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaVO;
+import com.example.pickitup.domain.vo.project.projectReview.ProjectReviewVO;
 import com.example.pickitup.domain.vo.user.ApplyVO;
 import com.example.pickitup.domain.vo.user.JjimVO;
 import com.example.pickitup.service.ProjectService;
@@ -58,9 +59,11 @@ public class ProjectController {
     }
 
     // 프로젝트 등록 스텝 1
-    @GetMapping("/createStep1")
+    @GetMapping("/createStep")
     public void createStep1(){
     }
+
+
 //
 //    // 프로젝트 등록 스텝 2
 //    @GetMapping("/createStep2")
@@ -82,9 +85,9 @@ public class ProjectController {
 //    }
 
     // 프로젝트 등록 스텝 1
-    @PostMapping("/createStep1")
-    public void projectCreateStep1(){
-
+    @PostMapping("/createStep")
+    public void projectCreate(ProjectVO projectVO){
+        projectService.registerProject(projectVO);
     }
 
 
@@ -102,13 +105,30 @@ public class ProjectController {
         projectService.removeJjim(jjimVO);
     }
 
+
     // 프로젝트 지원
     @PostMapping("/apply")
     @ResponseBody
     public void applyProject(@RequestBody ApplyVO applyVO){
 
+    }
+
+
+    // 리뷰작성
+    @GetMapping("/review/add")
+    public String addReview(){
+        return "/project/projectReviewWrite";
 
     }
+
+    // 리뷰작성폼
+    @PostMapping("/review/add")
+    public void addReviewForm(ProjectReviewVO projectReviewVO){
+        projectService.registerReview(projectReviewVO);
+    }
+
+
+    //
 
 
 }

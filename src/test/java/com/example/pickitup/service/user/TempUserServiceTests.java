@@ -106,10 +106,10 @@ public class TempUserServiceTests {
         log.info("게시글 번호 : " + adminBoardVO.getNum());
     }
 
-    @Test
-    public void getNoticeListTest(){
-        tempAdminService.getNoticeList(new Criteria()).stream().map(AdminBoardDTO::toString).forEach(log::info);
-    }
+//    @Test
+//    public void getNoticeListTest(){
+//        tempAdminService.getNoticeList(new Criteria()).stream().map(AdminBoardDTO::toString).forEach(log::info);
+//    }
 
     @Test
     public void getReadDetailTest(){
@@ -122,14 +122,14 @@ public class TempUserServiceTests {
         log.info("총 개수 : " + tempAdminService.getNoticeTotal());
     }
 
-    @Test
-    public void getAdminBoardCountTest() {
-        log.info("adminboard 글 총개수 : " + tempAdminService.getAdminBoardCount(new Criteria(1,10)));
-    }
-
-    @Test
-    public void getAdminboardListTest(){
-        tempAdminService.getAdminboardList(new Criteria());
-    }
+//    @Test
+//    public void getAdminBoardCountTest() {
+//        log.info("adminboard 글 총개수 : " + tempAdminService.getAdminBoardCount(new Criteria(1,10)));
+//    }
+//
+//    @Test
+//    public void getAdminboardListTest(){
+//        tempAdminService.getAdminboardList(new Criteria());
+//    }
 
 }

@@ -14,10 +14,10 @@ public class ProductReviewFileMapperTest {
     @Autowired
     private ProductReviewFileMapper productReviewFileMapper;
 
-//    @Test
-//    public void findByProductReviewNumTest(){
-//        productReviewFileMapper.findByProductReviewNum(24L);
-//    }
+    @Test
+    public void findByProductReviewNumTest(){
+        productReviewFileMapper.findByProductReviewNum(24L);
+    }
 //
 //    @Test
 //    public void insertTest(){

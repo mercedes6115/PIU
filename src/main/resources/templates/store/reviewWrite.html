@@ -44,6 +44,7 @@
                     <div class="space flex" style="padding-left: 24px; justify-content: space-between;">
                         <div class="review_item_title" th:text="|[${product.category}] &nbsp ${product.name}|">
                         </div>
+                        <input type="hidden" name="productNum" th:value="${product.num}">
                     </div>
                     <div style="margin-bottom: 10px;"></div>
                     <div class="flex" style="text-align: left; padding: 0  0 10px 24px;">
@@ -62,16 +63,16 @@
                                 <div>+</div>
                             </div>
                         </label>
-                        <input type="file" id="attach1" class="attach1" style="display: none;">
-                        <input type="file" id="attach2" class="attach2" style="display: none;" disabled>
-                        <input type="file" id="attach3" class="attach3"style="display: none;" disabled>
+                        <input type="file" name="uploadFiles" id="attach1" class="attach1" style="display: none;">
+                        <input type="file" name="uploadFiles" id="attach2" class="attach2" style="display: none;" disabled>
+                        <input type="file" name="uploadFiles" id="attach3" class="attach3"style="display: none;" disabled>
                     </div>
 
                     <div class="admin_comment" style="font-size: 10px; margin-top:5px; margin-left: 24px;">첨부파일은 3개 까지만 가능합니다.</div>
 
                     <div style="margin-top: 8px;">
                         <div style="text-align: center;">
-                            <textarea class="user_review" name="" id="" cols="30" rows="10" required></textarea>
+                            <textarea class="user_review" name="content" id="" cols="30" rows="10" required></textarea>
                         </div>
                     </div>
                     <div class="reviewInfo">
@@ -96,7 +97,7 @@
     let productNum = [[${product.num}]];
 
  //첨부파일 input태그 가져오기
- const file1 = document.querySelector("input.attach1");
+    const file1 = document.querySelector("input.attach1");
     const file2 = document.querySelector("input.attach2");
     const file3 = document.querySelector("input.attach3");
     const thumbnail1 = document.querySelector("label[for='attach1'] div.thumb1");
@@ -124,24 +125,6 @@
                     thumbnail1.style.backgroundImage = "url(/images/error.png)";
                 }
             }
-
-        let formData =   new FormData();
-        let inputFile = $("input#attach1");
-        let files = inputFile[0].files;
-        console.log(files);
-        formData.append("uploadFiles", files);
-
-        $.ajax({
-            url: "/productFile/upload",
-            type: "post",
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function(files){
-                alert("success");
-                showUploadResult(files);
-            }
-        });
     });
 
     function number2(){
@@ -201,5 +184,26 @@
      month = date.getMonth() + 1;
      day = date.getDate();
      document.getElementById("admin_date").innerHTML = year + "." + month + "." + day;
+
+    $(".btn_qnaToadmin").on("click", function(e){
+        let formData =   new FormData();
+        let inputFile = $("input[name='uploadFiles']");
+        let files = inputFile[0].files;
+        console.log(files);
+        for(let i=0; i<files.length; i++) {
+            formData.append("uploadFiles", files[i]);
+        }
+        $.ajax({
+            url: "/productReviewFile/upload",
+            type: "post",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(files){
+                alert('업로드성공');
+            }
+        });
+        registerForm.submit();
+    });
 </script>
 </html>

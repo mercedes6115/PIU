@@ -45,7 +45,10 @@ pom.xml에서 dependency 추가
                     </div>
                     <div class="join-table">
                         <div class="join-table-title">닉네임<span class="check-text" id="nameCheck_text"> </span></div>
-                        <input name="nickname" class="input-data" id="name" placeholder="홍길동" type="text" />
+                        <div class="join-input-table" style="display: flex;">
+                            <input name="nickname" class="input-data" id="nickname" placeholder="홍길동" type="text" />
+                            <button id="nameCheck" type="button" class="emailCheck">중복확인</button>
+                        </div>
                     </div>
                     <div class="join-table">
                         <div class="join-table-title">전화번호<span class="check-text" id="phoneCheck_text"> </span></div>
@@ -54,7 +57,7 @@ pom.xml에서 dependency 추가
                     <div class="join-table">
                         <div class="join-table-title">주소</div>
                         <div style="display: flex; margin-top: 10px;margin-bottom: 5px;">
-                            <input name="address" class="input-data" type="text" id="state" placeholder="주소">
+                            <input name="address" class="input-data" type="text" id="state" placeholder="주소" readonly>
                             <input type="button" class="btnCertify" value="검색"/>
                         </div>
                         <input name="addressDetail" class="input-data" type="text" id="state-detail" placeholder="상세주소">
@@ -81,7 +84,7 @@ pom.xml에서 dependency 추가
                         </div>
                     </div>
                     <input hidden="hidden" />
-                    <input type="submit" class="submit_button" id="submit-user-final" value="등록"/>
+                    <input type="button" class="submit_button" id="submit-user-final" value="등록"/>
                 </div>
             </form>
         </div>

@@ -18,32 +18,33 @@
    <!--헤더 -->
 
    <div class="media_store_categories">
-    <input type="button" value="전체" class="categories_selected">
-    <input type="button" value="생활">
-    <input type="button" value="주방">
-    <input type="button" value="욕실">
-    <input type="button" value="반려동물">
-    <input type="button" value="화장품">
-    <input type="button" value="식품">
-    <input type="button" value="문구">
-    <input type="button" value="원예">
- </div>
+           <ul style="display: flex; list-style: none;">
+               <li class="active"><a href="" th:value="전체">전체</a></li>
+               <li><a href="생활">생활</a></li>
+               <li><a href="주방">주방</a></li>
+               <li><a href="욕실">욕실</a></li>
+               <li><a href="반려동물">반려동물</a></li>
+               <li><a href="화장품">화장품</a></li>
+               <li><a href="식품">식품</a></li>
+               <li><a href="문구">문구</a></li>
+               <li><a href="원예">원예</a></li>
+           </ul>
+   </div>
 
  <div class="store_all_body">
      <section class="store_container">
          <div class="store_cate_items">
              <div class="store_categories">
                  <ul>
-                     <li class="active"><a href="#">전체</a></li>
-                     <li><a href="#">생활</a></li>
-                     <li><a href="#">주방</a></li>
-                     <li><a href="#">욕실</a></li>
-                     <li><a href="#">반려동물</a></li>
-                     <li><a href="#">화장품</a></li>
-                     <li><a href="#">식품</a></li>
-                     <li><a href="#">문구</a></li>
-                     <li><a href="#">원예</a></li>
-                 
+                     <li class="active"><a href="" th:value="전체">전체</a></li>
+                     <li><a href="생활">생활</a></li>
+                     <li><a href="주방">주방</a></li>
+                     <li><a href="욕실">욕실</a></li>
+                     <li><a href="반려동물">반려동물</a></li>
+                     <li><a href="화장품">화장품</a></li>
+                     <li><a href="식품">식품</a></li>
+                     <li><a href="문구">문구</a></li>
+                     <li><a href="원예">원예</a></li>
                  </ul>
              </div>
 
@@ -54,40 +55,328 @@
                      <p class="item_headerp" th:text="|${productsCount} 개|"></p>
                  </div>
                  <div class="all_items">
+
+
                                      <!--  목록 리스트 시작 -->
+
                      <ul>
-                         <th:block th:each="product:${productlist}">
-                             <tr th:object="${product}">
-                                 <li>
-                                     <div class="item">
+                         <li>
+                             <div class="item">
                                  <span class="material-symbols-outlined jjim jjim-ajax">
                                      favorite
                                      </span>
-<!--                                         <img th:id="*{num}" src="/images/1.jpg">-->
-                                         <a class="goDetail" th:href="*{num}"></a>
-                                         <div class="flex" style="flex-direction: column; margin: 12px 0;">
-                                             <div>
-                                                 <p class="store_main_item_title" th:text="*{name}"></p>
+                                 <a href="pickitupStoreDetail.html"><img src="/src/main/resources/static/images/1.jpg">
+                                     <div class="flex" style="flex-direction: column; margin: 12px 0;">
+                                         <div>
+                                             <p class="store_main_item_title">[아시아 종묘] 코코넛 화분</p>
+                                         </div>
+                                         <div style="margin-top: 6px; height: 16px;">
+                                             <p class="store_main_item_category">아시아 화분</p>
+                                         </div>
+                                             <div><span class="material-symbols-outlined" style="font-size: 12px;">
+                                                 favorite
+                                                 </span></div>
                                              </div>
-                                             <div style="margin-top: 6px; height: 16px;">
-                                                 <p class="store_main_item_category" th:text="*{category}"></p>
+                                     <div style="height: 18px;">
+                                         <p class="store_item_price">800P</p>
+                                     </div>
+                                 </a>
+                             </div>
+                         </li>
+                         <li>
+                             <div class="item">
+                                 <span class="material-symbols-outlined jjim jjim-ajax">
+                                     favorite
+                                     </span>
+                                 <a href="pickitupStoreDetail.html"><img src="/src/main/resources/static/images/1.jpg">
+                                     <div class="flex" style="flex-direction: column; margin: 12px 0;">
+                                         <div>
+                                             <p class="store_main_item_title">[아시아 종묘] 코코넛 화분</p>
+                                         </div>
+                                         <div style="margin-top: 6px; height: 16px;">
+                                             <p class="store_main_item_category">아시아 화분</p>
+                                         </div>
+                                             <div><span class="material-symbols-outlined" style="font-size: 12px;">
+                                                 favorite
+                                                 </span></div>
                                              </div>
+                                     <div style="height: 18px;">
+                                         <p class="store_item_price">800P</p>
+                                     </div>
+                                 </a>
+                             </div>
+                         </li>
+                         <li>
+                             <div class="item">
+                                 <span class="material-symbols-outlined jjim jjim-ajax">
+                                     favorite
+                                     </span>
+                                 <a href="pickitupStoreDetail.html"><img src="/src/main/resources/static/images/1.jpg">
+                                     <div class="flex" style="flex-direction: column; margin: 12px 0;">
+                                         <div>
+                                             <p class="store_main_item_title">[아시아 종묘] 코코넛 화분</p>
+                                         </div>
+                                         <div style="margin-top: 6px; height: 16px;">
+                                             <p class="store_main_item_category">아시아 화분</p>
+                                         </div>
+                                             <div><span class="material-symbols-outlined" style="font-size: 12px;">
+                                                 favorite
+                                                 </span></div>
+                                             </div>
+                                     <div style="height: 18px;">
+                                         <p class="store_item_price">800P</p>
+                                     </div>
+                                 </a>
+                             </div>
+                         </li>
+                         <li>
+                             <div class="item">
+                                 <span class="material-symbols-outlined jjim jjim-ajax">
+                                     favorite
+                                     </span>
+                                 <a href="pickitupStoreDetail.html"><img src="/src/main/resources/static/images/1.jpg">
+                                     <div class="flex" style="flex-direction: column; margin: 12px 0;">
+                                         <div>
+                                             <p class="store_main_item_title">[아시아 종묘] 코코넛 화분</p>
+                                         </div>
+                                         <div style="margin-top: 6px; height: 16px;">
+                                             <p class="store_main_item_category">아시아 화분</p>
+                                         </div>
+                                             <div><span class="material-symbols-outlined" style="font-size: 12px;">
+                                                 favorite
+                                                 </span></div>
+                                             </div>
+                                     <div style="height: 18px;">
+                                         <p class="store_item_price">800P</p>
+                                     </div>
+                                 </a>
+                             </div>
+                         </li>
+                         <li>
+                             <div class="item">
+                                 <span class="material-symbols-outlined jjim jjim-ajax">
+                                     favorite
+                                     </span>
+                                 <a href="pickitupStoreDetail.html"><img src="/src/main/resources/static/images/1.jpg">
+                                     <div class="flex" style="flex-direction: column; margin: 12px 0;">
+                                         <div>
+                                             <p class="store_main_item_title">[아시아 종묘] 코코넛 화분</p>
+                                         </div>
+                                         <div style="margin-top: 6px; height: 16px;">
+                                             <p class="store_main_item_category">아시아 화분</p>
+                                         </div>
+                                             <div><span class="material-symbols-outlined" style="font-size: 12px;">
+                                                 favorite
+                                                 </span></div>
+                                             </div>
+                                     <div style="height: 18px;">
+                                         <p class="store_item_price">800P</p>
+                                     </div>
+                                 </a>
+                             </div>
+                         </li>
+                         <li>
+                             <div class="item">
+                                 <span class="material-symbols-outlined jjim jjim-ajax">
+                                     favorite
+                                     </span>
+                                 <a href="pickitupStoreDetail.html"><img src="/src/main/resources/static/images/1.jpg">
+                                     <div class="flex" style="flex-direction: column; margin: 12px 0;">
+                                         <div>
+                                             <p class="store_main_item_title">[아시아 종묘] 코코넛 화분</p>
+                                         </div>
+                                         <div style="margin-top: 6px; height: 16px;">
+                                             <p class="store_main_item_category">아시아 화분</p>
+                                         </div>
+                                             <div><span class="material-symbols-outlined" style="font-size: 12px;">
+                                                 favorite
+                                                 </span></div>
+                                             </div>
+                                     <div style="height: 18px;">
+                                         <p class="store_item_price">800P</p>
+                                     </div>
+                                 </a>
+                             </div>
+                         </li>
+                         <li>
+                             <div class="item">
+                                 <span class="material-symbols-outlined jjim jjim-ajax">
+                                     favorite
+                                     </span>
+                                 <a href="pickitupStoreDetail.html"><img src="/src/main/resources/static/images/1.jpg">
+                                     <div class="flex" style="flex-direction: column; margin: 12px 0;">
+                                         <div>
+                                             <p class="store_main_item_title">[아시아 종묘] 코코넛 화분</p>
+                                         </div>
+                                         <div style="margin-top: 6px; height: 16px;">
+                                             <p class="store_main_item_category">아시아 화분</p>
+                                         </div>
+                                             <div><span class="material-symbols-outlined" style="font-size: 12px;">
+                                                 favorite
+                                                 </span></div>
+                                             </div>
+                                     <div style="height: 18px;">
+                                         <p class="store_item_price">800P</p>
+                                     </div>
+                                 </a>
+                             </div>
+                         </li>
+                         <li>
+                             <div class="item">
+                                 <span class="material-symbols-outlined jjim jjim-ajax">
+                                     favorite
+                                     </span>
+                                 <a href="pickitupStoreDetail.html"><img src="/src/main/resources/static/images/1.jpg">
+                                     <div class="flex" style="flex-direction: column; margin: 12px 0;">
+                                         <div>
+                                             <p class="store_main_item_title">[아시아 종묘] 코코넛 화분</p>
+                                         </div>
+                                         <div style="margin-top: 6px; height: 16px;">
+                                             <p class="store_main_item_category">아시아 화분</p>
+                                         </div>
+                                             <div><span class="material-symbols-outlined" style="font-size: 12px;">
+                                                 favorite
+                                                 </span></div>
+                                             </div>
+                                     <div style="height: 18px;">
+                                         <p class="store_item_price">800P</p>
+                                     </div>
+                                 </a>
+                             </div>
+                         </li>
+                         <li>
+                             <div class="item">
+                                 <span class="material-symbols-outlined jjim jjim-ajax">
+                                     favorite
+                                     </span>
+                                 <a href="pickitupStoreDetail.html"><img src="/src/main/resources/static/images/1.jpg">
+                                     <div class="flex" style="flex-direction: column; margin: 12px 0;">
+                                         <div>
+                                             <p class="store_main_item_title">[아시아 종묘] 코코넛 화분</p>
+                                         </div>
+                                         <div style="margin-top: 6px; height: 16px;">
+                                             <p class="store_main_item_category">아시아 화분</p>
+                                         </div>
+                                             <div><span class="material-symbols-outlined" style="font-size: 12px;">
+                                                 favorite
+                                                 </span></div>
+                                             </div>
+                                     <div style="height: 18px;">
+                                         <p class="store_item_price">800P</p>
+                                     </div>
+                                 </a>
+                             </div>
+                         </li>
+                         <li>
+                             <div class="item">
+                                 <span class="material-symbols-outlined jjim jjim-ajax">
+                                     favorite
+                                     </span>
+                                 <a href="pickitupStoreDetail.html"><img src="/src/main/resources/static/images/1.jpg">
+                                     <div class="flex" style="flex-direction: column; margin: 12px 0;">
+                                         <div>
+                                             <p class="store_main_item_title">[아시아 종묘] 코코넛 화분</p>
+                                         </div>
+                                         <div style="margin-top: 6px; height: 16px;">
+                                             <p class="store_main_item_category">아시아 화분</p>
+                                         </div>
+                                             <div><span class="material-symbols-outlined" style="font-size: 12px;">
+                                                 favorite
+                                                 </span></div>
+                                             </div>
+
+                                     <div style="height: 18px;">
+                                         <p class="store_item_price">800P</p>
+                                     </div>
+                                 </a>
+                             </div>
+                         </li>
+                         <li>
+                             <div class="item">
+                                 <span class="material-symbols-outlined jjim jjim-ajax">
+                                     favorite
+                                     </span>
+                                 <a href="pickitupStoreDetail.html"><img src="/src/main/resources/static/images/1.jpg">
+                                     <div class="flex" style="flex-direction: column; margin: 12px 0;">
+                                         <div>
+                                             <p class="store_main_item_title">[아시아 종묘] 코코넛 화분</p>
+                                         </div>
+                                         <div style="margin-top: 6px; height: 16px;">
+                                             <p class="store_main_item_category">아시아 화분</p>
+                                         </div>
+                                             <div><span class="material-symbols-outlined" style="font-size: 12px;">
+                                                 favorite
+                                                 </span></div>
+                                             </div>
+                                     <div style="height: 18px;">
+                                         <p class="store_item_price">800P</p>
+                                     </div>
+                                 </a>
+                             </div>
+                         </li>
+                         <li>
+                             <div class="item">
+                                 <span class="material-symbols-outlined jjim jjim-ajax">
+                                     favorite
+                                     </span>
+                                 <a href="pickitupStoreDetail.html"><img src="/src/main/resources/static/images/1.jpg">
+                                     <div class="flex" style="flex-direction: column; margin: 12px 0;">
+                                         <div>
+                                             <p class="store_main_item_title">[아시아 종묘] 코코넛 화분</p>
+
                                              <div style="display: flex; align-items: end; margin-top: 5px">
                                                  <span class="material-symbols-outlined" style="font-size: 12px;">
                                                      favorite
                                                  </span>
                                                  <small style="font-size: 11px; margin-left: 5px">300..</small>
                                              </div>
+
                                          </div>
-                                         <div style="height: 18px;">
-                                             <p class="store_item_price" th:text="|*{price}P|"></p>
+                                         <div style="margin-top: 6px; height: 16px;">
+                                             <p class="store_main_item_category">아시아 화분</p>
                                          </div>
-                                         </a>
+                                             <div><span class="material-symbols-outlined" style="font-size: 12px;">
+                                                 favorite
+                                                 </span></div>
+                                             </div>
+                                     <div style="height: 18px;">
+                                         <p class="store_item_price">800P</p>
                                      </div>
-                                 </li>
-                             </tr>
-                         </th:block>
+                                 </a>
+                             </div>
+                         </li>
+
+                     <ul>
+<!--                         <li>-->
+<!--                             <div class="item">-->
+<!--                                 <span class="material-symbols-outlined jjim jjim-ajax">-->
+<!--                                     favorite-->
+<!--                                     </span>-->
+<!--                                 <a class="goDetail" th:href="*{num}"></a>-->
+<!--                                 <div class="flex" style="flex-direction: column; margin: 12px 0;">-->
+<!--                                     <div>-->
+<!--                                         <p class="store_main_item_title" th:text="*{name}"></p>-->
+<!--                                     </div>-->
+<!--                                     <div style="margin-top: 6px; height: 16px;">-->
+<!--                                         <p class="store_main_item_category" th:text="*{category}"></p>-->
+<!--                                     </div>-->
+<!--                                     <div style="display: flex; align-items: end; margin-top: 5px">-->
+<!--                                                 <span class="material-symbols-outlined" style="font-size: 12px;">-->
+<!--                                                     favorite-->
+<!--                                                 </span>-->
+<!--                                         <small style="font-size: 11px; margin-left: 5px">300..</small>-->
+<!--                                     </div>-->
+<!--                                 </div>-->
+<!--                                 <div style="height: 18px;">-->
+<!--                                     <p class="store_item_price" th:text="|*{price}P|"></p>-->
+<!--                                 </div>-->
+<!--                             </div>-->
+<!--                         </li>-->
+
                      </ul>
+                     <!--  목록 리스트 끝 -->
+
+
                  </div>
              </div>
              <div class="gototop">
@@ -95,66 +384,113 @@
                      vertical_align_top
                      </span >
              </div> 
+             
          </div>
      </section>
  </div>
  <!-- -----------------------------임시 데이터 --------------------------------->
      <div th:replace="~{/main/Footer :: FooterImport}"></div>
 </body>
-<!--<script src="/assets/js/store.js"></script>-->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script th:inline="javascript">
-    const $uploadResult = $(".item ul");
-
-    // let productNum = [[${num}]];
-    //
-    // //scroll top
-    $('.gototop').click(function(){
+<script src="/assets/js/store.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<script>
+    //scroll top
+    $('.toTop').click(function(){
         $('html, body').animate({scrollTop : 0},300);
     });
 
-    $('.goDetail').click(function (e) {
+
+    //이미지를 눌렀을떄
+    $('.all_items ul').on("click", ".goDetail" , function (e) {
         e.preventDefault();
-        location.href = "/store/detail?num="+$(this).attr('href');
+        location.href = "/store/detail?num="+$(this)[0].getAttribute('th:href');
     })
 
-    //메인 사진 받아오기
-    $('.goDetail').each(function(i, h) {
-        let productNum=$(this).attr("href");
+
+    let category = "";
+    showmain(category);
+    function showmain(category){
         $.ajax({
-            url: "/productFile/list/"+productNum,
-            type : "get",
-            success : function (files) {
-                // let str = "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
-                let str = "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
-                $(h).html(str);
-                // $("img#"+productNum).attr("src", "/upload/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName )
+            url : "/store/main",
+            type: "post",
+            data : {category : category},
+            success: function (lists) {
+                let str = "";
+                $(lists).each(function (i, list) {
+                    str += "<li>";
+                    str += "<div class=\"item\">";
+                    str += "<span class=\"material-symbols-outlined jjim jjim-ajax\">";
+                    str += "favorite";
+                    str += "</span>";
+                    str += "<a class=\"goDetail\" th:href=\""+list.num+"\" style=\"cursor:pointer\">";
+                    (function (i) {
+                        $.ajax({
+                            url: "/productFile/list/"+list.num,
+                            type : "get",
+                            async:false,  // ajax 안에 ajax를 사용할때는 동기식으로 바꿔줘야함
+                            success : function (files) {
+                                // let str = "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
+                                str += "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
+                                // $("img#"+productNum).attr("src", "/upload/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName )
+                            }
+                        })
+                    })(i);
+                    str += "</a>";
+                    str += "<div class=\"flex\" style=\"flex-direction: column; margin: 12px 0;\">";
+                    str += "<div>";
+                    str += "<p class=\"store_main_item_title\">"+list.name+"</p>";
+                    str += "</div>";
+                    str += "<div style=\"margin-top: 6px; height: 16px;\">";
+                    str += "<p class=\"store_main_item_category\">"+list.category+"</p>";
+                    str += "</div>";
+                    str += "<div style=\"display: flex; align-items: end; margin-top: 5px\">";
+                    str += "<span class=\"material-symbols-outlined\" style=\"font-size: 12px;\">";
+                    str += "favorite";
+                    str += "</span>";
+                    str += "<small style=\"font-size: 11px; margin-left: 5px\">300..</small>";
+                    str += "</div>";
+                    str += "</div>";
+                    str += "<div style=\"height: 18px;\">";
+                    str += "<p class=\"store_item_price\">"+list.price+"P</p>";
+                    str += "</div>";
+                    str += "</div>";
+                    str += "</li>";
+                })
+                $('.all_items ul').html(str);
             }
         })
+    }
+
+
+    // 메인 ajax
+    $('.store_categories a').click(function (e) {
+        e.preventDefault();
+        let category = $(this).attr('href');
+        showmain(category);
     })
-    // function showUploadResult(files){
-    //     let str ="";
-    //     $(files).each(function(i, file){
-    //         str += "<li data-filename='" + file.fileName + "' data-uuid='" + file.uuid + "' data-uploadpath='" + file.uploadPath + "' data-image='" + file.image + "'>";
-    //         if(file.image){
-    //             str += "<a href=\"javascript:showImage(\'" + file.uploadPath + "/" + file.uuid + "_" + file.fileName +"\');\"><img src='/upload/display?fileName=" + file.uploadPath + "/s_" + file.uuid + "_"  + file.fileName + "'></a>";
-    //         }else{
-    //             str += "<a href='/upload/download?fileName=" + file.uploadPath + "/" + file.uuid + "_" + file.fileName + "'><img src='/images/attach.png' width='100'></a>";
+    // 메인 ajax
+    $('.media_store_categories a').click(function (e) {
+        e.preventDefault();
+        let category = $(this).attr('href');
+        showmain(category);
+    })
+
+    // $('.goDetail').each(function(i, h) {
+    //     //메인 사진 받아오기
+    //     let productNum=$(this).attr("href");
+    //     $.ajax({
+    //         url: "/productFile/list/"+productNum,
+    //         type : "get",
+    //         success : function (files) {
+    //             // let str = "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
+    //             let str = "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
+    //             $(h).html(str);
+    //             // $("img#"+productNum).attr("src", "/upload/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName )
     //         }
-    //         str += "<p>" + file.fileName + "</p>"
-    //         str += "</li>"
-    //     });
-    //     $uploadResult.html(str);
-    // }
-
-    // (function(){
-    //     $.getJSON("/upload/list", {productNum: 23}, function(list){
-    //         showUploadResult(list);})
-    // })();
+    //     })
+    // })
 
 
-    //
-    //
     //정상웹 일때
     $('.store_categories li').click(function(){
         $('.store_categories li').removeClass('active');
@@ -164,29 +500,58 @@
             $(this).addClass('active');
         }
     })
-    //
+
     //반응형 웹
-    $('.media_store_categories input').click(function(){
-        $('.media_store_categories input').removeClass('categories_selected');
-        if($(this).hasClass('categories_selected')){
-            $(this).removeClass('categories_selected');
+    $('.media_store_categories li').click(function(e){
+        $('.media_store_categories li').removeClass('active');
+        if($(this).hasClass('active')){
+            $(this).removeClass('active');
         }else{
-            $(this).addClass('categories_selected');
+            $(this).addClass('active');
         }
     })
-    //
-    $('.jjim-ajax').click(function() {
+
+
+    $('jjim-ajax').click(function(){
+        if($(this).hasClass("red")){
+
+    //찜 ajax
+    $('.all_items').on("click","jjim-ajax",function() {
         if ($(this).hasClass("red")) {
+
             $(this).removeClass("red");
-        } else {
+        }else{
             $(this).addClass("red");
         }
+
+
+        // $.ajax({
+        //     url : "", //찜table 연결하는곳
+        //     type : "post",
+        //     data : "상품데이터",
+        //     contentType : "application/json",
+        //     dataType : "json",
+        //     success : function(){
+
+        //     },
+        //     error : function(xhr,status,er){
+                
+        //     }
+        // })
+
     });
+
 
     // 카테고리 클릭시 ajax
     $(".store_categories ul li").click(function (e) {
         e.preventDefault();
+
     })
+
+
+
+
+
 </script>
 
 </html>

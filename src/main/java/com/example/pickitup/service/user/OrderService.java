@@ -16,9 +16,9 @@ public class OrderService {
     private final OrderDAO orderDAO;
 
     // 주문 목록(관리자용)
-    public List<OrderVO> getList(Criteria criteria){
-        return orderDAO.getList(criteria);
-    }
+//    public List<OrderVO> getList(Criteria criteria){
+//        return orderDAO.getList(criteria);
+//    }
 
     // 주문 목록(구매자용)
 

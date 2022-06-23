@@ -12,117 +12,107 @@
 <link rel="stylesheet" href="/assets/css/Footer.css"/>
 <body>
 <div th:replace="~{/main/Header :: HeaderImport}"></div>
-    <div class="root">
-        <div class="wrapper-1">
-            <div class="wrapper">
-                <form method="post" action="/user/joinGroup" id="joinForm" >
-                    <div class="join-firststep">
-                        <div class="wrapper-title"><h1 class="join-title">회원가입</h1>
-                            <span class="join-title-type">(기업)</span></div>
-                        <div class="join-table">
-                            <div class="join-table-title">회사이메일
-                                <span class="check-text" id="emailCheck_text"> </span></div>
+<div class="root">
+    <div class="wrapper-1">
+        <div class="wrapper">
+            <form method="post" action="/user/joinGroup" id="joinForm" >
+                <div class="join-firststep">
+                    <div class="wrapper-title"><h1 class="join-title">회원가입</h1>
+                        <span class="join-title-type">(기업)</span></div>
+                    <div class="join-table">
+                        <div class="join-table-title">회사이메일
+                            <span class="check-text" id="emailCheck_text"> </span></div>
 
-                            <div class="join-input-table" style="display: flex;">
-                                <input name="email" class="input-data" id="email" placeholder="example@example.com" type="email" />
+                        <div class="join-input-table" style="display: flex;">
+                            <input name="email" class="input-data" id="email" placeholder="example@example.com" type="email" />
 
-                                <button id="emailCheck" type="button" class="emailCheck">중복확인</button>
+                            <button id="emailCheck" type="button" class="emailCheck">중복확인</button>
 
-                            </div>
                         </div>
-                        <div class="join-table">
-                            <div class="join-table-title">비밀번호 <span class="check-text" id="pwCheck_text_first"/> </div>
-                            <input class="input-data" id="password" placeholder="********" type="password" />
-                        </div>
-                        <div class="join-table">
-                            <div class="join-table-title">비밀번호 재확인<span class="check-text" id="pwCheck_text"/></span></div>
-                            <input name="password" class="input-data" id="password_check" placeholder="********" type="password" />
-                        </div>
-                        <div class="join-table">
-                            <div class="join-table-title">기업명<span class="check-text" id="nameCheck_text"> </span></div>
-                            <input name="nickname" class="input-data" id="name" placeholder="Pick It Up" type="text" />
-                        </div>
-                        <div class="join-table">
-                            <div class="join-table-title">담당자 전화번호<span class="check-text" id="phoneCheck_text"> </span></div>
-                            <input name="phone" class="input-data" id="phone" placeholder="010-0000-0000" type="text"
-                                   maxlength="13" />
-                        </div>
-                        <div class="join-table">
-                            <div class="join-table-title">기업 공식 전화번호<span class="check-text" id="businessPhoneCheck_text"> </span></div>
-                            <input name="businessPhone" class="input-data" id="phone-corp" placeholder="00-0000-0000" type="text" maxlength="12"/>
-                        </div>
-                        <div class="join-table">
-                            <div class="join-table-title">회사주소</div>
-                            <div style="display: flex;margin-top: 10px;margin-bottom: 5px;">
-                                <input name="address" class="input-data" type="text" id="state" placeholder="주소">
-                                <input type="button" class="btnCertify" value="검색"/>
-                            </div>
-                            <input name="addressDetail" class="input-data" type="text" id="state-detail" placeholder="상세주소">
-                        </div>
-                        <div class="join-table">
-                            <div class="join-table-title">사업자 번호<span class="check-text" id="businessNumberCheck_text"> </span></div>
-                            <input name="businessNumber" class="input-data" id="businessNumber" placeholder="-없이 10자리 적어주세요" type="text" maxlength="10"/>
-                        </div>
-                        <div class="join-table">
-                            <div class="join-table-title">사업자 등록증</div>
-                            <div style="display: flex;margin-top: 10px;margin-bottom: 5px;">
-                                <input class="input-data" id="business-number" placeholder="파일선택"  disabled="disabled"><div class="uploadWrapper">
-                                <label for="ex_filename" id="join-button" class="upload-hidden" >업로드</label></div>
-                                <input type="file" id="ex_filename" class="upload-hidden" name="uploadFile"/>
-                            </div>
-                        </div>
-                        <input type="submit" class="submit_button" id="submit-corp" value="등록"/>
                     </div>
-                </form>
-            </div>
+                    <div class="join-table">
+                        <div class="join-table-title">비밀번호 <span class="check-text" id="pwCheck_text_first"/> </div>
+                        <input class="input-data" id="password" placeholder="********" type="password" />
+                    </div>
+                    <div class="join-table">
+                        <div class="join-table-title">비밀번호 재확인<span class="check-text" id="pwCheck_text"/></span></div>
+                        <input name="password" class="input-data" id="password_check" placeholder="********" type="password"/>
+                    </div>
+                    <div class="join-table">
+                        <div class="join-table-title">기업명<span class="check-text" id="nameCheck_text"> </span></div>
+                        <div class="join-input-table" style="display: flex;">
+                            <input name="nickname" class="input-data" id="nickname" placeholder="Pick It Up" type="text" />
+                            <button id="nameCheck" type="button" class="emailCheck">중복확인</button>
+                        </div>
+                    </div>
+                    <div class="join-table">
+                        <div class="join-table-title">담당자 전화번호<span class="check-text" id="phoneCheck_text"> </span></div>
+                        <input name="phone" class="input-data" id="phone" placeholder="010-0000-0000" type="text"
+                               maxlength="13" />
+                    </div>
+                    <div class="join-table">
+                        <div class="join-table-title">기업 공식 전화번호<span class="check-text" id="businessPhoneCheck_text"> </span></div>
+                        <input name="businessPhone" class="input-data" id="phone-corp" placeholder="00-0000-0000" type="text" maxlength="12"/>
+                    </div>
+                    <div class="join-table">
+                        <div class="join-table-title">회사주소</div>
+                        <div style="display: flex;margin-top: 10px;margin-bottom: 5px;">
+                            <input name="address" class="input-data" type="text" id="state" placeholder="주소" readonly>
+                            <input type="button" class="btnCertify" value="검색"/>
+                        </div>
+                        <input name="addressDetail" class="input-data" type="text" id="state-detail" placeholder="상세주소">
+                    </div>
+                    <div class="join-table">
+                        <div class="join-table-title">사업자 번호<span class="check-text" id="businessNumberCheck_text"> </span></div>
+                        <input name="businessNumber" class="input-data" id="businessNumber" placeholder="-없이 10자리 적어주세요" type="text" maxlength="10"/>
+                    </div>
+                    <div class="join-table">
+                        <div class="join-table-title">사업자 등록증</div>
+                        <div style="display: flex;margin-top: 10px;margin-bottom: 5px;">
+                            <input class="input-data" id="business-number" placeholder="파일선택"  disabled="disabled"><div class="uploadWrapper">
+                            <label for="ex_filename" id="join-button" class="upload-hidden" >업로드</label></div>
+                            <input type="file" id="ex_filename" class="upload-hidden" name="uploadFile"/>
+                            <input type="hidden" name="profileFileName" value="">
+                            <input type="hidden" name="profileUploadPath" value="">
+                        </div>
+                    </div>
+                    <input type="button" class="submit_button" id="submit-corp" value="등록"/>
+                </div>
+            </form>
         </div>
     </div>
+</div>
 <div th:replace="~{/main/Footer :: FooterImport}"></div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/assets/js/join.js"></script>
 <script>
-// 입력받은 파일 이름 넘기기 
-$(document).ready(function(){
-    var fileTarget = $('.upload-hidden');
-  
-      fileTarget.on('change', function(){
-          if(window.FileReader){
-              var filename = $(this)[0].files[0].name;
-          } else {
-              var filename = $(this).val().split('/').pop().split('\\').pop();
-          }
-  
-          $(this).siblings('#business-number').val(filename);
+    
 
-          corpPass =true;
-      });
-  }); 
-
-// 입력받은 파일 저장(컨트롤러)   
-$("#ex_filename").on("click", function(e){
-    let formData = new FormData();
-    let inputFile = $("input[name='uploadFile']");
-    console.log(inputFile);
-    let files = inputFile[0].files;
-    console.log(files);
-    for(let i=0; i<files.length; i++){
-        if(!checkExtension(files[i].name, files[i].size)){ return; }
-        formData.append("uploadFile", files[i]);
-    }
-    $('#business-number').val(files[0].name);
-
-    $.ajax({
-        url: "uploadAjaxAction",
-        type: "post",
-        data: formData,
-        contentType: false,
-        processData: false,
-        success: function(files){
-            $('#business-number').val(files[0].name);
-        }
-    });
-});
+    // // 입력받은 파일 저장(컨트롤러)
+    // $("#ex_filename").on("click", function(e){
+    //     let formData = new FormData();
+    //     let inputFile = $("input[name='uploadFile']");
+    //     console.log(inputFile);
+    //     let files = inputFile[0].files;
+    //     console.log(files);
+    //     for(let i=0; i<files.length; i++){
+    //         if(!checkExtension(files[i].name, files[i].size)){ return; }
+    //         formData.append("uploadFile", files[i]);
+    //     }
+    //     $('#business-number').val(files[0].name);
+    //
+    //     $.ajax({
+    //         url: "uploadAjaxAction",
+    //         type: "post",
+    //         data: formData,
+    //         contentType: false,
+    //         processData: false,
+    //         success: function(files){
+    //             $('#business-number').val(files[0].name);
+    //         }
+    //     });
+    // });
 
 </script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
