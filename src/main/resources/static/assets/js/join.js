@@ -4,6 +4,7 @@ let $upw2 = $('input#password_check');
 let emailPass = true;  // 테스트용으로 true
 let pwPass = false;
 let namePass = false;
+let $unickname=$('input#nickname');
 let phonePass = false;
 let statePass = false;
 let phoneCheckPass = false; // sms 확인용
@@ -11,17 +12,6 @@ let corpPass = false;
 let businessNumberPass=false;
 let businessPhonePass=false;
 
-<<<<<<< HEAD
-// 이메일 휴요성 검사
-function checkEmail(){
-    var email =  $('input#email').value
-    var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
-        if(exptext.test(email)==false){
-            //이메일 형식이 알파벳+숫자@알파벳+숫자.알파벳+숫자 형식이 아닐경우			
-            $('span#emailCheck_text').empty().text("이메일 형식이 아닙니다.").css("color", "green");
-            $('input#email').focus();
-            return false;
-=======
 
 //input에 keyup 이벤트 등록
 $uemail.bind("change keyup input", function(){
@@ -57,25 +47,11 @@ function checkEmail(){
 
 
 
-// db처리를 할수 없으므 테스트용으로 주석처리
-// 이메일 중복 확인(메세지 출력)
-// $uemail.blur(function () {
-//     let $uemailval = $uemail.val();
-//     if (!$uemailval) { // 아이디 입력칸이 비어 있을 경우
-//         $('span#emailCheck_text').empty().text("아이디를 입력해 주세요").css("color", "red");
-//         emailPass = false;
-//         return;
-//     } else {
-//         checkEmail();
-//     }
-// });
-
-
 
 $("#emailCheck").on("click",function () {
     let $uemailval = $uemail.val();
     $.ajax({
-        url: "/pickitup/emailMatching",
+        url: "/userR/emailMatching",
         type: "post",
         data: {email: $uemailval},
         success: function (result) {
@@ -90,9 +66,10 @@ $("#emailCheck").on("click",function () {
         },
         error: function (xhr, status, er) {
             console.log(xhr, status, er);
->>>>>>> aaa195bbb080f46b8d59940d88f16a44bcfd8356
         }
-}
+    })
+
+})
 
 // 비밀번호 유효성검사
 function checkPw(){
@@ -109,38 +86,6 @@ $upw.blur(function () {
     checkPw();
 })
 
-
-
-//  db처리를 할수 없으므 테스트용으로 주석처리
-// // 이메일 중복 확인(메세지 출력)
-// $uemail.blur(function () {
-//     let $uemailval = $uemail.val();
-//     if (!$uemailval) { // 아이디 입력칸이 비어 있을 경우
-//         $('span#emailCheck_text').empty().text("아이디를 입력해 주세요").css("color", "red");
-//         emailPass = false;
-//         return;
-//     } else {
-//         checkEmail(); 
-//         $.ajax({
-//             url: "/컨트롤러 경로",
-//             type: "post",
-//             data: {email: $uemailval},
-//             success: function (result) {
-//                 if (!result) {
-//                     $('span#emailCheck_text').empty().text("사용 가능한 아이디 입니다.").css("color", "green");
-//                     emailPass = true;
-//                 } else {
-//                     $('span#emailCheck_text').empty().text("이미 사용 중인 아이디 입니다.").css("color", "red");
-//                     emailPass = false;
-//                 }
-//             },
-//             error: function (xhr, status, er) {
-//                 console.log(xhr, status, er);
-//             }
-//         })
-//     }
-// });
-
 // 비밀번호 확인검사
 $upw2.blur(function () {
     let $upwval = $upw.val();
@@ -156,16 +101,16 @@ $upw2.blur(function () {
         pwPass = false;
         return;
     } else {
-        $('span#pwCheck_text').empty().text("사용가능한 비밀번호입니다").css("color", "green");
+        $('span#pwCheck_text').empty().text("비밀번호가 일치합니다.").css("color", "green");
         pwPass = true;
     }
 });
 
 
 
-// 이름확인
-$("input#name").blur(function () {
-    if (!$("input#name").val()) {
+// 닉네임확인
+$("input#nickname").blur(function () {
+    if (!$("input#nickname").val()) {
         $('span#nameCheck_text').text("이름를 입력해주세요").css("color", "red");
         namePass = false;
         return;
@@ -174,6 +119,29 @@ $("input#name").blur(function () {
         namePass = true;
     }
 });
+// 닉네임 중복 체크
+$("#nameCheck").on("click",function () {
+    let $unicknameval = $unickname.val();
+    $.ajax({
+        url: "/userR/nicknameMatching",
+        type: "post",
+        data: {nickname: $unicknameval},
+        success: function (result) {
+            if (result===0) {
+                console.log(result);
+                $('span#nameCheck_text').empty().text("사용 가능한 닉네임 입니다.").css("color", "green");
+                namePass = true;
+            } else {
+                $('span#nameCheck_text').empty().text("이미 사용 중인 닉네임 입니다.").css("color", "red");
+                namePass = false;
+            }
+        },
+        error: function (xhr, status, er) {
+            console.log(xhr, status, er);
+        }
+    })
+
+})
 
 // 기업번호
 $("input#businessNumber").blur(function () {
@@ -271,7 +239,7 @@ $('.btnCertify').on("click", function () {
                 addr = data.roadAddress;
             } else {
                 addr = data.jibunAddress;
-            }            
+            }
 
             // 주소 정보를 해당 필드에 넣는다.
             document.getElementById("state").value = addr;
@@ -281,13 +249,17 @@ $('.btnCertify').on("click", function () {
 });
 
 // 인증번호 검사(미완)
-$("input#phone-check").on("keyup", function (e) {
-    if ($("input#phone-check").val().length == 6) {
-        $("button#phone-check-button").css("background-color", "rgb(204, 69, 0)");
-        $("button#phone-check-button").val("확인")
+$("input#phone-check").on("keyup", function () {
+    console.log($(this).val().length);
+    console.log($(this).val().length == 6);
+    if ($(this).val().length == 6) {
+        console.log("확인 성공");
+        $("#phone-check-button").css("background-color", "rgb(204, 69, 0)");
+        $("#phone-check-button").val("확인");
     } else {
-        $("button#phone-check-button").css("background-color", "rgb(222, 222, 222)");
-        $("button#phone-check-button").val("입력필요");
+        console.log("확인 실패");
+        $("#phone-check-button").css("background-color", "rgb(222, 222, 222)");
+        $("#phone-check-button").val("입력필요");
 
     }
 })
@@ -298,12 +270,14 @@ $('#sendPhone').click(function () {
     alert('인증번호 발송 완료!');
     $.ajax({
         type: "GET",
-        url: "/reply/single",  // restController로 보낼것
+        url: "/sms/single",  // restController로 보낼것
         data: {
             "phoneNumber": phoneNumber
         },
         success: function (res) {
             $('#phone-check-button').on("click", function () {
+                console.log("확인버튼 누름");
+                console.log(res);
                 if ($.trim(res) == $('#phone-check').val()) {
                     alert('인증성공!');
                     phoneCheckPass = true;
@@ -325,21 +299,13 @@ $("#submit-user-final").on("click", function () {
     if (!phoneCheckPass) {
         alert('휴대폰 인증이 완료되지 않았습니다');
         return;
-    } else {
-        $.ajax({
-            type: "POST",
-            url: "/컨트롤러/joinUser",  // userVO랑 연결된 컨트롤러
-            data: {
-                userEmail:$("#email"),
-                userPassword:$("#password"),
-                userNickname:$("#name"),
-                userPhone:$("#phone"),
-                userAddress:$("#state") + $("#state-detail")
-            }
-        })
     }
 
+    $('')
     console.log($('#joinForm'));
+    let enpw=btoa($('input[name=password]').val());
+    $('input[name=password]').val(enpw);
+    console.log($('input[name=password]').val())
     joinForm.submit();
     alert("환영합니다. 회원가입이 완료되었습니다.");
 
@@ -366,20 +332,8 @@ $("#submit-corp").on("click", function () {
         alert("사업자 등록증을 입력해주세요")
         return false;
     } else {
-        $.ajax({
-            type: "POST",
-            url: "/컨트롤러/joinCorp",  // userCorpVO랑 연결된 컨트롤러
-            data: {
-                companyEmail:$("#email"),
-                companyPassword:$("#password"),
-                companyName:$("#name"),
-                companyPhone:$("#phone"),
-                companyCorphone:$("#phone-corp") ,
-                companyAddress:$("#state") + $("#state-detail"),
-                companyBusinessNumber:"미정"
-            }
-        })
+        let enpw=btoa($('input[name=password]').val());
+        $('input[name=password]').val(enpw);
+        joinForm.submit();
     }
 })
-
-

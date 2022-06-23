@@ -82,10 +82,10 @@ public class UserDaoTests {
         }
 
 
-        @Test
-        public void getNoticeListTest () {
-            userDAO.getNoticeList(new Criteria()).stream().map(AdminBoardDTO::toString).forEach(log::info);
-        }
+//        @Test
+//        public void getNoticeListTest () {
+//            userDAO.getNoticeList(new Criteria()).stream().map(AdminBoardDTO::toString).forEach(log::info);
+//        }
 
         @Test
         public void getNoticeTotalTest () {
@@ -93,15 +93,15 @@ public class UserDaoTests {
         }
 
 
-        @Test
-        public void getAdminBoardCountTest () {
-            log.info("adminboard 글 총 개수 : " + userDAO.getAdminBoardCount(new Criteria(1, 10)));
-        }
-
-        @Test
-        public void getAdminboardListTest () {
-            userDAO.getAdminboardList(new Criteria(1, 10));
-        }
+//        @Test
+//        public void getAdminBoardCountTest () {
+//            log.info("adminboard 글 총 개수 : " + userDAO.getAdminBoardCount(new Criteria(1, 10)));
+//        }
+//
+//        @Test
+//        public void getAdminboardListTest () {
+//            userDAO.getAdminboardList(new Criteria(1, 10));
+//        }
 
         @Test
         public void nicknameCheckTest() { log.info("결과 : " + userDAO.nicknameCheck("짜리킴"));}

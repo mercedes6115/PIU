@@ -5,25 +5,24 @@ import com.example.pickitup.domain.vo.dto.PageDTO;
 import com.example.pickitup.domain.vo.dto.PointDTO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
+import com.example.pickitup.domain.vo.dto.UserDTO;
 import com.example.pickitup.domain.vo.user.CompanyVO;
 import com.example.pickitup.domain.vo.user.UserVO;
 import com.example.pickitup.service.TempCompanyService;
 import com.example.pickitup.service.TempUserSerivce;
+import com.example.pickitup.Util.SessionManager;
 import lombok.RequiredArgsConstructor;
-
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
-
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 
 
@@ -34,7 +33,9 @@ import java.text.ParseException;
 public class UserController {
     private final TempUserSerivce tempUserSerivce;
     private final TempCompanyService tempCompanyService;
-
+    private final SessionManager sessionManager;
+//    @Resource
+//    private com.example.pickitup.Util.EmailSend emailSend;
 
     // 마이페이지 메인
     @GetMapping("/myPage")
@@ -86,6 +87,19 @@ public class UserController {
     public void updatePw(){
 
     }
+
+//    @PostMapping("/findPw")
+//    public String findPWForm(String email, Model model) throws Exception {
+//        log.info("전달받은 이메일 : " + email);
+//        if(tempUserSerivce.emailcheck(email)==1){ //이메일 확인
+//            model.addAttribute("msg","인증메일을 보냈습니다. 메일을 확인해 주세요");
+//            emailSend.sendEmail(email);
+//        }else{
+//            model.addAttribute("msg","회원가입이 안된 이메일 입니다");
+//        }
+//        return "/user/findPw";
+//    }
+
 
     // 비밀번호 재설정 폼
     @PostMapping("/updatePw")
@@ -142,8 +156,7 @@ public class UserController {
     public void joinGroupForm(CompanyVO companyVO){
         companyVO.setPhone(String.join("",companyVO.getPhone().split("-")));
         companyVO.setBusinessPhone(String.join("",companyVO.getBusinessPhone().split("-")));
-        companyVO.setProfileUploadPath("null");
-        companyVO.setProfileFileName("null");
+
         log.info(companyVO.getPhone());
         log.info(companyVO.getBusinessPhone());
         tempCompanyService.registerCompany(companyVO);
@@ -159,15 +172,38 @@ public class UserController {
 
     // 로그인 폼
     @PostMapping("/login")
-    public RedirectView loginForm(String email, String password, RedirectAttributes rttr){
-        UserVO userVO=tempUserSerivce.loginUser(email, password);
-        if(userVO!=null){
-            rttr.addFlashAttribute("num", userVO.getNum());
-            rttr.addFlashAttribute("nickname", userVO.getNickname());
+    public RedirectView loginForm(String email, String password,
+                                  RedirectAttributes rttr,
+                                  HttpServletRequest request){
+
+//        Base64.getEncoder().encode(password.getBytes());
+
+        UserDTO userDTO=tempUserSerivce.loginUser(email, password);
+
+        if(userDTO!=null){
+            rttr.addFlashAttribute("num", userDTO.getNum());
+            rttr.addFlashAttribute("nickname", userDTO.getNickname());
+            rttr.addFlashAttribute("category",userDTO.getCategory());
+
+            HttpSession session=request.getSession();
+            SessionManager.setSesstion(userDTO,session);
+
+            if(userDTO.getNickname().equals("admin")){
+                return new RedirectView("/admin/login");
+            }
             return new RedirectView("/main/main");
         }
-
+        rttr.addFlashAttribute("msg","입력된 정보가 틀립니다. 회원가입해주세요.");
         return new RedirectView("/user/login");
+    }
+
+    // 로그아웃
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request){
+        sessionManager.expire(request.getSession());
+        sessionManager.checkSession(request.getSession());
+        log.info("control");
+        return "/user/login";
     }
 
     // 회원탈퇴
