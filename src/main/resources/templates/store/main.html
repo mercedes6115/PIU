@@ -130,15 +130,34 @@
 
     //찜 ajax
     $('.all_items').on("click",".jjim-ajax",function() {
-        if($(this).hasClass("material-symbols-outlined")){
+        let productNum = $(this).attr("name");
+        if($(this).hasClass("material-symbols-outlined")){ //찜 안되어있을때, insert ajax
             $(this).removeClass("material-symbols-outlined");
             $(this).addClass("material-icons");
             $(this).css("color","red");
 
-        }else{
+            $.ajax({
+                url:"/store/jjim",
+                type:"post",
+                data: {userNum : 22, category: "1", productNum : productNum},
+                success : function (result) {
+                    alert("찜");
+                }
+            })
+
+        }else{                                             //찜 되어있으면,   delete ajax
             $(this).addClass("material-symbols-outlined");
             $(this).removeClass("material-icons");
             $(this).css("color","#d3cdcd");
+
+            $.ajax({
+                url:"/store/jjim",
+                type:"delete",
+                data: {userNum : 22, category: "1", productNum : productNum},
+                success : function (result) {
+                    alert("찜 해제");
+                }
+            })
         }
     });
 
@@ -170,10 +189,7 @@
                 $(lists).each(function (i, list) {
                     str += "<li>";
                     str += "<div class=\"item\">";
-                    // str += "<span class=\"material-icons jjim jjim-ajax\">";
-                    // str += "favorite";
-                    // str += "</span>";
-                    str += "<span class=\"material-symbols-outlined jjim jjim-ajax\" style='color: #d3cdcd; font-weight: bold;'>";
+                    str += "<span class=\"material-symbols-outlined jjim jjim-ajax\" name=\""+list.num+"\" style='color: #d3cdcd; font-weight: bold;'>";
                     str += "favorite";
                     str += "</span>";
                     str += "<a class=\"goDetail\" th:href=\""+list.num+"\" style=\"cursor:pointer\">";

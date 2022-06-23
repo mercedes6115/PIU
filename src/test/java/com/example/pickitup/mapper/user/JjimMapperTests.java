@@ -21,5 +21,20 @@ public class JjimMapperTests {
         jjimMapper.getProductList(2L);
     }
 
-
+//    @Test
+//    public void insertTest(){
+//        JjimVO vo = new JjimVO();
+//        vo.setCategory("1");
+//        vo.setUserNum(22L);
+//        vo.setProductNum(56L);
+//        jjimMapper.insert(vo);
+//    }
+//
+//    @Test
+//    public void deleteTest(){
+//        JjimVO vo = new JjimVO();
+//        vo.setUserNum(22L);
+//        vo.setProductNum(23L);
+//        jjimMapper.delete(vo);
+//    }
 }

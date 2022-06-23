@@ -18,6 +18,8 @@ public interface JjimMapper {
 
     //   찜한 게시물 테이블 등록
     public void insert(JjimVO jjimVO);
+    //   찜한 게시물 테이블 등록
+    public void delete(JjimVO jjimVO);
 
     // registDate update 해주기 
     // projectNum하고 userNum을 주세요

@@ -22,6 +22,19 @@
         ORDER BY jj.NUM DESC
         ]]>
     </select>
+
+    <insert id="insert">
+        INSERT INTO TBL_JJIM
+        (NUM, CATEGORY, REGIST_DATE, USER_NUM, PRODUCT_NUM)
+        VALUES(SEQ_JJIM.NEXTVAL, #{category}, SYSDATE , #{userNum}, #{productNum})
+    </insert>
+
+    <delete id="delete">
+        DELETE FROM TBL_JJIM
+        WHERE USER_NUM = #{userNum} AND PRODUCT_NUM = #{productNum}
+    </delete>
+
+
 </mapper>
 
 
