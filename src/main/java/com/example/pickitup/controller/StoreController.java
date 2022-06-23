@@ -127,7 +127,10 @@ public class StoreController {
         return storeDetail(productQnaVO.getProductNum(), model);
     }
 
-    // 스토어 문의 댓글
+
+
+
+    // 스토어 문의 댓글 리스트
     @ResponseBody
     @GetMapping("/qnaCommentList/{qnaNum}")
     public List<ProductQnaCommentVO> qnaCommentList(@PathVariable("qnaNum") Long qnaNum){
@@ -149,6 +152,21 @@ public class StoreController {
     @GetMapping("/qnaCommentDelete")
     public String qnaCommentDeleteForm(Long qnaCommentNum){
         productQnaCommentService.delete(qnaCommentNum);
+        return "success";
+    }
+
+
+    // 스토어 문의 댓글 삭제
+    // 관리자 번호와 같이 넘어와야함
+    @ResponseBody
+    @PostMapping("/qnaCommentUpdate")
+    public String qnaCommentUpdateForm(ProductQnaCommentVO productQnaCommentVO) throws UnsupportedEncodingException {
+        log.info("=============================================");
+        log.info("=============================================");
+        log.info("=============================================");
+        log.info("=============================================");
+        log.info("=============================================");
+        productQnaCommentService.update(productQnaCommentVO);
         return "success";
     }
 

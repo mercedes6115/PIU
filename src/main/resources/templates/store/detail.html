@@ -391,9 +391,13 @@
     })
     //------------------------------------------------------------------------------------------
     //--------------------------------문의 가져오기 ajax-----------------------------
+    let 수정중 = false;
+    let 답글중 = false;
+
     //문의 리스트 js
     showQnaList();
     function showQnaList(){
+        수정중 = false;
         $.ajax({
             url: "/store/qnaList/" + productNum,
             type: "get",
@@ -414,6 +418,9 @@
                     str += "<div class=\"admin_id\" style=\"color: black;\">"+qna.userNum+"</div>";
                     str += "<div class=\"admin_date\">"+qna.updateDate.substring(0,10)+"</div>";
                     str += "</div>";
+                    str += "<div style='font-size: 11px; position: absolute; right: 5%;'>";
+                    str += "<a href=\""+qna.num+"\" class='makeComment' style='color: black'>답글달기</a>";
+                    str += "</div>";
                     str += "</div>";
                     str += "<div class=\"space\"></div>";
                     str += "<div class=\"small_and_gray\"><p class=\"user_question\">"+qna.content+"</p></div>";
@@ -433,14 +440,16 @@
                                     str += "<div class=\"admin_id\">관리자번호" + "&nbsp; </div>";
                                     str += "<div class=\"admin_date\">" + comment.updateDate.substring(0,10) + "</div>";
                                     str += "<div style='position: absolute; right: 0;'>";
-                                    str += "<a href='#' class=\"modify_adminComment\" style='margin-right: 5px;'>수정</a>";
-                                    str += "<a href=\""+comment.num+"\" class=\"delete_adminComment\">삭제</a>";
+                                    str += "<a href=\""+comment.num+"\" name=\""+qna.num+"\" id=\""+comment.content+"\" class=\"modify_adminComment\" style='margin-right: 5px;'>수정</a>";
+                                    str += "<a href=\""+comment.num+"\" name='"+qna.num+"' class=\"delete_adminComment\">삭제</a>";
+                                    str += "<a href=\""+comment.num+"\" name='"+qna.num+"' class=\"cancel_adminComment\" style='display: none; color: black;'>취소</a>";
                                     str += "</div>";
                                     str += "</div>";
                                     str += "</div>";
                                     str += "<div class=\"small_and_gray\" style=\"color: black;\">";
-                                    str += "<p class=\"admin_comment\">" + comment.content + "</p>";
+                                    str += "<p class=\"admin_comment\" id=\""+comment.num+"\">" + comment.content + "</p>";
                                     str += "</div>";
+                                    str += "<div class='testline' name=\""+comment.num+"\"></div>"
                                 })
 
                             }
@@ -449,10 +458,10 @@
                     str += "<div class=\"space\"></div>";
                     str += "</div>";
                     str += "</div>";
-                    str += "<div class=\"flex\" style=\"position: relative; align-items: center; height: 48px;\">";
+                    str += "<div class=\"flex commentBox\" name='"+ qna.num+ "' style=\"position: relative; align-items: center; height: 48px;\">";
                     str += "<div class=\"do_admin_comment\">";
                     str += "<div class=\"flex\">";
-                    str += "<input class=\"doComment\" id='"+ qna.num+ "' type=\"text\" placeholder=\"관리자만 입력할 수 있습니다\">";
+                    str += "<input class=\"doComment\" name='"+qna.num+"' type=\"text\" placeholder=\"관리자만 입력할 수 있습니다\">";
                     str += "<div class=\"send_plane\" name='"+qna.num+"'  style=\"width: 20px; height: 20px;\"><span class=\"material-symbols-outlined\">";
                     str += "send";
                     str += " </span></div>";
@@ -462,29 +471,102 @@
                     str += "</div>";
                 });
                 $('.ProductQnas').html(str);
+                $(".commentBox").hide();
             }
         });
     }
     //------------------------------------------------------------------------------------------
 
     // 문의 댓글 작성 -- 관리자
-
     $('.ProductQnas').on("click", ".send_plane", function () {
-        const $content = $(".doComment#"+$(this).attr("name")+"").val();
+        const $content = $(".doComment[name="+$(this).attr("name")+"]").val();
         const $qnaNum = $(this).attr("name");
         if(!$content){
             alert("내용을 입력해주세요.");
             return;
         }
-        $.ajax({
-            url:"/store/qnaCommentWrite",
-            type:"post",
-            data: JSON.stringify({content : $content,userNum: 22,qnaNum:$qnaNum}),
-            contentType: "application/json",
-            success : function (comment) {
-                showQnaList();
-            }
-        })
+        if(!수정중){//수정중==false 문의 댓글 등록
+            $.ajax({
+                url:"/store/qnaCommentWrite",
+                type:"post",
+                data: JSON.stringify({content : $content,userNum: 22,qnaNum:$qnaNum}),
+                contentType: "application/json",
+                success : function (comment) {
+                    showQnaList();
+                }
+            })
+        }else{  // 문의 댓글 수정
+            $.ajax({
+                url: "/store/qnaCommentUpdate",
+                type : "post",
+                data : {num: $(".delete_adminComment[name="+$(this).attr("name")+"]").attr("href"), content : $content},
+                success : function (result) {
+                    showQnaList();
+                }
+
+            })
+        }
+    })
+    // 댓글 달기 보이기
+    $('.ProductQnas').on("click", ".makeComment", function (e) {
+        e.preventDefault();
+        if(수정중){
+           alert("수정중 인 댓글이 있습니다.")
+            return;
+        }
+        if(답글중){
+            $(".doComment").val("");
+            $(".commentBox[name="+$(this).attr("href")+"]").hide();
+            답글중 = false;
+            return;
+        }
+        $(".doComment").val("");
+        $(".commentBox[name="+$(this).attr("href")+"]").show();
+        답글중 = true;
+    })
+
+
+    // 취소 버튼 클릭시
+    $('.ProductQnas').on("click", ".cancel_adminComment", function (e) {
+        e.preventDefault();
+        $(".modify_adminComment[href="+$(this).attr("href")+"]").show();
+        $(".delete_adminComment[href="+$(this).attr("href")+"]").show();
+        $(".cancel_adminComment[href="+$(this).attr("href")+"]").css("display","none");
+        $(".admin_comment#"+$(this).attr("href")).show();
+        $(".ucommentBox[name="+$(this).attr("name")+"]").hide();
+        수정중 = false;
+    })
+
+    // 문의의 관리자 댓글 수정
+    $('.ProductQnas').on("click", ".modify_adminComment", function (e) {
+        e.preventDefault();
+        if(수정중){
+            alert("수정중인 댓글이있습니다");
+            return;
+        }
+        let update = "";
+
+        update += "<div class=\"flex ucommentBox\" name='"+ $(this).attr("name")+ "' style=\"position: relative; align-items: center; height: 48px;\">";
+        update += "<div class=\"do_admin_comment\">";
+        update += "<div class=\"flex\">";
+        update += "<input class=\"doComment\" name='"+$(this).attr("name")+"' type=\"text\" placeholder=\"관리자만 입력할 수 있습니다\">";
+        update += "<div class=\"send_plane\" name='"+$(this).attr("name")+"'  style=\"width: 20px; height: 20px;\"><span class=\"material-symbols-outlined\">";
+        update += "send";
+        update += " </span></div>";
+        update += "</div>";
+        update += "</div>";
+        update += "</div>";
+        $(".testline[name="+$(this).attr("href")+"]").html(update);
+                                                                             //나머지 name = qna.num
+                                                                             //this href=+comment.num      name=qna.num
+        // $(".doComment[name="+$(this).attr("name")+"]").val($(this).attr("id")); //입력창
+        // $(".commentBox[name="+$(this).attr("name")+"]").show();                 //입력창을 감싸는 wrapper
+        // $(".admin_comment#"+$(this).attr("name")+"").hide();                    //이미 달려있는 댓글
+        //
+        $(this).hide();
+        $(".delete_adminComment[href="+$(this).attr("href")+"]").hide();
+        $(".cancel_adminComment[href="+$(this).attr("href")+"]").css("display","block");
+        수정중 = true;
     })
 
     // 문의의 관리자 댓글 삭제
