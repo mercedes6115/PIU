@@ -196,7 +196,7 @@ public class ProjectService {
             }else {
                 Ddate = "D" + Integer.toString(Ddays * (-1));
             }
-            projectMainDTOS.add(new ProjectMainDTO(pp.getTitle(),pp.getTerrain(),pp.getPoint(),pp.getJjimCount(),Ddate,pp.getApplyCount()));
+            projectMainDTOS.add(new ProjectMainDTO(pp.getNum(),pp.getTitle(),pp.getTerrain(),pp.getPoint(),pp.getJjimCount(),Ddate,pp.getApplyCount()));
 
 
         }
@@ -226,7 +226,7 @@ public class ProjectService {
             }else {
                 Ddate = "D" + Integer.toString(Ddays * (-1));
             }
-            projectMainDTOS.add(new ProjectMainDTO(pp.getTitle(),pp.getTerrain(),pp.getPoint(),pp.getJjimCount(),Ddate,pp.getApplyCount()));
+            projectMainDTOS.add(new ProjectMainDTO(pp.getNum(),pp.getTitle(),pp.getTerrain(),pp.getPoint(),pp.getJjimCount(),Ddate,pp.getApplyCount()));
 
 
         }
@@ -257,7 +257,7 @@ public class ProjectService {
             }else {
                 Ddate = "D" + Integer.toString(Ddays * (-1));
             }
-            projectMainDTOS.add(new ProjectMainDTO(pp.getTitle(),pp.getTerrain(),pp.getPoint(),pp.getJjimCount(),Ddate,pp.getApplyCount()));
+            projectMainDTOS.add(new ProjectMainDTO(pp.getNum(),pp.getTitle(),pp.getTerrain(),pp.getPoint(),pp.getJjimCount(),Ddate,pp.getApplyCount()));
 
 
         }

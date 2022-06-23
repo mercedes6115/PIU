@@ -89,7 +89,12 @@ public interface UserMapper {
     public int nicknameMatching(@Param("nickname") String nickname);
 
 
-    //    비밀번호 변경
-    public boolean updatePW(String email);
+
+//    //    비밀번호 변경
+//    public boolean updatePW(String email);
+
+//    비밀번호 변경
+    public boolean updatePW(String email,String password);
+
 
 }
