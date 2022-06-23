@@ -206,6 +206,44 @@
         <result column="PRICE" property="price"/>
     </resultMap>
 
+
+    <select id="order" resultType="string" parameterType="java.lang.String">
+        SELECT
+        U.NUM,U.NICKNAME,U.PHONE,U.ADDRESS,U.ADDRESS_DETAIL,U.POINT,P.NAME,P.PRICE,P.NUM,
+        O.NUM,O.USER_NUM,O.PRODUCT_NUM,O.TOTAL,O.COUNTING,O.STATUS,O.USER_COMMENT
+        FROM TBL_USER U ,TBL_PRODUCT P,TBL_ORDER O
+        WHERE U.NUM=O.USER_NUM
+        AND P.NUM=O.PRODUCT_NUM
+    </select>
+
+
+
+    <!--    <select id="order" parameterType="_int" resultType="OrderVO">-->
+    <!--        SELECT-->
+    <!--        U.NUM,U.NICKNAME,U.PHONE,U.ADDRESS,U.ADDRESS_DETAIL,U.POINT,P.NAME,P.PRICE-->
+    <!--        FROM TBL_USER U, TBL_PRODUCT P-->
+    <!--        WHERE NUM=#{num}-->
+    <!--    </select>-->
+    <select id="getUser" resultType="UserVO">
+
+        SELECT
+        NUM, NICKNAME,PHONE, ADDRESS,ADDRESS_DETAIL, POINT
+        FROM TBL_USER
+        WHERE NUM=#{num}
+    </select>
+    <select id="getProduct" resultType="ProductVO">
+    SELECT
+        NUM, NAME, CONTENT, PRICE
+    FROM TBL_PRODUCT
+    WHERE NUM = #{num}
+    </select>
+
+    <update id="updateUser">
+        SELECT
+        NUM, ADDRESS,ADDRESS_DETAIL, POINT
+        FROM TBL_USER
+        WHERE NUM=#{num}
+    </update>
 </mapper>
 
 
