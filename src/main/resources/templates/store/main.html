@@ -83,33 +83,7 @@
                     <p class="item_headerp" th:text="|${productsCount} 개|"></p>
                 </div>
                 <div class="all_items">
-                    <ul>
-                        <!--                         <li>-->
-                        <!--                             <div class="item">-->
-                        <!--                                 <span class="material-symbols-outlined jjim jjim-ajax">-->
-                        <!--                                     favorite-->
-                        <!--                                     </span>-->
-                        <!--                                 <a class="goDetail" th:href="*{num}"></a>-->
-                        <!--                                 <div class="flex" style="flex-direction: column; margin: 12px 0;">-->
-                        <!--                                     <div>-->
-                        <!--                                         <p class="store_main_item_title" th:text="*{name}"></p>-->
-                        <!--                                     </div>-->
-                        <!--                                     <div style="margin-top: 6px; height: 16px;">-->
-                        <!--                                         <p class="store_main_item_category" th:text="*{category}"></p>-->
-                        <!--                                     </div>-->
-                        <!--                                     <div style="display: flex; align-items: end; margin-top: 5px">-->
-                        <!--                                                 <span class="material-symbols-outlined" style="font-size: 12px;">-->
-                        <!--                                                     favorite-->
-                        <!--                                                 </span>-->
-                        <!--                                         <small style="font-size: 11px; margin-left: 5px">300..</small>-->
-                        <!--                                     </div>-->
-                        <!--                                 </div>-->
-                        <!--                                 <div style="height: 18px;">-->
-                        <!--                                     <p class="store_item_price" th:text="|*{price}P|"></p>-->
-                        <!--                                 </div>-->
-                        <!--                             </div>-->
-                        <!--                         </li>-->
-                    </ul>
+                    <ul></ul>
                 </div>
             </div>
             <div class="gototop">
@@ -141,8 +115,6 @@
                 type:"post",
                 data: {userNum : userNum, category: "1", productNum : productNum},
                 success : function (result) {
-                    alert("찜");
-                    // showmain($('.store_categories li.active a').attr("href"))
                 }
             })
 
@@ -156,8 +128,6 @@
                 type:"delete",
                 data: {userNum : userNum, category: "1", productNum : productNum},
                 success : function (result) {
-                    alert("찜 해제");
-                    // showmain($('.store_categories li.active a').attr("href"))
                 }
             })
         }
@@ -196,12 +166,6 @@
                     str += "<span class=\"material-symbols-outlined jjim jjim-ajax\" name=\""+list.num+"\" style='color: #d3cdcd; font-weight: bold;'>";
                     str += "favorite";
                     str += "</span>";
-
-                    //여기서 ajax로 찜목록 가져오기 userNum와 productNum 가지고 List<JjimVO>형태로 받아옴
-                    // 각 jjim 들을 검사하면서. if(jjim.userNum = userNum && jjim.productNum=list.num){
-                    // 꽉찬하트  아니면 빈하트
-
-
                     str += "<a class=\"goDetail\" th:href=\""+list.num+"\" style=\"cursor:pointer\">";
                     (function (i) {
                         $.ajax({
