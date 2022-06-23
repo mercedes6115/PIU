@@ -4,6 +4,7 @@ import com.example.pickitup.domain.dao.product.productReview.ProductReviewDAO;
 import com.example.pickitup.domain.dao.product.productReview.ProductReviewFileDAO;
 import com.example.pickitup.domain.vo.product.productReview.ProductReviewVO;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,7 +12,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-
+@Slf4j
 public class ProductReviewService {
 
     private final ProductReviewDAO productReviewDAO;
@@ -31,9 +32,19 @@ public class ProductReviewService {
     @Transactional(rollbackFor = Exception.class)
     public void insert(ProductReviewVO productReviewVO){
         productReviewDAO.insert(productReviewVO);
+        log.info("assssssssasssssssssssssssss");
+        log.info("assssssssasssssssssssssssss");
+        log.info(productReviewVO.getFileList().toString());
+        log.info("assssssssasssssssssssssssss");
+        log.info("assssssssasssssssssssssssss");
+
+
         if(productReviewVO.getFileList() != null) {
             productReviewVO.getFileList().forEach(productReviewFileVO -> {
-                productReviewFileVO.setReviewNum(productReviewVO.getProductNum());
+
+                log.info(productReviewVO.getNum().toString());
+
+                productReviewFileVO.setReviewNum(productReviewVO.getNum());
                 productReviewFileDAO.register(productReviewFileVO);
             });
         }
