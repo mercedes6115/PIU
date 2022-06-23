@@ -5,6 +5,7 @@ import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 import com.example.pickitup.domain.vo.product.productQna.ProductQnaCommentVO;
 import com.example.pickitup.domain.vo.product.productQna.ProductQnaVO;
 import com.example.pickitup.domain.vo.product.productReview.ProductReviewVO;
+import com.example.pickitup.domain.vo.user.JjimVO;
 import com.example.pickitup.domain.vo.user.OrderVO;
 import com.example.pickitup.domain.vo.user.UserVO;
 import com.example.pickitup.service.product.productFile.ProductFileService;
@@ -12,6 +13,7 @@ import com.example.pickitup.service.product.productFile.ProductService;
 import com.example.pickitup.service.product.productQna.ProductQnaCommentService;
 import com.example.pickitup.service.product.productQna.ProductQnaService;
 import com.example.pickitup.service.product.productReview.ProductReviewService;
+import com.example.pickitup.service.user.JjimService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -29,10 +31,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class StoreController {
     private final ProductService productService;
-    private final ProductFileService productFileService;
     private final ProductReviewService productReviewService;
     private final ProductQnaService productQnaService;
     private final ProductQnaCommentService productQnaCommentService;
+    private final JjimService jjimService;
 
     // 스토어 메인페이지
     @GetMapping("/main")
@@ -127,7 +129,10 @@ public class StoreController {
         return storeDetail(productQnaVO.getProductNum(), model);
     }
 
-    // 스토어 문의 댓글
+
+
+
+    // 스토어 문의 댓글 리스트
     @ResponseBody
     @GetMapping("/qnaCommentList/{qnaNum}")
     public List<ProductQnaCommentVO> qnaCommentList(@PathVariable("qnaNum") Long qnaNum){
@@ -149,6 +154,21 @@ public class StoreController {
     @GetMapping("/qnaCommentDelete")
     public String qnaCommentDeleteForm(Long qnaCommentNum){
         productQnaCommentService.delete(qnaCommentNum);
+        return "success";
+    }
+
+
+    // 스토어 문의 댓글 삭제
+    // 관리자 번호와 같이 넘어와야함
+    @ResponseBody
+    @PostMapping("/qnaCommentUpdate")
+    public String qnaCommentUpdateForm(ProductQnaCommentVO productQnaCommentVO) throws UnsupportedEncodingException {
+        log.info("=============================================");
+        log.info("=============================================");
+        log.info("=============================================");
+        log.info("=============================================");
+        log.info("=============================================");
+        productQnaCommentService.update(productQnaCommentVO);
         return "success";
     }
 
@@ -189,5 +209,27 @@ public class StoreController {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
         return sdf.format(date);
+    }
+
+    //찜 목록
+    @ResponseBody
+    @GetMapping("/jjim")
+    public List<JjimVO> listJjim(){
+       return jjimService.getList();
+    }
+
+
+    // 찜추가
+    @ResponseBody
+    @PostMapping("/jjim")
+    public void addJjim(JjimVO jjimVO){
+        jjimService.register(jjimVO);
+    }
+
+    // 찜해제
+    @ResponseBody
+    @DeleteMapping("/jjim")
+    public void removeJjim(JjimVO jjimVO){
+        jjimService.remove(jjimVO);
     }
 }
