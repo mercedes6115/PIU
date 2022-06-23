@@ -9,7 +9,35 @@
     <link rel="stylesheet" href="/assets/css/Footer.css" />
     <link rel="stylesheet" href="/assets/css/pickitupStore.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
+<style>
+    .material-icons {
+        font-family: 'Material Icons';
+        font-weight: normal;
+        font-style: normal;
+        font-size: 24px;  /* Preferred icon size */
+        display: inline-block;
+        line-height: 1;
+        text-transform: none;
+        letter-spacing: normal;
+        word-wrap: normal;
+        white-space: nowrap;
+        direction: ltr;
+        color: red;
+
+        /* Support for all WebKit browsers. */
+        -webkit-font-smoothing: antialiased;
+        /* Support for Safari and Chrome. */
+        text-rendering: optimizeLegibility;
+
+        /* Support for Firefox. */
+        -moz-osx-font-smoothing: grayscale;
+
+        /* Support for IE. */
+        font-feature-settings: 'liga';
+    }
+</style>
 <body>
 
 <!--헤더  -->
@@ -100,6 +128,22 @@
 <script th:inline="javascript">
     const $uploadResult = $(".item ul");
 
+    //찜 ajax
+    $('.all_items').on("click",".jjim-ajax",function() {
+        if($(this).hasClass("material-symbols-outlined")){
+            $(this).removeClass("material-symbols-outlined");
+            $(this).addClass("material-icons");
+            $(this).css("color","red");
+
+        }else{
+            $(this).addClass("material-symbols-outlined");
+            $(this).removeClass("material-icons");
+            $(this).css("color","#d3cdcd");
+        }
+    });
+
+
+
     // let productNum = [[${num}]];
     //
     // //scroll top
@@ -126,7 +170,10 @@
                 $(lists).each(function (i, list) {
                     str += "<li>";
                     str += "<div class=\"item\">";
-                    str += "<span class=\"material-symbols-outlined jjim jjim-ajax\">";
+                    // str += "<span class=\"material-icons jjim jjim-ajax\">";
+                    // str += "favorite";
+                    // str += "</span>";
+                    str += "<span class=\"material-symbols-outlined jjim jjim-ajax\" style='color: #d3cdcd; font-weight: bold;'>";
                     str += "favorite";
                     str += "</span>";
                     str += "<a class=\"goDetail\" th:href=\""+list.num+"\" style=\"cursor:pointer\">";
@@ -217,14 +264,8 @@
         }
     })
 
-    //찜 ajax
-    $('.all_items').on("click","jjim-ajax",function() {
-        if ($(this).hasClass("red")) {
-            $(this).removeClass("red");
-        } else {
-            $(this).addClass("red");
-        }
-    });
+
+
 
 
 

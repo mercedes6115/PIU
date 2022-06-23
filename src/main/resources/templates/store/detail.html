@@ -515,11 +515,13 @@
             return;
         }
         if(답글중){
+            $(".makeComment").text("답글달기")
             $(".doComment").val("");
             $(".commentBox[name="+$(this).attr("href")+"]").hide();
             답글중 = false;
             return;
         }
+        $(".makeComment").text("답글취소")
         $(".doComment").val("");
         $(".commentBox[name="+$(this).attr("href")+"]").show();
         답글중 = true;
@@ -545,7 +547,7 @@
             return;
         }
         let update = "";
-
+        update += "<div class='space'></div>";
         update += "<div class=\"flex ucommentBox\" name='"+ $(this).attr("name")+ "' style=\"position: relative; align-items: center; height: 48px;\">";
         update += "<div class=\"do_admin_comment\">";
         update += "<div class=\"flex\">";

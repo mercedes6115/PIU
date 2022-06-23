@@ -461,6 +461,7 @@ li.active a{
     top: 10px;
     right: 10px;
     cursor: pointer;
+    font-weight: bold;
 }
 .red{
     color: red;
@@ -1646,6 +1647,7 @@ footer{
 }
 .moveImage img{
     border-radius: 3px;
+    height: 150px;
 }
 
 .readReviews {
