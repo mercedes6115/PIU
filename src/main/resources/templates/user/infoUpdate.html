@@ -64,8 +64,10 @@
                     <div disabled="" class="top-bar-middle"><a target="_self" class="top-bar-middle2"
                                                                href="/me/edit">프로필 수정</a></div>
                 </div>
-                <div class="user-info-profile"><label class="sc-1d23226d-0 jeRPsg"><input type="file"
-                                                                                          class="user-profile-change" accept="image/*">
+                <div class="user-info-profile"><label class="sc-1d23226d-0 jeRPsg">
+                    <input type="file" class="user-profile-change" name="uploadFile" accept="image/*">
+                    <input type="hidden" name="profileFileName" value="">
+                    <input type="hidden" name="profileUploadPath" value="">
                     <div size="88" class="info-change1">
                         <div size="88" class="info-change2"><span class="info-change3">
                                         <picture class="JCHSH => info-change4"><img sizes="100vw" src="https://class101.net/images/default-user.png
@@ -196,6 +198,50 @@
     </div>
 </div>
 </body>
+<script>
+    let regex = new RegExp("(.*?)\.(exe|sh|zip|alz)");
+
+    function checkExtension(fileName, fileSize){
+        if(regex.test(fileName)){
+            alert("업로드 할 수 없는 파일의 형식입니다.");
+            return false;
+        }
+        if(fileSize >= 5242880){
+            alert("파일 사이즈 초과");
+            return false;
+        }
+        return true;
+    }
+
+    $("input[type='file']").on("change",function () {
+
+        let formData = new FormData();
+        let inputFile = $("input[name='uploadFile']");
+        let files = inputFile[0].files;
+        console.log(files);
+        for(let i=0; i<files.length; i++){
+            if(!checkExtension(files[i].name, files[i].size)){ return; }
+            formData.append("uploadFile", files[i]);
+        }
+        $.ajax({
+            url: "/userFile/upload",
+            type: "post",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(data){
+                console.log(data);
+                console.log(data.profileFileName);
+                console.log(data.profileUploadPath);
+
+                $('input[name=profileFileName]').val(data.profileFileName);
+                $('input[name=profileUploadPath]').val(data.profileUploadPath);
+
+            }
+        });
+
+    })
+</script>
 <script th:inline="javascript">
     let nicknamePass = false;
     let phonePass = false;
@@ -207,11 +253,11 @@
     $('.nickCheck').on("click", function () {
         let $unicknameval = $('#nickname').val();
         $.ajax({
-            url: "/pickitup/nicknameMatching",
+            url: "/userR/nicknameMatching",
             type: "post",
             data: {nickname: $unicknameval},
             success: function (result) {
-                if(result === 1) {
+                if(result === 0) {
                     $('#nicknameCheck_text').empty().text("사용 가능한 닉네임 입니다.").css("color", "green");
                     nicknamePass = true;
                 } else {

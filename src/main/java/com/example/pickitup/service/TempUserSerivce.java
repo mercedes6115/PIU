@@ -177,7 +177,7 @@ public class TempUserSerivce {
         }
         pointDTOList.sort(Comparator.comparing(PointDTO::getPointDate).reversed());
 
-        return pointDTOList.subList(0,10);    // 값 반환
+        return pointDTOList;  //.subList(0,10);    // 값 반환
     }
 
 
