@@ -74,51 +74,51 @@ public class UserDaoTests {
         userDAO.registerWrite(adminBoardVO);
 
         log.info("게시글 번호 : " + adminBoardVO.getNum());
-        }
-
-        @Test
-        public void getReadDetailTest () {
-            Long num = 12L;
-            userDAO.getReadDetail(num);
-        }
-
-
-        @Test
-        public void getNoticeListTest () {
-            userDAO.getNoticeList(new AdminCriteria()).stream().map(AdminBoardDTO::toString).forEach(log::info);
-        }
-
-        @Test
-        public void getNoticeTotalTest () {
-            log.info("공지글 총 개수 : " + userDAO.getNoticeTotal(new AdminCriteria(1,10)));
-        }
-
-
-        @Test
-        public void getAdminBoardCountTest () {
-            log.info("adminboard 글 총 개수 : " + userDAO.getAdminBoardCount(new AdminCriteria(1, 10)));
-        }
-
-        @Test
-        public void getAdminboardListTest () {
-            userDAO.getAdminboardList(new AdminCriteria(1, 10));
-        }
-
-        @Test
-        public void deleteByIdTest(){
-        userDAO.deleteById(49L);
-        }
-
-        @Test
-        public void noticeCancelTest(){
-        userDAO.noticeCancel(59L);
-        }
-
-        @Test
-        public void noticeConfirmTest(){
-        userDAO.noticeConfirm(59L);
-        }
-
-
     }
+
+    @Test
+    public void getReadDetailTest () {
+        Long num = 12L;
+        userDAO.getReadDetail(num);
+    }
+
+    @Test
+    public void getNoticeListTest () {
+        userDAO.getNoticeList(new AdminCriteria()).stream().map(AdminBoardDTO::toString).forEach(log::info);
+    }
+
+    @Test
+    public void getNoticeTotalTest () {
+        log.info("공지글 총 개수 : " + userDAO.getNoticeTotal(new AdminCriteria(1,10)));
+    }
+
+    @Test
+    public void getAdminBoardCountTest () {
+        log.info("adminboard 글 총 개수 : " + userDAO.getAdminBoardCount(new AdminCriteria(1, 10)));
+    }
+
+    @Test
+    public void getAdminboardListTest () {
+        userDAO.getAdminboardList(new AdminCriteria(1, 10));
+    }
+
+    @Test
+    public void deleteByIdTest(){
+        userDAO.deleteById(49L);
+    }
+
+    @Test
+    public void noticeCancelTest(){
+        userDAO.noticeCancel(59L);
+    }
+
+    @Test
+    public void noticeConfirmTest(){
+        userDAO.noticeConfirm(59L);
+    }
+
+    @Test
+    public void nicknameCheckTest() { log.info("결과 : " + userDAO.nicknameCheck("짜리킴"));}
+
+}
 

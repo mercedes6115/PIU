@@ -68,7 +68,6 @@ public class UserDAO {
         return userMapper.noticeConfirm(num);
     }
 
-
     // 유저 목록(관리자용)
     public List<UserDTO> getList(Criteria criteria){
         return userMapper.getList(criteria);
@@ -89,12 +88,12 @@ public class UserDAO {
 
     // 유저 정보 수정
     public boolean update(UserVO userVO){
-        return userMapper.update(userVO);
+        return userMapper.update(userVO) != 0;
     }
 
     // 유저 탈퇴
     public boolean remove(Long num){
-        return userMapper.delete(num);
+        return userMapper.delete(num) !=0 ;
     }
 
     // 유저가 구매한 상품 목록
@@ -103,12 +102,12 @@ public class UserDAO {
     }
 
     // 유저가 참여한 프로젝트 목록록
-   public List<ProjectVO> getInProjectList(Long userNum) {
+    public List<ProjectVO> getInProjectList(Long userNum) {
         return userMapper.getInProjectList(userNum);
     }
 
     // 로그인 -> select count-> read() 사용?
-    public UserVO login(String email, String password){
+    public UserDTO login(String email, String password){
         return userMapper.login(email,password);
     }
 
@@ -121,4 +120,7 @@ public class UserDAO {
     public boolean updatePW(String email){
         return userMapper.updatePW(email);
     };
+
+    //  닉네임 중복검사
+    public int nicknameCheck(String nickname) { return userMapper.nicknameMatching(nickname);}
 }

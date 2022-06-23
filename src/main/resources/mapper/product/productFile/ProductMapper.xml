@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.pickitup.mapper.product.productFile.ProductMapper">
+    <!--상품 리스트-->
+    <select id="getList" resultType="productVO">
+        SELECT
+        NUM, NAME, CONTENT, CATEGORY, PRICE, STOCK,
+        ORIGIN, MANUFACTURER, SUPPLIER, REGIST_DATE
+        FROM TBL_PRODUCT
+        <if test="category != null ">
+            WHERE CATEGORY = #{category}
+        </if>
+        ORDER BY REGIST_DATE DESC
+    </select>
     <!--상품 리스트 관리자용-->
     <select id="getProductList" resultType="productVO">
     <![CDATA[
@@ -120,6 +131,10 @@
     DELETE FROM TBL_PRODUCT
     WHERE NUM=#{num}
     </update>
+
+    <select id="count" resultType="_int">
+    SELECT COUNT(NUM) FROM TBL_PRODUCT
+    </select>
 </mapper>
 
 

@@ -29,4 +29,8 @@ public class AdminBoardDTO {
     private List<ProductVO> productList;
     private List<ProjectQnaVO> projectQnaList;
     private List<ProductQnaVO> productQnaList;
+
 }
+
+
+

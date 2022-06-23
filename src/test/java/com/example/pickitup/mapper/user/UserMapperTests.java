@@ -15,7 +15,7 @@ public class UserMapperTests {
     @Autowired
     private UserMapper userMapper;
 
-//    @Test
+    //    @Test
 //    public void getListTest(){
 //        userMapper.getList(new Criteria()).stream().map(UserVO::toString).forEach(log::info);
 //    }
@@ -38,6 +38,10 @@ public class UserMapperTests {
         userMapper.insert(userVO);
     }
 
+    @Test
+    public void checkNicknameTest(){
+        userMapper.nicknameMatching("짜리킴");
+    }
 
     @Test
     public void deleteTest(){
@@ -51,16 +55,24 @@ public class UserMapperTests {
 
     @Test
     public void updateTest(){
-        UserVO userVO = new UserVO();
-        userVO.setNum(2L);
-        userVO.setEmail("test@naber.com");
-        userVO.setPassword("test");
-        userVO.setNickname("test");
-        userVO.setPhone("01000000000");
-        userVO.setAddress("서울특별시 강남구 역삼동");
-        userVO.setProfileFileName("aaaa");
-        userVO.setProfileUploadPath("bbbb");
-        log.info("수정"+ userMapper.update(userVO));
+//        UserVO userVO = new UserVO();
+//        userVO.setNum(2L);
+//        userVO.setEmail("test@naber.com");
+//        userVO.setPassword("test");
+//        userVO.setNickname("test");
+//        userVO.setPhone("01000000000");
+//        userVO.setAddress("서울특별시 강남구 역삼동");
+//        userVO.setProfileFileName("aaaa");
+//        userVO.setProfileUploadPath("bbbb");
+//        log.info("수정"+ userMapper.update(userVO));
+        UserVO userVO = userMapper.getDetail(41L);
+        userVO.setNickname("임진석7");
+        userVO.setPhone("010-1234-1234");
+        userVO.setAddress("서울특별시");
+        userVO.setAddressDetail("어딘가");
+        userVO.setPassword("12344321");
+        log.info("결과 : " + userVO);
+        userMapper.update(userVO);
     }
 
     @Test
@@ -82,7 +94,7 @@ public class UserMapperTests {
         userMapper.getInProductList(2L);
     }
 
-//    @Test
+    //    @Test
 //    public boolean login(String email, String password){
 //        return userMapper.login("ddd","dddd");
 //    }

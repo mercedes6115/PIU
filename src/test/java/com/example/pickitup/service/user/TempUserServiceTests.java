@@ -107,6 +107,7 @@ public class TempUserServiceTests {
         log.info("게시글 번호 : " + adminBoardVO.getNum());
     }
 
+
     @Test
     public void getNoticeListTest(){
         tempAdminService.getNoticeList(new AdminCriteria()).stream().map(AdminBoardDTO::toString).forEach(log::info);
@@ -147,5 +148,6 @@ public class TempUserServiceTests {
     public void noticeConfirmTest(){
         tempAdminService.noticeConfirm(61L);
     }
+
 
 }

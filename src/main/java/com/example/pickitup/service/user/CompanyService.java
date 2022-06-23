@@ -13,7 +13,7 @@ public class CompanyService {
 
     private final CompanyDAO companyDAO;
 
-    // 단체 목록
+//    // 단체 목록
 //    public List<CompanyVO> getList(){
 //        return companyDAO.getList();
 //    }
@@ -34,4 +34,6 @@ public class CompanyService {
     }
 
     // 로그인 select count -> read 사용?
+
+
 }

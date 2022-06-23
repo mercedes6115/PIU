@@ -13,13 +13,13 @@
 <div class="content">
     <div class="formdesign">
         <h1 class="loginh1">
-            <a class="logo" href="/">pickitup</a>
+            <a class="logo" href="/main/main">pickitup</a>
         </h1>
         <div class="loginform">
             <div>
                 <h2 class="title">로그인</h2>
             </div>
-            <form method="post" action="/user/login">
+            <form method="post" action="/user/login" id="loginForm">
                 <div class="emaildiv">
                     <lable class="email">이메일</lable>
                     <input id="email" class="emailtype" type="email" name="email" placeholder="example@naver.com">
@@ -54,19 +54,19 @@
                     </div>
                 </div>
                 <div style="display: flex; justify-content: space-between;">
-                <a href="/user/findPw" class="findpw">비밀번호를 잊으셨나요?</a>
-                <div style="display: flex">
-                <a href="/user/join" class="joinus">일반회원 가입하기</a>
-                <p class="dash">/</p>
-                <a href="/user/joinGroup" class="joinus">회사회원 가입하기</a>
-                </div>
+                    <a href="/user/findPw" class="findpw">비밀번호를 잊으셨나요?</a>
+                    <div style="display: flex">
+                        <a href="/user/join" class="joinus">일반회원 가입하기</a>
+                        <p class="dash">/</p>
+                        <a href="/user/joinGroup" class="joinus">회사회원 가입하기</a>
+                    </div>
                 </div>
                 <button type="submit" class="loginbutton"> 로그인</button>
             </form>
 
             <hr class="line">
 
-            <button type="submit" class="kakaobutton">카카오톡 로그인 </button>
+            <button type="button" class="kakaobutton">카카오톡 로그인 </button>
 
         </div>
     </div>
@@ -76,6 +76,11 @@
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 <script src="/assets/js/login.js"></script>
+<script th:inline="javascript">
+    let msg=[[${msg}]];
+    if(msg!=null){
+        alert(msg);
+    }
+</script>
 </html>

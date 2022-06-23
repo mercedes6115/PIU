@@ -4,8 +4,11 @@ import com.example.pickitup.domain.dao.product.productFile.ProductFileDAO;
 import com.example.pickitup.domain.dao.user.*;
 import com.example.pickitup.domain.vo.AdminCriteria;
 import com.example.pickitup.domain.vo.Criteria;
+import com.example.pickitup.domain.vo.OrderCriteria;
 import com.example.pickitup.domain.vo.ProductCriteria;
 import com.example.pickitup.domain.vo.adminVO.AdminBoardDTO;
+import com.example.pickitup.domain.vo.dto.OrderDTO;
+import com.example.pickitup.domain.vo.dto.ProductDTO;
 import com.example.pickitup.domain.vo.dto.UserDTO;
 import com.example.pickitup.domain.vo.product.productFile.ProductFileVO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
@@ -102,6 +105,8 @@ public class TempAdminService {
 //        return productDAO.getProductList(criteria);
 //    }
 
+
+
     // 상품 등록하기 - 관리자용
     public void registerProduct(ProductVO productVO){
         productDAO.register(productVO);
@@ -143,8 +148,8 @@ public class TempAdminService {
 
     // orderDAO
     // 주문 목록 (mapper 추가 및 변경)
-    public List<OrderVO> getOrderList(Criteria criteria){
-        return orderDAO.getList(criteria);
+    public List<OrderDTO> getOrderList(OrderCriteria orderCriteria){
+        return orderDAO.getList(orderCriteria);
     }
 
     //관리자 공지 등록
@@ -191,5 +196,6 @@ public class TempAdminService {
     public int noticeConfirm(Long num){
         return userDAO.noticeConfirm(num);
     }
+
 
 }

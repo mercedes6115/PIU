@@ -13,7 +13,7 @@ import java.util.List;
 public interface ProductQnaCommentMapper {
 
     //    qna 에 관리자가 답변 달은 것들 전체 띄우기 페이징, qnanum으로 qna도 가져와야함
-    public List<ProductQnaCommentVO> getList(Criteria criteria);
+    public List<ProductQnaCommentVO> getList(Long qnaNum);
 
     //    qna 답글 삽입하기기 ->관리자
     public void insert(ProductQnaCommentVO productQnaCommentVO);
