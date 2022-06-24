@@ -118,8 +118,12 @@ public class UserDAO {
     }
 
     //  이메일 중복검사
-    public int emailcheck(String email){
+    public int emailCheck(String email){
         return userMapper.emailMatching(email);
+    };
+    //  닉네임 중복검사
+    public int nicknameCheck(String nickname){
+        return userMapper.nicknameMatching(nickname);
     };
 
     //  비밀번호 수정
@@ -127,6 +131,14 @@ public class UserDAO {
         return userMapper.updatePW(email,password);
     };
 
-    //  닉네임 중복검사
-    public int nicknameCheck(String nickname) { return userMapper.nicknameMatching(nickname);}
+    // 카카오 로그인 즉시 회원가입
+    public void kakaoinsert(UserVO userVO){
+        userMapper.kakaoinsert(userVO);
+    }
+
+    //    카카오톡 유저 로그인하자마자 이메일 중복 시 회원정보가져오기
+    public UserVO kakaoDetail(@Param("email") String email){
+        return userMapper.kakaoDetail(email);
+    }
+
 }
