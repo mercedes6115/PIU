@@ -130,6 +130,7 @@ public class KakaoService {
             conn.setRequestProperty("Authorization", "Bearer " + token);
             int responseCode = conn.getResponseCode();
             log.info("responseCode : " + responseCode);
+            log.info("token : " + token);
 
             if(responseCode ==400)
                 throw new RuntimeException("카카오 로그아웃 도중 오류 발생");

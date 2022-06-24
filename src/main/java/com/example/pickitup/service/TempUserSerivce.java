@@ -11,6 +11,7 @@ import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 import com.example.pickitup.domain.vo.user.*;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,7 +24,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-
+@Slf4j
 
 public class TempUserSerivce {
     private final UserDAO userDAO;
@@ -90,15 +91,16 @@ public class TempUserSerivce {
     public UserVO kakaoLogin(UserVO userVO){
         if(userDAO.emailCheck(userVO.getEmail())==0){
             userDAO.kakaoinsert(userVO);
-
+            log.info("이제 저장할거임"+userDAO.emailCheck(userVO.getEmail()));
             return userDAO.read(userVO.getNum());
         }
+        log.info("디비저장된거"+userDAO.emailCheck(userVO.getEmail()));
         return userDAO.kakaoDetail(userVO.getEmail());
     }
 
     // 카카오 로그인 즉시 회원가입
-    public UserVO kakaoinsert(UserVO userVO){
-        return userDAO.kakaoinsert(userVO);
+    public void kakaoinsert(UserVO userVO){
+        userDAO.kakaoinsert(userVO);
     }
 
     // jjimDAO

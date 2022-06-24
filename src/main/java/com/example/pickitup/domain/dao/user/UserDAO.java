@@ -111,8 +111,8 @@ public class UserDAO {
     };
 
     // 카카오 로그인 즉시 회원가입
-    public UserVO kakaoinsert(UserVO userVO){
-        return userMapper.kakaoinsert(userVO);
+    public void kakaoinsert(UserVO userVO){
+        userMapper.kakaoinsert(userVO);
     }
 
     //    카카오톡 유저 로그인하자마자 이메일 중복 시 회원정보가져오기

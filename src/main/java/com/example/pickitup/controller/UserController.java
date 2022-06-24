@@ -5,7 +5,7 @@ import com.example.pickitup.domain.vo.user.CompanyVO;
 import com.example.pickitup.domain.vo.user.UserVO;
 import com.example.pickitup.service.TempCompanyService;
 import com.example.pickitup.service.TempUserSerivce;
-import com.example.pickitup.Util.SessionManager;
+import com.example.pickitup.util.SessionManager;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;

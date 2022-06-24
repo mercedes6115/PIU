@@ -2,7 +2,6 @@ package com.example.pickitup.controller;
 
 import com.example.pickitup.service.project.projectFile.ProjectFileService;
 import com.example.pickitup.service.project.projectFile.ProjectService;
-import com.example.pickitup.Util.SessionManager;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -10,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 
@@ -27,20 +25,20 @@ public class MainController {
     public String main(HttpSession session, Model model) throws ParseException {
        int checkLogin=0;
 
-        if(session.getAttribute("num")==null||session.getAttribute("nickname")==null){
-            log.info("aaaaaaaaaaaaaaaaaaaaaaaaaa");
-            log.info("aaaaaaaaaaaaaaaaaaaaaaaaaa");
-            log.info(session.getAttribute("num").toString());
-            log.info(session.getAttribute("nickname").toString());
-
-            log.info("aaaaaaaaaaaaaaaaaaaaaaaaaa");
-            log.info("aaaaaaaaaaaaaaaaaaaaaaaaaa");
-            checkLogin= 1;
-        }else if(session.getAttribute("token")!=null){
+        if(session.getAttribute("token")!=null){
+//            log.info("tokentokentokentokentokentokentoken");
+//            log.info(session.toString());
+//            log.info((String)session.getAttribute("token"));
+//            log.info("aaaaaaaaaaaaaaaaaaaaaaaaaa");
             checkLogin = 2;
-        }else{
+        }else if(session.getAttribute("num")!=null&&session.getAttribute("nickname")!=null){
             checkLogin= 3;
-        }
+        }else{
+//           log.info("elseelseelseelseelseelseelseelseelse");
+//           log.info(session.toString());
+//           log.info("aaaaaaaaaaaaaaaaaaaaaaaaaa");
+           checkLogin= 1;
+       }
 
        model.addAttribute("checkLogin",checkLogin);
        return "/main/main";

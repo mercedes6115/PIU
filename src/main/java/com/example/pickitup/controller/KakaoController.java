@@ -23,11 +23,10 @@ public class KakaoController {
     private final TempUserSerivce tempUserSerivce;
 
     @GetMapping("/login")
-    public RedirectView kakaoCallback(@RequestParam String code, HttpSession session,
-                                      RedirectAttributes rttr) throws Exception {
+    public RedirectView kakaoCallback(@RequestParam String code, HttpSession session) throws Exception {
         log.info(code);
         String token = kakaoService.getKaKaoAccessToken(code);
-        session.setAttribute("token", token);
+
 
         HashMap<String, Object> kakaoInfo = kakaoService.getKakaoInfo(token);
         log.info("###access_Token#### : " + token);
@@ -38,11 +37,11 @@ public class KakaoController {
         userVO.setEmail(kakaoInfo.get("email").toString());
         userVO.setNickname(kakaoInfo.get("nickname").toString());
 
-        UserVO result=tempUserSerivce.kakaoLogin(userVO);
-
-        session.setAttribute("num",result.getNum());
-        session.setAttribute("nickname",result.getNickname());
-        session.setAttribute("category",result.getCategory());
+        tempUserSerivce.kakaoLogin(userVO);
+        session.setAttribute("token", token);
+        session.setAttribute("num",userVO.getNum());
+        session.setAttribute("nickname",userVO.getNickname());
+        session.setAttribute("category",userVO.getCategory());
 
 
         return new RedirectView("main/main");
@@ -52,6 +51,7 @@ public class KakaoController {
     @GetMapping("/logout")
     public RedirectView kakaoLogout(HttpSession session){
         log.info("logout");
+        log.info("logout"+session.getAttribute("token"));
         kakaoService.logoutKakao((String)session.getAttribute("token"));
         session.invalidate();
         return new RedirectView("main/main");
