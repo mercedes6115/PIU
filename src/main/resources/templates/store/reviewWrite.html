@@ -189,10 +189,16 @@
         e.preventDefault();
         let formData =   new FormData();
         let inputFile = $("input[name='uploadFiles']");
-        let files = inputFile[0].files;
-        for(let i=0; i<files.length; i++) {
-            formData.append("uploadFiles", files[i]);
-        }
+        let files1 = inputFile[0].files;
+        let files2 = inputFile[1].files;
+        let files3 = inputFile[2].files;
+        if(files1.length!=0){formData.append("uploadFiles", files1[0])}
+        if(files2.length!=0){formData.append("uploadFiles", files2[0])}
+        if(files3.length!=0){formData.append("uploadFiles", files3[0])}
+        //
+        // for(let i=0; i<files.length; i++) {
+        //     formData.append("uploadFiles", files[i]);
+        // }
         $.ajax({
             url: "/productReviewFile/upload",
             type: "post",

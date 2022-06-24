@@ -104,6 +104,12 @@
         location.href = "/store/detail?num="+productNum;
     })
 
+    // 리뷰 수정
+    $(".review_modify").on("click",function (e) {
+        e.preventDefault();
+        location.href = "/store/reviewWrite?num="+productNum;
+    })
+
     // 리뷰 삭제
     $(".review_delete").on("click",function (e) {
         e.preventDefault();
