@@ -56,23 +56,23 @@
                             <div class="header-right-menu-wrap1">
                                 <div class="header-right-menu-wrap2">
 
-<!--  관리자면, 단체(회사)일경우 마이플로깅 -> 플로거 센터로 변경 타임리프 이용-->
-                                <div class="header-right-menu1" th:if="${checkLogin}==3 or ${checkLogin}==2">
-                                    <a class="creater" target="_blank" rel="noreferrer" href="/user/center">
-                                        <p class="myplogging">마이플로깅</p>
-                                    </a>
-                                </div>
-                                <div class="right-empty-space1"></div>
+                                    <!--  관리자면, 단체(회사)일경우 마이플로깅 -> 플로거 센터로 변경 타임리프 이용-->
+                                    <div class="header-right-menu1" th:if="${checkLogin}==3 or ${checkLogin}==2">
+                                        <a class="creater" target="_blank" rel="noreferrer" href="/user/center">
+                                            <p class="myplogging">마이플로깅</p>
+                                        </a>
+                                    </div>
+                                    <div class="right-empty-space1"></div>
 
-                                <div class="header-right-menu1" th:if="${checkLogin}==3 or ${checkLogin}==2">
-                                    <a  href="/user/myPage">
-                                        <p class="myplogging">마이페이지</p>
-                                    </a>
-                                </div>
-<!--                                <h1 th:text="${category}"></h1>-->
+                                    <div class="header-right-menu1" th:if="${checkLogin}==3 or ${checkLogin}==2">
+                                        <a  href="/user/myPage">
+                                            <p class="myplogging">마이페이지</p>
+                                        </a>
+                                    </div>
+                                    <!--                                <h1 th:text="${category}"></h1>-->
 
-                                <div class="right-menu-wrapper2" style="display:flex;">
-                                    <div th:if="${checkLogin}==1" class="right-empty-space1"></div>
+                                    <div class="right-menu-wrapper2" style="display:flex;">
+                                        <div th:if="${checkLogin}==1" class="right-empty-space1"></div>
                                         <a href="/user/join" th:if="${checkLogin}==1" class="myplogging" >일반회원가입</a>
                                         <div th:if="${checkLogin}==1" class="right-empty-space1" ></div>
                                         <a href="/user/joinGroup" th:if="${checkLogin}==1" class="myplogging" >기업회원가입</a>
@@ -82,45 +82,6 @@
 
                                         <a th:if="${checkLogin}==2" class="myplogging" href="https://kauth.kakao.com/oauth/logout?client_id=810e43afb4176b21144a9e5b00273aac&logout_redirect_uri=http://localhost:10010/logout">로그아웃</a>
 
-                                </div>
-<!--                                <div class="right-empty-space1"></div>-->
-<!--                                <a href="#" th:if="${checkLogin==true}">-->
-<!--                                    <span class="css-l67hwq">-->
-<!--                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="css-uxrfz2">-->
-<!--                                            <path d="M21.141 3.91A6.262 6.262 0 0 0 16.654 2c-1.621 0-3.252.635-4.488 1.91-.06.06-.11.125-.165.19-.055-.06-.105-.13-.165-.19A6.263 6.263 0 0 0 7.35 2c-1.621 0-3.252.635-4.488 1.91-2.481 2.545-2.481 6.67 0 9.21l8.935 8.79c.06.06.135.09.21.09.075 0 .15-.03.21-.09l8.935-8.79c2.467-2.54 2.467-6.665-.01-9.21Zm-1.78 7.35-7.37 7.245-7.369-7.245c-1.47-1.525-1.466-3.99.015-5.51A3.73 3.73 0 0 1 7.33 4.605c1.005 0 2.19.505 2.996 1.25.73.68 1.066 1.235 1.361 1.655.03.045.125.215.3.215s.27-.175.305-.22c.296-.425.63-.975 1.356-1.655.806-.75 1.991-1.25 2.997-1.25a3.74 3.74 0 0 1 2.696 1.145c1.486 1.525 1.491 3.99.02 5.514Z" class="css-17ivn46"></path>-->
-<!--                                        </svg>-->
-<!--                                    </span>-->
-<!--                                </a>-->
-                                <div class="right-empty-space1"></div>
-<!--                                로그아웃 상태이면 해당 영역 display:none-->
-                                <div class="loginWrapper1" th:if="${checkLogin}==3" >
-                                    <div class="loginWrapper1-left">
-                                        <div class="loginWrapper1-left1">
-                                            <div class="loginWrapper1-left2">
-                                                <img src="/images/chun.png" class="loginWrapper1-left2-wrapper">
-                                    <!--  관리자면, 단체(회사)일경우 마이플로깅 -> 플로거 센터로 변경 타임리프 이용-->
-                                    <div class="header-right-menu1" th:if="${checkLogin==true} and ${category=='company'}">
-                                        <a target="_blank" rel="noreferrer" href="/user/center">
-                                            <p class="myplogging">마이플로깅</p>
-                                        </a>
-                                    </div>
-                                    <div class="right-empty-space1"></div>
-
-                                    <div class="header-right-menu1" th:if="${checkLogin==true} ">
-                                        <a  href="https://creator.class101.net/center/products?hl=ko">
-                                            <p class="myplogging">마이페이지</p>
-                                        </a>
-                                    </div>
-                                    <!--                                <h1 th:text="${category}"></h1>-->
-
-                                    <div class="right-menu-wrapper2" style="display:flex;">
-                                        <div class="right-empty-space1"></div>
-                                        <a href="/user/join" th:if="${checkLogin==false}" class="myplogging" >일반회원가입</a>
-                                        <div class="right-empty-space1"></div>
-                                        <a href="/user/joinGroup" th:if="${checkLogin==false}" class="myplogging" >기업회원가입</a>
-                                        <div class="right-empty-space1"></div>
-                                        <a href="/user/login" th:if="${checkLogin==false}" class="myplogging" >로그인</a>
-                                        <a href="/user/logout" th:if="${checkLogin==true}" class="myplogging" >로그아웃</a>
                                     </div>
                                     <!--                                <div class="right-empty-space1"></div>-->
                                     <!--                                <a href="#" th:if="${checkLogin==true}">-->
@@ -132,7 +93,7 @@
                                     <!--                                </a>-->
                                     <div class="right-empty-space1"></div>
                                     <!--                                로그아웃 상태이면 해당 영역 display:none-->
-                                    <div class="loginWrapper1" th:if="${checkLogin==true}" >
+                                    <div class="loginWrapper1" th:if="${checkLogin}==3" >
                                         <div class="loginWrapper1-left">
                                             <div class="loginWrapper1-left1">
                                                 <div class="loginWrapper1-left2">
@@ -168,20 +129,9 @@
                                                         </a>
                                                         <div class="ModalBorderLine"></div>
                                                         <div class="ModalMenuWrap123" >
-                                                            <a href="/user/login" th:if="${checkLogin==false}" class="myplogging" >로그인</a>
-                                                            <a href="/user/logout" th:if="${checkLogin==true}" class="myplogging" >로그아웃</a>
+                                                            <a href="/user/login" th:if="${checkLogin}==1" class="myplogging" >로그인</a>
+                                                            <a href="/user/logout" th:if="${checkLogin}==3" class="myplogging" >로그아웃</a>
                                                         </div>
-                                                    </a>
-                                                    <div class="ModalBorderLine"></div>
-                                                    <div class="ModalMenuWrap123" >
-                                                        <a href="/user/login" th:if="${checkLogin}==1" class="myplogging" >로그인</a>
-                                                        <a href="/user/logout" th:if="${checkLogin}==3" class="myplogging" >로그아웃</a>
-                                                    </div>
-                                                    <div class="ModalHeight"></div>
-                                                    <div class="ModalMenuWrap12">
-                                                        <a href="#">
-                                                            <p class="ModalMenuTextStyle">메뉴 수정중1</p>
-                                                        </a>
                                                         <div class="ModalHeight"></div>
                                                         <div class="ModalMenuWrap12">
                                                             <a href="#">
@@ -300,11 +250,12 @@
 <script type="text/javascript" th:inline="javascript">
 
     let category = [[${session.category}]];
+    console.log("밖"+category);
 
 
-
-    $('.creater').click(function (e) {
-           if(category.equals("user")){
+    $('.creater').on("click",function (e) {
+        console.log(category);
+        if(category.equals("user")){
             e.preventDefault();
             alert("기업 회원만 이용가능합니다. 기업으로 회원가입해주세요.");
         }
@@ -314,8 +265,5 @@
     // $('a.logout').on('click',function () {
     //     alert("dddd");
     // })
-    $('a.logout').on('click',function () {
-        alert("dddd");
-    })
 </script>
 </html>
