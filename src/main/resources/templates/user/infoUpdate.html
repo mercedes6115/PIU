@@ -187,9 +187,8 @@
     let uploadPath = [[${user.profileUploadPath}]];
 
     let str = "<img sizes='100vw' width='100px' src='/userFile/display?fileName=" + uploadPath + "/"  + fileName + "'>";
-
-
     $('#profileImage').html(str);
+    
     function checkExtension(fileName, fileSize){
         if(regex.test(fileName)){
             alert("업로드 할 수 없는 파일의 형식입니다.");
