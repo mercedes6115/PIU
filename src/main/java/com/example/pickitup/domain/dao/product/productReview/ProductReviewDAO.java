@@ -20,9 +20,9 @@ public class ProductReviewDAO {
     }
 
     // 리뷰 상세보기 -> 수정
-//    public ProductReviewVO read(Long num){
-//        return productReviewMapper.getDetail(num);
-//    }
+    public ProductReviewVO read(Long num){
+        return productReviewMapper.getDetail(num);
+    }
 
     // 리뷰작성
     public void insert(ProductReviewVO productReviewVO){
