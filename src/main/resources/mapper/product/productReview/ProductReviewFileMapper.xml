@@ -6,6 +6,7 @@
         FROM TBL_PRODUCT_REVIEW_FILE
         WHERE REVIEW_NUM=#{reviewNum}
     </select>
+
     <insert id="insert">
         INSERT INTO TBL_PRODUCT_REVIEW_FILE
             (

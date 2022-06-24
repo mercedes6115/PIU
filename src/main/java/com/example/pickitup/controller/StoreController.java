@@ -103,8 +103,17 @@ public class StoreController {
 
     //스토어 리뷰 수정
     @GetMapping("/reviewModify")
-    public void reviewModify(){
-
+    public void reviewModify(Long num,Model model){
+        model.addAttribute("review",productReviewService.read(num));
+        model.addAttribute("product", productService.getDetail(productReviewService.read(num).getProductNum()));
+    }
+    //스토어 리뷰 수정 폼
+    @PostMapping("/reviewModify")
+    public String reviewModify(ProductReviewVO productReviewVO, Model model){
+//        model.addAttribute("user", productNum); 유저의 정보 가져와야함.?? 어떻게??
+        productReviewVO.setUserNum(22L);
+        productReviewService.update(productReviewVO);
+        return storeDetail(productReviewVO.getProductNum(), model);
     }
 
     // 스토어 리뷰 삭제
