@@ -198,7 +198,7 @@ public class StoreController {
     }
 
     // 결제 완료 후 주문내역
-    @PostMapping("/buyProductDetail")//나중에 rest 방식으로 바꿀것
+    @PostMapping("/buyProductDetail")//나중에 request 방식으로 바꿀것
     public void buyProductDetail(UserVO userVO, ProductDTO productDTO,String addressComment,Model model){
         model.addAttribute("addressComment", addressComment);
         model.addAttribute("userinfo",userVO);
