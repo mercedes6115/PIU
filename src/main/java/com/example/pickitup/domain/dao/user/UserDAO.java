@@ -129,4 +129,7 @@ public class UserDAO {
 
     //  닉네임 중복검사
     public int nicknameCheck(String nickname) { return userMapper.nicknameMatching(nickname);}
+
+    // 마이페이지 비밀번호 변경
+    public boolean changePw(String password, Long num) {return userMapper.changePw(password, num);}
 }

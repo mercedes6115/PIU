@@ -96,5 +96,6 @@ public interface UserMapper {
 //    비밀번호 변경
     public boolean updatePW(String email,String password);
 
-
+//  마이페이지 비밀번호 변경
+    public boolean changePw(String password, Long num);
 }

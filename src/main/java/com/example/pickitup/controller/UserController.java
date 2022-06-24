@@ -117,6 +117,12 @@ public class UserController {
         return "/user/myPassword";
     }
 
+    @PostMapping("/myPassword")
+    public RedirectView myPasswordForm(String password, Long num) {
+        tempUserSerivce.changePw(password,num);
+        return new RedirectView("/user/myPage");
+    }
+
     // 회원 정보 수정
     @GetMapping("/infoUpdate")
     public void infoUpdate(Model model){

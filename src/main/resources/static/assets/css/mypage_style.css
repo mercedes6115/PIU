@@ -4569,3 +4569,11 @@ th.point-change-date {
     font-size: 14px;
     margin-bottom: 10px;
 }
+
+.pwChangeBtn {
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid rgb(248,248,248);
+    margin-left: 200px;
+    background-color: #1F89FF;
+}

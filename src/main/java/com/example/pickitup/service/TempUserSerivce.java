@@ -85,6 +85,9 @@ public class TempUserSerivce {
     //  닉네임 중복검사
     public int nicknameCheck(String nickname) {return userDAO.nicknameCheck(nickname);}
 
+    // 마이메이지 비밀번호 변경
+    public boolean changePw(String password, Long num) {return userDAO.changePw(password,num);}
+
     // jjimDAO
     // 나의 프로젝트 찜 목록
     public List<ProjectVO> getJjimProjectList(Long userNum) {
@@ -100,6 +103,7 @@ public class TempUserSerivce {
     public void registerJjim(JjimVO jjimVO) {
         jjimDAO.register(jjimVO);
     }
+
 
 
     // latestDAO
