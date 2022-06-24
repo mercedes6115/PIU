@@ -284,7 +284,7 @@
 <!--<script src="/static/assets/js/store.js"></script>-->
 <script th:inline="javascript">
     let productNum = [[${product.num}]];
-    test()
+    showJjimcheck()
     // 임시 유저 userNum = 22;
     let userNum = 22;
     //찜 ajax
@@ -319,7 +319,7 @@
     });
 
     //찜...
-    function test(){
+    function showJjimcheck(){
         jjimCounts()
         $.ajax({
             url : "/store/jjim",
@@ -378,18 +378,17 @@
                 str += "<div class=\"readReviews\">";
                 str += "<div class=\"readReviewForm\">";
                 str += "<div class=\"readReview\">";
-                str += "<a href=\"#\" class=\"moveReviewDetail\">";
+                str += "<a href='' class=\"moveReviewDetail\">";
                 str += "<div class=\"reviewDetailProfile\">";
                 str += "<div class=\"reviewProfileForm\">";
                 str += "<span class=\"reviewProfile\">";
                 str += "<picture class=\"profile\">";
-                str += "<img src=\"/images/chun.png\" alt=\"\">";
+                str += "<img src=\"/images/chun.png\">";
                 str += "</picture>";
                 str += "</span>";
                 str += "</div>";
                 str += "<div class=\"reviewNameDate\">";
                 str += "<div class=\"reviewName\">"+reviewVO[i].userNum+"</div>";
-                //여기서 ajax로  reviewVO[i].num을 가지고 와서
                 str += "<div class=\"reviewDate\">"+(reviewVO[i].updateDate).substring(0,10)+"</div>";
                 str += "</div>";
                 str += "</div>";
@@ -406,16 +405,16 @@
             }
             $('.ProductReviews').html(str);
 
-            for (let i =0; i< reviewVO.length;i++) {  //reviewVO = 10 개
+            // 상품의 모든 파일 보여주기 ..(실제 구매 후기 사진 란)
+            for (let i =0; i< reviewVO.length;i++) {
                 $.ajax({
                     url: "/productReviewFile/list/" + reviewVO[i].num,
                     type: "get",
-                    success: function (files) {  //파일들의 리스트 총 파일 13개
+                    success: function (files) {
                         let text = "";
                         $(files).each(function (i, file) {
                             text += "<div class =\"reviewImageForm\">";
                             text += "<picture class=\"moveImage\">";
-                            // text += "<source srcset=\"/images/chun2.png\" media=\"all and (min-width: 1024px)\" >";
                             text += "<img src='/productReviewFile/display?fileName=" + file.uploadPath + "/" + file.uuid + "_" + file.fileName + "'>";
                             text += "</picture>";
                             text += "</div>";
@@ -430,7 +429,13 @@
 
     //------------------------------------------------------------------------------------------
     //리뷰 사진 누르면 리뷰 보기 페이지 이동
-    $('.reviewImages').on("click","img",function (e) {
+    $('.reviewImages').on("click","img",function () {
+        location.href = "/store/goReviewList/"+productNum;
+    })
+
+    //리뷰 눌러도 리뷰 보기 페이지로 이동
+    $('.ProductReviews').on("click",".moveReviewDetail",function (e) {
+        e.preventDefault();
         location.href = "/store/goReviewList/"+productNum;
     })
     //------------------------------------------------------------------------------------------
