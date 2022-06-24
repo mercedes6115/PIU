@@ -5,11 +5,14 @@ import com.example.pickitup.domain.vo.Criteria;
 
 import com.example.pickitup.domain.vo.adminVO.AdminBoardDTO;
 import com.example.pickitup.domain.vo.dto.AdminBoardPageDTO;
+import com.example.pickitup.domain.vo.dto.AdminQnaCommentDTO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
+import com.example.pickitup.domain.vo.product.productQna.ProductQnaCommentVO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 
 import com.example.pickitup.domain.vo.dto.UserDTO;
 
+import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaCommentVO;
 import com.example.pickitup.domain.vo.user.AdminBoardVO;
 import com.example.pickitup.domain.vo.user.UserVO;
 import org.apache.catalina.User;
@@ -50,6 +53,12 @@ public interface UserMapper {
 
     //    관리자 게시물 관리에서 상세보기
     public AdminBoardPageDTO getQnaReply(Long num);
+
+    //    관리자 project qna 답글쓴것 insert
+    public void projectQnaReply(AdminQnaCommentDTO adminQnaCommentDTO);
+
+    //    관리자 product qna 답글쓴것 insert
+    public void productQnaReply(ProductQnaCommentVO productQnaCommentVO);
 
     //    유저 목록 관리자용
     public  List<UserDTO> getList(Criteria criteria);

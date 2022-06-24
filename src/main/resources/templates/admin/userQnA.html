@@ -26,7 +26,8 @@
             <div>
                 <h2>QnA 기본정보</h2>
             </div>
-            <table id="basicInfo" th:object="${adminBoard}">
+            <form id="qnaReply" action="/admin/userQnA" method="post" th:object="${adminBoard}">
+            <table id="basicInfo" >
                     <tr>
                         <th>작성자</th>
                         <td th:utext="*{nickname}"></td>
@@ -35,23 +36,28 @@
                         <th style="width: 16%;">제목</th>
                         <td th:utext="*{title}"></td>
                     </tr>
-                    <tr>
-                        <th>문의한 내용</th>
-                        <td th:utext="*{content}"></td>
-                    </tr>
                 <tr>
                     <th>문의날짜</th>
                     <td th:utext="*{registDate}"></td>
                 </tr>
+                    <tr>
+                        <th>문의한 내용</th>
+                        <td th:utext="*{content}"></td>
+                    </tr>
+
             </table>
 
             <div>
                 <h2>답글 남기기</h2>
             </div>
-            <textarea type="textarea" rows="5" style="width: 100%">
-            </textarea>
+
+            <input type="textarea" rows="5" name="content" style="width: 100%">
+                <input type="hidden" id="category" name="category" th:value="*{category}">
+                <input type="hidden" id="projectQnaNum" name="projectQnaNum" th:value="*{projectQnaNum}">
+                <input type="hidden" id="productQnaNum" name="productQnaNum" th:value="*{productQnaNum}">
+            </form>
             <div>
-                <button type="button">답글등록</button>
+                <button type="button" onclick="document.getElementById('qnaReply').submit();">답글등록</button>
             </div>
 
         </div>

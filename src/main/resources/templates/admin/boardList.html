@@ -187,6 +187,7 @@
                         <span th:if="*{type3} == 'all'"></span>
                         <span th:unless="*{type3} == 'nothing'">제목</span>
                     </th>
+                    <th scope="col">작성자</th>
                     <th scope="col">작성일</th>
                     <th scope="col">비 고</th>
                     <th scope="col">상세보기</th>
@@ -201,6 +202,7 @@
                             <span th:if="*{category == '4'}">공지사항</span>
                         </td>
                         <td th:text="*{title}" th:value="*{title}"></td>
+                        <td th:text="*{nickname}" th:value="*{nickname}"></td>
                         <td th:text="*{registDate}" th:value="*{registDate}"></td>
                         <td >
                             <span th:if="*{category != '4' and answerStatus == '1'}" th:style="${'color:blue;'}">답변 대기</span>
@@ -209,7 +211,12 @@
                             <span th:if="*{category == '4' and status == '2'}" th:style="${'color:red;'}">공지 해제</span>
                         </td>
                         <!-- 상품 상세보기로 이동 -->
-                        <td><a CLASS="getDetail" th:href="*{num}">상세보기</a></td>
+                        <input type="hidden" id="projectQnaNum" name="projectQnaNum" th:value="*{projectQnaNum}">
+                        <input type="hidden" id="productQnaNum" name="productQnaNum" th:value="*{productQnaNum}">
+                        <td>
+                            <a th:if="*{category == '4'}" CLASS="getNoticeDetail" th:href="*{num}">상세보기</a>
+                            <a th:if="*{category != '4'}" CLASS="getDetail" th:href="*{num}">상세보기</a>
+                        </td>
                     </tr>
                 </th:block>
             </table>
@@ -222,6 +229,7 @@
                 <a class="changePage" th:href="*{endPage + 1}" th:if="*{next}">&gt;</a>
                 <a class="changePage" th:href="*{adminCriteria.pageNum + 1}" th:if="*{adminCriteria.pageNum < realEnd}">&gt;</a>
             </div>
+
 
         </div>
         <!-- 페이징 처리 -->
@@ -254,6 +262,12 @@
     $("a.getDetail").click(function(e){
         e.preventDefault();
         location.href = "/admin/userQnA" + paging + "&num="+$(this).attr('href');
+        console.log("들어옴");
+    });
+
+    $("a.getNoticeDetail").click(function(e){
+        e.preventDefault();
+        location.href = "/admin/adminNoticeDetail" + paging + "&num="+$(this).attr('href');
         console.log("들어옴");
     });
 

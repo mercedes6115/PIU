@@ -7,13 +7,11 @@ import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.OrderCriteria;
 import com.example.pickitup.domain.vo.ProductCriteria;
 import com.example.pickitup.domain.vo.adminVO.AdminBoardDTO;
-import com.example.pickitup.domain.vo.dto.AdminBoardPageDTO;
-import com.example.pickitup.domain.vo.dto.OrderDTO;
-import com.example.pickitup.domain.vo.dto.ProductDTO;
-import com.example.pickitup.domain.vo.dto.UserDTO;
+import com.example.pickitup.domain.vo.dto.*;
 import com.example.pickitup.domain.vo.product.productFile.ProductFileVO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
+import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaCommentVO;
 import com.example.pickitup.domain.vo.user.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -201,6 +199,11 @@ public class TempAdminService {
     //관리자 게시물 관리에서 상세보기
     public AdminBoardPageDTO getQnaReply(Long num){
         return userDAO.getQnaReply(num);
+    }
+
+    //관리자 문의 댓글 달기
+    public void getProjectQnaReply(AdminQnaCommentDTO adminQnaCommentDTO){
+        userDAO.projectQnaReply(adminQnaCommentDTO);
     }
 
 

@@ -4,11 +4,13 @@ import com.example.pickitup.domain.vo.AdminCriteria;
 import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.adminVO.AdminBoardDTO;
 import com.example.pickitup.domain.vo.dto.AdminBoardPageDTO;
+import com.example.pickitup.domain.vo.dto.AdminQnaCommentDTO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 
 import com.example.pickitup.domain.vo.dto.UserDTO;
+import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaCommentVO;
 import com.example.pickitup.domain.vo.user.AdminBoardVO;
 import com.example.pickitup.domain.vo.user.UserVO;
 import com.example.pickitup.mapper.user.UserMapper;
@@ -72,6 +74,11 @@ public class UserDAO {
     //    관리자 게시물 관리에서 상세보기
     public AdminBoardPageDTO getQnaReply(Long num){
         return userMapper.getQnaReply(num);
+    }
+
+    //  관리자 project qna 답글쓴것 insert
+    public void projectQnaReply(AdminQnaCommentDTO adminQnaCommentDTO) {
+        userMapper.projectQnaReply(adminQnaCommentDTO);
     }
 
     // 유저 목록(관리자용)

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공지사항 상세보기</title>
+</head>
+<link rel="stylesheet" href="/assets/css/admin_style.css">
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+
+<body>
+<div class="root">
+
+    <!-- sidebar -->
+    <div th:replace="~{/admin/adminSideBar :: AdminSideBarImport}"></div>
+
+    <!-- content -->
+    <div id="container">
+        <div>
+            <h2>게시글 정보</h2>
+        </div>
+        <div class="listBox" id="userDetail">
+            <div>
+                <h2>QnA 기본정보</h2>
+            </div>
+            <table id="basicInfo" th:object="${adminBoard}">
+                <tr>
+                    <th>작성자</th>
+                    <td th:utext="*{nickname}"></td>
+                </tr>
+                <tr>
+                    <th style="width: 16%;">제목</th>
+                    <td th:utext="*{title}"></td>
+                </tr>
+                <tr>
+                    <th>등록날짜</th>
+                    <td th:utext="*{registDate}"></td>
+                </tr>
+                <tr>
+                    <th>공지사항 내용</th>
+                    <td th:utext="*{content}"></td>
+                </tr>
+
+            </table>
+
+            <div>
+                <button class="goBack" type="button">돌아가기</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script th:replace="~{/admin/adminSideBar :: AdminSideBarJSImport}"></script>
+<script>
+    $(".goBack").click(function () {
+        history.back();
+    })
+</script>
+</html>

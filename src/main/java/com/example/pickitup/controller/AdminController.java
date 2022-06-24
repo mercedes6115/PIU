@@ -9,6 +9,7 @@ import com.example.pickitup.domain.vo.dto.AdminBoardPageDTO;
 import com.example.pickitup.domain.vo.dto.PageDTO;
 import com.example.pickitup.domain.vo.dto.ProductPageDTO;
 import com.example.pickitup.domain.vo.dto.UserDTO;
+import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaCommentVO;
 import com.example.pickitup.domain.vo.user.AdminBoardVO;
 import com.example.pickitup.domain.vo.user.UserVO;
 import com.example.pickitup.service.TempAdminService;
@@ -80,6 +81,7 @@ public class AdminController {
         model.addAttribute("adminboardList", tempAdminService.getAdminboardList(adminCriteria));
         model.addAttribute("adminBoardPageDTO",new AdminBoardPageDTO(adminCriteria, (tempAdminService.getAdminBoardCount(adminCriteria))));
 
+
     }
 
     // 관리자 게시물 등록
@@ -92,7 +94,7 @@ public class AdminController {
     @PostMapping("/boardWrite")
     public RedirectView boardWriteForm(AdminBoardVO adminBoardVO, RedirectAttributes rttr){
         log.info("====================");
-        log.info("/boardWriteForm");
+
         log.info("====================");
         tempAdminService.registerWrite(adminBoardVO);
         rttr.addFlashAttribute("num", adminBoardVO.getNum());
@@ -306,7 +308,21 @@ public class AdminController {
 
     // 관리자 유저 문의 글 보기
     @GetMapping("/userQnA")
-    public void userQnA(Long num, HttpServletRequest request, Model model){
+    public void userQnA(Long num, AdminBoardDTO adminBoardDTO, HttpServletRequest request, Model model){
+        String requestURL = request.getRequestURI();
+        log.info(requestURL.substring(requestURL.lastIndexOf("/")));
+        log.info("*************");
+        log.info("================================");
+        log.info("================================");
+        model.addAttribute("adminBoard", tempAdminService.getQnaReply(num));
+        log.info("프로젝트QNA넘버 : " + adminBoardDTO.getProjectQnaNum());
+    }
+
+
+
+    // 관리자 공지사항 상세 글 보기
+    @GetMapping("/adminNoticeDetail")
+    public void adminNoticeDetail(Long num, HttpServletRequest request, Model model){
         String requestURL = request.getRequestURI();
         log.info(requestURL.substring(requestURL.lastIndexOf("/")));
         log.info("*************");
@@ -315,8 +331,30 @@ public class AdminController {
         model.addAttribute("adminBoard", tempAdminService.getQnaReply(num));
     }
 
-
-
+    //관리자가 답글 쓰면 category로 구분해서 프로젝트/프로덕트 qna comment 테이블에 insert
+    @PostMapping("/userQnA")
+    public RedirectView replyComplete(AdminQnaCommentDTO adminQnaCommentDTO, RedirectAttributes rttr){
+        log.info("================================");
+        log.info("여기프로젝트QNA 넘버 : " + adminQnaCommentDTO.getProjectQnaNum());
+        log.info("프로덕트QNA 넘버 : " + adminQnaCommentDTO.getProductQnaNum());
+        log.info("================================");
+        if((adminQnaCommentDTO.getCategory()).equals("1")){
+            adminQnaCommentDTO.setQnaNum(adminQnaCommentDTO.getProjectQnaNum());
+            tempAdminService.getProjectQnaReply(adminQnaCommentDTO);
+        }
+        return new RedirectView("/admin/boardList");
+    }
+//    public RedirectView replyComplete(AdminBoardDTO adminBoardDTO, ProjectQnaCommentVO projectQnaCommentVO, RedirectAttributes rttr) {
+//        log.info(projectQnaCommentVO.getContent());
+//        if((adminBoardDTO.getCategory()).equals("1")){
+//            log.info("if문 들어옴");
+//            tempAdminService.getProjectQnaReply(projectQnaCommentVO);
+//            log.info("getProjectQnaReply 서비스 실행");
+//        }
+//        log.info("====================");
+//        log.info("====================");
+//        return new RedirectView("/admin/boardList");
+//    }
 
 
 }

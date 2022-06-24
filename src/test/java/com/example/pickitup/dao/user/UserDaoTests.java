@@ -4,6 +4,8 @@ import com.example.pickitup.domain.dao.user.UserDAO;
 import com.example.pickitup.domain.vo.AdminCriteria;
 import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.adminVO.AdminBoardDTO;
+import com.example.pickitup.domain.vo.dto.AdminQnaCommentDTO;
+import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaCommentVO;
 import com.example.pickitup.domain.vo.user.AdminBoardVO;
 import com.example.pickitup.domain.vo.user.UserVO;
 import lombok.extern.slf4j.Slf4j;
@@ -120,6 +122,20 @@ public class UserDaoTests {
     @Test
     public void getQnaReplyTest(){
         userDAO.getQnaReply(125L);
+    }
+
+    @Test
+    public void projectQnaReplyTest() {
+        AdminQnaCommentDTO adminQnaCommentDTO = new AdminQnaCommentDTO();
+        adminQnaCommentDTO.setContent("디티오테스트01");
+        adminQnaCommentDTO.setCompanyNum(2L);
+        adminQnaCommentDTO.setQnaNum(3L);
+        userDAO.projectQnaReply(adminQnaCommentDTO);
+//        ProjectQnaCommentVO projectQnaCommentVO = new ProjectQnaCommentVO();
+//        projectQnaCommentVO.setContent("다오테스트01");
+//        projectQnaCommentVO.setCompanyNum(2L);
+//        projectQnaCommentVO.setQnaNum(3L);
+//        userDAO.projectQnaReply(projectQnaCommentVO);
     }
 
     @Test
