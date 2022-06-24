@@ -170,7 +170,7 @@ public class UserController {
             session.setAttribute("num", userDTO.getNum().toString());
             session.setAttribute("nickname", userDTO.getNickname());
             session.setAttribute("category", userDTO.getCategory());
-
+            log.info(session.getAttribute("category").toString());
 
             if(userDTO.getNickname().equals("admin")){
                 return new RedirectView("/admin/login");

@@ -58,7 +58,7 @@
 
 <!--  관리자면, 단체(회사)일경우 마이플로깅 -> 플로거 센터로 변경 타임리프 이용-->
                                 <div class="header-right-menu1" th:if="${checkLogin}==3 or ${checkLogin}==2">
-                                    <a class="creater" target="_blank" rel="noreferrer" href="/user/center">
+                                    <a class="creater" href="/user/center">
                                         <p class="myplogging">마이플로깅</p>
                                     </a>
                                 </div>
@@ -246,23 +246,22 @@
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="/assets/js/Header.js"></script>
-<script type="text/javascript" th:inline="javascript">
+<!--<script th:inline="javascript" th:fragment="js">-->
+<!--    let checkLogin;-->
+<!--     console.log(checkLogin);-->
+<!--    let sessioncategory = [[${session.category}]];-->
 
-    let category = [[${session.category}]];
+<!--    console.log("js입니다.");-->
 
+<!--    $('.creater').click(function (e) {-->
 
+<!--        console.log("버튼 누름")-->
+<!--           if(sessioncategory.equals("user")){-->
+<!--            e.preventDefault();-->
+<!--            alert("기업 회원만 이용가능합니다. 기업으로 회원가입해주세요.");-->
+<!--        }-->
 
-    $('.creater').click(function (e) {
-           if(category.equals("user")){
-            e.preventDefault();
-            alert("기업 회원만 이용가능합니다. 기업으로 회원가입해주세요.");
-        }
+<!--    })-->
 
-    })
-
-    // $('a.logout').on('click',function () {
-    //     alert("dddd");
-    // })
-</script>
+<!--</script>-->
 </html>
