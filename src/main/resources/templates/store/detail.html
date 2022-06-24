@@ -289,37 +289,36 @@
     let userNum = 22;
     //찜 ajax
     $('.jjim-ajax').on("click",function() {
-
+        alert("클릭했을때")
         if($(this).hasClass("material-symbols-outlined")){ //찜 안되어있을때, insert ajax
-            $(this).removeClass("material-symbols-outlined");
-            $(this).addClass("material-icons");
-            $(this).css("color","red");
-
             $.ajax({
                 url:"/store/jjim",
                 type:"post",
                 data: {userNum : userNum, category: "1", productNum : productNum},
                 success : function (result) {
+                    alert("찜 안되어있을떄")
                     test()
                 }
             })
-
+            // $(this).removeClass("material-symbols-outlined");
+            // $(this).addClass("material-icons");
+            // $(this).css("color","red");
         }else{                                             //찜 되어있으면,   delete ajax
-            $(this).addClass("material-symbols-outlined");
-            $(this).removeClass("material-icons");
-            $(this).css("color","#d3cdcd");
-
             $.ajax({
                 url:"/store/jjim",
                 type:"delete",
                 data: {userNum : userNum, category: "1", productNum : productNum},
                 success : function (result) {
+                    alert("찜 되어있을떄")
                     test()
                 }
             })
+            //
+            // $(this).addClass("material-symbols-outlined");
+            // $(this).removeClass("material-icons");
+            // $(this).css("color","#d3cdcd");
         }
     });
-
 
     //찜...
     function test(){
@@ -329,14 +328,16 @@
             success : function (jjims) {
                 $(jjims).each(function (i, jjim) {
                     if(jjim.userNum==userNum){
-                        if($(".jjim-ajax[name="+jjim.productNum+"]").hasClass("material-symbols-outlined")){
+                        if($(".jjim-ajax[name="+jjim.productNum+"]").hasClass("material-symbols-outlined")){ //찜 안되어있다면
+
                             $(".jjim-ajax[name="+jjim.productNum+"]").removeClass("material-symbols-outlined");
                             $(".jjim-ajax[name="+jjim.productNum+"]").addClass("material-icons");
-                            $(".jjim-ajax[name="+jjim.productNum+"]").css("color","red")
-                        }else{
-                            $(".jjim-ajax[name="+jjim.productNum+"]").addClass("material-symbols-outlined");
-                            $(".jjim-ajax[name="+jjim.productNum+"]").removeClass("material-icons");
-                            $(".jjim-ajax[name="+jjim.productNum+"]").css("color","gray")
+                            $(".jjim-ajax[name="+jjim.productNum+"]").css("color","red");
+                        }else{                                                                                //찜 되어있다면.
+                            // $(".jjim-ajax[name="+jjim.productNum+"]").addClass("material-symbols-outlined");
+                            // $(".jjim-ajax[name="+jjim.productNum+"]").removeClass("material-icons");
+                            // $(".jjim-ajax[name="+jjim.productNum+"]").css("color","gray");
+
                         }
                     }
                 })
