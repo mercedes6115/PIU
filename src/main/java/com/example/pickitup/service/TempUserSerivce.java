@@ -5,6 +5,8 @@ import com.example.pickitup.domain.dao.project.projectFile.ProjectDAO;
 import com.example.pickitup.domain.dao.project.projectFile.ProjectFileDAO;
 import com.example.pickitup.domain.dao.user.*;
 import com.example.pickitup.domain.vo.Criteria;
+import com.example.pickitup.domain.vo.OrderCriteria;
+import com.example.pickitup.domain.vo.dto.OrderDTO;
 import com.example.pickitup.domain.vo.dto.PointDTO;
 import com.example.pickitup.domain.vo.dto.UserDTO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
@@ -51,6 +53,7 @@ public class TempUserSerivce {
 
     // 유저 정보 수정
     public boolean updateUserInfo(UserVO userVO) {
+
         return userDAO.update(userVO);
     }
 
@@ -201,8 +204,12 @@ public class TempUserSerivce {
 
     // orderDAO
     // 주문 목록(관리자용)
-    public List<OrderVO> getOrderList(Criteria criteria){
-        return orderDAO.getList(criteria);
+    public List<OrderDTO> getOrderList(OrderCriteria orderCriteria){
+        return orderDAO.getList(orderCriteria);
+    }
+
+    public int getOrderTotal(OrderCriteria orderCriteria){
+        return orderDAO.getTotal(orderCriteria);
     }
 
     // 주문 취소
@@ -224,8 +231,8 @@ public class TempUserSerivce {
 
 
     // 유저 비밀번호 수정
-    public boolean updatePW(String email) {
-        return userDAO.updatePW(email);
+    public boolean updatePW(String email,String password) {
+        return userDAO.updatePW(email,password);
     }
 
 

@@ -17,7 +17,7 @@ public class ProductQnaCommentServiceTest {
 
 //    @Test
 //    public void getListTest(){
-//        productQnaCommentService.getList(new Criteria());
+//        productQnaCommentService.getList(26L);
 //    }
 
 //    @Test
@@ -32,8 +32,8 @@ public class ProductQnaCommentServiceTest {
 //    @Test
 //    public void updateTest(){
 //        ProductQnaCommentVO vo = new ProductQnaCommentVO();
-//        vo.setNum(9L);
-//        vo.setContent("서비스 답글 수정");
+//        vo.setNum(68L);
+//        vo.setContent("68번 답글 수정");
 //        productQnaCommentService.update(vo);
 //    }
 

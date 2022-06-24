@@ -350,7 +350,7 @@ h4> .menu-store{
     width: 70%;
     padding: 0;
     position: sticky;
-    top: 94px;
+    top: 130px;
 }
 .store_categories li{
     margin: 20px 0;
@@ -359,19 +359,15 @@ h4> .menu-store{
     font-weight: 700;
     font-size: 1rem;
 }
-li.active{
-    background-color: #1f88ff2b;
-    margin-top: 10px;
-}
 .store_categories a{
     text-decoration: none;
     color: black;
 }
-.store_categories a:visited{
-    color: black;
+.store_categories ul li a:hover{
+    color: #1F89FF;
 }
-.store_categories li:hover{
-    background-color: #1f88ff2b;
+li.active a{
+    color: #1F89FF;
 }
 
 /*--------------------------- 스토어 아이템 리스트---------------------*/
@@ -427,9 +423,9 @@ li.active{
     margin-bottom: 56px;
 }
 .item img{
-    border: 1px solid;
     width: 216px;
     height: 216px;
+    border-radius: 3px;
 }
 .item a{
     text-decoration: none;
@@ -455,7 +451,7 @@ li.active{
 }
 .media_store_categories{
     display: none;
-    margin-left: 70px;
+    margin-left: 53px;
 }
 .item{
     position: relative;
@@ -465,6 +461,7 @@ li.active{
     top: 10px;
     right: 10px;
     cursor: pointer;
+    font-weight: bold;
 }
 .red{
     color: red;
@@ -511,17 +508,25 @@ li.active{
     .media_store_categories{
         display: block;
     }
-    .media_store_categories input{
-        background-color: white;
-        border: none;
-        font-family: "Noto Sans KR";
-        font-size: 15px;
-        cursor: pointer;
+    .media_store_categories ul{
+        display: flex;
+        list-style: none;
+        margin-bottom: 0;
+        padding: 0;
     }
-    input.categories_selected{
-        background-color: #1f88ff2b;
-        border-radius: 10px;
-        padding: 0 10px;
+    .media_store_categories ul li{
+        margin-right: 10px;
+    }
+
+    .media_store_categories ul li a{
+        color: black;
+        font-weight: 700;
+    }
+    .media_store_categories ul li a:hover{
+        color: #1F89FF;
+    }
+    .media_store_categories ul li.active a{
+        color: #1F89FF;
     }
     .jjim{
         position: absolute;
@@ -1034,9 +1039,20 @@ textarea{
         margin: 0 24px;
         padding-top: 12px;
     }
+    .all_items{
+        width: 100%;
+        margin: 0 auto;
+    }
     .store_items .all_items ul li{
-        width: 49%;
+        width: 35%;
         margin-right: 24px;
+        flex-basis: max-content;
+    }
+    .store_items .all_items ul{
+        width: 100%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
     }
     
     .nav_item{
@@ -1629,6 +1645,10 @@ footer{
     height: 100%;
     position: absolute;
 }
+.moveImage img{
+    border-radius: 3px;
+    height: 150px;
+}
 
 .readReviews {
     display: flex;
@@ -1862,5 +1882,20 @@ footer{
 .review_content_container img{
     width: 192px;
     height: 108px;
-    border: 1px solid;
+    margin-right: 5px;
+    border-radius: 3px;
+}
+
+.modify_adminComment{
+    color: black;
+}
+.modify_adminComment:hover{
+    text-decoration: underline;
+}
+.delete_adminComment{
+    color: black;
+}
+.delete_adminComment:hover{
+    text-decoration: underline;
+
 }

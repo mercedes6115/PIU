@@ -18,11 +18,6 @@ public class ProjectQnaService {
         return projectQnaDAO.getList(projectNum);
     }
 
-    // qna 상세보기 -> 수정
-    public ProjectQnaVO read(Long projectNum){
-        return projectQnaDAO.read(projectNum);
-    }
-
     // qna 등록
     public void register(ProjectQnaVO projectQnaVO){
         projectQnaDAO.register(projectQnaVO);

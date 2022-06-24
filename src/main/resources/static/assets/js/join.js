@@ -127,7 +127,11 @@ $("#nameCheck").on("click",function () {
         type: "post",
         data: {nickname: $unicknameval},
         success: function (result) {
+<<<<<<< HEAD
             if (result===0) {
+=======
+            if (result=="0") {
+>>>>>>> 97af8ba92cd81ea9f5af9cd8303f1f14b87db28d
                 console.log(result);
                 $('span#nameCheck_text').empty().text("사용 가능한 닉네임 입니다.").css("color", "green");
                 namePass = true;
@@ -338,9 +342,13 @@ $("#submit-corp").on("click", function () {
     }
 })
 
-
 let regex = new RegExp("(.*?)\.(exe|sh|zip|alz)");
 
+<<<<<<< HEAD
+let regex = new RegExp("(.*?)\.(exe|sh|zip|alz)");
+
+=======
+>>>>>>> 97af8ba92cd81ea9f5af9cd8303f1f14b87db28d
 function checkExtension(fileName, fileSize){
     if(regex.test(fileName)){
         alert("업로드 할 수 없는 파일의 형식입니다.");
@@ -397,5 +405,9 @@ $(document).ready(function(){
 
         corpPass =true;
     });
+<<<<<<< HEAD
 });
 
+=======
+});
+>>>>>>> 97af8ba92cd81ea9f5af9cd8303f1f14b87db28d

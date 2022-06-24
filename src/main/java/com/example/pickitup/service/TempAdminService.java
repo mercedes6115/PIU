@@ -2,9 +2,14 @@ package com.example.pickitup.service;
 import com.example.pickitup.domain.dao.product.productFile.ProductDAO;
 import com.example.pickitup.domain.dao.product.productFile.ProductFileDAO;
 import com.example.pickitup.domain.dao.user.*;
+import com.example.pickitup.domain.vo.AdminCriteria;
 import com.example.pickitup.domain.vo.Criteria;
+import com.example.pickitup.domain.vo.OrderCriteria;
 import com.example.pickitup.domain.vo.ProductCriteria;
 import com.example.pickitup.domain.vo.adminVO.AdminBoardDTO;
+import com.example.pickitup.domain.vo.dto.AdminBoardPageDTO;
+import com.example.pickitup.domain.vo.dto.OrderDTO;
+import com.example.pickitup.domain.vo.dto.ProductDTO;
 import com.example.pickitup.domain.vo.dto.UserDTO;
 import com.example.pickitup.domain.vo.product.productFile.ProductFileVO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
@@ -101,6 +106,8 @@ public class TempAdminService {
 //        return productDAO.getProductList(criteria);
 //    }
 
+
+
     // 상품 등록하기 - 관리자용
     public void registerProduct(ProductVO productVO){
         productDAO.register(productVO);
@@ -142,8 +149,8 @@ public class TempAdminService {
 
     // orderDAO
     // 주문 목록 (mapper 추가 및 변경)
-    public List<OrderVO> getOrderList(Criteria criteria){
-        return orderDAO.getList(criteria);
+    public List<OrderDTO> getOrderList(OrderCriteria orderCriteria){
+        return orderDAO.getList(orderCriteria);
     }
 
     //관리자 공지 등록
@@ -152,8 +159,8 @@ public class TempAdminService {
     }
 
     //관리자 공지 리스트
-    public List<AdminBoardDTO> getNoticeList(Criteria criteria){
-        return userDAO.getNoticeList(criteria);
+    public List<AdminBoardDTO> getNoticeList(AdminCriteria adminCriteria){
+        return userDAO.getNoticeList(adminCriteria);
     }
 
     //관리자 공지 상세보기
@@ -162,18 +169,38 @@ public class TempAdminService {
     }
 
     //관리자 공지 총 개수
-    public int getNoticeTotal() {
-        return userDAO.getNoticeTotal();
+    public int getNoticeTotal(AdminCriteria adminCriteria) {
+        return userDAO.getNoticeTotal(adminCriteria);
     }
 
     //관리자 adminboard 게시글 총 개수
-    public int getAdminBoardCount(Criteria criteria) {
-        return userDAO.getAdminBoardCount(criteria);
+    public int getAdminBoardCount(AdminCriteria adminCriteria) {
+        return userDAO.getAdminBoardCount(adminCriteria);
     }
 
     //관리자 adminboard 글 리스트 뽑아오기
-    public List<AdminBoardVO> getAdminboardList(Criteria criteria){
-        return userDAO.getAdminboardList(criteria);
+    public List<AdminBoardVO> getAdminboardList(AdminCriteria adminCriteria){
+        return userDAO.getAdminboardList(adminCriteria);
+    }
+
+    //관리자 adminboard 글 삭제하기
+    public int deleteById(Long num) {
+        return userDAO.deleteById(num);
+    }
+
+    //관리자 adminboard 글 공지 해제 하기
+    public int noticeCancel(Long num){
+        return userDAO.noticeCancel(num);
+    }
+
+    //관리자 adminboard 글 공지 지정 하기
+    public int noticeConfirm(Long num){
+        return userDAO.noticeConfirm(num);
+    }
+
+    //관리자 게시물 관리에서 상세보기
+    public AdminBoardPageDTO getQnaReply(Long num){
+        return userDAO.getQnaReply(num);
     }
 
 

@@ -15,7 +15,7 @@ public class ProductMapperTest {
 
 //    @Test
 //    public void getListTest(){
-//        productMapper.getList().stream().map(ProductVO::toString).forEach(log::info);
+//        productMapper.getList(null).stream().map(ProductVO::toString).forEach(log::info);
 //    }
 //
     @Test
@@ -55,6 +55,11 @@ public class ProductMapperTest {
 //    @Test
 //    public void deleteTest(){
 //        productMapper.delete(21L);
+//    }
+
+//    @Test
+//    public void countTest(){
+//        productMapper.count();
 //    }
 
 

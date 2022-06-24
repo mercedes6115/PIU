@@ -2,19 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.pickitup.mapper.user.OrderMapper">
 
-    <select id="getList" resultType="orderVO">
-        <![CDATA[
-            SELECT ROWNUM RN, NUM, TOTAL, COUNTING, REGIST_DATE, PRODUCT_NUM, USER_NUM, STATUS
-            FROM (
-            SELECT  /*+ INDEX_DESC(TBL_USER SYS_C007334) */
-            ROWNUM RN, NUM, TOTAL, COUNTING, REGIST_DATE, PRODUCT_NUM, USER_NUM, STATUS
-            FROM TBL_ORDER
-            WHERE ROWNUM <= #{pageNum} * #{amount}
-            ORDER BY REGIST_DATE DESC
-            )
-            WHERE RN >(#{pageNum} - 1) * #{amount}
-        ]]>
-    </select>
+<!--    <select id="getList" resultType="orderVO">-->
+<!--        <![CDATA[-->
+<!--            SELECT ROWNUM RN, NUM, TOTAL, COUNTING, REGIST_DATE, PRODUCT_NUM, USER_NUM, STATUS-->
+<!--            FROM (-->
+<!--            SELECT  /*+ INDEX_DESC(TBL_USER SYS_C007334) */-->
+<!--            ROWNUM RN, NUM, TOTAL, COUNTING, REGIST_DATE, PRODUCT_NUM, USER_NUM, STATUS-->
+<!--            FROM TBL_ORDER-->
+<!--            WHERE ROWNUM <= #{pageNum} * #{amount}-->
+<!--            ORDER BY REGIST_DATE DESC-->
+<!--            )-->
+<!--            WHERE RN >(#{pageNum} - 1) * #{amount}-->
+<!--        ]]>-->
+<!--    </select>-->
 <!--    <select id="getList" resultType="boardVO">
         <![CDATA[
         SELECT BOARD_BNO, BOARD_TITLE, BOARD_CONTENT, BOARD_WRITER, BOARD_REGISTER_DATE, BOARD_UPDATE_DATE
@@ -49,6 +49,111 @@
         ]]>
     </select>-->
 
+    <select id="getList" resultType="orderDTO">
+
+        SELECT RN, ORDERNUM, NICKNAME, EMAIL, PHONE, ADDRESS, PRODUCTNUM, PRODUCTNAME, MANUFACTURER, SUPPLIER, REGIST_DATE, STATUS
+        FROM
+        (
+        SELECT
+        ROWNUM RN,TBL_ORDER.NUM AS ORDERNUM,TBL_USER.NICKNAME AS NICKNAME ,TBL_USER.EMAIL AS EMAIL,TBL_USER.PHONE AS PHONE ,TBL_USER.ADDRESS AS ADDRESS,TBL_PRODUCT.NUM AS PRODUCTNUM,TBL_PRODUCT.NAME AS PRODUCTNAME,TBL_PRODUCT.MANUFACTURER  AS  MANUFACTURER,TBL_PRODUCT.SUPPLIER AS SUPPLIER,TBL_ORDER.REGIST_DATE AS REGIST_DATE,TBL_ORDER.STATUS AS STATUS
+        FROM TBL_USER,TBL_ORDER,TBL_PRODUCT
+        WHERE TBL_ORDER.USER_NUM  = TBL_USER.NUM
+        AND TBL_ORDER.PRODUCT_NUM = TBL_PRODUCT.NUM
+        <![CDATA[
+            AND ROWNUM <= #{pageNum} * #{amount}
+            )
+            WHERE RN >(#{pageNum} - 1) * #{amount}
+            ]]>
+        <choose>
+            <when test="type == 'orderNum'.toString()">
+                AND ORDERNUM LIKE '%'||#{keyword}||'%'
+            </when>
+            <when test="type == 'nickname'.toString()">
+                AND NICKNAME LIKE '%'||#{keyword}||'%'
+            </when>
+            <when test="type == 'email'.toString()">
+                AND EMAIL LIKE '%'||#{keyword}||'%'
+            </when>
+            <when test="type == 'phone'.toString()">
+                AND PHONE LIKE '%'||#{keyword}||'%'
+            </when>
+            <when test="type == 'address'.toString()">
+                AND ADDRESS LIKE '%'||#{keyword}||'%'
+            </when>
+        </choose>
+        <choose>
+            <when test="type1 == 'productName'.toString()">
+                AND PRODUCTNAME LIKE '%'||#{keyword1}||'%'
+            </when>
+            <when test="type1 == 'productNum'.toString()">
+                AND PRODUCTNUM LIKE '%'||#{keyword1}||'%'
+            </when>
+            <when test="type1 == 'manufacturer'.toString()">
+                AND MANUFACTURER LIKE '%'||#{keyword1}||'%'
+            </when>
+            <when test="type1 == 'supplier'.toString()">
+                AND SUPPLIER LIKE '%'||#{keyword1}||'%'
+            </when>
+        </choose>
+        <choose>
+            <when test="startDate != null">
+                AND (REGIST_DATE BETWEEN #{startDate} AND #{endDate})
+            </when>
+        </choose>
+    </select>
+
+    <select id="getTotal" resultType="_int">
+
+        SELECT COUNT(NICKNAME)
+        FROM
+        (
+        SELECT
+        ROWNUM RN,TBL_ORDER.NUM AS ORDERNUM,TBL_USER.NICKNAME AS NICKNAME ,TBL_USER.EMAIL AS EMAIL,TBL_USER.PHONE AS PHONE ,TBL_USER.ADDRESS AS ADDRESS,TBL_PRODUCT.NUM AS PRODUCTNUM,TBL_PRODUCT.NAME AS PRODUCTNAME,TBL_PRODUCT.MANUFACTURER  AS  MANUFACTURER,TBL_PRODUCT.SUPPLIER AS SUPPLIER,TBL_ORDER.REGIST_DATE AS REGIST_DATE,TBL_ORDER.STATUS AS STATUS
+        FROM TBL_USER,TBL_ORDER,TBL_PRODUCT
+        WHERE TBL_ORDER.USER_NUM  = TBL_USER.NUM
+        AND TBL_ORDER.PRODUCT_NUM = TBL_PRODUCT.NUM
+        <![CDATA[
+            AND ROWNUM <= #{pageNum} * #{amount}
+            )
+            WHERE RN >(#{pageNum} - 1) * #{amount}
+            ]]>
+        <choose>
+            <when test="type == 'orderNum'.toString()">
+                AND ORDERNUM LIKE '%'||#{keyword}||'%'
+            </when>
+            <when test="type == 'nickname'.toString()">
+                AND NICKNAME LIKE '%'||#{keyword}||'%'
+            </when>
+            <when test="type == 'email'.toString()">
+                AND EMAIL LIKE '%'||#{keyword}||'%'
+            </when>
+            <when test="type == 'phone'.toString()">
+                AND PHONE LIKE '%'||#{keyword}||'%'
+            </when>
+            <when test="type == 'address'.toString()">
+                AND ADDRESS LIKE '%'||#{keyword}||'%'
+            </when>
+        </choose>
+        <choose>
+            <when test="type1 == 'productName'.toString()">
+                AND PRODUCTNAME LIKE '%'||#{keyword1}||'%'
+            </when>
+            <when test="type1 == 'productNum'.toString()">
+                AND PRODUCTNUM LIKE '%'||#{keyword1}||'%'
+            </when>
+            <when test="type1 == 'manufacturer'.toString()">
+                AND MANUFACTURER LIKE '%'||#{keyword1}||'%'
+            </when>
+            <when test="type1 == 'supplier'.toString()">
+                AND SUPPLIER LIKE '%'||#{keyword1}||'%'
+            </when>
+        </choose>
+        <choose>
+            <when test="startDate != null">
+                AND (REGIST_DATE BETWEEN #{startDate} AND #{endDate})
+            </when>
+        </choose>
+    </select>
 
     <select id="getDetail" resultType="userVo">
         SELECT  ONUM, TOTAL, COUNTING, OREGISTDATE,USERNUM,PRODUCTNUM PRODUCTNAME, PRODUCTPRICE
@@ -101,6 +206,44 @@
         <result column="PRICE" property="price"/>
     </resultMap>
 
+
+    <select id="order" resultType="string" parameterType="java.lang.String">
+        SELECT
+        U.NUM,U.NICKNAME,U.PHONE,U.ADDRESS,U.ADDRESS_DETAIL,U.POINT,P.NAME,P.PRICE,P.NUM,
+        O.NUM,O.USER_NUM,O.PRODUCT_NUM,O.TOTAL,O.COUNTING,O.STATUS,O.USER_COMMENT
+        FROM TBL_USER U ,TBL_PRODUCT P,TBL_ORDER O
+        WHERE U.NUM=O.USER_NUM
+        AND P.NUM=O.PRODUCT_NUM
+    </select>
+
+
+
+    <!--    <select id="order" parameterType="_int" resultType="OrderVO">-->
+    <!--        SELECT-->
+    <!--        U.NUM,U.NICKNAME,U.PHONE,U.ADDRESS,U.ADDRESS_DETAIL,U.POINT,P.NAME,P.PRICE-->
+    <!--        FROM TBL_USER U, TBL_PRODUCT P-->
+    <!--        WHERE NUM=#{num}-->
+    <!--    </select>-->
+    <select id="getUser" resultType="UserVO">
+
+        SELECT
+        NUM, NICKNAME,PHONE, ADDRESS,ADDRESS_DETAIL, POINT
+        FROM TBL_USER
+        WHERE NUM=#{num}
+    </select>
+    <select id="getProduct" resultType="ProductVO">
+    SELECT
+        NUM, NAME, CONTENT, PRICE
+    FROM TBL_PRODUCT
+    WHERE NUM = #{num}
+    </select>
+
+    <update id="updateUser">
+        SELECT
+        NUM, ADDRESS,ADDRESS_DETAIL, POINT
+        FROM TBL_USER
+        WHERE NUM=#{num}
+    </update>
 </mapper>
 
 

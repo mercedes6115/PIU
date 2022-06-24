@@ -1,18 +1,21 @@
 package com.example.pickitup.controller;
 
+import com.example.pickitup.domain.vo.AdminCriteria;
 import com.example.pickitup.domain.vo.Criteria;
-
-import com.example.pickitup.domain.vo.ProductCriteria;
-
+import com.example.pickitup.domain.vo.*;
+import com.example.pickitup.domain.vo.dto.*;
+import com.example.pickitup.domain.vo.adminVO.AdminBoardDTO;
 import com.example.pickitup.domain.vo.dto.AdminBoardPageDTO;
-
 import com.example.pickitup.domain.vo.dto.PageDTO;
 import com.example.pickitup.domain.vo.dto.ProductPageDTO;
 import com.example.pickitup.domain.vo.dto.UserDTO;
 import com.example.pickitup.domain.vo.user.AdminBoardVO;
+import com.example.pickitup.domain.vo.user.UserVO;
 import com.example.pickitup.service.TempAdminService;
 import com.example.pickitup.service.TempCompanyService;
 import com.example.pickitup.service.TempProductService;
+import com.example.pickitup.domain.vo.user.AdminBoardVO;
+import com.example.pickitup.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -23,12 +26,16 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.xml.ws.Service;
+import java.util.List;
 
 @Controller
 @Slf4j
@@ -38,7 +45,8 @@ public class AdminController {
     private final TempAdminService tempAdminService;
     private final TempProductService tempProductService;
     private final TempCompanyService tempCompanyService;
-
+    private final TempUserSerivce tempUserSerivce;
+    private final ProjectService projectService;
     // 관리자 로그인
     @GetMapping("/login")
     public String login(){
@@ -53,12 +61,25 @@ public class AdminController {
 
     // 관리자 게시물 목록
     @GetMapping("/boardList")
-    public void boardList(Criteria criteria, Model model){
+    public void boardList(AdminCriteria adminCriteria, Model model){
         log.info("==========");
         log.info("===List===");
         log.info("==========");
-        model.addAttribute("adminboardList", tempAdminService.getAdminboardList(criteria));
-        model.addAttribute("adminBoardPageDTO",new AdminBoardPageDTO(criteria, (tempAdminService.getAdminBoardCount(criteria))));
+        log.info("=====pagenum : "+adminCriteria.getPageNum());
+        log.info("=====amount : "+adminCriteria.getAmount());
+        log.info("====adminboardcount : " + adminCriteria.getAdminBoardCount());
+
+
+        if(adminCriteria.getEndDate()==""){
+            adminCriteria.setStartDate(null);
+        }
+        if(adminCriteria.getEndDate()==""){
+            adminCriteria.setEndDate(null);
+        }
+
+        model.addAttribute("adminboardList", tempAdminService.getAdminboardList(adminCriteria));
+        model.addAttribute("adminBoardPageDTO",new AdminBoardPageDTO(adminCriteria, (tempAdminService.getAdminBoardCount(adminCriteria))));
+
     }
 
     // 관리자 게시물 등록
@@ -75,20 +96,102 @@ public class AdminController {
         log.info("====================");
         tempAdminService.registerWrite(adminBoardVO);
         rttr.addFlashAttribute("num", adminBoardVO.getNum());
-        return new RedirectView("/admin/main");
+        return new RedirectView("/admin/boardList");
     }
+
+    // 관리자 adminboard 체크 삭제
+    @ResponseBody
+    @PostMapping("/deleteById")
+    public String deleteById(Long num, HttpServletRequest request){
+        String[] ajaxMsg = request.getParameterValues("valueArr");
+        int size = ajaxMsg.length;
+        for(int i = 0; i<size; i++){
+            num = Long.parseLong(ajaxMsg[i]);
+            tempAdminService.deleteById(num);
+        }
+        return "/admin/boardList";
+    }
+
+    // 관리자 adminboard 체크 공지 해제
+    @ResponseBody
+    @PostMapping("/noticeCancel")
+    public String noticeCancel(Long num, HttpServletRequest request){
+        String[] ajaxMsg = request.getParameterValues("valueArr");
+        int size = ajaxMsg.length;
+        for(int i = 0; i<size; i++){
+            num = Long.parseLong(ajaxMsg[i]);
+            tempAdminService.noticeCancel(num);
+        }
+        return "/admin/boardList";
+    }
+
+    // 관리자 adminboard 체크 공지 지정
+    @ResponseBody
+    @PostMapping("/noticeConfirm")
+    public String noticeConfirm(Long num, HttpServletRequest request){
+        String[] ajaxMsg = request.getParameterValues("valueArr");
+        int size = ajaxMsg.length;
+        for(int i = 0; i<size; i++){
+            num = Long.parseLong(ajaxMsg[i]);
+            tempAdminService.noticeConfirm(num);
+        }
+        return "/admin/boardList";
+    }
+
 
 
     // 관리자 주문 목록
     @GetMapping("/orderList")
-    public void orderList(){
+    public void orderList(OrderCriteria orderCriteria, Model model){
+        log.info("====================");
+        log.info("/orderList");
+        log.info("====================");
+        if(orderCriteria.getType()==""){
+            orderCriteria.setType(null);
+        }
+        if(orderCriteria.getType1()==""){
+            orderCriteria.setType1(null);
+        }
+        if(orderCriteria.getEndDate()==""){
+            orderCriteria.setStartDate(null);
+        }
+        if(orderCriteria.getEndDate()==""){
+            orderCriteria.setEndDate(null);
+        }
+
+        model.addAttribute("orderList",tempAdminService.getOrderList(orderCriteria));
+        model.addAttribute("orderPageDTO",new OrderPageDTO(orderCriteria,(tempUserSerivce.getOrderTotal(orderCriteria))));
+
 
     }
 
     // 관리자 프로젝트 목록
     @GetMapping("/projectList")
-    public void projectList(){
+    public void projectList(ProjectCriteria projectCriteria, Model model, HttpServletRequest request){
+        log.info("====================");
+        log.info("/projectList");
+        log.info("====================");
 
+        if(projectCriteria.getType()==""){
+            projectCriteria.setType(null);
+        }
+        if(projectCriteria.getType1()=="total"){
+            projectCriteria.setType1(null);
+        }
+        if(projectCriteria.getType2()==""){
+            projectCriteria.setType2(null);
+        }
+        if(projectCriteria.getEndDate()==""){
+            projectCriteria.setStartDate(null);
+        }
+        if(projectCriteria.getStartDate()==""){
+            projectCriteria.setEndDate(null);
+        }
+        request=((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+        log.info(request.getRemoteAddr()+"==========");
+        model.addAttribute( "projectList",projectService.getProjectList(projectCriteria));
+        model.addAttribute("projectPageDTO",new ProjectPageDTO(projectCriteria,(projectService.getProjectTotal(projectCriteria))));
+        model.addAttribute("ipV4",request.getRemoteAddr());
     }
 
     // 관리자 프로젝트 생성 폼
@@ -160,8 +263,8 @@ public class AdminController {
             criteria.setType(null);
         }
         if(criteria.getEndDate()==""){
-                criteria.setStartDate(null);
-            }
+            criteria.setStartDate(null);
+        }
         if(criteria.getEndDate()==""){
             criteria.setEndDate(null);
         }
@@ -203,8 +306,13 @@ public class AdminController {
 
     // 관리자 유저 문의 글 보기
     @GetMapping("/userQnA")
-    public void userQnA(){
-
+    public void userQnA(Long num, HttpServletRequest request, Model model){
+        String requestURL = request.getRequestURI();
+        log.info(requestURL.substring(requestURL.lastIndexOf("/")));
+        log.info("*************");
+        log.info("================================");
+        log.info("================================");
+        model.addAttribute("adminBoard", tempAdminService.getQnaReply(num));
     }
 
 

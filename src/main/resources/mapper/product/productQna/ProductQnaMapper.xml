@@ -4,7 +4,7 @@
     <select id="getList" resultType="productQnaVO">
     SELECT
         NUM, CONTENT, REGIST_DATE, UPDATE_DATE,
-        STATUS, USER_NUM, PRODUCT_NUM
+        USER_NUM, PRODUCT_NUM
     FROM TBL_PRODUCT_QNA
     WHERE PRODUCT_NUM=#{productNum}
     ORDER BY UPDATE_DATE DESC
