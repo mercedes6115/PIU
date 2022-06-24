@@ -4537,3 +4537,35 @@ th.point-change-date {
     -webkit-box-align: center;
     align-items: center;
 }
+
+.passwordBox {
+    border: 1px solid rgb(248,248,248);
+    width: 60%;
+}
+
+.password-Input-Box, .passwordCheck-Input-Box{
+    display: flex;
+    padding: 10px;
+    align-items: center;
+}
+
+.password-name, .passwordCheck-name {
+    font-size: 14px;
+    width: 25%;
+}
+
+#password, #passwordCheck {
+    width: 60%;
+    height: 30px;
+}
+
+.pwcaseCheck {
+    margin-left: 26%;
+    font-size: 14px;
+}
+
+.pwCheckcaseCheck {
+    margin-left: 26%;
+    font-size: 14px;
+    margin-bottom: 10px;
+}

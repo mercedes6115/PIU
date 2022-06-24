@@ -107,10 +107,11 @@ public class UserController {
 
     }
 
-    // 회원정보 수정 전 비밀번호 확인
-    @GetMapping("/pwCheck")
-    public void pwCheck(){
-
+    // 마이페이지 비밀번호 수정
+    @GetMapping("/myPassword")
+    public String myPassword(Model model){
+        model.addAttribute("getDetail",tempUserSerivce.readUserInfo(2L));
+        return "/user/myPassword";
     }
 
     // 회원 정보 수정
