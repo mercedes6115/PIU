@@ -41,17 +41,16 @@ public class ProductReviewService {
         }
     }
 
-//    // 리뷰 수정하기
-//    @Transactional(rollbackFor = Exception.class)
-    public boolean update(ProductReviewVO productReviewVO){
-            productReviewDAO.update(productReviewVO);
-//            if(productReviewVO.getFileList() != null) {
-//                productReviewVO.getFileList().forEach(productReviewFileVO -> {
-//                    log.info(productReviewVO.getNum().toString());
-//                    productReviewFileVO.setReviewNum(productReviewVO.getNum());
-//                    productReviewFileDAO.update(productReviewFileVO);
-//                });
-//            }
+    //리뷰 수정하기
+    @Transactional(rollbackFor = Exception.class)
+    public boolean modify(ProductReviewVO productReviewVO) {
+        productReviewFileDAO.remove(productReviewVO.getNum());
+        if(productReviewVO.getFileList() != null) {
+            productReviewVO.getFileList().forEach(productReviewFileVO -> {
+                productReviewFileVO.setReviewNum(productReviewVO.getNum());
+                productReviewFileDAO.register(productReviewFileVO);
+            });
+        }
         return productReviewDAO.update(productReviewVO);
     }
 

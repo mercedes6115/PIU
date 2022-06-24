@@ -112,7 +112,7 @@ public class StoreController {
     public String reviewModify(ProductReviewVO productReviewVO, Model model){
 //        model.addAttribute("user", productNum); 유저의 정보 가져와야함.?? 어떻게??
         productReviewVO.setUserNum(22L);
-        productReviewService.update(productReviewVO);
+        productReviewService.modify(productReviewVO);
         return storeDetail(productReviewVO.getProductNum(), model);
     }
 

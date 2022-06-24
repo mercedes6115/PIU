@@ -19,7 +19,7 @@
     </insert>
     <delete id="delete">
     DELETE FROM TBL_PRODUCT_REVIEW_FILE
-    WHERE UUID=#{uuid};
+    WHERE REVIEW_NUM=#{reviewNum}
     </delete>
 </mapper>
 
