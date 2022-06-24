@@ -1,9 +1,19 @@
 package com.example.pickitup.controller;
 
+import com.example.pickitup.domain.vo.AdminCriteria;
+import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.*;
-
 import com.example.pickitup.domain.vo.dto.*;
-
+import com.example.pickitup.domain.vo.adminVO.AdminBoardDTO;
+import com.example.pickitup.domain.vo.dto.AdminBoardPageDTO;
+import com.example.pickitup.domain.vo.dto.PageDTO;
+import com.example.pickitup.domain.vo.dto.ProductPageDTO;
+import com.example.pickitup.domain.vo.dto.UserDTO;
+import com.example.pickitup.domain.vo.user.AdminBoardVO;
+import com.example.pickitup.domain.vo.user.UserVO;
+import com.example.pickitup.service.TempAdminService;
+import com.example.pickitup.service.TempCompanyService;
+import com.example.pickitup.service.TempProductService;
 import com.example.pickitup.domain.vo.user.AdminBoardVO;
 import com.example.pickitup.service.*;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +33,9 @@ import org.springframework.web.servlet.view.RedirectView;
 
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.xml.ws.Service;
+import java.util.List;
 
 @Controller
 @Slf4j
@@ -53,6 +65,10 @@ public class AdminController {
         log.info("==========");
         log.info("===List===");
         log.info("==========");
+        log.info("=====pagenum : "+adminCriteria.getPageNum());
+        log.info("=====amount : "+adminCriteria.getAmount());
+        log.info("====adminboardcount : " + adminCriteria.getAdminBoardCount());
+
 
         if(adminCriteria.getEndDate()==""){
             adminCriteria.setStartDate(null);
@@ -60,6 +76,7 @@ public class AdminController {
         if(adminCriteria.getEndDate()==""){
             adminCriteria.setEndDate(null);
         }
+
         model.addAttribute("adminboardList", tempAdminService.getAdminboardList(adminCriteria));
         model.addAttribute("adminBoardPageDTO",new AdminBoardPageDTO(adminCriteria, (tempAdminService.getAdminBoardCount(adminCriteria))));
 
@@ -94,6 +111,34 @@ public class AdminController {
         }
         return "/admin/boardList";
     }
+
+    // 관리자 adminboard 체크 공지 해제
+    @ResponseBody
+    @PostMapping("/noticeCancel")
+    public String noticeCancel(Long num, HttpServletRequest request){
+        String[] ajaxMsg = request.getParameterValues("valueArr");
+        int size = ajaxMsg.length;
+        for(int i = 0; i<size; i++){
+            num = Long.parseLong(ajaxMsg[i]);
+            tempAdminService.noticeCancel(num);
+        }
+        return "/admin/boardList";
+    }
+
+    // 관리자 adminboard 체크 공지 지정
+    @ResponseBody
+    @PostMapping("/noticeConfirm")
+    public String noticeConfirm(Long num, HttpServletRequest request){
+        String[] ajaxMsg = request.getParameterValues("valueArr");
+        int size = ajaxMsg.length;
+        for(int i = 0; i<size; i++){
+            num = Long.parseLong(ajaxMsg[i]);
+            tempAdminService.noticeConfirm(num);
+        }
+        return "/admin/boardList";
+    }
+
+
 
     // 관리자 주문 목록
     @GetMapping("/orderList")
@@ -218,8 +263,8 @@ public class AdminController {
             criteria.setType(null);
         }
         if(criteria.getEndDate()==""){
-                criteria.setStartDate(null);
-            }
+            criteria.setStartDate(null);
+        }
         if(criteria.getEndDate()==""){
             criteria.setEndDate(null);
         }
@@ -261,8 +306,13 @@ public class AdminController {
 
     // 관리자 유저 문의 글 보기
     @GetMapping("/userQnA")
-    public void userQnA(){
-
+    public void userQnA(Long num, HttpServletRequest request, Model model){
+        String requestURL = request.getRequestURI();
+        log.info(requestURL.substring(requestURL.lastIndexOf("/")));
+        log.info("*************");
+        log.info("================================");
+        log.info("================================");
+        model.addAttribute("adminBoard", tempAdminService.getQnaReply(num));
     }
 
 

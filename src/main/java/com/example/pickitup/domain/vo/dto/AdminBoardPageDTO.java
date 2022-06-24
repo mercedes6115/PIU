@@ -25,6 +25,7 @@ public class AdminBoardPageDTO {
     private String status;
     private String content;
     private String userNum;
+    private String nickname;
 
     private int adminBoardCount;
 
