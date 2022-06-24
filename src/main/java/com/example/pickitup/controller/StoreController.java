@@ -60,6 +60,7 @@ public class StoreController {
     // 스토어 상세페이지
     @GetMapping("/detail")
     public String storeDetail(Long num ,Model model){
+        model.addAttribute("jjimCount",jjimService.count(num));
         model.addAttribute("count",productReviewService.count(num));
         model.addAttribute("product",productService.getDetail(num));
         return "/store/detail";
@@ -246,5 +247,12 @@ public class StoreController {
     @DeleteMapping("/jjim")
     public void removeJjim(JjimVO jjimVO){
         jjimService.remove(jjimVO);
+    }
+
+    //찜 갯수
+    @ResponseBody
+    @GetMapping("jjimCount")
+    public int count(Long productNum){
+        return jjimService.count(productNum);
     }
 }

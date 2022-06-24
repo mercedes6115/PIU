@@ -35,7 +35,10 @@
             <section class="allreveiws" th:object="${review}"> <!--실제 후기 컨테이너-->
                 <div class="p-24">
                     <div class="flex">
-                        <div class="profile_img"><img src="/images/5.jpg"></div>
+                        <div class="profile_img">
+<!--                            유저 프로필 사진 넣을곳-->
+                            <img src="/images/5.jpg">
+                        </div>
                         <div class="review_id_and_date">
                             <div class="review_id" th:text="|*{userNum}|"></div>
                             <input type="hidden" class="reviewNumber" th:value="*{num}">
@@ -122,6 +125,16 @@
         })
     })
 
+    // // 유저 프로필 사진 ajax
+    // $.ajax({
+    //     url :"",
+    //     type : "",
+    //     success: function (img) {
+    //         let str = "";
+    //         str += "<img src='/userFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
+    //         $('.profile_img').html(str);
+    //     }
+    // })
 
 
     //무한스크롤

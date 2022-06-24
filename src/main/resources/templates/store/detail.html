@@ -91,7 +91,7 @@
                                 <div class="btn text-align flex" style="margin-right: 5px;  justify-content: center; align-items: center;">
                                         <span class="padding-t material-symbols-outlined jjim-ajax" th:name="*{num}" style="font-size: 20px;">
                                         favorite
-                                        </span> <p style="font-weight: normal; font-size: 14px; margin: 0;">&nbsp; 좋아요</p></div>
+                                        </span> <p style="font-weight: normal; font-size: 14px; margin: 0;" class="jjimCount">&nbsp;</p></div>
                                 <div class="btn text-align flex share_btn" style="margin-right: 5px;  justify-content: center; align-items: center;"><span class="padding-t material-symbols-outlined" style="font-size: 18px;">
                                         ios_share
                                         </span><p style="font-weight: normal; font-size: 14px; margin: 0;">&nbsp; 공유하기</p></div>
@@ -218,7 +218,7 @@
                         <div class="btn text-align flex" style="margin-right: 5px;  justify-content: center; align-items: center;">
                                 <span class="padding-t material-symbols-outlined jjim-ajax" th:name="*{num}" style="font-size: 20px;">
                                 favorite
-                                </span> <p style="font-weight: normal; font-size: 14px; margin: 0;">&nbsp; 좋아요</p></div>
+                                </span> <p style="font-weight: normal; font-size: 14px; margin: 0;" class="jjimCount">&nbsp;</p></div>
                         <div class="btn text-align flex share_btn" style="margin-right: 5px;  justify-content: center; align-items: center;"><span class="padding-t material-symbols-outlined" style="font-size: 18px;">
                                 ios_share
                                 </span><p style="font-weight: normal; font-size: 14px; margin: 0;">&nbsp; 공유하기</p></div>
@@ -289,39 +289,38 @@
     let userNum = 22;
     //찜 ajax
     $('.jjim-ajax').on("click",function() {
-        alert("클릭했을때")
+
         if($(this).hasClass("material-symbols-outlined")){ //찜 안되어있을때, insert ajax
             $.ajax({
                 url:"/store/jjim",
                 type:"post",
                 data: {userNum : userNum, category: "1", productNum : productNum},
                 success : function (result) {
-                    alert("찜 안되어있을떄")
-                    test()
+                    jjimCounts()
                 }
             })
-            // $(this).removeClass("material-symbols-outlined");
-            // $(this).addClass("material-icons");
-            // $(this).css("color","red");
+            $(this).removeClass("material-symbols-outlined");
+            $(this).addClass("material-icons");
+            $(this).css("color","red");
         }else{                                             //찜 되어있으면,   delete ajax
             $.ajax({
                 url:"/store/jjim",
                 type:"delete",
                 data: {userNum : userNum, category: "1", productNum : productNum},
                 success : function (result) {
-                    alert("찜 되어있을떄")
-                    test()
+                    jjimCounts()
                 }
             })
             //
-            // $(this).addClass("material-symbols-outlined");
-            // $(this).removeClass("material-icons");
-            // $(this).css("color","#d3cdcd");
+            $(this).addClass("material-symbols-outlined");
+            $(this).removeClass("material-icons");
+            $(this).css("color","#d3cdcd");
         }
     });
 
     //찜...
     function test(){
+        jjimCounts()
         $.ajax({
             url : "/store/jjim",
             type : "get",
@@ -329,14 +328,13 @@
                 $(jjims).each(function (i, jjim) {
                     if(jjim.userNum==userNum){
                         if($(".jjim-ajax[name="+jjim.productNum+"]").hasClass("material-symbols-outlined")){ //찜 안되어있다면
-
                             $(".jjim-ajax[name="+jjim.productNum+"]").removeClass("material-symbols-outlined");
                             $(".jjim-ajax[name="+jjim.productNum+"]").addClass("material-icons");
                             $(".jjim-ajax[name="+jjim.productNum+"]").css("color","red");
-                        }else{                                                                                //찜 되어있다면.
-                            // $(".jjim-ajax[name="+jjim.productNum+"]").addClass("material-symbols-outlined");
-                            // $(".jjim-ajax[name="+jjim.productNum+"]").removeClass("material-icons");
-                            // $(".jjim-ajax[name="+jjim.productNum+"]").css("color","gray");
+                        }else{                                                                             //찜되어있다면
+                            $(".jjim-ajax[name="+jjim.productNum+"]").addClass("material-symbols-outlined");
+                            $(".jjim-ajax[name="+jjim.productNum+"]").removeClass("material-icons");
+                            $(".jjim-ajax[name="+jjim.productNum+"]").css("color","gray");
 
                         }
                     }
@@ -345,6 +343,19 @@
         })
     }
 
+    //찜 카운트 ajax
+    function jjimCounts(){
+        $.ajax({
+            url:"/store/jjimCount?productNum="+productNum,
+            type:"get",
+            success:function (count) {
+                let cnt=0;
+                cnt += count;
+                $(".jjimCount").text(cnt);
+            }
+
+        })
+    }
 
     //--------------------------------------------------------- 리뷰 가져오기 ajax
     $.ajax({
