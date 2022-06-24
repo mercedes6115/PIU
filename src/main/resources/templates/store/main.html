@@ -135,10 +135,6 @@
         }
     });
 
-
-
-    // let productNum = [[${num}]];
-    //
     // //scroll top
     $('.gototop').click(function(){
         $('html, body').animate({scrollTop : 0},300);
@@ -195,7 +191,7 @@
                     str += "</span>";
                     str += "<small style=\"font-size: 11px; margin-left: 5px\">";
                         //찜 갯수 ajax
-                    (function (i) {
+                    (function(){
                         $.ajax({
                             url: "/store/jjimCount?productNum="+list.num,
                             type : "get",
@@ -236,16 +232,16 @@
     }
 
 
-    // 메인 ajax
+    // 스토어 카테고리 ajax
     $('.store_categories a').click(function (e) {
         e.preventDefault();
-        let category = $(this).attr('href');
+        category = $(this).attr('href');
         showmain(category);
     })
-    // 메인 ajax
+    // 스토어 카테고리 ajax  (반응형)
     $('.media_store_categories a').click(function (e) {
         e.preventDefault();
-        let category = $(this).attr('href');
+        category = $(this).attr('href');
         showmain(category);
     })
 
