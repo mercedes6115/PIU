@@ -101,7 +101,13 @@ public class StoreController {
         return storeDetail(productReviewVO.getProductNum(), model);
     }
 
-    // 스토어 리뷰 작성
+    //스토어 리뷰 수정
+    @GetMapping("/reviewModify")
+    public void reviewModify(){
+
+    }
+
+    // 스토어 리뷰 삭제
     @ResponseBody
     @GetMapping("/reviewDelete")
     public void reviewDelete(Long num){
