@@ -3,6 +3,7 @@ package com.example.pickitup.controller;
 import com.example.pickitup.domain.vo.ProductQnaCriteria;
 import com.example.pickitup.domain.vo.dto.ProductDTO;
 import com.example.pickitup.domain.vo.dto.ProductQnaPageDTO;
+import com.example.pickitup.domain.vo.dto.ProductReviewUserDTO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 import com.example.pickitup.domain.vo.product.productQna.ProductQnaCommentVO;
 import com.example.pickitup.domain.vo.product.productQna.ProductQnaVO;
@@ -67,7 +68,8 @@ public class StoreController {
     // 스토어 상세페이지
     @GetMapping("/detail")
     public String storeDetail(Long num ,Model model){
-        model.addAttribute("user", tempUserSerivce.readUserInfo(22L));
+//        // 유저 세션으로 받아서 num 넣어줘야함
+//        model.addAttribute("user", tempUserSerivce.readUserInfo(22L));
         model.addAttribute("jjimCount",jjimService.count(num));
         model.addAttribute("count",productReviewService.count(num));
         model.addAttribute("product",productService.getDetail(num));
@@ -78,21 +80,26 @@ public class StoreController {
     @ResponseBody
     @GetMapping("/reviewLists/{productNum}")
     public List<ProductReviewVO> reviewLists(@PathVariable("productNum") Long productNum){
+        // 유저 세션으로 받아서 num 넣어줘야함
        return productReviewService.getList(productNum);
     }
-
-    @GetMapping("/reviewList")
-    public String reviewList(Long productNum, Model model){
-        model.addAttribute("reviews",productReviewService.getList(productNum));
-        return "/store/reviewList";
+    //유저 정보 얻어오기
+    @ResponseBody
+    @GetMapping("/userInfo")
+    public UserVO userinfo(Long userNum){
+        return tempUserSerivce.readUserInfo(userNum);
     }
 
+
+    // 전체 리뷰 보기 페이지
     @GetMapping("/goReviewList/{productNum}")
     public String goReviewList(@PathVariable("productNum") Long productNum,Model model){
+//        // 유저 세션으로 받아서 num 넣어줘야함
+//        model.addAttribute("user",tempUserSerivce.readUserInfo(22L));
         model.addAttribute("products",productService.getDetail(productNum));
         model.addAttribute("productNum",productNum);
         model.addAttribute("reviews",productReviewService.getList(productNum));
-        return reviewList(productNum,model);
+        return "/store/reviewList";
     }
 
     // 스토어 리뷰 작성
@@ -274,4 +281,5 @@ public class StoreController {
     public int count(Long productNum){
         return jjimService.count(productNum);
     }
+
 }
