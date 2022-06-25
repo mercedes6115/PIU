@@ -172,16 +172,26 @@ public class StoreController {
         return "success";
     }
 
-    // 스토어 결제 정보 입력
     @GetMapping("/payment")
-    public void payment(){
-
+    public String payment(Long num){
+        orderService.payment(num);
+        return "store/payment";
     }
-//    @GetMapping("/payment")
-//    public String payment(Long num){
-//        orderService.payment(num);
-//        return "/payment";
+
+    // 스토어 결제 정보 입력
+//    @PostMapping("/payment")
+//    public String paymentForm(UserVO userVO){
+//        orderService.updateUser(userVO);
+//
+//        return ("/store/payment");
 //    }
+
+
+
+
+    //업데이트는 아직 안됨
+
+
 
 
     // 스토어 결제 정보 입력

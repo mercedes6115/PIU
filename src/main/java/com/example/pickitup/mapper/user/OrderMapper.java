@@ -37,7 +37,7 @@ public interface OrderMapper {
 
     //
     public List<UserVO> getUser(Long num);
-    //    public int updateUser(UserVO userVO);
+    public int updateUser(UserVO userVO);
     public List<ProductVO> getProduct(Long num);
 
 
