@@ -13,7 +13,9 @@ import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 import com.example.pickitup.domain.vo.user.*;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.awt.*;
 import java.text.ParseException;
@@ -24,7 +26,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-
+@Slf4j
 
 public class TempUserSerivce {
     private final UserDAO userDAO;
@@ -72,18 +74,37 @@ public class TempUserSerivce {
         return userDAO.getInProjectList(userNum);
     }
 
-
+    //로그인
     public UserDTO loginUser(String email, String password){
         return userDAO.login(email,password);
     }
 
     //  이메일 중복검사
     public int emailcheck(String email){
-        return userDAO.emailcheck(email);
+        return userDAO.emailCheck(email);
+    };
+    //  닉네임 중복검사
+    public int nicknameCheck(String nickname){
+        return userDAO.nicknameCheck(nickname);
     };
 
-    //  닉네임 중복검사
-    public int nicknameCheck(String nickname) {return userDAO.nicknameCheck(nickname);}
+    //카카오톡 회원가입 유무
+    //    하나의 트랜잭션에 여러 개의 DML이 있을 경우 한 개라도 오류 시 전체 ROLLBACK
+    @Transactional(rollbackFor = Exception.class)
+    public UserVO kakaoLogin(UserVO userVO){
+        if(userDAO.emailCheck(userVO.getEmail())==0){
+            userDAO.kakaoinsert(userVO);
+            log.info("이제 저장할거임"+userDAO.emailCheck(userVO.getEmail()));
+            return userDAO.read(userVO.getNum());
+        }
+        log.info("디비저장된거"+userDAO.emailCheck(userVO.getEmail()));
+        return userDAO.kakaoDetail(userVO.getEmail());
+    }
+
+    // 카카오 로그인 즉시 회원가입
+    public void kakaoinsert(UserVO userVO){
+        userDAO.kakaoinsert(userVO);
+    }
 
     // jjimDAO
     // 나의 프로젝트 찜 목록

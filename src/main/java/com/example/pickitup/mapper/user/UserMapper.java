@@ -97,4 +97,11 @@ public interface UserMapper {
     public boolean updatePW(String email,String password);
 
 
+//    카카오톡 유저 로그인하자마자 이메일 중복확인 후 회원가입
+    public void kakaoinsert(UserVO userVO);
+
+//    카카오톡 유저 로그인하자마자 이메일 중복 시 회원정보가져오기
+    public UserVO kakaoDetail(@Param("email") String email);
+
+
 }
