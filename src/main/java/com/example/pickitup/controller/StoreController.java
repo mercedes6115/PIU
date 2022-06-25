@@ -83,6 +83,7 @@ public class StoreController {
         // 유저 세션으로 받아서 num 넣어줘야함
        return productReviewService.getList(productNum);
     }
+
     //유저 정보 얻어오기
     @ResponseBody
     @GetMapping("/userInfo")

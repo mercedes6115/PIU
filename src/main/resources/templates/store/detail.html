@@ -384,13 +384,14 @@
                 str += "<div class=\"reviewProfileForm\">";
                 str += "<span class=\"reviewProfile\">";
                 str += "<picture class=\"profile\">";
-                str += "<img src=\"/images/chun.png\">";
+                // str += "<img src=\"/images/chun.png\">";
                 str += "</picture>";
                 str += "</span>";
                 str += "</div>";
                 str += "<div class=\"reviewNameDate\">";
                 str += "<div class=\"reviewName\">";
-                // ajax 로 리뷰 revewis[i].userNum 을가지고 가져오기
+
+                // 유저 아이디 가져오기
                 (function(){
                     let userNum = reviews[i].userNum;
                     $.ajax({
@@ -399,9 +400,23 @@
                         async : false,
                         success:function (user) {
                             str += user.nickname;
+                            // =======================================유저 사진 받아와서 뿌릴예정=========================================================
+                            // let profileImg = "<img src='/userFile/display?fileName=" + user[0].uploadPath + "/_" + user[0].uuid + "_"  + user[0].fileName + "'>";
+                            // $(".profile").html(profileImg);
+                            // console.log($(".profile"))
                         }
                     })
                 })(i);
+                //메인 사진걸기
+                // $.ajax({
+                //     url: "/productFile/list/"+productNum,
+                //     type : "get",
+                //     success : function (files) {
+                //         let str = "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
+                //         $(".mainImage").html(str);
+                //         // $("img#"+productNum).attr("src", "/upload/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName )
+                //     }
+                // })
                 str +="</div>";
                 str += "<div class=\"reviewDate\">"+(reviews[i].updateDate).substring(0,10)+"</div>";
                 str += "</div>";
