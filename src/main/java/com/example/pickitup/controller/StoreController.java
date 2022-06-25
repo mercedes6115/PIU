@@ -22,6 +22,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
@@ -98,11 +100,12 @@ public class StoreController {
 
     // 스토어 리뷰 작성 폼
     @PostMapping("/reviewWrite")
-    public String reviewWriteForm(ProductReviewVO productReviewVO, Model model){
+    public RedirectView reviewWriteForm(ProductReviewVO productReviewVO, RedirectAttributes rttr){
 //        model.addAttribute("user", productNum); 유저의 정보 가져와야함.?? 어떻게??
         productReviewVO.setUserNum(22L);
         productReviewService.insert(productReviewVO);
-        return storeDetail(productReviewVO.getProductNum(), model);
+        return new RedirectView("/store/detail");
+//
     }
 
     //스토어 리뷰 수정

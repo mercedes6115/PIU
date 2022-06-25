@@ -514,7 +514,6 @@
                             async:false,
                             success : function (qnaCommentLists) {
                                 $.each(qnaCommentLists, function (i, comment) {
-                                    let commentNum = null;
                                     str += "<div class=\"flex\" style=\"align-items: center;\">";
                                     str += "<div class=\"admin_profile_img\"><img src=\"/images/4.jpg\"></div>";
                                     str += "<div class=\"flex id_and_date\" style='width: 100%'>";
@@ -531,7 +530,6 @@
                                     str += "<p class=\"admin_comment\" id=\""+comment.num+"\">" + comment.content + "</p>";
                                     str += "</div>";
                                     str += "<div class='testline' name=\""+comment.num+"\"></div>"
-                                    commentNum = comment.num;
                                 })
 
                             }
@@ -617,6 +615,8 @@
                 contentType: "application/json",
                 success : function (comment) {
                     showQnaList(pageNum);
+                    수정중=false;
+                    답글중 = false;
                 }
             })
         }else{  // 문의 댓글 수정
@@ -626,6 +626,8 @@
                 data : {num: $(this).attr("name"), content : $content},
                 success : function (result) {
                     showQnaList(pageNum);
+                    수정중=false;
+                    답글중 = false;
                 }
 
             })
@@ -638,14 +640,14 @@
            alert("수정중 인 댓글이 있습니다.")
             return;
         }
-        if(답글중){
-            $(".makeComment").text("답글달기")
+        if(답글중){ // 답글중이면
+            $(this).text("답글달기")
             $(".doComment").val("");
             $(".commentBox[name="+$(this).attr("href")+"]").hide();
             답글중 = false;
             return;
         }
-        $(".makeComment").text("답글취소")
+        $(this).text("답글취소")
         $(".doComment").val("");
         $(".commentBox[name="+$(this).attr("href")+"]").show();
         답글중 = true;
@@ -668,6 +670,10 @@
         e.preventDefault();
         if(수정중){
             alert("수정중인 댓글이있습니다");
+            return;
+        }
+        if(답글중){
+            alert("진행중인 답글이 있습니다.");
             return;
         }
         let update = "";

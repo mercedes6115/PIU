@@ -17,7 +17,11 @@
         FROM
             (
                 SELECT /*+ INDEX_DESC(TBL_PRODUCT_REVIEW SYS_C007137) */ROWNUM RN, NUM, CONTENT, REGIST_DATE, UPDATE_DATE, USER_NUM, PRODUCT_NUM
-                FROM TBL_PRODUCT_QNA
+                FROM (
+                        SELECT NUM, CONTENT, REGIST_DATE, UPDATE_DATE,USER_NUM, PRODUCT_NUM
+                        FROM TBL_PRODUCT_QNA
+                        ORDER BY UPDATE_DATE DESC
+                     )
                 WHERE ROWNUM <= #{productQnaCriteria.pageNum}*#{productQnaCriteria.amount} AND PRODUCT_NUM = #{productNum}
             )
         WHERE RN > (#{productQnaCriteria.pageNum}-1) * #{productQnaCriteria.amount}

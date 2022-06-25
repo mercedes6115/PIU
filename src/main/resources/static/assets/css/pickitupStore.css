@@ -963,9 +963,17 @@ textarea{
     position: relative;
     color: rgb(26, 26, 26);
 }
+.QnaPaging{
+    font-size: 15px;
+    font-weight: bold;
+    color: black;
+}
+.QnaPaging code{
+    margin-right: 5px;
+}
 
 
-/*문의하기*/
+/*-------------------------------------문의하기------------------------*/
 .question-container{
     width: 100%;
 }
@@ -1334,7 +1342,6 @@ label[for='attach3'] div.thumb3{
     align-items: center;
     background-color: #f5f6f8;
     border: 1px solid #d4d4d4;
-
 }
 
 .pay_point{
