@@ -316,6 +316,8 @@ public class AdminController {
         log.info("================================");
         model.addAttribute("adminBoard", tempAdminService.getQnaReply(num));
         log.info("프로젝트QNA넘버 : " + adminBoardDTO.getProjectQnaNum());
+        log.info("프로덕트QNA넘버 : " + adminBoardDTO.getProductQnaNum());
+        log.info("adminboard리스트의 num값 : " + adminBoardDTO.getNum());
     }
 
 
@@ -337,11 +339,22 @@ public class AdminController {
         log.info("================================");
         log.info("여기프로젝트QNA 넘버 : " + adminQnaCommentDTO.getProjectQnaNum());
         log.info("프로덕트QNA 넘버 : " + adminQnaCommentDTO.getProductQnaNum());
+        log.info("if문 이전의 게시글의 num값 : " + adminQnaCommentDTO.getNum());
+
+        tempAdminService.changeAnswerStatus(adminQnaCommentDTO.getNum());
+
         log.info("================================");
         if((adminQnaCommentDTO.getCategory()).equals("1")){
             adminQnaCommentDTO.setQnaNum(adminQnaCommentDTO.getProjectQnaNum());
             tempAdminService.getProjectQnaReply(adminQnaCommentDTO);
         }
+        if((adminQnaCommentDTO.getCategory()).equals("2")){
+            adminQnaCommentDTO.setQnaNum(adminQnaCommentDTO.getProductQnaNum());
+            tempAdminService.getProductQnaReply(adminQnaCommentDTO);
+        }
+        log.info("if문 이후에 게시글의 nun값 : " + adminQnaCommentDTO.getNum());
+
+
         return new RedirectView("/admin/boardList");
     }
 //    public RedirectView replyComplete(AdminBoardDTO adminBoardDTO, ProjectQnaCommentVO projectQnaCommentVO, RedirectAttributes rttr) {

@@ -254,8 +254,8 @@
             SELECT SEQ_ADMIN_BOARD.NEXTVAL FROM DUAL
         </selectKey>
         INSERT INTO TBL_ADMIN_BOARD
-        (NUM, CATEGORY, TITLE, CONTENT, USER_NUM)
-        VALUES(#{num}, #{category}, #{title}, #{content}, #{userNum})
+        (NUM, CATEGORY, TITLE, CONTENT, USER_NUM, STATUS, ANSWER_STATUS, PROJECT_QNA_NUM, PRODUCT_QNA_NUM)
+        VALUES(#{num}, '4', #{title}, #{content}, #{userNum}, '1', '1', #{projectQnaNum, jdbcType=VARCHAR}, #{productQnaNum, jdbcType=VARCHAR})
     </insert>
 
 
@@ -309,9 +309,9 @@
     <!-- ADMINBOARD에 게시글 리스트 가져오기-->
     <select id="getAdminboardList" resultType="adminboardDTO">
         SELECT B.* FROM(
-        SELECT A.* FROM
-        (SELECT /*+ INDEX_DESC(TBL_ADMIN_BOARD SYS_C007290) */
-        ROWNUM RN, TBL_USER.NICKNAME, TBL_ADMIN_BOARD.CATEGORY,
+        SELECT ROWNUM RN, A.* FROM
+        (SELECT
+        TBL_USER.NICKNAME, TBL_ADMIN_BOARD.CATEGORY,
         TBL_ADMIN_BOARD.USER_NUM,TBL_ADMIN_BOARD.ANSWER_STATUS, TBL_ADMIN_BOARD.STATUS ,TBL_ADMIN_BOARD.NUM, TBL_ADMIN_BOARD.PROJECT_QNA_NUM, TBL_ADMIN_BOARD.PRODUCT_QNA_NUM,
         TBL_ADMIN_BOARD.TITLE, TBL_ADMIN_BOARD.CONTENT, TBL_ADMIN_BOARD.REGIST_DATE FROM TBL_ADMIN_BOARD, TBL_USER
         WHERE TBL_ADMIN_BOARD.USER_NUM = TBL_USER.NUM
@@ -327,6 +327,12 @@
             <if test="type3 == 'projectQna'.toString()">
                 AND TBL_ADMIN_BOARD.CATEGORY = '1'
             </if>
+            <if test="type1 == 'noAnswer'.toString()">
+                AND ANSWER_STATUS = '1'
+            </if>
+            <if test="type1 == 'answer'.toString()">
+                AND ANSWER_STATUS = '2'
+            </if>
             <if test="type2 == 'title'.toString()">
                 AND TBL_ADMIN_BOARD.TITLE LIKE '%'||#{keyword}||'%'
             </if>
@@ -340,6 +346,7 @@
                 AND (TO_CHAR(TBL_ADMIN_BOARD.REGIST_DATE,'yyyy-mm-dd hh24:mi:ss')) BETWEEN
                 #{startDate} AND (#{endDate}||'23:59:59')
             </if>
+            ORDER BY TBL_ADMIN_BOARD.REGIST_DATE DESC
         )A
         <![CDATA[
             WHERE ROWNUM <= #{pageNum} * #{amount}
@@ -423,10 +430,26 @@
             SELECT SEQ_PRODUCT_QNA_COMMENT.NEXTVAL FROM DUAL
         </selectKey>
         INSERT INTO TBL_PRODUCT_QNA_COMMENT
-        (NUM, CONTENT, USER_NUM, COMPANY_NUM, QNA_NUM)
-        VALUES(#{num}, #{content}, #{userNum, jdbcType=VARCHAR}, #{companyNum, jdbcType=VARCHAR}, #{qnaNum, jdbcType=VARCHAR})
+        (NUM, CONTENT, USER_NUM, QNA_NUM)
+        VALUES(#{num}, #{content}, #{userNum, jdbcType=VARCHAR}, #{qnaNum, jdbcType=VARCHAR})
     </insert>
 
+    <update id="answerComplete">
+        UPDATE TBL_ADMIN_BOARD
+        SET ANSWER_STATUS= '2'
+        WHERE NUM=#{num}
+    </update>
+
+    <insert id="qnaStoreSave">
+    <selectKey keyProperty="num" resultType="long" order="BEFORE">
+        SELECT SEQ_ADMIN_BOARD.NEXTVAL FROM DUAL
+    </selectKey>
+    INSERT INTO TBL_ADMIN_BOARD
+    (NUM, CATEGORY, TITLE, CONTENT, USER_NUM, STATUS, ANSWER_STATUS, PROJECT_QNA_NUM, PRODUCT_QNA_NUM)
+    VALUES(#{num}, '2',
+        (SELECT TBL_PRODUCT.NAME FROM TBL_PRODUCT,TBL_PRODUCT_QNA  WHERE TBL_PRODUCT_QNA.PRODUCT_NUM = TBL_PRODUCT.NUM AND TBL_PRODUCT.NUM =#{productNum}),
+         #{content}, #{userNum}, '1', '1', #{projectQnaNum, jdbcType=VARCHAR}, (SELECT TBL_PRODUCT_QNA.NUM FROM TBL_PRODUCT,TBL_PRODUCT_QNA  WHERE TBL_PRODUCT_QNA.PRODUCT_NUM = TBL_PRODUCT.NUM AND TBL_PRODUCT.NUM =#{productNum}))
+    </insert>
 
 </mapper>
 

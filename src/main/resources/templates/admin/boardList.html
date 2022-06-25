@@ -113,7 +113,7 @@
                     <tr th:object="${adminCriteria}">
                         <th>게시판 선택</th>
                         <td>
-                            <select name="type3">
+                            <select name="type3" id="type3">
                                 <option value="all" th:selected="*{type3} == 'all'">전체</option>
                                 <option value="notice" th:selected="*{type3} == 'notice'">공지사항</option>
                                 <option value="createrQna" th:selected="*{type3} == 'createrQna'">크리에이터센터 문의</option>
@@ -133,12 +133,12 @@
                             <input type="text" value="" name="keyword" th:value="*{keyword}">
                         </td>
                     </tr>
-                    <tr th:object="${adminCriteria}">
+                    <tr th:object="${adminCriteria}" id="answer-tr">
                         <th>답변상태</th>
                         <td>
-                            <span>전체</span><input name="type1" type="radio" value="all" th:checked="*{type1} == 'all'" id="" checked>
-                            <span>답변 대기</span><input name="type1" value="noAnswer" th:checked="*{type1} == 'noAnswer'" type="radio"  id="">
-                            <span>답변 완료</span><input name="type1" value="answer" th:checked="*{type1} == 'answer'" type="radio"  id="">
+                            <span>전체</span><input name="type1"  type="radio" value="all" th:checked="*{type1} == 'all'" id="all" checked>
+                            <span>답변 대기</span><input name="type1"   value="noAnswer" th:checked="*{type1} == 'noAnswer'" type="radio"  id="noAnswer">
+                            <span>답변 완료</span><input name="type1"  value="answer" th:checked="*{type1} == 'answer'" type="radio"  id="answer">
                         </td>
                     </tr>
                 </table>
@@ -255,6 +255,37 @@
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 <!-- datepicker 한국어로 -->
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/datepicker-ko.js"></script>
+<script>
+    $('#type3').change(function() {
+        var state = $('#type3 option:selected').val();
+        if ( state == 'notice' ) {
+            $('#all').attr('disabled', true);
+            $('#noAnswer').attr('disabled', true);
+            $('#answer').attr('disabled', true);
+        } else {
+            $('#all').attr('disabled', false);
+            $('#noAnswer').attr('disabled', false);
+            $('#answer').attr('disabled', false);
+        }
+
+    });
+
+    $(document).ready(function () {
+        var state = $('#type3 option:selected').val();
+        if ( state == 'notice' ) {
+            $('#all').attr('disabled', true);
+            $('#noAnswer').attr('disabled', true);
+            $('#answer').attr('disabled', true);
+        } else {
+            $('#all').attr('disabled', false);
+            $('#noAnswer').attr('disabled', false);
+            $('#answer').attr('disabled', false);
+        }
+    });
+
+
+</script>
+
 <script th:inline="javascript">
     let num = [[${num}]];
     let paging = [[${adminCriteria.listLink}]];
@@ -296,21 +327,21 @@
         $.datepicker.setDefaults($.datepicker.regional['ko']);
         // Datepicker
         $(".datepicker").datepicker({
-            showButtonPanel: true,
+            showButtonPanel: false,
             dateFormat: "yy-mm-dd",
-            onClose : function ( selectedDate ) {
-                var eleId = $(this).attr("id");
-                var optionName = "";
-                if(eleId.indexOf("StartDate") > 0) {
-                    eleId = eleId.replace("StartDate", "EndDate");
-                    optionName = "minDate";
-                } else {
-                    eleId = eleId.replace("EndDate", "StartDate");
-                    optionName = "maxDate";
-                }
-                $("#"+eleId).datepicker( "option", optionName, selectedDate );
-                $(".searchDate").find(".chkbox2").removeClass("on");
-            }
+            // onClose : function ( selectedDate ) {
+            //     var eleId = $(this).attr("id");
+            //     var optionName = "";
+            //     if(eleId.indexOf("StartDate") > 0) {
+            //         eleId = eleId.replace("StartDate", "EndDate");
+            //         optionName = "minDate";
+            //     } else {
+            //         eleId = eleId.replace("EndDate", "StartDate");
+            //         optionName = "maxDate";
+            //     }
+            //     $("#"+eleId).datepicker( "option", optionName, selectedDate );
+            //     $(".searchDate").find(".chkbox2").removeClass("on");
+            // }
         });
         //시작일.
         $('#startDate').datepicker("option","onClose", function( selectedDate ) {
@@ -400,7 +431,8 @@
                     },
                     success: function () {
                         alert("삭제 성공");
-                        location.replace("/admin/boardList")
+                        // location.replace("/admin/boardList")
+                        location.href = "/admin/boardList" + paging;
                     }
                 });
             }
@@ -432,7 +464,8 @@
                     },
                     success: function () {
                         alert("공지 해제 했습니다");
-                        location.replace("/admin/boardList")
+                        location.href = "/admin/boardList" + paging;
+                        // location.replace("/admin/boardList")
                     }
                 });}
 
@@ -486,7 +519,8 @@
                     },
                     success: function () {
                         alert("공지 지정 했습니다");
-                        location.replace("/admin/boardList")
+                        // location.replace("/admin/boardList")
+                        location.href = "/admin/boardList" + paging;
                     }
                 });}
 

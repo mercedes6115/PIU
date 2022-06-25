@@ -35,14 +35,14 @@ public class AdminCriteria {
     public String getListLink(){
         UriComponentsBuilder builder = UriComponentsBuilder.fromPath("")
                 .queryParam("pageNum", this.pageNum)
-                .queryParam("amount", this.amount);
-//                .queryParam("type", this.type)
-//                .queryParam("type1", this.type1)
-//                .queryParam("type2", this.type2)
-//                .queryParam("type3", this.type3)
-//                .queryParam("startDate", this.startDate)
-//                .queryParam("endDate", this.endDate)
-//                .queryParam("keyword", this.keyword)
+                .queryParam("amount", this.amount)
+                .queryParam("type", this.type)
+                .queryParam("type1", this.type1)
+                .queryParam("type2", this.type2)
+                .queryParam("type3", this.type3)
+                .queryParam("startDate", this.startDate)
+                .queryParam("endDate", this.endDate)
+                .queryParam("keyword", this.keyword);
 //                .queryParam("keyword1", this.keyword1)
 //                .queryParam("total", this.total)
 //                .queryParam("adminBoardCount", this.adminBoardCount);

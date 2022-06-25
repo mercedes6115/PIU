@@ -51,20 +51,31 @@
                 <h2>답글 남기기</h2>
             </div>
 
-            <input type="textarea" rows="5" name="content" style="width: 100%">
+                <textarea rows="5" name="content" id="content" th:value="*{content}" style="width: 100%"></textarea>
                 <input type="hidden" id="category" name="category" th:value="*{category}">
                 <input type="hidden" id="projectQnaNum" name="projectQnaNum" th:value="*{projectQnaNum}">
                 <input type="hidden" id="productQnaNum" name="productQnaNum" th:value="*{productQnaNum}">
+                <input type="hidden" id="num" name="num" th:value="*{num}">
             </form>
             <div>
-                <button type="button" onclick="document.getElementById('qnaReply').submit();">답글등록</button>
+                <button type="button" id="replyOk" >답글등록</button>
             </div>
 
         </div>
     </div>
 </div>
 </body>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script th:replace="~{/admin/adminSideBar :: AdminSideBarJSImport}"></script>
+
+<script>
+    $('#replyOk').on("click", function () {
+        if (confirm("답글을 등록할까요?")) {
+            $('#qnaReply').submit();
+        }
+        return false;
+    });
+</script>
 
 </html>

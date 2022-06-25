@@ -3,6 +3,7 @@ package com.example.pickitup.mapper.user;
 import com.example.pickitup.domain.vo.AdminCriteria;
 import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.dto.AdminQnaCommentDTO;
+import com.example.pickitup.domain.vo.dto.AdminQnaDTO;
 import com.example.pickitup.domain.vo.product.productQna.ProductQnaCommentVO;
 import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaCommentVO;
 import com.example.pickitup.domain.vo.user.AdminBoardVO;
@@ -177,7 +178,7 @@ public class UserMapperTests {
     }
 
     @Test
-    public void getprojectQnaReply() {
+    public void getprojectQnaReplyTest() {
         AdminQnaCommentDTO adminQnaCommentDTO = new AdminQnaCommentDTO();
         adminQnaCommentDTO.setContent("시작시간은 오후12시입니다.");
         adminQnaCommentDTO.setUserNum(0L);
@@ -191,14 +192,27 @@ public class UserMapperTests {
     }
 
     @Test
-    public void getproductQnaReply() {
-        ProductQnaCommentVO productQnaCommentVO = new ProductQnaCommentVO();
-        productQnaCommentVO.setContent("오늘 배송됩니다.");
-        productQnaCommentVO.setUserNum(0L);
-        productQnaCommentVO.setQnaNum(1L);
-        userMapper.productQnaReply(productQnaCommentVO);
+    public void getproductQnaReplyTest() {
+        AdminQnaCommentDTO adminQnaCommentDTO = new AdminQnaCommentDTO();
+        adminQnaCommentDTO.setContent("오늘 배송됩니다.");
+        adminQnaCommentDTO.setUserNum(0L);
+        adminQnaCommentDTO.setQnaNum(1L);
+        userMapper.productQnaReply(adminQnaCommentDTO);
     }
 
+    @Test
+    public void answerCompleteTest() {
+        userMapper.answerComplete(4L);
+    }
+
+    @Test
+    public void qnaSaveTest() {
+        AdminQnaDTO adminQnaDTO = new AdminQnaDTO();
+        adminQnaDTO.setContent("이 상품 언제 배송 도착하나요?");
+        adminQnaDTO.setUserNum(1L);
+        adminQnaDTO.setProductNum(1L);
+        userMapper.qnaStoreSave(adminQnaDTO);
+    }
 }
 
 

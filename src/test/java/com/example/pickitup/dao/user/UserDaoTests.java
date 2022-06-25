@@ -5,6 +5,7 @@ import com.example.pickitup.domain.vo.AdminCriteria;
 import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.adminVO.AdminBoardDTO;
 import com.example.pickitup.domain.vo.dto.AdminQnaCommentDTO;
+import com.example.pickitup.domain.vo.dto.AdminQnaDTO;
 import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaCommentVO;
 import com.example.pickitup.domain.vo.user.AdminBoardVO;
 import com.example.pickitup.domain.vo.user.UserVO;
@@ -139,7 +140,30 @@ public class UserDaoTests {
     }
 
     @Test
+    public void productQnaReplyTest() {
+        AdminQnaCommentDTO adminQnaCommentDTO = new AdminQnaCommentDTO();
+        adminQnaCommentDTO.setContent("디티오테스트01");
+        adminQnaCommentDTO.setUserNum(0L);
+        adminQnaCommentDTO.setQnaNum(1L);
+        userDAO.productQnaReply(adminQnaCommentDTO);
+    }
+
+    @Test
+    public void answerCompleteTest() {
+        userDAO.answerComplete(3L);
+    }
+
+    @Test
     public void nicknameCheckTest() { log.info("결과 : " + userDAO.nicknameCheck("짜리킴"));}
+
+    @Test
+    public void qnaStoreSaveTest() {
+        AdminQnaDTO adminQnaDTO = new AdminQnaDTO();
+        adminQnaDTO.setContent("다오 테스트");
+        adminQnaDTO.setUserNum(5L);
+        adminQnaDTO.setProductNum(3L);
+        userDAO.qnaStoreSave(adminQnaDTO);
+    }
 
 }
 

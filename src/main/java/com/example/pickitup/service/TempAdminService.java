@@ -201,10 +201,21 @@ public class TempAdminService {
         return userDAO.getQnaReply(num);
     }
 
-    //관리자 문의 댓글 달기
+    //관리자 프로젝트 문의에 댓글 달기
     public void getProjectQnaReply(AdminQnaCommentDTO adminQnaCommentDTO){
         userDAO.projectQnaReply(adminQnaCommentDTO);
     }
+
+    //관리자 상품 문의에 댓글 달기
+    public void getProductQnaReply(AdminQnaCommentDTO adminQnaCommentDTO){
+        userDAO.productQnaReply(adminQnaCommentDTO);
+    }
+
+    //관리자 문의에 댓글 달고 난후 게시물의 answerStatus 2로 변경
+    public void changeAnswerStatus(Long num){
+        userDAO.answerComplete(num);
+    }
+
 
 
 }

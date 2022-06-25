@@ -170,4 +170,18 @@ public class TempUserServiceTests {
 //        tempAdminService.getProjectQnaReply(projectQnaCommentVO);
     }
 
+    @Test
+    public void getproductQnaReply() {
+        AdminQnaCommentDTO adminQnaCommentDTO = new AdminQnaCommentDTO();
+        adminQnaCommentDTO.setContent("디티오서비스테스트");
+        adminQnaCommentDTO.setUserNum(1L);
+        adminQnaCommentDTO.setQnaNum(1L);
+        tempAdminService.getProductQnaReply(adminQnaCommentDTO);
+    }
+
+    @Test
+    public void changeAnswerStatus(){
+        tempAdminService.changeAnswerStatus(5L);
+    }
+
 }
