@@ -115,6 +115,7 @@
                 type:"post",
                 data: {userNum : userNum, category: "1", productNum : productNum},
                 success : function (result) {
+                    showmain(category);
                 }
             })
 
@@ -128,15 +129,12 @@
                 type:"delete",
                 data: {userNum : userNum, category: "1", productNum : productNum},
                 success : function (result) {
+                    showmain(category);
                 }
             })
         }
     });
 
-
-
-    // let productNum = [[${num}]];
-    //
     // //scroll top
     $('.gototop').click(function(){
         $('html, body').animate({scrollTop : 0},300);
@@ -167,7 +165,7 @@
                     str += "favorite";
                     str += "</span>";
                     str += "<a class=\"goDetail\" th:href=\""+list.num+"\" style=\"cursor:pointer\">";
-                    (function (i) {
+                    (function () {
                         $.ajax({
                             url: "/productFile/list/"+list.num,
                             type : "get",
@@ -191,7 +189,19 @@
                     str += "<span class=\"material-symbols-outlined\" style=\"font-size: 12px;\">";
                     str += "favorite";
                     str += "</span>";
-                    str += "<small style=\"font-size: 11px; margin-left: 5px\">300..</small>";
+                    str += "<small style=\"font-size: 11px; margin-left: 5px\">";
+                        //찜 갯수 ajax
+                    (function(){
+                        $.ajax({
+                            url: "/store/jjimCount?productNum="+list.num,
+                            type : "get",
+                            async:false,  // ajax 안에 ajax를 사용할때는 동기식으로 바꿔줘야함
+                            success : function (count) {
+                                str += count;
+                            }
+                        })
+                    })(i);
+                    str += "</small>";
                     str += "</div>";
                     str += "</div>";
                     str += "<div style=\"height: 18px;\">";
@@ -206,7 +216,6 @@
                     url : "/store/jjim",
                     type : "get",
                     success : function (jjims) {
-                        let str = "";
                         $(jjims).each(function (i, jjim) {
                             if(jjim.userNum==userNum){
                                 if($(".jjim[name="+jjim.productNum+"]").hasClass("material-symbols-outlined")){
@@ -223,16 +232,16 @@
     }
 
 
-    // 메인 ajax
+    // 스토어 카테고리 ajax
     $('.store_categories a').click(function (e) {
         e.preventDefault();
-        let category = $(this).attr('href');
+        category = $(this).attr('href');
         showmain(category);
     })
-    // 메인 ajax
+    // 스토어 카테고리 ajax  (반응형)
     $('.media_store_categories a').click(function (e) {
         e.preventDefault();
-        let category = $(this).attr('href');
+        category = $(this).attr('href');
         showmain(category);
     })
 

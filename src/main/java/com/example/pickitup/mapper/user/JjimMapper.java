@@ -23,6 +23,8 @@ public interface JjimMapper {
     // 찜한 상품 모두 가져오기
     public List<JjimVO> getList();
 
+    public int count(Long productNum);
+
     // registDate update 해주기 
     // projectNum하고 userNum을 주세요
 //    해당 외래키로 registDate sysdate할 예정

@@ -48,9 +48,9 @@
 <form action="/store/itemChoose" method="post" th:object="${product}">
     <div class="pay_bar_media" style="text-align: center;">
         <div class="flex" style="width: 100%;">
-            <div style="width: 7%; padding-left: 10px;"><span class="material-symbols-outlined pointer jjim-ajax" th:name="*{num}" style="font-size: 40px; padding-top: 15px;">
-                    favorite
-                    </span></div>
+<!--            <div style="width: 7%; padding-left: 10px;"><span class="material-symbols-outlined pointer jjim-ajax" th:name="*{num}" style="font-size: 40px; padding-top: 15px;">-->
+<!--                    favorite-->
+<!--                    </span></div>-->
             <input class="toBuy" type="submit" value="구매하기" style="width: 90%; height: 50px;">
         </div>
     </div>
@@ -91,7 +91,7 @@
                                 <div class="btn text-align flex" style="margin-right: 5px;  justify-content: center; align-items: center;">
                                         <span class="padding-t material-symbols-outlined jjim-ajax" th:name="*{num}" style="font-size: 20px;">
                                         favorite
-                                        </span> <p style="font-weight: normal; font-size: 14px; margin: 0;">&nbsp; 좋아요</p></div>
+                                        </span> <p style="font-weight: normal; font-size: 14px; margin: 0;" class="jjimCount">&nbsp;</p></div>
                                 <div class="btn text-align flex share_btn" style="margin-right: 5px;  justify-content: center; align-items: center;"><span class="padding-t material-symbols-outlined" style="font-size: 18px;">
                                         ios_share
                                         </span><p style="font-weight: normal; font-size: 14px; margin: 0;">&nbsp; 공유하기</p></div>
@@ -122,7 +122,7 @@
                                 <div class="reviewHead">
                                     <div class="highlight" style="display: flex; justify-content: space-between">
                                         <p>실제 구매 후기</p>
-                                        <div style=" margin-right: 5%;"><a class="goToReviewWrite">리뷰작성</a></div>
+                                        <div><a class="goToReviewWrite">리뷰작성</a></div>
                                     </div>
                                 </div>
                                 <div class="wrapImage">
@@ -158,7 +158,7 @@
                         <div class="flex" style="align-items: center; justify-content: space-between;">
                             <p class="highlight">문의</p>
                             <!--                                문의하기 a 태그에 num 태워서 보내기-->
-                            <div style=" margin-right: 5%;"><a class="btn_qnaToadmin">문의하기</a></div>
+                            <div><a class="btn_qnaToadmin">문의하기</a></div>
                         </div>
                         <div class="space"></div>
                         <div class="ProductQnas"></div>
@@ -218,7 +218,7 @@
                         <div class="btn text-align flex" style="margin-right: 5px;  justify-content: center; align-items: center;">
                                 <span class="padding-t material-symbols-outlined jjim-ajax" th:name="*{num}" style="font-size: 20px;">
                                 favorite
-                                </span> <p style="font-weight: normal; font-size: 14px; margin: 0;">&nbsp; 좋아요</p></div>
+                                </span> <p style="font-weight: normal; font-size: 14px; margin: 0;" class="jjimCount">&nbsp;</p></div>
                         <div class="btn text-align flex share_btn" style="margin-right: 5px;  justify-content: center; align-items: center;"><span class="padding-t material-symbols-outlined" style="font-size: 18px;">
                                 ios_share
                                 </span><p style="font-weight: normal; font-size: 14px; margin: 0;">&nbsp; 공유하기</p></div>
@@ -284,59 +284,58 @@
 <!--<script src="/static/assets/js/store.js"></script>-->
 <script th:inline="javascript">
     let productNum = [[${product.num}]];
-    test()
+    showJjimcheck()
     // 임시 유저 userNum = 22;
     let userNum = 22;
     //찜 ajax
     $('.jjim-ajax').on("click",function() {
 
         if($(this).hasClass("material-symbols-outlined")){ //찜 안되어있을때, insert ajax
-            $(this).removeClass("material-symbols-outlined");
-            $(this).addClass("material-icons");
-            $(this).css("color","red");
-
             $.ajax({
                 url:"/store/jjim",
                 type:"post",
                 data: {userNum : userNum, category: "1", productNum : productNum},
                 success : function (result) {
-                    test()
+                    jjimCounts()
                 }
             })
-
+            $(this).removeClass("material-symbols-outlined");
+            $(this).addClass("material-icons");
+            $(this).css("color","red");
         }else{                                             //찜 되어있으면,   delete ajax
-            $(this).addClass("material-symbols-outlined");
-            $(this).removeClass("material-icons");
-            $(this).css("color","#d3cdcd");
-
             $.ajax({
                 url:"/store/jjim",
                 type:"delete",
                 data: {userNum : userNum, category: "1", productNum : productNum},
                 success : function (result) {
-                    test()
+                    jjimCounts()
                 }
             })
+            //
+            $(this).addClass("material-symbols-outlined");
+            $(this).removeClass("material-icons");
+            $(this).css("color","#d3cdcd");
         }
     });
 
-
     //찜...
-    function test(){
+    function showJjimcheck(){
+        jjimCounts()
         $.ajax({
             url : "/store/jjim",
             type : "get",
             success : function (jjims) {
                 $(jjims).each(function (i, jjim) {
                     if(jjim.userNum==userNum){
-                        if($(".jjim-ajax[name="+jjim.productNum+"]").hasClass("material-symbols-outlined")){
+                        if($(".jjim-ajax[name="+jjim.productNum+"]").hasClass("material-symbols-outlined")){ //찜 안되어있다면
                             $(".jjim-ajax[name="+jjim.productNum+"]").removeClass("material-symbols-outlined");
                             $(".jjim-ajax[name="+jjim.productNum+"]").addClass("material-icons");
-                            $(".jjim-ajax[name="+jjim.productNum+"]").css("color","red")
-                        }else{
+                            $(".jjim-ajax[name="+jjim.productNum+"]").css("color","red");
+                        }else{                                                                             //찜되어있다면
                             $(".jjim-ajax[name="+jjim.productNum+"]").addClass("material-symbols-outlined");
                             $(".jjim-ajax[name="+jjim.productNum+"]").removeClass("material-icons");
-                            $(".jjim-ajax[name="+jjim.productNum+"]").css("color","gray")
+                            $(".jjim-ajax[name="+jjim.productNum+"]").css("color","gray");
+
                         }
                     }
                 })
@@ -344,6 +343,19 @@
         })
     }
 
+    //찜 카운트 ajax
+    function jjimCounts(){
+        $.ajax({
+            url:"/store/jjimCount?productNum="+productNum,
+            type:"get",
+            success:function (count) {
+                let cnt=0;
+                cnt += count;
+                $(".jjimCount").text(cnt);
+            }
+
+        })
+    }
 
     //--------------------------------------------------------- 리뷰 가져오기 ajax
     $.ajax({
@@ -366,18 +378,17 @@
                 str += "<div class=\"readReviews\">";
                 str += "<div class=\"readReviewForm\">";
                 str += "<div class=\"readReview\">";
-                str += "<a href=\"#\" class=\"moveReviewDetail\">";
+                str += "<a href='' class=\"moveReviewDetail\">";
                 str += "<div class=\"reviewDetailProfile\">";
                 str += "<div class=\"reviewProfileForm\">";
                 str += "<span class=\"reviewProfile\">";
                 str += "<picture class=\"profile\">";
-                str += "<img src=\"/images/chun.png\" alt=\"\">";
+                str += "<img src=\"/images/chun.png\">";
                 str += "</picture>";
                 str += "</span>";
                 str += "</div>";
                 str += "<div class=\"reviewNameDate\">";
                 str += "<div class=\"reviewName\">"+reviewVO[i].userNum+"</div>";
-                //여기서 ajax로  reviewVO[i].num을 가지고 와서
                 str += "<div class=\"reviewDate\">"+(reviewVO[i].updateDate).substring(0,10)+"</div>";
                 str += "</div>";
                 str += "</div>";
@@ -394,16 +405,16 @@
             }
             $('.ProductReviews').html(str);
 
-            for (let i =0; i< reviewVO.length;i++) {  //reviewVO = 10 개
+            // 상품의 모든 파일 보여주기 ..(실제 구매 후기 사진 란)
+            for (let i =0; i< reviewVO.length;i++) {
                 $.ajax({
                     url: "/productReviewFile/list/" + reviewVO[i].num,
                     type: "get",
-                    success: function (files) {  //파일들의 리스트 총 파일 13개
+                    success: function (files) {
                         let text = "";
                         $(files).each(function (i, file) {
                             text += "<div class =\"reviewImageForm\">";
                             text += "<picture class=\"moveImage\">";
-                            // text += "<source srcset=\"/images/chun2.png\" media=\"all and (min-width: 1024px)\" >";
                             text += "<img src='/productReviewFile/display?fileName=" + file.uploadPath + "/" + file.uuid + "_" + file.fileName + "'>";
                             text += "</picture>";
                             text += "</div>";
@@ -418,7 +429,13 @@
 
     //------------------------------------------------------------------------------------------
     //리뷰 사진 누르면 리뷰 보기 페이지 이동
-    $('.reviewImages').on("click","img",function (e) {
+    $('.reviewImages').on("click","img",function () {
+        location.href = "/store/goReviewList/"+productNum;
+    })
+
+    //리뷰 눌러도 리뷰 보기 페이지로 이동
+    $('.ProductReviews').on("click",".moveReviewDetail",function (e) {
+        e.preventDefault();
         location.href = "/store/goReviewList/"+productNum;
     })
     //------------------------------------------------------------------------------------------
@@ -480,7 +497,7 @@
                     str += "<div class=\"admin_id\" style=\"color: black;\">"+qna.userNum+"</div>";
                     str += "<div class=\"admin_date\">"+qna.updateDate.substring(0,10)+"</div>";
                     str += "</div>";
-                    str += "<div style='font-size: 11px; position: absolute; right: 5%;'>";
+                    str += "<div style='font-size: 11px; position: absolute; right: 1%;'>";
                     str += "<a href=\""+qna.num+"\" class='makeComment' style='color: black'>답글달기</a>";
                     str += "</div>";
                     str += "</div>";
@@ -501,7 +518,7 @@
                                     str += "<div class=\"flex id_and_date\" style='width: 100%'>";
                                     str += "<div class=\"admin_id\">관리자번호" + "&nbsp; </div>";
                                     str += "<div class=\"admin_date\">" + comment.updateDate.substring(0,10) + "</div>";
-                                    str += "<div style='position: absolute; right: 0;'>";
+                                    str += "<div style='position: absolute; right: 0; font-weight: normal;'>";
                                     str += "<a href=\""+comment.num+"\" name=\""+qna.num+"\" id=\""+comment.content+"\" class=\"modify_adminComment\" style='margin-right: 5px;'>수정</a>";
                                     str += "<a href=\""+comment.num+"\" name='"+qna.num+"' class=\"delete_adminComment\">삭제</a>";
                                     str += "<a href=\""+comment.num+"\" name='"+qna.num+"' class=\"cancel_adminComment\" style='display: none; color: black;'>취소</a>";
@@ -536,6 +553,9 @@
                 $(".commentBox").hide();
             }
         });
+        setTimeout(function () {
+            usea();
+        },300);
     }
     //------------------------------------------------------------------------------------------
 
@@ -726,24 +746,34 @@
         }
     })
 
-    // a태그 내부 페이지 이동
-    let intro = $('#toitem_intro').offset().top-203;
-    let review = $('#toitem_review').offset().top-110;
-    let question = $('#toitem_question').offset().top-140;
-    let policy = $('#toreturn_po').offset().top-156;
+   function usea(){
+       let intro = $('#toitem_intro').offset().top-230;
+       let review = $('#toitem_review').offset().top-130;
+       let question = $('#toitem_question').offset().top-180;
+       let policy = $('#toreturn_po').offset().top-170;
 
-    $('#item_intro').click(function(){
-        $('html, body').animate({scrollTop:intro},0);
-    })
-    $('#item_review').click(function(){
-        $('html, body').animate({scrollTop:review},0);
-    })
-    $('#item_question').click(function(){
-        $('html, body').animate({scrollTop:question},0);
-    })
-    $('#return_po').click(function(){
-        $('html, body').animate({scrollTop:policy},0);
-    })
+        $('#item_intro').click(function(){
+            $('html, body').animate({scrollTop:intro},0);
+        })
+        $('#item_review').click(function(){
+            $('html, body').animate({scrollTop:review},0);
+        })
+        $('#item_question').click(function(){
+            $('html, body').animate({scrollTop:question},0);
+        })
+        $('#return_po').click(function(){
+            $('html, body').animate({scrollTop:policy},0);
+        })
+    }
+    // a태그 내부 페이지 이동
+
+
+    // console.log("intro location = "+ intro);
+    // console.log("review location = "+ review);
+    // console.log("question location = "+ question);
+    // console.log("policy location = "+ policy);
+
+
 
 
     //공유하기 모달창
@@ -820,16 +850,16 @@
                 description: '초록색이 좋아 고무장갑', //카카오공유하기 시 설명
                 imageUrl: 'http://127.0.0.1:5500/src/main/resources/static/images/5.jpg', //카카오공유하기 시 썸네일 이미지 경로
                 link: {
-                    mobileWebUrl: 'http://127.0.0.1:5500/src/main/resources/templates/product/pickitupStoreDetail.html', //카카오공유하기 시 클릭 후 이동 경로
-                    webUrl: 'http://127.0.0.1:5500/src/main/resources/templates/product/pickitupStoreDetail.html', //카카오공유하기 시 클릭 후 이동 경로
+                    mobileWebUrl: 'http://localhost:10010/store/detail.html', //카카오공유하기 시 클릭 후 이동 경로
+                    webUrl: 'http://localhost:10010/store/detail.html', //카카오공유하기 시 클릭 후 이동 경로
                 },
             },
             buttons: [
                 {
                     title: '웹으로 보기',
                     link: {
-                        mobileWebUrl: 'http://127.0.0.1:5500/src/main/resources/templates/product/pickitupStoreDetail.html', //카카오공유하기 시 클릭 후 이동 경로
-                        webUrl: 'http://127.0.0.1:5500/src/main/resources/templates/product/pickitupStoreDetail.html', //카카오공유하기 시 클릭 후 이동 경로
+                        mobileWebUrl: 'http://localhost:10010/store/detail.html', //카카오공유하기 시 클릭 후 이동 경로
+                        webUrl: 'http://localhost:10010/store/detail.html', //카카오공유하기 시 클릭 후 이동 경로
                     },
                 },
             ],
