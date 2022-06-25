@@ -44,7 +44,7 @@ public class TempUserServiceTests {
 
     @Test
     public void getDetail(){
-        log.info("한명의 유저" + tempUserSerivce.readUserInfo(2L));
+        log.info("한명의 유저" + tempUserSerivce.readUserInfo(22L));
     }
 
     @Test

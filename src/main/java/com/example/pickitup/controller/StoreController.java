@@ -10,6 +10,7 @@ import com.example.pickitup.domain.vo.product.productReview.ProductReviewVO;
 import com.example.pickitup.domain.vo.user.JjimVO;
 import com.example.pickitup.domain.vo.user.OrderVO;
 import com.example.pickitup.domain.vo.user.UserVO;
+import com.example.pickitup.service.TempUserSerivce;
 import com.example.pickitup.service.product.productFile.ProductFileService;
 import com.example.pickitup.service.product.productFile.ProductService;
 import com.example.pickitup.service.product.productQna.ProductQnaCommentService;
@@ -41,6 +42,7 @@ public class StoreController {
     private final ProductQnaCommentService productQnaCommentService;
     private final JjimService jjimService;
     private final OrderService orderService;
+    private final TempUserSerivce tempUserSerivce;
     // 스토어 메인페이지
     @GetMapping("/main")
     public void storeMain(String category,Model model){
@@ -65,6 +67,7 @@ public class StoreController {
     // 스토어 상세페이지
     @GetMapping("/detail")
     public String storeDetail(Long num ,Model model){
+        model.addAttribute("user", tempUserSerivce.readUserInfo(22L));
         model.addAttribute("jjimCount",jjimService.count(num));
         model.addAttribute("count",productReviewService.count(num));
         model.addAttribute("product",productService.getDetail(num));
