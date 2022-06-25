@@ -1,6 +1,7 @@
 package com.example.pickitup.dao.product;
 
 import com.example.pickitup.domain.dao.product.productQna.ProductQnaDAO;
+import com.example.pickitup.domain.vo.ProductQnaCriteria;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 import com.example.pickitup.domain.vo.product.productQna.ProductQnaVO;
 import lombok.extern.slf4j.Slf4j;
@@ -15,15 +16,16 @@ public class ProductQnaDaoTest {
     private ProductQnaDAO productQnaDAO;
     
     
-//    @Test
-//    public void getListTest(){
-//        productQnaDAO.getList(23L).stream().map(ProductQnaVO::toString).forEach(log::info);
-//    }
-//
     @Test
-    public void readTest(){
-        productQnaDAO.getList(26L);
+    public void getListTest(){
+        productQnaDAO.getList(new ProductQnaCriteria(1,5),23L)
+                .stream().map(ProductQnaVO::toString).forEach(log::info);
     }
+//
+//    @Test
+//    public void readTest(){
+//        productQnaDAO.getList(26L);
+//    }
 
 //    @Test
 //    public void registerTest(){

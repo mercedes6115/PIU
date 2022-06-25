@@ -1,6 +1,8 @@
 package com.example.pickitup.controller;
 
+import com.example.pickitup.domain.vo.ProductQnaCriteria;
 import com.example.pickitup.domain.vo.dto.ProductDTO;
+import com.example.pickitup.domain.vo.dto.ProductQnaPageDTO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 import com.example.pickitup.domain.vo.product.productQna.ProductQnaCommentVO;
 import com.example.pickitup.domain.vo.product.productQna.ProductQnaVO;
@@ -127,9 +129,9 @@ public class StoreController {
 
     // 스토어 문의 목록
     @ResponseBody
-    @GetMapping("/qnaList/{productNum}")
-    public List<ProductQnaVO> qnaList(@PathVariable("productNum") Long productNum){
-       return productQnaService.getList(productNum);
+    @GetMapping("/qnaList/{productNum}/{pageNum}")
+    public ProductQnaPageDTO qnaList(@PathVariable("pageNum") int pageNum, @PathVariable("productNum") Long productNum){
+       return new ProductQnaPageDTO(productQnaService.getList(new ProductQnaCriteria(pageNum,5),productNum),productQnaService.count(productNum));
     }
 
     // 스토어 문의 작성
