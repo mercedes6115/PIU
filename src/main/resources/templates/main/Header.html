@@ -56,29 +56,31 @@
                             <div class="header-right-menu-wrap1">
                                 <div class="header-right-menu-wrap2">
 
-                                    <!--  관리자면, 단체(회사)일경우 마이플로깅 -> 플로거 센터로 변경 타임리프 이용-->
-                                    <div class="header-right-menu1" th:if="${checkLogin==true} and ${category=='company'}">
-                                        <a target="_blank" rel="noreferrer" href="/user/center">
-                                            <p class="myplogging">마이플로깅</p>
-                                        </a>
-                                    </div>
-                                    <div class="right-empty-space1"></div>
-
-                                    <div class="header-right-menu1" th:if="${checkLogin==true} ">
-                                        <a  href="https://creator.class101.net/center/products?hl=ko">
+<!--  관리자면, 단체(회사)일경우 마이플로깅 -> 플로거 센터로 변경 타임리프 이용-->
+                                <div class="header-right-menu1" th:if="${checkLogin}==3 or ${checkLogin}==2">
+                                    <a class="creater" href="/user/center">
+                                        <p class="myplogging">마이플로깅</p>
+                                    </a>
+                                </div>
+                                <div class="right-empty-space1"></div>
+                                    <div class="header-right-menu1" th:if="${checkLogin}==3 or ${checkLogin}==2">
+                                        <a  href="/user/myPage">
                                             <p class="myplogging">마이페이지</p>
                                         </a>
                                     </div>
                                     <!--                                <h1 th:text="${category}"></h1>-->
 
                                     <div class="right-menu-wrapper2" style="display:flex;">
-                                        <div class="right-empty-space1"></div>
-                                        <a href="/user/join" th:if="${checkLogin==false}" class="myplogging" >일반회원가입</a>
-                                        <div class="right-empty-space1"></div>
-                                        <a href="/user/joinGroup" th:if="${checkLogin==false}" class="myplogging" >기업회원가입</a>
-                                        <div class="right-empty-space1"></div>
-                                        <a href="/user/login" th:if="${checkLogin==false}" class="myplogging" >로그인</a>
-                                        <a href="/user/logout" th:if="${checkLogin==true}" class="myplogging" >로그아웃</a>
+                                        <div th:if="${checkLogin}==1" class="right-empty-space1"></div>
+                                        <a href="/user/join" th:if="${checkLogin}==1" class="myplogging" >일반회원가입</a>
+                                        <div th:if="${checkLogin}==1" class="right-empty-space1" ></div>
+                                        <a href="/user/joinGroup" th:if="${checkLogin}==1" class="myplogging" >기업회원가입</a>
+                                        <div  class="right-empty-space1"></div>
+                                        <a href="/user/login" th:if="${checkLogin}==1" class="myplogging" >로그인</a>
+                                        <a href="/user/logout" th:if="${checkLogin}==3" class="myplogging" >로그아웃</a>
+
+                                        <a th:if="${checkLogin}==2" class="myplogging" href="https://kauth.kakao.com/oauth/logout?client_id=810e43afb4176b21144a9e5b00273aac&logout_redirect_uri=http://localhost:10010/logout">로그아웃</a>
+
                                     </div>
                                     <!--                                <div class="right-empty-space1"></div>-->
                                     <!--                                <a href="#" th:if="${checkLogin==true}">-->
@@ -90,7 +92,7 @@
                                     <!--                                </a>-->
                                     <div class="right-empty-space1"></div>
                                     <!--                                로그아웃 상태이면 해당 영역 display:none-->
-                                    <div class="loginWrapper1" th:if="${checkLogin==true}" >
+                                    <div class="loginWrapper1" th:if="${checkLogin}==3" >
                                         <div class="loginWrapper1-left">
                                             <div class="loginWrapper1-left1">
                                                 <div class="loginWrapper1-left2">
@@ -126,8 +128,8 @@
                                                         </a>
                                                         <div class="ModalBorderLine"></div>
                                                         <div class="ModalMenuWrap123" >
-                                                            <a href="/user/login" th:if="${checkLogin==false}" class="myplogging" >로그인</a>
-                                                            <a href="/user/logout" th:if="${checkLogin==true}" class="myplogging" >로그아웃</a>
+                                                            <a href="/user/login" th:if="${checkLogin}==1" class="myplogging" >로그인</a>
+                                                            <a href="/user/logout" th:if="${checkLogin}==3" class="myplogging" >로그아웃</a>
                                                         </div>
                                                         <div class="ModalHeight"></div>
                                                         <div class="ModalMenuWrap12">
@@ -243,10 +245,4 @@
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="/assets/js/Header.js"></script>
-<script>
-    $('a.logout').on('click',function () {
-        alert("dddd");
-    })
-</script>
 </html>

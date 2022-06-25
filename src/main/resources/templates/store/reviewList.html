@@ -35,14 +35,17 @@
             <section class="allreveiws" th:object="${review}"> <!--실제 후기 컨테이너-->
                 <div class="p-24">
                     <div class="flex">
-                        <div class="profile_img"><img src="/images/5.jpg"></div>
+                        <div class="profile_img">
+<!--                            유저 프로필 사진 넣을곳-->
+                            <img src="/images/5.jpg">
+                        </div>
                         <div class="review_id_and_date">
                             <div class="review_id" th:text="|*{userNum}|"></div>
                             <input type="hidden" class="reviewNumber" th:value="*{num}">
                             <div class="review_date" th:text="|${#strings.substring(review.updateDate,0,10)}|" ></div>
                         </div>
                         <div class="flex" style="margin-left: 10px; width: 100%; justify-content: flex-end; align-items: center;">
-                            <div class="review_modify"><a href="#"><img src="/images/modify.png"></a></div>
+                            <div class="review_modify" th:id="*{num}"><a href="#"><img src="/images/modify.png"></a></div>
                             <div class="review_delete" th:id="*{num}"><a href="#"><img src="/images/delete.png"></a></div>
                         </div>
                     </div>
@@ -104,6 +107,12 @@
         location.href = "/store/detail?num="+productNum;
     })
 
+    // 리뷰 수정
+    $(".review_modify").on("click",function (e) {
+        e.preventDefault();
+          location.href = "/store/reviewModify?num=" +$(this).attr("id");
+    })
+
     // 리뷰 삭제
     $(".review_delete").on("click",function (e) {
         e.preventDefault();
@@ -116,6 +125,16 @@
         })
     })
 
+    // // 유저 프로필 사진 ajax
+    // $.ajax({
+    //     url :"",
+    //     type : "",
+    //     success: function (img) {
+    //         let str = "";
+    //         str += "<img src='/userFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
+    //         $('.profile_img').html(str);
+    //     }
+    // })
 
 
     //무한스크롤

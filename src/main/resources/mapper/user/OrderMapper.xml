@@ -239,9 +239,12 @@
     </select>
 
     <update id="updateUser">
-        SELECT
-        NUM, ADDRESS,ADDRESS_DETAIL, POINT
-        FROM TBL_USER
+UPDATE TBL_USER set
+        NICKNAME = #{nickname},
+        PHONE = #{phone},
+        ADDRESS = #{address},
+        ADDRESS_DETAIL = #{addressDetail},
+        POINT = #{point}
         WHERE NUM=#{num}
     </update>
 </mapper>

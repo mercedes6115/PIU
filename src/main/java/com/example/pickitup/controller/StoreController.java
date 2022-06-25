@@ -14,6 +14,7 @@ import com.example.pickitup.service.product.productQna.ProductQnaCommentService;
 import com.example.pickitup.service.product.productQna.ProductQnaService;
 import com.example.pickitup.service.product.productReview.ProductReviewService;
 import com.example.pickitup.service.user.JjimService;
+import com.example.pickitup.service.user.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -35,7 +36,7 @@ public class StoreController {
     private final ProductQnaService productQnaService;
     private final ProductQnaCommentService productQnaCommentService;
     private final JjimService jjimService;
-
+    private final OrderService orderService;
     // 스토어 메인페이지
     @GetMapping("/main")
     public void storeMain(String category,Model model){
@@ -60,6 +61,7 @@ public class StoreController {
     // 스토어 상세페이지
     @GetMapping("/detail")
     public String storeDetail(Long num ,Model model){
+        model.addAttribute("jjimCount",jjimService.count(num));
         model.addAttribute("count",productReviewService.count(num));
         model.addAttribute("product",productService.getDetail(num));
         return "/store/detail";
@@ -101,7 +103,22 @@ public class StoreController {
         return storeDetail(productReviewVO.getProductNum(), model);
     }
 
-    // 스토어 리뷰 작성
+    //스토어 리뷰 수정
+    @GetMapping("/reviewModify")
+    public void reviewModify(Long num,Model model){
+        model.addAttribute("review",productReviewService.read(num));
+        model.addAttribute("product", productService.getDetail(productReviewService.read(num).getProductNum()));
+    }
+    //스토어 리뷰 수정 폼
+    @PostMapping("/reviewModify")
+    public String reviewModify(ProductReviewVO productReviewVO, Model model){
+//        model.addAttribute("user", productNum); 유저의 정보 가져와야함.?? 어떻게??
+        productReviewVO.setUserNum(22L);
+        productReviewService.modify(productReviewVO);
+        return storeDetail(productReviewVO.getProductNum(), model);
+    }
+
+    // 스토어 리뷰 삭제
     @ResponseBody
     @GetMapping("/reviewDelete")
     public void reviewDelete(Long num){
@@ -172,16 +189,26 @@ public class StoreController {
         return "success";
     }
 
-    // 스토어 결제 정보 입력
     @GetMapping("/payment")
-    public void payment(){
-
+    public String payment(Long num){
+        orderService.payment(num);
+        return "store/payment";
     }
-//    @GetMapping("/payment")
-//    public String payment(Long num){
-//        orderService.payment(num);
-//        return "/payment";
+
+    // 스토어 결제 정보 입력
+//    @PostMapping("/payment")
+//    public String paymentForm(UserVO userVO){
+//        orderService.updateUser(userVO);
+//
+//        return ("/store/payment");
 //    }
+
+
+
+
+    //업데이트는 아직 안됨
+
+
 
 
     // 스토어 결제 정보 입력
@@ -231,5 +258,12 @@ public class StoreController {
     @DeleteMapping("/jjim")
     public void removeJjim(JjimVO jjimVO){
         jjimService.remove(jjimVO);
+    }
+
+    //찜 갯수
+    @ResponseBody
+    @GetMapping("jjimCount")
+    public int count(Long productNum){
+        return jjimService.count(productNum);
     }
 }
