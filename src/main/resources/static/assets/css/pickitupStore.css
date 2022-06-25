@@ -1026,7 +1026,17 @@ textarea{
     font-size: 0.875rem;
     font-weight: 400;
 }
+a.changePage code{
+    color: black;
+    border: none;
+}
+code{
+    padding: 10px;
+    border: 2px solid #005bedc1;
+    color: #005bedc1;
+}
 /*문의하기*/
+
 
 /* -------------------상품 디테일 반응형--------------- */
 @media ( max-width: 1024px ) {

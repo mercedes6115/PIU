@@ -407,16 +407,6 @@
                         }
                     })
                 })(i);
-                //메인 사진걸기
-                // $.ajax({
-                //     url: "/productFile/list/"+productNum,
-                //     type : "get",
-                //     success : function (files) {
-                //         let str = "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
-                //         $(".mainImage").html(str);
-                //         // $("img#"+productNum).attr("src", "/upload/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName )
-                //     }
-                // })
                 str +="</div>";
                 str += "<div class=\"reviewDate\">"+(reviews[i].updateDate).substring(0,10)+"</div>";
                 str += "</div>";
