@@ -14,6 +14,7 @@ import com.example.pickitup.service.product.productQna.ProductQnaCommentService;
 import com.example.pickitup.service.product.productQna.ProductQnaService;
 import com.example.pickitup.service.product.productReview.ProductReviewService;
 import com.example.pickitup.service.user.JjimService;
+import com.example.pickitup.service.user.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -35,7 +36,7 @@ public class StoreController {
     private final ProductQnaService productQnaService;
     private final ProductQnaCommentService productQnaCommentService;
     private final JjimService jjimService;
-
+    private final OrderService orderService;
     // 스토어 메인페이지
     @GetMapping("/main")
     public void storeMain(String category,Model model){
