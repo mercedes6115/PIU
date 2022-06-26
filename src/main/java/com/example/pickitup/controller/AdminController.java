@@ -9,6 +9,7 @@ import com.example.pickitup.domain.vo.dto.AdminBoardPageDTO;
 import com.example.pickitup.domain.vo.dto.PageDTO;
 import com.example.pickitup.domain.vo.dto.ProductPageDTO;
 import com.example.pickitup.domain.vo.dto.UserDTO;
+import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaCommentVO;
 import com.example.pickitup.domain.vo.user.AdminBoardVO;
 import com.example.pickitup.domain.vo.user.UserVO;
 import com.example.pickitup.service.TempAdminService;
@@ -80,6 +81,7 @@ public class AdminController {
         model.addAttribute("adminboardList", tempAdminService.getAdminboardList(adminCriteria));
         model.addAttribute("adminBoardPageDTO",new AdminBoardPageDTO(adminCriteria, (tempAdminService.getAdminBoardCount(adminCriteria))));
 
+
     }
 
     // 관리자 게시물 등록
@@ -92,7 +94,7 @@ public class AdminController {
     @PostMapping("/boardWrite")
     public RedirectView boardWriteForm(AdminBoardVO adminBoardVO, RedirectAttributes rttr){
         log.info("====================");
-        log.info("/boardWriteForm");
+
         log.info("====================");
         tempAdminService.registerWrite(adminBoardVO);
         rttr.addFlashAttribute("num", adminBoardVO.getNum());
@@ -104,9 +106,11 @@ public class AdminController {
     @PostMapping("/deleteById")
     public String deleteById(Long num, HttpServletRequest request){
         String[] ajaxMsg = request.getParameterValues("valueArr");
+        String[] category = request.getParameterValues("category");
         int size = ajaxMsg.length;
         for(int i = 0; i<size; i++){
             num = Long.parseLong(ajaxMsg[i]);
+            tempAdminService.productQnaDelete(num);
             tempAdminService.deleteById(num);
         }
         return "/admin/boardList";
@@ -163,6 +167,17 @@ public class AdminController {
         model.addAttribute("orderPageDTO",new OrderPageDTO(orderCriteria,(tempUserSerivce.getOrderTotal(orderCriteria))));
 
 
+    }
+
+    // 관리자 주문 상세
+    @GetMapping("/orderDetail")
+    public void orderDetail(Long num,String category, ProductCriteria productCriteria, Model model){
+        log.info("성공"+num);
+        log.info("성공"+category);
+        model.addAttribute("detailVO",tempAdminService.readUserInfo(num));
+
+        log.info("sssss"+tempAdminService.readUserInfo(num).toString());
+        log.info("sssss"+tempCompanyService.readCompanyInfo(num).toString());
     }
 
     // 관리자 프로젝트 목록
@@ -306,7 +321,23 @@ public class AdminController {
 
     // 관리자 유저 문의 글 보기
     @GetMapping("/userQnA")
-    public void userQnA(Long num, HttpServletRequest request, Model model){
+    public void userQnA(Long num, AdminBoardDTO adminBoardDTO, HttpServletRequest request, Model model){
+        String requestURL = request.getRequestURI();
+        log.info(requestURL.substring(requestURL.lastIndexOf("/")));
+        log.info("*************");
+        log.info("================================");
+        log.info("================================");
+        model.addAttribute("adminBoard", tempAdminService.getQnaReply(num));
+        log.info("프로젝트QNA넘버 : " + adminBoardDTO.getProjectQnaNum());
+        log.info("프로덕트QNA넘버 : " + adminBoardDTO.getProductQnaNum());
+        log.info("adminboard리스트의 num값 : " + adminBoardDTO.getNum());
+    }
+
+
+
+    // 관리자 공지사항 상세 글 보기
+    @GetMapping("/adminNoticeDetail")
+    public void adminNoticeDetail(Long num, HttpServletRequest request, Model model){
         String requestURL = request.getRequestURI();
         log.info(requestURL.substring(requestURL.lastIndexOf("/")));
         log.info("*************");
@@ -315,8 +346,41 @@ public class AdminController {
         model.addAttribute("adminBoard", tempAdminService.getQnaReply(num));
     }
 
+    //관리자가 답글 쓰면 category로 구분해서 프로젝트/프로덕트 qna comment 테이블에 insert
+    @PostMapping("/userQnA")
+    public RedirectView replyComplete(AdminQnaCommentDTO adminQnaCommentDTO, RedirectAttributes rttr){
+        log.info("================================");
+        log.info("여기프로젝트QNA 넘버 : " + adminQnaCommentDTO.getProjectQnaNum());
+        log.info("프로덕트QNA 넘버 : " + adminQnaCommentDTO.getProductQnaNum());
+        log.info("if문 이전의 게시글의 num값 : " + adminQnaCommentDTO.getNum());
+
+        tempAdminService.changeAnswerStatus(adminQnaCommentDTO.getNum());
+
+        log.info("================================");
+        if((adminQnaCommentDTO.getCategory()).equals("1")){
+            adminQnaCommentDTO.setQnaNum(adminQnaCommentDTO.getProjectQnaNum());
+            tempAdminService.getProjectQnaReply(adminQnaCommentDTO);
+        }
+        if((adminQnaCommentDTO.getCategory()).equals("2")){
+            adminQnaCommentDTO.setQnaNum(adminQnaCommentDTO.getProductQnaNum());
+            tempAdminService.getProductQnaReply(adminQnaCommentDTO);
+        }
+        log.info("if문 이후에 게시글의 nun값 : " + adminQnaCommentDTO.getNum());
 
 
+        return new RedirectView("/admin/boardList");
+    }
+//    public RedirectView replyComplete(AdminBoardDTO adminBoardDTO, ProjectQnaCommentVO projectQnaCommentVO, RedirectAttributes rttr) {
+//        log.info(projectQnaCommentVO.getContent());
+//        if((adminBoardDTO.getCategory()).equals("1")){
+//            log.info("if문 들어옴");
+//            tempAdminService.getProjectQnaReply(projectQnaCommentVO);
+//            log.info("getProjectQnaReply 서비스 실행");
+//        }
+//        log.info("====================");
+//        log.info("====================");
+//        return new RedirectView("/admin/boardList");
+//    }
 
 
 }
