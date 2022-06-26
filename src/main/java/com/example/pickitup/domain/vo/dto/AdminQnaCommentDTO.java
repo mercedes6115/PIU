@@ -1,21 +1,20 @@
-package com.example.pickitup.domain.vo.user;
+package com.example.pickitup.domain.vo.dto;
 
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
 @Component
 @Data
-
-public class AdminBoardVO {
+public class AdminQnaCommentDTO {
     private Long num;
-    private String title;
-    private String category;
     private String content;
-    private String answerStatus;
     private String registDate;
     private String updateDate;
-    private String status;
     private Long userNum;
-    private Long projectQnaNum;
+    private Long qnaNum;
+    private Long companyNum;
     private Long productQnaNum;
+    private Long projectQnaNum;
+    private String answerStatus;
+    private String category;
 }

@@ -4,6 +4,8 @@ import com.example.pickitup.domain.vo.AdminCriteria;
 import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.adminVO.AdminBoardDTO;
 import com.example.pickitup.domain.vo.dto.AdminBoardPageDTO;
+import com.example.pickitup.domain.vo.dto.AdminQnaCommentDTO;
+import com.example.pickitup.domain.vo.dto.AdminQnaDTO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 
 import com.example.pickitup.domain.vo.product.productQna.ProductQnaCommentVO;
@@ -76,6 +78,31 @@ public class UserDAO {
     //    관리자 게시물 관리에서 상세보기
     public AdminBoardPageDTO getQnaReply(Long num){
         return userMapper.getQnaReply(num);
+    }
+
+    //  관리자 project qna 답글쓴것 insert
+    public void projectQnaReply(AdminQnaCommentDTO adminQnaCommentDTO) {
+        userMapper.projectQnaReply(adminQnaCommentDTO);
+    }
+
+    //  관리자 product qna 답글쓴것 insert
+    public void productQnaReply(AdminQnaCommentDTO adminQnaCommentDTO) {
+        userMapper.productQnaReply(adminQnaCommentDTO);
+    }
+
+    //  관리자가 문의에 답글 남기면 answerStatus 2로 변경
+    public void answerComplete(Long num){
+        userMapper.answerComplete(num);
+    }
+
+    // 유저가 상품 문의 남겼을때 adminboard 에도 저장
+    public void qnaStoreSave(AdminQnaDTO adminQnaDTO) {
+        userMapper.qnaStoreSave(adminQnaDTO);
+    }
+
+    // 관리자가 게시물 목록에서 상품문의 글 지웠을때 productQnA 테이블에서도 삭제
+    public void productQnaDelete(Long num) {
+        userMapper.productQnaDelete(num);
     }
 
     // 유저 목록(관리자용)

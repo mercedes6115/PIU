@@ -42,10 +42,10 @@ public class AdminCriteria {
                 .queryParam("type3", this.type3)
                 .queryParam("startDate", this.startDate)
                 .queryParam("endDate", this.endDate)
-                .queryParam("keyword", this.keyword)
-                .queryParam("keyword1", this.keyword1)
-                .queryParam("total", this.total)
-                .queryParam("adminBoardCount", this.adminBoardCount);
+                .queryParam("keyword", this.keyword);
+//                .queryParam("keyword1", this.keyword1)
+//                .queryParam("total", this.total)
+//                .queryParam("adminBoardCount", this.adminBoardCount);
         return builder.toUriString();
     }
 
