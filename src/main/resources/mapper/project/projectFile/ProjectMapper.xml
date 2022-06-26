@@ -5,24 +5,22 @@
 
     <!-- 프로젝트 전체 목록   -->
     <select id="getList" resultType="projectVO">
-        SELECT NUM, TITLE, CONTENT, COURSE, TERRAIN, POINT, APPROVAL, STARTTIME, ENDTIME, START_ADDRESS, END_ADDRESS, DISTANCE, QR, REGIST_DATE, UPDATE_DATE, STATUS, COMPANY_NUM
+        SELECT NUM, TITLE, CONTENT, COURSE, TERRAIN, POINT, APPROVAL, START_TIME, END_TIME, START_ADDRESS, END_ADDRESS, DISTANCE, QR, REGIST_DATE, UPDATE_DATE, STATUS, COMPANY_NUM
         FROM TBL_PROJECT
     </select>
 
-
-    <!--  특정 유저가 신청한 프로젝트 목록 -->
+    <!--  특정 유저가 작성한 프로젝트 목록 -->
     <select id="getUserProjectList" resultType="projectVO">
-    SELECT NUM, TITLE, CONTENT, COURSE, TERRAIN, POINT, APPROVAL, STARTTIME, ENDTIME, START_ADDRESS, END_ADDRESS, DISTANCE, QR, REGIST_DATE, UPDATE_DATE, STATUS, COMPANY_NUM
+    SELECT NUM, TITLE, CONTENT, COURSE, TERRAIN, POINT, APPROVAL, START_TIME, END_TIME, START_ADDRESS, END_ADDRESS, DISTANCE, START_QR, END_QR, REGIST_DATE, UPDATE_DATE, STATUS, COMPANY_NUM
     FROM TBL_PROJECT
     WHERE COMPANY_NUM = #{companyNum}
     </select>
 
-
     <!-- 프로젝트 상세 정보  -->
     <select id="getDetail" resultType="projectVO">
-     SELECT tp.NUM, tp.TITLE, tp.CONTENT, tp.COURSE, tp.TERRAIN, tp.POINT, tp.START_ADDRESS, tp.END_ADDRESS, tp.DISTANCE, tp.QR, tp.REGIST_DATE, tp.UPDATE_DATE,
+     SELECT tp.NUM, tp.TITLE, tp.CONTENT, tp.COURSE, tp.TERRAIN, tp.POINT, tp.START_ADDRESS, tp.END_ADDRESS, tp.DISTANCE, tp.START_QR, tp.END_QR, tp.REGIST_DATE, tp.UPDATE_DATE,
             tp.STATUS , tp.COMPANY_NUM , tp.JJIM_COUNT , tp.PROJECT_DATE, tp.COMPANY_COMMENT, tp.SUMMARY,
-            tc.NICKNAME
+            tc.NAME
             FROM TBL_PROJECT tp
             INNER JOIN TBL_COMPANY tc
             ON tp.COMPANY_NUM = tc.NUM
@@ -140,10 +138,16 @@
     </select>
 
     <!-- 프로젝트 등록  -->
+    <!--  startTime, endTime  -->
     <insert id="insert" parameterType="projectVO">
-    INSERT INTO TBL_PROJECT
-    (NUM, TITLE, CONTENT, COURSE, TERRAIN, POINT, APPROVAL, START_ADDRESS, END_ADDRESS, DISTANCE, QR, REGIST_DATE, UPDATE_DATE, STATUS, COMPANY_NUM, JJIM_COUNT, PROJECT_DATE, COMPANY_COMMENT, SUMMARY)
-    VALUES(SEQ_PROJECT.NEXTVAL, #{title}, #{content}, #{course}, #{terrain}, #{point}, '0', #{startAddress}, #{endAddress}, #{distance}, NULL, SYSDATE, SYSDATE, '1' , #{companyNum}, NULL, #{projectDate}, #{companyComment}, #{summary})
+        <selectKey keyProperty="num" resultType="long" order="BEFORE">
+            SELECT SEQ_PROJECT.NEXTVAL FROM DUAL
+        </selectKey>
+        INSERT INTO TBL_PROJECT
+        (NUM, TITLE, CONTENT, COURSE, TERRAIN, POINT, START_ADDRESS, END_ADDRESS, REGIST_DATE, UPDATE_DATE, STATUS, DISTANCE, COMPANY_COMMENT, SUMMARY, START_ADDRESS_DETAIL
+        ,END_ADDRESS_DETAIL)
+        VALUES(#{num}, #{title}, #{content}, #{course}, #{terrain}, #{point}, #{startAddress}, #{endAddress, jdbcType=VARCHAR}, SYSDATE, SYSDATE, '1' , #{distance, jdbcType=VARCHAR},
+        #{companyComment},#{summary}, #{startAddressDetail}, #{endAddressDetail, jdbcType=VARCHAR})
     </insert>
 
 
@@ -204,12 +208,6 @@
         ]]>
     </select>
 
-    <!--    -->
-    <!--    <select id="test">-->
-    <!--        SELECT UUID, UPLOAD_PATH, FILE_NAME-->
-    <!--        FROM TBL_PROJECT_FILE-->
-    <!--        WHERE PROJECT_NUM = #{NUM}-->
-    <!--    </select>-->
 
 </mapper>
 
