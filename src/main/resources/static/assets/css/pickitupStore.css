@@ -1029,11 +1029,15 @@ textarea{
 a.changePage code{
     color: black;
     border: none;
+    font-size: 15px;
+    font-weight: 700;
 }
 code{
     padding: 10px;
     border: 2px solid #005bedc1;
     color: #005bedc1;
+    font-size: 15px;
+    font-weight: 700;
 }
 /*문의하기*/
 

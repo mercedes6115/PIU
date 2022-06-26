@@ -191,7 +191,7 @@
                     str += "favorite";
                     str += "</span>";
                     str += "<small style=\"font-size: 11px; margin-left: 5px\">";
-                        //찜 갯수 ajax
+                    //찜 갯수 ajax
                     (function(){
                         $.ajax({
                             url: "/store/jjimCount?productNum="+list.num,
@@ -213,7 +213,7 @@
                 })
                 $('.all_items ul').html(str);
 
-               $.ajax({
+                $.ajax({
                     url : "/store/jjim",
                     type : "get",
                     success : function (jjims) {
@@ -267,46 +267,27 @@
     })
 
 
-    //무한스크롤
-    $(window).on("scroll", function() {
-    var scrollHeight = $(document).height();
-    var scrollPosition = $(window).height() + $(window).scrollTop();
-    let scroll = "";
-
-    //후기가 없을때까지
-        if (scrollPosition > scrollHeight -1) {
-            //밑의 내용 위에 each 문에 넣기
-        scroll += "<div class=\"p-24\">";
-        scroll += "<div class=\"flex\">";
-        scroll += "<div class=\"profile_img\"><img src=\"/images/5.jpg\"></div>";
-        scroll += "<div class=\"review_id_and_date\">";
-        scroll += "<div class=\"review_id\" th:text=\"*{userNum}\" ></div>";
-        scroll += "<div class=\"review_date\" th:text=\"*{updateDate}\" ></div>";
-        scroll += "</div>";
-        scroll += "<div class=\"flex\" style=\"margin-left: 10px; width: 100%; justify-content: flex-end; align-items: center;\">";
-        scroll += "<div class=\"review_modify\"><a href=\"#\"><img src=\"/images/modify.png\"></a></div>";
-        scroll += "<div class=\"review_delete\"><a href=\"#\"><img src=\"/images/delete.png\"></a></div>";
-        scroll += "</div>";
-        scroll += "</div>";
-        scroll += "<div style=\"margin-top: 10px;\"></div>";
-        scroll += "<div style=\"margin-bottom: 12px;\">";
-        scroll += "<div class=\"review_item_name\">";
-        scroll += "[주방용품] 초록색 고무장갑  <!-- product를 가져오는데서 에러발생-->";
-        scroll += "</div>";
-        scroll += "</div>";
-        scroll += "<div class=\"review_content_container\">";
-        scroll += "<p class=\"review_content\" th:text=\"|*{content}|\">";
-        scroll += "<div style=\"margin-top:8px;\"><img src=\"/images/5.jpg\"></div>";
-        scroll += "</div>";
-        scroll += "</div>";
-        scroll += "<div style=\"width: 100%; justify-content: center; display: flex;\">";
-        scroll += "<div class=\"border_bottom_line\"></div>";
-        scroll += "</div>";
-            $(".all_items ul").append(scroll);
-        }
-    });
-
-
+    //상품의 총 갯수
+    let productsCount = [[${productsCount}]];
+    if(productsCount>16){
+        // showmain(category);
+        // //무한스크롤
+        // $(window).on("scroll", function() {
+        //     var scrollHeight = $(document).height();
+        //     var scrollPosition = $(window).height() + $(window).scrollTop();
+        //     let scroll = "";
+        //
+        //     for (let i = 16; i < productsCount ; i ++){
+        //         if (scrollPosition > scrollHeight -1) {
+        //             //밑의 내용 위에 each 문에 넣기
+        //                 asdfasdf
+        //             $(".all_items ul").append(scroll);
+        //         }
+        //     }
+        //     //후기가 없을때까지
+        //
+        // });
+    }
 
 
 
