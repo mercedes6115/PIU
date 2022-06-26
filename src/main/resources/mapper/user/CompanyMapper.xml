@@ -4,8 +4,8 @@
     <!--회원 가입-->
     <insert id="insert">
         INSERT INTO TBL_COMPANY
-        (NUM, EMAIL, PASSWORD, NICKNAME, PHONE, BUSINESS_PHONE, ADDRESS, BUSINESS_NUMBER, REGIST_DATE, PROFILE_FILE_NAME, PROFILE_UPLOAD_PATH)
-        VALUES(SEQ_COMPANY.NEXTVAL, #{email}, #{password}, #{name}, #{phone}, #{businessPhone}, #{address}, #{businessNumber} , SYSDATE, #{profileFileName}, #{profileUploadPath})
+        (NUM, EMAIL, PASSWORD,  NICKNAME, PHONE, BUSINESS_PHONE, ADDRESS,ADDRESS_DETAIL, BUSINESS_NUMBER, REGIST_DATE, PROFILE_FILE_NAME, PROFILE_UPLOAD_PATH)
+        VALUES(SEQ_COMPANY.NEXTVAL, #{email}, #{password}, #{nickname}, #{phone}, #{businessPhone}, #{address},#{addressDetail}, #{businessNumber} , SYSDATE, #{profileFileName}, #{profileUploadPath})
     </insert>
 
     <select id="getDetail" resultType="companyVO">
@@ -15,7 +15,7 @@
     </select>
 
     <select id="login" resultType="_int">
-        SELECT COUNT(NUM)
+        SELECT NUM, NICKNAME
         FROM TBL_COMPANY
         WHERE EMAIL=#{email} AND PASSWORD=#{password}
     </select>

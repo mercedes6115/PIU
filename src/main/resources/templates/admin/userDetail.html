@@ -31,38 +31,38 @@
             </div>
             <table id="basicInfo" th:object="${detailVO}">
 
-                    <tr>
-                        <th>아이디</th>
-                        <td th:if="*{category}=='user'" th:text="*{email}"></td>
-                        <td th:if="*{category}=='company'" th:text="*{email}"></td>
-                    </tr>
-                    <tr>
-                        <th th:if="*{category}=='user'" th:text="닉네임"></th>
-                        <th th:if="*{category}=='company'" th:text="단체명"></th>
-                        <td><input type="text" name="" id="" th:value="*{nickname}" readonly></td>
-                    </tr>
-                    <tr>
-                        <th th:if="*{category}=='user'" th:text="비밀번호"></th>
-                        <th th:if="*{category}=='company'" th:text="비밀번호"></th>
-                        <td><input type="text" name="" id="password1" th:value="*{password}"></td>
-                    </tr>
-                    <tr>
-                        <th th:if="*{category}=='user'" th:text="전화번호"></th>
-                        <th th:if="*{category}=='company'" th:text="단체번호"></th>
-                        <td><input type="text" name="" id="" th:value="*{phone}" readonly></td>
+                <tr>
+                    <th>아이디</th>
+                    <td th:if="*{category}=='user'" th:text="*{email}"></td>
+                    <td th:if="*{category}=='company'" th:text="*{email}"></td>
+                </tr>
+                <tr>
+                    <th th:if="*{category}=='user'" th:text="닉네임"></th>
+                    <th th:if="*{category}=='company'" th:text="단체명"></th>
+                    <td><input type="text" name="" id="" th:value="*{nickname}" readonly></td>
+                </tr>
+                <tr>
+                    <th th:if="*{category}=='user'" th:text="비밀번호"></th>
+                    <th th:if="*{category}=='company'" th:text="비밀번호"></th>
+                    <td><input type="text" name="" id="password1" th:value="*{password}"></td>
+                </tr>
+                <tr>
+                    <th th:if="*{category}=='user'" th:text="전화번호"></th>
+                    <th th:if="*{category}=='company'" th:text="단체번호"></th>
+                    <td><input type="text" name="" id="" th:value="*{phone}" readonly></td>
 
-                    </tr>
-                    <tr>
-                        <th th:if="*{category}=='user'" th:text="회원주소"></th>
-                        <th th:if="*{category}=='company'" th:text="단체주소"></th>
-                        <td><input type="text" name="" id="" th:value="*{address}" readonly></td>
-                    </tr>
-                    <tr>
-                        <th th:if="*{category}=='user'" th:text="사업자번호"></th>
-                        <th th:if="*{category}=='company'" th:text="사업자번호"></th>
-                        <td><input type="text" name="" id="" th:if="*{category}=='company'" th:value="*{businessNumber}">
+                </tr>
+                <tr>
+                    <th th:if="*{category}=='user'" th:text="회원주소"></th>
+                    <th th:if="*{category}=='company'" th:text="단체주소"></th>
+                    <td><input type="text" name="" id="" th:value="*{address}" readonly></td>
+                </tr>
+                <tr>
+                    <th th:if="*{category}=='user'" th:text="사업자번호"></th>
+                    <th th:if="*{category}=='company'" th:text="사업자번호"></th>
+                    <td><input type="text" name="" id="" th:if="*{category}=='company'" th:value="*{businessNumber}">
                         <input type="text" name="" id=""  th:if="*{category}=='user'" value="일반 회원은 사업자 번호가 없습니다" readonly></td>
-                    </tr>
+                </tr>
 
                 <tr>
                     <th>등록날짜</th>
@@ -101,10 +101,10 @@
                     <th>회원가입일</th>
                     <td th:text="*{registDate}"></td>
                 </tr>
-<!--                <tr>-->
-<!--                    <th>최근접속일</th>-->
-<!--                    <td>2022-06-13 20:00</td>-->
-<!--                </tr>-->
+                <!--                <tr>-->
+                <!--                    <th>최근접속일</th>-->
+                <!--                    <td>2022-06-13 20:00</td>-->
+                <!--                </tr>-->
             </table>
             <div>
                 <button id="modifyInfo" type="button">수정</button>
@@ -134,8 +134,8 @@
                 url: "/admin/modifyInfo",
                 type: "post",
                 data: {password: password,
-                       category: category,
-                       num:num
+                    category: category,
+                    num:num
                 },
                 success: function (result) {
                     location.reload();

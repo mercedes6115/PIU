@@ -1,6 +1,7 @@
 package com.example.pickitup.service.user;
 
 
+import com.example.pickitup.domain.vo.AdminCriteria;
 import com.example.pickitup.domain.vo.dto.PointDTO;
 
 import com.example.pickitup.domain.vo.Criteria;
@@ -78,8 +79,7 @@ public class TempUserServiceTests {
 
     @Test
     public void loginTest(){
-        int check=1;
-        if(check==tempUserSerivce.loginUser("ddd","dddd")){
+        if(tempUserSerivce.loginUser("ddd","dddd")!=null){
             log.info("로그인 성공");
         }
     }
@@ -107,9 +107,10 @@ public class TempUserServiceTests {
         log.info("게시글 번호 : " + adminBoardVO.getNum());
     }
 
+
     @Test
     public void getNoticeListTest(){
-        tempAdminService.getNoticeList(new Criteria()).stream().map(AdminBoardDTO::toString).forEach(log::info);
+        tempAdminService.getNoticeList(new AdminCriteria()).stream().map(AdminBoardDTO::toString).forEach(log::info);
     }
 
     @Test
@@ -120,17 +121,37 @@ public class TempUserServiceTests {
 
     @Test
     public void getNoticeTotalTest(){
-        log.info("총 개수 : " + tempAdminService.getNoticeTotal());
+        log.info("총 개수 : " + tempAdminService.getNoticeTotal(new AdminCriteria(1,10)));
     }
 
     @Test
     public void getAdminBoardCountTest() {
-        log.info("adminboard 글 총개수 : " + tempAdminService.getAdminBoardCount(new Criteria(1,10)));
+        log.info("adminboard 글 총개수 : " + tempAdminService.getAdminBoardCount(new AdminCriteria(1,10)));
     }
 
     @Test
     public void getAdminboardListTest(){
-        tempAdminService.getAdminboardList(new Criteria());
+        tempAdminService.getAdminboardList(new AdminCriteria());
+    }
+
+    @Test
+    public void deleteByIdTest(){
+        tempAdminService.deleteById(47L);
+    }
+
+    @Test
+    public void noticeCancelTest() {
+        tempAdminService.noticeCancel(61L);
+    }
+
+    @Test
+    public void noticeConfirmTest(){
+        tempAdminService.noticeConfirm(61L);
+    }
+
+    @Test
+    public void getQnaReplyTest(){
+        tempAdminService.getQnaReply(125L);
     }
 
 }

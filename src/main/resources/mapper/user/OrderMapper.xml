@@ -4,11 +4,11 @@
 
     <select id="getList" resultType="orderDTO">
 
-            SELECT RN, ORDERNUM, NICKNAME, EMAIL, PHONE, ADDRESS, PRODUCTNUM, PRODUCTNAME, MANUFACTURER, SUPPLIER, REGIST_DATE, STATUS
+            SELECT RN, ORDERNUM, NICKNAME, EMAIL, PHONE, ADDRESS, PRODUCTNUM, PRODUCTNAME, MANUFACTURER, SUPPLIER, REGIST_DATE, STATUS,PRICE,CATEGORY
             FROM
             (
             SELECT
-            ROWNUM RN,TBL_ORDER.NUM AS ORDERNUM,TBL_USER.NICKNAME AS NICKNAME ,TBL_USER.EMAIL AS EMAIL,TBL_USER.PHONE AS PHONE ,TBL_USER.ADDRESS AS ADDRESS,TBL_PRODUCT.NUM AS PRODUCTNUM,TBL_PRODUCT.NAME AS PRODUCTNAME,TBL_PRODUCT.MANUFACTURER  AS  MANUFACTURER,TBL_PRODUCT.SUPPLIER AS SUPPLIER,TBL_ORDER.REGIST_DATE AS REGIST_DATE,TBL_ORDER.STATUS AS STATUS
+            ROWNUM RN,TBL_ORDER.NUM AS ORDERNUM,TBL_USER.NICKNAME AS NICKNAME ,TBL_USER.EMAIL AS EMAIL,TBL_USER.PHONE AS PHONE ,TBL_USER.ADDRESS AS ADDRESS,TBL_PRODUCT.NUM AS PRODUCTNUM,TBL_PRODUCT.NAME AS PRODUCTNAME,TBL_PRODUCT.MANUFACTURER  AS  MANUFACTURER,TBL_PRODUCT.SUPPLIER AS SUPPLIER,TBL_ORDER.REGIST_DATE AS REGIST_DATE,TBL_ORDER.STATUS AS STATUS,TBL_PRODUCT.PRICE AS PRICE,TBL_PRODUCT.CATEGORY AS CATEGORY
             FROM TBL_USER,TBL_ORDER,TBL_PRODUCT
             WHERE TBL_ORDER.USER_NUM  = TBL_USER.NUM
             AND TBL_ORDER.PRODUCT_NUM = TBL_PRODUCT.NUM
@@ -54,6 +54,26 @@
                 </when>
             </choose>
     </select>
+
+
+    <select id="getListToday" resultType="orderDTO">
+        SELECT
+        TBL_ORDER.NUM AS ORDERNUM,TBL_USER.NICKNAME AS NICKNAME ,TBL_USER.EMAIL AS EMAIL,TBL_USER.PHONE AS PHONE ,TBL_USER.ADDRESS AS ADDRESS,TBL_PRODUCT.NUM AS PRODUCTNUM,TBL_PRODUCT.NAME AS PRODUCTNAME,TBL_PRODUCT.MANUFACTURER  AS  MANUFACTURER,TBL_PRODUCT.SUPPLIER AS SUPPLIER,TBL_ORDER.REGIST_DATE AS REGIST_DATE,TBL_ORDER.STATUS AS STATUS,TBL_PRODUCT.PRICE AS PRICE,TBL_PRODUCT.CATEGORY AS CATEGORY
+        FROM TBL_USER,TBL_ORDER,TBL_PRODUCT
+        WHERE TBL_ORDER.USER_NUM  = TBL_USER.NUM
+        AND TBL_ORDER.PRODUCT_NUM = TBL_PRODUCT.NUM
+--         <![CDATA[
+--         AND (TO_CHAR(TBL_ORDER.REGIST_DATE,'yyyy-mm-dd hh24:mi:ss') >=(TO_CHAR(SYSDATE ,'yyyy-mm-dd')||'00:00:00')
+--         AND TO_CHAR(TBL_ORDER.REGIST_DATE,'yyyy-mm-dd hh24:mi:ss') <= (TO_CHAR(SYSDATE-30,'yyyy-mm-dd')||'23:59:59'))
+--         ]]>
+
+        <![CDATA[
+        AND TO_CHAR(TBL_ORDER.REGIST_DATE,'yyyy-mm-dd hh24:mi:ss') >= (#{startDate}||'00:00:00')
+        AND TO_CHAR(TBL_ORDER.REGIST_DATE,'yyyy-mm-dd hh24:mi:ss') <= (#{endDate}||'23:59:59')
+        ]]>
+    </select>
+
+
 
     <select id="getTotal" resultType="_int">
 
@@ -108,6 +128,7 @@
         </choose>
     </select>
 
+
 <!--    <select id="getList" resultType="orderVO">-->
 <!--        <![CDATA[-->
 <!--            SELECT ROWNUM RN, NUM, TOTAL, COUNTING, REGIST_DATE, PRODUCT_NUM, USER_NUM, STATUS-->
@@ -121,6 +142,8 @@
 <!--            WHERE RN >(#{pageNum} - 1) * #{amount}-->
 <!--        ]]>-->
 <!--    </select>-->
+
+
 
 
 <!--    <select id="getList" resultType="boardVO">
@@ -209,6 +232,44 @@
         <result column="PRICE" property="price"/>
     </resultMap>
 
+
+    <select id="order" resultType="string" parameterType="java.lang.String">
+        SELECT
+        U.NUM,U.NICKNAME,U.PHONE,U.ADDRESS,U.ADDRESS_DETAIL,U.POINT,P.NAME,P.PRICE,P.NUM,
+        O.NUM,O.USER_NUM,O.PRODUCT_NUM,O.TOTAL,O.COUNTING,O.STATUS,O.USER_COMMENT
+        FROM TBL_USER U ,TBL_PRODUCT P,TBL_ORDER O
+        WHERE U.NUM=O.USER_NUM
+        AND P.NUM=O.PRODUCT_NUM
+    </select>
+
+
+
+    <!--    <select id="order" parameterType="_int" resultType="OrderVO">-->
+    <!--        SELECT-->
+    <!--        U.NUM,U.NICKNAME,U.PHONE,U.ADDRESS,U.ADDRESS_DETAIL,U.POINT,P.NAME,P.PRICE-->
+    <!--        FROM TBL_USER U, TBL_PRODUCT P-->
+    <!--        WHERE NUM=#{num}-->
+    <!--    </select>-->
+    <select id="getUser" resultType="UserVO">
+
+        SELECT
+        NUM, NICKNAME,PHONE, ADDRESS,ADDRESS_DETAIL, POINT
+        FROM TBL_USER
+        WHERE NUM=#{num}
+    </select>
+    <select id="getProduct" resultType="ProductVO">
+    SELECT
+        NUM, NAME, CONTENT, PRICE
+    FROM TBL_PRODUCT
+    WHERE NUM = #{num}
+    </select>
+
+    <update id="updateUser">
+        SELECT
+        NUM, ADDRESS,ADDRESS_DETAIL, POINT
+        FROM TBL_USER
+        WHERE NUM=#{num}
+    </update>
 </mapper>
 
 

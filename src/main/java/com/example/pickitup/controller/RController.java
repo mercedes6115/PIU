@@ -53,9 +53,5 @@ public class RController {
     public void removeJjim(){
 
     }
-    //이메일 중복확인
-    @PostMapping("/emailMatching")
-    public int match(@RequestBody String email){
-        return tempUserSerivce.emailcheck(email);
-    }
+
 }

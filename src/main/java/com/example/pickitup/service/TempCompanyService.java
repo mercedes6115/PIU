@@ -41,6 +41,9 @@ public class TempCompanyService {
         return companyDAO.remove(num);
     }
 
+    public CompanyVO loginCompany(String email, String password){
+        return companyDAO.login(email,password);
+    }
 
 
     // projectQnaDAO
@@ -48,12 +51,6 @@ public class TempCompanyService {
     public List<ProjectQnaVO> getProjectQnAList(Long projectNum){
         return projectQnaDAO.getList(projectNum);
     }
-
-    // qna 상세보기 -> 수정
-    public ProjectQnaVO readProjectQnA(Long projectNum){
-        return projectQnaDAO.read(projectNum);
-    }
-
 
 
     // projectQnaCommentDAO

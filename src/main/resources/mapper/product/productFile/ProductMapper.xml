@@ -1,31 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.pickitup.mapper.product.productFile.ProductMapper">
+    <!--상품 리스트-->
+    <select id="getList" resultType="productVO">
+        SELECT
+        NUM, NAME, CONTENT, CATEGORY, PRICE, STOCK,
+        ORIGIN, MANUFACTURER, SUPPLIER, REGIST_DATE
+        FROM TBL_PRODUCT
+        <if test="category != null ">
+            WHERE CATEGORY = #{category}
+        </if>
+        ORDER BY REGIST_DATE DESC
+    </select>
     <!--상품 리스트 관리자용-->
 
     <select id="getProductList" resultType="productVO">
     <![CDATA[
     SELECT
         NUM, NAME, CONTENT, CATEGORY, PRICE, STOCK,
-        ORIGIN, MANUFACTURER, SUPPLIER, REGIST_DATE
+        ORIGIN, MANUFACTURER, SUPPLIER, REGIST_DATE,STATUS
     FROM (
     ]]>
         SELECT /*+ INDEX_DESC(TBL_BOARD SYS_C007228) */
         ROWNUM RN,NUM, NAME, CONTENT, CATEGORY, PRICE, STOCK,
-            ORIGIN, MANUFACTURER, SUPPLIER, REGIST_DATE
+            ORIGIN, MANUFACTURER, SUPPLIER, REGIST_DATE,STATUS
               FROM TBL_PRODUCT
+        <![CDATA[
+            WHERE ROWNUM <= #{pageNum} * #{amount}
+            ]]>
                 <choose>
                     <when test="type == 'name'.toString()">
-                        WHERE NAME LIKE '%'||#{keyword}||'%'
+                        AND NAME LIKE '%'||#{keyword}||'%'
                     </when>
                     <when test="type == 'productnumber'.toString()">
-                        WHERE  NUM LIKE '%'||#{keyword}||'%'
+                        AND  NUM LIKE '%'||#{keyword}||'%'
                     </when>
                     <when test="type == 'manufacturer'.toString()">
-                        WHERE  MANUFACTURER LIKE '%'||#{keyword}||'%'
+                        AND  MANUFACTURER LIKE '%'||#{keyword}||'%'
                     </when>
                     <when test="type == 'supplier'.toString()">
-                        WHERE  SUPPLIER LIKE '%'||#{keyword}||'%'
+                        AND  SUPPLIER LIKE '%'||#{keyword}||'%'
                     </when>
                 </choose>
                 <choose>
@@ -59,30 +73,12 @@
                         AND (REGIST_DATE BETWEEN #{startDate} AND #{endDate})
                     </when>
                 </choose>
-                <choose>
-                    <when test="type!=null || type1!=null || keyword!=null || startDate != null || endDate !=null " >
-                            <![CDATA[
-                            AND ROWNUM <= #{pageNum} * #{amount}
-                            ]]>
-                    </when>
-                    <otherwise>
-                           <![CDATA[
-                           WHERE ROWNUM <= #{pageNum} * #{amount}
-                           ]]>
-                    </otherwise>
-                </choose>
         )
         <![CDATA[
         WHERE RN > (#{pageNum} - 1) * #{amount}
         ]]>
     </select>
 
-    <select id="getList" resultType="productVO">
-    SELECT
-        NUM, NAME, CONTENT, CATEGORY, PRICE, STOCK,
-        ORIGIN, MANUFACTURER, SUPPLIER, REGIST_DATE
-    FROM TBL_PRODUCT
-    </select>
 
     <select id="getProductTotal" resultType="_int">
         SELECT count(NUM)
@@ -134,6 +130,12 @@
         </choose>
     </select>
 
+    <select id="getFullList" resultType="productVO">
+        SELECT
+        NUM, NAME, CONTENT, CATEGORY, PRICE, STOCK,
+        ORIGIN, MANUFACTURER, SUPPLIER, REGIST_DATE,STATUS
+        FROM TBL_PRODUCT
+    </select>
 
     <select id="getTotal" resultType="_int">
         SELECT count(NUM)
@@ -177,6 +179,10 @@
     DELETE FROM TBL_PRODUCT
     WHERE NUM=#{num}
     </update>
+
+    <select id="count" resultType="_int">
+    SELECT COUNT(NUM) FROM TBL_PRODUCT
+    </select>
 </mapper>
 
 

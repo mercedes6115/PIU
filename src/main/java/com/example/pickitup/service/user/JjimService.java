@@ -30,6 +30,16 @@ public class JjimService {
         jjimDAO.register(jjimVO);
     }
 
+    //찜 삭제
+    public void remove(JjimVO jjimVO){
+        jjimDAO.remove(jjimVO);
+    }
+
+    //찜 목록
+    public List<JjimVO> getList(){
+       return jjimDAO.getList();
+    }
+
     // 찜 update -> 필요?
 
 }

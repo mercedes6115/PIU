@@ -8,6 +8,7 @@ import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.OrderCriteria;
 import com.example.pickitup.domain.vo.dto.OrderDTO;
 import com.example.pickitup.domain.vo.dto.PointDTO;
+import com.example.pickitup.domain.vo.dto.UserDTO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 import com.example.pickitup.domain.vo.user.*;
@@ -50,6 +51,7 @@ public class TempUserSerivce {
 
     // 유저 정보 수정
     public boolean updateUserInfo(UserVO userVO) {
+
         return userDAO.update(userVO);
     }
 
@@ -71,7 +73,7 @@ public class TempUserSerivce {
     }
 
 
-    public int loginUser(String email, String password){
+    public UserDTO loginUser(String email, String password){
         return userDAO.login(email,password);
     }
 
@@ -80,6 +82,8 @@ public class TempUserSerivce {
         return userDAO.emailcheck(email);
     };
 
+    //  닉네임 중복검사
+    public int nicknameCheck(String nickname) {return userDAO.nicknameCheck(nickname);}
 
     // jjimDAO
     // 나의 프로젝트 찜 목록
@@ -181,11 +185,14 @@ public class TempUserSerivce {
     // 주문 목록(관리자용)
     public List<OrderDTO> getOrderList(OrderCriteria orderCriteria){
         return orderDAO.getList(orderCriteria);
+
     }
 
     public int getOrderTotal(OrderCriteria orderCriteria){
         return orderDAO.getTotal(orderCriteria);
+
     }
+
     // 주문 취소
     public boolean remove(Long num){
         return orderDAO.remove(num);
@@ -205,8 +212,8 @@ public class TempUserSerivce {
 
 
     // 유저 비밀번호 수정
-    public boolean updatePW(String email) {
-        return userDAO.updatePW(email);
+    public boolean updatePW(String email,String password) {
+        return userDAO.updatePW(email,password);
     }
 
     // 관리자 페이지용 유저 비밀번호 수정

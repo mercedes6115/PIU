@@ -26,8 +26,8 @@
         <div class="userStatus"><strong>오늘 가입자수 20명 동시 접속자수 50명</strong></div>
         <div class="statusBox">
 
-            <div id="chart_div" style="width: 400px; height: 200px;"></div>
             <div id="donutchart" style="width: 400px; height: 200px;"></div>
+            <div id="donutchart1" style="width: 400px; height: 200px;"></div>
 
 
         </div>
@@ -35,8 +35,8 @@
         <!-- 오늘 프로젝트 현황 -->
         <!-- 클릭시 색상 변경 -->
         <div class="projectBox">
-            <div>
-                <h2>오늘 프로젝트 현황 (06월 10일 01:10 기준) </h2>
+            <div style="display: inline;">
+                <h2 th:text="'오늘의 프로젝트 현황  ('+ ${#calendars.format(#calendars.createNow(),'MM-dd')+'  기준)'}"></h2>
             </div>
             <div class="projectStatus">
                 <a href="#">
@@ -44,32 +44,32 @@
                     <span class="material-symbols-outlined contentIcon" style="font-size: 50px;">
                             hourglass_empty
                         </span>
-                    <span class="projectStatus-title">승인대기</span><strong>0건</strong>
+                    <span class="projectStatus-title">승인대기</span><strong id="waiting"></strong>
                 </a>
                 <a href="#">
                     <!-- 아이콘 -->
                     <span class="material-symbols-outlined contentIcon" style="font-size: 50px;">
                             start
                         </span>
-                    <span class="projectStatus-title">진행중</span><strong>0건</strong>
+                    <span class="projectStatus-title">진행중</span><strong id="onGoing"></strong>
                 </a>
                 <a href="#">
                     <!-- 아이콘 -->
                     <span class="material-symbols-outlined contentIcon" style="font-size: 50px;">
                             paid
                         </span>
-                    <span class="projectStatus-title">지급대기</span><strong>0건</strong>
+                    <span class="projectStatus-title">지급대기</span><strong id="complete"></strong>
                 </a>
             </div>
         </div>
         <!-- 주문 현황 -->
         <div class="orderBox">
-            <h2>오늘 주문 현황 (최근 1개월 기준)</h2>
+            <h2>주문 현황 (최근 1개월 기준)</h2>
             <div class="orderStatus">
-                <div><a href="#"><strong>0</strong><span class="title">주문접수</span></a></div>
-                <div><a href="#"><strong>0</strong><span class="title">배송준비</span></a></div>
-                <div><a href="#"><strong>0</strong><span class="title">배송중</span></a></div>
-                <div><a href="#"><strong>0</strong><span class="title">배송완료</span></a></div>
+                <div><a href="#"><strong id="ordered"></strong><span class="title">주문접수</span></a></div>
+                <div><a href="#"><strong id="deliveryReady"></strong><span class="title">배송준비</span></a></div>
+                <div><a href="#"><strong id="delivering"></strong><span class="title">배송중</span></a></div>
+                <div><a href="#"><strong id="deliverComplete"></strong><span class="title">배송완료</span></a></div>
             </div>
         </div>
     </div>
@@ -84,16 +84,120 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-<script>
-    $(document).ready(function () {
-        $('#sidebar').load("adminSideBar.html");
+<script th:inline="javascript">
 
-    });
+    let list=[[${projectList}]];
+    let orderList=[[${orderList}]];
+    console.log(list);
+    console.log(list.length);
+    console.log(list[2]["approval"]);
+
+    let productOnReady=0;
+    let location1=0;
+    let course1=0;
+    let mountain1=0;
+    let coast1=0;
+    let ground1=0;
+    let etc1=0;
+    // 승인대기
+    let oncall1=0;
+    // 진행중
+    let ing1=0;
+    // 진행완료
+    let complete=0;
+
+
+    // 상품쪽
+    let product_order=0;
+    let product_deliveryReady=0;
+    let product_delivering=0;
+    let product_delivered=0;
+
+    let product_daily=0;
+    let product_kitchen=0;
+    let product_bathroom=0;
+    let product_pet=0;
+    let product_cosmetics=0;
+    let product_foods=0;
+    let product_stationary=0;
+    let product_gardening=0;
+
+
+    for(let cnt1=0;cnt1<list.length;cnt1++){
+        console.log(typeof(list[cnt1]["terrain"]));
+        if(list[cnt1]["course"]=='L'){
+            location1++;
+        }
+        if(list[cnt1]["course"]=='C'){
+            course1++;
+        }
+        if(list[cnt1]["terrain"]=='1'){
+            mountain1++;
+        }
+        if(list[cnt1]["terrain"]=='2'){
+            coast1++;
+        }
+        if(list[cnt1]["terrain"]=='3'){
+            ground1++;
+        }
+        if(list[cnt1]["terrain"]=='4'){
+            etc1++;
+        }
+        if(list[cnt1]["approval"]=='5'){
+            oncall1++;
+        }
+        if(list[cnt1]["approval"]=='1'){
+            ing1++;
+        }
+        if(list[cnt1]["approval"]=='4'){
+            complete++;
+        }
+    }
+
+
+    for(let cnt2=0;cnt2<orderList.length;cnt2++){
+        if(orderList[cnt2]["status"]==0){
+            product_order++;
+        }
+        if(orderList[cnt2]["status"]==1){
+            product_deliveryReady++;
+        }
+        if(orderList[cnt2]["status"]==2){
+            product_delivering++;
+        }
+        if(orderList[cnt2]["status"]==3) {
+            product_delivered++;
+        }
+        if(orderList[cnt2]["category"]=="생활"){product_daily++;}
+        if(orderList[cnt2]["category"]=="욕실"){product_bathroom++;}
+        if(orderList[cnt2]["category"]=="화장품"){product_cosmetics++;}
+        if(orderList[cnt2]["category"]=="식품"){product_foods++;}
+        if(orderList[cnt2]["category"]=="원예"){product_gardening++;}
+        if(orderList[cnt2]["category"]=="주방"){product_kitchen++;}
+        if(orderList[cnt2]["category"]=="반려동물"){product_pet++;}
+        if(orderList[cnt2]["category"]=="문구"){product_stationary++;}
+    }
+    document.getElementById("waiting").innerText=oncall1+"건";
+    document.getElementById("onGoing").innerText=ing1+"건";
+    document.getElementById("complete").innerText=complete+"건";
+
+    document.getElementById("ordered").innerText=product_order;
+    document.getElementById("deliveryReady").innerText=product_deliveryReady;
+    document.getElementById("delivering").innerText=product_delivering;
+    document.getElementById("deliverComplete").innerText=product_delivered;
+
+
+    console.log(location1);
+    console.log(course1);
+    console.log(mountain1);
+    console.log(coast1);
+    console.log(ground1);
 
 
     google.charts.load('current', {'packages': ['corechart']});
-    google.charts.setOnLoadCallback(drawChart);
+    google.charts.setOnLoadCallback(drawChart21);
     google.charts.setOnLoadCallback(drawChart2);
+    google.charts.setOnLoadCallback(drawChart());
 
     function drawChart() {
         let date = new Date();
@@ -122,19 +226,40 @@
     function drawChart2() {
         var data = google.visualization.arrayToDataTable([
             ['Task', 'Hours per Day'],
-            ['평지', 11],
-            ['산', 2],
-            ['바다', 2],
-            ['코스', 2],
-            ['장소', 7]
+            ['평지', ground1],
+            ['산', mountain1],
+            ['바다', coast1],
+            ['기타', etc1],
         ]);
 
         var options = {
             title: '플로깅 유형',
-            pieHole: 0.4,
+            pieHole: 0.3,
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, options);
+    }
+
+    function drawChart21() {
+        var data = google.visualization.arrayToDataTable([
+            ['Task', 'Hours per Day'],
+            ['생활', product_daily],
+            ['문구', product_stationary],
+            ['주방', product_kitchen],
+            ['식품', product_foods],
+            ['반려동물', product_pet],
+            ['원예', product_gardening],
+            ['욕실', product_bathroom],
+            ['화장품', product_cosmetics],
+        ]);
+
+        var options = {
+            title: '스토어 유형',
+            pieHole: 0.3,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart1'));
         chart.draw(data, options);
     }
 </script>

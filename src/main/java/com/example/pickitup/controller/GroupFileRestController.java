@@ -10,4 +10,5 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/groupFile/*")
 @RequiredArgsConstructor
 public class GroupFileRestController {
+
 }

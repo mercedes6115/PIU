@@ -1,7 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.pickitup.mapper.project.projectReview.ProjectReviewMapper">
-    
+    <select id="getList" resultType="projectReviewVO">
+        SELECT NUM, CONTENT, REGIST_DATE, UPDATE_DATE, USER_NUM, PROJECT_NUM
+        FROM TBL_PROJECT_REVIEW
+    </select>
+
+
+    <insert id="insert" parameterType="projectReviewVO">
+        INSERT INTO TBL_PROJECT_REVIEW
+        (NUM, CONTENT, REGIST_DATE, UPDATE_DATE, USER_NUM, PROJECT_NUM)
+        VALUES(SEQ_PROJECT_REVIEW.NEXTVAL, #{content}, SYSDATE , SYSDATE , #{userNum}, #{projectNum});
+    </insert>
+
+
+    <update id="update" parameterType="projectReviewVO">
+        UPDATE TBL_PROJECT_REVIEW
+        SET CONTENT=#{content}, UPDATE_DATE=SYSDATE , USER_NUM= #{userNum}, PROJECT_NUM= #{projectNum}
+        WHERE NUM= #{num}
+
+    </update>
+
+    <delete id="delete" parameterType="long">
+        DELETE FROM TBL_PROJECT_REVIEW
+        WHERE NUM= #{num}
+    </delete>
 </mapper>
 
 

@@ -14,9 +14,9 @@ public class CompanyDAO {
     private final CompanyMapper companyMapper;
 
     // 단체 목록
-//    public List<CompanyVO> getList(){
-//        return companyMapper.getList();
-//    }
+    public List<CompanyVO> getList(){
+        return companyMapper.getList();
+    }
 
     // 단체 회원가입
     public void register(CompanyVO companyVO){
@@ -34,9 +34,10 @@ public class CompanyDAO {
     }
 
     // 로그인 select count -> read 사용?
-    public int login(String email, String password){
+    public CompanyVO login(String email, String password){
         return companyMapper.login(email,password);
     }
+
 
     public boolean adminCompanyPwUpdate(String password, Long num){
         return companyMapper.adminCompanyPwUpdate(password,num);
@@ -55,4 +56,5 @@ public class CompanyDAO {
     public boolean companyApprovalEnable(Long num) {// 비활성화
         return companyMapper.companyApprovalEnable(num);
     }
+
 }

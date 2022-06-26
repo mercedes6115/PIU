@@ -13,13 +13,13 @@
 <div class="content">
     <div class="formdesign">
         <h1 class="loginh1">
-            <a class="logo" href="/">pickitup</a>
+            <a class="logo" href="/main/main">pickitup</a>
         </h1>
         <div class="loginform">
             <div>
                 <h2 class="title">로그인</h2>
             </div>
-            <form action="">
+            <form method="post" action="/user/login" id="loginForm">
                 <div class="emaildiv">
                     <lable class="email">이메일</lable>
                     <input id="email" class="emailtype" type="email" name="email" placeholder="example@naver.com">
@@ -53,14 +53,25 @@
                         </div>
                     </div>
                 </div>
+<<<<<<< HEAD
                 <a href="/password/FindPassword.html" class="findpw">비밀번호를 잊으셨나요?</a>
                 <a href="/user/join" class="joinus">회원가입하기</a>
+=======
+                <div style="display: flex; justify-content: space-between;">
+                    <a href="/user/findPw" class="findpw">비밀번호를 잊으셨나요?</a>
+                    <div style="display: flex">
+                        <a href="/user/join" class="joinus">일반회원 가입하기</a>
+                        <p class="dash">/</p>
+                        <a href="/user/joinGroup" class="joinus">회사회원 가입하기</a>
+                    </div>
+                </div>
+>>>>>>> 1af0443feb0328ae48e4df9350b51acaaeacd0be
                 <button type="submit" class="loginbutton"> 로그인</button>
             </form>
 
             <hr class="line">
 
-            <button type="submit" class="kakaobutton">카카오톡 로그인 </button>
+            <button type="button" class="kakaobutton">카카오톡 로그인 </button>
 
         </div>
     </div>
@@ -70,78 +81,11 @@
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<script>
-
-    // 인풋 창에 아무것도 없으면 경고문 띄우기
-    $("#email").blur(function(){
-        let email= $("#email").val();
-        if(!email){
-            $(".letshow1").css({"display":"flex", "margin-top":"5px"});
-        }
-    });
-    $("#pw").blur(function(){
-        let userpw= $("#pw").val();
-        if(!userpw){
-            $(".letshow2").css({"display":"flex", "margin-top":"5px"});
-        }
-    });
-
-    // 경고문 떠있다가 키보드 눌리면 경고문 사라지게 하기
-    $("#pw").keypress(function(){
-        let userpw= $("#pw").val();
-        $(".letshow2").css({"display":"none"});
-    });
-    $("#email").keypress(function(){
-        let email= $("#email").val();
-        $(".letshow1").css({"display":"none"});
-    });
-
-    // 아무것도 없는 상태에서 로그인 버튼 누를 경우
-    // 정보가 디비와 다를 경우
-    // 로그인 성공 경우
-    $(document).ready(function () {
-        $(".loginbutton").click(function (e) {
-            e.preventDefault();
-
-            let userpw= $("#pw").val();
-            let email= $("#email").val();
-            console.log(email);
-            console.log(userpw);
-
-            if(!email){
-                $(".letshow1").css({"display":"flex", "margin-top":"5px"});
-
-            }
-
-            if(!userpw){
-                $(".letshow2").css({"display":"flex", "margin-top":"5px"});
-            }
-
-            if(!email || !userpw) {
-                return;
-            }
-
-            else{
-                loginCheckDB(email, userpw);
-            }
-
-
-        });
-    });
-
-    function loginCheckDB(email,userpw){
-        console.log(email);
-        console.log(userpw);
-        if(email=="id@na" && userpw=="pw"){
-            alert("로그인 성공");
-        }
-
-        if( email!="id@na" || userpw!="pw"){
-            alert("아이디와 비밀번호를 확인하세요");
-        }
-
-
+<script src="/assets/js/login.js"></script>
+<script th:inline="javascript">
+    let msg=[[${msg}]];
+    if(msg!=null){
+        alert(msg);
     }
 </script>
 </html>

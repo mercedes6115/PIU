@@ -1,7 +1,9 @@
 package com.example.pickitup.domain.dao.user;
 
+import com.example.pickitup.domain.vo.AdminCriteria;
 import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.adminVO.AdminBoardDTO;
+import com.example.pickitup.domain.vo.dto.AdminBoardPageDTO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
@@ -28,30 +30,53 @@ public class UserDAO {
     }
 
     // 관리자 공지 리스트 보기
-    public List<AdminBoardDTO> getNoticeList(Criteria criteria){
-        return userMapper.getNoticeList(criteria);
+    public List<AdminBoardDTO> getNoticeList(AdminCriteria adminCriteria){
+        return userMapper.getNoticeList(adminCriteria);
     }
 
+
+    public boolean addPoint(String nickname,String point){
+        return userMapper.addPoint(nickname,point);
+    }
     //    관리자 공지 상세보기
     public AdminBoardVO getReadDetail(Long num){
         return userMapper.getNoticeDetail(num);
     }
 
     // 관리자 공지글 총개수
-    public int getNoticeTotal(){
-        return userMapper.getNoticeTotal();
+    public int getNoticeTotal(AdminCriteria adminCriteria){
+        return userMapper.getNoticeTotal(adminCriteria);
     }
 
     // 관리자 adminboard 글 총개수
-    public int getAdminBoardCount(Criteria criteria){
-        return userMapper.getAdminBoardCount(criteria);
+    public int getAdminBoardCount(AdminCriteria adminCriteria){
+        return userMapper.getAdminBoardCount(adminCriteria);
     }
 
     // 관리자 adminboard 글 목록 가져오기
-    public List<AdminBoardVO> getAdminboardList(Criteria criteria){
-        return userMapper.getAdminboardList(criteria);
+    public List<AdminBoardVO> getAdminboardList(AdminCriteria adminCriteria){
+        return userMapper.getAdminboardList(adminCriteria);
     }
 
+    // 관리자 adminbaord 글 삭제하기
+    public int deleteById(Long num){
+        return userMapper.deleteById(num);
+    }
+
+    // 관리자 adminboard 글 공지 해제하기
+    public int noticeCancel(Long num){
+        return userMapper.noticeCancel(num);
+    }
+
+    // 관리자 adminboard 글 공지 지정하기
+    public int noticeConfirm(Long num){
+        return userMapper.noticeConfirm(num);
+    }
+
+    //    관리자 게시물 관리에서 상세보기
+    public AdminBoardPageDTO getQnaReply(Long num){
+        return userMapper.getQnaReply(num);
+    }
 
     // 유저 목록(관리자용)
     public List<UserDTO> getList(Criteria criteria){
@@ -73,12 +98,12 @@ public class UserDAO {
 
     // 유저 정보 수정
     public boolean update(UserVO userVO){
-        return userMapper.update(userVO);
+        return userMapper.update(userVO) != 0;
     }
 
     // 유저 탈퇴
     public boolean remove(Long num){
-        return userMapper.delete(num);
+        return userMapper.delete(num) !=0 ;
     }
 
     // 유저가 구매한 상품 목록
@@ -87,12 +112,12 @@ public class UserDAO {
     }
 
     // 유저가 참여한 프로젝트 목록록
-   public List<ProjectVO> getInProjectList(Long userNum) {
+    public List<ProjectVO> getInProjectList(Long userNum) {
         return userMapper.getInProjectList(userNum);
     }
 
     // 로그인 -> select count-> read() 사용?
-    public int login(String email, String password){
+    public UserDTO login(String email, String password){
         return userMapper.login(email,password);
     }
 
@@ -102,9 +127,10 @@ public class UserDAO {
     };
 
     //  비밀번호 수정
-    public boolean updatePW(String email){
-        return userMapper.updatePW(email);
+    public boolean updatePW(String email,String password){
+        return userMapper.updatePW(email,password);
     };
+
 
     public boolean updateUserAdminPW(String password, Long num){
         return userMapper.adminPwUpdate(password,num);
@@ -123,4 +149,8 @@ public class UserDAO {
     public boolean UserApprovalEnable(Long num) {// 비활성화
         return userMapper.userApprovalEnable(num);
     }
+
+    //  닉네임 중복검사
+    public int nicknameCheck(String nickname) { return userMapper.nicknameMatching(nickname);}
+
 }
