@@ -29,5 +29,7 @@
         <typeAlias type="com.example.pickitup.domain.vo.dto.PointDTO" alias="pointDTO"/>
         <typeAlias type="com.example.pickitup.domain.vo.dto.AdminQnaCommentDTO" alias="adminQnaCommentDTO"/>
         <typeAlias type="com.example.pickitup.domain.vo.dto.AdminQnaDTO" alias="adminQnaDTO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.dto.MyOrderDTO" alias="myOrderDTO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.dto.MyReviewDTO" alias="myReviewDTO"/>
     </typeAliases>
 </configuration>

@@ -56,8 +56,8 @@ public class UserDaoTests {
     }
 
     @Test
-    public void loginTest(){
-        if(userDAO.login("ddd","dddd")!=null){
+    public void loginTest() {
+        if (userDAO.login("ddd", "dddd") != null) {
             log.info("로그인 성공");
         }
     }
@@ -67,7 +67,7 @@ public class UserDaoTests {
     }
 
     @Test
-    public void registerWriteTest () {
+    public void registerWriteTest() {
 
         AdminBoardVO adminBoardVO = new AdminBoardVO();
         adminBoardVO.setTitle("DAO새로운 공지글 제목2");
@@ -80,48 +80,48 @@ public class UserDaoTests {
     }
 
     @Test
-    public void getReadDetailTest () {
+    public void getReadDetailTest() {
         Long num = 12L;
         userDAO.getReadDetail(num);
     }
 
     @Test
-    public void getNoticeListTest () {
+    public void getNoticeListTest() {
         userDAO.getNoticeList(new AdminCriteria()).stream().map(AdminBoardDTO::toString).forEach(log::info);
     }
 
     @Test
-    public void getNoticeTotalTest () {
-        log.info("공지글 총 개수 : " + userDAO.getNoticeTotal(new AdminCriteria(1,10)));
+    public void getNoticeTotalTest() {
+        log.info("공지글 총 개수 : " + userDAO.getNoticeTotal(new AdminCriteria(1, 10)));
     }
 
     @Test
-    public void getAdminBoardCountTest () {
+    public void getAdminBoardCountTest() {
         log.info("adminboard 글 총 개수 : " + userDAO.getAdminBoardCount(new AdminCriteria(1, 10)));
     }
 
     @Test
-    public void getAdminboardListTest () {
+    public void getAdminboardListTest() {
         userDAO.getAdminboardList(new AdminCriteria(1, 10));
     }
 
     @Test
-    public void deleteByIdTest(){
+    public void deleteByIdTest() {
         userDAO.deleteById(49L);
     }
 
     @Test
-    public void noticeCancelTest(){
+    public void noticeCancelTest() {
         userDAO.noticeCancel(59L);
     }
 
     @Test
-    public void noticeConfirmTest(){
+    public void noticeConfirmTest() {
         userDAO.noticeConfirm(59L);
     }
 
     @Test
-    public void getQnaReplyTest(){
+    public void getQnaReplyTest() {
         userDAO.getQnaReply(125L);
     }
 
@@ -154,7 +154,9 @@ public class UserDaoTests {
     }
 
     @Test
-    public void nicknameCheckTest() { log.info("결과 : " + userDAO.nicknameCheck("짜리킴"));}
+    public void nicknameCheckTest() {
+        log.info("결과 : " + userDAO.nicknameCheck("짜리킴"));
+    }
 
     @Test
     public void qnaStoreSaveTest() {
@@ -171,5 +173,14 @@ public class UserDaoTests {
     }
 
 
+    @Test
+    public void getMyProductQnaComment() {
+        userDAO.getMyProductQnaComment(13L);
+    }
+
+    @Test
+    public void getMyProjectQnaTest() {
+        userDAO.getMyProjectQna(2L);
+    }
 }
 

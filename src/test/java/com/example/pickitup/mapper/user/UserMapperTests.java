@@ -219,6 +219,18 @@ public class UserMapperTests {
         Long num = 63L;
         userMapper.productQnaDelete(num);
     }
+
+    @Test
+    public void getMyProjectQnaTest() {userMapper.getMyProjectQna(2L);}
+
+    @Test
+    public void getMyProductQnaTest() {userMapper.getMyProductQna(2L);}
+
+    @Test
+    public void getProjectQnaComment() {userMapper.myProjectQnaComment(1L);}
+
+    @Test
+    public void getProductQnaComment() {userMapper.myProductQnaComment(13L);}
 }
 
 

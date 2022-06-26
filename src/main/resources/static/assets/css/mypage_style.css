@@ -762,6 +762,7 @@ body {
     display: flex;
     flex-direction: column;
     max-width: 100%;
+    margin-left: 40px;
 }
 
 .review-with9 {
@@ -806,6 +807,7 @@ body {
     flex-direction: row;
     -webkit-box-align: center;
     align-items: center;
+    margin-left: 15px;
 }
 
 .review-read4 {
@@ -4536,4 +4538,49 @@ th.point-change-date {
     justify-content: center;
     -webkit-box-align: center;
     align-items: center;
+}
+
+.passwordBox {
+    border: 1px solid rgb(248,248,248);
+    width: 60%;
+}
+
+.password-Input-Box, .passwordCheck-Input-Box{
+    display: flex;
+    padding: 10px;
+    align-items: center;
+}
+
+.password-name, .passwordCheck-name {
+    font-size: 14px;
+    width: 25%;
+}
+
+#password, #passwordCheck {
+    width: 60%;
+    height: 30px;
+}
+
+.pwcaseCheck {
+    margin-left: 26%;
+    font-size: 14px;
+}
+
+.pwCheckcaseCheck {
+    margin-left: 26%;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.pwChangeBtn {
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid rgb(248,248,248);
+    margin-left: 200px;
+    background-color: #1F89FF;
+}
+
+.commentProfile {
+    border: 1px solid rgb(248,248,248);
+    border-radius: 100%;
 }

@@ -8,10 +8,13 @@ import com.example.pickitup.domain.vo.dto.AdminQnaCommentDTO;
 import com.example.pickitup.domain.vo.dto.AdminQnaDTO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 
+import com.example.pickitup.domain.vo.product.productQna.ProductQnaCommentVO;
+import com.example.pickitup.domain.vo.product.productQna.ProductQnaVO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 
 import com.example.pickitup.domain.vo.dto.UserDTO;
 import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaCommentVO;
+import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaVO;
 import com.example.pickitup.domain.vo.user.AdminBoardVO;
 import com.example.pickitup.domain.vo.user.UserVO;
 import com.example.pickitup.mapper.user.UserMapper;
@@ -159,6 +162,11 @@ public class UserDAO {
         return userMapper.updatePW(email,password);
     };
 
+
+
+    // 마이페이지 비밀번호 변경
+    public boolean changePw(String password, Long num) {return userMapper.changePw(password, num);}
+
     // 카카오 로그인 즉시 회원가입
     public void kakaoinsert(UserVO userVO){
         userMapper.kakaoinsert(userVO);
@@ -168,5 +176,17 @@ public class UserDAO {
     public UserVO kakaoDetail(@Param("email") String email){
         return userMapper.kakaoDetail(email);
     }
+
+    //  내가 작성한 project 문의글 가져오기
+    public List<ProjectQnaVO> getMyProjectQna(Long userNum) {return userMapper.getMyProjectQna(userNum);}
+
+    //  내가 작성한 product 문의글 가져오기
+    public List<ProductQnaVO> getMyProductQna(Long userNum) {return userMapper.getMyProductQna(userNum);}
+
+    //  내가 작성한 project 문의글에 달린 답변 가져오기
+    public ProjectQnaCommentVO getMyProjectQnaComment(Long qnaNum) {return userMapper.myProjectQnaComment(qnaNum);}
+
+    // 내가 작성한 product 문의글에 달린 답변 가져오기
+    public ProductQnaCommentVO getMyProductQnaComment(Long qnaNum) {return userMapper.myProductQnaComment(qnaNum);}
 
 }

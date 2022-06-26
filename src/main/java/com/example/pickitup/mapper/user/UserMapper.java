@@ -9,11 +9,14 @@ import com.example.pickitup.domain.vo.dto.AdminQnaCommentDTO;
 import com.example.pickitup.domain.vo.dto.AdminQnaDTO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 import com.example.pickitup.domain.vo.product.productQna.ProductQnaCommentVO;
+import com.example.pickitup.domain.vo.product.productQna.ProductQnaVO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 
 import com.example.pickitup.domain.vo.dto.UserDTO;
 
 import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaCommentVO;
+
+import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaVO;
 import com.example.pickitup.domain.vo.user.AdminBoardVO;
 import com.example.pickitup.domain.vo.user.UserVO;
 import org.apache.catalina.User;
@@ -116,11 +119,26 @@ public interface UserMapper {
     public boolean updatePW(String email,String password);
 
 
+//  마이페이지 비밀번호 변경
+    public boolean changePw(String password, Long num);
+
+
 //    카카오톡 유저 로그인하자마자 이메일 중복확인 후 회원가입
     public void kakaoinsert(UserVO userVO);
 
 //    카카오톡 유저 로그인하자마자 이메일 중복 시 회원정보가져오기
     public UserVO kakaoDetail(@Param("email") String email);
 
+//    내가 작성한 projectQna
+    public List<ProjectQnaVO> getMyProjectQna(Long userNum);
+
+//    내가 작성한 productQna
+    public  List<ProductQnaVO> getMyProductQna(Long userNum);
+
+//    해당 project 문의글에 작성된 답변
+    public ProjectQnaCommentVO myProjectQnaComment(Long qnaNum);
+
+//    해당 product 문의글에 작성된 답변
+    public ProductQnaCommentVO myProductQnaComment(Long qnaNum);
 
 }

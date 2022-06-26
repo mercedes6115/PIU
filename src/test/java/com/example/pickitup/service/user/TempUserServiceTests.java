@@ -198,4 +198,7 @@ public class TempUserServiceTests {
     public void productQnaDelete() {
         tempAdminService.productQnaDelete(68L);
     }
+
+    @Test
+    public void getMyProductQna() { tempUserSerivce.getMyProductQna(2L);}
 }

@@ -30,7 +30,7 @@
 <!--카카오톡 로그인 즉시 회원가입-->
     <insert id="kakaoinsert">
         <selectKey keyProperty="num" resultType="long" order="BEFORE">
-            SELECT SEQ_USER.NEXTVAL FROM CURRVAL
+            SELECT SEQ_USER.NEXTVAL FROM DUAL
         </selectKey>
         INSERT INTO TBL_USER
         (NUM, EMAIL, NICKNAME, REGIST_DATE)
@@ -47,9 +47,8 @@
     <!--  회원 수정  -->
     <update id="update">
         UPDATE TBL_USER
-        SET EMAIL=#{email}, PASSWORD=#{password}, NICKNAME=#{nickname}, PHONE=#{phone},ADDRESS=#{address},
+        SET NICKNAME=#{nickname}, PHONE=#{phone},ADDRESS=#{address},
         ADDRESS_DETAIL=#{addressDetail},PROFILE_FILE_NAME=#{profileFileName}, PROFILE_UPLOAD_PATH=#{profileUploadPath}, REGIST_DATE=SYSDATE,
-        CATEGORY=#{category}
         WHERE NUM=#{num}
     </update>
 
@@ -77,7 +76,7 @@
     <!-- 사용자가 참여한 플로깅 목록 -->
     <select id="getInProjectList" resultType="projectVO">
         <![CDATA[
-        SELECT proj.NUM, proj.TITLE, proj.CONTENT, proj.COURSE, proj.TERRAIN, proj.POINT, proj.APPROVAL, proj.STARTTIME, proj.ENDTIME, proj.START_ADDRESS, proj.END_ADDRESS, proj.DISTANCE, proj.QR, proj.REGIST_DATE, proj.UPDATE_DATE, proj.STATUS, proj.COMPANY_NUM, proj.USER_NUM, proj.JJIM_COUNT, proj.PROJECT_DATE
+        SELECT proj.NUM, proj.TITLE, proj.CONTENT, proj.COURSE, proj.TERRAIN, proj.POINT, proj.APPROVAL, proj.STARTTIME, proj.ENDTIME, proj.START_ADDRESS, proj.END_ADDRESS, proj.DISTANCE, proj.QR, proj.REGIST_DATE, proj.UPDATE_DATE, proj.STATUS, proj.COMPANY_NUM, proj.JJIM_COUNT, proj.PROJECT_DATE
 	        FROM TBL_PROJECT proj
 	            INNER JOIN TBL_APPLY app ON app.PROJECT_NUM = proj.NUM
 	            INNER JOIN TBL_USER u ON u.NUM = app.USER_NUM
@@ -296,6 +295,13 @@
         WHERE EMAIL=#{email}
     </update>
 
+    <!-- 마이페이지에서 비밀번호 변경-->
+    <update id="changePw">
+        UPDATE TBL_USER
+        SET PASSWORD=#{password}
+        WHERE NUM=#{num}
+    </update>
+
     <!-- ADMINBOARD에 총 게시글 수 가져오기-->
     <select id="getAdminBoardCount" resultType="_int">
         SELECT COUNT(NUM)
@@ -486,6 +492,29 @@
          #{content}, #{userNum}, '1', '1', #{projectQnaNum, jdbcType=VARCHAR}, (SELECT TBL_PRODUCT_QNA.NUM FROM TBL_PRODUCT_QNA  WHERE TBL_PRODUCT_QNA.NUM =(SELECT DISTINCT FIRST_VALUE(NUM) OVER (ORDER BY REGIST_DATE DESC) FROM TBL_PRODUCT_QNA) AND TBL_PRODUCT_QNA.PRODUCT_NUM =#{productNum}))
     </insert>
 
+    <select id="getMyProjectQna" resultType="projectQnaVO">
+        SELECT NUM, CONTENT, REGIST_DATE, UPDATE_DATE, USER_NUM, PROJECT_NUM
+        FROM TBL_PROJECT_QNA
+        WHERE USER_NUM = #{userNum}
+    </select>
+
+    <select id="getMyProductQna" resultType="productQnaVO">
+        SELECT NUM, CONTENT, REGIST_DATE, UPDATE_DATE, USER_NUM, PRODUCT_NUM
+        FROM TBL_PRODUCT_QNA
+        WHERE USER_NUM = #{userNum}
+    </select>
+
+    <select id="myProjectQnaComment" resultType="projectQnaCommentVO">
+        SELECT NUM, CONTENT, REGIST_DATE, UPDATE_DATE, USER_NUM, COMPANY_NUM, QNA_NUM
+        FROM TBL_PROJECT_QNA_COMMENT
+        WHERE QNA_NUM = #{qnaNum}
+    </select>
+
+    <select id="myProductQnaComment" resultType="productQnaCommentVO">
+        SELECT NUM, CONTENT, REGIST_DATE, UPDATE_DATE, USER_NUM, QNA_NUM
+        FROM TBL_PRODUCT_QNA_COMMENT
+        WHERE QNA_NUM = #{qnaNum}
+    </select>
 
 </mapper>
 

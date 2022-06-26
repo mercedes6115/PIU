@@ -15,4 +15,6 @@ public class OrderVO {
     private Long productNum;
     private String addressComment;
 
+    private String address;
+    private String addressDetail;
 }
