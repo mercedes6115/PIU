@@ -3,19 +3,18 @@ package com.example.pickitup.controller;
 import com.example.pickitup.domain.vo.AdminCriteria;
 import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.*;
-import com.example.pickitup.domain.vo.dto.*;
 import com.example.pickitup.domain.vo.adminVO.AdminBoardDTO;
+import com.example.pickitup.domain.vo.dto.*;
 import com.example.pickitup.domain.vo.dto.AdminBoardPageDTO;
 import com.example.pickitup.domain.vo.dto.PageDTO;
 import com.example.pickitup.domain.vo.dto.ProductPageDTO;
+import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 import com.example.pickitup.domain.vo.dto.UserDTO;
 import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaCommentVO;
 import com.example.pickitup.domain.vo.user.AdminBoardVO;
-import com.example.pickitup.domain.vo.user.UserVO;
 import com.example.pickitup.service.TempAdminService;
 import com.example.pickitup.service.TempCompanyService;
-import com.example.pickitup.service.TempProductService;
-import com.example.pickitup.domain.vo.user.AdminBoardVO;
+import com.example.pickitup.service.AdminProductService;
 import com.example.pickitup.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,9 +33,6 @@ import org.springframework.web.servlet.view.RedirectView;
 
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import javax.xml.ws.Service;
-import java.util.List;
 
 @Controller
 @Slf4j
@@ -44,7 +40,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AdminController {
     private final TempAdminService tempAdminService;
-    private final TempProductService tempProductService;
+    private final AdminProductService adminProductService;
     private final TempCompanyService tempCompanyService;
     private final TempUserSerivce tempUserSerivce;
     private final ProjectService projectService;
@@ -258,9 +254,38 @@ public class AdminController {
 
     // 관리자 상품 등록
     @PostMapping("/productRegister")
-    public void productRegisterForm(){
-
+    public String productRegisterForm(ProductVO productVO){
+        adminProductService.register(productVO);
+        log.info("====================");
+        log.info("/productRegister");
+        log.info("====================");
+        return "admin/productList";
     }
+
+
+    // 관리자 상품 수정
+    @GetMapping("/productModify")
+    public void productModify( Model model){
+
+        log.info("====================");
+        log.info("/productModify GET");
+        log.info("====================");
+//        Long num1 = Long.parseLong(num);
+//        model.addAttribute("product",adminProductService.read(num1));
+        model.addAttribute("product",adminProductService.read(41L));
+        log.info("컨트롤러임"+model.addAttribute("product",adminProductService.read(41L)));
+    }
+
+    // 관리자 상품 수정
+    @PostMapping("/productModify")
+    public String productModifyForm(ProductVO productVO){
+        adminProductService.modify(productVO);
+        log.info("====================");
+        log.info("/productModify");
+        log.info("====================");
+        return "admin/productList";
+    }
+
 
     // 관리자 유저 목록
     @GetMapping("/userList")

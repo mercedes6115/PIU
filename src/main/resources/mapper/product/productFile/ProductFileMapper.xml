@@ -14,7 +14,7 @@
 
     <delete id="delete">
     DELETE FROM TBL_PRODUCT_FILE
-    WHERE UUID=#{uuid}
+    WHERE PRODUCT_NUM=#{productNum}
     </delete>
 
     <select id="findByProductNum" resultType="productFileVO">
