@@ -465,7 +465,7 @@
     </select>
 
     <select id="myProjectQnaComment" resultType="projectQnaCommentVO">
-        SELECT NUM, CONTENT, REGIST_DATE, UPDATE_DATE, USER_NUM, QNA_NUM
+        SELECT NUM, CONTENT, REGIST_DATE, UPDATE_DATE, USER_NUM, COMPANY_NUM, QNA_NUM
         FROM TBL_PROJECT_QNA_COMMENT
         WHERE QNA_NUM = #{qnaNum}
     </select>
@@ -475,6 +475,7 @@
         FROM TBL_PRODUCT_QNA_COMMENT
         WHERE QNA_NUM = #{qnaNum}
     </select>
+
 </mapper>
 
 

@@ -762,6 +762,7 @@ body {
     display: flex;
     flex-direction: column;
     max-width: 100%;
+    margin-left: 40px;
 }
 
 .review-with9 {
@@ -806,6 +807,7 @@ body {
     flex-direction: row;
     -webkit-box-align: center;
     align-items: center;
+    margin-left: 15px;
 }
 
 .review-read4 {
@@ -4576,4 +4578,9 @@ th.point-change-date {
     border: 1px solid rgb(248,248,248);
     margin-left: 200px;
     background-color: #1F89FF;
+}
+
+.commentProfile {
+    border: 1px solid rgb(248,248,248);
+    border-radius: 100%;
 }

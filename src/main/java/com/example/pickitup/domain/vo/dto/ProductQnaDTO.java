@@ -20,6 +20,7 @@ public class ProductQnaDTO {
     private String commentUpdateDate;
     private String qnaUserName;
     private String commentUserName;
+    private String commentCompanyName;
     private String fileName;
     private String uploadPath;
 

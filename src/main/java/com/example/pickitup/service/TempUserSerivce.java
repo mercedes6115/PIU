@@ -39,6 +39,7 @@ public class TempUserSerivce {
     private final ProjectFileDAO projectFileDAO;
     private final ProjectDAO projectDAO;
     private final ProductDAO productDAO;
+    private final CompanyDAO companyDAO;
 
 
     // userDAO
@@ -187,6 +188,7 @@ public class TempUserSerivce {
     }
 
     // 포인트 변동 내역
+    @Transactional(rollbackFor = Exception.class)
     public List<PointDTO> changePoint(Long userNum) throws ParseException {
         List<ApplyVO> applyVOList = applyDAO.successProject(userNum); // 완주한 프로젝트 목록
         List<OrderVO> orderVOList = orderDAO.boughtItem(userNum); // 구매한 상품 목록
@@ -254,6 +256,7 @@ public class TempUserSerivce {
 //    }
 
     // 내가 작성한 product 문의글 정보 가져오기
+    @Transactional(rollbackFor = Exception.class)
     public List<ProductQnaDTO> getMyProductQna(Long userNum){
         UserVO qnaUserVO = userDAO.read(userNum);   // 질문한 사용자 닉네임 가져오기 위해 선언
         List<ProductQnaVO> productQnaVOList = userDAO.getMyProductQna(userNum); // 내가 작성한 상품 문의글 전체
@@ -262,24 +265,29 @@ public class TempUserSerivce {
         for(ProductQnaVO productQnaVO : productQnaVOList) {
             ProductVO productVO = productDAO.getDetail(productQnaVO.getProductNum());
             log.info("Qna 넘버 " + productQnaVO.getNum());
-            if(userDAO.getMyProductQnaComment(productQnaVO.getNum()) != null){
+            if(userDAO.getMyProductQnaComment(productQnaVO.getNum()) != null){  // 문의에 답변이 있을 경우
                 ProductQnaCommentVO productQnaCommentVO = userDAO.getMyProductQnaComment(productQnaVO.getNum());
                 UserVO commentUserVO = userDAO.read(productQnaCommentVO.getUserNum());
-                productQnaDTOList.add(new ProductQnaDTO(productQnaVO.getContent(),productQnaVO.getRegistDate(),productQnaVO.getUpdateDate(),productVO.getName(),"" ,productQnaCommentVO.getContent(),productQnaCommentVO.getRegistDate(),productQnaCommentVO.getUpdateDate(),qnaUserVO.getNickname(),commentUserVO.getNickname(),qnaUserVO.getProfileFileName(),qnaUserVO.getProfileUploadPath()));
-            } else {
-                productQnaDTOList.add(new ProductQnaDTO(productQnaVO.getContent(),productQnaVO.getRegistDate(),productQnaVO.getUpdateDate(),productVO.getName(),"" ,"","","",qnaUserVO.getNickname(),"",qnaUserVO.getProfileFileName(),qnaUserVO.getProfileUploadPath())) ;
+                productQnaDTOList.add(new ProductQnaDTO(productQnaVO.getContent(),productQnaVO.getRegistDate(),productQnaVO.getUpdateDate(),productVO.getName(),"" ,productQnaCommentVO.getContent(),productQnaCommentVO.getRegistDate(),productQnaCommentVO.getUpdateDate(),qnaUserVO.getNickname(),commentUserVO.getNickname(),"",qnaUserVO.getProfileFileName(),qnaUserVO.getProfileUploadPath()));
+            } else {    // 문의에 답변이 없을 경우
+                productQnaDTOList.add(new ProductQnaDTO(productQnaVO.getContent(),productQnaVO.getRegistDate(),productQnaVO.getUpdateDate(),productVO.getName(),"" ,"","","",qnaUserVO.getNickname(),"","",qnaUserVO.getProfileFileName(),qnaUserVO.getProfileUploadPath())) ;
             }
         }
 
         for(ProjectQnaVO projectQnaVO : projectQnaVOList) {
             ProjectVO projectVO = projectDAO.read(projectQnaVO.getProjectNum());
             log.info("Qna 넘버 " + projectQnaVO.getNum());
-            if(userDAO.getMyProjectQnaComment(projectQnaVO.getNum()) != null) {
+            if(userDAO.getMyProjectQnaComment(projectQnaVO.getNum()) != null) {     // 문의에 답변이 있으면
                 ProjectQnaCommentVO projectQnaCommentVO = userDAO.getMyProjectQnaComment(projectQnaVO.getNum());
-                UserVO commentUserVO = userDAO.read(projectQnaCommentVO.getUserNum());
-                productQnaDTOList.add(new ProductQnaDTO(projectQnaVO.getContent(),projectQnaVO.getRegistDate(),projectQnaVO.getUpdateDate(),"",projectVO.getName(), projectQnaCommentVO.getContent(),projectQnaCommentVO.getRegistDate(), projectQnaCommentVO.getUpdateDate(), qnaUserVO.getNickname(), commentUserVO.getNickname(),qnaUserVO.getProfileFileName(),qnaUserVO.getProfileUploadPath()));
-            } else {
-                productQnaDTOList.add(new ProductQnaDTO(projectQnaVO.getContent(),projectQnaVO.getRegistDate(),projectQnaVO.getUpdateDate(),"",projectVO.getName(), "","", "", qnaUserVO.getNickname(), "",qnaUserVO.getProfileFileName(),qnaUserVO.getProfileUploadPath()));
+                if(projectQnaCommentVO.getUserNum() != null) {      // 관리자가 작성한 프로젝트일 경우
+                    UserVO commentUserVO = userDAO.read(projectQnaCommentVO.getUserNum());
+                    productQnaDTOList.add(new ProductQnaDTO(projectQnaVO.getContent(), projectQnaVO.getRegistDate(), projectQnaVO.getUpdateDate(), "", projectVO.getTitle(), projectQnaCommentVO.getContent(), projectQnaCommentVO.getRegistDate(), projectQnaCommentVO.getUpdateDate(), qnaUserVO.getNickname(), commentUserVO.getNickname(), "",commentUserVO.getProfileFileName(), commentUserVO.getProfileUploadPath()));
+                } else {    // 단체가 작성한 프로젝트일 경우
+                    CompanyVO commentUserVO = companyDAO.read(projectQnaCommentVO.getCompanyNum());
+                    productQnaDTOList.add(new ProductQnaDTO(projectQnaVO.getContent(), projectQnaVO.getRegistDate(), projectQnaVO.getUpdateDate(), "", projectVO.getTitle(), projectQnaCommentVO.getContent(), projectQnaCommentVO.getRegistDate(), projectQnaCommentVO.getUpdateDate(), qnaUserVO.getNickname(), "", commentUserVO.getNickname(),commentUserVO.getProfileFileName(), commentUserVO.getProfileUploadPath()));
+                }
+            } else {    // 문의에 답변이 없으면
+                productQnaDTOList.add(new ProductQnaDTO(projectQnaVO.getContent(),projectQnaVO.getRegistDate(),projectQnaVO.getUpdateDate(),"",projectVO.getTitle(), "","", "", qnaUserVO.getNickname(), "","",qnaUserVO.getProfileFileName(),qnaUserVO.getProfileUploadPath()));
             }
 
         }
