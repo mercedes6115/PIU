@@ -6,14 +6,18 @@ import com.example.pickitup.domain.dao.project.projectFile.ProjectFileDAO;
 import com.example.pickitup.domain.dao.user.*;
 import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.OrderCriteria;
-import com.example.pickitup.domain.vo.dto.OrderDTO;
-import com.example.pickitup.domain.vo.dto.PointDTO;
-import com.example.pickitup.domain.vo.dto.UserDTO;
+import com.example.pickitup.domain.vo.dto.*;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
+import com.example.pickitup.domain.vo.product.productQna.ProductQnaCommentVO;
+import com.example.pickitup.domain.vo.product.productQna.ProductQnaVO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
+import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaCommentVO;
+import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaVO;
 import com.example.pickitup.domain.vo.user.*;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.awt.*;
 import java.text.ParseException;
@@ -24,7 +28,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-
+@Slf4j
 
 public class TempUserSerivce {
     private final UserDAO userDAO;
@@ -72,18 +76,37 @@ public class TempUserSerivce {
         return userDAO.getInProjectList(userNum);
     }
 
-
+    //로그인
     public UserDTO loginUser(String email, String password){
         return userDAO.login(email,password);
     }
 
     //  이메일 중복검사
     public int emailcheck(String email){
-        return userDAO.emailcheck(email);
+        return userDAO.emailCheck(email);
+    };
+    //  닉네임 중복검사
+    public int nicknameCheck(String nickname){
+        return userDAO.nicknameCheck(nickname);
     };
 
-    //  닉네임 중복검사
-    public int nicknameCheck(String nickname) {return userDAO.nicknameCheck(nickname);}
+    //카카오톡 회원가입 유무
+    //    하나의 트랜잭션에 여러 개의 DML이 있을 경우 한 개라도 오류 시 전체 ROLLBACK
+    @Transactional(rollbackFor = Exception.class)
+    public UserVO kakaoLogin(UserVO userVO){
+        if(userDAO.emailCheck(userVO.getEmail())==0){
+            userDAO.kakaoinsert(userVO);
+            log.info("이제 저장할거임"+userDAO.emailCheck(userVO.getEmail()));
+            return userDAO.read(userVO.getNum());
+        }
+        log.info("디비저장된거"+userDAO.emailCheck(userVO.getEmail()));
+        return userDAO.kakaoDetail(userVO.getEmail());
+    }
+
+    // 카카오 로그인 즉시 회원가입
+    public void kakaoinsert(UserVO userVO){
+        userDAO.kakaoinsert(userVO);
+    }
 
     // 마이메이지 비밀번호 변경
     public boolean changePw(String password, Long num) {return userDAO.changePw(password,num);}
@@ -218,5 +241,51 @@ public class TempUserSerivce {
         return userDAO.updatePW(email,password);
     }
 
+    // 내 주문내역 조회 (상품 이름 추가)
+//    public List<MyOrderDTO> myOrderList(Long userNum) {
+//        List<OrderVO> orderVOList = orderDAO.boughtItem(userNum);
+//        List<MyOrderDTO> myOrderDTOList = new ArrayList<>();
+//        for(OrderVO orderVO : orderVOList) {
+//            ProductVO productVO = productDAO.getDetail(orderVO.getProductNum());
+//            myOrderDTOList.add(new MyOrderDTO(productVO.getName(),orderVO.getRegistDate(),orderVO.getTotal(),orderVO.getCounting(),orderVO.getAddress(),orderVO.getAddressDetail()));
+//        }
+//
+//        return myOrderDTOList;
+//    }
+
+    // 내가 작성한 product 문의글 정보 가져오기
+    public List<ProductQnaDTO> getMyProductQna(Long userNum){
+        UserVO qnaUserVO = userDAO.read(userNum);   // 질문한 사용자 닉네임 가져오기 위해 선언
+        List<ProductQnaVO> productQnaVOList = userDAO.getMyProductQna(userNum); // 내가 작성한 상품 문의글 전체
+        List<ProjectQnaVO> projectQnaVOList = userDAO.getMyProjectQna(userNum); // 내가 작성한 프로젝트 문의글 전체
+        List<ProductQnaDTO> productQnaDTOList = new ArrayList<>();
+        for(ProductQnaVO productQnaVO : productQnaVOList) {
+            ProductVO productVO = productDAO.getDetail(productQnaVO.getProductNum());
+            log.info("Qna 넘버 " + productQnaVO.getNum());
+            if(userDAO.getMyProductQnaComment(productQnaVO.getNum()) != null){
+                ProductQnaCommentVO productQnaCommentVO = userDAO.getMyProductQnaComment(productQnaVO.getNum());
+                UserVO commentUserVO = userDAO.read(productQnaCommentVO.getUserNum());
+                productQnaDTOList.add(new ProductQnaDTO(productQnaVO.getContent(),productQnaVO.getRegistDate(),productQnaVO.getUpdateDate(),productVO.getName(),"" ,productQnaCommentVO.getContent(),productQnaCommentVO.getRegistDate(),productQnaCommentVO.getUpdateDate(),qnaUserVO.getNickname(),commentUserVO.getNickname(),qnaUserVO.getProfileFileName(),qnaUserVO.getProfileUploadPath()));
+            } else {
+                productQnaDTOList.add(new ProductQnaDTO(productQnaVO.getContent(),productQnaVO.getRegistDate(),productQnaVO.getUpdateDate(),productVO.getName(),"" ,"","","",qnaUserVO.getNickname(),"",qnaUserVO.getProfileFileName(),qnaUserVO.getProfileUploadPath())) ;
+            }
+        }
+
+        for(ProjectQnaVO projectQnaVO : projectQnaVOList) {
+            ProjectVO projectVO = projectDAO.read(projectQnaVO.getProjectNum());
+            log.info("Qna 넘버 " + projectQnaVO.getNum());
+            if(userDAO.getMyProjectQnaComment(projectQnaVO.getNum()) != null) {
+                ProjectQnaCommentVO projectQnaCommentVO = userDAO.getMyProjectQnaComment(projectQnaVO.getNum());
+                UserVO commentUserVO = userDAO.read(projectQnaCommentVO.getUserNum());
+                productQnaDTOList.add(new ProductQnaDTO(projectQnaVO.getContent(),projectQnaVO.getRegistDate(),projectQnaVO.getUpdateDate(),"",projectVO.getName(), projectQnaCommentVO.getContent(),projectQnaCommentVO.getRegistDate(), projectQnaCommentVO.getUpdateDate(), qnaUserVO.getNickname(), commentUserVO.getNickname(),qnaUserVO.getProfileFileName(),qnaUserVO.getProfileUploadPath()));
+            } else {
+                productQnaDTOList.add(new ProductQnaDTO(projectQnaVO.getContent(),projectQnaVO.getRegistDate(),projectQnaVO.getUpdateDate(),"",projectVO.getName(), "","", "", qnaUserVO.getNickname(), "",qnaUserVO.getProfileFileName(),qnaUserVO.getProfileUploadPath()));
+            }
+
+        }
+        productQnaDTOList.sort(Comparator.comparing(ProductQnaDTO::getQnaUpdateDate).reversed());
+
+        return productQnaDTOList;
+    }
 
 }

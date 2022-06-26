@@ -25,10 +25,11 @@
                         </svg>
                     </span>
                 <div class="my-review-real-title-box">
-                    <h5 class="my-review-real-user">곰돌이님의 문의내역</h5>
+                    <h5 class="my-review-real-user" th:text="|${user.getNickname()}님의 문의내역|"></h5>
                 </div>
             </div>
         </div>
+        <div th:object="${qnaList}">
         <div class="my-real-review-box">
             <div class="my-real-review-box-inside"><a href="#">
                 <div class="my-review-profile">
@@ -149,7 +150,7 @@
             <div class="review-list2"></div>
 
         </div>
-
+        </div>
     </div>
 </div>
 </body>

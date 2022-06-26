@@ -327,6 +327,7 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="/assets/js/SlideShow.js"></script>
 <script src="/assets/js/Banner.js"></script>
+<script src="/assets/js/Header.js"></script>
 <script th:inline="javascript">
     let strImg = "";
     $(".Jjim-image").each(function (i, h) {
@@ -343,13 +344,13 @@
             }
         })
     })
-</script>
 
-<script th:inline="javascript">
     let nickname=[[${nickname}]];
-    if(nickname!=null){
-        alert(nickname+"님 어서오세요!");
+    let sessionnickname=[[${session.nickname}]];
+    if(sessionnickname!=null){
+        alert(sessionnickname+"님 어서오세요!");
     }
+    let sessioncategory=[[${session.category}]];
 </script>
 
 </html>

@@ -53,4 +53,8 @@ public class OrderDAO {
     public List<ProductVO> getProduct(Long num1){
         return orderMapper.getProduct(num1);
     };
+
+//    public List<OrderVO> getBetweenOrder(Long userNum) {
+//        return orderMapper.getBetweenOrder(userNum);
+//    }
 }

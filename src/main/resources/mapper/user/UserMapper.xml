@@ -10,12 +10,34 @@
         FROM TBL_USER
         WHERE NUM=#{num}
     </select>
+
+<!--카카오로그인 후 회원정보-->
+    <select id="kakaoDetail" resultType="userVO">
+        SELECT
+        NUM, EMAIL, NICKNAME,PHONE, ADDRESS, PROFILE_FILE_NAME, PROFILE_UPLOAD_PATH, POINT, REGIST_DATE
+        FROM TBL_USER
+        WHERE EMAIL=#{email}
+    </select>
+
+<!--회원 가입-->
     <!--회원 가입-->
     <insert id="insert">
         INSERT INTO TBL_USER
         (NUM, EMAIL, PASSWORD, NICKNAME, PHONE, ADDRESS,ADDRESS_DETAIL, REGIST_DATE)
         VALUES(SEQ_USER.NEXTVAL,#{email}, #{password}, #{nickname}, #{phone}, #{address},#{addressDetail}, SYSDATE)
     </insert>
+
+<!--카카오톡 로그인 즉시 회원가입-->
+    <insert id="kakaoinsert">
+        <selectKey keyProperty="num" resultType="long" order="BEFORE">
+            SELECT SEQ_USER.NEXTVAL FROM DUAL
+        </selectKey>
+        INSERT INTO TBL_USER
+        (NUM, EMAIL, NICKNAME, REGIST_DATE)
+        VALUES(#{num},#{email}, #{nickname}, SYSDATE)
+
+        </insert>
+
     <!--회원탈퇴-->
     <delete id="delete">
         DELETE FROM TBL_USER
@@ -54,7 +76,7 @@
     <!-- 사용자가 참여한 플로깅 목록 -->
     <select id="getInProjectList" resultType="projectVO">
         <![CDATA[
-        SELECT proj.NUM, proj.TITLE, proj.CONTENT, proj.COURSE, proj.TERRAIN, proj.POINT, proj.APPROVAL, proj.STARTTIME, proj.ENDTIME, proj.START_ADDRESS, proj.END_ADDRESS, proj.DISTANCE, proj.QR, proj.REGIST_DATE, proj.UPDATE_DATE, proj.STATUS, proj.COMPANY_NUM, proj.USER_NUM, proj.JJIM_COUNT, proj.PROJECT_DATE
+        SELECT proj.NUM, proj.TITLE, proj.CONTENT, proj.COURSE, proj.TERRAIN, proj.POINT, proj.APPROVAL, proj.STARTTIME, proj.ENDTIME, proj.START_ADDRESS, proj.END_ADDRESS, proj.DISTANCE, proj.QR, proj.REGIST_DATE, proj.UPDATE_DATE, proj.STATUS, proj.COMPANY_NUM, proj.JJIM_COUNT, proj.PROJECT_DATE
 	        FROM TBL_PROJECT proj
 	            INNER JOIN TBL_APPLY app ON app.PROJECT_NUM = proj.NUM
 	            INNER JOIN TBL_USER u ON u.NUM = app.USER_NUM
@@ -66,10 +88,40 @@
 
     <select id="login" resultType="userDTO">
 
-        SELECT NUM, NICKNAME
+        SELECT NUM, NICKNAME, CATEGORY, EMAIL
+        FROM
+        (SELECT NUM, NICKNAME, CATEGORY, PASSWORD ,EMAIL
         FROM TBL_USER
+        UNION
+        SELECT NUM, NICKNAME, CATEGORY , PASSWORD, EMAIL
+        FROM TBL_COMPANY)
         WHERE EMAIL=#{email} AND PASSWORD=#{password}
 
+
+    </select>
+
+<!--이메일 중복 체크-->
+    <select id="emailMatching" resultType="_int">
+        SELECT COUNT(EMAIL)
+        FROM
+            (SELECT EMAIL
+            FROM TBL_USER
+            UNION
+            SELECT EMAIL
+            FROM TBL_COMPANY )
+        WHERE EMAIL=#{email}
+    </select>
+
+    <!--닉네임 중복 체크-->
+    <select id="nicknameMatching" resultType="_int">
+        SELECT COUNT(NICKNAME)
+        FROM
+            (SELECT NICKNAME
+            FROM TBL_USER
+            UNION
+            SELECT NICKNAME
+            FROM TBL_COMPANY )
+        WHERE NICKNAME=#{nickname}
     </select>
 
 
@@ -189,29 +241,7 @@
         </choose>
         )
     </select>
-
-
-    <select id="emailMatching" resultType="_int">
-        SELECT COUNT(EMAIL)
-        FROM
-            (SELECT EMAIL
-            FROM TBL_USER
-            UNION
-            SELECT EMAIL
-            FROM TBL_COMPANY )
-        WHERE EMAIL=#{email}
-    </select>
-
-    <select id="nicknameMatching" resultType="_int">
-        SELECT COUNT(NICKNAME)
-        FROM
-            (SELECT NICKNAME
-            FROM TBL_USER
-            UNION
-            SELECT NICKNAME
-            FROM TBL_COMPANY )
-        WHERE NICKNAME=#{nickname}
-    </select>
+    
 
 
     <select id="getNoticeList" resultType="adminBoardVO">
@@ -422,7 +452,29 @@
     </select>
 
 
+    <select id="getMyProjectQna" resultType="projectQnaVO">
+        SELECT NUM, CONTENT, REGIST_DATE, UPDATE_DATE, USER_NUM, PROJECT_NUM
+        FROM TBL_PROJECT_QNA
+        WHERE USER_NUM = #{userNum}
+    </select>
 
+    <select id="getMyProductQna" resultType="productQnaVO">
+        SELECT NUM, CONTENT, REGIST_DATE, UPDATE_DATE, USER_NUM, PRODUCT_NUM
+        FROM TBL_PRODUCT_QNA
+        WHERE USER_NUM = #{userNum}
+    </select>
+
+    <select id="myProjectQnaComment" resultType="projectQnaCommentVO">
+        SELECT NUM, CONTENT, REGIST_DATE, UPDATE_DATE, USER_NUM, QNA_NUM
+        FROM TBL_PROJECT_QNA_COMMENT
+        WHERE QNA_NUM = #{qnaNum}
+    </select>
+
+    <select id="myProductQnaComment" resultType="productQnaCommentVO">
+        SELECT NUM, CONTENT, REGIST_DATE, UPDATE_DATE, USER_NUM, QNA_NUM
+        FROM TBL_PRODUCT_QNA_COMMENT
+        WHERE QNA_NUM = #{qnaNum}
+    </select>
 </mapper>
 
 

@@ -22,7 +22,7 @@
     <select id="getDetail" resultType="projectVO">
      SELECT tp.NUM, tp.TITLE, tp.CONTENT, tp.COURSE, tp.TERRAIN, tp.POINT, tp.START_ADDRESS, tp.END_ADDRESS, tp.DISTANCE, tp.QR, tp.REGIST_DATE, tp.UPDATE_DATE,
             tp.STATUS , tp.COMPANY_NUM , tp.JJIM_COUNT , tp.PROJECT_DATE, tp.COMPANY_COMMENT, tp.SUMMARY,
-            tc.NAME
+            tc.NICKNAME
             FROM TBL_PROJECT tp
             INNER JOIN TBL_COMPANY tc
             ON tp.COMPANY_NUM = tc.NUM

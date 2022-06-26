@@ -3,7 +3,7 @@
 <mapper namespace="com.example.pickitup.mapper.user.JjimMapper">
     <select id="getProjectList" resultType="projectVO">
         <![CDATA[
-        SELECT proj.NUM, proj.TITLE, proj.CONTENT, proj.COURSE, proj.TERRAIN, proj.POINT, proj.APPROVAL, proj.STARTTIME, proj.ENDTIME, proj.START_ADDRESS, proj.END_ADDRESS, proj.DISTANCE, proj.QR, proj.REGIST_DATE, proj.UPDATE_DATE, proj.STATUS, proj.COMPANY_NUM, proj.USER_NUM, proj.JJIM_COUNT, proj.PROJECT_DATE
+        SELECT proj.NUM, proj.TITLE, proj.CONTENT, proj.COURSE, proj.TERRAIN, proj.POINT, proj.APPROVAL, proj.STARTTIME, proj.ENDTIME, proj.START_ADDRESS, proj.END_ADDRESS, proj.DISTANCE, proj.QR, proj.REGIST_DATE, proj.UPDATE_DATE, proj.STATUS, proj.COMPANY_NUM, proj.JJIM_COUNT, proj.PROJECT_DATE
 	        FROM TBL_JJIM jj
 	            INNER JOIN TBL_PROJECT proj ON jj.PROJECT_NUM = proj.NUM
 	            INNER JOIN TBL_USER u ON jj.USER_NUM = u.NUM
