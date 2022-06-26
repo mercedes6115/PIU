@@ -102,6 +102,7 @@
 <script th:inline="javascript">
     // 임시 유저 userNum = 22;
     let userNum = 22;
+
     //찜 ajax
     $('.all_items').on("click",".jjim-ajax",function() {
         let productNum = $(this).attr("name");
@@ -190,7 +191,7 @@
                     str += "favorite";
                     str += "</span>";
                     str += "<small style=\"font-size: 11px; margin-left: 5px\">";
-                        //찜 갯수 ajax
+                    //찜 갯수 ajax
                     (function(){
                         $.ajax({
                             url: "/store/jjimCount?productNum="+list.num,
@@ -212,7 +213,7 @@
                 })
                 $('.all_items ul').html(str);
 
-               $.ajax({
+                $.ajax({
                     url : "/store/jjim",
                     type : "get",
                     success : function (jjims) {
@@ -266,7 +267,27 @@
     })
 
 
-
+    //상품의 총 갯수
+    let productsCount = [[${productsCount}]];
+    if(productsCount>16){
+        // showmain(category);
+        // //무한스크롤
+        // $(window).on("scroll", function() {
+        //     var scrollHeight = $(document).height();
+        //     var scrollPosition = $(window).height() + $(window).scrollTop();
+        //     let scroll = "";
+        //
+        //     for (let i = 16; i < productsCount ; i ++){
+        //         if (scrollPosition > scrollHeight -1) {
+        //             //밑의 내용 위에 each 문에 넣기
+        //                 asdfasdf
+        //             $(".all_items ul").append(scroll);
+        //         }
+        //     }
+        //     //후기가 없을때까지
+        //
+        // });
+    }
 
 
 

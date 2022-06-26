@@ -35,8 +35,9 @@
                     <div class="profile_img"><img src="/images/chun2.png"></div>
                     <div class="flex justify-content" style="width: 100%; align-items: center;">
                         <div class="id_and_date">
-                            <div class="review_id" th:text="|춘식이|"></div>
+                            <div class="review_id"></div>
                             <div class="admin_date" id="admin_date"></div>
+                                                        <!--세션으로 받을값-->
                             <input type="hidden" name="userNum" th:value="22">
                             <input type="hidden" name="productNum" th:value="${productNum}">
                         </div>
@@ -63,8 +64,18 @@
 <script th:inline="javascript">
     let productNum = [[${productNum}]];
 
+    //현재 받은 세션으로 userNum 값 구하기
+    let userNum = 22;  // 임시 데이터
+    $.ajax({
+        url : "/store/userInfo?userNum="+userNum,
+        type : "get",
+        success : function (user) {
+            $(".review_id").text(user.nickname);
 
-    console.log("들어옴");
+        }
+    })
+
+
     //현재날짜 띄우기
     date = new Date();
     year = date.getFullYear();
