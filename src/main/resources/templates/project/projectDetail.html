@@ -43,6 +43,7 @@
                                 </div>
                                 <div class="menu guide">
                                     <a class="moveGuide">지도</a>
+                                    <div id="map"></div>
                                 </div>
                             </div>
                         </div>
@@ -83,7 +84,7 @@
                                     기업
                                     <br>
                                     <!-- 단체명 -->
-                                    <strong th:text="*{name}"></strong>
+                                    <strong th:text="*{nickname}"></strong>
                                     입니다.
                                 </h3>
                                 <div class="gIntroduceProfileFrame">
@@ -135,7 +136,7 @@
                                                 <div class="flex" style="align-items: center;">
                                                     <div class="admin_profile_img"><img src="/src/main/resources/static/images/4.jpg"></div>
                                                     <div class="flex id_and_date">
-                                                        <div class="admin_id" th:text="*{name}"></div>
+                                                        <div class="admin_id" th:text="*{nickname}"></div>
                                                         <div class="admin_date">2022.06.11</div>
                                                     </div>
                                                 </div>
@@ -181,7 +182,7 @@
                         <div class="readApplicateFrame">
                             <div class="readApplicantForm">
                                 <!-- 회사 이름-->
-                                <div class="readGroupInfoForm" th:text="*{name}">한국산업인력공단</div>
+                                <div class="readGroupInfoForm" th:text="*{nickname}">한국산업인력공단</div>
                                 <!-- 프로젝트명-->
                                 <h2 class="readApplicantTitle" th:text="*{title}">
                                     산뜻한 봄 바람과 함께 플로깅!<br>관악산 등산하며 자연도 느끼고 보호하기
@@ -301,6 +302,11 @@
 </body>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script type="text/javascript"
+        src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=nshb4pb9af&submodules=geocoder"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8460d42f853294e33918a26eaad645a2&libraries=services"></script>
+
 <script th:inline="javascript">
 
     // 프로젝트 번호
@@ -417,7 +423,6 @@
                 contentType: "application/json;charset=UTF-8",
                 success: function(result){
                     // $comment.html(result.content);
-                    alert('tjdrhd');
                 }
 
             });
@@ -457,9 +462,9 @@
             data: JSON.stringify({"userNum": userNum, "projectNum": num, "category": "2"}),
             contentType: "application/json; charset=utf-8;",
             success: function(){
-                // 하트 색상 변경
-                //
-
+                $('.pLikeImage').html("<span class=\"material-icons-outlined\" style='color: black'>\n" +
+                    "favorite\n" +
+                    "</span>")
                 }
             });
             jjimCheck++;
@@ -472,8 +477,7 @@
                 data: JSON.stringify({"userNum": userNum, "projectNum": num}),
                 contentType: "application/json; charset=utf-8;",
                 success: function(){
-                    // 하트 색상 변경
-                    //
+                    $('.pLikeImage').html("<span class=\"material-symbols-outlined\" id=\"heart\">favorite</span>\n");
 
                 }
             });
@@ -535,6 +539,16 @@
             shareModal.style.display = "none";
         }
     }
+
+
+    function getStartMap() {
+        var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+            mapOption = {
+                center: new kakao.maps.LatLng(33.4506913, 126.5706148), // 지도의 중심좌표
+                level: 3 // 지도의 확대 레벨
+            };
+
+        var map = new kakao.maps.Map(mapContainer, mapOption);
 
     //--------------------------- 공유하기 api----------------------------------
 
@@ -598,14 +612,15 @@
         document.body.removeChild(tmpTextarea);
 
         // 클립보드 성공여부 확인
-        if(!successChk){
+        if (!successChk) {
             alert("클립보드 복사에 실패하였습니다.");
         } else {
             alert("클립보드에 복사가 완료되었습니다.");
         }
-        $('.share_container').css("display","none");
-
+        $('.share_container').css("display", "none");
     }
+
+    };
 
 
 
