@@ -7,7 +7,7 @@ import java.util.List;
 
 @Component
 @Data
-public class ProductVO {
+public class ProductVO extends ProductFileVO {
     private Long num;
     private String name;
     private String content;

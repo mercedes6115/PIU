@@ -142,8 +142,8 @@ public class TempAdminService {
     };
 
     // 사진 삭제(mapper 매개변수 수정)
-    public void removeProductImg(String uuid){
-        productFileDAO.remove(uuid);
+    public void removeProductImg(Long productNum){
+        productFileDAO.remove(productNum);
     }
 
 
