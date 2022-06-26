@@ -26,6 +26,8 @@ public class AdminBoardPageDTO {
     private String content;
     private String userNum;
     private String nickname;
+    private Long projectQnaNum;
+    private Long productQnaNum;
 
     private int adminBoardCount;
 
