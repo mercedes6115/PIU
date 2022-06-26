@@ -249,17 +249,29 @@ UPDATE TBL_USER set
     </update>
     
     <select id="getBetweenOrder" resultType="myOrderDTO">
-        SELECT TOTAL, COUNTING, STATUS, ADDRESS_COMMENT, ADDRESS, ADDRESS_DETAIL
-	    FROM TBL_ORDER
-        <where>
-            <if test="userNum != null">
-                USER_NUM = #{userNum}
-            </if>
-            <if test="startDate != null and endDate != null">
-                AND (TO_CHAR(REGIST_DATE,'yyyy-mm-dd hh24:mi:ss')) BETWEEN
+        SELECT prod.NAME as productName, ord.REGIST_DATE, ord.TOTAL, ord.COUNTING, ord.ADDRESS, ord.ADDRESS_DETAIL, ord.STATUS, ord.ADDRESS_COMMENT, ord.PRODUCT_NUM, ord.USER_NUM as num, ord.NUM as orderNum
+	    FROM TBL_ORDER ord, TBL_PRODUCT prod
+        WHERE ord.USER_NUM = #{userNum}
+        AND ord.PRODUCT_NUM = prod.NUM
+        <choose>
+            <when test="startDate != null and endDate != null">
+                AND (TO_CHAR(ord.REGIST_DATE,'yyyy-mm-dd hh24:mi:ss')) BETWEEN
                 #{startDate} AND (#{endDate}||'23:59:59')
-            </if>
-        </where>
+            </when>
+        </choose>
+        ORDER BY ord.REGIST_DATE DESC
+    </select>
+
+    <select id="orderProductDetail" resultType="productDTO">
+        SELECT prod.NAME as itemName, ord.COUNTING as totalitems, ord.TOTAL as totalpayment, prod.PRICE as ogprice
+        FROM TBL_PRODUCT prod, TBL_ORDER ord
+        WHERE ord.NUM = #{orderNum}  AND ord.PRODUCT_NUM = prod.NUM
+    </select>
+
+    <select id="findByOrderNum" resultType="orderVO">
+        SELECT NUM, TOTAL, COUNTING, REGIST_DATE, PRODUCT_NUM, USER_NUM, STATUS, ADDRESS_COMMENT, ADDRESS, ADDRESS_DETAIL
+        FROM TBL_ORDER
+        WHERE NUM=#{orderNUM}
     </select>
 </mapper>
 

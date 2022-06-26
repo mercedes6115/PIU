@@ -2,6 +2,7 @@ package com.example.pickitup.service.user;
 
 import com.example.pickitup.domain.dao.user.OrderDAO;
 import com.example.pickitup.domain.vo.Criteria;
+import com.example.pickitup.domain.vo.dto.MyOrderDTO;
 import com.example.pickitup.domain.vo.user.OrderVO;
 import com.example.pickitup.domain.vo.user.UserVO;
 import lombok.RequiredArgsConstructor;
@@ -50,6 +51,14 @@ public class OrderService {
     }
     public boolean updateUser(UserVO userVO){
         return orderDAO.updateUser(userVO);
+    }
+
+    public List<MyOrderDTO> getBetweenOrder(Long userNum, String startDate, String endDate){
+        return orderDAO.getBetweenOrder(userNum, startDate, endDate);
+    }
+
+    public OrderVO findByOrderNum(Long orderNum) {
+        return orderDAO.findByOrderNum(orderNum);
     }
 
 }

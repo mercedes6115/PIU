@@ -62,7 +62,10 @@ public class OrderMapperTests {
     @Test
     public void boughtItemTest() {orderMapper.boughtItem(2L);}
 
-//    @Test
-//    public void getBetweenOrderTest() {orderMapper.getBetweenOrder(2L);}
+    @Test
+    public void getBetweenOrderTest() {orderMapper.getBetweenOrder(2L, "2022-06-16","2022-06-25");}
+
+    @Test
+    public void BoughtOrderTest() {orderMapper.orderProductDetail(21L);}
 }
 

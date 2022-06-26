@@ -1,10 +1,14 @@
 package com.example.pickitup.controller;
 
+import com.example.pickitup.domain.vo.dto.MyOrderDTO;
 import com.example.pickitup.service.TempUserSerivce;
+import com.example.pickitup.service.user.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @Slf4j
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class UserRestController {
     private final TempUserSerivce tempUserSerivce;
+    private final OrderService orderService;
 
     // 문의글
     @PostMapping("/qna")
@@ -49,5 +54,11 @@ public class UserRestController {
         log.info("nickname test 띄워짐? : "+nickname);
         log.info("ooooooooo"+tempUserSerivce.nicknameCheck(nickname));
         return tempUserSerivce.nicknameCheck(nickname);
+    }
+
+    // 주문내역 기간 조회하기
+    @PostMapping("/betweenOrder")
+    public List<MyOrderDTO> betweenOrderList(String startDate, String endDate, Long num) {
+        return orderService.getBetweenOrder(num,startDate, endDate);
     }
 }

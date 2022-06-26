@@ -296,4 +296,6 @@ public class TempUserSerivce {
         return productQnaDTOList;
     }
 
+    public ProductDTO boughtOrderDetail(Long orderNum) { return orderDAO.boughtDetail(orderNum);}
+
 }

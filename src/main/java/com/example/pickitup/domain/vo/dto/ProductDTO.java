@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 //나중에 보고 지워야함
 public class ProductDTO {
     private String itemname;
-    private String itemimg;
     private String totalitems;
     private String totalpayment;
     private Long ogprice;

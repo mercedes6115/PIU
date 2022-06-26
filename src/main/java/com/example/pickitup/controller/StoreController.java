@@ -283,4 +283,13 @@ public class StoreController {
         return jjimService.count(productNum);
     }
 
+    @GetMapping("/buyProductDetail")
+    public void myBoughtProductDetail(String orderNum, Model model){
+        Long orderNumber = Long.parseLong(orderNum);
+        model.addAttribute("product", tempUserSerivce.boughtOrderDetail(orderNumber));
+        OrderVO orderVO = orderService.findByOrderNum(orderNumber);
+        model.addAttribute("addressComment",orderVO.getAddressComment());
+        model.addAttribute("userinfo", tempUserSerivce.readUserInfo(orderVO.getUserNum()));
+
+    }
 }

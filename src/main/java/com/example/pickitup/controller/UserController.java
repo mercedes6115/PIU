@@ -2,6 +2,7 @@ package com.example.pickitup.controller;
 
 
 import com.example.pickitup.Util.EmailSend;
+import com.example.pickitup.domain.vo.dto.MyOrderDTO;
 import com.example.pickitup.domain.vo.dto.PageDTO;
 import com.example.pickitup.domain.vo.dto.PointDTO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
@@ -11,6 +12,7 @@ import com.example.pickitup.domain.vo.user.CompanyVO;
 import com.example.pickitup.domain.vo.user.UserVO;
 import com.example.pickitup.service.TempCompanyService;
 import com.example.pickitup.service.TempUserSerivce;
+import com.example.pickitup.service.user.OrderService;
 import com.example.pickitup.util.SessionManager;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +30,9 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.List;
 
 
 @Controller
@@ -38,6 +43,8 @@ public class UserController {
     private final TempUserSerivce tempUserSerivce;
     private final TempCompanyService tempCompanyService;
     private final SessionManager sessionManager;
+    private final OrderService orderService;
+
     @Resource
     private EmailSend emailSend;
 
@@ -78,8 +85,24 @@ public class UserController {
 
     // 마이페이지 주문내역
     @GetMapping("/myOrderList")
-    public void myOrderList(){
+    public String myOrderList(Model model,String num){
+        SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar now = Calendar.getInstance();
+        Calendar mon = Calendar.getInstance();
+        mon.add(Calendar.MONTH,-3);
+        String nowTime = sdf1.format(now.getTime());
+        String beforeMonth = sdf1.format(mon.getTime());
+        List<MyOrderDTO> myOrderDTOList = orderService.getBetweenOrder(2L,beforeMonth,nowTime);
+        int totalCount = myOrderDTOList.size();
+        model.addAttribute("myOrderList", myOrderDTOList);
+        String startDate = sdf2.format(mon.getTime());
+        String endDate = sdf2.format(now.getTime());
+        model.addAttribute("startDate", startDate);
+        model.addAttribute("endDate", endDate);
+        model.addAttribute("totalCount", totalCount);
 
+        return "/user/myOrderList";
     }
 
     // 비밀번호 찾기
@@ -245,9 +268,4 @@ public class UserController {
         return "/user/login";
     }
 
-//    @GetMapping("/myOrderList")
-//    public String myOrderList(Long num, Model model){
-//        model.addAttribute("myOrderList", tempUserSerivce.myOrderList(2L));
-//        return  "/user/myOrderList";
-//    }
 }
