@@ -1,6 +1,7 @@
 package com.example.pickitup.service.product.productQna;
 
 import com.example.pickitup.domain.dao.product.productQna.ProductQnaDAO;
+import com.example.pickitup.domain.vo.ProductQnaCriteria;
 import com.example.pickitup.domain.vo.product.productQna.ProductQnaVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,8 +16,8 @@ public class ProductQnaService {
     private  final ProductQnaDAO productQnaDAO;
 
     // QnA 전체 목록
-    public List<ProductQnaVO> getList(Long productNum){
-        return productQnaDAO.getList(productNum);
+    public List<ProductQnaVO> getList(ProductQnaCriteria productQnaCriteria,Long productNum){
+        return productQnaDAO.getList(productQnaCriteria,productNum);
     }
 
     // QnA 상세보기
@@ -40,6 +41,10 @@ public class ProductQnaService {
         return productQnaDAO.remove(num);
     }
 
+    // qna 갯수
+    public int count(Long productNum){
+        return productQnaDAO.count(productNum);
+    }
 
 
 }

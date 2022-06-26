@@ -1,6 +1,9 @@
 package com.example.pickitup.controller;
 
+import com.example.pickitup.domain.vo.ProductQnaCriteria;
 import com.example.pickitup.domain.vo.dto.ProductDTO;
+import com.example.pickitup.domain.vo.dto.ProductQnaPageDTO;
+import com.example.pickitup.domain.vo.dto.ProductReviewUserDTO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 import com.example.pickitup.domain.vo.product.productQna.ProductQnaCommentVO;
 import com.example.pickitup.domain.vo.product.productQna.ProductQnaVO;
@@ -8,6 +11,7 @@ import com.example.pickitup.domain.vo.product.productReview.ProductReviewVO;
 import com.example.pickitup.domain.vo.user.JjimVO;
 import com.example.pickitup.domain.vo.user.OrderVO;
 import com.example.pickitup.domain.vo.user.UserVO;
+import com.example.pickitup.service.TempUserSerivce;
 import com.example.pickitup.service.product.productFile.ProductFileService;
 import com.example.pickitup.service.product.productFile.ProductService;
 import com.example.pickitup.service.product.productQna.ProductQnaCommentService;
@@ -20,6 +24,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
@@ -37,6 +43,7 @@ public class StoreController {
     private final ProductQnaCommentService productQnaCommentService;
     private final JjimService jjimService;
     private final OrderService orderService;
+    private final TempUserSerivce tempUserSerivce;
     // 스토어 메인페이지
     @GetMapping("/main")
     public void storeMain(String category,Model model){
@@ -61,6 +68,8 @@ public class StoreController {
     // 스토어 상세페이지
     @GetMapping("/detail")
     public String storeDetail(Long num ,Model model){
+//        // 유저 세션으로 받아서 num 넣어줘야함
+//        model.addAttribute("user", tempUserSerivce.readUserInfo(22L));
         model.addAttribute("jjimCount",jjimService.count(num));
         model.addAttribute("count",productReviewService.count(num));
         model.addAttribute("product",productService.getDetail(num));
@@ -71,21 +80,27 @@ public class StoreController {
     @ResponseBody
     @GetMapping("/reviewLists/{productNum}")
     public List<ProductReviewVO> reviewLists(@PathVariable("productNum") Long productNum){
+        // 유저 세션으로 받아서 num 넣어줘야함
        return productReviewService.getList(productNum);
     }
 
-    @GetMapping("/reviewList")
-    public String reviewList(Long productNum, Model model){
-        model.addAttribute("reviews",productReviewService.getList(productNum));
-        return "/store/reviewList";
+    //유저 정보 얻어오기
+    @ResponseBody
+    @GetMapping("/userInfo")
+    public UserVO userinfo(Long userNum){
+        return tempUserSerivce.readUserInfo(userNum);
     }
 
+
+    // 전체 리뷰 보기 페이지
     @GetMapping("/goReviewList/{productNum}")
     public String goReviewList(@PathVariable("productNum") Long productNum,Model model){
+//        // 유저 세션으로 받아서 num 넣어줘야함
+//        model.addAttribute("user",tempUserSerivce.readUserInfo(22L));
         model.addAttribute("products",productService.getDetail(productNum));
         model.addAttribute("productNum",productNum);
         model.addAttribute("reviews",productReviewService.getList(productNum));
-        return reviewList(productNum,model);
+        return "/store/reviewList";
     }
 
     // 스토어 리뷰 작성
@@ -96,11 +111,12 @@ public class StoreController {
 
     // 스토어 리뷰 작성 폼
     @PostMapping("/reviewWrite")
-    public String reviewWriteForm(ProductReviewVO productReviewVO, Model model){
+    public RedirectView reviewWriteForm(ProductReviewVO productReviewVO, RedirectAttributes rttr){
 //        model.addAttribute("user", productNum); 유저의 정보 가져와야함.?? 어떻게??
         productReviewVO.setUserNum(22L);
         productReviewService.insert(productReviewVO);
-        return storeDetail(productReviewVO.getProductNum(), model);
+        return new RedirectView("/store/detail");
+//
     }
 
     //스토어 리뷰 수정
@@ -127,9 +143,9 @@ public class StoreController {
 
     // 스토어 문의 목록
     @ResponseBody
-    @GetMapping("/qnaList/{productNum}")
-    public List<ProductQnaVO> qnaList(@PathVariable("productNum") Long productNum){
-       return productQnaService.getList(productNum);
+    @GetMapping("/qnaList/{productNum}/{pageNum}")
+    public ProductQnaPageDTO qnaList(@PathVariable("pageNum") int pageNum, @PathVariable("productNum") Long productNum){
+       return new ProductQnaPageDTO(productQnaService.getList(new ProductQnaCriteria(pageNum,5),productNum),productQnaService.count(productNum));
     }
 
     // 스토어 문의 작성
@@ -266,4 +282,5 @@ public class StoreController {
     public int count(Long productNum){
         return jjimService.count(productNum);
     }
+
 }
