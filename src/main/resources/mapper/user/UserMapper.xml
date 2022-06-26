@@ -426,6 +426,11 @@
         WHERE NUM=#{num}
     </delete>
 
+    <delete id="productQnaDelete">
+        DELETE FROM TBL_PRODUCT_QNA
+        WHERE NUM=(SELECT PRODUCT_QNA_NUM FROM TBL_ADMIN_BOARD WHERE TBL_ADMIN_BOARD.NUM = #{num})
+    </delete>
+
 
     <update id="noticeCancel">
         UPDATE TBL_ADMIN_BOARD
@@ -470,16 +475,17 @@
         WHERE NUM=#{num}
     </update>
 
-    <insert id="qnaStoreSave">
+    <insert id="qnaStoreSave" parameterType="adminQnaDTO">
     <selectKey keyProperty="num" resultType="long" order="BEFORE">
         SELECT SEQ_ADMIN_BOARD.NEXTVAL FROM DUAL
     </selectKey>
     INSERT INTO TBL_ADMIN_BOARD
     (NUM, CATEGORY, TITLE, CONTENT, USER_NUM, STATUS, ANSWER_STATUS, PROJECT_QNA_NUM, PRODUCT_QNA_NUM)
     VALUES(#{num}, '2',
-        (SELECT TBL_PRODUCT.NAME FROM TBL_PRODUCT,TBL_PRODUCT_QNA  WHERE TBL_PRODUCT_QNA.PRODUCT_NUM = TBL_PRODUCT.NUM AND TBL_PRODUCT.NUM =#{productNum}),
-         #{content}, #{userNum}, '1', '1', #{projectQnaNum, jdbcType=VARCHAR}, (SELECT TBL_PRODUCT_QNA.NUM FROM TBL_PRODUCT,TBL_PRODUCT_QNA  WHERE TBL_PRODUCT_QNA.PRODUCT_NUM = TBL_PRODUCT.NUM AND TBL_PRODUCT.NUM =#{productNum}))
+        (SELECT DISTINCT TBL_PRODUCT.NAME NAME FROM TBL_PRODUCT,TBL_PRODUCT_QNA  WHERE TBL_PRODUCT_QNA.PRODUCT_NUM = TBL_PRODUCT.NUM AND TBL_PRODUCT.NUM =#{productNum}),
+         #{content}, #{userNum}, '1', '1', #{projectQnaNum, jdbcType=VARCHAR}, (SELECT TBL_PRODUCT_QNA.NUM FROM TBL_PRODUCT_QNA  WHERE TBL_PRODUCT_QNA.NUM =(SELECT DISTINCT FIRST_VALUE(NUM) OVER (ORDER BY REGIST_DATE DESC) FROM TBL_PRODUCT_QNA) AND TBL_PRODUCT_QNA.PRODUCT_NUM =#{productNum}))
     </insert>
+
 
 </mapper>
 

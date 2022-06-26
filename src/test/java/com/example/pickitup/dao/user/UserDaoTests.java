@@ -159,11 +159,17 @@ public class UserDaoTests {
     @Test
     public void qnaStoreSaveTest() {
         AdminQnaDTO adminQnaDTO = new AdminQnaDTO();
-        adminQnaDTO.setContent("다오 테스트");
-        adminQnaDTO.setUserNum(5L);
+        adminQnaDTO.setContent("0626다오 테스트");
+        adminQnaDTO.setUserNum(3L);
         adminQnaDTO.setProductNum(3L);
         userDAO.qnaStoreSave(adminQnaDTO);
     }
+
+    @Test
+    public void productQnaDeleteTest() {
+        userDAO.productQnaDelete(62L);
+    }
+
 
 }
 

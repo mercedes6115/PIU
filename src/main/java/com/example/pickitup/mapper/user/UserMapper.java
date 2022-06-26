@@ -64,6 +64,9 @@ public interface UserMapper {
     //    관리자가 답글 남겼을때 answer_status 2로 변경
     public void answerComplete(Long num);
 
+    //    관리자 게시물 목록에서 문의글 삭제 했을때 QnA테이블에서 같이 삭제
+    public void productQnaDelete(Long num);
+
     //    유저가 상품 문의 남겼을때 adminboard 에도 저장
     public void qnaStoreSave(AdminQnaDTO adminQnaDTO);
 

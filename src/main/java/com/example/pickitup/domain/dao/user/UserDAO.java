@@ -97,6 +97,11 @@ public class UserDAO {
         userMapper.qnaStoreSave(adminQnaDTO);
     }
 
+    // 관리자가 게시물 목록에서 상품문의 글 지웠을때 productQnA 테이블에서도 삭제
+    public void productQnaDelete(Long num) {
+        userMapper.productQnaDelete(num);
+    }
+
     // 유저 목록(관리자용)
     public List<UserDTO> getList(Criteria criteria){
         return userMapper.getList(criteria);

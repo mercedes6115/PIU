@@ -213,6 +213,12 @@ public class UserMapperTests {
         adminQnaDTO.setProductNum(1L);
         userMapper.qnaStoreSave(adminQnaDTO);
     }
+
+    @Test
+    public void productQnaDelete() {
+        Long num = 63L;
+        userMapper.productQnaDelete(num);
+    }
 }
 
 

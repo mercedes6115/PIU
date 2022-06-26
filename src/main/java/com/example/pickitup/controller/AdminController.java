@@ -106,9 +106,11 @@ public class AdminController {
     @PostMapping("/deleteById")
     public String deleteById(Long num, HttpServletRequest request){
         String[] ajaxMsg = request.getParameterValues("valueArr");
+        String[] category = request.getParameterValues("category");
         int size = ajaxMsg.length;
         for(int i = 0; i<size; i++){
             num = Long.parseLong(ajaxMsg[i]);
+            tempAdminService.productQnaDelete(num);
             tempAdminService.deleteById(num);
         }
         return "/admin/boardList";
@@ -165,6 +167,17 @@ public class AdminController {
         model.addAttribute("orderPageDTO",new OrderPageDTO(orderCriteria,(tempUserSerivce.getOrderTotal(orderCriteria))));
 
 
+    }
+
+    // 관리자 주문 상세
+    @GetMapping("/orderDetail")
+    public void orderDetail(Long num,String category, ProductCriteria productCriteria, Model model){
+        log.info("성공"+num);
+        log.info("성공"+category);
+        model.addAttribute("detailVO",tempAdminService.readUserInfo(num));
+
+        log.info("sssss"+tempAdminService.readUserInfo(num).toString());
+        log.info("sssss"+tempCompanyService.readCompanyInfo(num).toString());
     }
 
     // 관리자 프로젝트 목록

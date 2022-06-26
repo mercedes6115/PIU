@@ -194,4 +194,8 @@ public class TempUserServiceTests {
         tempAdminService.qnaStoreSave(adminQnaDTO);
     }
 
+    @Test
+    public void productQnaDelete() {
+        tempAdminService.productQnaDelete(68L);
+    }
 }
