@@ -3,6 +3,7 @@ package com.example.pickitup.service.user;
 
 import com.example.pickitup.domain.vo.AdminCriteria;
 import com.example.pickitup.domain.vo.dto.AdminQnaCommentDTO;
+import com.example.pickitup.domain.vo.dto.AdminQnaDTO;
 import com.example.pickitup.domain.vo.dto.PointDTO;
 
 import com.example.pickitup.domain.vo.Criteria;
@@ -182,6 +183,15 @@ public class TempUserServiceTests {
     @Test
     public void changeAnswerStatus(){
         tempAdminService.changeAnswerStatus(5L);
+    }
+
+    @Test
+    public void qnaStoreSave() {
+        AdminQnaDTO adminQnaDTO = new AdminQnaDTO();
+        adminQnaDTO.setContent("서비스 테스트");
+        adminQnaDTO.setUserNum(5L);
+        adminQnaDTO.setProductNum(3L);
+        tempAdminService.qnaStoreSave(adminQnaDTO);
     }
 
 }

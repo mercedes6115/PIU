@@ -216,6 +216,11 @@ public class TempAdminService {
         userDAO.answerComplete(num);
     }
 
+    //유저가 상품 문의 남겼을때 adminboard 에도 저장
+    public void qnaStoreSave(AdminQnaDTO adminQnaDTO){
+        userDAO.qnaStoreSave(adminQnaDTO);
+    }
+
 
 
 }
