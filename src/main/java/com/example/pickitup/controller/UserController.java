@@ -64,8 +64,10 @@ public class UserController {
 
     // 마이페이지 QnA
     @GetMapping("/myQnA")
-    public void myQnA(){
-
+    public String myQnA(Model model){
+        model.addAttribute("qnaList",tempUserSerivce.getMyProductQna(2L));
+        model.addAttribute("user",tempUserSerivce.readUserInfo(2L));
+        return "/user/myQnA";
     }
 
     // 마이페이지 문의
@@ -113,10 +115,17 @@ public class UserController {
         return new RedirectView("/user/login");
     }
 
-    // 회원정보 수정 전 비밀번호 확인
-    @GetMapping("/pwCheck")
-    public void pwCheck(){
+    // 마이페이지 비밀번호 수정
+    @GetMapping("/myPassword")
+    public String myPassword(Model model){
+        model.addAttribute("getDetail",tempUserSerivce.readUserInfo(2L));
+        return "/user/myPassword";
+    }
 
+    @PostMapping("/myPassword")
+    public RedirectView myPasswordForm(String password, Long num) {
+        tempUserSerivce.changePw(password,num);
+        return new RedirectView("/user/myPage");
     }
 
     // 회원 정보 수정
@@ -157,6 +166,7 @@ public class UserController {
 
     }
 
+
     // 단체 유저 회원가입 폼
     @PostMapping("/joinGroup")
     public String joinGroupForm(CompanyVO companyVO){
@@ -169,6 +179,7 @@ public class UserController {
         return "/user/login";
 
     }
+
 
 
     // 로그인
@@ -233,4 +244,10 @@ public class UserController {
 
         return "/user/login";
     }
+
+//    @GetMapping("/myOrderList")
+//    public String myOrderList(Long num, Model model){
+//        model.addAttribute("myOrderList", tempUserSerivce.myOrderList(2L));
+//        return  "/user/myOrderList";
+//    }
 }

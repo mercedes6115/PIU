@@ -128,7 +128,11 @@ public class ProjectController {
     }
 
 
-    //
+    // 전체 목록
+    @GetMapping("/projectAllList")
+    public void projectAllList(){
+
+    }
 
 
 }

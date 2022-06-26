@@ -125,5 +125,10 @@ public class UserDaoTests {
     @Test
     public void nicknameCheckTest() { log.info("결과 : " + userDAO.nicknameCheck("짜리킴"));}
 
+    @Test
+    public void getMyProductQnaComment() {userDAO.getMyProductQnaComment(13L);}
+
+    @Test
+    public void getMyProjectQnaTest() {userDAO.getMyProjectQna(2L);}
 }
 

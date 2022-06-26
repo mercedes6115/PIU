@@ -154,4 +154,6 @@ public class TempUserServiceTests {
         tempAdminService.getQnaReply(125L);
     }
 
+    @Test
+    public void getMyProductQna() { tempUserSerivce.getMyProductQna(2L);}
 }
