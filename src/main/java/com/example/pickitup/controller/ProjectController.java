@@ -70,10 +70,10 @@ public class ProjectController {
 //    public void createStep2(){
 //    }
 //
-//    // 프로젝트 등록 스텝 3
-//    @GetMapping("/createStep3")
-//    public void createStep3(){
-//    }
+    // 프로젝트 등록 스텝 3
+    @GetMapping("/createStep3")
+    public void createStep3(){
+    }
 //
 //    // 프로젝트 등록 스텝 4
 //    @GetMapping("/createStep4")

@@ -50,6 +50,7 @@ public class OrderDAO {
     //    public List<UserVO> updateUser(Long num){
 //        return orderMapper.updateUser(num);
 //    };
+
     public List<ProductVO> getProduct(Long num1){
         return orderMapper.getProduct(num1);
     };
@@ -57,4 +58,12 @@ public class OrderDAO {
 //    public List<OrderVO> getBetweenOrder(Long userNum) {
 //        return orderMapper.getBetweenOrder(userNum);
 //    }
+
+
+    // 유저 정보 수정
+    public boolean updateUser(UserVO userVO){
+        return orderMapper.updateUser(userVO) != 0;
+    }
+
+    
 }

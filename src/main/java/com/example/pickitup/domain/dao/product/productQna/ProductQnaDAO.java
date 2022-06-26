@@ -1,5 +1,6 @@
 package com.example.pickitup.domain.dao.product.productQna;
 
+import com.example.pickitup.domain.vo.ProductQnaCriteria;
 import com.example.pickitup.domain.vo.product.productQna.ProductQnaVO;
 import com.example.pickitup.mapper.product.productQna.ProductQnaMapper;
 import lombok.RequiredArgsConstructor;
@@ -15,11 +16,11 @@ public class ProductQnaDAO {
     private  final ProductQnaMapper productQnaMapper;
 
     // QnA 전체 목록
-    public List<ProductQnaVO> getList(Long productNum){
-        return productQnaMapper.getList(productNum);
+    public List<ProductQnaVO> getList(ProductQnaCriteria productQnaCriteria,Long productNum){
+        return productQnaMapper.getList(productQnaCriteria,productNum);
     }
 
-    // QnA 상세보기 --> productNum 이 아니라 Num을 가져와야하는거아님?
+    // QnA 상세보기
     public ProductQnaVO read(Long num){
         return productQnaMapper.getDetail(num);
     }
@@ -40,6 +41,10 @@ public class ProductQnaDAO {
         return productQnaMapper.delete(num);
     }
 
+    //qna 갯수
+    public int count(Long productNum){
+        return productQnaMapper.count(productNum);
+    }
 
 
 }

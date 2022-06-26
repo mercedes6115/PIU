@@ -39,6 +39,11 @@
         WHERE USER_NUM = #{userNum} AND PRODUCT_NUM = #{productNum}
     </delete>
 
+    <select id="count" resultType="_int">
+    SELECT COUNT(NUM) FROM TBL_JJIM
+    WHERE PRODUCT_NUM =#{productNum}
+    </select>
+
 
 </mapper>
 
