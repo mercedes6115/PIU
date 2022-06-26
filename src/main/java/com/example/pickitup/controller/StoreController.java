@@ -1,6 +1,7 @@
 package com.example.pickitup.controller;
 
 import com.example.pickitup.domain.vo.ProductQnaCriteria;
+import com.example.pickitup.domain.vo.dto.AdminQnaDTO;
 import com.example.pickitup.domain.vo.dto.ProductDTO;
 import com.example.pickitup.domain.vo.dto.ProductQnaPageDTO;
 import com.example.pickitup.domain.vo.dto.ProductReviewUserDTO;
@@ -11,6 +12,7 @@ import com.example.pickitup.domain.vo.product.productReview.ProductReviewVO;
 import com.example.pickitup.domain.vo.user.JjimVO;
 import com.example.pickitup.domain.vo.user.OrderVO;
 import com.example.pickitup.domain.vo.user.UserVO;
+import com.example.pickitup.service.TempAdminService;
 import com.example.pickitup.service.TempUserSerivce;
 import com.example.pickitup.service.product.productFile.ProductFileService;
 import com.example.pickitup.service.product.productFile.ProductService;
@@ -44,6 +46,7 @@ public class StoreController {
     private final JjimService jjimService;
     private final OrderService orderService;
     private final TempUserSerivce tempUserSerivce;
+    private final TempAdminService tempAdminService;
     // 스토어 메인페이지
     @GetMapping("/main")
     public void storeMain(String category,Model model){
@@ -157,8 +160,9 @@ public class StoreController {
 
     // 스토어 문의 작성 폼
     @PostMapping("/qnaWrite")
-    public String qnaWriteForm(ProductQnaVO productQnaVO, Model model){
+    public String qnaWriteForm(ProductQnaVO productQnaVO, AdminQnaDTO adminQnaDTO, Model model){
         productQnaService.register(productQnaVO);
+        tempAdminService.qnaStoreSave(adminQnaDTO);
         return storeDetail(productQnaVO.getProductNum(), model);
     }
 

@@ -102,6 +102,9 @@
     WHERE NUM = #{num}
     </select>
     <insert id="insert">
+    <selectKey keyProperty="num" resultType="long" order="BEFORE">
+        SELECT SEQ_PRODUCT_REVIEW.NEXTVAL FROM DUAL
+    </selectKey>
     INSERT INTO TBL_PRODUCT
         (
             NUM, NAME, CONTENT, CATEGORY, PRICE, STOCK,ORIGIN,
@@ -109,7 +112,7 @@
         )
     VALUES
         (
-            SEQ_PRODUCT.NEXTVAL,#{name},#{content},#{category},#{price},
+             #{num},#{name},#{content},#{category},#{price},
             #{stock},#{origin},#{manufacturer},#{supplier},SYSDATE
         )
     </insert>

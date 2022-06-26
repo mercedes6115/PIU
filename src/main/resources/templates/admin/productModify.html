@@ -43,7 +43,7 @@
 
             </div>
 
-            <form action="/admin/productRegister" method="post" class="formlayout" id="registerForm" enctype="multipart/form-data">
+            <form th:object="${product}" action="/admin/productModify" method="post" class="formlayout" id="registerForm" enctype="multipart/form-data">
                 <div class="togglebar">
                     <!-- togglebar -->
                     <h2>기본정보</h2>
@@ -58,7 +58,7 @@
                             <th>상품명
                             </th>
                             <td style="display: flex;">
-                                <input class="productName" type="text" name="name" required="required" placeholder="예시 ) 친환경 세제로 지구를 지켜라 ">
+                                <input th:value="*{name}" class="productName" type="text" name="name" required="required" placeholder="예시 ) 친환경 세제로 지구를 지켜라 ">
 
                                 <div class="count">
                                     [<p class="textCount"> 0</p>
@@ -72,7 +72,7 @@
                             <th scope='row'>상품가격
                             </th>
                             <td>
-                                <input class="pay" type="number" name="price" required="required">point
+                                <input th:value="*{price}" class="pay" type="number" name="price" required="required">point
 
                             </td>
                         </tr>
@@ -80,7 +80,7 @@
                             <th>상품카테고리
                             </th>
                             <td>
-                                <input class="check" type="checkbox" name="category" onclick='checkOnlyOne(this)' value="생활"/>
+                                <input class="check" type="checkbox"  name="category" onclick='checkOnlyOne(this)' value="생활"/>
                                 <label for="">생활</label>
 
                                 <input class="check" type="checkbox"  name="category" onclick='checkOnlyOne(this)' value="주방"/>
@@ -110,7 +110,7 @@
                             <th>상품 상세 내용
                             </th>
                             <td>
-                                <textarea name="content" id="summernote" class="summernote" required="required"></textarea>
+                                <textarea th:utext="*{content}" name="content" id="summernote" class="summernote" required="required"></textarea>
                             </td>
                         </tr>
 
@@ -118,7 +118,7 @@
                             <th>상품재고
                             </th>
                             <td>
-                                <input class="pay" type="number" name="stock" required="required">개
+                                <input th:value="*{stock}" class="pay" type="number" name="stock" required="required">개
                             </td>
                         </tr>
                         <tr>
@@ -185,21 +185,21 @@
                             <th>제조사
                             </th>
                             <td>
-                                <input class="" type="text" name="manufacturer" required="required" placeholder="제조사 이름">
+                                <input th:value="*{manufacturer}" class="" type="text" name="manufacturer" required="required" placeholder="제조사 이름">
                             </td>
                         </tr>
                         <tr>
                             <th>공급사
                             </th>
                             <td>
-                                <input class="" type="text" name="supplier" required="required" placeholder="공급사 이름">
+                                <input th:value="*{supplier}" class="" type="text" name="supplier" required="required" placeholder="공급사 이름">
                             </td>
                         </tr>
                         <tr>
                             <th>원산지
                             </th>
                             <td>
-                                <input class="" type="text" name="origin" required="required" placeholder="원산지 이름">
+                                <input th:value="*{origin}" class="" type="text" name="origin" required="required" placeholder="원산지 이름">
                             </td>
                         </tr>
                         </tbody>
@@ -209,10 +209,11 @@
 
                 <div class="submitbtn">
                     <!-- button -->
-                    <button class="productbtn">상품등록</button>
+                    <button class="productbtn">상품수정</button>
                     <button onclick="handleOnClick()"
                             value="confirm">취소</button>
                 </div>
+                <input type="hidden" name="num" th:value="*{num}">
             </form>
         </div>
 
