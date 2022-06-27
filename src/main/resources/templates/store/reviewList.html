@@ -39,7 +39,7 @@
                         <div class="flex">
                             <div class="profile_img">
     <!--                            유저 프로필 사진 넣을곳-->
-                                <img src="/images/5.jpg">
+
                             </div>
                             <div class="review_id_and_date">
                                 <div class="review_id" th:id="*{num}" th:name="*{userNum}"></div>
@@ -70,6 +70,7 @@
             </th:block>
         </div>
         <div class="reviewPlus"></div>
+
     </div>
 
 
@@ -89,21 +90,40 @@
     ///-----------------------------------------------------------------------------------------------
     ///--------------------------------리뷰 가져오기--------------------------------
     ///--------------------------------리뷰 작성자 가져오기--------------------------------------------------
+    let step = 2;
+    let start = 0;
+    let end = start+step;
+    let total = reviews.length;
+    let possible = true;
     reviewWriter();
     function reviewWriter(){
-        $(reviews).each(function (i, review) {
-            let userNum = review.userNum;
+        for (let i = start; i < end; i++){  //0 , 1 인덱스 >> 0부터 2까지
+            let userNum = reviews[i].userNum;
             $.ajax({
                 url : "/store/userInfo?userNum=" + userNum,
                 type : "get",
                 async : false,
                 success:function (user) {
-                    $(".review_id#"+review.num+"").text(user.nickname);
+                    $(".review_id#"+reviews[i].num+"").text(user.nickname);
+                    insertImg(user);
                 }
             })
-        })
+        }
+        // })
     }
     ///-----------------------------------------------------------------------------------------------
+    function insertImg(user){
+        setTimeout(function () {
+            let ps = $(".profile_img");
+            $(ps[0]).attr("class","profile_img"+user.nickname);
+        },50)
+
+        // =======================================유저 사진 받아와서 뿌릴예정=========================================================
+        let profileImg = "<img src='/userFile/display?fileName=" + user.profileUploadPath + "/"  + user.profileFileName + "' style='width: 34px; height: 34px; border-radius: 50%; margin-right: 5px;'>";
+        setTimeout(function () {
+            $(".profile_img"+user.nickname).html(profileImg);
+        },100)
+    }
     ///-----------------------------------------------------------------------------------------------
 
     //scroll top
@@ -154,46 +174,33 @@
         })
     })
 
-    // // 유저 프로필 사진 ajax
-    // $.ajax({
-    //     url :"",
-    //     type : "",
-    //     success: function (img) {
-    //         let str = "";
-    //         str += "<img src='/userFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
-    //         $('.profile_img').html(str);
-    //     }
-    // })
-
 
     //무한스크롤
-    let standard = 2 // 리뷰 뽑아줄 갯수 위에 html 도 바꿔줘야함
-    let start = standard;
-    let next =0;
-    let total = reviews.length;
-    let possible = true;
-    if(possible) {
-        $(window).on("scroll", function () {
-            var scrollHeight = $(document).height();
-            var scrollPosition = $(window).height() + $(window).scrollTop();
-            let str = "";
-            //후기가 없을때까지
+    $(window).on("scroll", function() {
+        var scrollHeight = $(document).height();
+        var scrollPosition = $(window).height() + $(window).scrollTop();
+
+        $("#scrollHeight").text(scrollHeight);
+        $("#scrollPosition").text(scrollPosition);
+        $("#bottom").text(scrollHeight - scrollPosition);
+
+        if(possible){
             if (scrollPosition > scrollHeight - 1) {
-                //밑의 내용 위에 each 문에 넣기
-                // 에이젝스 쏴서 리스트 받아와서 두번쨰 값부터 하나씩 출력
-                // reviews --> 가져온 모든 리스트
-                if (next <= total) {
-                    next = start + standard;
-                } else {
-                    next = total;
+                let str = "";
+
+                start = end;
+                end = end + step;
+
+                if(end >= total){
+                    end=total;
                     possible = false;
                 }
-                for (let i = start; i < next; i++) {
+
+                for (let i = start; i < end; i++) {
                     str += "<section class=\"allreveiws\"> <!--실제 후기 컨테이너-->";
                     str += "<div class=\"p-24\">";
                     str += "<div class=\"flex\">";
                     str += "<div class=\"profile_img\">";
-                    str += "<img src=\"/images/5.jpg\">";
                     str += "</div>";
                     str += "<div class=\"review_id_and_date\">";
                     str += "<div class=\"review_id\" id=\"" + reviews[i].num + "\" name=\"" + reviews[i].userNum + "\"></div>";
@@ -220,13 +227,12 @@
                     str += "</div>";
                     str += "</section>";
                 }
-                start += standard;
                 $(".reviewPlus").append(str);
                 reviewWriter();
                 reviewFiles();
             }
-        });
-    }
+        }
+    });
 
 
 
