@@ -23,6 +23,10 @@
         <typeAlias type="com.example.pickitup.domain.vo.project.projectReview.ProjectReviewVO" alias="projectReviewVO"/>
         <typeAlias type="com.example.pickitup.domain.vo.dto.UserDTO" alias="userDTO"/>
         <typeAlias type="com.example.pickitup.domain.vo.dto.PageDTO" alias="pageDTO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.dto.ApplyDTO" alias="applyDTO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.dto.QrDTO" alias="qrDTO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.dto.OrderDTO" alias="orderDTO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.dto.ProjectDTO" alias="projectDTO"/>
         <typeAlias type="com.example.pickitup.domain.vo.dto.ProjectDTO" alias="projectDTO"/>
         <typeAlias type="com.example.pickitup.domain.vo.dto.OrderDTO" alias="orderDTO"/>
         <typeAlias type="com.example.pickitup.domain.vo.dto.AdminBoardPageDTO" alias="adminboardDTO"/>

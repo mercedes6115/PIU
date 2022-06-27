@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 public class ProjectDTO {
 
     private ProjectCriteria projectCriteria;
-
     private String nickname;
     private Long num;
     private String title;
@@ -26,4 +25,6 @@ public class ProjectDTO {
     private String updateDate;
     private String startAddress;
     private String endAddress;
+    private String distance;
 }
+

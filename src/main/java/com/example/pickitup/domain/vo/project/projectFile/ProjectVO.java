@@ -35,10 +35,7 @@ public class ProjectVO {
     private String startAddressDetail;
     private String endAddressDetail;
 
-
     // 체크
     private Long applyCount;
-
-
     private List<ProjectFileVO> fileList;
 }

@@ -1,7 +1,9 @@
 package com.example.pickitup.domain.dao.project.projectFile;
 
 
+
 import com.example.pickitup.domain.vo.Criteria;
+
 import com.example.pickitup.domain.vo.ProjectCriteria;
 import com.example.pickitup.domain.vo.dto.ProjectDTO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
@@ -18,9 +20,17 @@ public class ProjectDAO {
 
     private final ProjectMapper projectMapper;
 
+
+    public boolean setApprovaltoContinue(Long projectNum){
+        return projectMapper.setApprovaltoContinue(projectNum);
+    }
     // 프로젝트 목록
     public List<ProjectVO> getList(){
         return projectMapper.getList();
+    }
+
+    public boolean insertQr(Long qrNum,String projectLink1,String projectlink2){
+        return projectMapper.insertQr(qrNum,projectLink1,projectlink2);
     }
 
     // 특정 유저의 프로젝트 목록
@@ -29,8 +39,13 @@ public class ProjectDAO {
     }
 
     // 전체 프로젝트 목록
+
     public List<ProjectDTO> getProjectList(ProjectCriteria projectCriteria){
         return projectMapper.getProjectList(projectCriteria);
+    }
+
+    public List<ProjectDTO> getListToday(String startDate, String endDate){
+        return projectMapper.getListToday(startDate,endDate);
     }
 
     public int getProjectTotal(ProjectCriteria projectCriteria){
@@ -57,6 +72,12 @@ public class ProjectDAO {
     public boolean remove(Long num){
         return projectMapper.delete(num);
     }
+
+    public boolean approveProject(Long num){ return  projectMapper.approveProject(num);}
+
+    public boolean disapproveProject(Long num){ return projectMapper.disapproveProject(num);}
+
+    public boolean awaitProject(Long num){ return projectMapper.awaitProject(num);}
 
     // 프로젝트 목록(찜순)
     public List<ProjectVO> getListJJim(){

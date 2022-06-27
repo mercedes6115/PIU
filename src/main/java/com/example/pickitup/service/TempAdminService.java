@@ -1,6 +1,8 @@
 package com.example.pickitup.service;
 import com.example.pickitup.domain.dao.product.productFile.ProductDAO;
 import com.example.pickitup.domain.dao.product.productFile.ProductFileDAO;
+import com.example.pickitup.domain.dao.project.projectFile.ProjectDAO;
+import com.example.pickitup.domain.dao.project.projectFile.ProjectFileDAO;
 import com.example.pickitup.domain.dao.user.*;
 import com.example.pickitup.domain.vo.AdminCriteria;
 import com.example.pickitup.domain.vo.Criteria;
@@ -8,14 +10,17 @@ import com.example.pickitup.domain.vo.OrderCriteria;
 import com.example.pickitup.domain.vo.ProductCriteria;
 import com.example.pickitup.domain.vo.adminVO.AdminBoardDTO;
 import com.example.pickitup.domain.vo.dto.*;
+import com.example.pickitup.domain.vo.dto.OrderDTO;
+import com.example.pickitup.domain.vo.dto.*;
 import com.example.pickitup.domain.vo.product.productFile.ProductFileVO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
+import com.example.pickitup.domain.vo.project.projectFile.ProjectFileVO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaCommentVO;
 import com.example.pickitup.domain.vo.user.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
+import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
@@ -29,6 +34,13 @@ public class TempAdminService {
     private final CompanyDAO companyDAO;
     private final ProductDAO productDAO;
     private final ProductFileDAO productFileDAO;
+    private final ProjectDAO projectDAO;
+    private final ProjectFileDAO projectFileDAO;
+
+
+
+
+
 
 
 
@@ -38,17 +50,28 @@ public class TempAdminService {
         return applyDAO.read(num);
     }
 
+    @Transactional
+    public boolean autoPoint(String point, Long userNum,Long applyNum){
+        applyDAO.setApproach(applyNum);
+        return userDAO.autoPoint(point,userNum);
+    }
+
     // 프로젝트 참가자 정보 수정(완수여부)
     public boolean update(Long approach, Long userNum){
         return applyDAO.update(approach, userNum);
     }
 
 
+    public List<ApplyDTO> getApplyUser(Long projectNum){
+        return applyDAO.getApplyUser(projectNum);
+    }
+
     // userDAO
     // 유저 목록
     public List<UserDTO> getList(Criteria criteria) {
         return userDAO.getList(criteria);
     }
+
 
     public int getTotal(Criteria criteria){
         return userDAO.getTotal(criteria);
@@ -69,8 +92,11 @@ public class TempAdminService {
         return userDAO.remove(num);
     }
 
-
-
+    @Transactional
+    public boolean addPoint(String nickname,String point,Long applynum1){
+        applyDAO.setApproach(applynum1);
+        return userDAO.addPoint(nickname,point);
+    }
     // 상품목록 가져오기 관리자용
     public List<ProductVO> getProductList(ProductCriteria productCriteria){
         return productDAO.getProductList(productCriteria);
@@ -80,6 +106,8 @@ public class TempAdminService {
     public int getTotal(){
         return productDAO.getTotal();
     }
+
+
 
 
     // companyDAO
@@ -119,6 +147,19 @@ public class TempAdminService {
         return productDAO.remove(num);
     }
 
+    // 프로젝트 삭제
+    public boolean deleteProject(Long num)
+    {
+        return projectDAO.remove(num);
+    }
+
+    //프로젝트 승인
+
+    public boolean approveProject(Long num){return projectDAO.approveProject(num);}
+
+    public boolean disapproveProject(Long num){ return  projectDAO.disapproveProject(num);}
+
+    public boolean awaitProject(Long num){ return  projectDAO.awaitProject(num);}
 
 
     // productFileDAO
@@ -149,6 +190,10 @@ public class TempAdminService {
         return orderDAO.getList(orderCriteria);
     }
 
+    //한달치 주문내역을 가져옴
+    public List<OrderDTO> getListToday(String startDate,String endDate){
+        return orderDAO.getListToday(startDate,endDate);
+    }
     //관리자 공지 등록
     public void registerWrite(AdminBoardVO adminBoardVO) {
         userDAO.registerWrite(adminBoardVO);
@@ -224,5 +269,33 @@ public class TempAdminService {
         userDAO.productQnaDelete(num);
     }
 
+
+    // 관리자 단체,일반유저 승인/거절 활성화/비활성화
+
+    public boolean UserStatusDisable(Long num) {// 비활성화
+        return userDAO.UserStatusDisable(num);
+    }
+    public boolean UserStatusEnable(Long num) {// 비활성화
+        return userDAO.UserStatusEnable(num);
+    }
+    public boolean UserApprovalDisable(Long num) {// 비활성화
+        return userDAO.UserApprovalDisable(num);
+    }
+    public boolean UserApprovalEnable(Long num) {// 비활성화
+        return userDAO.UserApprovalEnable(num);
+    }
+
+    public boolean CompanyStatusDisable(Long num) {// 비활성화
+        return companyDAO.companyStatusDisable(num);
+    }
+    public boolean CompanyStatusEnable(Long num) {// 비활성화
+        return companyDAO.companyStatusEnable(num);
+    }
+    public boolean CompanyApprovalDisable(Long num) {// 비활성화
+        return companyDAO.companyApprovalDisable(num);
+    }
+    public boolean CompanyApprovalEnable(Long num) {// 비활성화
+        return companyDAO.companyApprovalEnable(num);
+    }
 
 }

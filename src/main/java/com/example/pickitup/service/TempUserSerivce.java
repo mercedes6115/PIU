@@ -43,6 +43,11 @@ public class TempUserSerivce {
 
     // userDAO
 
+    //해당 유저의 qr찍는데 필요한 정보 뽑아오기
+    public QrDTO getQrInfo(Long userNum){
+        return userDAO.getQrInfo(userNum);
+    }
+
     // 일반 유저 가입
     public void registerUser(UserVO userVO) {
         userDAO.register(userVO);
@@ -218,10 +223,12 @@ public class TempUserSerivce {
     // 주문 목록(관리자용)
     public List<OrderDTO> getOrderList(OrderCriteria orderCriteria){
         return orderDAO.getList(orderCriteria);
+
     }
 
     public int getOrderTotal(OrderCriteria orderCriteria){
         return orderDAO.getTotal(orderCriteria);
+
     }
 
     // 주문 취소
@@ -246,6 +253,12 @@ public class TempUserSerivce {
     public boolean updatePW(String email,String password) {
         return userDAO.updatePW(email,password);
     }
+
+    // 관리자 페이지용 유저 비밀번호 수정
+    public boolean adminPwUpdate(String password,Long num) {
+        return userDAO.updateUserAdminPW(password,num);
+    }
+
 
     // 내 주문내역 조회 (상품 이름 추가)
 //    public List<MyOrderDTO> myOrderList(Long userNum) {
@@ -300,9 +313,11 @@ public class TempUserSerivce {
         return productQnaDTOList;
     }
 
+
     // 유저 내 후기 다 가져오기
     public List<MyReviewDTO> myAllReview(Long num){
         return userDAO.myAllReview(num);
     }
+
 
 }

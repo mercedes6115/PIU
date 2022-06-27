@@ -47,12 +47,11 @@ public class MainController {
            checkLogin= 1;
        }
 
-       model.addAttribute("checkLogin",checkLogin);
+        model.addAttribute("checkLogin",checkLogin);
         model.addAttribute("projectListJJim", projectService.getListJJim());  // 내용가져오기
         model.addAttribute("projectListPoint", projectService.getListPoint());  // 내용가져오기
         model.addAttribute("projectListApply", projectService.getListApply());  // 내용가져오기
        return "/main/main";
-
     }
 
 

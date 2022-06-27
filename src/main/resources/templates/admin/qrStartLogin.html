@@ -17,9 +17,9 @@
         </h1>
         <div class="loginform">
             <div>
-                <h2 class="title">로그인</h2>
+                <h2 class="title">QR로그인</h2>
             </div>
-            <form method="post" action="/user/login" id="loginForm">
+            <form method="post" action="/admin/qrStartLogin" id="loginForm">
                 <div class="emaildiv">
                     <lable class="email">이메일</lable>
                     <input id="email" class="emailtype" type="email" name="email" placeholder="example@naver.com">
@@ -53,23 +53,10 @@
                         </div>
                     </div>
                 </div>
-                <div style="display: flex; justify-content: space-between;">
-                    <a href="/user/findPw" class="findpw">비밀번호를 잊으셨나요?</a>
-                    <div style="display: flex">
-                        <a href="/user/join" class="joinus">일반회원 가입하기</a>
-                        <p class="dash">/</p>
-                        <a href="/user/joinGroup" class="joinus">회사회원 가입하기</a>
-                    </div>
-                </div>
                 <button type="submit" class="loginbutton"> 로그인</button>
             </form>
             <hr class="line">
 
-
-            <button type="button" class="kakaobutton" onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=810e43afb4176b21144a9e5b00273aac&redirect_uri=\n'+
-'http://localhost:10010/login&response_type=code'" >
-                카카오톡 로그인
-            </button>
         </div>
     </div>
     <div class="imgdiv">
@@ -86,9 +73,10 @@
         alert(msg);
     }
 
-    let check=[[${checkEmail}]];
-    if(check==true){
-        alert("이미 가입한 회원입니다. 일반 사용자로 로그인해주세요.");
+    let msg=[[${success}]];
+
+    if(msg!=null){
+        alert("포인트 지급 성공!!!");
     }
 </script>
 </html>

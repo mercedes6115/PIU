@@ -25,6 +25,9 @@ public class ProductDAO {
         return productMapper.getDetail(num);
     }
 
+    public List<ProductVO> getFullList(){
+        return productMapper.getFullList();
+    }
     // 상품 목록 - 관리자용
     public List<ProductVO> getProductList(ProductCriteria productCriteria){
         return productMapper.getProductList(productCriteria);
@@ -46,7 +49,7 @@ public class ProductDAO {
 
     // 상품 삭제하기 - 관리자용
     public boolean remove(Long num){
-        return productMapper.delete(num);
+        return productMapper.deleteProduct(num);
     }
 
 
