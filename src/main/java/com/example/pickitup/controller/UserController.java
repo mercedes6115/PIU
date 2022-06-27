@@ -2,6 +2,12 @@ package com.example.pickitup.controller;
 
 
 import com.example.pickitup.Util.EmailSend;
+import com.example.pickitup.domain.vo.dto.PageDTO;
+import com.example.pickitup.domain.vo.dto.PointDTO;
+import com.example.pickitup.domain.vo.dto.ReviewDTO;
+import com.example.pickitup.domain.vo.product.productFile.ProductVO;
+import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
+
 import com.example.pickitup.domain.vo.dto.UserDTO;
 import com.example.pickitup.domain.vo.user.CompanyVO;
 import com.example.pickitup.domain.vo.user.UserVO;
@@ -62,10 +68,13 @@ public class UserController {
         return "/user/myQnA";
     }
 
-    // 마이페이지 문의
+    // 마이페이지 내후기
     @GetMapping("/myReview")
-    public void myReview(){
+    public String myReview(Model model){
+        model.addAttribute("reviewList",tempUserSerivce.myAllReview(22L));
+        model.addAttribute("user",tempUserSerivce.readUserInfo(22L));
 
+        return "/user/myReview";
     }
 
     // 마이페이지 주문내역
@@ -123,7 +132,7 @@ public class UserController {
     // 회원 정보 수정
     @GetMapping("/infoUpdate")
     public void infoUpdate(Model model){
-        model.addAttribute("user", tempUserSerivce.readUserInfo(2L));
+        model.addAttribute("user", tempUserSerivce.readUserInfo(22L));
     }
 
     // 회원 정보 수정 폼
