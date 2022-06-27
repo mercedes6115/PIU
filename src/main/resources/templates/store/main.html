@@ -101,6 +101,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script th:inline="javascript">
     let productlist = [[${productlist}]];
+    let li = {};
 
     // 임시 유저 userNum = 22;
     let userNum = 22;
@@ -173,7 +174,7 @@
             type: "post",
             data : {category : category},
             success: function (lists) {
-                console.log("리스트 길이"+lists.length)
+                li = lists
                 let str = "";
                 let first =0;
                 if(lists.length<standard){
@@ -183,9 +184,7 @@
                     total = lists.length;
                 }
                 for(let i =0; i<first;i++){
-                    console.log(i);
-                    console.log(lists[i].name)
-                    console.log("=========================================== ")
+                    console.log("식품 리스트 = "+lists[i].name)
                         str += "<li>";
                         str += "<div class=\"item\">";
 
@@ -240,7 +239,7 @@
                         str += "</li>";
                     }
                 $('.all_items ul').html(str);
-                f(lists);
+
 
                 $.ajax({
                     url : "/store/jjim",
@@ -261,6 +260,12 @@
             }
         })
     }
+
+    $(window).scroll(function(){
+        if  ($(window).scrollTop() == $(document).height() - $(window).height()){
+            f(li);
+        }
+    });
 
 
     // 스토어 카테고리 ajax
@@ -285,128 +290,106 @@
             $(this).addClass('active');
         }
     })
-    //
+
+
+
+
+
+
+
+
     function f(lists) {
-        for (let i =0; i< lists.length;i++) {
-            console.log("f 들어왔을떄")
-            console.log(i)
-            console.log('번째' + lists[i].name)
+        let str="";
+        console.log("바닦에 닿음")
+        console.log(lists.length)
+        //밑의 내용 위에 each 문에 넣기
+        // 에이젝스 쏴서 리스트 받아와서 두번쨰 값부터 하나씩 출력
+        // reviews --> 가져온 모든 리스트
+
+        next = start + standard;
+
+        if (next > total) {
+            next = total;
         }
-
-        $(window).on("scroll", function () {
-            var scrollHeight = $(document).height();
-            var scrollPosition = $(window).height() + $(window).scrollTop();
-            let str = "";
+        console.log(start)
+        console.log(next)
 
 
+        for (let i = start; i < next; i++) {
+            console.log(lists[i])
+            str += "<li>";
+            str += "<div class=\"item\">";
 
-            if(next > total){
-                next = total;
-                possible = false;
-                return;
-            }else if(next == total){
-                possible = false;
-                return;
-            }
-
-
-            if(possible) {
-                //후기가 없을때까지
-                if (scrollPosition > scrollHeight - 1) {
-
-                    //밑의 내용 위에 each 문에 넣기
-                    // 에이젝스 쏴서 리스트 받아와서 두번쨰 값부터 하나씩 출력
-                    // reviews --> 가져온 모든 리스트
-
-                    console.log("합치기전 " + next)
-                    next = start + standard;
-
-                    if(next > total){
-                        next = total;
+            str += "<span class='heart'></span>"
+            str += "<span class=\"material-symbols-outlined jjim jjim-ajax\" name=\"" + lists[i].num + "\" style='color: #d3cdcd; font-weight: bold;'>";
+            str += "favorite";
+            str += "</span>";
+            str += "<a class=\"goDetail\" th:href=\"" + lists[i].num + "\" style=\"cursor:pointer\">";
+            (function () {
+                $.ajax({
+                    url: "/productFile/list/" + lists[i].num,
+                    type: "get",
+                    async: false,  // ajax 안에 ajax를 사용할때는 동기식으로 바꿔줘야함
+                    success: function (files) {
+                        // let str = "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
+                        str += "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_" + files[0].fileName + "'>";
+                        // $("img#"+productNum).attr("src", "/upload/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName )
                     }
-                    for (let i = start; i < next; i++) {
-                        console.log("f 안에 포문 들어왔을떄")
-                        console.log("total = "+ total);
-                        console.log("next = "+ next);
-                        console.log("=========================================== ")
-                        str += "<li>";
-                        str += "<div class=\"item\">";
-
-                        str += "<span class='heart'></span>"
-                        str += "<span class=\"material-symbols-outlined jjim jjim-ajax\" name=\"" + lists[i].num + "\" style='color: #d3cdcd; font-weight: bold;'>";
-                        str += "favorite";
-                        str += "</span>";
-                        str += "<a class=\"goDetail\" th:href=\"" + lists[i].num + "\" style=\"cursor:pointer\">";
-                        (function () {
-                            $.ajax({
-                                url: "/productFile/list/" + lists[i].num,
-                                type: "get",
-                                async: false,  // ajax 안에 ajax를 사용할때는 동기식으로 바꿔줘야함
-                                success: function (files) {
-                                    // let str = "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
-                                    str += "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_" + files[0].fileName + "'>";
-                                    // $("img#"+productNum).attr("src", "/upload/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName )
-                                }
-                            })
-                        })(i);
-                        str += "</a>";
-                        str += "<div class=\"flex\" style=\"flex-direction: column; margin: 12px 0;\">";
-                        str += "<div>";
-                        str += "<p class=\"store_main_item_title\">" + lists[i].name + "</p>";
-                        str += "</div>";
-                        str += "<div style=\"margin-top: 6px; height: 16px;\">";
-                        str += "<p class=\"store_main_item_category\">" + lists[i].category + "</p>";
-                        str += "</div>";
-                        str += "<div style=\"display: flex; align-items: end; margin-top: 5px\">";
-                        str += "<span class=\"material-symbols-outlined\" style=\"font-size: 12px;\">";
-                        str += "favorite";
-                        str += "</span>";
-                        str += "<small style=\"font-size: 11px; margin-left: 5px\">";
-                        //찜 갯수 ajax
-                        (function () {
-                            $.ajax({
-                                url: "/store/jjimCount?productNum=" + lists[i].num,
-                                type: "get",
-                                async: false,  // ajax 안에 ajax를 사용할때는 동기식으로 바꿔줘야함
-                                success: function (count) {
-                                    str += count;
-                                }
-                            })
-                        })(i);
-                        str += "</small>";
-                        str += "</div>";
-                        str += "</div>";
-                        str += "<div style=\"height: 18px;\">";
-                        str += "<p class=\"store_item_price\">" + lists[i].price + "P</p>";
-                        str += "</div>";
-                        str += "</div>";
-                        str += "</li>";
+                })
+            })(i);
+            str += "</a>";
+            str += "<div class=\"flex\" style=\"flex-direction: column; margin: 12px 0;\">";
+            str += "<div>";
+            str += "<p class=\"store_main_item_title\">" + lists[i].name + "</p>";
+            str += "</div>";
+            str += "<div style=\"margin-top: 6px; height: 16px;\">";
+            str += "<p class=\"store_main_item_category\">" + lists[i].category + "</p>";
+            str += "</div>";
+            str += "<div style=\"display: flex; align-items: end; margin-top: 5px\">";
+            str += "<span class=\"material-symbols-outlined\" style=\"font-size: 12px;\">";
+            str += "favorite";
+            str += "</span>";
+            str += "<small style=\"font-size: 11px; margin-left: 5px\">";
+            //찜 갯수 ajax
+            (function () {
+                $.ajax({
+                    url: "/store/jjimCount?productNum=" + lists[i].num,
+                    type: "get",
+                    async: false,  // ajax 안에 ajax를 사용할때는 동기식으로 바꿔줘야함
+                    success: function (count) {
+                        str += count;
                     }
-                    $('.all_items ul').append(str);
-                    start += standard;
+                })
+            })(i);
+            str += "</small>";
+            str += "</div>";
+            str += "</div>";
+            str += "<div style=\"height: 18px;\">";
+            str += "<p class=\"store_item_price\">" + lists[i].price + "P</p>";
+            str += "</div>";
+            str += "</div>";
+            str += "</li>";
+        }
+        $('.all_items ul').append(str);
+        // start += standard;
 
-                    $.ajax({
-                        url: "/store/jjim",
-                        type: "get",
-                        success: function (jjims) {
-                            $(jjims).each(function (i, jjim) {
-                                if (jjim.userNum == userNum) {
-                                    if ($(".jjim[name=" + jjim.productNum + "]").hasClass("material-symbols-outlined")) {
-                                        $(".jjim[name=" + jjim.productNum + "]").removeClass("material-symbols-outlined");
-                                        $(".jjim[name=" + jjim.productNum + "]").addClass("material-icons");
-                                        $(".jjim[name=" + jjim.productNum + "]").css("color", "red")
-                                    }
-                                }
-                            })
+        $.ajax({
+            url: "/store/jjim",
+            type: "get",
+            success: function (jjims) {
+                $(jjims).each(function (i, jjim) {
+                    if (jjim.userNum == userNum) {
+                        if ($(".jjim[name=" + jjim.productNum + "]").hasClass("material-symbols-outlined")) {
+                            $(".jjim[name=" + jjim.productNum + "]").removeClass("material-symbols-outlined");
+                            $(".jjim[name=" + jjim.productNum + "]").addClass("material-icons");
+                            $(".jjim[name=" + jjim.productNum + "]").css("color", "red")
                         }
-                    })
-
-                }
+                    }
+                })
             }
-        });
+        })
+
     }
-
-
 
 
 
@@ -420,12 +403,5 @@
         }
     })
 
-
-
-
-
-
-
 </script>
-
 </html>
