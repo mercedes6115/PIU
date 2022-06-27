@@ -38,4 +38,23 @@ public class CompanyDAO {
         return companyMapper.login(email,password);
     }
 
+
+    public boolean adminCompanyPwUpdate(String password, Long num){
+        return companyMapper.adminCompanyPwUpdate(password,num);
+    }
+
+
+    public boolean companyStatusDisable(Long num) {// 비활성화
+        return companyMapper.companyStatusDisable(num);
+    }
+    public boolean companyStatusEnable(Long num) {// 비활성화
+        return companyMapper.companyStatusEnable(num);
+    }
+    public boolean companyApprovalDisable(Long num) {// 비활성화
+        return companyMapper.companyApprovalDisable(num);
+    }
+    public boolean companyApprovalEnable(Long num) {// 비활성화
+        return companyMapper.companyApprovalEnable(num);
+    }
+
 }

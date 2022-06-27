@@ -27,6 +27,16 @@ public class UserDAO {
 
     private final UserMapper userMapper;
 
+
+
+    public QrDTO getQrInfo(Long userNum){
+        return userMapper.getQrInfo(userNum);
+    }
+
+    public boolean autoPoint(String point,Long userNum){
+        return userMapper.autoPoint(point,userNum);
+    }
+
     //    관리자 공지등록
     public void registerWrite(AdminBoardVO adminBoardVO) {
         userMapper.write(adminBoardVO);
@@ -37,6 +47,10 @@ public class UserDAO {
         return userMapper.getNoticeList(adminCriteria);
     }
 
+
+    public boolean addPoint(String nickname,String point){
+        return userMapper.addPoint(nickname,point);
+    }
     //    관리자 공지 상세보기
     public AdminBoardVO getReadDetail(Long num){
         return userMapper.getNoticeDetail(num);
@@ -166,6 +180,26 @@ public class UserDAO {
 
 
 
+    public boolean updateUserAdminPW(String password, Long num){
+        return userMapper.adminPwUpdate(password,num);
+
+    }
+
+    public boolean UserStatusDisable(Long num) {// 비활성화
+        return userMapper.userStatusDisable(num);
+    }
+    public boolean UserStatusEnable(Long num) {// 비활성화
+        return userMapper.userStatusEnable(num);
+    }
+    public boolean UserApprovalDisable(Long num) {// 비활성화
+        return userMapper.userApprovalDisable(num);
+    }
+    public boolean UserApprovalEnable(Long num) {// 비활성화
+        return userMapper.userApprovalEnable(num);
+    }
+
+
+
     // 마이페이지 비밀번호 변경
     public boolean changePw(String password, Long num) {return userMapper.changePw(password, num);}
 
@@ -191,9 +225,6 @@ public class UserDAO {
     // 내가 작성한 product 문의글에 달린 답변 가져오기
     public ProductQnaCommentVO getMyProductQnaComment(Long qnaNum) {return userMapper.myProductQnaComment(qnaNum);}
 
-    // 내가 작성한 전체 후기
     public List<MyReviewDTO> getAllMyReview(Long userNum) {return userMapper.myAllReview(userNum);}
-
-
 
 }

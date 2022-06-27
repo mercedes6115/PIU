@@ -19,7 +19,6 @@ public class UserVO {
     private String point;
     private String registDate;
     private String category;
-
-
-
+    private String status;
+    private String approval;
 }

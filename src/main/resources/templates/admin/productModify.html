@@ -15,13 +15,13 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- include libraries(jQuery, bootstrap) -->
-    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+<!--    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">-->
+<!--    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>-->
+<!--    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>-->
 
-    <!-- include summernote css/js-->
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+<!--    &lt;!&ndash; include summernote css/js&ndash;&gt;-->
+<!--    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">-->
+<!--    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>-->
 
 
 </head>
@@ -107,10 +107,15 @@
                         </tr>
 
                         <tr>
-                            <th>상품 상세 내용
+                            <th>상품요약
                             </th>
-                            <td>
-                                <textarea th:utext="*{content}" name="content" id="summernote" class="summernote" required="required"></textarea>
+                            <td style="display: flex;">
+                                <input th:value="*{content}" name="content" class="summary"  required="required">
+                                <div class="count">
+                                    [<p class="textCount"> 0</p>
+                                    /
+                                    <p class="textTotal"> 250</p>]
+                                </div>
                             </td>
                         </tr>
 
@@ -222,6 +227,32 @@
 </body>
 
 <script th:replace="~{/admin/adminSideBar :: AdminSideBarJSImport}"></script>
-<script src="/assets/js/productRegister.js"></script>
 
+<script th:inline="javascript">
+    let productNum = [[${product.num}]];
+    console.log(productNum);
+
+    console.log("js파일"+productNum);
+    $.ajax({
+        url: "/productFile/list/" + productNum,
+        type: "get",
+        success: function (files) {  //파일들가져오기.
+            $(files).each(function (i, file) {
+                console.log("ajax");
+                let text = "";
+                text += "<img src='/productFile/display?fileName=" + file.uploadPath + "/" + file.uuid + "_" + file.fileName + "' width='100%' height='100%'>";
+                console.log(text);
+                text += "<input type='hidden' name='fileList[" + i + "].fileName' value='" + file.fileName + "'>"
+                text += "<input type='hidden' name='fileList[" + i + "].uuid' value='" + file.uuid + "'>"
+                text += "<input type='hidden' name='fileList[" + i + "].uploadPath' value='" + file.uploadPath + "'>"
+                $(".thumb"+(i)).html(text);
+            })
+            // text += "</div>";
+            // $(".thumb1").html(text);
+
+        }
+    })
+
+</script>
+<script src="/assets/js/productRegister.js"></script>
 </html>

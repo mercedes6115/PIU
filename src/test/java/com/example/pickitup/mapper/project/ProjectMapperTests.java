@@ -1,10 +1,8 @@
-
-
-
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 import com.example.pickitup.mapper.project.projectFile.ProjectMapper;
 
 import com.example.pickitup.mapper.project.projectReview.ProjectReviewMapper;
+
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +27,12 @@ public class ProjectMapperTests {
     @Test
     public void getDetailTest(){
         log.info("TEST"+projectMapper.getDetail(1L));
-
     }
 
-
+    @Test
+    public void getqwerqerqer(){
+        log.info("======="+projectMapper.adminStatistics("2022-06-23"));
+    }
 
 }
 

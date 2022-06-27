@@ -17,8 +17,7 @@ public class ApplyDTO {
     private String endTime;
     private String nickname;
     private String phone;
-
-
-
-
+    private String point;
+    private String terrain;
+    private String course;
 }

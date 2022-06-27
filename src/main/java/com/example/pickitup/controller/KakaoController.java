@@ -6,6 +6,7 @@ import com.example.pickitup.service.TempUserSerivce;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -23,7 +24,7 @@ public class KakaoController {
     private final TempUserSerivce tempUserSerivce;
 
     @GetMapping("/login")
-    public RedirectView kakaoCallback(@RequestParam String code, HttpSession session) throws Exception {
+    public RedirectView kakaoCallback(@RequestParam String code, HttpSession session, RedirectAttributes rttr) throws Exception {
         log.info(code);
         String token = kakaoService.getKaKaoAccessToken(code);
 
@@ -37,14 +38,19 @@ public class KakaoController {
         userVO.setEmail(kakaoInfo.get("email").toString());
         userVO.setNickname(kakaoInfo.get("nickname").toString());
 
-        tempUserSerivce.kakaoLogin(userVO);
-        session.setAttribute("token", token);
-        session.setAttribute("num",userVO.getNum());
-        session.setAttribute("nickname",userVO.getNickname());
-        session.setAttribute("category",userVO.getCategory());
-
-
-        return new RedirectView("main/main");
+        if(tempUserSerivce.kakaoLogin(userVO)==null){
+            boolean checkEmail=true;
+            log.info("널인가 "+tempUserSerivce.kakaoLogin(userVO));
+            rttr.addFlashAttribute("checkEmail",checkEmail);
+            return new RedirectView("user/login");
+        }else {
+            log.info("null 아닌가"+tempUserSerivce.kakaoLogin(userVO));
+            session.setAttribute("token", token);
+            session.setAttribute("num", userVO.getNum());
+            session.setAttribute("nickname", userVO.getNickname());
+            session.setAttribute("category", userVO.getCategory());
+            return new RedirectView("main/main");
+        }
 
     }
 
