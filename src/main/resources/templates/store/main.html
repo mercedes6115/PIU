@@ -270,7 +270,6 @@
         $("#scrollPosition").text(scrollPosition);
         $("#bottom").text(scrollHeight - scrollPosition);
 
-
         if(possible){
             if (scrollPosition > scrollHeight - 1) {
                 f(li);
@@ -317,10 +316,8 @@
 
         next = start + standard;
 
-        if (next > total) {
+        if (next >= total) {
             next = total;
-            possible = false;
-        }else if(next == total){
             possible = false;
         }
 

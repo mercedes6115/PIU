@@ -383,7 +383,7 @@
                 str += "<div class=\"reviewDetailProfile\">";
                 str += "<div class=\"reviewProfileForm\">";
                 str += "<span class=\"reviewProfile\">";
-                str += "<picture class=\"profile\">";
+                str += "<picture class=\"profile\" >";
                 // str += "<img src=\"/images/chun.png\">";
                 str += "</picture>";
                 str += "</span>";
@@ -391,7 +391,7 @@
                 str += "<div class=\"reviewNameDate\">";
                 str += "<div class=\"reviewName\">";
 
-                // 유저 아이디 가져오기
+                // 유저 아이디 & 사진 가져오기
                 (function(){
                     let userNum = reviews[i].userNum;
                     $.ajax({
@@ -399,12 +399,20 @@
                         type : "get",
                         async : false,
                         success:function (user) {
-                            console.log(user.nickname)
                             str += user.nickname;
+
+
+                            //사진 가져오기
+                            setTimeout(function () {
+                                let ps = $(".profile");
+                                $(ps[0]).attr("class","profile"+user.nickname);
+                            },50)
+
                             // =======================================유저 사진 받아와서 뿌릴예정=========================================================
-                            // let profileImg = "<img src='/userFile/display?fileName=" + user[0].uploadPath + "/_" + user[0].uuid + "_"  + user[0].fileName + "'>";
-                            // $(".profile").html(profileImg);
-                            // console.log($(".profile"))
+                            let profileImg = "<img src='/userFile/display?fileName=" + user.profileUploadPath + "/"  + user.profileFileName + "' style='width: 34px; height: 34px;'>";
+                            setTimeout(function () {
+                                $(".profile"+user.nickname).html(profileImg);
+                            },100)
                         }
                     })
                 })(i);
@@ -512,7 +520,8 @@
                 $.each(qnaDTO.list, function(i, qna){
                     str += "<div class=\"qnas\">";
                     str += "<div class=\"flex\" style=\"align-items: center;\">";
-                    str += "<div class=\"profile_img\"><img src=\"/images/1.jpg\" style=\"width: 100%; height: 100%;\"></div>";
+                    str += "<div class=\"profile_img\">";
+                    str+="</div>";
                     str += "<div class=\"id_and_date\" style=\"flex-direction: column;\">";
                     str += "<div class=\"admin_id\" style=\"color: black;\">";
                     (function(){
@@ -522,6 +531,18 @@
                             async : false,
                             success:function (user) {
                                 str += user.nickname;
+
+                                //사진 가져오기
+                                setTimeout(function () {
+                                    let ps = $(".profile_img");
+                                    $(ps[0]).attr("class","profile_img"+user.nickname);
+                                },50)
+
+                                // =======================================유저 사진 받아와서 뿌릴예정=========================================================
+                                let profileImg = "<img src='/userFile/display?fileName=" + user.profileUploadPath + "/"  + user.profileFileName + "' style='width: 34px; height: 34px; border-radius: 50%; margin-right: 5px;'>";
+                                setTimeout(function () {
+                                    $(".profile_img"+user.nickname).html(profileImg);
+                                },100)
                             }
                         })
                     })(i);
@@ -545,9 +566,9 @@
                             success : function (qnaCommentLists) {
                                 $.each(qnaCommentLists, function (i, comment) {
                                     str += "<div class=\"flex\" style=\"align-items: center;\">";
-                                    str += "<div class=\"admin_profile_img\"><img src=\"/images/4.jpg\"></div>";
+                                    str += "<div class=\"admin_profile_img\"><img src=\"/images/chun8.png\"></div>";
                                     str += "<div class=\"flex id_and_date\" style='width: 100%'>";
-                                    str += "<div class=\"admin_id\">관리자번호" + "&nbsp; </div>";
+                                    str += "<div class=\"admin_id\">운영자" + "&nbsp; </div>";
                                     str += "<div class=\"admin_date\">" + comment.updateDate.substring(0,10) + "</div>";
                                     str += "<div style='position: absolute; right: 0; font-weight: normal;'>";
                                     str += "<a href=\""+comment.num+"\" name=\""+qna.num+"\" id=\""+comment.content+"\" class=\"modify_adminComment\" style='margin-right: 5px;'>수정</a>";
