@@ -25,30 +25,31 @@
                         </svg>
                     </span>
                 <div class="my-review-real-title-box">
-                    <h5 class="my-review-real-user">곰돌이님의 후기</h5>
+                    <h5 class="my-review-real-user" th:text="|${user.getNickname()}님의 후기|"></h5>
                 </div>
             </div>
         </div>
-        <div class="my-real-review-box">
+        <th:block th:each="myReview: ${reviewList}">
+        <div class="my-real-review-box" th:object="${myReview}">
             <div class="my-real-review-box-inside"><a href="#">
                 <div class="my-review-profile">
                     <div size="32" class="review-step1"><span
                             class="review-step2">
-                                    <picture class="review-step3"><img sizes="100vw" src="	https://class101.net/images/default-user.png"></i>
+                                    <picture class="review-step3">
                                     </picture>
                                 </span></div>
                     <div class="review-step5">
-                        <div class="review-step6">곰돌이</div>
+                        <div class="review-step6" th:text="*{userName}"></div>
                         <div class="review-step7">
 
-                            <div class="review-step8">2월 17일</div>
-                            <div class="review-step9">그린 플로깅</div>
+                            <div class="review-step8" th:text="*{#temporals.createDate(updateDate, 'yyyy-MM-dd HH:mm:ss')}"></div>
+                            <div class="review-step9" th:text="*{productName}"></div>
                         </div>
                     </div>
                 </div>
                 <div class="my-review-bottom-space"></div>
                 <pre
-                        class="review-by1">해볼까 말까 고민했는데 고민한 시간이 안아까울만큼 보람찬 시간이었습니다. 다음에도 참여하고 싶어요 </pre>
+                        class="review-by1" th:text="*{content}"></pre>
             </a>
                 <div class="review-by2"></div>
 
@@ -62,154 +63,19 @@
 
             <div class="review-list2"></div>
         </div>
-        <div class="my-real-review-box">
-            <div class="my-real-review-box-inside"><a href="#">
-                <div class="my-review-profile">
-                    <div size="32" class="review-step1"><span
-                            class="review-step2">
-                                    <picture class="review-step3"><img sizes="100vw" src="	https://class101.net/images/default-user.png"></i>
-                                    </picture>
-                                </span></div>
-                    <div class="review-step5">
-                        <div class="review-step6">곰돌이</div>
-                        <div class="review-step7">
-
-                            <div class="review-step8">1월 20일</div>
-                            <div class="review-step9">에코 플로깅</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="my-review-bottom-space"></div>
-                <pre
-                        class="review-by1">처음에는 혼자 참여하다가 친구들한테 추천해서 같이했어요. 친구들과 같이하면 보람만큼 즐거움이 큰 것 같아요. </pre>
-            </a>
-                <div class="review-by2"></div>
-
-            </div>
-            <div class="review-with4"></div>
-            <div class="sc-f8caeb8b-0 review-with5">
-                <hr color="#f8f8f8" class="review-with6">
-            </div>
-            <div class="review-with7"></div>
-            <div class="my-review-bottom-space"></div>
-
-            <div class="review-list2"></div>
-            <div class="review-with4"></div>
-            <div class="sc-f8caeb8b-0 review-with5">
-                <hr color="#f8f8f8" class="review-with6">
-            </div>
-            <div class="review-with7"></div>
-            <div class="my-review-bottom-space"></div>
-
-            <div class="review-list2"></div>
-
-        </div>
-        <div class="my-real-review-box">
-            <div class="my-real-review-box-inside"><a href="#">
-                <div class="my-review-profile">
-                    <div size="32" class="review-step1"><span
-                            class="review-step2">
-                                    <picture class="review-step3"><img sizes="100vw" src="	https://class101.net/images/default-user.png"></i>
-                                            </picture>
-                                </span></div>
-                    <div class="review-step5">
-                        <div class="review-step6">곰돌이</div>
-                        <div class="review-step7">
-
-                            <div class="review-step8">2월 17일</div>
-                            <div class="review-step9">클린 어스</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="my-review-bottom-space"></div>
-                <pre
-                        class="review-by1">유랑작가님 수업 듣고 이모티콘 2개 승인받앗어요ㅜㅜ 너무 감사합니다. 아이디어 기획하는 부분이 저에게 많이 도움됬어요ㅜ 작가님 너무 감사합니다. </pre>
-            </a>
-                <div class="review-by2"></div>
-
-            </div>
-            <div class="review-with4"></div>
-            <div class="sc-f8caeb8b-0 review-with5">
-                <hr color="#f8f8f8" class="review-with6">
-            </div>
-            <div class="review-with7"></div>
-            <div class="my-review-bottom-space"></div>
-
-            <div class="review-list2"></div>
-
-        </div>
-        <div class="my-real-review-box">
-            <div class="my-real-review-box-inside"><a href="#">
-                <div class="my-review-profile">
-                    <div size="32" class="review-step1"><span
-                            class="review-step2">
-                                    <picture class="review-step3"><img sizes="100vw" src="	https://class101.net/images/default-user.png"></i>
-                                    </picture>
-                                </span></div>
-                    <div class="review-step5">
-                        <div class="review-step6">곰돌이</div>
-                        <div class="review-step7">
-
-                            <div class="review-step8">2월 17일</div>
-                            <div class="review-step9">그린 플로깅</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="my-review-bottom-space"></div>
-                <pre
-                        class="review-by1">해볼까 말까 고민했는데 고민한 시간이 안아까울만큼 보람찬 시간이었습니다. 다음에도 참여하고 싶어요 </pre>
-            </a>
-                <div class="review-by2"></div>
-
-            </div>
-            <div class="review-with4"></div>
-            <div class="sc-f8caeb8b-0 review-with5">
-                <hr color="#f8f8f8" class="review-with6">
-            </div>
-            <div class="review-with7"></div>
-            <div class="my-review-bottom-space"></div>
-
-            <div class="review-list2"></div>
-        </div>
-        <div class="my-real-review-box">
-            <div class="my-real-review-box-inside"><a href="#">
-                <div class="my-review-profile">
-                    <div size="32" class="review-step1"><span
-                            class="review-step2">
-                                    <picture class="review-step3"><img sizes="100vw" src="	https://class101.net/images/default-user.png"></i>
-                                    </picture>
-                                </span></div>
-                    <div class="review-step5">
-                        <div class="review-step6">곰돌이</div>
-                        <div class="review-step7">
-
-                            <div class="review-step8">2월 17일</div>
-                            <div class="review-step9">그린 플로깅</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="my-review-bottom-space"></div>
-                <pre
-                        class="review-by1">해볼까 말까 고민했는데 고민한 시간이 안아까울만큼 보람찬 시간이었습니다. 다음에도 참여하고 싶어요 </pre>
-            </a>
-                <div class="review-by2"></div>
-
-            </div>
-            <div class="review-with4"></div>
-            <div class="sc-f8caeb8b-0 review-with5">
-                <hr color="#f8f8f8" class="review-with6">
-            </div>
-            <div class="review-with7"></div>
-            <div class="my-review-bottom-space"></div>
-
-            <div class="review-list2"></div>
-        </div>
-
+        </th:block>
     </div>
 </div>
 
 <!--640px푸터 필요-->
 </body>
 <script src="/assets/js/mypage.js"></script>
-
+<script th:inline="javascript">
+let profile = $(".review-step3");
+let fileName = [[${user.profileFileName}]];
+let uploadPath = [[${user.profileUploadPath}]];
+let str = "";
+str += "<img src ='/userFile/display?fileName=" + uploadPath + "/" + fileName + "'>";
+profile.html(str);
+</script>
 </html>

@@ -3,16 +3,13 @@ package com.example.pickitup.domain.dao.user;
 import com.example.pickitup.domain.vo.AdminCriteria;
 import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.adminVO.AdminBoardDTO;
-import com.example.pickitup.domain.vo.dto.AdminBoardPageDTO;
-import com.example.pickitup.domain.vo.dto.AdminQnaCommentDTO;
-import com.example.pickitup.domain.vo.dto.AdminQnaDTO;
+import com.example.pickitup.domain.vo.dto.*;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 
 import com.example.pickitup.domain.vo.product.productQna.ProductQnaCommentVO;
 import com.example.pickitup.domain.vo.product.productQna.ProductQnaVO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 
-import com.example.pickitup.domain.vo.dto.UserDTO;
 import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaCommentVO;
 import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaVO;
 import com.example.pickitup.domain.vo.user.AdminBoardVO;
@@ -103,6 +100,11 @@ public class UserDAO {
     // 관리자가 게시물 목록에서 상품문의 글 지웠을때 productQnA 테이블에서도 삭제
     public void productQnaDelete(Long num) {
         userMapper.productQnaDelete(num);
+    }
+
+    // 유저 내 리뷰 모두 보기
+    public List<ReviewDTO> myAllReview(Long num) {
+        return userMapper.myAllReview(num);
     }
 
     // 유저 목록(관리자용)

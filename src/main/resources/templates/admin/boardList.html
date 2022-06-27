@@ -203,7 +203,7 @@
                         </td>
                         <td th:text="*{title}" th:value="*{title}"></td>
                         <td th:text="*{nickname}" th:value="*{nickname}"></td>
-                        <td th:text="*{registDate}" th:value="*{registDate}"></td>
+                        <td th:text="*{#temporals.createDate(registDate, 'yyyy-MM-dd HH:mm:ss')}" th:value="*{registDate}"></td>
                         <td >
                             <span th:if="*{category != '4' and answerStatus == '1'}" th:style="${'color:blue;'}">답변 대기</span>
                             <span th:if="*{category != '4' and answerStatus == '2'}" th:style="${'color:red;'}">답변 완료</span>
