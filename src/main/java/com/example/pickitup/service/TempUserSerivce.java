@@ -295,6 +295,13 @@ public class TempUserSerivce {
         return productQnaDTOList;
     }
 
+
     public ProductDTO boughtOrderDetail(Long orderNum) { return orderDAO.boughtDetail(orderNum);}
+
+    // 유저 내 후기 다 가져오기
+    public List<ReviewDTO> myAllReview(Long num){
+        return userDAO.myAllReview(num);
+    }
+
 
 }
