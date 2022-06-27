@@ -234,7 +234,7 @@ public class UserMapperTests {
 
     @Test
     public void getMyAllReview() {
-        userMapper.myAllReview(22L);
+        userMapper.myAllReview(2L);
     }
 }
 

@@ -82,8 +82,8 @@ public class UserController {
     // 마이페이지 내후기
     @GetMapping("/myReview")
     public String myReview(Model model){
-        model.addAttribute("reviewList",tempUserSerivce.myAllReview(22L));
-        model.addAttribute("user",tempUserSerivce.readUserInfo(22L));
+        model.addAttribute("reviewList",tempUserSerivce.myAllReview(2L));
+        model.addAttribute("user",tempUserSerivce.readUserInfo(2L));
 
         return "/user/myReview";
     }

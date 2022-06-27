@@ -43,12 +43,6 @@
         DELETE FROM TBL_PROJECT_REVIEW
         WHERE NUM= #{num}
     </delete>
-
-    <select id="getMyProjectReview" resultType="myReviewDTO">
-        SELECT tpr.CONTENT, tpr.UPDATE_DATE, tp.TITLE as projectName, tu.NICKNAME as userName
-        FROM TBL_PROJECT_REVIEW tpr, TBL_PROJECT tp, TBL_USER tu
-        WHERE tpr.USER_NUM = #{userNum} AND tpr.PROJECT_NUM =tp.NUM AND tpr.USER_NUM = tu.NUM
-    </select>
 </mapper>
 
 

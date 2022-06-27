@@ -40,8 +40,4 @@ public class ProjectReviewDAO {
         return projectReviewMapper.delete(num);
     }
 
-    // 내가 작성한 프로젝트 리뷰
-    public List<MyReviewDTO> getMyReviewList(Long userNum) {
-        return projectReviewMapper.getMyProjectReview(userNum);
-    }
 }
