@@ -47,7 +47,7 @@ public class OrderService {
 //        orderDAO.getProduct(num1);
 
     }
-    public void User(UserVO userVO){
-        userDAO.update(userVO);
-    }
+//    public void User(UserVO userVO){
+//        userDAO.update(userVO);
+//    }
 }
