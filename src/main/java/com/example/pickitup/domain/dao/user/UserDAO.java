@@ -103,7 +103,7 @@ public class UserDAO {
     }
 
     // 유저 내 리뷰 모두 보기
-    public List<ReviewDTO> myAllReview(Long num) {
+    public List<MyReviewDTO> myAllReview(Long num) {
         return userMapper.myAllReview(num);
     }
 

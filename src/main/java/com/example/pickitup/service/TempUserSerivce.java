@@ -296,7 +296,7 @@ public class TempUserSerivce {
     }
 
     // 유저 내 후기 다 가져오기
-    public List<ReviewDTO> myAllReview(Long num){
+    public List<MyReviewDTO> myAllReview(Long num){
         return userDAO.myAllReview(num);
     }
 
