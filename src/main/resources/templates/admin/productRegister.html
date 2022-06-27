@@ -15,13 +15,13 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- include libraries(jQuery, bootstrap) -->
-    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+<!--    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">-->
+<!--    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>-->
+<!--    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>-->
 
-    <!-- include summernote css/js-->
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+<!--    &lt;!&ndash; include summernote css/js&ndash;&gt;-->
+<!--    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">-->
+<!--    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>-->
 
 
 </head>
@@ -107,10 +107,15 @@
                         </tr>
 
                         <tr>
-                            <th>상품 상세 내용
+                            <th>상품요약
                             </th>
-                            <td>
-                                <textarea name="content" id="summernote" class="summernote" required="required"></textarea>
+                            <td style="display: flex;">
+                                <input name="content" class="summary"  required="required">
+                                <div class="count">
+                                    [<p class="textCount"> 0</p>
+                                    /
+                                    <p class="textTotal"> 250</p>]
+                                </div>
                             </td>
                         </tr>
 
@@ -209,7 +214,7 @@
 
                 <div class="submitbtn">
                     <!-- button -->
-                    <button class="productbtn">상품등록</button>
+                    <button type="submit" class="productbtn">상품등록</button>
                     <button onclick="handleOnClick()"
                             value="confirm">취소</button>
                 </div>
@@ -222,5 +227,4 @@
 
 <script th:replace="~{/admin/adminSideBar :: AdminSideBarJSImport}"></script>
 <script src="/assets/js/productRegister.js"></script>
-
 </html>

@@ -185,8 +185,9 @@ public class UserController {
 
     // 로그인
     @GetMapping("/login")
-    public void login(){
-
+    public void login(Model model){
+//        boolean checkEmail=true;
+//        model.addAttribute("")
     }
 
     // 로그인 폼
