@@ -1,5 +1,6 @@
 package com.example.pickitup.mapper.project.projectReview;
 
+import com.example.pickitup.domain.vo.dto.MyReviewDTO;
 import com.example.pickitup.domain.vo.project.projectReview.ProjectReviewVO;
 import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
@@ -22,5 +23,6 @@ public interface ProjectReviewMapper {
     //    리뷰 삭제하기
     public boolean delete(Long num);
 
-
+    //    내가 작성한 프로젝트 리뷰 가져오기
+    public List<MyReviewDTO> getMyProjectReview(Long userNum);
 }

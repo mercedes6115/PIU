@@ -26,22 +26,21 @@
         </div>
     </div>
     <div class="space"></div>
-    <section class="review_write_container">
-        <form action="/project/review/add" method="post" id="reviewForm">
-
+    <section class="review_write_container" th:object="${review}">
+        <form action="/project/review/modify" method="post" id="reviewForm">
         <div>
             <div class="flex p-24" style="align-items: center; padding-bottom: 15px;">
                 <div class="profile_img"><img src="/images/chun2.png"></div>
                 <div class="flex justify-content" style="width: 100%; align-items: center;">
                     <div class="id_and_date">
-<!--                        <div class="review_id" th:text="|춘식이|"></div>-->
-                        <div class="admin_date">2022-06-14</div>
+                        <div class="review_id" th:text="*{nickname}"></div>
+                        <div class="admin_date" th:text="*{updateDate}"></div>
                     </div>
                     <div><input class="btn_qnaToadmin" type="button" value="글등록"></div>
                 </div>
             </div>
             <div class="space flex" style="padding-left: 24px; justify-content: space-between;">
-<!--                <div class="review_item_title" th:text="|[${product.category}] &nbsp ${product.name}|">-->
+                <div class="review_item_title" th:text="*{title}">
                 </div>
             </div>
             <div style="margin-bottom: 10px;"></div>
@@ -55,11 +54,11 @@
                 <label for="attach2" class="flex">
                     <div class="thumb2">
                         <div>+</div>
-                    </div>                        <div>+</div>
-
+                    </div>
                 </label>
                 <label for="attach3" class="flex">
                     <div class="thumb3">
+                        <div>+</div>
                     </div>
                 </label>
                 <input type="file" name="uploadFiles" id="attach1" class="attach1" style="display: none;" >
@@ -72,7 +71,7 @@
 
             <div style="margin-top: 8px;">
                 <div style="text-align: center;">
-                    <textarea class="user_review" id="" cols="30" rows="10" name="content"></textarea>
+                    <textarea class="user_review" id="" cols="30" rows="10" name="content" th:value="*{content}" th:text="*{content}"></textarea>
                 </div>
             </div>
  </div>
@@ -91,88 +90,21 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <script>
+
+    let reviewNum = [[${review.num}]];
     //첨부파일 input태그 가져오기
-    const file1 = document.querySelector("input.attach1");
-    const file2 = document.querySelector("input.attach2");
-    const file3 = document.querySelector("input.attach3");
-    const thumbnail1 = document.querySelector("label[for='attach1'] div.thumb1");
-    const thumbnail2 = document.querySelector("label[for='attach2'] div.thumb2");
-    const thumbnail3 = document.querySelector("label[for='attach3'] div.thumb3");
-    //첨부파일이 등록되었다면 change이벤트 발생
-    file1.addEventListener("change", function(event){
-        //특정 경로의 파일을 읽어올 때 사용.
-        let reader = new FileReader();
-        reader.readAsDataURL(event.target.files[0]);
-        reader.onload = function(event){
-            //등록된 파일의 경로에 작성된 파일의 타입검사
-            if(event.target.result.includes("image")){
-                console.log("이미지 파일입니다.");
-                $(thumbnail1).text("");
-                //등록된 파일의 경로로 대체
-                thumbnail1.style.backgroundImage = "url(\"" + event.target.result + "\")";
-                file2.disabled = false;
-                $(thumbnail2).css("background-color","white");
-                number2()
-            }else{
-                alert("이미지 파일이 아닙니다.");
-                //미리 준비해놓은 이미지 경로로 대체
-                $(thumbnail1).text("");
-                thumbnail1.style.backgroundImage = "url(/images/error.png)";
-            }
+    let file1 = document.querySelector("input.attach1");
+    let file2 = document.querySelector("input.attach2");
+    let file3 = document.querySelector("input.attach3");
+    let thumbnail1 = document.querySelector("label[for='attach1'] div.thumb1");
+    let thumbnail2 = document.querySelector("label[for='attach2'] div.thumb2");
+    let thumbnail3 = document.querySelector("label[for='attach3'] div.thumb3");
 
-        }
 
-    });
 
-    function number2(){
-        file2.addEventListener("change", function(event){
-            //특정 경로의 파일을 읽어올 때 사용.
-            let reader = new FileReader();
-            reader.readAsDataURL(event.target.files[0]);
-            reader.onload = function(event){
-                //등록된 파일의 경로에 작성된 파일의 타입검사
-                if(event.target.result.includes("image")){
-                    console.log("이미지 파일입니다.");
-                    $(thumbnail2).text("");
-                    //등록된 파일의 경로로 대체
-                    thumbnail2.style.backgroundImage = "url(\"" + event.target.result + "\")";
-                    file3.disabled=false;
-                    $(thumbnail3).css("background-color","white");
-                    number3();
-                }else{
-                    alert("이미지 파일이 아닙니다.");
-                    $(thumbnail2).text("");
-                    //미리 준비해놓은 이미지 경로로 대체
-                    thumbnail2.style.backgroundImage = "url(/images/error.png)";
-                }
-            }
-        });
-    }
-
-    function number3(){
-        file3.addEventListener("change", function(event){
-            //특정 경로의 파일을 읽어올 때 사용.
-            let reader = new FileReader();
-            reader.readAsDataURL(event.target.files[0]);
-            reader.onload = function(event){
-                //등록된 파일의 경로에 작성된 파일의 타입검사
-                if(event.target.result.includes("image")){
-                    console.log("이미지 파일입니다.");
-                    $(thumbnail3).text("");
-                    //등록된 파일의 경로로 대체
-                    thumbnail3.style.backgroundImage = "url(\"" + event.target.result + "\")";
-                }else{
-                    alert("이미지 파일이 아닙니다.");
-                    //미리 준비해놓은 이미지 경로로 대체
-                    $(thumbnail3).text("");
-                    thumbnail3.style.backgroundImage = "url(/images/error.png)";
-                }
-            }
-        });
-    }
 
     // 사진 등록
-    $(".btn_qnaToadmin").on("click", function(e){
+    $('.btn_qnaToadmin').on("click", function(){
         let formData =   new FormData();
         let inputFile = $("input[name='uploadFiles']");
         for(let i=0; i<inputFile.length; i++){
@@ -182,7 +114,7 @@
         }
 
         $.ajax({
-            url: "/projectFile/upload",
+            url: "/projectReviewFile/upload",
             type: "post",
             data: formData,
             contentType: false,
@@ -203,6 +135,21 @@
     });
 
     // 사진 삭제시
+
+
+    // 사진 목록
+    (function(){
+        $.getJSON("/projectReviewFile/list", {reviewNum: reviewNum}, function (files) {
+            $.each(files, function (i, file) {
+                console.log(i);
+                str = "http://localhost:10010/projectReviewFile/display?fileName=" + file.uploadPath +"/"+ file.uuid + "_" + file.fileName;
+                $('.thumb' + (i+1)).css("backgroundImage", "url(" + str + ")");
+
+            })
+        } )
+
+
+    })();
 
 
 

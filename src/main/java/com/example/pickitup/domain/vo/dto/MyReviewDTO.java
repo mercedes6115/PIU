@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Data
 public class MyReviewDTO {
     private String userName;
-    private String registDate;
+    private String updateDate;
     private String content;
     private String fileName;
     private String uploadPath;
