@@ -261,8 +261,17 @@
         })
     }
 
-    $(window).scroll(function(){
-        if  ($(window).scrollTop() == $(document).height() - $(window).height()){
+
+    $(window).on("scroll", function() {
+        var scrollHeight = $(document).height();
+        var scrollPosition = $(window).height() + $(window).scrollTop();
+
+        $("#scrollHeight").text(scrollHeight);
+        $("#scrollPosition").text(scrollPosition);
+        $("#bottom").text(scrollHeight - scrollPosition);
+
+
+        if (scrollPosition > scrollHeight - 1) {
             f(li);
         }
     });
@@ -311,9 +320,6 @@
         if (next > total) {
             next = total;
         }
-        console.log(start)
-        console.log(next)
-
 
         for (let i = start; i < next; i++) {
             console.log(lists[i])
