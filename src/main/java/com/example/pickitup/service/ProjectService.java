@@ -12,6 +12,7 @@ import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.ProjectCriteria;
 import com.example.pickitup.domain.vo.dto.ProjectDTO;
 import com.example.pickitup.domain.vo.dto.ProjectMainDTO;
+import com.example.pickitup.domain.vo.project.projectFile.ProjectFileVO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaCommentVO;
 import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaVO;
@@ -20,6 +21,7 @@ import com.example.pickitup.domain.vo.project.projectReview.ProjectReviewVO;
 import com.example.pickitup.domain.vo.user.ApplyVO;
 import com.example.pickitup.domain.vo.user.JjimVO;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,6 +33,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ProjectService {
 
     private final ProjectDAO projectDAO;
@@ -48,6 +51,11 @@ public class ProjectService {
     }
 
 
+
+    public boolean insertQr(Long qrNum, String projectLink1,String projectLink2 ){
+        return projectDAO.insertQr(qrNum,projectLink1,projectLink2);
+    }
+
     // 프로젝트 목록(특정 단체 유저)
 //    public List<ProjectVO> getProjectList(Long companyNum, ProjectCriteria projectCriteria){
 //        return projectDAO.getUserProjectList(companyNum, projectCriteria);
@@ -57,6 +65,10 @@ public class ProjectService {
     // 관리자용 프로젝트 전체 목록
     public List<ProjectDTO> getProjectList(ProjectCriteria projectCriteria){
         return projectDAO.getProjectList(projectCriteria);
+    }
+
+    public List<ProjectDTO> getListToday(String startDate,String endDate){
+        return projectDAO.getListToday(startDate,endDate);
     }
 
     // 프로젝트 상세보기
@@ -70,8 +82,24 @@ public class ProjectService {
 
 
     // 프로젝트 등록
-    public void register(ProjectVO projectVO){
+
+    public List<ProjectFileVO> getList1(Long num) {
+        return projectFileDAO.findByProjectNum(num);
+    }
+//    하나의 트랜잭션에 여러 개의 DML이 있을 경우 한 개라도 오류 시 전체 ROLLBACK
+
+    @Transactional(rollbackFor = Exception.class)
+    public void register(ProjectVO projectVO) {
+        //게시글 추가
         projectDAO.register(projectVO);
+        log.info("============"+projectVO.getNum());
+        //게시글에 업로드된 첨부파일 정보 중 게시글 번호를 따로 추가
+        if(projectVO.getFileList() != null) {
+            projectVO.getFileList().forEach(projectfileVO -> {
+                projectfileVO.setProjectNum(projectVO.getNum()+1l);
+                projectFileDAO.register(projectfileVO);
+            });
+        }
     }
 
     // 프로젝트 수정
@@ -137,6 +165,12 @@ public class ProjectService {
 //        }
 //    }
 
+
+    @Transactional
+    public boolean setApproval(Long projectNum, Long applyNum){
+        applyDAO.setApproachToContinue(applyNum);
+        return projectDAO.setApprovaltoContinue(projectNum);
+    }
     // 파일
     @Transactional(rollbackFor = Exception.class)
     public void registerReview(ProjectReviewVO projectReviewVO) {
@@ -197,8 +231,6 @@ public class ProjectService {
                 Ddate = "D" + Integer.toString(Ddays * (-1));
             }
             projectMainDTOS.add(new ProjectMainDTO(pp.getNum(),pp.getTitle(),pp.getTerrain(),pp.getPoint(),pp.getJjimCount(),Ddate,pp.getApplyCount()));
-
-
         }
         return projectMainDTOS;
     }

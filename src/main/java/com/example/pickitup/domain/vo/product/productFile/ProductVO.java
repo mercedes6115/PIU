@@ -1,13 +1,15 @@
 package com.example.pickitup.domain.vo.product.productFile;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
 @Data
-public class ProductVO {
+@EqualsAndHashCode(callSuper=false)
+public class ProductVO extends ProductFileVO {
     private Long num;
     private String name;
     private String content;

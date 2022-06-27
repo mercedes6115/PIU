@@ -9,10 +9,11 @@ public class CompanyVO {
     private Long num;
     private String email;
     private String password;
-    private String name;
+    private String nickname;
     private String phone;
     private String businessPhone;
     private String address;
+    private String addressDetail;
     private String businessNumber;
     private String approval;
     private String registDate;
@@ -20,5 +21,7 @@ public class CompanyVO {
     private String profileUploadPath;
 
     private String category;
+    private String status;
+
 
 }

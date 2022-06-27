@@ -17,7 +17,7 @@
 <div th:replace="~{/main/Header :: HeaderImport}"></div>
 <div id="mypage-total-inside">
     <div class="mypage-outline mypage-linepick">
-        <header class="header-middle" ><a class="header-top" href="#">
+        <header class="header-middle" ><a class="header-top" href="/user/infoUpdate">
             <h2 class="header-text" th:text="${getDetail.getNickname()}"><img src="https://class101.net/images/im-kakao-login.png" alt="kakao" class="header-img"></h2>
             <div class="header-bottom" th:text="${getDetail.getEmail()}"><svg xmlns="http://www.w3.org/2000/svg" width="14"
                                                                 height="14" fill="none" viewBox="0 0 24 24">
@@ -49,50 +49,21 @@
                 </a>
                 </section>
                 <section class="third-section">
-                    <h4 class="third-section-top">내 정보</h4><a class="third-section-top-a" href="#">
-                    <div class="third-section-top-div">내 캐시</div>
-                    <div class="third-section-top-div2">
-                        <div class="third-section-top-div3">기프트카드 등록</div><svg
-                            xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none"
-                            class="third-section-top-img" viewBox="0 0 24 24">
-                        <path fill-rule="evenodd" d="M8.5 18.5l6-6.5-6-6.5L10 4l7.5 8-7.5 8-1.5-1.5z"
-                              fill="#cacaca"></path>
-                    </svg>
-                    </div>
-                </a><a class="third-section-middle" href="#">
+                    <h4 class="third-section-top">내 정보</h4><a class="third-section-top-a" href="/user/myPassword">
+                    <div class="third-section-top-div">비밀번호 변경</div>
+
+                </a><a class="third-section-middle" href="/user/myPoint">
                     <div class="third-section-middle-div">내 포인트</div>
                     <div class="third-section-middle-div2">
-                        <div class="third-section-middle-div3">0P</div><svg xmlns="http://www.w3.org/2000/svg"
+                        <div class="third-section-middle-div3" th:text="|${getDetail.getPoint()}P|"></div><svg xmlns="http://www.w3.org/2000/svg"
                                                                             width="14" height="14" fill="none" class="third-section-middle-div4"
                                                                             viewBox="0 0 24 24">
                         <path fill-rule="evenodd" d="M8.5 18.5l6-6.5-6-6.5L10 4l7.5 8-7.5 8-1.5-1.5z"
                               fill="#cacaca"></path>
                     </svg>
                     </div>
-                </a><a class="third-section-middle-first" href="#">
-                    <div class="third-section-middle-first-div">내 쿠폰 <span
-                            class="third-section-middle-first-count">1</span></div>
-                    <div class="third-section-middle-first-div2">
-                        <div class="third-section-middle-first-div2-div"></div><svg
-                            xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none"
-                            class="third-section-middle-first-div2-svg" viewBox="0 0 24 24">
-                        <path fill-rule="evenodd" d="M8.5 18.5l6-6.5-6-6.5L10 4l7.5 8-7.5 8-1.5-1.5z"
-                              fill="#cacaca"></path>
-                    </svg>
-                    </div>
-                </a><a class="third-section-bottom" href="#">
-                    <div class="third-section-bottom-letter">내 응원 <span
-                            class="third-section-bottom-count">0</span></div>
-                    <div class="third-section-bottom-div">
-                        <div class="third-section-bottom-div2"></div><svg xmlns="http://www.w3.org/2000/svg"
-                                                                          width="14" height="14" fill="none" class="third-section-bottom-svg"
-                                                                          viewBox="0 0 24 24">
-                        <path fill-rule="evenodd" d="M8.5 18.5l6-6.5-6-6.5L10 4l7.5 8-7.5 8-1.5-1.5z"
-                              fill="#cacaca"></path>
-                    </svg>
-                    </div>
-                </a><a class="third-section-bottom-bottom" href="#">
-                    <div class="third-section-bottom-div3">주문 내역</div>
+                </a><a class="third-section-bottom-bottom" href="/user/myQnA">
+                    <div class="third-section-bottom-div3">내 문의</div>
                     <div class="third-section-bottom-div-div">
                         <div class="third-section-bottom-div-div2"></div><svg xmlns="http://www.w3.org/2000/svg"
                                                                               width="14" height="14" fill="none" class="third-section-bottom-div-div2-svg"
@@ -101,7 +72,7 @@
                               fill="#cacaca"></path>
                     </svg>
                     </div>
-                </a><a class="third-section-bottom-last" href="#">
+                </a><a class="third-section-bottom-last" href="/user/myReview">
                     <div class="third-section-bottom-last-letter">내 후기</div>
                     <div class="third-section-bottom-last-letter-div">
                         <div class="third-section-bottom-last-div"></div><svg xmlns="http://www.w3.org/2000/svg"
@@ -112,61 +83,23 @@
                     </svg>
                     </div>
                 </a>
+                    <a class="third-section-bottom-last" href="/user/myOrderList">
+                        <div class="third-section-bottom-last-letter">내 주문내역</div>
+                        <div class="third-section-bottom-last-letter-div">
+                            <div class="third-section-bottom-last-div"></div><svg xmlns="http://www.w3.org/2000/svg"
+                                                                                  width="14" height="14" fill="none" class="third-section-bottom-last-div-svg"
+                                                                                  viewBox="0 0 24 24">
+                            <path fill-rule="evenodd" d="M8.5 18.5l6-6.5-6-6.5L10 4l7.5 8-7.5 8-1.5-1.5z"
+                                  fill="#cacaca"></path>
+                        </svg>
+                        </div>
+                    </a>
                 </section>
 
-                <section class="forth-section">
-                    <h4 class="forth-section-letter">멤버쉽</h4><a href="/101prime/benefit">
-                    <div class="forth-section-div">
-                        <div class="forth-section-div-div">
-                            <div class="forth-section-div-div-div">
-                                <p class="forth-section-second">101Prime</p>
-                            </div>
-                            <div class="forth-section-second-div"></div>
-                        </div>
-                    </div>
-                </a><a href="#">
-                    <div class="forth-section-third">
-                        <div class="forth-section-third-div">
-                            <div class="forth-section-third-div-div">
-                                <p class="forth-section-third-div-div-letter">Money+</p>
-                            </div>
-                            <div class="forth-section-third-div-div-last"></div>
-                        </div>
-                    </div>
-                </a>
-                </section>
+
 
                 <section class="fifth-section">
-                    <h4 class="fifth-section-first">메뉴</h4><a class="fifth-section-first-div"
-                                                              href="#">
-                    <div class="fifth-section-first-div-div">친구 초대하고 30,000원 쿠폰 받기</div>
-                    <div class="fifth-section-first-div-div-letter">
-                        <div class="fifth-section-second"></div><svg xmlns="http://www.w3.org/2000/svg"
-                                                                     width="14" height="14" fill="none" class="fifth-section-second-svg" viewBox="0 0 24 24">
-                        <path fill-rule="evenodd" d="M8.5 18.5l6-6.5-6-6.5L10 4l7.5 8-7.5 8-1.5-1.5z"
-                              fill="#cacaca"></path>
-                    </svg>
-                    </div>
-                </a><a class="fifth-section-second-div" href="/app?deep_link=https://class101.app/Fwko4lmOr6">
-                    <div class="fifth-section-second-div2">클래스101 앱 설치하기</div>
-                    <div class="fifth-section-second-div2-div">
-                        <div class="fifth-section-second-div2-div-letter"></div><svg xmlns="http://www.w3.org/2000/svg"
-                                                                                     width="14" height="14" fill="none" class="fifth-section-second-div2-div-svg" viewBox="0 0 24 24">
-                        <path fill-rule="evenodd" d="M8.5 18.5l6-6.5-6-6.5L10 4l7.5 8-7.5 8-1.5-1.5z"
-                              fill="#cacaca"></path>
-                    </svg>
-                    </div>
-                </a><a target="_blank" rel="noreferrer" class="fifth-section-third"
-                       href="https://creator.class101.net/center/apply">
-                    <div class="fifth-section-third-div">크리에이터 지원하기</div>
-                    <div class="fifth-section-third-div-div">
-                        <div class="fifth-section-third-div-div2"></div><svg xmlns="http://www.w3.org/2000/svg"
-                                                                             width="14" height="14" fill="none" class="fifth-section-third-div-svg" viewBox="0 0 24 24">
-                        <path fill-rule="evenodd" d="M8.5 18.5l6-6.5-6-6.5L10 4l7.5 8-7.5 8-1.5-1.5z"
-                              fill="#cacaca"></path>
-                    </svg>
-                    </div>
-                </a><a class="fifth-section-third-div-div3" href="/">
+                    <h4 class="fifth-section-first">메뉴</h4><a class="fifth-section-third-div-div3" href="/">
                     <div class="fifth-section-third-div-div4">로그아웃</div>
                     <div class="fifth-section-third-div-div4-letter">
                         <div class="fifth-section-third-space"></div><svg xmlns="http://www.w3.org/2000/svg"
@@ -613,7 +546,7 @@
             type: "get",
             success : function (files) {
                 str += "<picture class='pay-store-main-image'>";
-                str += "<img src='/productFile/display1?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
+                str += "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
                 str += "</picture>";
                 $(h).html(str);
                 str = "";
@@ -628,7 +561,7 @@
             type: "get",
             success : function (files) {
                 str += "<picture class='visited-store-main-image'>";
-                str += "<img src='/productFile/display1?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
+                str += "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
                 str += "</picture>";
                 $(h).html(str);
                 str = "";
@@ -643,7 +576,7 @@
             type: "get",
             success : function (files) {
                 str += "<picture class='jjim-store-main-image'>";
-                str += "<img src='/productFile/display1?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
+                str += "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
                 str += "</picture>";
                 $(h).html(str);
                 str = "";

@@ -26,4 +26,9 @@ public class ProjectMapperTest {
     public void getListApplyTest(){
         log.info(projectMapper.getListApply().toString());
     }
+
+    @Test
+    public void wewewe(){
+        log.info(projectMapper.adminStatistics("2022-06-24")+"============");
+    }
 }

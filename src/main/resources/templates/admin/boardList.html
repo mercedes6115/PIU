@@ -113,7 +113,7 @@
                     <tr th:object="${adminCriteria}">
                         <th>게시판 선택</th>
                         <td>
-                            <select name="type3">
+                            <select name="type3" id="type3">
                                 <option value="all" th:selected="*{type3} == 'all'">전체</option>
                                 <option value="notice" th:selected="*{type3} == 'notice'">공지사항</option>
                                 <option value="createrQna" th:selected="*{type3} == 'createrQna'">크리에이터센터 문의</option>
@@ -133,12 +133,12 @@
                             <input type="text" value="" name="keyword" th:value="*{keyword}">
                         </td>
                     </tr>
-                    <tr th:object="${adminCriteria}">
+                    <tr th:object="${adminCriteria}" id="answer-tr">
                         <th>답변상태</th>
                         <td>
-                            <span>전체</span><input name="type1" type="radio" value="all" th:checked="*{type1} == 'all'" id="" checked>
-                            <span>답변 대기</span><input name="type1" value="noAnswer" th:checked="*{type1} == 'noAnswer'" type="radio"  id="">
-                            <span>답변 완료</span><input name="type1" value="answer" th:checked="*{type1} == 'answer'" type="radio"  id="">
+                            <span>전체</span><input name="type1"  type="radio" value="all" th:checked="*{type1} == 'all'" id="all" checked>
+                            <span>답변 대기</span><input name="type1"   value="noAnswer" th:checked="*{type1} == 'noAnswer'" type="radio"  id="noAnswer">
+                            <span>답변 완료</span><input name="type1"  value="answer" th:checked="*{type1} == 'answer'" type="radio"  id="answer">
                         </td>
                     </tr>
                 </table>
@@ -187,6 +187,7 @@
                         <span th:if="*{type3} == 'all'"></span>
                         <span th:unless="*{type3} == 'nothing'">제목</span>
                     </th>
+                    <th scope="col">작성자</th>
                     <th scope="col">작성일</th>
                     <th scope="col">비 고</th>
                     <th scope="col">상세보기</th>
@@ -201,7 +202,8 @@
                             <span th:if="*{category == '4'}">공지사항</span>
                         </td>
                         <td th:text="*{title}" th:value="*{title}"></td>
-                        <td th:text="*{registDate}" th:value="*{registDate}"></td>
+                        <td th:text="*{nickname}" th:value="*{nickname}"></td>
+                        <td th:text="*{#temporals.createDate(registDate, 'yyyy-MM-dd HH:mm:ss')}" th:value="*{registDate}"></td>
                         <td >
                             <span th:if="*{category != '4' and answerStatus == '1'}" th:style="${'color:blue;'}">답변 대기</span>
                             <span th:if="*{category != '4' and answerStatus == '2'}" th:style="${'color:red;'}">답변 완료</span>
@@ -209,7 +211,12 @@
                             <span th:if="*{category == '4' and status == '2'}" th:style="${'color:red;'}">공지 해제</span>
                         </td>
                         <!-- 상품 상세보기로 이동 -->
-                        <td><a CLASS="getDetail" th:href="*{num}">상세보기</a></td>
+                        <input type="hidden" id="projectQnaNum" name="projectQnaNum" th:value="*{projectQnaNum}">
+                        <input type="hidden" id="productQnaNum" name="productQnaNum" th:value="*{productQnaNum}">
+                        <td>
+                            <a th:if="*{category == '4'}" CLASS="getNoticeDetail" th:href="*{num}">상세보기</a>
+                            <a th:if="*{category != '4'}" CLASS="getDetail" th:href="*{num}">상세보기</a>
+                        </td>
                     </tr>
                 </th:block>
             </table>
@@ -222,6 +229,7 @@
                 <a class="changePage" th:href="*{endPage + 1}" th:if="*{next}">&gt;</a>
                 <a class="changePage" th:href="*{adminCriteria.pageNum + 1}" th:if="*{adminCriteria.pageNum < realEnd}">&gt;</a>
             </div>
+
 
         </div>
         <!-- 페이징 처리 -->
@@ -247,6 +255,38 @@
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 <!-- datepicker 한국어로 -->
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/datepicker-ko.js"></script>
+<script>
+    $('#type3').change(function() {
+        var state = $('#type3 option:selected').val();
+        if ( state == 'notice' ) {
+            $('#all').attr('disabled', true);
+            $('#noAnswer').attr('disabled', true);
+            $('#answer').attr('disabled', true);
+        } else {
+            $('#all').attr('disabled', false);
+            $('#noAnswer').attr('disabled', false);
+            $('#answer').attr('disabled', false);
+        }
+
+    });
+
+    $(document).ready(function () {
+        var state = $('#type3 option:selected').val();
+        if ( state == 'notice' ) {
+            $('#all').attr('disabled', true);
+            $('#noAnswer').attr('disabled', true);
+            $('#answer').attr('disabled', true);
+
+        } else {
+            $('#all').attr('disabled', false);
+            $('#noAnswer').attr('disabled', false);
+            $('#answer').attr('disabled', false);
+        }
+    });
+
+
+</script>
+
 <script th:inline="javascript">
     let num = [[${num}]];
     let paging = [[${adminCriteria.listLink}]];
@@ -254,6 +294,12 @@
     $("a.getDetail").click(function(e){
         e.preventDefault();
         location.href = "/admin/userQnA" + paging + "&num="+$(this).attr('href');
+        console.log("들어옴");
+    });
+
+    $("a.getNoticeDetail").click(function(e){
+        e.preventDefault();
+        location.href = "/admin/adminNoticeDetail" + paging + "&num="+$(this).attr('href');
         console.log("들어옴");
     });
 
@@ -282,21 +328,21 @@
         $.datepicker.setDefaults($.datepicker.regional['ko']);
         // Datepicker
         $(".datepicker").datepicker({
-            showButtonPanel: true,
+            showButtonPanel: false,
             dateFormat: "yy-mm-dd",
-            onClose : function ( selectedDate ) {
-                var eleId = $(this).attr("id");
-                var optionName = "";
-                if(eleId.indexOf("StartDate") > 0) {
-                    eleId = eleId.replace("StartDate", "EndDate");
-                    optionName = "minDate";
-                } else {
-                    eleId = eleId.replace("EndDate", "StartDate");
-                    optionName = "maxDate";
-                }
-                $("#"+eleId).datepicker( "option", optionName, selectedDate );
-                $(".searchDate").find(".chkbox2").removeClass("on");
-            }
+            // onClose : function ( selectedDate ) {
+            //     var eleId = $(this).attr("id");
+            //     var optionName = "";
+            //     if(eleId.indexOf("StartDate") > 0) {
+            //         eleId = eleId.replace("StartDate", "EndDate");
+            //         optionName = "minDate";
+            //     } else {
+            //         eleId = eleId.replace("EndDate", "StartDate");
+            //         optionName = "maxDate";
+            //     }
+            //     $("#"+eleId).datepicker( "option", optionName, selectedDate );
+            //     $(".searchDate").find(".chkbox2").removeClass("on");
+            // }
         });
         //시작일.
         $('#startDate').datepicker("option","onClose", function( selectedDate ) {
@@ -386,7 +432,8 @@
                     },
                     success: function () {
                         alert("삭제 성공");
-                        location.replace("/admin/boardList")
+                        // location.replace("/admin/boardList")
+                        location.href = "/admin/boardList" + paging;
                     }
                 });
             }
@@ -418,7 +465,8 @@
                     },
                     success: function () {
                         alert("공지 해제 했습니다");
-                        location.replace("/admin/boardList")
+                        location.href = "/admin/boardList" + paging;
+                        // location.replace("/admin/boardList")
                     }
                 });}
 
@@ -472,7 +520,8 @@
                     },
                     success: function () {
                         alert("공지 지정 했습니다");
-                        location.replace("/admin/boardList")
+                        // location.replace("/admin/boardList")
+                        location.href = "/admin/boardList" + paging;
                     }
                 });}
 

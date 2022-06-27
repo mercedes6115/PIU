@@ -16,8 +16,6 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-
-
 public class TempCompanyService {
     private final CompanyDAO companyDAO;
     private final ProjectQnaDAO projectQnaDAO;
@@ -67,6 +65,10 @@ public class TempCompanyService {
     // qna 답글 수정(모집자, 관리자)
     public boolean update(ProjectQnaCommentVO projectQnaCommentVO){
         return projectQnaCommentDAO.update(projectQnaCommentVO);
+    }
+
+    public boolean adminCompanyPwUpdate(String password,Long num){
+        return companyDAO.adminCompanyPwUpdate(password,num);
     }
 
     // qna 답글 삭제

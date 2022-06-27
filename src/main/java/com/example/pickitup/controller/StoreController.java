@@ -1,6 +1,7 @@
 package com.example.pickitup.controller;
 
 import com.example.pickitup.domain.vo.ProductQnaCriteria;
+import com.example.pickitup.domain.vo.dto.AdminQnaDTO;
 import com.example.pickitup.domain.vo.dto.ProductDTO;
 import com.example.pickitup.domain.vo.dto.ProductQnaPageDTO;
 import com.example.pickitup.domain.vo.dto.ProductReviewUserDTO;
@@ -11,6 +12,7 @@ import com.example.pickitup.domain.vo.product.productReview.ProductReviewVO;
 import com.example.pickitup.domain.vo.user.JjimVO;
 import com.example.pickitup.domain.vo.user.OrderVO;
 import com.example.pickitup.domain.vo.user.UserVO;
+import com.example.pickitup.service.TempAdminService;
 import com.example.pickitup.service.TempUserSerivce;
 import com.example.pickitup.service.product.productFile.ProductFileService;
 import com.example.pickitup.service.product.productFile.ProductService;
@@ -44,6 +46,7 @@ public class StoreController {
     private final JjimService jjimService;
     private final OrderService orderService;
     private final TempUserSerivce tempUserSerivce;
+    private final TempAdminService tempAdminService;
     // 스토어 메인페이지
     @GetMapping("/main")
     public void storeMain(String category,Model model){
@@ -113,9 +116,12 @@ public class StoreController {
     @PostMapping("/reviewWrite")
     public RedirectView reviewWriteForm(ProductReviewVO productReviewVO, RedirectAttributes rttr){
 //        model.addAttribute("user", productNum); 유저의 정보 가져와야함.?? 어떻게??
+        log.info("===================================");
+        log.info("프로덕트넘버다"+productReviewVO.getProductNum());
+        log.info("===================================");
         productReviewVO.setUserNum(22L);
         productReviewService.insert(productReviewVO);
-        rttr.addAttribute("num", productReviewVO.getProductNum());
+        rttr.addAttribute("num",productReviewVO.getProductNum());
         return new RedirectView("/store/detail");
 //
     }
@@ -158,8 +164,9 @@ public class StoreController {
 
     // 스토어 문의 작성 폼
     @PostMapping("/qnaWrite")
-    public String qnaWriteForm(ProductQnaVO productQnaVO, Model model){
+    public String qnaWriteForm(ProductQnaVO productQnaVO, AdminQnaDTO adminQnaDTO, Model model){
         productQnaService.register(productQnaVO);
+        tempAdminService.qnaStoreSave(adminQnaDTO);
         return storeDetail(productQnaVO.getProductNum(), model);
     }
 
@@ -212,13 +219,7 @@ public class StoreController {
         return "store/payment";
     }
 
-    // 스토어 결제 정보 입력
-//    @PostMapping("/payment")
-//    public String paymentForm(UserVO userVO){
-//        orderService.updateUser(userVO);
-//
-//        return ("/store/payment");
-//    }
+
 
 
 
@@ -230,10 +231,17 @@ public class StoreController {
 
     // 스토어 결제 정보 입력
     @PostMapping("/payment")
-    public void paymentForm(ProductDTO productDTO, ProductVO productVO,Model model){
+    public String paymentForm(ProductDTO productDTO, ProductVO productVO,OrderVO orderVO,UserVO userVO,Model model){
         model.addAttribute("product", productVO);
         model.addAttribute("productinfo",productDTO);
+        orderService.register(orderVO,userVO);
+        return ("/store/payment");
     }
+//    @PostMapping("/payment")
+//    public void paymentForm(ProductDTO productDTO, ProductVO productVO,Model model){
+//        model.addAttribute("product", productVO);
+//        model.addAttribute("productinfo",productDTO);
+//    }
 
     // 스토어 결제 전 상품 선택
     @PostMapping("/itemChoose")
@@ -242,7 +250,7 @@ public class StoreController {
     }
 
     // 결제 완료 후 주문내역
-    @PostMapping("/buyProductDetail")//나중에 rest 방식으로 바꿀것
+    @PostMapping("/buyProductDetail")//나중에 request 방식으로 바꿀것
     public void buyProductDetail(UserVO userVO, ProductDTO productDTO,String addressComment,Model model){
         model.addAttribute("addressComment", addressComment);
         model.addAttribute("userinfo",userVO);

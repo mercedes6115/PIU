@@ -2,105 +2,78 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.pickitup.mapper.user.OrderMapper">
 
-<!--    <select id="getList" resultType="orderVO">-->
-<!--        <![CDATA[-->
-<!--            SELECT ROWNUM RN, NUM, TOTAL, COUNTING, REGIST_DATE, PRODUCT_NUM, USER_NUM, STATUS-->
-<!--            FROM (-->
-<!--            SELECT  /*+ INDEX_DESC(TBL_USER SYS_C007334) */-->
-<!--            ROWNUM RN, NUM, TOTAL, COUNTING, REGIST_DATE, PRODUCT_NUM, USER_NUM, STATUS-->
-<!--            FROM TBL_ORDER-->
-<!--            WHERE ROWNUM <= #{pageNum} * #{amount}-->
-<!--            ORDER BY REGIST_DATE DESC-->
-<!--            )-->
-<!--            WHERE RN >(#{pageNum} - 1) * #{amount}-->
-<!--        ]]>-->
-<!--    </select>-->
-<!--    <select id="getList" resultType="boardVO">
-        <![CDATA[
-        SELECT BOARD_BNO, BOARD_TITLE, BOARD_CONTENT, BOARD_WRITER, BOARD_REGISTER_DATE, BOARD_UPDATE_DATE
-        FROM
-        (
-            SELECT /*+ INDEX_DESC(TBL_BOARD SYS_C007186) */
-            ROWNUM RN, BOARD_BNO, BOARD_TITLE, BOARD_CONTENT, BOARD_WRITER, BOARD_REGISTER_DATE, BOARD_UPDATE_DATE
-            FROM TBL_BOARD
-            WHERE
-        ]]>
-            <trim prefix="(" prefixOverrides="OR" suffix=") AND">
-                <foreach item="type" collection="types">
-                    <trim prefix="OR">
-                        <choose>
-                            <when test="type == 'T'.toString()">
-                                (BOARD_TITLE LIKE '%'||#{keyword}||'%')
-                            </when>
-                            <when test="type == 'C'.toString()">
-                                (BOARD_CONTENT LIKE '%'||#{keyword}||'%')
-                            </when>
-                            <when test="type == 'W'.toString()">
-                                (BOARD_WRITER LIKE '%'||#{keyword}||'%')
-                            </when>
-                        </choose>
-                    </trim>
-                </foreach>
-            </trim>
-        <![CDATA[
-            ROWNUM <= #{pageNum} * #{amount}
-        )
-        WHERE RN > (#{pageNum} - 1) * #{amount}
-        ]]>
-    </select>-->
-
     <select id="getList" resultType="orderDTO">
 
-        SELECT RN, ORDERNUM, NICKNAME, EMAIL, PHONE, ADDRESS, PRODUCTNUM, PRODUCTNAME, MANUFACTURER, SUPPLIER, REGIST_DATE, STATUS
-        FROM
-        (
-        SELECT
-        ROWNUM RN,TBL_ORDER.NUM AS ORDERNUM,TBL_USER.NICKNAME AS NICKNAME ,TBL_USER.EMAIL AS EMAIL,TBL_USER.PHONE AS PHONE ,TBL_USER.ADDRESS AS ADDRESS,TBL_PRODUCT.NUM AS PRODUCTNUM,TBL_PRODUCT.NAME AS PRODUCTNAME,TBL_PRODUCT.MANUFACTURER  AS  MANUFACTURER,TBL_PRODUCT.SUPPLIER AS SUPPLIER,TBL_ORDER.REGIST_DATE AS REGIST_DATE,TBL_ORDER.STATUS AS STATUS
-        FROM TBL_USER,TBL_ORDER,TBL_PRODUCT
-        WHERE TBL_ORDER.USER_NUM  = TBL_USER.NUM
-        AND TBL_ORDER.PRODUCT_NUM = TBL_PRODUCT.NUM
-        <![CDATA[
+            SELECT RN, ORDERNUM, NICKNAME, EMAIL, PHONE, ADDRESS, PRODUCTNUM, PRODUCTNAME, MANUFACTURER, SUPPLIER, REGIST_DATE, STATUS,PRICE,CATEGORY
+            FROM
+            (
+            SELECT
+            ROWNUM RN,TBL_ORDER.NUM AS ORDERNUM,TBL_USER.NICKNAME AS NICKNAME ,TBL_USER.EMAIL AS EMAIL,TBL_USER.PHONE AS PHONE ,TBL_USER.ADDRESS AS ADDRESS,TBL_PRODUCT.NUM AS PRODUCTNUM,TBL_PRODUCT.NAME AS PRODUCTNAME,TBL_PRODUCT.MANUFACTURER  AS  MANUFACTURER,TBL_PRODUCT.SUPPLIER AS SUPPLIER,TBL_ORDER.REGIST_DATE AS REGIST_DATE,TBL_ORDER.STATUS AS STATUS,TBL_PRODUCT.PRICE AS PRICE,TBL_PRODUCT.CATEGORY AS CATEGORY
+            FROM TBL_USER,TBL_ORDER,TBL_PRODUCT
+            WHERE TBL_ORDER.USER_NUM  = TBL_USER.NUM
+            AND TBL_ORDER.PRODUCT_NUM = TBL_PRODUCT.NUM
+            <![CDATA[
             AND ROWNUM <= #{pageNum} * #{amount}
             )
             WHERE RN >(#{pageNum} - 1) * #{amount}
             ]]>
-        <choose>
-            <when test="type == 'orderNum'.toString()">
-                AND ORDERNUM LIKE '%'||#{keyword}||'%'
-            </when>
-            <when test="type == 'nickname'.toString()">
-                AND NICKNAME LIKE '%'||#{keyword}||'%'
-            </when>
-            <when test="type == 'email'.toString()">
-                AND EMAIL LIKE '%'||#{keyword}||'%'
-            </when>
-            <when test="type == 'phone'.toString()">
-                AND PHONE LIKE '%'||#{keyword}||'%'
-            </when>
-            <when test="type == 'address'.toString()">
-                AND ADDRESS LIKE '%'||#{keyword}||'%'
-            </when>
-        </choose>
-        <choose>
-            <when test="type1 == 'productName'.toString()">
-                AND PRODUCTNAME LIKE '%'||#{keyword1}||'%'
-            </when>
-            <when test="type1 == 'productNum'.toString()">
-                AND PRODUCTNUM LIKE '%'||#{keyword1}||'%'
-            </when>
-            <when test="type1 == 'manufacturer'.toString()">
-                AND MANUFACTURER LIKE '%'||#{keyword1}||'%'
-            </when>
-            <when test="type1 == 'supplier'.toString()">
-                AND SUPPLIER LIKE '%'||#{keyword1}||'%'
-            </when>
-        </choose>
-        <choose>
-            <when test="startDate != null">
-                AND (REGIST_DATE BETWEEN #{startDate} AND #{endDate})
-            </when>
-        </choose>
+            <choose>
+                <when test="type == 'orderNum'.toString()">
+                    AND ORDERNUM LIKE '%'||#{keyword}||'%'
+                </when>
+                <when test="type == 'nickname'.toString()">
+                    AND NICKNAME LIKE '%'||#{keyword}||'%'
+                </when>
+                <when test="type == 'email'.toString()">
+                    AND EMAIL LIKE '%'||#{keyword}||'%'
+                </when>
+                <when test="type == 'phone'.toString()">
+                    AND PHONE LIKE '%'||#{keyword}||'%'
+                </when>
+                <when test="type == 'address'.toString()">
+                    AND ADDRESS LIKE '%'||#{keyword}||'%'
+                </when>
+            </choose>
+            <choose>
+                <when test="type1 == 'productName'.toString()">
+                    AND PRODUCTNAME LIKE '%'||#{keyword1}||'%'
+                </when>
+                <when test="type1 == 'productNum'.toString()">
+                    AND PRODUCTNUM LIKE '%'||#{keyword1}||'%'
+                </when>
+                <when test="type1 == 'manufacturer'.toString()">
+                    AND MANUFACTURER LIKE '%'||#{keyword1}||'%'
+                </when>
+                <when test="type1 == 'supplier'.toString()">
+                    AND SUPPLIER LIKE '%'||#{keyword1}||'%'
+                </when>
+            </choose>
+            <choose>
+                <when test="startDate != null">
+                    AND (REGIST_DATE BETWEEN #{startDate} AND #{endDate})
+                </when>
+            </choose>
     </select>
+
+
+    <select id="getListToday" resultType="orderDTO">
+        SELECT
+        TBL_ORDER.NUM AS ORDERNUM,TBL_USER.NICKNAME AS NICKNAME ,TBL_USER.EMAIL AS EMAIL,TBL_USER.PHONE AS PHONE ,TBL_USER.ADDRESS AS ADDRESS,TBL_PRODUCT.NUM AS PRODUCTNUM,TBL_PRODUCT.NAME AS PRODUCTNAME,TBL_PRODUCT.MANUFACTURER  AS  MANUFACTURER,TBL_PRODUCT.SUPPLIER AS SUPPLIER,TBL_ORDER.REGIST_DATE AS REGIST_DATE,TBL_ORDER.STATUS AS STATUS,TBL_PRODUCT.PRICE AS PRICE,TBL_PRODUCT.CATEGORY AS CATEGORY
+        FROM TBL_USER,TBL_ORDER,TBL_PRODUCT
+        WHERE TBL_ORDER.USER_NUM  = TBL_USER.NUM
+        AND TBL_ORDER.PRODUCT_NUM = TBL_PRODUCT.NUM
+--         <![CDATA[
+--         AND (TO_CHAR(TBL_ORDER.REGIST_DATE,'yyyy-mm-dd hh24:mi:ss') >=(TO_CHAR(SYSDATE ,'yyyy-mm-dd')||'00:00:00')
+--         AND TO_CHAR(TBL_ORDER.REGIST_DATE,'yyyy-mm-dd hh24:mi:ss') <= (TO_CHAR(SYSDATE-30,'yyyy-mm-dd')||'23:59:59'))
+--         ]]>
+
+        <![CDATA[
+        AND TO_CHAR(TBL_ORDER.REGIST_DATE,'yyyy-mm-dd hh24:mi:ss') >= (#{startDate}||'00:00:00')
+        AND TO_CHAR(TBL_ORDER.REGIST_DATE,'yyyy-mm-dd hh24:mi:ss') <= (#{endDate}||'23:59:59')
+        ]]>
+    </select>
+
+
 
     <select id="getTotal" resultType="_int">
 
@@ -155,6 +128,59 @@
         </choose>
     </select>
 
+
+<!--    <select id="getList" resultType="orderVO">-->
+<!--        <![CDATA[-->
+<!--            SELECT ROWNUM RN, NUM, TOTAL, COUNTING, REGIST_DATE, PRODUCT_NUM, USER_NUM, STATUS-->
+<!--            FROM (-->
+<!--            SELECT  /*+ INDEX_DESC(TBL_USER SYS_C007334) */-->
+<!--            ROWNUM RN, NUM, TOTAL, COUNTING, REGIST_DATE, PRODUCT_NUM, USER_NUM, STATUS-->
+<!--            FROM TBL_ORDER-->
+<!--            WHERE ROWNUM <= #{pageNum} * #{amount}-->
+<!--            ORDER BY REGIST_DATE DESC-->
+<!--            )-->
+<!--            WHERE RN >(#{pageNum} - 1) * #{amount}-->
+<!--        ]]>-->
+<!--    </select>-->
+
+
+
+
+<!--    <select id="getList" resultType="boardVO">
+        <![CDATA[
+        SELECT BOARD_BNO, BOARD_TITLE, BOARD_CONTENT, BOARD_WRITER, BOARD_REGISTER_DATE, BOARD_UPDATE_DATE
+        FROM
+        (
+            SELECT /*+ INDEX_DESC(TBL_BOARD SYS_C007186) */
+            ROWNUM RN, BOARD_BNO, BOARD_TITLE, BOARD_CONTENT, BOARD_WRITER, BOARD_REGISTER_DATE, BOARD_UPDATE_DATE
+            FROM TBL_BOARD
+            WHERE
+        ]]>
+            <trim prefix="(" prefixOverrides="OR" suffix=") AND">
+                <foreach item="type" collection="types">
+                    <trim prefix="OR">
+                        <choose>
+                            <when test="type == 'T'.toString()">
+                                (BOARD_TITLE LIKE '%'||#{keyword}||'%')
+                            </when>
+                            <when test="type == 'C'.toString()">
+                                (BOARD_CONTENT LIKE '%'||#{keyword}||'%')
+                            </when>
+                            <when test="type == 'W'.toString()">
+                                (BOARD_WRITER LIKE '%'||#{keyword}||'%')
+                            </when>
+                        </choose>
+                    </trim>
+                </foreach>
+            </trim>
+        <![CDATA[
+            ROWNUM <= #{pageNum} * #{amount}
+        )
+        WHERE RN > (#{pageNum} - 1) * #{amount}
+        ]]>
+    </select>-->
+
+
     <select id="getDetail" resultType="userVo">
         SELECT  ONUM, TOTAL, COUNTING, OREGISTDATE,USERNUM,PRODUCTNUM PRODUCTNAME, PRODUCTPRICE
         FROM (
@@ -167,8 +193,8 @@
 
     <insert id="insert">
         INSERT INTO TBL_ORDER
-        (NUM, TOTAL, COUNTING, PRODUCT_NUM, USER_NUM, REGIST_DATE)
-        VALUES(SEQ_ORDER.NEXTVAL, #{total}, #{counting}, #{productNum}, #{userNum}, SYSDATE)
+        (NUM, TOTAL, COUNTING, PRODUCT_NUM, USER_NUM, REGIST_DATE,ADDRESS_COMMENT,ADDRESS,ADDRESS_DETAIL)
+        VALUES(SEQ_ORDER.NEXTVAL, #{total}, #{counting}, #{productNum}, #{userNum}, SYSDATE#{addressComment},#{address},#{addressDetail})
     </insert>
 
     <delete id="delete">
@@ -247,6 +273,20 @@ UPDATE TBL_USER set
         POINT = #{point}
         WHERE NUM=#{num}
     </update>
+    
+    <select id="getBetweenOrder" resultType="myOrderDTO">
+        SELECT TOTAL, COUNTING, STATUS, ADDRESS_COMMENT, ADDRESS, ADDRESS_DETAIL
+	    FROM TBL_ORDER
+        <where>
+            <if test="userNum != null">
+                USER_NUM = #{userNum}
+            </if>
+            <if test="startDate != null and endDate != null">
+                AND (TO_CHAR(REGIST_DATE,'yyyy-mm-dd hh24:mi:ss')) BETWEEN
+                #{startDate} AND (#{endDate}||'23:59:59')
+            </if>
+        </where>
+    </select>
 </mapper>
 
 

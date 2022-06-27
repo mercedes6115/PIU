@@ -3,12 +3,15 @@ package com.example.pickitup.domain.dao.user;
 import com.example.pickitup.domain.vo.AdminCriteria;
 import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.adminVO.AdminBoardDTO;
-import com.example.pickitup.domain.vo.dto.AdminBoardPageDTO;
+import com.example.pickitup.domain.vo.dto.*;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 
+import com.example.pickitup.domain.vo.product.productQna.ProductQnaCommentVO;
+import com.example.pickitup.domain.vo.product.productQna.ProductQnaVO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 
-import com.example.pickitup.domain.vo.dto.UserDTO;
+import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaCommentVO;
+import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaVO;
 import com.example.pickitup.domain.vo.user.AdminBoardVO;
 import com.example.pickitup.domain.vo.user.UserVO;
 import com.example.pickitup.mapper.user.UserMapper;
@@ -24,6 +27,16 @@ public class UserDAO {
 
     private final UserMapper userMapper;
 
+
+
+    public QrDTO getQrInfo(Long userNum){
+        return userMapper.getQrInfo(userNum);
+    }
+
+    public boolean autoPoint(String point,Long userNum){
+        return userMapper.autoPoint(point,userNum);
+    }
+
     //    관리자 공지등록
     public void registerWrite(AdminBoardVO adminBoardVO) {
         userMapper.write(adminBoardVO);
@@ -34,6 +47,10 @@ public class UserDAO {
         return userMapper.getNoticeList(adminCriteria);
     }
 
+
+    public boolean addPoint(String nickname,String point){
+        return userMapper.addPoint(nickname,point);
+    }
     //    관리자 공지 상세보기
     public AdminBoardVO getReadDetail(Long num){
         return userMapper.getNoticeDetail(num);
@@ -72,6 +89,36 @@ public class UserDAO {
     //    관리자 게시물 관리에서 상세보기
     public AdminBoardPageDTO getQnaReply(Long num){
         return userMapper.getQnaReply(num);
+    }
+
+    //  관리자 project qna 답글쓴것 insert
+    public void projectQnaReply(AdminQnaCommentDTO adminQnaCommentDTO) {
+        userMapper.projectQnaReply(adminQnaCommentDTO);
+    }
+
+    //  관리자 product qna 답글쓴것 insert
+    public void productQnaReply(AdminQnaCommentDTO adminQnaCommentDTO) {
+        userMapper.productQnaReply(adminQnaCommentDTO);
+    }
+
+    //  관리자가 문의에 답글 남기면 answerStatus 2로 변경
+    public void answerComplete(Long num){
+        userMapper.answerComplete(num);
+    }
+
+    // 유저가 상품 문의 남겼을때 adminboard 에도 저장
+    public void qnaStoreSave(AdminQnaDTO adminQnaDTO) {
+        userMapper.qnaStoreSave(adminQnaDTO);
+    }
+
+    // 관리자가 게시물 목록에서 상품문의 글 지웠을때 productQnA 테이블에서도 삭제
+    public void productQnaDelete(Long num) {
+        userMapper.productQnaDelete(num);
+    }
+
+    // 유저 내 리뷰 모두 보기
+    public List<MyReviewDTO> myAllReview(Long num) {
+        return userMapper.myAllReview(num);
     }
 
     // 유저 목록(관리자용)
@@ -131,6 +178,31 @@ public class UserDAO {
         return userMapper.updatePW(email,password);
     };
 
+
+
+    public boolean updateUserAdminPW(String password, Long num){
+        return userMapper.adminPwUpdate(password,num);
+
+    }
+
+    public boolean UserStatusDisable(Long num) {// 비활성화
+        return userMapper.userStatusDisable(num);
+    }
+    public boolean UserStatusEnable(Long num) {// 비활성화
+        return userMapper.userStatusEnable(num);
+    }
+    public boolean UserApprovalDisable(Long num) {// 비활성화
+        return userMapper.userApprovalDisable(num);
+    }
+    public boolean UserApprovalEnable(Long num) {// 비활성화
+        return userMapper.userApprovalEnable(num);
+    }
+
+
+
+    // 마이페이지 비밀번호 변경
+    public boolean changePw(String password, Long num) {return userMapper.changePw(password, num);}
+
     // 카카오 로그인 즉시 회원가입
     public void kakaoinsert(UserVO userVO){
         userMapper.kakaoinsert(userVO);
@@ -140,5 +212,18 @@ public class UserDAO {
     public UserVO kakaoDetail(@Param("email") String email){
         return userMapper.kakaoDetail(email);
     }
+
+    //  내가 작성한 project 문의글 가져오기
+    public List<ProjectQnaVO> getMyProjectQna(Long userNum) {return userMapper.getMyProjectQna(userNum);}
+
+    //  내가 작성한 product 문의글 가져오기
+    public List<ProductQnaVO> getMyProductQna(Long userNum) {return userMapper.getMyProductQna(userNum);}
+
+    //  내가 작성한 project 문의글에 달린 답변 가져오기
+    public ProjectQnaCommentVO getMyProjectQnaComment(Long qnaNum) {return userMapper.myProjectQnaComment(qnaNum);}
+
+    // 내가 작성한 product 문의글에 달린 답변 가져오기
+    public ProductQnaCommentVO getMyProductQnaComment(Long qnaNum) {return userMapper.myProductQnaComment(qnaNum);}
+
 
 }

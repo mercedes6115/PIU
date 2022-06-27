@@ -2,6 +2,8 @@ package com.example.pickitup.service.user;
 
 import com.example.pickitup.domain.dao.user.OrderDAO;
 import com.example.pickitup.domain.vo.Criteria;
+import com.example.pickitup.domain.vo.OrderCriteria;
+import com.example.pickitup.domain.vo.dto.OrderDTO;
 import com.example.pickitup.domain.vo.user.OrderVO;
 import com.example.pickitup.domain.vo.user.UserVO;
 import lombok.RequiredArgsConstructor;
@@ -17,18 +19,24 @@ public class OrderService {
     private final OrderDAO orderDAO;
 
     // 주문 목록(관리자용)
+
+    public List<OrderDTO> getList(OrderCriteria orderCriteria){
+        return orderDAO.getList(orderCriteria);
+    }
+
 //    public List<OrderVO> getList(Criteria criteria){
 //        return orderDAO.getList(criteria);
 //    }
+
 
     // 주문 목록(구매자용)
 
 
     // 주문 등록
-    public void register(OrderVO orderVO){
+    public void register(OrderVO orderVO,UserVO userVO){
         orderDAO.register(orderVO);
+        orderDAO.updateUser(userVO);
     }
-
     // 주문 취소
     public boolean remove(Long num){
         return orderDAO.remove(num);
@@ -48,8 +56,7 @@ public class OrderService {
 //        orderDAO.getProduct(num1);
 
     }
-    public boolean updateUser(UserVO userVO){
-        return orderDAO.updateUser(userVO);
-    }
+
+
 
 }
