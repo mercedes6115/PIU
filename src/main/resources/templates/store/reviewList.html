@@ -32,7 +32,7 @@
     <div class="review-wrapper" th:object="${reviews}">
         <!-- 댓글 한개 -->
         <div th:each="review,index : ${reviews}">
-                                     <!--갯수제한 조건-->
+                                     <!--갯수제한 조건 js의 standard 랑 맞춰줘야함 -->
             <th:block th:if="${index.index} < 2">
                 <section class="allreveiws" th:object="${review}"> <!--실제 후기 컨테이너-->
                     <div class="p-24">
@@ -167,51 +167,59 @@
 
 
     //무한스크롤
+    let standard = 2 // 리뷰 뽑아줄 갯수 위에 html 도 바꿔줘야함
+    let start = standard;
+    let next =0;
+    let total = reviews.length;
+
     $(window).on("scroll", function() {
     var scrollHeight = $(document).height();
     var scrollPosition = $(window).height() + $(window).scrollTop();
     let str = "";
-
     //후기가 없을때까지
         if (scrollPosition > scrollHeight -1) {
             //밑의 내용 위에 each 문에 넣기
             // 에이젝스 쏴서 리스트 받아와서 두번쨰 값부터 하나씩 출력
             // reviews --> 가져온 모든 리스트
-            for(let i  = 2; i < reviews.length; i++){
-                str += "<section class=\"allreveiws\"> <!--실제 후기 컨테이너-->";
-                str += "<div class=\"p-24\">";
-                str += "<div class=\"flex\">";
-                str += "<div class=\"profile_img\">";
-                str += "<img src=\"/images/5.jpg\">";
-                str += "</div>";
-                str += "<div class=\"review_id_and_date\">";
-                str += "<div class=\"review_id\" id=\""+reviews[i].num+"\" name=\""+reviews[i].userNum+"\"></div>";
-                str += "<input type=\"hidden\" class=\"reviewNumber\" value=\""+reviews[i].num+"\">";
-                str += "<div class=\"review_date\" >"+reviews[i].updateDate.substring(0,10)+"</div>";
-                str += "</div>";
-                str += "<div class=\"flex\" style=\"margin-left: 10px; width: 100%; justify-content: flex-end; align-items: center;\">";
-                str += "<div class=\"review_modify\" id=\""+reviews[i].num+"\"><a href=\"#\"><img src=\"/images/modify.png\"></a></div>";
-                str += "<div class=\"review_delete\" id=\""+reviews[i].num+"\"><a href=\"#\"><img src=\"/images/delete.png\"></a></div>";
-                str += "</div>";
-                str += "</div>";
-                str += "<div style=\"margin-top: 10px;\"></div>";
-                str += "<div style=\"margin-bottom: 12px;\">";
-                str += "<div class=\"review_item_name\">["+[[${products.category}]]+"] &nbsp; "+[[${products.name}]]+"</div>";
-                str += "</div>";
-                str += "<div class=\"review_content_container\">";
-                str += "<p class=\"review_content\">"+reviews[i].content+"</p>";
-                str += "<div style=\"margin-top:8px;\" class=\""+reviews[i].num+"\">";
-                str += "</div>";
-                str += "</div>";
-                str += "</div>";
-                str += "<div style=\"width: 100%; justify-content: center; display: flex;\">";
-                str += "<div class=\"border_bottom_line\"></div>";
-                str += "</div>";
-                str += "</section>";
+            next = start + standard;
+            if(next<=total){
+                for(let i  = start; i < next; i++){
+                    str += "<section class=\"allreveiws\"> <!--실제 후기 컨테이너-->";
+                    str += "<div class=\"p-24\">";
+                    str += "<div class=\"flex\">";
+                    str += "<div class=\"profile_img\">";
+                    str += "<img src=\"/images/5.jpg\">";
+                    str += "</div>";
+                    str += "<div class=\"review_id_and_date\">";
+                    str += "<div class=\"review_id\" id=\""+reviews[i].num+"\" name=\""+reviews[i].userNum+"\"></div>";
+                    str += "<input type=\"hidden\" class=\"reviewNumber\" value=\""+reviews[i].num+"\">";
+                    str += "<div class=\"review_date\" >"+reviews[i].updateDate.substring(0,10)+"</div>";
+                    str += "</div>";
+                    str += "<div class=\"flex\" style=\"margin-left: 10px; width: 100%; justify-content: flex-end; align-items: center;\">";
+                    str += "<div class=\"review_modify\" id=\""+reviews[i].num+"\"><a href=\"#\"><img src=\"/images/modify.png\"></a></div>";
+                    str += "<div class=\"review_delete\" id=\""+reviews[i].num+"\"><a href=\"#\"><img src=\"/images/delete.png\"></a></div>";
+                    str += "</div>";
+                    str += "</div>";
+                    str += "<div style=\"margin-top: 10px;\"></div>";
+                    str += "<div style=\"margin-bottom: 12px;\">";
+                    str += "<div class=\"review_item_name\">["+[[${products.category}]]+"] &nbsp; "+[[${products.name}]]+"</div>";
+                    str += "</div>";
+                    str += "<div class=\"review_content_container\">";
+                    str += "<p class=\"review_content\">"+reviews[i].content+"</p>";
+                    str += "<div style=\"margin-top:8px;\" class=\""+reviews[i].num+"\">";
+                    str += "</div>";
+                    str += "</div>";
+                    str += "</div>";
+                    str += "<div style=\"width: 100%; justify-content: center; display: flex;\">";
+                    str += "<div class=\"border_bottom_line\"></div>";
+                    str += "</div>";
+                    str += "</section>";
+                }
+                start += 2;
+                $(".reviewPlus").append(str);
+                reviewWriter();
+                reviewFiles();
             }
-            $(".reviewPlus").append(str);
-            reviewWriter();
-            reviewFiles();
         }
     });
 
