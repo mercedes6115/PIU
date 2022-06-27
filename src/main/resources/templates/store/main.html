@@ -173,6 +173,7 @@
             type: "post",
             data : {category : category},
             success: function (lists) {
+                console.log("리스트 길이"+lists.length)
                 let str = "";
                 let first =0;
                 if(lists.length<standard){
@@ -182,7 +183,9 @@
                     total = lists.length;
                 }
                 for(let i =0; i<first;i++){
-                    console.log(i)
+                    console.log(i);
+                    console.log(lists[i].name)
+                    console.log("=========================================== ")
                         str += "<li>";
                         str += "<div class=\"item\">";
 
@@ -284,6 +287,12 @@
     })
     //
     function f(lists) {
+        for (let i =0; i< lists.length;i++) {
+            console.log("f 들어왔을떄")
+            console.log(i)
+            console.log('번째' + lists[i].name)
+        }
+
         $(window).on("scroll", function () {
             var scrollHeight = $(document).height();
             var scrollPosition = $(window).height() + $(window).scrollTop();
@@ -302,11 +311,8 @@
 
 
             if(possible) {
-                console.log('asdf')
                 //후기가 없을때까지
-                console.log("당신누구야" +lists.length)
                 if (scrollPosition > scrollHeight - 1) {
-                    console.log("너 뭐야"+lists.length)
 
                     //밑의 내용 위에 each 문에 넣기
                     // 에이젝스 쏴서 리스트 받아와서 두번쨰 값부터 하나씩 출력
@@ -319,7 +325,10 @@
                         next = total;
                     }
                     for (let i = start; i < next; i++) {
-                        console.log(i)
+                        console.log("f 안에 포문 들어왔을떄")
+                        console.log("total = "+ total);
+                        console.log("next = "+ next);
+                        console.log("=========================================== ")
                         str += "<li>";
                         str += "<div class=\"item\">";
 
