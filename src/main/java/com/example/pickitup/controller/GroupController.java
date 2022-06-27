@@ -31,6 +31,10 @@ public class GroupController {
 //    public void main(Model model, Criteria criteria){
 //        model.addAttribute("projectList", projectService.getProjectList(10L,criteria ));
 //    }
+    @GetMapping("/main")
+    public void main(){
+        
+    }
 
     // 그룹 공지사항
     @GetMapping("/notice")
