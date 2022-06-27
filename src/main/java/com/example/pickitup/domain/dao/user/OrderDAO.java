@@ -59,11 +59,11 @@ public class OrderDAO {
 //        return orderMapper.getBetweenOrder(userNum);
 //    }
 
-
     // 유저 정보 수정
-    public boolean updateUser(UserVO userVO){
-        return orderMapper.updateUser(userVO) != 0;
+    public void updateUser(UserVO userVO){
+        orderMapper.updateUser(userVO);
     }
 
-    
+
+
 }

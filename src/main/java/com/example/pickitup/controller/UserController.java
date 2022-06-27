@@ -7,15 +7,15 @@ import com.example.pickitup.domain.vo.dto.PointDTO;
 import com.example.pickitup.domain.vo.dto.ReviewDTO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
+
 import com.example.pickitup.domain.vo.dto.UserDTO;
 import com.example.pickitup.domain.vo.user.CompanyVO;
 import com.example.pickitup.domain.vo.user.UserVO;
 import com.example.pickitup.service.TempCompanyService;
 import com.example.pickitup.service.TempUserSerivce;
-import com.example.pickitup.util.SessionManager;
+import com.example.pickitup.Util.SessionManager;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,9 +26,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.text.ParseException;
 
 
 @Controller

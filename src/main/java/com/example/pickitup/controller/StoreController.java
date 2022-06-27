@@ -219,13 +219,7 @@ public class StoreController {
         return "store/payment";
     }
 
-    // 스토어 결제 정보 입력
-//    @PostMapping("/payment")
-//    public String paymentForm(UserVO userVO){
-//        orderService.updateUser(userVO);
-//
-//        return ("/store/payment");
-//    }
+
 
 
 
@@ -237,10 +231,17 @@ public class StoreController {
 
     // 스토어 결제 정보 입력
     @PostMapping("/payment")
-    public void paymentForm(ProductDTO productDTO, ProductVO productVO,Model model){
+    public String paymentForm(ProductDTO productDTO, ProductVO productVO,OrderVO orderVO,UserVO userVO,Model model){
         model.addAttribute("product", productVO);
         model.addAttribute("productinfo",productDTO);
+        orderService.register(orderVO,userVO);
+        return ("/store/payment");
     }
+//    @PostMapping("/payment")
+//    public void paymentForm(ProductDTO productDTO, ProductVO productVO,Model model){
+//        model.addAttribute("product", productVO);
+//        model.addAttribute("productinfo",productDTO);
+//    }
 
     // 스토어 결제 전 상품 선택
     @PostMapping("/itemChoose")
