@@ -1,5 +1,6 @@
 package com.example.pickitup.domain.dao.project.projectReview;
 
+import com.example.pickitup.domain.vo.dto.MyReviewDTO;
 import com.example.pickitup.domain.vo.project.projectReview.ProjectReviewVO;
 import com.example.pickitup.mapper.project.projectReview.ProjectReviewMapper;
 import lombok.RequiredArgsConstructor;
@@ -37,5 +38,10 @@ public class ProjectReviewDAO {
     // 리뷰 삭제
     public boolean remove(Long num){
         return projectReviewMapper.delete(num);
+    }
+
+    // 내가 작성한 프로젝트 리뷰
+    public List<MyReviewDTO> getMyReviewList(Long userNum) {
+        return projectReviewMapper.getMyProjectReview(userNum);
     }
 }

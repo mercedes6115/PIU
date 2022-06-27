@@ -62,10 +62,10 @@ public class OrderDAO {
     }
 
 
-    // 유저 정보 수정
-    public boolean updateUser(UserVO userVO){
-        return orderMapper.updateUser(userVO) != 0;
-    }
+//    // 유저 정보 수정
+//    public boolean updateUser(UserVO userVO){
+//        return orderMapper.updateUser(userVO) != 0;
+//    }
 
     public ProductDTO boughtDetail(Long orderNum) { return orderMapper.orderProductDetail(orderNum);}
 

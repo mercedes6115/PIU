@@ -34,6 +34,8 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 @Controller
 @Slf4j
 @RequestMapping("/admin/*")

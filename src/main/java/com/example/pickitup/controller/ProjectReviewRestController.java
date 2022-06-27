@@ -36,7 +36,7 @@ public class ProjectReviewRestController {
     @PostMapping("/upload")
     @ResponseBody
     public List<ProjectReviewFileVO> upload(MultipartFile[] uploadFiles) throws IOException {
-        String uploadFolder = "/Users/minmin/aigb_0900_sms/upload/";
+        String uploadFolder = "C:/upload/";
         ArrayList<ProjectReviewFileVO> files = new ArrayList<>();
 
 //        yyyy/MM/dd 경로 만들기
@@ -93,7 +93,7 @@ public class ProjectReviewRestController {
     @GetMapping("/download")
     @ResponseBody
     public ResponseEntity<Resource> downloadFile(String fileName) throws UnsupportedEncodingException {
-        Resource resource = new FileSystemResource("/Users/minmin/aigb_0900_sms/upload/" + fileName);
+        Resource resource = new FileSystemResource("C:/upload/" + fileName);
         HttpHeaders header = new HttpHeaders();
         String name = resource.getFilename();
         name = name.substring(name.indexOf("_") + 1);
