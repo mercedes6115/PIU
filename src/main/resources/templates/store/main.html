@@ -271,8 +271,10 @@
         $("#bottom").text(scrollHeight - scrollPosition);
 
 
-        if (scrollPosition > scrollHeight - 1) {
-            f(li);
+        if(possible){
+            if (scrollPosition > scrollHeight - 1) {
+                f(li);
+            }
         }
     });
 
@@ -319,6 +321,9 @@
 
         if (next > total) {
             next = total;
+            possible = false;
+        }else if(next == total){
+            possible = false;
         }
 
         for (let i = start; i < next; i++) {
