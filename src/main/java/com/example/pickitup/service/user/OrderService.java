@@ -48,8 +48,7 @@ public class OrderService {
 //        orderDAO.getProduct(num1);
 
     }
-//    public boolean updateUser(UserVO userVO){
-//        return orderDAO.updateUser(userVO);
-//    }
+
+
 
 }
