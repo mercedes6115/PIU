@@ -39,14 +39,16 @@ public class AdminProductService {
     // 상품 등록하기 - 관리자용
     @Transactional(rollbackFor = Exception.class)
     public void register(ProductVO productVO){
+        productDAO.register(productVO);
         if(productVO.getFileList() != null) {
             productVO.getFileList().forEach(productFileVO -> {
-                log.info(productVO.getNum().toString());
+                log.info("AdminProductService");
+                log.info("들어옴");
                 productFileVO.setProductNum(productVO.getNum());
                 productFileDAO.register(productFileVO);
             });
         }
-        productDAO.register(productVO);
+
     }
 
     // 상품 수정하기 - 관리자용

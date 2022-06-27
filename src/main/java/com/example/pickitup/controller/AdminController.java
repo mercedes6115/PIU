@@ -256,9 +256,7 @@ public class AdminController {
     @PostMapping("/productRegister")
     public String productRegisterForm(ProductVO productVO){
         adminProductService.register(productVO);
-        log.info("====================");
-        log.info("/productRegister");
-        log.info("====================");
+
         return "admin/productList";
     }
 
@@ -272,8 +270,8 @@ public class AdminController {
         log.info("====================");
 //        Long num1 = Long.parseLong(num);
 //        model.addAttribute("product",adminProductService.read(num1));
-        model.addAttribute("product",adminProductService.read(41L));
-        log.info("컨트롤러임"+model.addAttribute("product",adminProductService.read(41L)));
+        model.addAttribute("product",adminProductService.read(21L));
+        log.info("컨트롤러임"+model.addAttribute("product",adminProductService.read(21L)));
     }
 
     // 관리자 상품 수정
