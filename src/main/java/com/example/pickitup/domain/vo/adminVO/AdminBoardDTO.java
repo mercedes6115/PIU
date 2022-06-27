@@ -25,6 +25,8 @@ public class AdminBoardDTO {
     private String type2;
     private String keyword;
     private String nickname;
+    private Long projectQnaNum;
+    private Long productQnaNum;
 
 
 

@@ -19,8 +19,7 @@
     <!-- 프로젝트 상세 정보  -->
     <select id="getDetail" resultType="projectVO">
      SELECT tp.NUM, tp.TITLE, tp.CONTENT, tp.COURSE, tp.TERRAIN, tp.POINT, tp.START_ADDRESS, tp.END_ADDRESS, tp.DISTANCE, tp.START_QR, tp.END_QR, tp.REGIST_DATE, tp.UPDATE_DATE,
-            tp.STATUS , tp.COMPANY_NUM , tp.JJIM_COUNT , tp.PROJECT_DATE, tp.COMPANY_COMMENT, tp.SUMMARY,
-            tc.NAME
+            tp.STATUS , tp.COMPANY_NUM , tp.JJIM_COUNT , tp.PROJECT_DATE, tp.COMPANY_COMMENT, tp.SUMMARY, tc.NICKNAME
             FROM TBL_PROJECT tp
             INNER JOIN TBL_COMPANY tc
             ON tp.COMPANY_NUM = tc.NUM
@@ -145,10 +144,11 @@
         </selectKey>
         INSERT INTO TBL_PROJECT
         (NUM, TITLE, CONTENT, COURSE, TERRAIN, POINT, START_ADDRESS, END_ADDRESS, REGIST_DATE, UPDATE_DATE, STATUS, DISTANCE, COMPANY_COMMENT, SUMMARY, START_ADDRESS_DETAIL
-        ,END_ADDRESS_DETAIL)
+        ,END_ADDRESS_DETAIL, START_TIME, END_TIME)
         VALUES(#{num}, #{title}, #{content}, #{course}, #{terrain}, #{point}, #{startAddress}, #{endAddress, jdbcType=VARCHAR}, SYSDATE, SYSDATE, '1' , #{distance, jdbcType=VARCHAR},
-        #{companyComment},#{summary}, #{startAddressDetail}, #{endAddressDetail, jdbcType=VARCHAR})
+        #{companyComment},#{summary}, #{startAddressDetail}, #{endAddressDetail, jdbcType=VARCHAR}, #{startTime}, #{endTime})
     </insert>
+
 
 
     <!-- 프로젝트 수정  -->

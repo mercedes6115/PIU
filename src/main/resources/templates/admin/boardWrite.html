@@ -33,8 +33,8 @@
             <form id="boardWriteForm" method="post" action="/admin/boardWrite" enctype="multipart/form-data">
                 <table>
 
-                    <input type="text" value="4" name="category" style="display: none">
-                    <input type="text" value="1" name="userNum" style="display: none">
+
+                    <input type="hidden" value="1" name="userNum">
 
 
                     <tr>
@@ -51,7 +51,7 @@
 
         </div>
         <div class="btnBox">
-            <button type="button" id="boardWriteBtn" onclick="document.getElementById('boardWriteForm').submit();">등록</button>
+            <button type="button" id="boardWriteBtn" >등록</button>
         </div>
     </div>
 </div>
@@ -79,6 +79,23 @@
     });
 
 
+</script>
+
+<script>
+    var checkUnload = true;    
+    $(window).on("beforeunload", function(){
+        if(checkUnload)
+            return "이 페이지를 벗어나면 작성된 내용은 저장되지 않습니다.";    
+    });
+
+
+    $('#boardWriteBtn').on("click", function () {
+        checkUnload = false;
+        if (confirm("공지사항을 등록할까요?")) {
+            $('#boardWriteForm').submit();
+        }
+        return false;
+    });
 </script>
 
 

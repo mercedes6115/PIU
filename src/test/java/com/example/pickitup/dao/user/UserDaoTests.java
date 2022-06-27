@@ -4,6 +4,9 @@ import com.example.pickitup.domain.dao.user.UserDAO;
 import com.example.pickitup.domain.vo.AdminCriteria;
 import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.adminVO.AdminBoardDTO;
+import com.example.pickitup.domain.vo.dto.AdminQnaCommentDTO;
+import com.example.pickitup.domain.vo.dto.AdminQnaDTO;
+import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaCommentVO;
 import com.example.pickitup.domain.vo.user.AdminBoardVO;
 import com.example.pickitup.domain.vo.user.UserVO;
 import lombok.extern.slf4j.Slf4j;
@@ -53,8 +56,8 @@ public class UserDaoTests {
     }
 
     @Test
-    public void loginTest(){
-        if(userDAO.login("ddd","dddd")!=null){
+    public void loginTest() {
+        if (userDAO.login("ddd", "dddd") != null) {
             log.info("로그인 성공");
         }
     }
@@ -64,7 +67,7 @@ public class UserDaoTests {
     }
 
     @Test
-    public void registerWriteTest () {
+    public void registerWriteTest() {
 
         AdminBoardVO adminBoardVO = new AdminBoardVO();
         adminBoardVO.setTitle("DAO새로운 공지글 제목2");
@@ -77,58 +80,107 @@ public class UserDaoTests {
     }
 
     @Test
-    public void getReadDetailTest () {
+    public void getReadDetailTest() {
         Long num = 12L;
         userDAO.getReadDetail(num);
     }
 
     @Test
-    public void getNoticeListTest () {
+    public void getNoticeListTest() {
         userDAO.getNoticeList(new AdminCriteria()).stream().map(AdminBoardDTO::toString).forEach(log::info);
     }
 
     @Test
-    public void getNoticeTotalTest () {
-        log.info("공지글 총 개수 : " + userDAO.getNoticeTotal(new AdminCriteria(1,10)));
+    public void getNoticeTotalTest() {
+        log.info("공지글 총 개수 : " + userDAO.getNoticeTotal(new AdminCriteria(1, 10)));
     }
 
     @Test
-    public void getAdminBoardCountTest () {
+    public void getAdminBoardCountTest() {
         log.info("adminboard 글 총 개수 : " + userDAO.getAdminBoardCount(new AdminCriteria(1, 10)));
     }
 
     @Test
-    public void getAdminboardListTest () {
+    public void getAdminboardListTest() {
         userDAO.getAdminboardList(new AdminCriteria(1, 10));
     }
 
     @Test
-    public void deleteByIdTest(){
+    public void deleteByIdTest() {
         userDAO.deleteById(49L);
     }
 
     @Test
-    public void noticeCancelTest(){
+    public void noticeCancelTest() {
         userDAO.noticeCancel(59L);
     }
 
     @Test
-    public void noticeConfirmTest(){
+    public void noticeConfirmTest() {
         userDAO.noticeConfirm(59L);
     }
 
     @Test
-    public void getQnaReplyTest(){
+    public void getQnaReplyTest() {
         userDAO.getQnaReply(125L);
     }
 
     @Test
-    public void nicknameCheckTest() { log.info("결과 : " + userDAO.nicknameCheck("짜리킴"));}
+    public void projectQnaReplyTest() {
+        AdminQnaCommentDTO adminQnaCommentDTO = new AdminQnaCommentDTO();
+        adminQnaCommentDTO.setContent("디티오테스트01");
+        adminQnaCommentDTO.setCompanyNum(2L);
+        adminQnaCommentDTO.setQnaNum(3L);
+        userDAO.projectQnaReply(adminQnaCommentDTO);
+//        ProjectQnaCommentVO projectQnaCommentVO = new ProjectQnaCommentVO();
+//        projectQnaCommentVO.setContent("다오테스트01");
+//        projectQnaCommentVO.setCompanyNum(2L);
+//        projectQnaCommentVO.setQnaNum(3L);
+//        userDAO.projectQnaReply(projectQnaCommentVO);
+    }
 
     @Test
-    public void getMyProductQnaComment() {userDAO.getMyProductQnaComment(13L);}
+    public void productQnaReplyTest() {
+        AdminQnaCommentDTO adminQnaCommentDTO = new AdminQnaCommentDTO();
+        adminQnaCommentDTO.setContent("디티오테스트01");
+        adminQnaCommentDTO.setUserNum(0L);
+        adminQnaCommentDTO.setQnaNum(1L);
+        userDAO.productQnaReply(adminQnaCommentDTO);
+    }
 
     @Test
-    public void getMyProjectQnaTest() {userDAO.getMyProjectQna(2L);}
+    public void answerCompleteTest() {
+        userDAO.answerComplete(3L);
+    }
+
+    @Test
+    public void nicknameCheckTest() {
+        log.info("결과 : " + userDAO.nicknameCheck("짜리킴"));
+    }
+
+    @Test
+    public void qnaStoreSaveTest() {
+        AdminQnaDTO adminQnaDTO = new AdminQnaDTO();
+        adminQnaDTO.setContent("0626다오 테스트");
+        adminQnaDTO.setUserNum(3L);
+        adminQnaDTO.setProductNum(3L);
+        userDAO.qnaStoreSave(adminQnaDTO);
+    }
+
+    @Test
+    public void productQnaDeleteTest() {
+        userDAO.productQnaDelete(62L);
+    }
+
+
+    @Test
+    public void getMyProductQnaComment() {
+        userDAO.getMyProductQnaComment(13L);
+    }
+
+    @Test
+    public void getMyProjectQnaTest() {
+        userDAO.getMyProjectQna(2L);
+    }
 }
 
