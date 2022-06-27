@@ -9,7 +9,35 @@
     <link rel="stylesheet" href="/assets/css/Footer.css" />
     <link rel="stylesheet" href="/assets/css/pickitupStore.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
+<style>
+    .material-icons {
+        font-family: 'Material Icons';
+        font-weight: normal;
+        font-style: normal;
+        font-size: 24px;  /* Preferred icon size */
+        display: inline-block;
+        line-height: 1;
+        text-transform: none;
+        letter-spacing: normal;
+        word-wrap: normal;
+        white-space: nowrap;
+        direction: ltr;
+        color: red;
+
+        /* Support for all WebKit browsers. */
+        -webkit-font-smoothing: antialiased;
+        /* Support for Safari and Chrome. */
+        text-rendering: optimizeLegibility;
+
+        /* Support for Firefox. */
+        -moz-osx-font-smoothing: grayscale;
+
+        /* Support for IE. */
+        font-feature-settings: 'liga';
+    }
+</style>
 <body>
 
 <!--헤더  -->
@@ -55,33 +83,7 @@
                     <p class="item_headerp" th:text="|${productsCount} 개|"></p>
                 </div>
                 <div class="all_items">
-                    <ul>
-                        <!--                         <li>-->
-                        <!--                             <div class="item">-->
-                        <!--                                 <span class="material-symbols-outlined jjim jjim-ajax">-->
-                        <!--                                     favorite-->
-                        <!--                                     </span>-->
-                        <!--                                 <a class="goDetail" th:href="*{num}"></a>-->
-                        <!--                                 <div class="flex" style="flex-direction: column; margin: 12px 0;">-->
-                        <!--                                     <div>-->
-                        <!--                                         <p class="store_main_item_title" th:text="*{name}"></p>-->
-                        <!--                                     </div>-->
-                        <!--                                     <div style="margin-top: 6px; height: 16px;">-->
-                        <!--                                         <p class="store_main_item_category" th:text="*{category}"></p>-->
-                        <!--                                     </div>-->
-                        <!--                                     <div style="display: flex; align-items: end; margin-top: 5px">-->
-                        <!--                                                 <span class="material-symbols-outlined" style="font-size: 12px;">-->
-                        <!--                                                     favorite-->
-                        <!--                                                 </span>-->
-                        <!--                                         <small style="font-size: 11px; margin-left: 5px">300..</small>-->
-                        <!--                                     </div>-->
-                        <!--                                 </div>-->
-                        <!--                                 <div style="height: 18px;">-->
-                        <!--                                     <p class="store_item_price" th:text="|*{price}P|"></p>-->
-                        <!--                                 </div>-->
-                        <!--                             </div>-->
-                        <!--                         </li>-->
-                    </ul>
+                    <ul></ul>
                 </div>
             </div>
             <div class="gototop">
@@ -98,10 +100,42 @@
 <!--<script src="/assets/js/store.js"></script>-->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script th:inline="javascript">
-    const $uploadResult = $(".item ul");
+    // 임시 유저 userNum = 22;
+    let userNum = 22;
 
-    // let productNum = [[${num}]];
-    //
+    //찜 ajax
+    $('.all_items').on("click",".jjim-ajax",function() {
+        let productNum = $(this).attr("name");
+        if($(this).hasClass("material-symbols-outlined")){ //찜 안되어있을때, insert ajax
+            $(this).removeClass("material-symbols-outlined");
+            $(this).addClass("material-icons");
+            $(this).css("color","red");
+
+            $.ajax({
+                url:"/store/jjim",
+                type:"post",
+                data: {userNum : userNum, category: "1", productNum : productNum},
+                success : function (result) {
+                    showmain(category);
+                }
+            })
+
+        }else{                                             //찜 되어있으면,   delete ajax
+            $(this).addClass("material-symbols-outlined");
+            $(this).removeClass("material-icons");
+            $(this).css("color","#d3cdcd");
+
+            $.ajax({
+                url:"/store/jjim",
+                type:"delete",
+                data: {userNum : userNum, category: "1", productNum : productNum},
+                success : function (result) {
+                    showmain(category);
+                }
+            })
+        }
+    });
+
     // //scroll top
     $('.gototop').click(function(){
         $('html, body').animate({scrollTop : 0},300);
@@ -126,11 +160,13 @@
                 $(lists).each(function (i, list) {
                     str += "<li>";
                     str += "<div class=\"item\">";
-                    str += "<span class=\"material-symbols-outlined jjim jjim-ajax\">";
+
+                    str += "<span class='heart'></span>"
+                    str += "<span class=\"material-symbols-outlined jjim jjim-ajax\" name=\""+list.num+"\" style='color: #d3cdcd; font-weight: bold;'>";
                     str += "favorite";
                     str += "</span>";
                     str += "<a class=\"goDetail\" th:href=\""+list.num+"\" style=\"cursor:pointer\">";
-                    (function (i) {
+                    (function () {
                         $.ajax({
                             url: "/productFile/list/"+list.num,
                             type : "get",
@@ -154,7 +190,19 @@
                     str += "<span class=\"material-symbols-outlined\" style=\"font-size: 12px;\">";
                     str += "favorite";
                     str += "</span>";
-                    str += "<small style=\"font-size: 11px; margin-left: 5px\">300..</small>";
+                    str += "<small style=\"font-size: 11px; margin-left: 5px\">";
+                    //찜 갯수 ajax
+                    (function(){
+                        $.ajax({
+                            url: "/store/jjimCount?productNum="+list.num,
+                            type : "get",
+                            async:false,  // ajax 안에 ajax를 사용할때는 동기식으로 바꿔줘야함
+                            success : function (count) {
+                                str += count;
+                            }
+                        })
+                    })(i);
+                    str += "</small>";
                     str += "</div>";
                     str += "</div>";
                     str += "<div style=\"height: 18px;\">";
@@ -164,38 +212,39 @@
                     str += "</li>";
                 })
                 $('.all_items ul').html(str);
+
+                $.ajax({
+                    url : "/store/jjim",
+                    type : "get",
+                    success : function (jjims) {
+                        $(jjims).each(function (i, jjim) {
+                            if(jjim.userNum==userNum){
+                                if($(".jjim[name="+jjim.productNum+"]").hasClass("material-symbols-outlined")){
+                                    $(".jjim[name="+jjim.productNum+"]").removeClass("material-symbols-outlined");
+                                    $(".jjim[name="+jjim.productNum+"]").addClass("material-icons");
+                                    $(".jjim[name="+jjim.productNum+"]").css("color","red")
+                                }
+                            }
+                        })
+                    }
+                })
             }
         })
     }
 
 
-    // 메인 ajax
+    // 스토어 카테고리 ajax
     $('.store_categories a').click(function (e) {
         e.preventDefault();
-        let category = $(this).attr('href');
+        category = $(this).attr('href');
         showmain(category);
     })
-    // 메인 ajax
+    // 스토어 카테고리 ajax  (반응형)
     $('.media_store_categories a').click(function (e) {
         e.preventDefault();
-        let category = $(this).attr('href');
+        category = $(this).attr('href');
         showmain(category);
     })
-
-    // $('.goDetail').each(function(i, h) {
-    //     //메인 사진 받아오기
-    //     let productNum=$(this).attr("href");
-    //     $.ajax({
-    //         url: "/productFile/list/"+productNum,
-    //         type : "get",
-    //         success : function (files) {
-    //             // let str = "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
-    //             let str = "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
-    //             $(h).html(str);
-    //             // $("img#"+productNum).attr("src", "/upload/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName )
-    //         }
-    //     })
-    // })
 
     //정상웹 일때
     $('.store_categories li').click(function(){
@@ -217,14 +266,28 @@
         }
     })
 
-    //찜 ajax
-    $('.all_items').on("click","jjim-ajax",function() {
-        if ($(this).hasClass("red")) {
-            $(this).removeClass("red");
-        } else {
-            $(this).addClass("red");
-        }
-    });
+
+    //상품의 총 갯수
+    let productsCount = [[${productsCount}]];
+    if(productsCount>16){
+        // showmain(category);
+        // //무한스크롤
+        // $(window).on("scroll", function() {
+        //     var scrollHeight = $(document).height();
+        //     var scrollPosition = $(window).height() + $(window).scrollTop();
+        //     let scroll = "";
+        //
+        //     for (let i = 16; i < productsCount ; i ++){
+        //         if (scrollPosition > scrollHeight -1) {
+        //             //밑의 내용 위에 each 문에 넣기
+        //                 asdfasdf
+        //             $(".all_items ul").append(scroll);
+        //         }
+        //     }
+        //     //후기가 없을때까지
+        //
+        // });
+    }
 
 
 

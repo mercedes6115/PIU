@@ -127,7 +127,7 @@ $("#nameCheck").on("click",function () {
         type: "post",
         data: {nickname: $unicknameval},
         success: function (result) {
-            if (result=="0") {
+            if (result===0) {
                 console.log(result);
                 $('span#nameCheck_text').empty().text("사용 가능한 닉네임 입니다.").css("color", "green");
                 namePass = true;
@@ -338,6 +338,7 @@ $("#submit-corp").on("click", function () {
     }
 })
 
+
 let regex = new RegExp("(.*?)\.(exe|sh|zip|alz)");
 
 function checkExtension(fileName, fileSize){
@@ -397,3 +398,4 @@ $(document).ready(function(){
         corpPass =true;
     });
 });
+

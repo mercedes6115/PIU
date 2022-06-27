@@ -93,8 +93,18 @@
 <div th:replace="~{/main/Footer :: FooterImport}"></div>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-<script>
+<script th:inline="javascript">
     let productNum = [[${product.num}]];
+    //현재 받은 세션으로 userNum 값 구하기
+    let userNum = 22;  // 임시 데이터
+    $.ajax({
+        url : "/store/userInfo?userNum="+userNum,
+        type : "get",
+        success : function (user) {
+            $(".review_id").text(user.nickname);
+        }
+
+    })
 
     //첨부파일 input태그 가져오기
     const file1 = document.querySelector("input.attach1");
@@ -189,10 +199,16 @@
         e.preventDefault();
         let formData =   new FormData();
         let inputFile = $("input[name='uploadFiles']");
-        let files = inputFile[0].files;
-        for(let i=0; i<files.length; i++) {
-            formData.append("uploadFiles", files[i]);
-        }
+        let files1 = inputFile[0].files;
+        let files2 = inputFile[1].files;
+        let files3 = inputFile[2].files;
+        if(files1.length!=0){formData.append("uploadFiles", files1[0])}
+        if(files2.length!=0){formData.append("uploadFiles", files2[0])}
+        if(files3.length!=0){formData.append("uploadFiles", files3[0])}
+        //
+        // for(let i=0; i<files.length; i++) {
+        //     formData.append("uploadFiles", files[i]);
+        // }
         $.ajax({
             url: "/productReviewFile/upload",
             type: "post",

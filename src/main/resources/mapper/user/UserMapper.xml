@@ -3,41 +3,62 @@
 <mapper namespace="com.example.pickitup.mapper.user.UserMapper">
 
 
-<!--마이페이지, 관리자 사용-->
+    <!--마이페이지, 관리자 사용-->
     <select id="getDetail" resultType="userVO">
         SELECT
         NUM, EMAIL, NICKNAME,PHONE, ADDRESS, PROFILE_FILE_NAME, PROFILE_UPLOAD_PATH, POINT, REGIST_DATE, CATEGORY, ADDRESS_DETAIL
         FROM TBL_USER
         WHERE NUM=#{num}
     </select>
+
+<!--카카오로그인 후 회원정보-->
+    <select id="kakaoDetail" resultType="userVO">
+        SELECT
+        NUM, EMAIL, NICKNAME,PHONE, ADDRESS, PROFILE_FILE_NAME, PROFILE_UPLOAD_PATH, POINT, REGIST_DATE
+        FROM TBL_USER
+        WHERE EMAIL=#{email}
+    </select>
+
 <!--회원 가입-->
+    <!--회원 가입-->
     <insert id="insert">
         INSERT INTO TBL_USER
         (NUM, EMAIL, PASSWORD, NICKNAME, PHONE, ADDRESS,ADDRESS_DETAIL, REGIST_DATE)
         VALUES(SEQ_USER.NEXTVAL,#{email}, #{password}, #{nickname}, #{phone}, #{address},#{addressDetail}, SYSDATE)
     </insert>
-<!--회원탈퇴-->
+
+<!--카카오톡 로그인 즉시 회원가입-->
+    <insert id="kakaoinsert">
+        <selectKey keyProperty="num" resultType="long" order="BEFORE">
+            SELECT SEQ_USER.NEXTVAL FROM DUAL
+        </selectKey>
+        INSERT INTO TBL_USER
+        (NUM, EMAIL, NICKNAME, REGIST_DATE)
+        VALUES(#{num},#{email}, #{nickname}, SYSDATE)
+
+        </insert>
+
+    <!--회원탈퇴-->
     <delete id="delete">
         DELETE FROM TBL_USER
         WHERE NUM=#{num}
     </delete>
 
-<!--  회원 수정  -->
+    <!--  회원 수정  -->
     <update id="update">
         UPDATE TBL_USER
-        SET EMAIL=#{email}, PASSWORD=#{password}, NICKNAME=#{nickname}, PHONE=#{phone},ADDRESS=#{address},
+        SET NICKNAME=#{nickname}, PHONE=#{phone},ADDRESS=#{address},
         ADDRESS_DETAIL=#{addressDetail},PROFILE_FILE_NAME=#{profileFileName}, PROFILE_UPLOAD_PATH=#{profileUploadPath}, REGIST_DATE=SYSDATE,
-        CATEGORY=#{category}
         WHERE NUM=#{num}
     </update>
 
-<!--    ROWNUM : SELECT문에서 사용되어지는 가상컬럼이다.-->
-<!--    가상컬럼이란 물리적으로 테이블에 저장된 값이 아니라-->
-<!--    SELECT문에서 FROM절과 WHERE절에 의해서 해당 데이타가-->
-<!--    선별된 직후에 1부터 차례대로 증가하면서 부여된 일시적인 값이다.-->
-<!--    - ROWNUM은 1,2,3,....N 값이 부여된다.-->
-<!--    - ROWNUM은 일시적으로 할당되는 값이다.-->
-<!--    - ROWNUM은 값이 할당되어지는 순서가 있다.-->
+    <!--    ROWNUM : SELECT문에서 사용되어지는 가상컬럼이다.-->
+    <!--    가상컬럼이란 물리적으로 테이블에 저장된 값이 아니라-->
+    <!--    SELECT문에서 FROM절과 WHERE절에 의해서 해당 데이타가-->
+    <!--    선별된 직후에 1부터 차례대로 증가하면서 부여된 일시적인 값이다.-->
+    <!--    - ROWNUM은 1,2,3,....N 값이 부여된다.-->
+    <!--    - ROWNUM은 일시적으로 할당되는 값이다.-->
+    <!--    - ROWNUM은 값이 할당되어지는 순서가 있다.-->
 
 
     <!-- 사용자가 구매한 상품 목록-->
@@ -55,7 +76,7 @@
     <!-- 사용자가 참여한 플로깅 목록 -->
     <select id="getInProjectList" resultType="projectVO">
         <![CDATA[
-        SELECT proj.NUM, proj.TITLE, proj.CONTENT, proj.COURSE, proj.TERRAIN, proj.POINT, proj.APPROVAL, proj.STARTTIME, proj.ENDTIME, proj.START_ADDRESS, proj.END_ADDRESS, proj.DISTANCE, proj.QR, proj.REGIST_DATE, proj.UPDATE_DATE, proj.STATUS, proj.COMPANY_NUM, proj.USER_NUM, proj.JJIM_COUNT, proj.PROJECT_DATE
+        SELECT proj.NUM, proj.TITLE, proj.CONTENT, proj.COURSE, proj.TERRAIN, proj.POINT, proj.APPROVAL, proj.STARTTIME, proj.ENDTIME, proj.START_ADDRESS, proj.END_ADDRESS, proj.DISTANCE, proj.QR, proj.REGIST_DATE, proj.UPDATE_DATE, proj.STATUS, proj.COMPANY_NUM, proj.JJIM_COUNT, proj.PROJECT_DATE
 	        FROM TBL_PROJECT proj
 	            INNER JOIN TBL_APPLY app ON app.PROJECT_NUM = proj.NUM
 	            INNER JOIN TBL_USER u ON u.NUM = app.USER_NUM
@@ -67,131 +88,19 @@
 
     <select id="login" resultType="userDTO">
 
-        SELECT NUM, NICKNAME
+        SELECT NUM, NICKNAME, CATEGORY, EMAIL
+        FROM
+        (SELECT NUM, NICKNAME, CATEGORY, PASSWORD ,EMAIL
         FROM TBL_USER
+        UNION
+        SELECT NUM, NICKNAME, CATEGORY , PASSWORD, EMAIL
+        FROM TBL_COMPANY)
         WHERE EMAIL=#{email} AND PASSWORD=#{password}
 
-    </select>
-
-
-
-    <select id="getList"  resultType="userDTO">
-    SELECT NUM,NICKNAME,EMAIL,REGIST_DATE ,PHONE,ADDRESS,CATEGORY
-    FROM
-    (
-        SELECT ROWNUM RN,NUM,NICKNAME,EMAIL,REGIST_DATE ,PHONE,ADDRESS,CATEGORY
-            FROM(
-                SELECT
-                NUM,NICKNAME,EMAIL,REGIST_DATE ,PHONE,ADDRESS,CATEGORY
-                FROM TBL_USER
-                    <where>
-                            <if test="type1 == 'nickname'.toString()">
-                                NICKNAME LIKE '%'||#{keyword}||'%'
-                            </if>
-                            <if test="type1 == 'phone'.toString()">
-                                AND PHONE LIKE '%'||#{keyword}||'%'
-                            </if>
-                            <if test="keyword1 != null">
-                                AND ADDRESS LIKE '%'||#{keyword1}||'%'
-                            </if>
-                            <if test="startDate != null and endDate != null">
-                                AND (REGIST_DATE BETWEEN #{startDate} AND #{endDate})
-                            </if>
-                    </where>
-                UNION ALL
-                SELECT
-                NUM,NICKNAME,EMAIL,REGIST_DATE ,PHONE,ADDRESS,CATEGORY
-                FROM TBL_COMPANY
-                    <where>
-                            <if test="type1 == 'nickname'.toString()">
-                                NICKNAME LIKE '%'||#{keyword}||'%'
-                            </if>
-                            <if test="type1 == 'phone'.toString()">
-                                AND PHONE LIKE '%'||#{keyword}||'%'
-                            </if>
-                            <if test="keyword1 != null">
-                                AND ADDRESS LIKE '%'||#{keyword1}||'%'
-                            </if>
-                            <if test="startDate != null">
-                                AND (REGIST_DATE BETWEEN #{startDate} AND #{endDate})
-                            </if>
-                    </where>
-            )
-        <![CDATA[
-        WHERE ROWNUM <= #{pageNum} * #{amount}
-            ]]>
-        <choose>
-            <when test="type == 'user'.toString()">
-                AND CATEGORY = 'user'
-            </when>
-            <when test="type == 'company'.toString()">
-                AND CATEGORY = 'company'
-            </when>
-        </choose>
-    )
-        <![CDATA[
-    WHERE RN > (#{pageNum} - 1) * #{amount}
-        ]]>
-
 
     </select>
 
-    <!-- 위 테이블의 총 개수-->
-    <select id="getTotal" resultType="_int">
-        SELECT SUM(CNT) FROM
-        (   SELECT COUNT(*) AS CNT
-            FROM TBL_USER
-                    <where>
-                            <if test="type1 == 'nickname'.toString()">
-                                NICKNAME LIKE '%'||#{keyword}||'%'
-                            </if>
-                            <if test="type1 == 'phone'.toString()">
-                                AND PHONE LIKE '%'||#{keyword}||'%'
-                            </if>
-                            <if test="startDate != null">
-                                AND (REGIST_DATE BETWEEN #{startDate} AND #{endDate})
-                            </if>
-                            <if test="keyword1 != null">
-                                AND ADDRESS LIKE '%'||#{keyword1}||'%'
-                            </if>
-                    </where>
-                    <choose>
-                        <when test="type=='user'.toString()">
-                            AND CATEGORY='user'
-                        </when>
-                        <when test="type=='company'.toString()">
-                            AND CATEGORY='company'
-                        </when>
-                    </choose>
-            UNION ALL
-            SELECT COUNT(*)
-            FROM TBL_COMPANY
-                    <where>
-                            <if test="type1 == 'nickname'.toString()">
-                                NICKNAME LIKE '%'||#{keyword}||'%'
-                            </if>
-                            <if test="type1 == 'phone'.toString()">
-                                AND PHONE LIKE '%'||#{keyword}||'%'
-                            </if>
-                            <if test="keyword1 != null">
-                                AND ADDRESS LIKE '%'||#{keyword1}||'%'
-                            </if>
-                            <if test="startDate != null">
-                                AND (REGIST_DATE BETWEEN #{startDate} AND #{endDate})
-                            </if>
-                    </where>
-                    <choose>
-                        <when test="type=='user'.toString()">
-                            AND CATEGORY='user'
-                        </when>
-                        <when test="type=='company'.toString()">
-                            AND CATEGORY='company'
-                        </when>
-                    </choose>
-        )
-    </select>
-
-
+<!--이메일 중복 체크-->
     <select id="emailMatching" resultType="_int">
         SELECT COUNT(EMAIL)
         FROM
@@ -203,6 +112,7 @@
         WHERE EMAIL=#{email}
     </select>
 
+    <!--닉네임 중복 체크-->
     <select id="nicknameMatching" resultType="_int">
         SELECT COUNT(NICKNAME)
         FROM
@@ -215,15 +125,150 @@
     </select>
 
 
+
+    <select id="getList"  resultType="userDTO">
+        SELECT NUM,NICKNAME,EMAIL,REGIST_DATE ,PHONE,ADDRESS,CATEGORY
+        FROM
+        (
+        SELECT ROWNUM RN,NUM,NICKNAME,EMAIL,REGIST_DATE ,PHONE,ADDRESS,CATEGORY
+        FROM(
+        SELECT
+        NUM,NICKNAME,EMAIL,REGIST_DATE ,PHONE,ADDRESS,CATEGORY
+        FROM TBL_USER
+        <where>
+            <if test="type1 == 'nickname'.toString()">
+                NICKNAME LIKE '%'||#{keyword}||'%'
+            </if>
+            <if test="type1 == 'phone'.toString()">
+                AND PHONE LIKE '%'||#{keyword}||'%'
+            </if>
+            <if test="keyword1 != null">
+                AND ADDRESS LIKE '%'||#{keyword1}||'%'
+            </if>
+            <if test="startDate != null and endDate != null">
+                AND (REGIST_DATE BETWEEN #{startDate} AND #{endDate})
+            </if>
+        </where>
+        UNION ALL
+        SELECT
+        NUM,NICKNAME,EMAIL,REGIST_DATE ,PHONE,ADDRESS,CATEGORY
+        FROM TBL_COMPANY
+        <where>
+            <if test="type1 == 'nickname'.toString()">
+                NICKNAME LIKE '%'||#{keyword}||'%'
+            </if>
+            <if test="type1 == 'phone'.toString()">
+                AND PHONE LIKE '%'||#{keyword}||'%'
+            </if>
+            <if test="keyword1 != null">
+                AND ADDRESS LIKE '%'||#{keyword1}||'%'
+            </if>
+            <if test="startDate != null">
+                AND (REGIST_DATE BETWEEN #{startDate} AND #{endDate})
+            </if>
+        </where>
+        )
+        <![CDATA[
+        WHERE ROWNUM <= #{pageNum} * #{amount}
+            ]]>
+        <choose>
+            <when test="type == 'user'.toString()">
+                AND CATEGORY = 'user'
+            </when>
+            <when test="type == 'company'.toString()">
+                AND CATEGORY = 'company'
+            </when>
+        </choose>
+        )
+        <![CDATA[
+    WHERE RN > (#{pageNum} - 1) * #{amount}
+        ]]>
+
+
+    </select>
+
+    <!-- 위 테이블의 총 개수-->
+    <select id="getTotal" resultType="_int">
+        SELECT SUM(CNT) FROM
+        (   SELECT COUNT(*) AS CNT
+        FROM TBL_USER
+        <where>
+            <if test="type1 == 'nickname'.toString()">
+                NICKNAME LIKE '%'||#{keyword}||'%'
+            </if>
+            <if test="type1 == 'phone'.toString()">
+                AND PHONE LIKE '%'||#{keyword}||'%'
+            </if>
+            <if test="startDate != null">
+                AND (REGIST_DATE BETWEEN #{startDate} AND #{endDate})
+            </if>
+            <if test="keyword1 != null">
+                AND ADDRESS LIKE '%'||#{keyword1}||'%'
+            </if>
+        </where>
+        <choose>
+            <when test="type=='user'.toString()">
+                AND CATEGORY='user'
+            </when>
+            <when test="type=='company'.toString()">
+                AND CATEGORY='company'
+            </when>
+        </choose>
+        UNION ALL
+        SELECT COUNT(*)
+        FROM TBL_COMPANY
+        <where>
+            <if test="type1 == 'nickname'.toString()">
+                NICKNAME LIKE '%'||#{keyword}||'%'
+            </if>
+            <if test="type1 == 'phone'.toString()">
+                AND PHONE LIKE '%'||#{keyword}||'%'
+            </if>
+            <if test="keyword1 != null">
+                AND ADDRESS LIKE '%'||#{keyword1}||'%'
+            </if>
+            <if test="startDate != null">
+                AND (REGIST_DATE BETWEEN #{startDate} AND #{endDate})
+            </if>
+        </where>
+        <choose>
+            <when test="type=='user'.toString()">
+                AND CATEGORY='user'
+            </when>
+            <when test="type=='company'.toString()">
+                AND CATEGORY='company'
+            </when>
+        </choose>
+        )
+    </select>
+    
+
+
     <select id="getNoticeList" resultType="adminBoardVO">
-        SELECT NUM, TITLE, CATEGORY, CONTENT, USER_NUM, REGIST_DATE, UPDATE_DATE
+     SELECT NUM, TITLE, CATEGORY, CONTENT, USER_NUM, REGIST_DATE, UPDATE_DATE FROM
+    (
+    SELECT ROWNUM RN, NUM, TITLE, CATEGORY, CONTENT, USER_NUM, REGIST_DATE, UPDATE_DATE
+    FROM (
+    SELECT NUM, TITLE, CATEGORY, CONTENT, USER_NUM, REGIST_DATE, UPDATE_DATE FROM
+    TBL_ADMIN_BOARD
+            WHERE CATEGORY = '4' AND STATUS = '1'
+            ORDER BY REGIST_DATE DESC
+    )
+    <![CDATA[
+            WHERE ROWNUM <= #{pageNum} * #{amount}
+                ]]>
+            )
+            <![CDATA[
+        WHERE RN > (#{pageNum} - 1) * #{amount}
+            ]]>
+        /*SELECT NUM, TITLE, CATEGORY, CONTENT, USER_NUM, REGIST_DATE, UPDATE_DATE
         FROM TBL_ADMIN_BOARD
-        WHERE CATEGORY = '4'
-        ORDER BY REGIST_DATE DESC
+        WHERE CATEGORY = '4' AND STATUS = '1'
+        ORDER BY REGIST_DATE DESC*/
     </select>
 
     <select id="getNoticeTotal" resultType="_int">
-        SELECT COUNT(NUM) FROM TBL_ADMIN_BOARD WHERE CATEGORY = '4'
+        SELECT COUNT(NUM) FROM TBL_ADMIN_BOARD WHERE CATEGORY = '4' AND STATUS = '1'
     </select>
 
     <select id="getNoticeDetail" resultType="adminBoardVO">
@@ -238,8 +283,8 @@
             SELECT SEQ_ADMIN_BOARD.NEXTVAL FROM DUAL
         </selectKey>
         INSERT INTO TBL_ADMIN_BOARD
-        (NUM, CATEGORY, TITLE, CONTENT, USER_NUM)
-        VALUES(#{num}, #{category}, #{title}, #{content}, #{userNum})
+        (NUM, CATEGORY, TITLE, CONTENT, USER_NUM, STATUS, ANSWER_STATUS, PROJECT_QNA_NUM, PRODUCT_QNA_NUM)
+        VALUES(#{num}, '4', #{title}, #{content}, #{userNum}, '1', '1', #{projectQnaNum, jdbcType=VARCHAR}, #{productQnaNum, jdbcType=VARCHAR})
     </insert>
 
 
@@ -248,6 +293,13 @@
         UPDATE TBL_USER
         SET PASSWORD=#{password}
         WHERE EMAIL=#{email}
+    </update>
+
+    <!-- 마이페이지에서 비밀번호 변경-->
+    <update id="changePw">
+        UPDATE TBL_USER
+        SET PASSWORD=#{password}
+        WHERE NUM=#{num}
     </update>
 
     <!-- ADMINBOARD에 총 게시글 수 가져오기-->
@@ -266,6 +318,12 @@
             </if>
             <if test="type3 == 'projectQna'.toString()">
                 AND CATEGORY = '1'
+            </if>
+            <if test="type1 == 'noAnswer'.toString()">
+                AND ANSWER_STATUS = '1'
+            </if>
+            <if test="type1 == 'answer'.toString()">
+                AND ANSWER_STATUS = '2'
             </if>
             <if test="type2 == 'title'.toString()">
                 AND TITLE LIKE '%'||#{keyword}||'%'
@@ -286,11 +344,57 @@
 
     <!-- ADMINBOARD에 게시글 리스트 가져오기-->
     <select id="getAdminboardList" resultType="adminboardDTO">
-        SELECT NUM, CATEGORY, CONTENT, TITLE, REGIST_DATE, USER_NUM, ANSWER_STATUS, STATUS FROM
-        (
-        SELECT ROWNUM RN, NUM, CATEGORY, CONTENT, TITLE, REGIST_DATE, USER_NUM, ANSWER_STATUS, STATUS
-        FROM (
-        SELECT NUM, CATEGORY, CONTENT, TITLE, REGIST_DATE, USER_NUM, ANSWER_STATUS, STATUS FROM TBL_ADMIN_BOARD
+        SELECT B.* FROM(
+        SELECT ROWNUM RN, A.* FROM
+        (SELECT
+        TBL_USER.NICKNAME, TBL_ADMIN_BOARD.CATEGORY,
+        TBL_ADMIN_BOARD.USER_NUM,TBL_ADMIN_BOARD.ANSWER_STATUS, TBL_ADMIN_BOARD.STATUS ,TBL_ADMIN_BOARD.NUM, TBL_ADMIN_BOARD.PROJECT_QNA_NUM, TBL_ADMIN_BOARD.PRODUCT_QNA_NUM,
+        TBL_ADMIN_BOARD.TITLE, TBL_ADMIN_BOARD.CONTENT, TBL_ADMIN_BOARD.REGIST_DATE FROM TBL_ADMIN_BOARD, TBL_USER
+        WHERE TBL_ADMIN_BOARD.USER_NUM = TBL_USER.NUM
+            <if test="type3 == 'notice'.toString()">
+                AND TBL_ADMIN_BOARD.CATEGORY = '4'
+            </if>
+            <if test="type3 == 'createrQna'.toString()">
+                AND TBL_ADMIN_BOARD.CATEGORY = '3'
+            </if>
+            <if test="type3 == 'productQna'.toString()">
+                AND TBL_ADMIN_BOARD.CATEGORY = '2'
+            </if>
+            <if test="type3 == 'projectQna'.toString()">
+                AND TBL_ADMIN_BOARD.CATEGORY = '1'
+            </if>
+            <if test="type1 == 'noAnswer'.toString()">
+                AND ANSWER_STATUS = '1'
+            </if>
+            <if test="type1 == 'answer'.toString()">
+                AND ANSWER_STATUS = '2'
+            </if>
+            <if test="type2 == 'title'.toString()">
+                AND TBL_ADMIN_BOARD.TITLE LIKE '%'||#{keyword}||'%'
+            </if>
+            <if test="type2 == 'content'.toString()">
+                AND TBL_ADMIN_BOARD.CONTENT LIKE '%'||#{keyword}||'%'
+            </if>
+            <if test="type2 == 'writer'.toString()">
+                AND TBL_USER.NICKNAME LIKE '%'||#{keyword}||'%'
+            </if>
+            <if test="startDate != null and endDate !=null">
+                AND (TO_CHAR(TBL_ADMIN_BOARD.REGIST_DATE,'yyyy-mm-dd hh24:mi:ss')) BETWEEN
+                #{startDate} AND (#{endDate}||'23:59:59')
+            </if>
+            ORDER BY TBL_ADMIN_BOARD.REGIST_DATE DESC
+        )A
+        <![CDATA[
+            WHERE ROWNUM <= #{pageNum} * #{amount}
+                ]]>
+        )B
+        <![CDATA[
+        WHERE RN > (#{pageNum} - 1) * #{amount}
+            ]]>
+
+        <!--SELECT NUM, CATEGORY, CONTENT, TITLE, REGIST_DATE, USER_NUM, ANSWER_STATUS, STATUS
+        FROM TBL_ADMIN_BOARD
+
         <where>
             <if test="type3 == 'notice'.toString()">
                 CATEGORY = '4'
@@ -318,21 +422,99 @@
                 #{startDate} AND (#{endDate}||'23:59:59')
             </if>
         </where>
-        ORDER BY REGIST_DATE DESC
-        )
-        <![CDATA[
-        WHERE ROWNUM <= #{pageNum} * #{amount}
-            ]]>
-        )
-        <![CDATA[
-    WHERE RN > (#{pageNum} - 1) * #{amount}
-        ]]>
+
+        ORDER BY REGIST_DATE DESC-->
+
     </select>
 
     <delete id="deleteById">
         DELETE FROM TBL_ADMIN_BOARD
         WHERE NUM=#{num}
     </delete>
+
+    <delete id="productQnaDelete">
+        DELETE FROM TBL_PRODUCT_QNA
+        WHERE NUM=(SELECT PRODUCT_QNA_NUM FROM TBL_ADMIN_BOARD WHERE TBL_ADMIN_BOARD.NUM = #{num})
+    </delete>
+
+
+    <update id="noticeCancel">
+        UPDATE TBL_ADMIN_BOARD
+        SET STATUS= '2'
+        WHERE NUM=#{num}
+    </update>
+
+    <update id="noticeConfirm">
+        UPDATE TBL_ADMIN_BOARD
+        SET STATUS= '1'
+        WHERE NUM=#{num}
+    </update>
+
+    <select id="getQnaReply" resultType="adminboardDTO">
+        SELECT TBL_USER.NICKNAME, TBL_ADMIN_BOARD.NUM, TBL_ADMIN_BOARD.TITLE, TBL_ADMIN_BOARD.CONTENT, TBL_ADMIN_BOARD.REGIST_DATE, TBL_ADMIN_BOARD.CATEGORY, TBL_ADMIN_BOARD.PROJECT_QNA_NUM, TBL_ADMIN_BOARD.PRODUCT_QNA_NUM
+        FROM TBL_USER, TBL_ADMIN_BOARD
+        WHERE TBL_USER.NUM = TBL_ADMIN_BOARD.USER_NUM
+        AND TBL_ADMIN_BOARD.NUM = #{num}
+    </select>
+
+    <insert id="projectQnaReply">
+        <selectKey keyProperty="num" resultType="long" order="BEFORE">
+            SELECT SEQ_PROJECT_QNA_COMMENT.NEXTVAL FROM DUAL
+        </selectKey>
+        INSERT INTO TBL_PROJECT_QNA_COMMENT
+        (NUM, CONTENT, USER_NUM, COMPANY_NUM, QNA_NUM)
+        VALUES(#{num}, #{content}, #{userNum, jdbcType=VARCHAR}, #{companyNum, jdbcType=VARCHAR}, #{qnaNum, jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="productQnaReply">
+        <selectKey keyProperty="num" resultType="long" order="BEFORE">
+            SELECT SEQ_PRODUCT_QNA_COMMENT.NEXTVAL FROM DUAL
+        </selectKey>
+        INSERT INTO TBL_PRODUCT_QNA_COMMENT
+        (NUM, CONTENT, USER_NUM, QNA_NUM)
+        VALUES(#{num}, #{content}, #{userNum, jdbcType=VARCHAR}, #{qnaNum, jdbcType=VARCHAR})
+    </insert>
+
+    <update id="answerComplete">
+        UPDATE TBL_ADMIN_BOARD
+        SET ANSWER_STATUS= '2'
+        WHERE NUM=#{num}
+    </update>
+
+    <insert id="qnaStoreSave" parameterType="adminQnaDTO">
+    <selectKey keyProperty="num" resultType="long" order="BEFORE">
+        SELECT SEQ_ADMIN_BOARD.NEXTVAL FROM DUAL
+    </selectKey>
+    INSERT INTO TBL_ADMIN_BOARD
+    (NUM, CATEGORY, TITLE, CONTENT, USER_NUM, STATUS, ANSWER_STATUS, PROJECT_QNA_NUM, PRODUCT_QNA_NUM)
+    VALUES(#{num}, '2',
+        (SELECT DISTINCT TBL_PRODUCT.NAME NAME FROM TBL_PRODUCT,TBL_PRODUCT_QNA  WHERE TBL_PRODUCT_QNA.PRODUCT_NUM = TBL_PRODUCT.NUM AND TBL_PRODUCT.NUM =#{productNum}),
+         #{content}, #{userNum}, '1', '1', #{projectQnaNum, jdbcType=VARCHAR}, (SELECT TBL_PRODUCT_QNA.NUM FROM TBL_PRODUCT_QNA  WHERE TBL_PRODUCT_QNA.NUM =(SELECT DISTINCT FIRST_VALUE(NUM) OVER (ORDER BY REGIST_DATE DESC) FROM TBL_PRODUCT_QNA) AND TBL_PRODUCT_QNA.PRODUCT_NUM =#{productNum}))
+    </insert>
+
+    <select id="getMyProjectQna" resultType="projectQnaVO">
+        SELECT NUM, CONTENT, REGIST_DATE, UPDATE_DATE, USER_NUM, PROJECT_NUM
+        FROM TBL_PROJECT_QNA
+        WHERE USER_NUM = #{userNum}
+    </select>
+
+    <select id="getMyProductQna" resultType="productQnaVO">
+        SELECT NUM, CONTENT, REGIST_DATE, UPDATE_DATE, USER_NUM, PRODUCT_NUM
+        FROM TBL_PRODUCT_QNA
+        WHERE USER_NUM = #{userNum}
+    </select>
+
+    <select id="myProjectQnaComment" resultType="projectQnaCommentVO">
+        SELECT NUM, CONTENT, REGIST_DATE, UPDATE_DATE, USER_NUM, COMPANY_NUM, QNA_NUM
+        FROM TBL_PROJECT_QNA_COMMENT
+        WHERE QNA_NUM = #{qnaNum}
+    </select>
+
+    <select id="myProductQnaComment" resultType="productQnaCommentVO">
+        SELECT NUM, CONTENT, REGIST_DATE, UPDATE_DATE, USER_NUM, QNA_NUM
+        FROM TBL_PRODUCT_QNA_COMMENT
+        WHERE QNA_NUM = #{qnaNum}
+    </select>
 
 </mapper>
 

@@ -24,9 +24,18 @@ public class AdminBoardDTO {
     private Long userNum;
     private String type2;
     private String keyword;
+    private String nickname;
+    private Long projectQnaNum;
+    private Long productQnaNum;
+
+
 
     private List<ProjectVO> projectList;
     private List<ProductVO> productList;
     private List<ProjectQnaVO> projectQnaList;
     private List<ProductQnaVO> productQnaList;
+
 }
+
+
+

@@ -1,15 +1,16 @@
 
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
 
 body{
-    font-family: '맑은 고딕', 'Malgun Gothic', 'Dotum', '돋움', 'arial', 'verdana', sans-serif;
-    display: block;
+    font-family: "맑은 고딕", "Malgun Gothic", "Dotum", "돋움", "arial", "verdana",
+    sans-serif !important;
     margin: 0;
     padding: 0;
     min-width: 1600px;
     height: 100%;
-    word-spacing: -1px;
     background-color: #ecf0f7 !important;
     font-size: 14px;
+    line-height: 1.34 !important;
 }
 
 .wrap{
@@ -18,11 +19,6 @@ body{
     box-sizing: border-box;
 }
 
-.container{
-    position: relative;
-    margin: 0;
-    padding: 0;
-}
 
 @media (min-width: 1920px){
     .content {
@@ -33,28 +29,14 @@ body{
 
 .content{
     min-height: 750px;
-    padding: 0 24px 40px;
+    padding: 0 50px 40px;
     box-sizing: border-box;
     vertical-align: top;
 }
-.product{
+.productWrap{
     position: relative;
     margin: 0 0 38px;
     padding: 20px 0 0;
-
-}
-.register{
-    position: relative;
-    margin : 40px 0 14px
-}
-.product h1{
-    position: relative;
-    display: inline-block;
-    font-size: 30px;
-    line-height: 30px;
-    font-weight: bold;
-    vertical-align: middle;
-    color: #2e3039;
 
 }
 
@@ -112,7 +94,7 @@ button{
     background: #fff;
 
 }
-table{
+.formTable{
     border:1px solid #dedede;
     line-height: 1.5;
     background-color: #fff;
@@ -122,12 +104,12 @@ table{
     border-collapse: collapse;
 }
 
-tbody{
+tbody .formContent{
     display: table-row-group;
     vertical-align: middle;
     border-color: inherit;
 }
-tr{
+.formContent tr{
     display: table-row;
     vertical-align: inherit;
     border-color: inherit;
@@ -241,17 +223,6 @@ input .check{
 }
 
 
-/* test */
-ul, li{
-    overflow: hidden;
-    list-style: none;
-    width: 100%;
-    margin: 0 auto;
-    padding: 0;
-}
-li {
-list-style: none;
-}
 
 form input::file-selector-button{
     display: none;
@@ -270,98 +241,86 @@ form input::file-selector-button{
     float: left;
 }
 
-label[for='attach'] div{
-    width: 210px;
-    height: 210px;
-    background-size: 100% 100%;
-    cursor: pointer;
-}
-.largeImg, .inputImg{
-    border: 0;
-}
-.bigThumb{
-    position: relative;
-}
-
-
 .bigThumb .largeImg{
     width: 210px;
     height: 210px;
 }
 
-.bigThumb .thumb{
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    border: 1px solid #dedede;
-    background: #fff;
-    box-sizing: border-box;
-    transition: .5s ease-out;
-}
-
-.imgIcon{
-    overflow: hidden;
-    text-indent: -150%;
-    white-space: nowrap;
-    font-size: 1px;
-    line-height: 0;
-    color: transparent;
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box;
-    border: 1px solid #d4d4d4;
-    transition: .3s ease-out;
+label[for='attach0'] div.thumb0{
+    width: 130px;
+    height: 130px;
+    background-image: url("");
+    background-size: 100% 100%;
     cursor: pointer;
-    display: block;
-}
-
-
-span::after{
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 2px;
-    height: 16px;
-    margin: -8px 0 0 -1px;
-    background-color: #565656;
-    background-image: none;
-}
-span::before{
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin: -1px 0 0 -8px;
-    width: 16px;
-    height: 2px;
-    background-color: #565656;
-    background-image: none;
+    border: 1px solid;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #d4d4d4;
 
 }
-.bigThumb .smallImg{
-    width: 100px;
-    height: 100px;
+label[for='attach0'] div.thumb0:hover{
+    background-color: #f5f6f8;
 }
 
-.textInfo{
-    color: #97989b;
-    font-size: 13px;
-    font-style: normal;
-    margin: 4px 0;
+label[for='attach1'] div.thumb1{
+    width: 130px;
+    height: 130px;
+    background-image: url("");
+    background-size: 100% 100%;
+    cursor: pointer;
+    border: 1px solid;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #d4d4d4;
+    background-color: #f5f6f8;
 }
 
-ul.txtInfo li:before {
-    content: "";
-    position: absolute;
-    width: 5px;
-    height: 1px;
-    top: 10px;
-    left: 0;
-    background-color: #a7a8aa;
+label[for='attach2'] div.thumb2{
+    width: 130px;
+    height: 130px;
+    background-image: url("");
+    background-size: 100% 100%;
+    cursor: pointer;
+    border: 1px solid;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f6f8;
+    border: 1px solid #d4d4d4;
 }
-
-ul.txtInfo li{
-line-height: 21px;
+label[for='attach3'] div.thumb3{
+    width: 130px;
+    height: 130px;
+    background-image: url("");
+    background-size: 100% 100%;
+    cursor: pointer;
+    border: 1px solid;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f6f8;
+    border: 1px solid #d4d4d4;
+}
+label[for='attach4'] div.thumb4{
+    width: 130px;
+    height: 130px;
+    background-image: url("");
+    background-size: 100% 100%;
+    cursor: pointer;
+    border: 1px solid;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f6f8;
+    border: 1px solid #d4d4d4;
+}
+.flex{
+    display: flex;
 }

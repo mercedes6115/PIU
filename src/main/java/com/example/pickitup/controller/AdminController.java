@@ -1,10 +1,20 @@
 package com.example.pickitup.controller;
 
+import com.example.pickitup.domain.vo.AdminCriteria;
+import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.*;
-
+import com.example.pickitup.domain.vo.adminVO.AdminBoardDTO;
 import com.example.pickitup.domain.vo.dto.*;
-
+import com.example.pickitup.domain.vo.dto.AdminBoardPageDTO;
+import com.example.pickitup.domain.vo.dto.PageDTO;
+import com.example.pickitup.domain.vo.dto.ProductPageDTO;
+import com.example.pickitup.domain.vo.product.productFile.ProductVO;
+import com.example.pickitup.domain.vo.dto.UserDTO;
+import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaCommentVO;
 import com.example.pickitup.domain.vo.user.AdminBoardVO;
+import com.example.pickitup.service.TempAdminService;
+import com.example.pickitup.service.TempCompanyService;
+import com.example.pickitup.service.AdminProductService;
 import com.example.pickitup.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +33,6 @@ import org.springframework.web.servlet.view.RedirectView;
 
 
 import javax.servlet.http.HttpServletRequest;
-import javax.xml.ws.Service;
 
 @Controller
 @Slf4j
@@ -31,14 +40,14 @@ import javax.xml.ws.Service;
 @RequiredArgsConstructor
 public class AdminController {
     private final TempAdminService tempAdminService;
-    private final TempProductService tempProductService;
+    private final AdminProductService adminProductService;
     private final TempCompanyService tempCompanyService;
     private final TempUserSerivce tempUserSerivce;
     private final ProjectService projectService;
     // 관리자 로그인
     @GetMapping("/login")
-    public void login(){
-
+    public String login(){
+        return "/admin/main";
     }
 
     // 관리자 메인
@@ -53,6 +62,10 @@ public class AdminController {
         log.info("==========");
         log.info("===List===");
         log.info("==========");
+        log.info("=====pagenum : "+adminCriteria.getPageNum());
+        log.info("=====amount : "+adminCriteria.getAmount());
+        log.info("====adminboardcount : " + adminCriteria.getAdminBoardCount());
+
 
         if(adminCriteria.getEndDate()==""){
             adminCriteria.setStartDate(null);
@@ -60,8 +73,10 @@ public class AdminController {
         if(adminCriteria.getEndDate()==""){
             adminCriteria.setEndDate(null);
         }
+
         model.addAttribute("adminboardList", tempAdminService.getAdminboardList(adminCriteria));
         model.addAttribute("adminBoardPageDTO",new AdminBoardPageDTO(adminCriteria, (tempAdminService.getAdminBoardCount(adminCriteria))));
+
 
     }
 
@@ -75,7 +90,7 @@ public class AdminController {
     @PostMapping("/boardWrite")
     public RedirectView boardWriteForm(AdminBoardVO adminBoardVO, RedirectAttributes rttr){
         log.info("====================");
-        log.info("/boardWriteForm");
+
         log.info("====================");
         tempAdminService.registerWrite(adminBoardVO);
         rttr.addFlashAttribute("num", adminBoardVO.getNum());
@@ -87,13 +102,43 @@ public class AdminController {
     @PostMapping("/deleteById")
     public String deleteById(Long num, HttpServletRequest request){
         String[] ajaxMsg = request.getParameterValues("valueArr");
+        String[] category = request.getParameterValues("category");
         int size = ajaxMsg.length;
         for(int i = 0; i<size; i++){
             num = Long.parseLong(ajaxMsg[i]);
+            tempAdminService.productQnaDelete(num);
             tempAdminService.deleteById(num);
         }
         return "/admin/boardList";
     }
+
+    // 관리자 adminboard 체크 공지 해제
+    @ResponseBody
+    @PostMapping("/noticeCancel")
+    public String noticeCancel(Long num, HttpServletRequest request){
+        String[] ajaxMsg = request.getParameterValues("valueArr");
+        int size = ajaxMsg.length;
+        for(int i = 0; i<size; i++){
+            num = Long.parseLong(ajaxMsg[i]);
+            tempAdminService.noticeCancel(num);
+        }
+        return "/admin/boardList";
+    }
+
+    // 관리자 adminboard 체크 공지 지정
+    @ResponseBody
+    @PostMapping("/noticeConfirm")
+    public String noticeConfirm(Long num, HttpServletRequest request){
+        String[] ajaxMsg = request.getParameterValues("valueArr");
+        int size = ajaxMsg.length;
+        for(int i = 0; i<size; i++){
+            num = Long.parseLong(ajaxMsg[i]);
+            tempAdminService.noticeConfirm(num);
+        }
+        return "/admin/boardList";
+    }
+
+
 
     // 관리자 주문 목록
     @GetMapping("/orderList")
@@ -118,6 +163,17 @@ public class AdminController {
         model.addAttribute("orderPageDTO",new OrderPageDTO(orderCriteria,(tempUserSerivce.getOrderTotal(orderCriteria))));
 
 
+    }
+
+    // 관리자 주문 상세
+    @GetMapping("/orderDetail")
+    public void orderDetail(Long num,String category, ProductCriteria productCriteria, Model model){
+        log.info("성공"+num);
+        log.info("성공"+category);
+        model.addAttribute("detailVO",tempAdminService.readUserInfo(num));
+
+        log.info("sssss"+tempAdminService.readUserInfo(num).toString());
+        log.info("sssss"+tempCompanyService.readCompanyInfo(num).toString());
     }
 
     // 관리자 프로젝트 목록
@@ -198,9 +254,38 @@ public class AdminController {
 
     // 관리자 상품 등록
     @PostMapping("/productRegister")
-    public void productRegisterForm(){
-
+    public String productRegisterForm(ProductVO productVO){
+        adminProductService.register(productVO);
+        log.info("====================");
+        log.info("/productRegister");
+        log.info("====================");
+        return "admin/productList";
     }
+
+
+    // 관리자 상품 수정
+    @GetMapping("/productModify")
+    public void productModify( Model model){
+
+        log.info("====================");
+        log.info("/productModify GET");
+        log.info("====================");
+//        Long num1 = Long.parseLong(num);
+//        model.addAttribute("product",adminProductService.read(num1));
+        model.addAttribute("product",adminProductService.read(41L));
+        log.info("컨트롤러임"+model.addAttribute("product",adminProductService.read(41L)));
+    }
+
+    // 관리자 상품 수정
+    @PostMapping("/productModify")
+    public String productModifyForm(ProductVO productVO){
+        adminProductService.modify(productVO);
+        log.info("====================");
+        log.info("/productModify");
+        log.info("====================");
+        return "admin/productList";
+    }
+
 
     // 관리자 유저 목록
     @GetMapping("/userList")
@@ -218,8 +303,8 @@ public class AdminController {
             criteria.setType(null);
         }
         if(criteria.getEndDate()==""){
-                criteria.setStartDate(null);
-            }
+            criteria.setStartDate(null);
+        }
         if(criteria.getEndDate()==""){
             criteria.setEndDate(null);
         }
@@ -261,12 +346,66 @@ public class AdminController {
 
     // 관리자 유저 문의 글 보기
     @GetMapping("/userQnA")
-    public void userQnA(){
-
+    public void userQnA(Long num, AdminBoardDTO adminBoardDTO, HttpServletRequest request, Model model){
+        String requestURL = request.getRequestURI();
+        log.info(requestURL.substring(requestURL.lastIndexOf("/")));
+        log.info("*************");
+        log.info("================================");
+        log.info("================================");
+        model.addAttribute("adminBoard", tempAdminService.getQnaReply(num));
+        log.info("프로젝트QNA넘버 : " + adminBoardDTO.getProjectQnaNum());
+        log.info("프로덕트QNA넘버 : " + adminBoardDTO.getProductQnaNum());
+        log.info("adminboard리스트의 num값 : " + adminBoardDTO.getNum());
     }
 
 
 
+    // 관리자 공지사항 상세 글 보기
+    @GetMapping("/adminNoticeDetail")
+    public void adminNoticeDetail(Long num, HttpServletRequest request, Model model){
+        String requestURL = request.getRequestURI();
+        log.info(requestURL.substring(requestURL.lastIndexOf("/")));
+        log.info("*************");
+        log.info("================================");
+        log.info("================================");
+        model.addAttribute("adminBoard", tempAdminService.getQnaReply(num));
+    }
+
+    //관리자가 답글 쓰면 category로 구분해서 프로젝트/프로덕트 qna comment 테이블에 insert
+    @PostMapping("/userQnA")
+    public RedirectView replyComplete(AdminQnaCommentDTO adminQnaCommentDTO, RedirectAttributes rttr){
+        log.info("================================");
+        log.info("여기프로젝트QNA 넘버 : " + adminQnaCommentDTO.getProjectQnaNum());
+        log.info("프로덕트QNA 넘버 : " + adminQnaCommentDTO.getProductQnaNum());
+        log.info("if문 이전의 게시글의 num값 : " + adminQnaCommentDTO.getNum());
+
+        tempAdminService.changeAnswerStatus(adminQnaCommentDTO.getNum());
+
+        log.info("================================");
+        if((adminQnaCommentDTO.getCategory()).equals("1")){
+            adminQnaCommentDTO.setQnaNum(adminQnaCommentDTO.getProjectQnaNum());
+            tempAdminService.getProjectQnaReply(adminQnaCommentDTO);
+        }
+        if((adminQnaCommentDTO.getCategory()).equals("2")){
+            adminQnaCommentDTO.setQnaNum(adminQnaCommentDTO.getProductQnaNum());
+            tempAdminService.getProductQnaReply(adminQnaCommentDTO);
+        }
+        log.info("if문 이후에 게시글의 nun값 : " + adminQnaCommentDTO.getNum());
+
+
+        return new RedirectView("/admin/boardList");
+    }
+//    public RedirectView replyComplete(AdminBoardDTO adminBoardDTO, ProjectQnaCommentVO projectQnaCommentVO, RedirectAttributes rttr) {
+//        log.info(projectQnaCommentVO.getContent());
+//        if((adminBoardDTO.getCategory()).equals("1")){
+//            log.info("if문 들어옴");
+//            tempAdminService.getProjectQnaReply(projectQnaCommentVO);
+//            log.info("getProjectQnaReply 서비스 실행");
+//        }
+//        log.info("====================");
+//        log.info("====================");
+//        return new RedirectView("/admin/boardList");
+//    }
 
 
 }

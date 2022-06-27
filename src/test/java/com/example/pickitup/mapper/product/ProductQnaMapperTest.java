@@ -1,6 +1,7 @@
 package com.example.pickitup.mapper.product;
 
 
+import com.example.pickitup.domain.vo.ProductQnaCriteria;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 import com.example.pickitup.domain.vo.product.productQna.ProductQnaVO;
 import com.example.pickitup.mapper.product.productFile.ProductMapper;
@@ -16,15 +17,16 @@ public class ProductQnaMapperTest {
     @Autowired
     private ProductQnaMapper productQnaMapper;
 
-//    @Test
-//    public void getListTest(){
-//        productQnaMapper.getList(21L).stream().map(ProductQnaVO::toString).forEach(log::info);
-//    }
-//
     @Test
-    public void getDetailTest(){
-        productQnaMapper.getList(61L);
+    public void getListTest(){
+        productQnaMapper.getList(new ProductQnaCriteria(1,5),23L)
+                .stream().map(ProductQnaVO::toString).forEach(log::info);
     }
+//
+//    @Test
+//    public void getDetailTest(){
+//        productQnaMapper.getList(61L);
+//    }
 //
 //    @Test
 //    public void insertTest(){

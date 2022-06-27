@@ -28,8 +28,8 @@ public class ProductFileServiceTest {
         productFileService.register(vo);
     }
 
-    @Test
-    public void removeTest(){
-        productFileService.remove("서비스에서 추가");
-    }
+//    @Test
+//    public void removeTest(){
+//        productFileService.remove("서비스에서 추가");
+//    }
 }

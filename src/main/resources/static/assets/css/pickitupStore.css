@@ -461,6 +461,7 @@ li.active a{
     top: 10px;
     right: 10px;
     cursor: pointer;
+    font-weight: bold;
 }
 .red{
     color: red;
@@ -812,7 +813,7 @@ li.active a{
 .qna_reply{
     position: relative;
     left: 5%;
-    width: 80%;
+    width: 94%;
 }
 
 .qnas input{
@@ -962,9 +963,17 @@ textarea{
     position: relative;
     color: rgb(26, 26, 26);
 }
+.QnaPaging{
+    font-size: 15px;
+    font-weight: bold;
+    color: black;
+}
+.QnaPaging code{
+    margin-right: 5px;
+}
 
 
-/*문의하기*/
+/*-------------------------------------문의하기------------------------*/
 .question-container{
     width: 100%;
 }
@@ -1017,7 +1026,21 @@ textarea{
     font-size: 0.875rem;
     font-weight: 400;
 }
+a.changePage code{
+    color: black;
+    border: none;
+    font-size: 15px;
+    font-weight: 700;
+}
+code{
+    padding: 10px;
+    border: 2px solid #005bedc1;
+    color: #005bedc1;
+    font-size: 15px;
+    font-weight: 700;
+}
 /*문의하기*/
+
 
 /* -------------------상품 디테일 반응형--------------- */
 @media ( max-width: 1024px ) {
@@ -1333,7 +1356,6 @@ label[for='attach3'] div.thumb3{
     align-items: center;
     background-color: #f5f6f8;
     border: 1px solid #d4d4d4;
-
 }
 
 .pay_point{
@@ -1646,6 +1668,7 @@ footer{
 }
 .moveImage img{
     border-radius: 3px;
+    height: 150px;
 }
 
 .readReviews {

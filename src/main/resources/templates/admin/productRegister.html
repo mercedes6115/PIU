@@ -6,11 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <link rel="stylesheet" href="/src/main/resources/static/assets/css/">
     <link rel="stylesheet" href="/assets/css/productRegister.css">
     <link rel="stylesheet" href="/assets/css/adminSidebar.css">
-    <link rel="stylesheet" href="/assets/css/adminHeader.css">
-    <link rel="stylesheet" href="/assets/css/Header.css">
+<!--    <link rel="stylesheet" href="/assets/css/admin_style.css">-->
+
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
 
@@ -28,32 +27,23 @@
 </head>
 <body>
 
-<!--여기까지가 헤더 입니다-->
-
-
-
 <div class="wrap">
+
     <div class="root">
         <div th:replace="~{/admin/adminSideBar :: AdminSideBarImport}"></div>
         <!-- sidebar -->
+
         <div class="content">
             <!-- content -->
-            <div class="product">
+            <div class="productWrap">
                 <!-- product register -->
-                <div class="register">
-                    <!-- 상품등록 -->
-                    <h1>상품등록</h1>
-                </div>
-                <!-- <div class="flow">
-                    <ol>
-                        <li class="home">홈</li>
-                        <li class="">상품관리</li>
-                        <li>상품등록</li>
-                    </ol>
-                </div> -->
+
+                <!-- 상품등록 -->
+                <h2>상품등록</h2>
+
             </div>
 
-            <form action="" class="formlayout" enctype="multipart/form-data">
+            <form action="/admin/productRegister" method="post" class="formlayout" id="registerForm" enctype="multipart/form-data">
                 <div class="togglebar">
                     <!-- togglebar -->
                     <h2>기본정보</h2>
@@ -61,14 +51,14 @@
 
                 <div class="toggleArea">
                     <!-- togglecontent -->
-                    <table >
+                    <table class="formTable" >
 
-                        <tbody>
+                        <tbody class="formContent">
                         <tr>
                             <th>상품명
                             </th>
                             <td style="display: flex;">
-                                <input class="productName" type="text" name="product_name" required="required" placeholder="예시 ">
+                                <input class="productName" type="text" name="name" required="required" placeholder="예시 ) 친환경 세제로 지구를 지켜라 ">
 
                                 <div class="count">
                                     [<p class="textCount"> 0</p>
@@ -82,7 +72,7 @@
                             <th scope='row'>상품가격
                             </th>
                             <td>
-                                <input class="pay" type="text" name="product_name" required="required">point
+                                <input class="pay" type="number" name="price" required="required">point
 
                             </td>
                         </tr>
@@ -90,49 +80,36 @@
                             <th>상품카테고리
                             </th>
                             <td>
-                                <input class="check" type="checkbox">
+                                <input class="check" type="checkbox" name="category" onclick='checkOnlyOne(this)' value="생활"/>
                                 <label for="">생활</label>
 
-                                <input class="check" type="checkbox">
+                                <input class="check" type="checkbox"  name="category" onclick='checkOnlyOne(this)' value="주방"/>
                                 <label for="">주방</label>
 
-                                <input class="check" type="checkbox">
+                                <input class="check" type="checkbox"  name="category" onclick='checkOnlyOne(this)' value="욕실"/>
                                 <label for="">욕실</label>
 
-                                <input class="check" type="checkbox">
+                                <input class="check" type="checkbox"  name="category" onclick='checkOnlyOne(this)' value="반려동물"/>
                                 <label for="">반려동물</label>
 
-                                <input class="check" type="checkbox">
+                                <input class="check" type="checkbox"  name="category" onclick='checkOnlyOne(this)' value="화장품"/>
                                 <label for="">화장품</label>
 
-                                <input class="check" type="checkbox">
+                                <input class="check" type="checkbox"  name="category" onclick='checkOnlyOne(this)' value="식품"/>
                                 <label for="">식품</label>
 
-                                <input class="check" type="checkbox">
+                                <input class="check" type="checkbox"  name="category" onclick='checkOnlyOne(this)' value="문구"/>
                                 <label for="">문구</label>
 
-                                <input class="check" type="checkbox">
+                                <input class="check" type="checkbox"  name="category" onclick='checkOnlyOne(this)' value="원예"/>
                                 <label for="">원예</label>
                             </td>
                         </tr>
 
                         <tr>
-                            <th>상품요약
-                            </th>
-                            <td style="display: flex;">
-                                <input class="summary"  required="required">
-                                <div class="count">
-                                    [<p class="textCount"> 0</p>
-                                    /
-                                    <p class="textTotal"> 250</p>]
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
                             <th>상품 상세 내용
                             </th>
                             <td>
-
                                 <textarea name="content" id="summernote" class="summernote" required="required"></textarea>
                             </td>
                         </tr>
@@ -141,26 +118,25 @@
                             <th>상품재고
                             </th>
                             <td>
-                                <input class="pay" type="text" name="product_name" required="required">개
+                                <input class="pay" type="number" name="stock" required="required">개
                             </td>
                         </tr>
                         <tr>
                             <th rowspan="2">상품 이미지</th>
                             <td>
                                 <h5>대표이미지</h5>
-                                <div class="bigThumb largeImg">
-                                    <label for="attach">
-                                        <div id="box" class="imgIcon">
-                                            <span></span>
+                                <div class="flex" style="text-align: left; padding: 0  0 10px 24px;">
+                                    <label for="attach0" class="flex">
+                                        <div class="thumb0">
+                                            <div>+</div>
                                         </div>
                                     </label>
-                                    <input type="file" id="attach" style="display: none;">
                                 </div>
-                                <ul class="textInfo">
-                                    <li>
-                                        -등록이미지 : 5M이하 / gif, png, jpg(jpeg)
-                                    </li>
-                                </ul>
+                                <input type="file" name="uploadFiles" id="attach0" class="attach0" style="display: none;">
+                                <p class="imgRequire">
+                                    -등록이미지 : gif, png, jpg(jpeg)
+                                </p>
+
 
 
                             </td>
@@ -170,58 +146,36 @@
 
                             <td>
                                 <span class="detailImg">추가이미지</span>
-                                <div class="extraImg">
-                                    <ul style="display: flex;">
-                                        <li >
-                                            <div class="bigThumb ">
-                                                <label for="attach">
-                                                    <div id="box" class="imgIcon smallImg">
-                                                        <span></span>
-                                                    </div>
-                                                </label>
-                                                <input type="file" id="attach" style="display: none;">
-                                            </div>
-
-
-
-                                        </li>
-                                        <li>
-                                            <div class="bigThumb ">
-                                                <label for="attach">
-                                                    <div id="box" class="imgIcon smallImg">
-                                                        <span></span>
-                                                    </div>
-                                                </label>
-                                                <input type="file" id="attach" style="display: none;">
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="bigThumb ">
-                                                <label for="attach">
-                                                    <div id="box" class="imgIcon smallImg">
-                                                        <span></span>
-                                                    </div>
-                                                </label>
-                                                <input type="file" id="attach" style="display: none;">
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="bigThumb ">
-                                                <label for="attach">
-                                                    <div id="box" class="imgIcon smallImg">
-                                                        <span></span>
-                                                    </div>
-                                                </label>
-                                                <input type="file" id="attach" style="display: none;">
-                                            </div>
-                                        </li>
-                                    </ul>
+                                <div class="flex" style="text-align: left; padding: 0  0 10px 24px;">
+                                    <label for="attach1" class="flex">
+                                        <div class="thumb1">
+                                            <div>+</div>
+                                        </div>
+                                    </label>
+                                    <label for="attach2" class="flex">
+                                        <div class="thumb2">
+                                            <div>+</div>
+                                        </div>
+                                    </label>
+                                    <label for="attach3" class="flex">
+                                        <div class="thumb3">
+                                            <div>+</div>
+                                        </div>
+                                    </label>
+                                    <label for="attach4" class="flex">
+                                        <div class="thumb4">
+                                            <div>+</div>
+                                        </div>
+                                    </label>
+                                    <input type="file" name="uploadFiles" id="attach1" class="attach1" style="display: none;" disabled>
+                                    <input type="file" name="uploadFiles" id="attach2" class="attach2" style="display: none;" disabled>
+                                    <input type="file" name="uploadFiles" id="attach3" class="attach3" style="display: none;" disabled>
+                                    <input type="file" name="uploadFiles" id="attach4" class="attach4" style="display: none;" disabled>
                                 </div>
-                                <ul class="textInfo">
-                                    <li>
-                                        -권장이미지 : 500px * 500px / 1M이하 / gif, png, jpg(jpeg) / 4개까지 추가 가능
-                                    </li>
-                                </ul>
+
+                                <p class="imgRequire">
+                                    -권장이미지 : gif, png, jpg(jpeg) / 4개까지 추가 가능
+                                </p>
 
                             </td>
                         </tr>
@@ -231,21 +185,21 @@
                             <th>제조사
                             </th>
                             <td>
-                                <input class="" type="text" name="product_name" required="required" placeholder="제조사 이름">
+                                <input class="" type="text" name="manufacturer" required="required" placeholder="제조사 이름">
                             </td>
                         </tr>
                         <tr>
                             <th>공급사
                             </th>
                             <td>
-                                <input class="" type="text" name="product_name" required="required" placeholder="공급사 이름">
+                                <input class="" type="text" name="supplier" required="required" placeholder="공급사 이름">
                             </td>
                         </tr>
                         <tr>
                             <th>원산지
                             </th>
                             <td>
-                                <input class="" type="text" name="product_name" required="required" placeholder="원산지 이름">
+                                <input class="" type="text" name="origin" required="required" placeholder="원산지 이름">
                             </td>
                         </tr>
                         </tbody>
@@ -255,10 +209,9 @@
 
                 <div class="submitbtn">
                     <!-- button -->
-                    <button>상품등록</button>
+                    <button class="productbtn">상품등록</button>
                     <button onclick="handleOnClick()"
                             value="confirm">취소</button>
-
                 </div>
             </form>
         </div>
@@ -267,70 +220,7 @@
 </div>
 </body>
 
-<script>
-    $('.productName').keyup(function (e) {
-        let content = $(this).val();
-
-        // 글자수 세기
-        if (content.length == 0 || content == '') {
-            $('.textCount').text('0');
-        } else {
-            $('.textCount').text(content.length);
-        }
-
-        // 글자수 제한
-        if (content.length > 250) {
-            // 250자 부터는 타이핑 되지 않도록
-            $(this).val($(this).val().substring(0, 250));
-            // 250자 넘으면 알림창 뜨도록
-            alert('글자수는 250자까지 입력 가능합니다.');
-        }
-        ;
-    });
-
-
-    $(document).ready(function () {
-        $('#summernote').summernote();
-    });
-
-    function handleOnClick() {
-        let like = confirm("정말 취소하시겠습니까?");
-        document.getElementById('result').innerText = like;
-    }
-
-
-    // 강사님
-
-
-    //첨부파일 input태그 가져오기
-    const file = document.querySelector("input[type='file']");
-    const thumbnail = document.querySelector("label[for='attach'] div");
-
-    //첨부파일이 등록되었다면 change이벤트 발생
-    file.addEventListener("change", function (event) {
-        //특정 경로의 파일을 읽어올 때 사용.
-        let reader = new FileReader();
-
-        //파일정보를 전달하여 reader객체에 등록한다.
-        reader.readAsDataURL(event.target.files[0]);
-        //등록이 되었다면 reader객체의 load 이벤트가 발생한다.
-        $("imgIcon").css({"display": "none"});
-        reader.onload = function (event) {
-            //등록된 파일의 경로에 작성된 파일의 타입검사
-            if (event.target.result.includes("image")) {
-                console.log("이미지 파일입니다.");
-                //등록된 파일의 경로로 대체
-                thumbnail.style.backgroundImage = "url(\"" + event.target.result + "\")";
-            } else {
-                console.log("이미지 파일이 아닙니다.");
-                //미리 준비해놓은 이미지 경로로 대체
-                thumbnail.style.backgroundImage = "url(img/no_image.png)";
-            }
-        }
-    });
-
-
-</script>
 <script th:replace="~{/admin/adminSideBar :: AdminSideBarJSImport}"></script>
+<script src="/assets/js/productRegister.js"></script>
 
 </html>

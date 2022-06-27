@@ -29,7 +29,7 @@ public class ProductFileDAO {
     };
 
     // 사진 삭제(mapper 매개변수 수정)
-    public void remove(String uuid){
-        productFileMapper.delete(uuid);
+    public void remove(Long productNum){
+        productFileMapper.delete(productNum);
     }
 }

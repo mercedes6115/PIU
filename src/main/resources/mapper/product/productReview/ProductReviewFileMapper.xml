@@ -6,6 +6,7 @@
         FROM TBL_PRODUCT_REVIEW_FILE
         WHERE REVIEW_NUM=#{reviewNum}
     </select>
+
     <insert id="insert">
         INSERT INTO TBL_PRODUCT_REVIEW_FILE
             (
@@ -18,7 +19,7 @@
     </insert>
     <delete id="delete">
     DELETE FROM TBL_PRODUCT_REVIEW_FILE
-    WHERE UUID=#{uuid};
+    WHERE REVIEW_NUM=#{reviewNum}
     </delete>
 </mapper>
 
