@@ -201,4 +201,9 @@ public class TempUserServiceTests {
 
     @Test
     public void getMyProductQna() { tempUserSerivce.getMyProductQna(2L);}
+
+    @Test
+    public void getMyAllReview(){
+        tempUserSerivce.myAllReview(22L);
+    }
 }

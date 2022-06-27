@@ -1,4 +1,4 @@
-package com.example.pickitup.util;
+package com.example.pickitup.Util;
 
 import com.example.pickitup.domain.vo.dto.UserDTO;
 import org.springframework.stereotype.Component;

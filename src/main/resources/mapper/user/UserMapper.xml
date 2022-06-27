@@ -48,7 +48,7 @@
     <update id="update">
         UPDATE TBL_USER
         SET NICKNAME=#{nickname}, PHONE=#{phone},ADDRESS=#{address},
-        ADDRESS_DETAIL=#{addressDetail},PROFILE_FILE_NAME=#{profileFileName}, PROFILE_UPLOAD_PATH=#{profileUploadPath}, REGIST_DATE=SYSDATE,
+        ADDRESS_DETAIL=#{addressDetail},PROFILE_FILE_NAME=#{profileFileName}, PROFILE_UPLOAD_PATH=#{profileUploadPath}, REGIST_DATE=SYSDATE
         WHERE NUM=#{num}
     </update>
 
@@ -514,6 +514,12 @@
         SELECT NUM, CONTENT, REGIST_DATE, UPDATE_DATE, USER_NUM, QNA_NUM
         FROM TBL_PRODUCT_QNA_COMMENT
         WHERE QNA_NUM = #{qnaNum}
+    </select>
+
+    <select id="myAllReview" resultType="reviewDTO">
+    SELECT TBL_PRODUCT.NAME productName, TBL_PRODUCT_REVIEW.UPDATE_DATE updateDate, TBL_PRODUCT_REVIEW.CONTENT content, TBL_USER.NICKNAME userName
+    FROM TBL_USER, TBL_PRODUCT_REVIEW, TBL_PRODUCT WHERE  TBL_USER.NUM = TBL_PRODUCT_REVIEW.USER_NUM  AND TBL_PRODUCT_REVIEW.PRODUCT_NUM = TBL_PRODUCT.NUM AND TBL_USER.NUM =#{num}
+    ORDER BY TBL_PRODUCT_REVIEW.UPDATE_DATE DESC
     </select>
 
 </mapper>

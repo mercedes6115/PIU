@@ -29,7 +29,6 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-
 public class TempUserSerivce {
     private final UserDAO userDAO;
     private final ApplyDAO applyDAO;
@@ -299,6 +298,11 @@ public class TempUserSerivce {
         productQnaDTOList.sort(Comparator.comparing(ProductQnaDTO::getQnaUpdateDate).reversed());
 
         return productQnaDTOList;
+    }
+
+    // 유저 내 후기 다 가져오기
+    public List<MyReviewDTO> myAllReview(Long num){
+        return userDAO.myAllReview(num);
     }
 
 }
