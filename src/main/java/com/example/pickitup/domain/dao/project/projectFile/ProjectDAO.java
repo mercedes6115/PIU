@@ -20,6 +20,10 @@ public class ProjectDAO {
 
     private final ProjectMapper projectMapper;
 
+
+    public boolean setApprovaltoContinue(Long projectNum){
+        return projectMapper.setApprovaltoContinue(projectNum);
+    }
     // 프로젝트 목록
     public List<ProjectVO> getList(){
         return projectMapper.getList();

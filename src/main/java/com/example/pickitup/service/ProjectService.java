@@ -165,6 +165,12 @@ public class ProjectService {
 //        }
 //    }
 
+
+    @Transactional
+    public boolean setApproval(Long projectNum, Long applyNum){
+        applyDAO.setApproachToContinue(applyNum);
+        return projectDAO.setApprovaltoContinue(projectNum);
+    }
     // 파일
     @Transactional(rollbackFor = Exception.class)
     public void registerReview(ProjectReviewVO projectReviewVO) {
@@ -225,8 +231,6 @@ public class ProjectService {
                 Ddate = "D" + Integer.toString(Ddays * (-1));
             }
             projectMainDTOS.add(new ProjectMainDTO(pp.getNum(),pp.getTitle(),pp.getTerrain(),pp.getPoint(),pp.getJjimCount(),Ddate,pp.getApplyCount()));
-
-
         }
         return projectMainDTOS;
     }

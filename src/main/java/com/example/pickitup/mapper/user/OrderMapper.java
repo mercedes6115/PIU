@@ -2,6 +2,7 @@ package com.example.pickitup.mapper.user;
 
 import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.OrderCriteria;
+import com.example.pickitup.domain.vo.dto.MyOrderDTO;
 import com.example.pickitup.domain.vo.dto.OrderDTO;
 
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
@@ -41,10 +42,10 @@ public interface OrderMapper {
 
     //
     public List<UserVO> getUser(Long num);
-    //    public int updateUser(UserVO userVO);
+    public int updateUser(UserVO userVO);
     public List<ProductVO> getProduct(Long num);
 
-
+    public List<MyOrderDTO> getBetweenOrder(Long userNum);
 
 
 }

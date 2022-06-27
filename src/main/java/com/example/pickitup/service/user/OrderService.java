@@ -49,13 +49,15 @@ public class OrderService {
 
     //update는 아직 성공못해서 진행 안됨.
 
+
     public void payment(Long num) {
 
         orderDAO.getUser(num);
 //        orderDAO.getProduct(num1);
 
     }
-//    public void User(UserVO userVO){
-//        userDAO.update(userVO);
-//    }
+    public boolean updateUser(UserVO userVO){
+        return orderDAO.updateUser(userVO);
+    }
+
 }

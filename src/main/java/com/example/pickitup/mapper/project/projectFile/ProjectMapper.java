@@ -57,5 +57,7 @@ public interface ProjectMapper {
 
     public boolean awaitProject(Long num);
 
+    public boolean setApprovaltoContinue(Long projectNum);
+
     public List<ProjectDTO> getListToday(String startDate,String endDate);
 }

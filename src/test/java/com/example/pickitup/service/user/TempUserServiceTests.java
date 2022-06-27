@@ -2,10 +2,13 @@ package com.example.pickitup.service.user;
 
 
 import com.example.pickitup.domain.vo.AdminCriteria;
+import com.example.pickitup.domain.vo.dto.AdminQnaCommentDTO;
+import com.example.pickitup.domain.vo.dto.AdminQnaDTO;
 import com.example.pickitup.domain.vo.dto.PointDTO;
 
 import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.adminVO.AdminBoardDTO;
+import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaCommentVO;
 import com.example.pickitup.domain.vo.user.AdminBoardVO;
 import com.example.pickitup.domain.vo.user.UserVO;
 import com.example.pickitup.service.TempAdminService;
@@ -44,7 +47,7 @@ public class TempUserServiceTests {
 
     @Test
     public void getDetail(){
-        log.info("한명의 유저" + tempUserSerivce.readUserInfo(2L));
+        log.info("한명의 유저" + tempUserSerivce.readUserInfo(22L));
     }
 
     @Test
@@ -154,4 +157,48 @@ public class TempUserServiceTests {
         tempAdminService.getQnaReply(125L);
     }
 
+    @Test
+    public void getprojectQnaReply(){
+        AdminQnaCommentDTO adminQnaCommentDTO = new AdminQnaCommentDTO();
+        adminQnaCommentDTO.setContent("디티오서비스테스트");
+        adminQnaCommentDTO.setCompanyNum(1L);
+        adminQnaCommentDTO.setQnaNum(3L);
+        tempAdminService.getProjectQnaReply(adminQnaCommentDTO);
+//        ProjectQnaCommentVO projectQnaCommentVO = new ProjectQnaCommentVO();
+//        projectQnaCommentVO.setCompanyNum(1L);
+//        projectQnaCommentVO.setQnaNum(3L);
+//        projectQnaCommentVO.setContent("서비스테스트");
+//        tempAdminService.getProjectQnaReply(projectQnaCommentVO);
+    }
+
+    @Test
+    public void getproductQnaReply() {
+        AdminQnaCommentDTO adminQnaCommentDTO = new AdminQnaCommentDTO();
+        adminQnaCommentDTO.setContent("디티오서비스테스트");
+        adminQnaCommentDTO.setUserNum(1L);
+        adminQnaCommentDTO.setQnaNum(1L);
+        tempAdminService.getProductQnaReply(adminQnaCommentDTO);
+    }
+
+    @Test
+    public void changeAnswerStatus(){
+        tempAdminService.changeAnswerStatus(5L);
+    }
+
+    @Test
+    public void qnaStoreSave() {
+        AdminQnaDTO adminQnaDTO = new AdminQnaDTO();
+        adminQnaDTO.setContent("서비스 테스트");
+        adminQnaDTO.setUserNum(5L);
+        adminQnaDTO.setProductNum(3L);
+        tempAdminService.qnaStoreSave(adminQnaDTO);
+    }
+
+    @Test
+    public void productQnaDelete() {
+        tempAdminService.productQnaDelete(68L);
+    }
+
+    @Test
+    public void getMyProductQna() { tempUserSerivce.getMyProductQna(2L);}
 }

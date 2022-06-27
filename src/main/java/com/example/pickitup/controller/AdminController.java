@@ -1,31 +1,36 @@
 package com.example.pickitup.controller;
-
 import com.example.pickitup.domain.vo.AdminCriteria;
 import com.example.pickitup.domain.vo.Criteria;
-
 import com.example.pickitup.domain.vo.OrderCriteria;
 import com.example.pickitup.domain.vo.ProductCriteria;
-
 import com.example.pickitup.domain.vo.ProjectCriteria;
 import com.example.pickitup.domain.vo.dto.*;
-
 import com.example.pickitup.domain.vo.dto.AdminBoardPageDTO;
 import com.example.pickitup.domain.vo.dto.PageDTO;
 import com.example.pickitup.domain.vo.dto.ProductPageDTO;
-
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 import com.example.pickitup.domain.vo.user.AdminBoardVO;
 import com.example.pickitup.domain.vo.user.UserVO;
+import com.example.pickitup.domain.vo.*;
+import com.example.pickitup.domain.vo.adminVO.AdminBoardDTO;
+import com.example.pickitup.domain.vo.dto.*;
+import com.example.pickitup.domain.vo.dto.AdminBoardPageDTO;
+import com.example.pickitup.domain.vo.dto.PageDTO;
+import com.example.pickitup.domain.vo.dto.ProductPageDTO;
+import com.example.pickitup.domain.vo.product.productFile.ProductVO;
+import com.example.pickitup.domain.vo.dto.UserDTO;
+import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaCommentVO;
+import com.example.pickitup.domain.vo.user.AdminBoardVO;
+import com.example.pickitup.service.TempAdminService;
+import com.example.pickitup.service.TempCompanyService;
+import com.example.pickitup.service.AdminProductService;
 import com.example.pickitup.service.*;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.javassist.Loader;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
 import org.springframework.web.bind.annotation.*;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,12 +38,12 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
-
 import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
+
 
 @Controller
 @Slf4j
@@ -46,13 +51,121 @@ import java.util.Date;
 @RequiredArgsConstructor
 public class AdminController {
     private final TempAdminService tempAdminService;
-    private final TempProductService tempProductService;
+    private final AdminProductService adminProductService;
     private final TempCompanyService tempCompanyService;
     private final TempUserSerivce tempUserSerivce;
     private final ProjectService projectService;
     // 관리자 로그인
     @GetMapping("/login")
-    public void login(){
+    public String login(){
+        return "/admin/main";
+    }
+
+
+    @GetMapping("/adminQRList")
+    public void adminQRList(HttpServletRequest request,Model model){
+        request=((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+        log.info(request.getRemoteAddr()+"==========");
+        model.addAttribute("ipV4",request.getRemoteAddr());
+    }
+
+
+    @PostMapping("/qrEndLogin")
+    public void qrEndCheck(String email, String password,HttpServletRequest request,Model model){
+
+        // 이메일과 비밀번호를 통해 userDTO를 불러옴
+        UserDTO userDTO=tempUserSerivce.loginUser(email, password);
+
+        Long userNum = userDTO.getNum();
+
+        log.info("============="+userNum);
+
+        QrDTO qrDTO = tempUserSerivce.getQrInfo(userNum);
+
+        log.info(qrDTO.getUserNum() + "===================");
+        log.info(qrDTO.getProjectApproval() + "===================");
+        log.info(qrDTO.getProjectNum() + "===================");
+        log.info(qrDTO.getAddPoint() + "===================");
+        log.info(qrDTO.getUserPoint() + "===================");
+        log.info(qrDTO.getEndQr() + "===================");
+        log.info(qrDTO.getStartQr() + "===================");
+        log.info(qrDTO.getApplyNum() + "===================");
+            // DTO에서 필요한 정보들을 빼냄
+        Long applyNum = qrDTO.getApplyNum();
+        int user_point=Integer.parseInt(qrDTO.getUserPoint());
+        int add_point=Integer.parseInt(qrDTO.getAddPoint());
+        int final_point = user_point+add_point;
+        String totalPoint = Integer.toString(final_point);
+
+        tempAdminService.autoPoint(totalPoint,userNum,applyNum);
+
+        request=((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+        log.info(request.getRemoteAddr()+"==========");
+        model.addAttribute("ipV4",request.getRemoteAddr());
+
+    }
+
+    @PostMapping("/qrStartLogin")
+    public void qrStartCheck(String email, String password,HttpServletRequest request,Model model){
+
+        // 이메일과 비밀번호를 통해 userDTO를 불러옴
+        UserDTO userDTO=tempUserSerivce.loginUser(email, password);
+
+        Long userNum = userDTO.getNum();
+
+        log.info("============="+userNum);
+
+        QrDTO qrDTO = tempUserSerivce.getQrInfo(userNum);
+
+        log.info(qrDTO.getUserNum() + "===================");
+        log.info(qrDTO.getProjectApproval() + "===================");
+        log.info(qrDTO.getProjectNum() + "===================");
+        log.info(qrDTO.getAddPoint() + "===================");
+        log.info(qrDTO.getUserPoint() + "===================");
+        log.info(qrDTO.getEndQr() + "===================");
+        log.info(qrDTO.getStartQr() + "===================");
+        log.info(qrDTO.getApplyNum() + "===================");
+        // DTO에서 필요한 정보들을 빼냄
+        Long applyNum = qrDTO.getApplyNum();
+        Long projectNum = qrDTO.getProjectNum();
+
+
+        projectService.setApproval(projectNum,applyNum);
+
+        request=((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+        log.info(request.getRemoteAddr()+"==========");
+        model.addAttribute("ipV4",request.getRemoteAddr());
+
+    }
+
+
+    @GetMapping("/qrEndLogin")
+    public void qrEndLogin(HttpServletRequest request,Model model,String num,String state){
+
+        // 이메일과 비밀번호를 통해 userDTO를 불러옴
+
+        log.info("============="+num);
+        log.info("============="+state);
+        // DTO에서 필요한 정보들을 빼냄
+
+        request=((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+        log.info(request.getRemoteAddr()+"==========");
+        model.addAttribute("ipV4",request.getRemoteAddr());
+
+    }
+
+    @GetMapping("/qrStartLogin")
+    public void qrStartLogin(HttpServletRequest request,Model model,String num,String state){
+
+        // 이메일과 비밀번호를 통해 userDTO를 불러옴
+
+        log.info("============="+num);
+        log.info("============="+state);
+        // DTO에서 필요한 정보들을 빼냄
+
+        request=((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+        log.info(request.getRemoteAddr()+"==========");
+        model.addAttribute("ipV4",request.getRemoteAddr());
 
     }
 
@@ -111,6 +224,7 @@ public class AdminController {
         model.addAttribute("adminboardList", tempAdminService.getAdminboardList(adminCriteria));
         model.addAttribute("adminBoardPageDTO",new AdminBoardPageDTO(adminCriteria, (tempAdminService.getAdminBoardCount(adminCriteria))));
 
+
     }
 
     // 관리자 게시물 등록
@@ -123,7 +237,7 @@ public class AdminController {
     @PostMapping("/boardWrite")
     public RedirectView boardWriteForm(AdminBoardVO adminBoardVO, RedirectAttributes rttr){
         log.info("====================");
-        log.info("/boardWriteForm");
+
         log.info("====================");
         tempAdminService.registerWrite(adminBoardVO);
         rttr.addFlashAttribute("num", adminBoardVO.getNum());
@@ -135,9 +249,11 @@ public class AdminController {
     @PostMapping("/deleteById")
     public String deleteById(Long num, HttpServletRequest request){
         String[] ajaxMsg = request.getParameterValues("valueArr");
+        String[] category = request.getParameterValues("category");
         int size = ajaxMsg.length;
         for(int i = 0; i<size; i++){
             num = Long.parseLong(ajaxMsg[i]);
+            tempAdminService.productQnaDelete(num);
             tempAdminService.deleteById(num);
         }
         return "/admin/boardList";
@@ -195,6 +311,17 @@ public class AdminController {
 
     }
 
+    // 관리자 주문 상세
+    @GetMapping("/orderDetail")
+    public void orderDetail(Long num,String category, ProductCriteria productCriteria, Model model){
+        log.info("성공"+num);
+        log.info("성공"+category);
+        model.addAttribute("detailVO",tempAdminService.readUserInfo(num));
+
+        log.info("sssss"+tempAdminService.readUserInfo(num).toString());
+        log.info("sssss"+tempCompanyService.readCompanyInfo(num).toString());
+    }
+
     // 관리자 프로젝트 목록
     @GetMapping("/projectList")
     public void projectList(ProjectCriteria projectCriteria, Model model, HttpServletRequest request){
@@ -219,9 +346,10 @@ public class AdminController {
         }
         request=((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
         log.info(request.getRemoteAddr()+"==========");
+        model.addAttribute("ipV4",request.getRemoteAddr());
         model.addAttribute( "projectList",projectService.getProjectList(projectCriteria));
         model.addAttribute("projectPageDTO",new ProjectPageDTO(projectCriteria,(projectService.getProjectTotal(projectCriteria))));
-        model.addAttribute("ipV4",request.getRemoteAddr());
+
     }
 
     // 관리자 프로젝트 생성 폼
@@ -289,8 +417,12 @@ public class AdminController {
 
     // 관리자 상품 등록
     @PostMapping("/productRegister")
-    public void productRegisterForm(){
-
+    public String productRegisterForm(ProductVO productVO){
+        adminProductService.register(productVO);
+        log.info("====================");
+        log.info("/productRegister");
+        log.info("====================");
+        return "admin/productList";
     }
 
     @PostMapping("/deleteProduct")
@@ -302,6 +434,31 @@ public class AdminController {
             num = Long.parseLong(ajaxMsg[i]);
             tempAdminService.removeProduct(num);
         }
+    }
+
+
+
+    // 관리자 상품 수정
+    @GetMapping("/productModify")
+    public void productModify( Model model){
+
+        log.info("====================");
+        log.info("/productModify GET");
+        log.info("====================");
+//        Long num1 = Long.parseLong(num);
+//        model.addAttribute("product",adminProductService.read(num1));
+        model.addAttribute("product",adminProductService.read(41L));
+        log.info("컨트롤러임"+model.addAttribute("product",adminProductService.read(41L)));
+    }
+
+    // 관리자 상품 수정
+    @PostMapping("/productModify")
+    public String productModifyForm(ProductVO productVO){
+        adminProductService.modify(productVO);
+        log.info("====================");
+        log.info("/productModify");
+        log.info("====================");
+        return "admin/productList";
     }
 
     // 관리자 유저 목록
@@ -451,7 +608,6 @@ public class AdminController {
 
     }
 
-
     @PostMapping("/modifyInfo")
     @ResponseBody
     public String modifyInfo(String password,String category,Long num){
@@ -469,10 +625,24 @@ public class AdminController {
 
     }
 
-
     // 관리자 유저 문의 글 보기
     @GetMapping("/userQnA")
-    public void userQnA(Long num, HttpServletRequest request, Model model){
+    public void userQnA(Long num, AdminBoardDTO adminBoardDTO, HttpServletRequest request, Model model){
+        String requestURL = request.getRequestURI();
+        log.info(requestURL.substring(requestURL.lastIndexOf("/")));
+        log.info("*************");
+        log.info("================================");
+        log.info("================================");
+        model.addAttribute("adminBoard", tempAdminService.getQnaReply(num));
+        log.info("프로젝트QNA넘버 : " + adminBoardDTO.getProjectQnaNum());
+        log.info("프로덕트QNA넘버 : " + adminBoardDTO.getProductQnaNum());
+        log.info("adminboard리스트의 num값 : " + adminBoardDTO.getNum());
+    }
+
+
+    // 관리자 공지사항 상세 글 보기
+    @GetMapping("/adminNoticeDetail")
+    public void adminNoticeDetail(Long num, HttpServletRequest request, Model model){
         String requestURL = request.getRequestURI();
         log.info(requestURL.substring(requestURL.lastIndexOf("/")));
         log.info("*************");
@@ -481,6 +651,28 @@ public class AdminController {
         model.addAttribute("adminBoard", tempAdminService.getQnaReply(num));
     }
 
+    //관리자가 답글 쓰면 category로 구분해서 프로젝트/프로덕트 qna comment 테이블에 insert
+    @PostMapping("/userQnA")
+    public RedirectView replyComplete(AdminQnaCommentDTO adminQnaCommentDTO, RedirectAttributes rttr) {
+        log.info("================================");
+        log.info("여기프로젝트QNA 넘버 : " + adminQnaCommentDTO.getProjectQnaNum());
+        log.info("프로덕트QNA 넘버 : " + adminQnaCommentDTO.getProductQnaNum());
+        log.info("if문 이전의 게시글의 num값 : " + adminQnaCommentDTO.getNum());
+
+        tempAdminService.changeAnswerStatus(adminQnaCommentDTO.getNum());
+
+        log.info("================================");
+        if ((adminQnaCommentDTO.getCategory()).equals("1")) {
+            adminQnaCommentDTO.setQnaNum(adminQnaCommentDTO.getProjectQnaNum());
+            tempAdminService.getProjectQnaReply(adminQnaCommentDTO);
+        }
+        if ((adminQnaCommentDTO.getCategory()).equals("2")) {
+            adminQnaCommentDTO.setQnaNum(adminQnaCommentDTO.getProductQnaNum());
+            tempAdminService.getProductQnaReply(adminQnaCommentDTO);
+        }
+        log.info("if문 이후에 게시글의 nun값 : " + adminQnaCommentDTO.getNum());
+        return new RedirectView("/admin/boardList");
+    }
 
     @PostMapping("/insertQr")
     @ResponseBody
@@ -503,7 +695,17 @@ public class AdminController {
             tempAdminService.deleteProject(num);
         }
     }
-
+//    public RedirectView replyComplete(AdminBoardDTO adminBoardDTO, ProjectQnaCommentVO projectQnaCommentVO, RedirectAttributes rttr) {
+//        log.info(projectQnaCommentVO.getContent());
+//        if((adminBoardDTO.getCategory()).equals("1")){
+//            log.info("if문 들어옴");
+//            tempAdminService.getProjectQnaReply(projectQnaCommentVO);
+//            log.info("getProjectQnaReply 서비스 실행");
+//        }
+//        log.info("====================");
+//        log.info("====================");
+//        return new RedirectView("/admin/boardList");
+//    }
 
     @PostMapping("/approveProject")
     @ResponseBody

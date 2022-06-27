@@ -71,8 +71,8 @@
                         <td th:text="*{startTime}"></td>
                         <td th:text="*{endTime}"></td>
                         <td th:if="*{approach}=='1'" th:style="${'color:red;'}" th:text="출발전"></td>
-                        <td th:if="*{approach}=='2'" th:text="도착전"></td>
-                        <td th:if="*{approach}=='3'" th:text="프로젝트완료"></td>
+                        <td th:if="*{approach}=='2'" th:text="진행중"></td>
+                        <td th:if="*{approach}=='3'" th:text="도착"></td>
                         <td th:if="*{approach}=='4'" th:style="${'color:blue;'}" th:text="지급완료"></td>
                         <td th:text="*{point}"></td>
                         <td><button type="button" class="checkBtn">포인트지급</button></td>

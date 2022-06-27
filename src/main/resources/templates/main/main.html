@@ -24,8 +24,7 @@
 <div class="banners-container-total">
     <div class="banner-container-inside1">
         <div class="banner-container-rightside" id="banner-container-rightside"></div>
-        <div class="banner-contanier-inside2">
-            <img src="/images/poster1.png" class="banner-container-inside-back-img" id="bannerBackGround">
+        <div class="banner-contanier-inside2" id="bannerBackGround">
         </div>
         <div class="banner-contanier-inside3"></div>
         <div class="banner-container-inside4">
@@ -36,6 +35,13 @@
                         <div class="banner-inside-component2"></div>
                         <div class="swiper-imgscontainer">
                             <div class="swiper-imgWrapper1">
+                                <div class="swiper-slide-sc">
+                                    <div class="swiper-slide-sc1">
+                                        <div class="swiper-slide-sc2">
+                                            <img src="/images/poster1.png" class="swiper-slide-sc-a">
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="swiper-slide-sc">
                                     <div class="swiper-slide-sc1">
                                         <div class="swiper-slide-sc2">
@@ -60,14 +66,14 @@
                                 <div class="swiper-slide-sc">
                                     <div class="swiper-slide-sc1">
                                         <div class="swiper-slide-sc2">
-                                            <img src="/images/poster7.png" class="swiper-slide-sc-a">
+                                            <img src="/images/poster5.png" class="swiper-slide-sc-a">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="swiper-slide-sc">
                                     <div class="swiper-slide-sc1">
                                         <div class="swiper-slide-sc2">
-                                            <img src="/images/poster5.png" class="swiper-slide-sc-a">
+                                            <img src="/images/poster6.png" class="swiper-slide-sc-a">
                                         </div>
                                     </div>
                                 </div>
@@ -85,8 +91,8 @@
                 </div>
                 <div class="advertising-container">
                     <a href="#" class="advertising-container-link">
-                        <p class="advertising-text" id="advertising-text">신사임당 유튜브 클래스
-                            오픈할인 종료 D-2</p>
+                        <p class="advertising-text" id="advertising-text">main.html에 써있는 내용 // 1회용 처음 들어왔을때 뜸 1번내용하고 같은거
+                            쓰면 됨</p>
                     </a>
                     <div class="progressbar-container">
                         <span class="advertisement-count-wrapper">
@@ -327,6 +333,7 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="/assets/js/SlideShow.js"></script>
 <script src="/assets/js/Banner.js"></script>
+<script src="/assets/js/Header.js"></script>
 <script th:inline="javascript">
     let strImg = "";
     $(".Jjim-image").each(function (i, h) {
@@ -343,13 +350,13 @@
             }
         })
     })
-</script>
 
-<script th:inline="javascript">
-    let nickname=[[${nickname}]];
-    if(nickname!=null){
-        alert(nickname+"님 어서오세요!");
+    let nickname = [[${nickname}]];
+    let sessionnickname = [[${session.nickname}]];
+    if (sessionnickname != null) {
+        alert(sessionnickname + "님 어서오세요!");
     }
+    let sessioncategory = [[${session.category}]];
 </script>
 
 </html>

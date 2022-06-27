@@ -13,7 +13,7 @@ public interface ProductReviewMapper {
     public List<ProductReviewVO> getList(Long num);
 
     //  하나의 리뷰 상세보기
-//    public ProductReviewVO getDetail(Long num);
+    public ProductReviewVO getDetail(Long num);
 
     //    리뷰 하나 작성하기 ->일반 유저 ,관리자
     public void insert(ProductReviewVO productReviewVO);

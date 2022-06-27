@@ -9,20 +9,18 @@ import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.OrderCriteria;
 import com.example.pickitup.domain.vo.ProductCriteria;
 import com.example.pickitup.domain.vo.adminVO.AdminBoardDTO;
-
 import com.example.pickitup.domain.vo.dto.*;
-
 import com.example.pickitup.domain.vo.dto.OrderDTO;
-
+import com.example.pickitup.domain.vo.dto.*;
 import com.example.pickitup.domain.vo.product.productFile.ProductFileVO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectFileVO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
+import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaCommentVO;
 import com.example.pickitup.domain.vo.user.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 
 @Service
@@ -50,6 +48,12 @@ public class TempAdminService {
     // 프로젝트 참가 정보 확인
     public ApplyVO read(Long num){
         return applyDAO.read(num);
+    }
+
+    @Transactional
+    public boolean autoPoint(String point, Long userNum,Long applyNum){
+        applyDAO.setApproach(applyNum);
+        return userDAO.autoPoint(point,userNum);
     }
 
     // 프로젝트 참가자 정보 수정(완수여부)
@@ -175,8 +179,8 @@ public class TempAdminService {
     };
 
     // 사진 삭제(mapper 매개변수 수정)
-    public void removeProductImg(String uuid){
-        productFileDAO.remove(uuid);
+    public void removeProductImg(Long productNum){
+        productFileDAO.remove(productNum);
     }
 
 
@@ -238,6 +242,31 @@ public class TempAdminService {
     //관리자 게시물 관리에서 상세보기
     public AdminBoardPageDTO getQnaReply(Long num){
         return userDAO.getQnaReply(num);
+    }
+
+    //관리자 프로젝트 문의에 댓글 달기
+    public void getProjectQnaReply(AdminQnaCommentDTO adminQnaCommentDTO){
+        userDAO.projectQnaReply(adminQnaCommentDTO);
+    }
+
+    //관리자 상품 문의에 댓글 달기
+    public void getProductQnaReply(AdminQnaCommentDTO adminQnaCommentDTO){
+        userDAO.productQnaReply(adminQnaCommentDTO);
+    }
+
+    //관리자 문의에 댓글 달고 난후 게시물의 answerStatus 2로 변경
+    public void changeAnswerStatus(Long num){
+        userDAO.answerComplete(num);
+    }
+
+    //유저가 상품 문의 남겼을때 adminboard 에도 저장
+    public void qnaStoreSave(AdminQnaDTO adminQnaDTO){
+        userDAO.qnaStoreSave(adminQnaDTO);
+    }
+
+    //관리자가 게시물 목록에서 상품문의 삭제 했을때 productQnA 테이블에서 삭제
+    public void productQnaDelete(Long num) {
+        userDAO.productQnaDelete(num);
     }
 
 

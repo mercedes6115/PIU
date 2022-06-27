@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <link rel="stylesheet" href="/assets/css/login.css"/>
+
+</head>
+<body>
+
+<div class="content">
+    <div class="formdesign">
+        <h1 class="loginh1">
+            <a class="logo" href="/main/main">pickitup</a>
+        </h1>
+        <div class="loginform">
+            <div>
+                <h2 class="title">QR로그인</h2>
+            </div>
+            <form method="post" action="/admin/qrEndLogin" id="loginForm">
+                <div class="emaildiv">
+                    <lable class="email">이메일</lable>
+                    <input id="email" class="emailtype" type="email" name="email" placeholder="example@naver.com">
+                    <div class="letshow1">
+                        <div class="svgdiv">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" class="icons">
+
+                                <path fill-rule="evenodd" d="M21.872 19.51A1 1 0 0121 21H3a1 1 0 01-.872-1.49l9-16a1 1 0 011.743 0l9 16zM13 15V9h-2v6h2zm0 3v-2h-2v2h2z" fill="#1B1C1D"></path> </svg>
+                        </div>
+                        <div style="margin-top: -2px;">
+                            <h6>
+                                <span>이메일을 입력해주세요.</span>
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pwdiv">
+                    <lable class="email">비밀번호</lable>
+                    <input id="pw" class="emailtype" type="password" name="password" placeholder="********">
+                    <div class="letshow2">
+                        <div class="svgdiv">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" class="icons">
+                                dkjfdfj
+                                <path fill-rule="evenodd" d="M21.872 19.51A1 1 0 0121 21H3a1 1 0 01-.872-1.49l9-16a1 1 0 011.743 0l9 16zM13 15V9h-2v6h2zm0 3v-2h-2v2h2z" fill="#1B1C1D"></path> </svg>
+                        </div>
+                        <div style="margin-top: -2px;">
+                            <h6>
+                                <span>비밀번호를 입력해주세요.</span>
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="loginbutton"> 로그인</button>
+            </form>
+            <hr class="line">
+
+        </div>
+    </div>
+    <div class="imgdiv">
+        <img class="loginimg" src="/images/logo.jpg">
+    </div>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/assets/js/login.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script type="text/javascript" th:inline="javascript">
+    let msg=[[${msg}]];
+    if(msg!=null){
+        alert(msg);
+    }
+
+    let msg=[[${success}]];
+
+    if(msg!=null){
+        alert("포인트 지급 성공!!!");
+    }
+</script>
+</html>

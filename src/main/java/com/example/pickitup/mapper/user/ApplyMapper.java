@@ -30,4 +30,5 @@ public interface ApplyMapper {
     public boolean setApproach(Long applynum);
     public List<ApplyDTO> getApplyUser(Long projectNum);
 
+    public boolean setApproachToContinue(Long applyNum);
 }

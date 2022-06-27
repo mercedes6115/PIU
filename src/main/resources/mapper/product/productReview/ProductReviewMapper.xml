@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.pickitup.mapper.product.productReview.ProductReviewMapper">
     <select id="getList" resultType="productReviewVO">
-    SELECT NUM, CONTENT, REGIST_DATE, UPDATE_DATE, STATUS, USER_NUM, PRODUCT_NUM
+    SELECT NUM, CONTENT, REGIST_DATE, UPDATE_DATE, USER_NUM, PRODUCT_NUM
     FROM TBL_PRODUCT_REVIEW
     WHERE PRODUCT_NUM=#{productNum}
-    ORDER BY REGIST_DATE DESC
+    ORDER BY UPDATE_DATE DESC
     </select>
     <select id="getDetail" resultType="productReviewVO">
     SELECT NUM,CONTENT, REGIST_DATE, UPDATE_DATE, USER_NUM, PRODUCT_NUM

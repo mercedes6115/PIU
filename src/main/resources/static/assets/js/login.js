@@ -54,7 +54,9 @@ $(document).ready(function () {
             e.preventDefault();
             return;
         }
-
+        let enpw=btoa($('input[name=password]').val());
+        $('input[name=password]').val(enpw);
+        loginForm.submit();
 
     });
 });
@@ -72,7 +74,6 @@ $(document).ready(function () {
 //
 //
 // }
-
 
 
 

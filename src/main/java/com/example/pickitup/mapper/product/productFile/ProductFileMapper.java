@@ -16,5 +16,5 @@ public interface ProductFileMapper {
     public void insert(ProductFileVO productFileVO);
 
     //    사진 삭제(후기 수정시에 호출)
-    public void delete(String uuid);
+    public void delete(Long productNum);
 }

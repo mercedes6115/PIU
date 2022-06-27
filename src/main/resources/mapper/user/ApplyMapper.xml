@@ -14,6 +14,7 @@
         WHERE app.PROJECT_NUM = #{projectNum}
     </select>
 
+<!--    지급완료-->
     <update id="setApproach">
         UPDATE TBL_APPLY
         SET APPROACH='4'
@@ -29,6 +30,12 @@
     </select>
 
 
+<!--    프로젝트 진행중-->
+    <update id="setApproachToContinue">
+        UPDATE TBL_APPLY
+        SET APPROACH='2'
+        WHERE NUM=#{applynum}
+    </update>
 </mapper>
 
 

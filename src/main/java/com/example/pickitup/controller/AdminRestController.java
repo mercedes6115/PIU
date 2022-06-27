@@ -50,6 +50,9 @@ public class AdminRestController {
 
     }
 
+
+
+
     // 관리자 단체유저 승인
     @GetMapping("/approveProduct")
     public void approveProduct(){

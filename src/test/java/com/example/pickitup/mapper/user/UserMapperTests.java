@@ -2,6 +2,10 @@ package com.example.pickitup.mapper.user;
 
 import com.example.pickitup.domain.vo.AdminCriteria;
 import com.example.pickitup.domain.vo.Criteria;
+import com.example.pickitup.domain.vo.dto.AdminQnaCommentDTO;
+import com.example.pickitup.domain.vo.dto.AdminQnaDTO;
+import com.example.pickitup.domain.vo.product.productQna.ProductQnaCommentVO;
+import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaCommentVO;
 import com.example.pickitup.domain.vo.user.AdminBoardVO;
 import com.example.pickitup.domain.vo.user.UserVO;
 import lombok.extern.slf4j.Slf4j;
@@ -173,6 +177,60 @@ public class UserMapperTests {
         userMapper.getQnaReply(125L);
     }
 
+    @Test
+    public void getprojectQnaReplyTest() {
+        AdminQnaCommentDTO adminQnaCommentDTO = new AdminQnaCommentDTO();
+        adminQnaCommentDTO.setContent("시작시간은 오후12시입니다.");
+        adminQnaCommentDTO.setUserNum(0L);
+        adminQnaCommentDTO.setQnaNum(1L);
+        userMapper.projectQnaReply(adminQnaCommentDTO);
+//        ProjectQnaCommentVO projectQnaCommentVO = new ProjectQnaCommentVO();
+//        projectQnaCommentVO.setContent("시작시간은 오후12시입니다.");
+//        projectQnaCommentVO.setUserNum(0L);
+//        projectQnaCommentVO.setQnaNum(1L);
+//        userMapper.projectQnaReply(projectQnaCommentVO);
+    }
+
+    @Test
+    public void getproductQnaReplyTest() {
+        AdminQnaCommentDTO adminQnaCommentDTO = new AdminQnaCommentDTO();
+        adminQnaCommentDTO.setContent("오늘 배송됩니다.");
+        adminQnaCommentDTO.setUserNum(0L);
+        adminQnaCommentDTO.setQnaNum(1L);
+        userMapper.productQnaReply(adminQnaCommentDTO);
+    }
+
+    @Test
+    public void answerCompleteTest() {
+        userMapper.answerComplete(4L);
+    }
+
+    @Test
+    public void qnaSaveTest() {
+        AdminQnaDTO adminQnaDTO = new AdminQnaDTO();
+        adminQnaDTO.setContent("이 상품 언제 배송 도착하나요?");
+        adminQnaDTO.setUserNum(1L);
+        adminQnaDTO.setProductNum(1L);
+        userMapper.qnaStoreSave(adminQnaDTO);
+    }
+
+    @Test
+    public void productQnaDelete() {
+        Long num = 63L;
+        userMapper.productQnaDelete(num);
+    }
+
+    @Test
+    public void getMyProjectQnaTest() {userMapper.getMyProjectQna(2L);}
+
+    @Test
+    public void getMyProductQnaTest() {userMapper.getMyProductQna(2L);}
+
+    @Test
+    public void getProjectQnaComment() {userMapper.myProjectQnaComment(1L);}
+
+    @Test
+    public void getProductQnaComment() {userMapper.myProductQnaComment(13L);}
 }
 
 

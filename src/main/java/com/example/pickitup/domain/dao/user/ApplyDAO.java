@@ -30,6 +30,7 @@ public class ApplyDAO {
         return applyMapper.getDetail(num);
     }
 
+    // 프로젝트 지급완료로 상태변경
     public boolean setApproach(Long applyNum){
         return applyMapper.setApproach(applyNum);
     }
@@ -47,5 +48,11 @@ public class ApplyDAO {
     //프로젝트한 참여한 유저 목록
     public List<ApplyDTO> getApplyUser(Long projectNum){
         return applyMapper.getApplyUser(projectNum);
+    }
+
+
+    // 프로젝트 진행중으로 상태변경
+    public boolean setApproachToContinue(Long applyNum){
+        return applyMapper.setApproachToContinue(applyNum);
     }
 }

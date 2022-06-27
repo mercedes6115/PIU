@@ -4,12 +4,15 @@ import com.example.pickitup.domain.vo.AdminCriteria;
 import com.example.pickitup.domain.vo.Criteria;
 
 import com.example.pickitup.domain.vo.adminVO.AdminBoardDTO;
-import com.example.pickitup.domain.vo.dto.AdminBoardPageDTO;
+import com.example.pickitup.domain.vo.dto.*;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
+import com.example.pickitup.domain.vo.product.productQna.ProductQnaCommentVO;
+import com.example.pickitup.domain.vo.product.productQna.ProductQnaVO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 
-import com.example.pickitup.domain.vo.dto.UserDTO;
+import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaCommentVO;
 
+import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaVO;
 import com.example.pickitup.domain.vo.user.AdminBoardVO;
 import com.example.pickitup.domain.vo.user.UserVO;
 import org.apache.catalina.User;
@@ -53,6 +56,21 @@ public interface UserMapper {
 
     //    관리자 게시물 관리에서 상세보기
     public AdminBoardPageDTO getQnaReply(Long num);
+
+    //    관리자 project qna 답글쓴것 insert
+    public void projectQnaReply(AdminQnaCommentDTO adminQnaCommentDTO);
+
+    //    관리자 product qna 답글쓴것 insert
+    public void productQnaReply(AdminQnaCommentDTO adminQnaCommentDTO);
+
+    //    관리자가 답글 남겼을때 answer_status 2로 변경
+    public void answerComplete(Long num);
+
+    //    관리자 게시물 목록에서 문의글 삭제 했을때 QnA테이블에서 같이 삭제
+    public void productQnaDelete(Long num);
+
+    //    유저가 상품 문의 남겼을때 adminboard 에도 저장
+    public void qnaStoreSave(AdminQnaDTO adminQnaDTO);
 
     //    유저 목록 관리자용
     public  List<UserDTO> getList(Criteria criteria);
@@ -100,6 +118,7 @@ public interface UserMapper {
     public boolean updatePW(String email,String password);
 
 
+
 // 관리자용 유저 활성화/비활성화
 
     public boolean userStatusDisable(Long num); // 비활성화
@@ -109,4 +128,31 @@ public interface UserMapper {
 
 
     public boolean addPoint(String nickname, String point);
+
+//  마이페이지 비밀번호 변경
+    public boolean changePw(String password, Long num);
+
+
+//    카카오톡 유저 로그인하자마자 이메일 중복확인 후 회원가입
+    public void kakaoinsert(UserVO userVO);
+
+//    카카오톡 유저 로그인하자마자 이메일 중복 시 회원정보가져오기
+    public UserVO kakaoDetail(@Param("email") String email);
+
+//    내가 작성한 projectQna
+    public List<ProjectQnaVO> getMyProjectQna(Long userNum);
+
+//    내가 작성한 productQna
+    public  List<ProductQnaVO> getMyProductQna(Long userNum);
+
+//    해당 project 문의글에 작성된 답변
+    public ProjectQnaCommentVO myProjectQnaComment(Long qnaNum);
+
+//    해당 product 문의글에 작성된 답변
+    public ProductQnaCommentVO myProductQnaComment(Long qnaNum);
+
+
+    public QrDTO getQrInfo(Long userNum);
+
+    public boolean autoPoint(String point,Long userNum);
 }

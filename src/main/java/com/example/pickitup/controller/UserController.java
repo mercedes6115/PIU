@@ -11,7 +11,7 @@ import com.example.pickitup.domain.vo.user.CompanyVO;
 import com.example.pickitup.domain.vo.user.UserVO;
 import com.example.pickitup.service.TempCompanyService;
 import com.example.pickitup.service.TempUserSerivce;
-import com.example.pickitup.Util.SessionManager;
+import com.example.pickitup.util.SessionManager;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
@@ -21,6 +21,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.text.ParseException;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -61,8 +64,10 @@ public class UserController {
 
     // 마이페이지 QnA
     @GetMapping("/myQnA")
-    public void myQnA(){
-
+    public String myQnA(Model model){
+        model.addAttribute("qnaList",tempUserSerivce.getMyProductQna(2L));
+        model.addAttribute("user",tempUserSerivce.readUserInfo(2L));
+        return "/user/myQnA";
     }
 
     // 마이페이지 문의
@@ -110,10 +115,17 @@ public class UserController {
         return new RedirectView("/user/login");
     }
 
-    // 회원정보 수정 전 비밀번호 확인
-    @GetMapping("/pwCheck")
-    public void pwCheck(){
+    // 마이페이지 비밀번호 수정
+    @GetMapping("/myPassword")
+    public String myPassword(Model model){
+        model.addAttribute("getDetail",tempUserSerivce.readUserInfo(2L));
+        return "/user/myPassword";
+    }
 
+    @PostMapping("/myPassword")
+    public RedirectView myPasswordForm(String password, Long num) {
+        tempUserSerivce.changePw(password,num);
+        return new RedirectView("/user/myPage");
     }
 
     // 회원 정보 수정
@@ -154,17 +166,20 @@ public class UserController {
 
     }
 
+
     // 단체 유저 회원가입 폼
     @PostMapping("/joinGroup")
-    public void joinGroupForm(CompanyVO companyVO){
+    public String joinGroupForm(CompanyVO companyVO){
         companyVO.setPhone(String.join("",companyVO.getPhone().split("-")));
         companyVO.setBusinessPhone(String.join("",companyVO.getBusinessPhone().split("-")));
 
         log.info(companyVO.getPhone());
         log.info(companyVO.getBusinessPhone());
         tempCompanyService.registerCompany(companyVO);
+        return "/user/login";
 
     }
+
 
 
     // 로그인
@@ -189,7 +204,12 @@ public class UserController {
             rttr.addFlashAttribute("category",userDTO.getCategory());
 
             HttpSession session=request.getSession();
-            SessionManager.setSesstion(userDTO,session);
+
+            session.setAttribute("num", userDTO.getNum().toString());
+            session.setAttribute("nickname", userDTO.getNickname());
+            session.setAttribute("category", userDTO.getCategory());
+
+            log.info(session.getAttribute("category").toString());
 
             if(userDTO.getNickname().equals("admin")){
                 return new RedirectView("/admin/login");
@@ -200,18 +220,34 @@ public class UserController {
         return new RedirectView("/user/login");
     }
 
-    // 로그아웃
-    @GetMapping("/logout")
-    public String logout(HttpServletRequest request){
-        sessionManager.expire(request.getSession());
-        sessionManager.checkSession(request.getSession());
-        log.info("control");
-        return "/user/login";
-    }
 
     // 회원탈퇴
     @DeleteMapping("/delete")
     public void delete(){
 
     }
+
+    @GetMapping("/guide")
+    public void guide(){
+
+    }
+
+    @GetMapping("/center")
+    public void center(){
+
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session){
+        session.invalidate();
+        log.info("control");
+
+        return "/user/login";
+    }
+
+//    @GetMapping("/myOrderList")
+//    public String myOrderList(Long num, Model model){
+//        model.addAttribute("myOrderList", tempUserSerivce.myOrderList(2L));
+//        return  "/user/myOrderList";
+//    }
 }

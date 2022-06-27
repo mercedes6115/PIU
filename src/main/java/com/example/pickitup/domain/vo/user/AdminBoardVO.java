@@ -16,4 +16,6 @@ public class AdminBoardVO {
     private String updateDate;
     private String status;
     private Long userNum;
+    private Long projectQnaNum;
+    private Long productQnaNum;
 }

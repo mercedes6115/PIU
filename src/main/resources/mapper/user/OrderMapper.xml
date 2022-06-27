@@ -265,11 +265,28 @@
     </select>
 
     <update id="updateUser">
-        SELECT
-        NUM, ADDRESS,ADDRESS_DETAIL, POINT
-        FROM TBL_USER
+UPDATE TBL_USER set
+        NICKNAME = #{nickname},
+        PHONE = #{phone},
+        ADDRESS = #{address},
+        ADDRESS_DETAIL = #{addressDetail},
+        POINT = #{point}
         WHERE NUM=#{num}
     </update>
+    
+    <select id="getBetweenOrder" resultType="myOrderDTO">
+        SELECT TOTAL, COUNTING, STATUS, ADDRESS_COMMENT, ADDRESS, ADDRESS_DETAIL
+	    FROM TBL_ORDER
+        <where>
+            <if test="userNum != null">
+                USER_NUM = #{userNum}
+            </if>
+            <if test="startDate != null and endDate != null">
+                AND (TO_CHAR(REGIST_DATE,'yyyy-mm-dd hh24:mi:ss')) BETWEEN
+                #{startDate} AND (#{endDate}||'23:59:59')
+            </if>
+        </where>
+    </select>
 </mapper>
 
 

@@ -53,10 +53,6 @@
                         </div>
                     </div>
                 </div>
-<<<<<<< HEAD
-                <a href="/password/FindPassword.html" class="findpw">비밀번호를 잊으셨나요?</a>
-                <a href="/user/join" class="joinus">회원가입하기</a>
-=======
                 <div style="display: flex; justify-content: space-between;">
                     <a href="/user/findPw" class="findpw">비밀번호를 잊으셨나요?</a>
                     <div style="display: flex">
@@ -65,14 +61,15 @@
                         <a href="/user/joinGroup" class="joinus">회사회원 가입하기</a>
                     </div>
                 </div>
->>>>>>> 1af0443feb0328ae48e4df9350b51acaaeacd0be
                 <button type="submit" class="loginbutton"> 로그인</button>
             </form>
-
             <hr class="line">
 
-            <button type="button" class="kakaobutton">카카오톡 로그인 </button>
 
+            <button type="button" class="kakaobutton" onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=810e43afb4176b21144a9e5b00273aac&redirect_uri=\n'+
+'http://localhost:10010/login&response_type=code'" >
+                카카오톡 로그인
+            </button>
         </div>
     </div>
     <div class="imgdiv">
@@ -82,7 +79,8 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/assets/js/login.js"></script>
-<script th:inline="javascript">
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script type="text/javascript" th:inline="javascript">
     let msg=[[${msg}]];
     if(msg!=null){
         alert(msg);
