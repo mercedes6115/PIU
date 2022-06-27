@@ -13,4 +13,8 @@ public class MyReviewDTO {
     private String uploadPath;
     private String projectName;
     private String productName;
+    private Long num;
+    private Long productNum;
+    private Long projectNum;
+    private String updateDate;
 }
