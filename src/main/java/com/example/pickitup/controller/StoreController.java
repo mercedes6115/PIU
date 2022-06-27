@@ -115,6 +115,7 @@ public class StoreController {
 //        model.addAttribute("user", productNum); 유저의 정보 가져와야함.?? 어떻게??
         productReviewVO.setUserNum(22L);
         productReviewService.insert(productReviewVO);
+        rttr.addAttribute("num", productReviewVO.getProductNum());
         return new RedirectView("/store/detail");
 //
     }
