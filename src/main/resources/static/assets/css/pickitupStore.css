@@ -463,6 +463,9 @@ li.active a{
     cursor: pointer;
     font-weight: bold;
 }
+.jjimCount{
+    padding-left: 5px;
+}
 .red{
     color: red;
 }

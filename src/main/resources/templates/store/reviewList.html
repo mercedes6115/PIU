@@ -31,42 +31,45 @@
     </div>
     <div class="review-wrapper" th:object="${reviews}">
         <!-- 댓글 한개 -->
-        <th:block th:each="review:${reviews}">
-            <section class="allreveiws" th:object="${review}"> <!--실제 후기 컨테이너-->
-                <div class="p-24">
-                    <div class="flex">
-                        <div class="profile_img">
-<!--                            유저 프로필 사진 넣을곳-->
-                            <img src="/images/5.jpg">
+        <div th:each="review,index : ${reviews}">
+                                     <!--갯수제한 조건 js의 standard 랑 맞춰줘야함 -->
+            <th:block th:if="${index.index} < 2">
+                <section class="allreveiws" th:object="${review}"> <!--실제 후기 컨테이너-->
+                    <div class="p-24">
+                        <div class="flex">
+                            <div class="profile_img">
+    <!--                            유저 프로필 사진 넣을곳-->
+                                <img src="/images/5.jpg">
+                            </div>
+                            <div class="review_id_and_date">
+                                <div class="review_id" th:id="*{num}" th:name="*{userNum}"></div>
+                                <input type="hidden" class="reviewNumber" th:value="*{num}">
+                                <div class="review_date" th:text="|${#strings.substring(review.updateDate,0,10)}|" ></div>
+                            </div>
+                            <div class="flex" style="margin-left: 10px; width: 100%; justify-content: flex-end; align-items: center;">
+                                <div class="review_modify" th:id="*{num}"><a href="#"><img src="/images/modify.png"></a></div>
+                                <div class="review_delete" th:id="*{num}"><a href="#"><img src="/images/delete.png"></a></div>
+                            </div>
                         </div>
-                        <div class="review_id_and_date">
-                            <div class="review_id" th:id="*{num}" th:name="*{userNum}"></div>
-                            <input type="hidden" class="reviewNumber" th:value="*{num}">
-                            <div class="review_date" th:text="|${#strings.substring(review.updateDate,0,10)}|" ></div>
+                        <div style="margin-top: 10px;"></div>
+                        <div style="margin-bottom: 12px;">
+                            <div class="review_item_name" th:text="|[${products.category}] &nbsp ${products.name}|">
+                            </div>
                         </div>
-                        <div class="flex" style="margin-left: 10px; width: 100%; justify-content: flex-end; align-items: center;">
-                            <div class="review_modify" th:id="*{num}"><a href="#"><img src="/images/modify.png"></a></div>
-                            <div class="review_delete" th:id="*{num}"><a href="#"><img src="/images/delete.png"></a></div>
+                        <div class="review_content_container">
+                            <p class="review_content" th:text="|*{content}|">
+                            <div style="margin-top:8px;" th:class="*{num}">
+                                <!--                            여기에 사진 넣을자리-->
+                            </div>
                         </div>
                     </div>
-                    <div style="margin-top: 10px;"></div>
-                    <div style="margin-bottom: 12px;">
-                        <div class="review_item_name" th:text="|[${products.category}] &nbsp ${products.name}|">
-                        </div>
+                    <div style="width: 100%; justify-content: center; display: flex;">
+                        <div class="border_bottom_line"></div>
                     </div>
-                    <div class="review_content_container">
-                        <p class="review_content" th:text="|*{content}|">
-                        <div style="margin-top:8px;" th:class="*{num}">
-                            <!--                            여기에 사진 넣을자리-->
-                        </div>
-                    </div>
-                </div>
-                <div style="width: 100%; justify-content: center; display: flex;">
-                    <div class="border_bottom_line"></div>
-                </div>
-                <div class="reviewPlus"></div>
-            </section>
-        </th:block>
+                </section>
+            </th:block>
+        </div>
+        <div class="reviewPlus"></div>
     </div>
 
 
@@ -85,9 +88,11 @@
     let reviews = [[${reviews}]] //리뷰 리스트
     ///-----------------------------------------------------------------------------------------------
     ///--------------------------------리뷰 가져오기--------------------------------
-    ///-----------------------------------------------------------------------------------------------
-    $(reviews).each(function (i, review) {
-        let userNum = review.userNum;
+    ///--------------------------------리뷰 작성자 가져오기--------------------------------------------------
+    reviewWriter();
+    function reviewWriter(){
+        $(reviews).each(function (i, review) {
+            let userNum = review.userNum;
             $.ajax({
                 url : "/store/userInfo?userNum=" + userNum,
                 type : "get",
@@ -96,7 +101,8 @@
                     $(".review_id#"+review.num+"").text(user.nickname);
                 }
             })
-    })
+        })
+    }
     ///-----------------------------------------------------------------------------------------------
     ///-----------------------------------------------------------------------------------------------
 
@@ -105,20 +111,25 @@
         $('html, body').animate({scrollTop : 0},300);
     });
 
-    $('.reviewNumber').each(function (i, review) {
-        let cla = $(this).val();
-        $.ajax({
-            url: "/productReviewFile/list/" + cla,
-            type: "get",
-            success: function (files) {  //각 리뷰의 파일들
-                let text = "";
-                $(files).each(function (i, file) {
-                    text += "<img src='/productReviewFile/display?fileName=" + file.uploadPath + "/" + file.uuid + "_" + file.fileName + "'>";
-                })
-                $("."+cla+"").html(text);
-            }
+    //각 리뷰의 사진 받아오기
+    reviewFiles();
+    function reviewFiles(){
+        $('.reviewNumber').each(function (i, review) {
+            let cla = $(this).val();
+            $.ajax({
+                url: "/productReviewFile/list/" + cla,
+                type: "get",
+                success: function (files) {  //각 리뷰의 파일들
+                    let text = "";
+                    $(files).each(function (i, file) {
+                        text += "<img src='/productReviewFile/display?fileName=" + file.uploadPath + "/" + file.uuid + "_" + file.fileName + "'>";
+                    })
+                    $("."+cla+"").html(text);
+                }
+            })
         })
-    })
+    }
+
 
     $('.goBackToDetail').click(function (e) {
         e.preventDefault();
@@ -156,43 +167,69 @@
 
 
     //무한스크롤
-    // $(window).on("scroll", function() {
-    // var scrollHeight = $(document).height();
-    // var scrollPosition = $(window).height() + $(window).scrollTop();
-    // let str = "";
-    //
-    // //후기가 없을때까지
-    //     if (scrollPosition > scrollHeight -1) {
-    //         //밑의 내용 위에 each 문에 넣기
-    //     str += "<div class=\"p-24\">";
-    //     str += "<div class=\"flex\">";
-    //     str += "<div class=\"profile_img\"><img src=\"/images/5.jpg\"></div>";
-    //     str += "<div class=\"review_id_and_date\">";
-    //     str += "<div class=\"review_id\" th:text=\"*{userNum}\" ></div>";
-    //     str += "<div class=\"review_date\" th:text=\"*{updateDate}\" ></div>";
-    //     str += "</div>";
-    //     str += "<div class=\"flex\" style=\"margin-left: 10px; width: 100%; justify-content: flex-end; align-items: center;\">";
-    //     str += "<div class=\"review_modify\"><a href=\"#\"><img src=\"/images/modify.png\"></a></div>";
-    //     str += "<div class=\"review_delete\"><a href=\"#\"><img src=\"/images/delete.png\"></a></div>";
-    //     str += "</div>";
-    //     str += "</div>";
-    //     str += "<div style=\"margin-top: 10px;\"></div>";
-    //     str += "<div style=\"margin-bottom: 12px;\">";
-    //     str += "<div class=\"review_item_name\">";
-    //     str += "[주방용품] 초록색 고무장갑  <!-- product를 가져오는데서 에러발생-->";
-    //     str += "</div>";
-    //     str += "</div>";
-    //     str += "<div class=\"review_content_container\">";
-    //     str += "<p class=\"review_content\" th:text=\"|*{content}|\">";
-    //     str += "<div style=\"margin-top:8px;\"><img src=\"/images/5.jpg\"></div>";
-    //     str += "</div>";
-    //     str += "</div>";
-    //     str += "<div style=\"width: 100%; justify-content: center; display: flex;\">";
-    //     str += "<div class=\"border_bottom_line\"></div>";
-    //     str += "</div>";
-    //         $(".reviewPlus").append(str);
-    //     }
-    // });
+    let standard = 2 // 리뷰 뽑아줄 갯수 위에 html 도 바꿔줘야함
+    let start = standard;
+    let next =0;
+    let total = reviews.length;
+    let possible = true;
+    if(possible) {
+        $(window).on("scroll", function () {
+            var scrollHeight = $(document).height();
+            var scrollPosition = $(window).height() + $(window).scrollTop();
+            let str = "";
+            //후기가 없을때까지
+            if (scrollPosition > scrollHeight - 1) {
+                //밑의 내용 위에 each 문에 넣기
+                // 에이젝스 쏴서 리스트 받아와서 두번쨰 값부터 하나씩 출력
+                // reviews --> 가져온 모든 리스트
+                if (next <= total) {
+                    next = start + standard;
+                } else {
+                    next = total;
+                    possible = false;
+                }
+                for (let i = start; i < next; i++) {
+                    str += "<section class=\"allreveiws\"> <!--실제 후기 컨테이너-->";
+                    str += "<div class=\"p-24\">";
+                    str += "<div class=\"flex\">";
+                    str += "<div class=\"profile_img\">";
+                    str += "<img src=\"/images/5.jpg\">";
+                    str += "</div>";
+                    str += "<div class=\"review_id_and_date\">";
+                    str += "<div class=\"review_id\" id=\"" + reviews[i].num + "\" name=\"" + reviews[i].userNum + "\"></div>";
+                    str += "<input type=\"hidden\" class=\"reviewNumber\" value=\"" + reviews[i].num + "\">";
+                    str += "<div class=\"review_date\" >" + reviews[i].updateDate.substring(0, 10) + "</div>";
+                    str += "</div>";
+                    str += "<div class=\"flex\" style=\"margin-left: 10px; width: 100%; justify-content: flex-end; align-items: center;\">";
+                    str += "<div class=\"review_modify\" id=\"" + reviews[i].num + "\"><a href=\"#\"><img src=\"/images/modify.png\"></a></div>";
+                    str += "<div class=\"review_delete\" id=\"" + reviews[i].num + "\"><a href=\"#\"><img src=\"/images/delete.png\"></a></div>";
+                    str += "</div>";
+                    str += "</div>";
+                    str += "<div style=\"margin-top: 10px;\"></div>";
+                    str += "<div style=\"margin-bottom: 12px;\">";
+                    str += "<div class=\"review_item_name\">[" + [[${products.category}]] + "] &nbsp; " + [[${products.name}]] + "</div>";
+                    str += "</div>";
+                    str += "<div class=\"review_content_container\">";
+                    str += "<p class=\"review_content\">" + reviews[i].content + "</p>";
+                    str += "<div style=\"margin-top:8px;\" class=\"" + reviews[i].num + "\">";
+                    str += "</div>";
+                    str += "</div>";
+                    str += "</div>";
+                    str += "<div style=\"width: 100%; justify-content: center; display: flex;\">";
+                    str += "<div class=\"border_bottom_line\"></div>";
+                    str += "</div>";
+                    str += "</section>";
+                }
+                start += standard;
+                $(".reviewPlus").append(str);
+                reviewWriter();
+                reviewFiles();
+            }
+        });
+    }
+
+
+
 
 
 </script>

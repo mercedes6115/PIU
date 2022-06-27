@@ -89,7 +89,7 @@
                         <div class="flex" style="width: 100%;">
                             <div class="flex" style="width: 100%;">
                                 <div class="btn text-align flex" style="margin-right: 5px;  justify-content: center; align-items: center;">
-                                        <span class="padding-t material-symbols-outlined jjim-ajax" th:name="*{num}" style="font-size: 20px;">
+                                        <span class="padding-t material-symbols-outlined jjim-ajax" th:name="*{num}" style="font-size: 20px; ">
                                         favorite
                                         </span> <p style="font-weight: normal; font-size: 14px; margin: 0;" class="jjimCount">&nbsp;</p></div>
                                 <div class="btn text-align flex share_btn" style="margin-right: 5px;  justify-content: center; align-items: center;"><span class="padding-t material-symbols-outlined" style="font-size: 18px;">
@@ -216,7 +216,7 @@
 
                     <div class="flex" style="width: 100%;">
                         <div class="btn text-align flex" style="margin-right: 5px;  justify-content: center; align-items: center;">
-                                <span class="padding-t material-symbols-outlined jjim-ajax" th:name="*{num}" style="font-size: 20px;">
+                                <span class="padding-t material-symbols-outlined jjim-ajax" th:name="*{num}" style="font-size: 20px; color: rgb(167, 162, 162);">
                                 favorite
                                 </span> <p style="font-weight: normal; font-size: 14px; margin: 0;" class="jjimCount">&nbsp;</p></div>
                         <div class="btn text-align flex share_btn" style="margin-right: 5px;  justify-content: center; align-items: center;"><span class="padding-t material-symbols-outlined" style="font-size: 18px;">
@@ -315,7 +315,7 @@
             //
             $(this).addClass("material-symbols-outlined");
             $(this).removeClass("material-icons");
-            $(this).css("color","#d3cdcd");
+            $(this).css("color","rgb(167 162 162)");
         }
     });
 
@@ -335,7 +335,7 @@
                         }else{                                                                             //찜되어있다면
                             $(".jjim-ajax[name="+jjim.productNum+"]").addClass("material-symbols-outlined");
                             $(".jjim-ajax[name="+jjim.productNum+"]").removeClass("material-icons");
-                            $(".jjim-ajax[name="+jjim.productNum+"]").css("color","gray");
+                            $(".jjim-ajax[name="+jjim.productNum+"]").css("color","rgb(167 162 162)");
 
                         }
                     }
