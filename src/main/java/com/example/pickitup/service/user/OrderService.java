@@ -25,10 +25,10 @@ public class OrderService {
 
 
     // 주문 등록
-    public void register(OrderVO orderVO){
+    public void register(OrderVO orderVO,UserVO userVO){
         orderDAO.register(orderVO);
+        orderDAO.updateUser(userVO);
     }
-
     // 주문 취소
     public boolean remove(Long num){
         return orderDAO.remove(num);
@@ -48,8 +48,8 @@ public class OrderService {
 //        orderDAO.getProduct(num1);
 
     }
-    public boolean updateUser(UserVO userVO){
-        return orderDAO.updateUser(userVO);
-    }
+//    public boolean updateUser(UserVO userVO){
+//        return orderDAO.updateUser(userVO);
+//    }
 
 }
