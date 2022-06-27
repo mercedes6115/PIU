@@ -49,9 +49,9 @@ var addsText = [ // 배너 문구
     '1번 플로깅은 여러분의 건강과 함께 환경을 개선해 나갑니다',
     '2번 "이삭을 줍는다(polcka upp)"는 뜻의 스웨덴어과 영어 조깅 (jogging)의 합성어',
     '3번 테스트 중입니다 광고 문구는 신경쓰지 말아주세요',
-    '4번 이렇게 쉬운걸 왜 이제서야 하는거니',
-    '5번 역시 사람은 심각한걸 느껴야 정신을 차립니다',
-    '6번 정신 차립시다'
+    '4번 이런 사이트 어떤가요',
+    '5번 내용입니다',
+    '6번 '
 ]
 
 
@@ -98,7 +98,8 @@ function move() {
     }
 }
 
-move();
+// move();
+nextBtn.click();
 
 //자동실행 다음 버튼과 진행바 실행
 const intervalclick = function () {
@@ -154,6 +155,7 @@ prevBtn.addEventListener('click', function () {
         }, 500);
         currentBannerIdx = bannerCount-1;
     }
+    move();
     bannerBackground11.style.backgroundColor = rightColorIndex[currentBannerIdx];
     bannerBackground11.style.transition = `${0.5}s ease-out`;
     bannerBackgroundright.style.backgroundColor = rightColorIndex[currentBannerIdx];
