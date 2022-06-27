@@ -1,5 +1,6 @@
 package com.example.pickitup.mapper.user;
 
+import com.example.pickitup.domain.vo.dto.ApplyDTO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 import com.example.pickitup.domain.vo.user.ApplyVO;
 import org.apache.ibatis.annotations.Mapper;
@@ -25,4 +26,9 @@ public interface ApplyMapper {
 
     // 프로젝트 총 신청자 수
     public Long countApply(Long projectNum);
+
+    public boolean setApproach(Long applynum);
+    public List<ApplyDTO> getApplyUser(Long projectNum);
+
+    public boolean setApproachToContinue(Long applyNum);
 }

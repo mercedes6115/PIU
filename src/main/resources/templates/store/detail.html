@@ -9,295 +9,369 @@
     <link rel="stylesheet" href="/assets/css/Footer.css" />
     <link rel="stylesheet" href="/assets/css/pickitupStore.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
+<style>
+    .material-icons {
+        font-family: 'Material Icons';
+        font-weight: normal;
+        font-style: normal;
+        font-size: 24px;  /* Preferred icon size */
+        display: inline-block;
+        line-height: 1;
+        text-transform: none;
+        letter-spacing: normal;
+        word-wrap: normal;
+        white-space: nowrap;
+        direction: ltr;
+        color: red;
+
+        /* Support for all WebKit browsers. */
+        -webkit-font-smoothing: antialiased;
+        /* Support for Safari and Chrome. */
+        text-rendering: optimizeLegibility;
+
+        /* Support for Firefox. */
+        -moz-osx-font-smoothing: grayscale;
+
+        /* Support for IE. */
+        font-feature-settings: 'liga';
+    }
+</style>
 <body>
-        <!--헤더  -->
+<!--헤더  -->
 
-      <div th:replace="~{/main/Header :: HeaderImport}"></div>
-        <!--헤더 -->
-   
-    <!-- 반응형 구매하기 폼태그 -->
-    <form action="/store/itemChoose" method="post" th:object="${product}">
-        <div class="pay_bar_media" style="text-align: center;">
-            <div class="flex" style="width: 100%;">
-                <div style="width: 7%; padding-left: 10px;"><span class="material-symbols-outlined pointer jjim-ajax" style="font-size: 40px; padding-top: 15px;">
-                    favorite
-                    </span></div>
-                <input class="toBuy" type="submit" value="구매하기" style="width: 90%; height: 50px;">
-            </div>
+<div th:replace="~{/main/Header :: HeaderImport}"></div>
+<!--헤더 -->
+
+<!-- 반응형 구매하기 폼태그 -->
+<form action="/store/itemChoose" method="post" th:object="${product}">
+    <div class="pay_bar_media" style="text-align: center;">
+        <div class="flex" style="width: 100%;">
+<!--            <div style="width: 7%; padding-left: 10px;"><span class="material-symbols-outlined pointer jjim-ajax" th:name="*{num}" style="font-size: 40px; padding-top: 15px;">-->
+<!--                    favorite-->
+<!--                    </span></div>-->
+            <input class="toBuy" type="submit" value="구매하기" style="width: 90%; height: 50px;">
         </div>
-        <input type="hidden" value="상품번호" th:field="*{num}">
-        <input type="hidden" value="카테고리" th:field="*{category}">
-        <input type="hidden" value="상품이름" th:field="*{name}">
-        <input type="hidden" value="가격" th:field="*{price}">
-        <input type="hidden" value="수량" th:field="*{stock}">
-        <input type="hidden" value="원산지" th:field="*{origin}">
-        <input type="hidden" value="제조사" th:field="*{manufacturer}">
-        <input type="hidden" value="공급처" th:field="*{supplier}">
-    </form>
+    </div>
+    <input type="hidden" value="상품번호" th:field="*{num}">
+    <input type="hidden" value="카테고리" th:field="*{category}">
+    <input type="hidden" value="상품이름" th:field="*{name}">
+    <input type="hidden" value="가격" th:field="*{price}">
+    <input type="hidden" value="수량" th:field="*{stock}">
+    <input type="hidden" value="원산지" th:field="*{origin}">
+    <input type="hidden" value="제조사" th:field="*{manufacturer}">
+    <input type="hidden" value="공급처" th:field="*{supplier}">
+</form>
 
-    <div class="store_detail">
-        <div class="store_detail_t">
-            <div class="store_detail_left">
-                <div class="detail_item">
-                    <div class="detail_item_img">
-                        <!--<img src="/images/5.jpg">-->
-                        <div class="mainImage"></div>
+<div class="store_detail">
+    <div class="store_detail_t">
+        <div class="store_detail_left">
+            <div class="detail_item">
+                <div class="detail_item_img">
+                    <!--<img src="/images/5.jpg">-->
+                    <div class="mainImage"></div>
+                    <div class="space"></div>
+                    <div class="item_description_media" th:object="${product}">
+                        <div class="small_and_gray" style="color: black;" th:text="*{category}"></div>
                         <div class="space"></div>
-                        <div class="item_description_media" th:object="${product}">
-                            <div class="small_and_gray" style="color: black;" th:text="*{category}"></div>
-                            <div class="space"></div>
-                            <div class="item_description">
-                                <div class="item_title" style="font-weight: 700;" th:text="*{content}"></div>
-                            </div>
-                            <div class="small_and_gray gray_box">무료배송</div>
-                            <div class="space"></div>
-                            <div class="flex" style="justify-content: space-between;">
-                                <div style="font-size: 14px;">판매가</div>
-                                <div class="pay_point" th:text="|*{price}P|"></div>
-                            </div>
+                        <div class="item_description">
+                            <div class="item_title" style="font-weight: 700;" th:text="*{content}"></div>
+                        </div>
+                        <div class="small_and_gray gray_box">무료배송</div>
+                        <div class="space"></div>
+                        <div class="flex" style="justify-content: space-between;">
+                            <div style="font-size: 14px;">판매가</div>
+                            <div class="pay_point" th:text="|*{price}P|"></div>
+                        </div>
 
-                            <!-- ------------------------------반응형---------------------------------- -->
+                        <!-- ------------------------------반응형---------------------------------- -->
+                        <div class="flex" style="width: 100%;">
                             <div class="flex" style="width: 100%;">
-                                <div class="flex" style="width: 100%;">
-                                    <div class="btn text-align flex" style="margin-right: 5px;  justify-content: center; align-items: center;">
-                                        <span class="padding-t material-symbols-outlined jjim-ajax" style="font-size: 20px;">
+                                <div class="btn text-align flex" style="margin-right: 5px;  justify-content: center; align-items: center;">
+                                        <span class="padding-t material-symbols-outlined jjim-ajax" th:name="*{num}" style="font-size: 20px;">
                                         favorite
-                                        </span> <p style="font-weight: normal; font-size: 14px; margin: 0;">&nbsp; 좋아요</p></div>
-                                    <div class="btn text-align flex share_btn" style="margin-right: 5px;  justify-content: center; align-items: center;"><span class="padding-t material-symbols-outlined" style="font-size: 18px;">
+                                        </span> <p style="font-weight: normal; font-size: 14px; margin: 0;" class="jjimCount">&nbsp;</p></div>
+                                <div class="btn text-align flex share_btn" style="margin-right: 5px;  justify-content: center; align-items: center;"><span class="padding-t material-symbols-outlined" style="font-size: 18px;">
                                         ios_share
                                         </span><p style="font-weight: normal; font-size: 14px; margin: 0;">&nbsp; 공유하기</p></div>
-                                </div>
-                            </div>
-                            <!-- ------------------------------반응형---------------------------------- -->
-                        </div>
-                        <div style="margin-bottom: 10px;"></div>
-                        <div class="nav_item">
-                            <div class="flex">
-                                <div class="nav_each_item"><a id="item_intro" class="active" style="cursor: pointer;">상품소개</a></div>
-                                <div class="nav_each_item"><a id="item_review" style="cursor: pointer;">상품리뷰</a></div>
-                                <div class="nav_each_item"><a id="item_question" style="cursor: pointer;">상품문의</a></div>
-                                <div class="nav_each_item"><a id="return_po" style="cursor: pointer;">환불정책</a></div>
                             </div>
                         </div>
-                        <div class="space"></div>
-                        <div class="flex justify-content">
-                            <p class="highlight">상품소개</p>
-                        </div>
-                        <div class="space"></div>
-                        <div id="toitem_intro">
-                            <div class="subImage"></div>
-                        </div>
-                        <div id="toitem_review">
-                            <div class="reviewForm">
-                                <section class="review">
-                                    <div class="reviewHead">
-                                        <div class="highlight" style="display: flex; justify-content: space-between">
-                                            <p>실제 구매 후기</p>
-                                            <div style=" margin-right: 5%;"><a class="goToReviewWrite">리뷰작성</a></div>
-                                        </div>
-                                    </div>
-                                    <div class="wrapImage">
-                                        <div class="reviewImages">
-                                             <div class ="reviewImageForm">                                        
-                                                     <picture class="moveImage">
-                                                        <source srcset="/src/main/resources/static/images/chun2.png" media="all and (min-width: 1024px)" >
-                                                        <img src="/src/main/resources/static/images/chun2.png" class="reviewImage" alt="">
-                                                     </picture>                                         
-                                             </div>
-                                             <div class ="reviewImageForm">                                        
-                                                    <picture class="moveImage">
-                                                       <source srcset="/src/main/resources/static/images/chun3.png" media="all and (min-width: 1024px)" >
-                                                       <img src="/src/main/resources/static/images/chun3.png" class="reviewImage" alt="">
-                                                    </picture>                                        
-                                            </div>
-                                            <div class ="reviewImageForm">                                        
-                                                    <picture class="moveImage">
-                                                       <source srcset="/src/main/resources/static/images/chun6.png" media="all and (min-width: 1024px)" >
-                                                       <img src="/src/main/resources/static/images/chun6.png" class="reviewImage" alt="">
-                                                    </picture>                                        
-                                            </div>
-                                            <div class ="reviewImageForm">                                   
-                                                    <picture class="moveImage">
-                                                       <source srcset="/src/main/resources/static/images/chun8.png" media="all and (min-width: 1024px)" >
-                                                       <img src="/src/main/resources/static/images/chun8.png" class="reviewImage" alt="">
-                                                    </picture>                                        
-                                            </div>
-                                            <div class ="reviewImageForm">                                   
-                                                <picture class="moveImage">
-                                                   <source srcset="/src/main/resources/static/images/chun.png" media="all and (min-width: 1024px)" >
-                                                   <img src="/src/main/resources/static/images/chun.png" class="reviewImage" alt="">
-                                                </picture>                                        
-                                        </div>
-                                        </div>
-                                    </div>
-                                    <div class="modalContainer">
-                                        <div class="modalFrame">
-                                            <div class="modalForm">
-                                                <span class="material-symbols-outlined btnClose">close</span>
-                                                <div class="modalItem"></div>
-                                                <span class="material-symbols-outlined modalControl btnLeft">arrow_back_ios</span>
-                                                <span class="material-symbols-outlined modalControl btnRight">arrow_forward_ios</span>                                                                                        
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div style="margin : 40px 0px;"></div>
-                                    <!-- 각 리뷰-->
-                                    <div class="ProductReviews"></div>
-                                    <!-- 각 리뷰-->
-                                    <a class="moveReviewTotal"><span class="goTomoveReviewTotal" th:text="|*{count-4}개의 후기 더보기|"></span></a>
-                                </section>
-                            </div>
-                        </div>
-
-                        <div class="space_line"></div>
-
-
-                        <div id="toitem_question">
-                            <div class="flex" style="align-items: center; justify-content: space-between;">
-                                <p class="highlight">문의</p>
-<!--                                문의하기 a 태그에 num 태워서 보내기-->
-                                <div style=" margin-right: 5%;"><a class="btn_qnaToadmin">문의하기</a></div>
-                            </div>
-                            <div class="space"></div>
-                            <div class="ProductQnas"></div>
-                            <div class="qnaComments"></div>
-                            <div class="space_line"></div>
-                            <!-- 댓글 끝 -->
-                        </div>
-                        <div id="toreturn_po">
-                            <p class="highlight">환불정책</p>
-                            <div class="space"></div>
-                            <div class="flex" style="justify-content: center;">
-                                <div class="return_policy flex">
-                                    <div><img src="/images/refund.png"></div>
-                                    <div>저희는 포인트로 결제하는 방식이며 배송이 무료이기 때문에 <span style="color: red;">환불 및 교환</span>은 어렵습니다.
-                                        <br>상품 및 배송 정보를 잘 확인하고 구매하여 주세요.!</div>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        <div class="space"></div>
-                        
+                        <!-- ------------------------------반응형---------------------------------- -->
                     </div>
+                    <div style="margin-bottom: 10px;"></div>
+                    <div class="nav_item">
+                        <div class="flex">
+                            <div class="nav_each_item"><a id="item_intro" class="active" style="cursor: pointer;">상품소개</a></div>
+                            <div class="nav_each_item"><a id="item_review" style="cursor: pointer;">상품리뷰</a></div>
+                            <div class="nav_each_item"><a id="item_question" style="cursor: pointer;">상품문의</a></div>
+                            <div class="nav_each_item"><a id="return_po" style="cursor: pointer;">환불정책</a></div>
+                        </div>
+                    </div>
+                    <div class="space"></div>
+                    <div class="flex justify-content">
+                        <p class="highlight">상품소개</p>
+                    </div>
+                    <div class="space"></div>
+                    <div id="toitem_intro">
+                        <div class="subImage"></div>
+                    </div>
+                    <div id="toitem_review">
+                        <div class="reviewForm">
+                            <section class="review">
+                                <div class="reviewHead">
+                                    <div class="highlight" style="display: flex; justify-content: space-between">
+                                        <p>실제 구매 후기</p>
+                                        <div><a class="goToReviewWrite">리뷰작성</a></div>
+                                    </div>
+                                </div>
+                                <div class="wrapImage">
+                                    <div class="reviewImages">
+                                    </div>
+                                </div>
+                                <div class="modalContainer">
+                                    <div class="modalFrame">
+                                        <div class="modalForm">
+                                            <span class="material-symbols-outlined btnClose">close</span>
+                                            <div class="modalItem"></div>
+                                            <span class="material-symbols-outlined modalControl btnLeft">arrow_back_ios</span>
+                                            <span class="material-symbols-outlined modalControl btnRight">arrow_forward_ios</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="margin : 40px 0px;"></div>
+                                <!-- 각 리뷰-->
+                                <div class="ProductReviews"></div>
+                                <!-- 각 리뷰-->
+                                <a class="moveReviewTotal">
+                                    <span th:if="|*{count lt 4}|" th:text="|*{count}개 후기 보기|"></span>
+                                    <span th:if="|*{count gt 3}|" class="goTomoveReviewTotal" th:text="|*{count-4}개의 후기 더보기|"></span>
+                                </a>
+                            </section>
+                        </div>
+                    </div>
+
+                    <div class="space_line"></div>
+
+
+                    <div id="toitem_question">
+                        <div class="flex" style="align-items: center; justify-content: space-between;">
+                            <p class="highlight">문의</p>
+                            <!--                                문의하기 a 태그에 num 태워서 보내기-->
+                            <div><a class="btn_qnaToadmin">문의하기</a></div>
+                        </div>
+                        <div class="space"></div>
+                        <div class="ProductQnas"></div>
+                        <div class="QnaPaging" style="text-align: center;"></div>
+                        <div class="space_line"></div>
+                        <!-- 댓글 끝 -->
+                    </div>
+                    <div id="toreturn_po">
+                        <p class="highlight">환불정책</p>
+                        <div class="space"></div>
+                        <div class="flex" style="justify-content: center;">
+                            <div class="return_policy flex">
+                                <div><img src="/images/refund.png"></div>
+                                <div>저희는 포인트로 결제하는 방식이며 배송이 무료이기 때문에 <span style="color: red;">환불 및 교환</span>은 어렵습니다.
+                                    <br>상품 및 배송 정보를 잘 확인하고 구매하여 주세요.!</div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space"></div>
+
                 </div>
             </div>
+        </div>
 
-            <!-- 주문 사이드바 -->
-            <div class="store_detail_right">
-                <div class="pay_bar">
-                    <form action="/store/itemChoose" method="post" th:object="${product}">
-                        <div class="pay_bar_category" th:text="*{category}"></div>
-                        <div class="pay_bar_item_description" th:text="*{name}"></div>
-                        <div th:text="*{content}"></div>
-                        <div class="free_ship_box">
-                            <div class="small_and_gray gray_box">무료배송</div>
-                        </div>
-                        <div class="space"></div>
-                        <div class="space-8 flex justify-content">
-                            <div>공급사 : </div>
-                            <div th:text="*{supplier}"> 2~3일 소요</div>
-                        </div>
-                        <div class="space-8 flex justify-content">
-                            <div>제조사 :</div>
-                            <div th:text="*{manufacturer}"></div>
-                        </div>
-                        <div class="space-8 flex justify-content">
-                            <div>원산지 :</div>
-                            <div th:text="*{origin}"></div>
-                        </div>
-                        <div class="space-8 flex justify-content">
-                            <div style="color: rgb(253, 48, 73);">차감포인트 : </div>
-                            <div><strong th:text="|*{price}P|"></strong></div>
-                        </div>
+        <!-- 주문 사이드바 -->
+        <div class="store_detail_right">
+            <div class="pay_bar">
+                <form action="/store/itemChoose" method="post" th:object="${product}">
+                    <div class="pay_bar_category" th:text="*{category}"></div>
+                    <div class="pay_bar_item_description" th:text="*{name}"></div>
+                    <div th:text="*{content}"></div>
+                    <div class="free_ship_box">
+                        <div class="small_and_gray gray_box">무료배송</div>
+                    </div>
+                    <div class="space"></div>
+                    <div class="space-8 flex justify-content">
+                        <div>공급사 : </div>
+                        <div th:text="*{supplier}"> 2~3일 소요</div>
+                    </div>
+                    <div class="space-8 flex justify-content">
+                        <div>제조사 :</div>
+                        <div th:text="*{manufacturer}"></div>
+                    </div>
+                    <div class="space-8 flex justify-content">
+                        <div>원산지 :</div>
+                        <div th:text="*{origin}"></div>
+                    </div>
+                    <div class="space-8 flex justify-content">
+                        <div style="color: rgb(253, 48, 73);">차감포인트 : </div>
+                        <div><strong th:text="|*{price}P|"></strong></div>
+                    </div>
                     <!-- ---------------------------웹 일떄 ------------------------------------------------>
 
 
-                        <div class="flex" style="width: 100%;">
-                            <div class="btn text-align flex" style="margin-right: 5px;  justify-content: center; align-items: center;">
-                                <span class="padding-t material-symbols-outlined jjim-ajax" style="font-size: 20px;">
+                    <div class="flex" style="width: 100%;">
+                        <div class="btn text-align flex" style="margin-right: 5px;  justify-content: center; align-items: center;">
+                                <span class="padding-t material-symbols-outlined jjim-ajax" th:name="*{num}" style="font-size: 20px;">
                                 favorite
-                                </span> <p style="font-weight: normal; font-size: 14px; margin: 0;">&nbsp; 좋아요</p></div>
-                            <div class="btn text-align flex share_btn" style="margin-right: 5px;  justify-content: center; align-items: center;"><span class="padding-t material-symbols-outlined" style="font-size: 18px;">
+                                </span> <p style="font-weight: normal; font-size: 14px; margin: 0;" class="jjimCount">&nbsp;</p></div>
+                        <div class="btn text-align flex share_btn" style="margin-right: 5px;  justify-content: center; align-items: center;"><span class="padding-t material-symbols-outlined" style="font-size: 18px;">
                                 ios_share
                                 </span><p style="font-weight: normal; font-size: 14px; margin: 0;">&nbsp; 공유하기</p></div>
-                        </div>
-                        <input type="hidden" value="상품번호" th:field="*{num}">
-                        <input type="hidden" value="카테고리" th:field="*{category}">
-                        <input type="hidden" value="상품이름" th:field="*{name}">
-                        <input type="hidden" value="가격" th:field="*{price}">
-                        <input type="hidden" value="수량" th:field="*{stock}">
-                        <input type="hidden" value="원산지" th:field="*{origin}">
-                        <input type="hidden" value="제조사" th:field="*{manufacturer}">
-                        <input type="hidden" value="공급처" th:field="*{supplier}">
+                    </div>
+                    <input type="hidden" value="상품번호" th:field="*{num}">
+                    <input type="hidden" value="카테고리" th:field="*{category}">
+                    <input type="hidden" value="상품이름" th:field="*{name}">
+                    <input type="hidden" value="가격" th:field="*{price}">
+                    <input type="hidden" value="수량" th:field="*{stock}">
+                    <input type="hidden" value="원산지" th:field="*{origin}">
+                    <input type="hidden" value="제조사" th:field="*{manufacturer}">
+                    <input type="hidden" value="공급처" th:field="*{supplier}">
 
-                        <div><input class="toBuy" type="submit" value="구매하기" style="cursor: pointer;"></div>
-                    </form>
-                </div>
+                    <div><input class="toBuy" type="submit" value="구매하기" style="cursor: pointer;"></div>
+                </form>
             </div>
-            <!-- ---------------------------웹 일떄 ------------------------------------------------>
+        </div>
+        <!-- ---------------------------웹 일떄 ------------------------------------------------>
 
-            <!-------------------------------- 공유하기 모달창---------------------------------------------------- -->
-            <div class="share_container" style="font-family: Noto Sans KR;">
-                <div class="share">
-                    <div class="share_header">
-                        <div class="share_header_one">공유하기</div>
-                        <div><span class="material-symbols-outlined close" style="font-size: 32px; font-weight: 600;">
+        <!-------------------------------- 공유하기 모달창---------------------------------------------------- -->
+        <div class="share_container" style="font-family: Noto Sans KR;">
+            <div class="share">
+                <div class="share_header">
+                    <div class="share_header_one">공유하기</div>
+                    <div><span class="material-symbols-outlined close" style="font-size: 32px; font-weight: 600;">
                             close
                             </span></div>
-                    </div>
-                    <div class="share_contents">
-                        <div class="share_content flex">
-                            <div>
-                                <!-- 카카오톡 공유하기 -->
-                                <a id="kakao-link-btn" href="javascript:kakaoShare()">
-                                    <img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png" />
-                                </a>
-                            </div>
-                            <a class="flex link-share" href="javascript:clipboardShare()">
-                                <div><span class="material-symbols-outlined">
+                </div>
+                <div class="share_contents">
+                    <div class="share_content flex">
+                        <div>
+                            <!-- 카카오톡 공유하기 -->
+                            <a id="kakao-link-btn" href="javascript:kakaoShare()">
+                                <img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png" />
+                            </a>
+                        </div>
+                        <a class="flex link-share" href="javascript:clipboardShare()">
+                            <div><span class="material-symbols-outlined">
                                     link
                                     </span></div>
-                                <div class="link_copy">&nbsp;링크&nbsp;복사하기</div>
-                            </a>
-                            <div class="link_inform">
-                            </div>
+                            <div class="link_copy">&nbsp;링크&nbsp;복사하기</div>
+                        </a>
+                        <div class="link_inform">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-                <!-------------------------------- 공유하기 모달창---------------------------------------------------- -->
     </div>
-    <div class="gototop">
+    <!-------------------------------- 공유하기 모달창---------------------------------------------------- -->
+</div>
+<div class="gototop">
         <span class="material-symbols-outlined toTop" style="font-size: 35px;">
             vertical_align_top
         </span>
-    </div> 
+</div>
 
-      <div th:replace="~{/main/Footer :: FooterImport}"></div>
-    
+<div th:replace="~{/main/Footer :: FooterImport}"></div>
+
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <!--<script src="/static/assets/js/store.js"></script>-->
 <script th:inline="javascript">
     let productNum = [[${product.num}]];
+    let pageNum = 1;
+    showJjimcheck()
+    // 임시 유저 userNum = 22;
+    let userNum = 22;
+    //찜 ajax
+    $('.jjim-ajax').on("click",function() {
+
+        if($(this).hasClass("material-symbols-outlined")){ //찜 안되어있을때, insert ajax
+            $.ajax({
+                url:"/store/jjim",
+                type:"post",
+                data: {userNum : userNum, category: "1", productNum : productNum},
+                success : function (result) {
+                    jjimCounts()
+                }
+            })
+            $(this).removeClass("material-symbols-outlined");
+            $(this).addClass("material-icons");
+            $(this).css("color","red");
+        }else{                                             //찜 되어있으면,   delete ajax
+            $.ajax({
+                url:"/store/jjim",
+                type:"delete",
+                data: {userNum : userNum, category: "1", productNum : productNum},
+                success : function (result) {
+                    jjimCounts()
+                }
+            })
+            //
+            $(this).addClass("material-symbols-outlined");
+            $(this).removeClass("material-icons");
+            $(this).css("color","#d3cdcd");
+        }
+    });
+
+    //찜...
+    function showJjimcheck(){
+        jjimCounts()
+        $.ajax({
+            url : "/store/jjim",
+            type : "get",
+            success : function (jjims) {
+                $(jjims).each(function (i, jjim) {
+                    if(jjim.userNum==userNum){
+                        if($(".jjim-ajax[name="+jjim.productNum+"]").hasClass("material-symbols-outlined")){ //찜 안되어있다면
+                            $(".jjim-ajax[name="+jjim.productNum+"]").removeClass("material-symbols-outlined");
+                            $(".jjim-ajax[name="+jjim.productNum+"]").addClass("material-icons");
+                            $(".jjim-ajax[name="+jjim.productNum+"]").css("color","red");
+                        }else{                                                                             //찜되어있다면
+                            $(".jjim-ajax[name="+jjim.productNum+"]").addClass("material-symbols-outlined");
+                            $(".jjim-ajax[name="+jjim.productNum+"]").removeClass("material-icons");
+                            $(".jjim-ajax[name="+jjim.productNum+"]").css("color","gray");
+
+                        }
+                    }
+                })
+            }
+        })
+    }
+
+    //찜 카운트 ajax
+    function jjimCounts(){
+        $.ajax({
+            url:"/store/jjimCount?productNum="+productNum,
+            type:"get",
+            success:function (count) {
+                let cnt=0;
+                cnt += count;
+                $(".jjimCount").text(cnt);
+            }
+
+        })
+    }
+
     //--------------------------------------------------------- 리뷰 가져오기 ajax
     $.ajax({
-        url: "/store/reviewList/" + productNum,
+        url: "/store/reviewLists/" + productNum,
         type: "get",
         dataType: "json",
-        success: function(reviewVO){
+        success: function(reviews){   // 모든 리뷰 리스트
             let str = "";
-            if(reviewVO.length==0){
+            if(reviews.length==0){
                 str += "현재 댓글이 없습니다.";
                 $('.ProductReviews').html(str);
                 return;
             }
-            if(reviewVO.length<4){
-                maxlength = reviewVO.length;
+            if(reviews.length<4){
+                maxlength = reviews.length;
             }else{
                 maxlength=4;
             }
@@ -305,23 +379,41 @@
                 str += "<div class=\"readReviews\">";
                 str += "<div class=\"readReviewForm\">";
                 str += "<div class=\"readReview\">";
-                str += "<a href=\"#\" class=\"moveReviewDetail\">";
+                str += "<a href='' class=\"moveReviewDetail\">";
                 str += "<div class=\"reviewDetailProfile\">";
                 str += "<div class=\"reviewProfileForm\">";
                 str += "<span class=\"reviewProfile\">";
                 str += "<picture class=\"profile\">";
-                str += "<img src=\"/images/chun.png\" alt=\"\">";
+                // str += "<img src=\"/images/chun.png\">";
                 str += "</picture>";
                 str += "</span>";
                 str += "</div>";
                 str += "<div class=\"reviewNameDate\">";
-                str += "<div class=\"reviewName\">"+reviewVO[i].userNum+"</div>";
-                str += "<div class=\"reviewDate\">"+reviewVO[i].updateDate+"</div>";
+                str += "<div class=\"reviewName\">";
+
+                // 유저 아이디 가져오기
+                (function(){
+                    let userNum = reviews[i].userNum;
+                    $.ajax({
+                        url : "/store/userInfo?userNum=" + userNum,
+                        type : "get",
+                        async : false,
+                        success:function (user) {
+                            str += user.nickname;
+                            // =======================================유저 사진 받아와서 뿌릴예정=========================================================
+                            // let profileImg = "<img src='/userFile/display?fileName=" + user[0].uploadPath + "/_" + user[0].uuid + "_"  + user[0].fileName + "'>";
+                            // $(".profile").html(profileImg);
+                            // console.log($(".profile"))
+                        }
+                    })
+                })(i);
+                str +="</div>";
+                str += "<div class=\"reviewDate\">"+(reviews[i].updateDate).substring(0,10)+"</div>";
                 str += "</div>";
                 str += "</div>";
                 str += "<div class=\"profileMargin\"></div>";
                 str += "<div class=\"reviewContentForm\">";
-                str += "<pre class=\"reviewContent\">"+reviewVO[i].content;
+                str += "<pre class=\"reviewContent\">"+reviews[i].content;
                 str += "</pre>";
                 str += "<div class=\"reviewContentMargin\"></div>";
                 str += "</div>";
@@ -330,23 +422,52 @@
                 str += "</div>";
                 str += "</div>";
             }
-
-            // $.each(reviewVO, function(i, review){
-            // });
             $('.ProductReviews').html(str);
+
+            // 상품의 모든 파일 보여주기 ..(실제 구매 후기 사진 란)
+            for (let i =0; i< reviews.length;i++) {
+                $.ajax({
+                    url: "/productReviewFile/list/" + reviews[i].num,
+                    type: "get",
+                    success: function (files) {
+                        let text = "";
+                        $(files).each(function (i, file) {
+                            text += "<div class =\"reviewImageForm\">";
+                            text += "<picture class=\"moveImage\">";
+                            text += "<img src='/productReviewFile/display?fileName=" + file.uploadPath + "/" + file.uuid + "_" + file.fileName + "'>";
+                            text += "</picture>";
+                            text += "</div>";
+                        })
+                        $(".reviewImages").append(text);
+                    }
+                })
+            }
+
         }
     });
+
+    //------------------------------------------------------------------------------------------
+    //리뷰 사진 누르면 리뷰 보기 페이지 이동
+    $('.reviewImages').on("click","img",function () {
+        location.href = "/store/goReviewList/"+productNum;
+    })
+
+    //리뷰 눌러도 리뷰 보기 페이지로 이동
+    $('.ProductReviews').on("click",".moveReviewDetail",function (e) {
+        e.preventDefault();
+        location.href = "/store/goReviewList/"+productNum;
+    })
     //------------------------------------------------------------------------------------------
     //메인 사진걸기
-        $.ajax({
-            url: "/productFile/list/"+productNum,
-            type : "get",
-            success : function (files) {
-                let str = "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
-                $(".mainImage").html(str);
-                // $("img#"+productNum).attr("src", "/upload/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName )
-            }
-        })
+    $.ajax({
+        url: "/productFile/list/"+productNum,
+        type : "get",
+        success : function (files) {
+            let str = "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
+            $(".mainImage").html(str);
+            // $("img#"+productNum).attr("src", "/upload/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName )
+        }
+    })
     //------------------------------------------------------------------------------------------
     // 상세 페이지 사진 걸기
     $.ajax({
@@ -355,7 +476,7 @@
         success : function (files) {
             let str ="";
             if(files.length>1){
-                for(let i =0; i< files.length;i++){
+                for(let i =1; i< files.length;i++){
                     str += "<img src='/productFile/display?fileName=" + files[i].uploadPath + "/s_" + files[i].uuid + "_"  + files[i].fileName + "'>";
                     $(".subImage").append(str);
                 }
@@ -368,28 +489,46 @@
     })
     //------------------------------------------------------------------------------------------
     //--------------------------------문의 가져오기 ajax-----------------------------
+    let 수정중 = false;
+    let 답글중 = false;
+
     //문의 리스트 js
-    showQnaList();
-    function showQnaList(){
+    showQnaList(pageNum);
+    function showQnaList(pageNum){
+        수정중 = false;
         $.ajax({
-            url: "/store/qnaList/" + productNum,
+            url: "/store/qnaList/" + productNum +"/"+ pageNum,
             type: "get",
             dataType: "json",
-            success: function(qnaVO){
+            success: function(qnaDTO){
                 let str = "";
 
-                if(qnaVO.length==0){
+                if(qnaDTO.length==0){
                     str += "현재 문의가 없습니다.";
                     $('.ProductQnas').html(str);
                     return;
                 }
-                $.each(qnaVO, function(i, qna){
+                $.each(qnaDTO.list, function(i, qna){
                     str += "<div class=\"qnas\">";
                     str += "<div class=\"flex\" style=\"align-items: center;\">";
                     str += "<div class=\"profile_img\"><img src=\"/images/1.jpg\" style=\"width: 100%; height: 100%;\"></div>";
                     str += "<div class=\"id_and_date\" style=\"flex-direction: column;\">";
-                    str += "<div class=\"admin_id\" style=\"color: black;\">"+qna.userNum+"</div>";
-                    str += "<div class=\"admin_date\">"+qna.updateDate+"</div>";
+                    str += "<div class=\"admin_id\" style=\"color: black;\">";
+                    (function(){
+                        $.ajax({
+                            url : "/store/userInfo?userNum="+qna.userNum,
+                            type : "get",
+                            async : false,
+                            success:function (user) {
+                                str += user.nickname;
+                            }
+                        })
+                    })(i);
+                    str += "</div>";
+                    str += "<div class=\"admin_date\">"+qna.updateDate.substring(0,10)+"</div>";
+                    str += "</div>";
+                    str += "<div style='font-size: 11px; position: absolute; right: 1%;'>";
+                    str += "<a href=\""+qna.num+"\" class='makeComment' style='color: black'>답글달기</a>";
                     str += "</div>";
                     str += "</div>";
                     str += "<div class=\"space\"></div>";
@@ -406,14 +545,20 @@
                                 $.each(qnaCommentLists, function (i, comment) {
                                     str += "<div class=\"flex\" style=\"align-items: center;\">";
                                     str += "<div class=\"admin_profile_img\"><img src=\"/images/4.jpg\"></div>";
-                                    str += "<div class=\"flex id_and_date\">";
-                                    str += "<div class=\"admin_id\">" + comment.num + "&nbsp; </div>";
-                                    str += "<div class=\"admin_date\">" + comment.updateDate + "</div>";
+                                    str += "<div class=\"flex id_and_date\" style='width: 100%'>";
+                                    str += "<div class=\"admin_id\">관리자번호" + "&nbsp; </div>";
+                                    str += "<div class=\"admin_date\">" + comment.updateDate.substring(0,10) + "</div>";
+                                    str += "<div style='position: absolute; right: 0; font-weight: normal;'>";
+                                    str += "<a href=\""+comment.num+"\" name=\""+qna.num+"\" id=\""+comment.content+"\" class=\"modify_adminComment\" style='margin-right: 5px;'>수정</a>";
+                                    str += "<a href=\""+comment.num+"\" name='"+qna.num+"' class=\"delete_adminComment\">삭제</a>";
+                                    str += "<a href=\""+comment.num+"\" name='"+qna.num+"' class=\"cancel_adminComment\" style='display: none; color: black;'>취소</a>";
+                                    str += "</div>";
                                     str += "</div>";
                                     str += "</div>";
                                     str += "<div class=\"small_and_gray\" style=\"color: black;\">";
-                                    str += "<p class=\"admin_comment\">" + comment.content + "</p>";
+                                    str += "<p class=\"admin_comment\" id=\""+comment.num+"\">" + comment.content + "</p>";
                                     str += "</div>";
+                                    str += "<div class='testline' name=\""+comment.num+"\"></div>"
                                 })
 
                             }
@@ -422,11 +567,11 @@
                     str += "<div class=\"space\"></div>";
                     str += "</div>";
                     str += "</div>";
-                    str += "<div class=\"flex\" style=\"position: relative; align-items: center; height: 48px;\">";
+                    str += "<div class=\"flex commentBox\" name='"+ qna.num+ "' style=\"position: relative; align-items: center; height: 48px;\">";
                     str += "<div class=\"do_admin_comment\">";
                     str += "<div class=\"flex\">";
-                    str += "<input class=\"doComment\" type=\"text\" placeholder=\"관리자만 입력할 수 있습니다\">";
-                    str += "<div class=\"send_plane\" id='"+ qna.num+ "' style=\"width: 20px; height: 20px;\"><span class=\"material-symbols-outlined\">";
+                    str += "<input class=\"doComment\" name='"+qna.num+"' type=\"text\" placeholder=\"관리자만 입력할 수 있습니다\">";
+                    str += "<div class=\"send_plane\" name='"+qna.num+"'  style=\"width: 20px; height: 20px;\"><span class=\"material-symbols-outlined\">";
                     str += "send";
                     str += " </span></div>";
                     str += "</div>";
@@ -435,132 +580,203 @@
                     str += "</div>";
                 });
                 $('.ProductQnas').html(str);
+                $(".commentBox").hide();
+                showQnaPage(qnaDTO.total);
             }
         });
+        setTimeout(function () {
+            usea();
+        },300);
     }
+
+
+    // ======================================================================
+    // =======================문의 페이징 처리==========================
+    $(".QnaPaging").on("click", "a.changePage", function(e){
+        e.preventDefault();
+        pageNum = $(this).attr("href");
+        showQnaList(pageNum);
+    });
+
+    function showQnaPage(total){
+        let endPage = Math.ceil(pageNum / 5.0) * 5;
+        let startPage = endPage - 4;
+        let realEnd = Math.ceil(total / 5.0);
+        const QnaPaging = $(".QnaPaging");
+
+        if(endPage > realEnd){
+            endPage = realEnd;
+        }
+
+        let prev = startPage > 1;
+        let next = endPage * 5 < total;
+        let str = "";
+
+        if(prev){
+            str += "<a class='changePage' href='" + (startPage - 1) + "'><code>&lt;</code></a>"
+        }
+        for(let i = startPage; i <= endPage; i++){
+            str += pageNum == i ? "<code>" + i + "</code>" : "<a class='changePage' href='" + i + "'><code>" + i + "</code></a>";
+        }
+        if(next){
+            str += "<a class='changePage' href='" + (endPage + 1) + "'><code>&gt;</code></a>"
+        }
+        QnaPaging.html(str);
+    }
+    // ======================================================================
+    // ======================================================================
     //------------------------------------------------------------------------------------------
 
     // 문의 댓글 작성 -- 관리자
-
     $('.ProductQnas').on("click", ".send_plane", function () {
-        const $content = $(".doComment").val();
-        const $qnaNum = $(".send_plane").attr("id");
-        console.log($content)
-        console.log($qnaNum)
+        const $content = $(".doComment[name="+$(this).attr("name")+"]").val();
+
+        const $qnaNum = $(this).attr("name");
         if(!$content){
             alert("내용을 입력해주세요.");
             return;
         }
+        if(!수정중){//수정중==false 문의 댓글 등록
+            $.ajax({
+                url:"/store/qnaCommentWrite",
+                type:"post",
+                data: JSON.stringify({content : $content,userNum: 22,qnaNum:$qnaNum}),
+                contentType: "application/json",
+                success : function (comment) {
+                    showQnaList(pageNum);
+                    수정중=false;
+                    답글중 = false;
+                }
+            })
+        }else{  // 문의 댓글 수정
+            $.ajax({
+                url: "/store/qnaCommentUpdate",
+                type : "post",
+                data : {num: $(this).attr("name"), content : $content},
+                success : function (result) {
+                    showQnaList(pageNum);
+                    수정중=false;
+                    답글중 = false;
+                }
 
-        $.ajax({
-           url:"/store/qnaCommentWrite",
-           type:"post",
-           data: JSON.stringify({content : $content,userNum: 22,qnaNum:$qnaNum}),
-           contentType: "application/json",
-           success : function (comment) {
-               showQnaList();
-           }
-       })
+            })
+        }
+    })
+    // 댓글 달기 보이기
+    $('.ProductQnas').on("click", ".makeComment", function (e) {
+        e.preventDefault();
+        if(수정중){
+           alert("수정중 인 댓글이 있습니다.")
+            return;
+        }
+        if(답글중){ // 답글중이면
+            $(this).text("답글달기")
+            $(".doComment").val("");
+            $(".commentBox[name="+$(this).attr("href")+"]").hide();
+            답글중 = false;
+            return;
+        }
+        $(this).text("답글취소")
+        $(".doComment").val("");
+        $(".commentBox[name="+$(this).attr("href")+"]").show();
+        답글중 = true;
     })
 
-    
- // 리뷰 이미지 모달
-//  (function() {
-//     let reviewImageList = document.querySelectorAll('.moveImage');
-//     let reviewFrame = document.querySelector('.modalFrame');
-//     let reviewFrameItem = document.querySelector('.modalItem');
-//     let images = document.querySelectorAll('.reviewImage');
-//
-//     // 배열 초기 세팅
-//     let imageList = [];
-//     // 이미지 카운터 설정
-//     let imageCounter = 0;
-//
-//     // forEach문을 사용하여 모든 이미지를 가져오고 배열에 항목으로 푸시.
-//     images.forEach(function(image){
-//         imageList.push(image.src);
-//     })
-//
-//     console.log(imageList);
-//     reviewImageList.forEach(function(item){
-//         // 클릭 시 모달
-//         // css display: none; 에서 display: block; 으로
-//
-//         item.addEventListener('click',function(e){
-//             // 클릭한 이미지를 가져오기
-//             let image = e.target.src;
-//             console.log(image);
-//             reviewFrameItem.style.backgroundImage = `url(${image})`;
-//             reviewFrame.classList.add('show');
-//             // 선택한 이미지의 배열 인덱스 번호를 가져오기
-//             imageCounter = imageList.indexOf(image);
-//             console.log(imageCounter);
-//         });
-//     });
-//
-//     // 좌우 화살표
-//     // 왼쪽버튼
-//     let btnLeft = document.querySelector('.btnLeft');
-//     btnLeft.addEventListener('click', function(){
-//         imageCounter--;
-//         if(imageCounter < 0) {
-//             imageCounter = imageList.length -1;
-//         }
-//         reviewFrameItem.style.backgroundImage = `url(${imageList[imageCounter]})`;
-//     });
-//
-//     // 오른쪽버튼
-//     let btnRight = document.querySelector('.btnRight');
-//     btnRight.addEventListener('click', function(){
-//         imageCounter++;
-//         if(imageCounter >= imageList.length) {
-//             imageCounter = 0;
-//         }
-//         reviewFrameItem.style.backgroundImage = `url(${imageList[imageCounter]})`;
-//     });
-//
-//     // 닫기버튼
-//     let btnClose = document.querySelector('.btnClose');
-//     btnClose.addEventListener('click', function(){
-//         reviewFrame.classList.remove('show');
-//     });
-// })();
+
+    // 취소 버튼 클릭시
+    $('.ProductQnas').on("click", ".cancel_adminComment", function (e) {
+        e.preventDefault();
+        $(".modify_adminComment[href="+$(this).attr("href")+"]").show();
+        $(".delete_adminComment[href="+$(this).attr("href")+"]").show();
+        $(".cancel_adminComment[href="+$(this).attr("href")+"]").css("display","none");
+        $(".admin_comment#"+$(this).attr("href")).show();
+        $(".ucommentBox[name="+$(this).attr("href")+"]").hide();
+        수정중 = false;
+    })
+
+    // 문의의 관리자 댓글 수정
+    $('.ProductQnas').on("click", ".modify_adminComment", function (e) {
+        e.preventDefault();
+        if(수정중){
+            alert("수정중인 댓글이있습니다");
+            return;
+        }
+        if(답글중){
+            alert("진행중인 답글이 있습니다.");
+            return;
+        }
+        let update = "";
+        update += "<div class='space'></div>";
+        update += "<div class=\"flex ucommentBox\" name='"+ $(this).attr("href")+ "' style=\"position: relative; align-items: center; height: 48px;\">";
+        update += "<div class=\"do_admin_comment\">";
+        update += "<div class=\"flex\">";
+        update += "<input class=\"doComment\" name='"+$(this).attr("href")+"' type=\"text\" placeholder=\"관리자만 입력할 수 있습니다\">";
+        update += "<div class=\"send_plane\" name='"+$(this).attr("href")+"'  style=\"width: 20px; height: 20px;\"><span class=\"material-symbols-outlined\">";
+        update += "send";
+        update += " </span></div>";
+        update += "</div>";
+        update += "</div>";
+        update += "</div>";
+        $(".testline[name="+$(this).attr("href")+"]").html(update);
+        $(".doComment[name="+$(this).attr("href")+"]").val($(this).attr("id")); //입력창
+        // $(".commentBox[name="+$(this).attr("name")+"]").show();                 //입력창을 감싸는 wrapper
+        $(".admin_comment#"+$(this).attr("href")+"").hide();                    //이미 달려있는 댓글
+        //
+        $(this).hide();
+        $(".delete_adminComment[href="+$(this).attr("href")+"]").hide();
+        $(".cancel_adminComment[href="+$(this).attr("href")+"]").css("display","block");
+        수정중 = true;
+    })
+
+    // 문의의 관리자 댓글 삭제
+    $('.ProductQnas').on("click", ".delete_adminComment", function (e) {
+        e.preventDefault();
+        $.ajax({
+            url:"/store/qnaCommentDelete?qnaCommentNum="+$(this).attr("href"),
+            type : "get",
+            success : function (res) {
+                showQnaList(pageNum);
+            }
+        })
+    })
 
     //scroll top
-$('.gototop').click(function(){
-    $('html, body').animate({scrollTop : 0},300);
-});
+    $('.gototop').click(function(){
+        $('html, body').animate({scrollTop : 0},300);
+    });
 
 
-       //상품 상세 링크
-       
-       let $as = $('.nav_item').find('a');
+    //상품 상세 링크
+    let $as = $('.nav_item').find('a');
     $as.click(function(){
         $as.removeClass('active');
-       if(!$(this).hasClass('active')) {
-           $(this).addClass('active');
-       }
+        if(!$(this).hasClass('active')) {
+            $(this).addClass('active');
+        }
     })
-   
-     // a태그 내부 페이지 이동
-    let intro = $('#toitem_intro').offset().top-203;
-    let review = $('#toitem_review').offset().top-110;
-    let question = $('#toitem_question').offset().top-140;
-    let policy = $('#toreturn_po').offset().top-156;
 
-    $('#item_intro').click(function(){
-        $('html, body').animate({scrollTop:intro},0);
-    })
-    $('#item_review').click(function(){
-        $('html, body').animate({scrollTop:review},0);
-    })
-    $('#item_question').click(function(){
-        $('html, body').animate({scrollTop:question},0);
-    })
-    $('#return_po').click(function(){
-        $('html, body').animate({scrollTop:policy},0);
-    })
-    
+    //a태그 내부 페이지 이동
+   function usea(){
+       let intro = $('#toitem_intro').offset().top-230;
+       let review = $('#toitem_review').offset().top-130;
+       let question = $('#toitem_question').offset().top-180;
+       let policy = $('#toreturn_po').offset().top-170;
+
+        $('#item_intro').click(function(){
+            $('html, body').animate({scrollTop:intro},0);
+        })
+        $('#item_review').click(function(){
+            $('html, body').animate({scrollTop:review},0);
+        })
+        $('#item_question').click(function(){
+            $('html, body').animate({scrollTop:question},0);
+        })
+        $('#return_po').click(function(){
+            $('html, body').animate({scrollTop:policy},0);
+        })
+    }
+
+
 
     //공유하기 모달창
 
@@ -571,36 +787,13 @@ $('.gototop').click(function(){
     $('.close').click(function(){
         $('.share_container').css("display","none");
     })
-    
+
     modal = document.getElementsByClassName("share_container")[0];
     window.onclick = function(event) {
         if (event.target == modal) {
             modal.style.display = "none";
         }
     }
-
-    //좋아요 js
-    $('.jjim-ajax').click(function(){
-        if($(this).hasClass("red")){
-            $(this).removeClass("red");
-        }else{
-            $(this).addClass("red");
-        }
-
-        $.ajax({
-            url : "", //찜table 연결하는곳
-            type : "post",
-            data : "상품데이터",
-            contentType : "application/json",
-            dataType : "json",
-            success : function(){
-
-            },
-            error : function(xhr,status,er){
-                
-            }
-        })
-    })
 
     // 리뷰로 이동 페이지
     $('.moveReviewTotal').click(function (e) {
@@ -621,81 +814,81 @@ $('.gototop').click(function(){
     })
 
     //--------------------------- 공유하기 api----------------------------------
-    
+
     // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
     Kakao.init('a976ec1bd79664fdd82edd1c18835ef7');
-    
+
     // SDK 초기화 여부를 판단합니다.
     console.log(Kakao.isInitialized());
     function kakaoShare() {
 
-      Kakao.Link.sendDefault({
-        objectType: 'feed',
-        content: {
-          title: '주방용품', //카카오공유하기 시 타이틀
-          description: '초록색이 좋아 고무장갑', //카카오공유하기 시 설명
-          imageUrl: 'http://127.0.0.1:5500/src/main/resources/static/images/5.jpg', //카카오공유하기 시 썸네일 이미지 경로
-          link: {
-            mobileWebUrl: 'http://127.0.0.1:5500/src/main/resources/templates/product/pickitupStoreDetail.html', //카카오공유하기 시 클릭 후 이동 경로
-            webUrl: 'http://127.0.0.1:5500/src/main/resources/templates/product/pickitupStoreDetail.html', //카카오공유하기 시 클릭 후 이동 경로
-          },
-        },
-        buttons: [
-          {
-            title: '웹으로 보기',
-            link: {
-              mobileWebUrl: 'http://127.0.0.1:5500/src/main/resources/templates/product/pickitupStoreDetail.html', //카카오공유하기 시 클릭 후 이동 경로
-              webUrl: 'http://127.0.0.1:5500/src/main/resources/templates/product/pickitupStoreDetail.html', //카카오공유하기 시 클릭 후 이동 경로
+        Kakao.Link.sendDefault({
+            objectType: 'feed',
+            content: {
+                title: '주방용품', //카카오공유하기 시 타이틀
+                description: '초록색이 좋아 고무장갑', //카카오공유하기 시 설명
+                imageUrl: 'http://127.0.0.1:5500/src/main/resources/static/images/5.jpg', //카카오공유하기 시 썸네일 이미지 경로
+                link: {
+                    mobileWebUrl: 'http://localhost:10010/store/detail.html', //카카오공유하기 시 클릭 후 이동 경로
+                    webUrl: 'http://localhost:10010/store/detail.html', //카카오공유하기 시 클릭 후 이동 경로
+                },
             },
-          },
-        ],
-        // 카카오톡 미설치 시 카카오톡 설치 경로이동
-        installTalk: true,
-        
-      })
-      $('.share_container').css("display","none");
+            buttons: [
+                {
+                    title: '웹으로 보기',
+                    link: {
+                        mobileWebUrl: 'http://localhost:10010/store/detail.html', //카카오공유하기 시 클릭 후 이동 경로
+                        webUrl: 'http://localhost:10010/store/detail.html', //카카오공유하기 시 클릭 후 이동 경로
+                    },
+                },
+            ],
+            // 카카오톡 미설치 시 카카오톡 설치 경로이동
+            installTalk: true,
+
+        })
+        $('.share_container').css("display","none");
     }
- 
-  
-  
-  
-        //  클립보드 복사하기
-      function clipboardShare() {
-              // 1. 새로운 element 생성
-              var tmpTextarea = document.createElement('textarea');
-              
-              // 2. 해당 element에 복사하고자 하는 value 저장
-              tmpTextarea.value = window.location.href; //현재 url
-              
-              // 3. 해당 element를 화면에 안보이는 곳에 위치
-              tmpTextarea.setAttribute('readonly', '');
-              tmpTextarea.style.position = 'absolute';
-              tmpTextarea.style.left = '-9999px';
-              document.body.appendChild(tmpTextarea);
-              
-              // 4. 해당 element의 value를 시스템 함수를 호출하여 복사
-              tmpTextarea.select();
-              tmpTextarea.setSelectionRange(0, 9999);  // 셀렉트 범위 설정
-              var successChk = document.execCommand('copy');
-              
-              // 5. 해당 element 삭제
-              document.body.removeChild(tmpTextarea);
-              
-              // 클립보드 성공여부 확인
-              if(!successChk){
-                  alert("클립보드 복사에 실패하였습니다.");
-              } else {
-                  alert("클립보드에 복사가 완료되었습니다.");
-              }
-              $('.share_container').css("display","none");
-
-         }
 
 
+
+
+    //  클립보드 복사하기
+    function clipboardShare() {
+        // 1. 새로운 element 생성
+        var tmpTextarea = document.createElement('textarea');
+
+        // 2. 해당 element에 복사하고자 하는 value 저장
+        tmpTextarea.value = window.location.href; //현재 url
+
+        // 3. 해당 element를 화면에 안보이는 곳에 위치
+        tmpTextarea.setAttribute('readonly', '');
+        tmpTextarea.style.position = 'absolute';
+        tmpTextarea.style.left = '-9999px';
+        document.body.appendChild(tmpTextarea);
+
+        // 4. 해당 element의 value를 시스템 함수를 호출하여 복사
+        tmpTextarea.select();
+        tmpTextarea.setSelectionRange(0, 9999);  // 셀렉트 범위 설정
+        var successChk = document.execCommand('copy');
+
+        // 5. 해당 element 삭제
+        document.body.removeChild(tmpTextarea);
+
+        // 클립보드 성공여부 확인
+        if(!successChk){
+            alert("클립보드 복사에 실패하였습니다.");
+        } else {
+            alert("클립보드에 복사가 완료되었습니다.");
+        }
+        $('.share_container').css("display","none");
+
+    }
 
 
 
 
 
-  </script>
+
+
+</script>
 </html>

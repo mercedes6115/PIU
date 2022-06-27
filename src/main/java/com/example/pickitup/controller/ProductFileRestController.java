@@ -61,18 +61,12 @@ public class ProductFileRestController {
             log.info("Upload File Name : " + uploadFileName);
             log.info("Upload File Size : " + file.getSize());
 
-//            ProductFileVO.setFileSize(file.getSize());
 
             File saveFile = new File(uploadPath, uploadFileName);
             file.transferTo(saveFile);
 
-            if(checkImageType(saveFile)){
-                FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_" + uploadFileName));
-                Thumbnailator.createThumbnail(file.getInputStream(), thumbnail, 100, 100);
-                thumbnail.close();
-//                ProductFileVO.setImage(true);
-            }
             files.add(ProductFileVO);
+            log.info(""+ files);
         }
         return files;
     }

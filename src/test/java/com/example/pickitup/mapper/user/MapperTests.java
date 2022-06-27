@@ -27,7 +27,6 @@ public class MapperTests {
         projectVO.setStartAddress("역삼역1번출구");
         projectVO.setEndAddress("역삼역1번출구");
         projectVO.setDistance("111km");
-        projectVO.setUserNum(7l);
         projectVO.setCompanyNum(2l);
 
         projectMapper.insert(projectVO);

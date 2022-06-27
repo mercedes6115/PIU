@@ -12,11 +12,11 @@
 
 </head>
 <body style="font-family: Noto Sans KR; background-color: #f8f8f9;">
-   <!--헤더  -->
+<!--헤더  -->
 
-   <div th:replace="~{/main/Header :: HeaderImport}"></div>
-   <!--헤더 -->
-   <form action="/store/buyProductDetail" method="post" th:object="${productinfo}">
+<div th:replace="~{/main/Header :: HeaderImport}"></div>
+<!--헤더 -->
+<form action="/store/buyProductDetail" method="post" th:object="${productinfo}">
     <div class="payment_main">
         <div class="black_line flex">
             <div><h3 class="_pay_header">결제하기</h3></div>
@@ -42,96 +42,96 @@
                 </div>
             </div>
 
-                <div class="shipment">
-                    <div class="order_info">배송정보</div>
-                    <div class="receiver">받으시는 분</div>
-                    <div class="ship_input"><input type="text" id="personname" name="nickname" required></div>
-                    <div class="checkValid" id="personname_check"></div>
-                    <div class="valid" style="margin-bottom: 10px;">정확한 배송을 위해 실명을 입력하세요</div>
-                    <div class="receiver">휴대폰번호</div>
-                    <div class="phone_input"><input type="text" name="phone" id="personphone" placeholder=" '-'없이 입력해주세요" required></div>
-                    <div class="checkValid" id="personphone_check"></div>
-                    <div class="receiver">배송주소</div>
-                    <div class="flex" style="width: 102%;">
-                        <input id="personaddr" name="address" class="addr_input" type="text" required readonly>
-                        <button type="button" id="personaddrbtn" class="personaddrbtn">주소 검색</button>
-                    </div>
-                    <div class="checkValid" style="margin-bottom: 10px;">필수입력입니다.</div>
-                    <div class="phone_input"><input id="addr_detail" name="addressDetail" type="text" placeholder="상세주소"></div>
-                    <div class="receiver">배송요청사항</div>
-                    <div class="phone_input"><input type="text" name="addressComment" placeholder=" 예) 부재시 경비실에 맡겨주세요"></div>
+            <div class="shipment">
+                <div class="order_info">배송정보</div>
+                <div class="receiver">받으시는 분</div>
+                <div class="ship_input"><input type="text" id="nickname" name="nickname"  th:value="*{nickname}" required></div>
+                <div class="checkValid" id="personname_check"></div>
+                <div class="valid" style="margin-bottom: 10px;">정확한 배송을 위해 실명을 입력하세요</div>
+                <div class="receiver">휴대폰번호</div>
+                <div class="phone_input"><input type="text" name="phone" th:value="*{phone}" id="phone" placeholder=" '-'없이 입력해주세요" required></div>
+                <div class="checkValid" id="personphone_check"></div>
+                <div class="receiver">배송주소</div>
+                <div class="flex" style="width: 102%;">
+                    <input id="address" name="address" class="addr_input" th:value="*{address}"  type="text" required readonly>
+                    <button type="button" id="personaddrbtn" class="personaddrbtn">주소 검색</button>
                 </div>
-                <div class="order_info" style="margin-top: 50px;">결제금액</div>
-                <div class="space"></div>
-                <div class="flex small_and_gray" style="justify-content: space-between;">
-                    <div>총금액</div>
-                    <div th:text="|*{totalpayment}P|"></div>
-                    <input type="hidden" name="totalpayment" th:value="*{totalpayment}">
-                </div>
-                <div class="flex small_and_gray" style="justify-content: space-between; margin-bottom: 10px;">
-                    <div>배송비</div>
-                    <div>무료</div>
-                </div>
-                <div class="flex" style="justify-content: space-between; border-top: 1px solid rgba(128, 128, 128, 0.11); padding-top: 10px;">
-                    <div>최종가격</div>
-                    <div th:text="|*{totalpayment}P|"></div>
-                </div>
-                <div class="flex" style="border-top: 1px solid  rgba(128, 128, 128, 0.11); padding-top: 10px; margin-top: 10px; align-items: center;">
-                    <div class="flex" style="align-items: center;"> <input class="checkBox" type="checkbox" name="agree" id="agree" required><label for="agree" style="cursor: pointer; font-size: 14px ; margin-bottom: 4px;">(필수)개인정보 제3자 제공 동의 &nbsp;&nbsp;</label></div>
-                    <div id="agree_detail" class="small_and_gray" style="align-items: center; border-bottom: 1px solid gray; cursor: pointer; margin-bottom: 4px;">상세보기</div>
-                </div>
-                <button id="order_finish" type="submit" class="toBuy" style="margin-bottom: 10px; font-weight: 900;">주문 완료</button>
+                <div class="checkValid" style="margin-bottom: 10px;">필수입력입니다.</div>
+                <div class="phone_input"><input id="addressdetail" name="addressDetail" type="text" th:value="*{addressdetail}" placeholder="상세주소"></div>
+                <div class="receiver">배송요청사항</div>
+                <div class="phone_input"><input type="text" name="addressComment" th:value="*{usercomment}"  placeholder=" 예) 부재시 경비실에 맡겨주세요"></div>
             </div>
+            <div class="order_info" style="margin-top: 50px;">결제금액</div>
+            <div class="space"></div>
+            <div class="flex small_and_gray" style="justify-content: space-between;">
+                <div>총금액</div>
+                <div th:text="|*{totalpayment}P|"></div>
+                <input type="hidden" name="totalpayment" th:value="*{totalpayment}">
+            </div>
+            <div class="flex small_and_gray" style="justify-content: space-between; margin-bottom: 10px;">
+                <div>배송비</div>
+                <div>무료</div>
+            </div>
+            <div class="flex" style="justify-content: space-between; border-top: 1px solid rgba(128, 128, 128, 0.11); padding-top: 10px;">
+                <div>최종가격</div>
+                <div th:text="|*{totalpayment}P|"></div>
+            </div>
+            <div class="flex" style="border-top: 1px solid  rgba(128, 128, 128, 0.11); padding-top: 10px; margin-top: 10px; align-items: center;">
+                <div class="flex" style="align-items: center;"> <input class="checkBox" type="checkbox" name="agree" id="agree" required><label for="agree" style="cursor: pointer; font-size: 14px ; margin-bottom: 4px;">(필수)개인정보 제3자 제공 동의 &nbsp;&nbsp;</label></div>
+                <div id="agree_detail" class="small_and_gray" style="align-items: center; border-bottom: 1px solid gray; cursor: pointer; margin-bottom: 4px;">상세보기</div>
+            </div>
+            <button id="order_finish" type="submit" class="toBuy" style="margin-bottom: 10px; font-weight: 900;">주문 완료</button>
         </div>
-    </form>
-    
-    
+    </div>
+</form>
 
-    <div class="gototop">
+
+
+<div class="gototop">
         <span class="material-symbols-outlined toTop" style="font-size: 35px;">
             vertical_align_top
         </span>
-    </div> 
+</div>
 
-    <!-- ----------------모달창--------------------- -->
-    <div id="agree_modal" class="agree_modal">
-        <div class="agree_modal_box">
-            <div class="flex" style="justify-content: space-between;">
-                <div class="agree_title">개인정보 제 3자 제공 동의</div>
-                <button class="close">&times;</button>
-            </div>
-
-
-            <div class="flex mt-20" style="justify-content: space-between;">
-                <table class="modal_table">
-                    <tbody>
-                        <tr>
-                            <th>제공받는 자</th>
-                            <td>픽잇업(피끼럽)컴페니</td>
-                        </tr>
-                        <tr>
-                            <th>제공 목적</th>
-                            <td>주문 상품의 배송, 고객상담 및 불만 처리</td>
-                        </tr>
-                        <tr>
-                            <th>제공 항목</th>
-                            <th>수취인 정보(이름, 휴대폰 번호, 주소)</th>
-                        </tr>
-                        <tr>
-                            <th>보유 및 이용 기간</th>
-                            <td>구매 확정 1개월 후 지체 없이 파기</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-            </div>
-            <div style="margin-top: 8px;">
-                <button id="modal_close_btn" class="modal_close_btn">동의합니다</button>
-            </div>
-                
+<!-- ----------------모달창--------------------- -->
+<div id="agree_modal" class="agree_modal">
+    <div class="agree_modal_box">
+        <div class="flex" style="justify-content: space-between;">
+            <div class="agree_title">개인정보 제 3자 제공 동의</div>
+            <button class="close">&times;</button>
         </div>
+
+
+        <div class="flex mt-20" style="justify-content: space-between;">
+            <table class="modal_table">
+                <tbody>
+                <tr>
+                    <th>제공받는 자</th>
+                    <td>픽잇업(피끼럽)컴페니</td>
+                </tr>
+                <tr>
+                    <th>제공 목적</th>
+                    <td>주문 상품의 배송, 고객상담 및 불만 처리</td>
+                </tr>
+                <tr>
+                    <th>제공 항목</th>
+                    <th>수취인 정보(이름, 휴대폰 번호, 주소)</th>
+                </tr>
+                <tr>
+                    <th>보유 및 이용 기간</th>
+                    <td>구매 확정 1개월 후 지체 없이 파기</td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <div style="margin-top: 8px;">
+            <button id="modal_close_btn" class="modal_close_btn">동의합니다</button>
+        </div>
+
     </div>
-   <div th:replace="~{/main/Footer :: FooterImport}"></div>
+</div>
+<div th:replace="~{/main/Footer :: FooterImport}"></div>
 </body>
 <!-- jquery -->
 <!--<script src="https://code.jquery.com/jquery-3.5.0.js"></script>-->
@@ -210,6 +210,63 @@
     $('#modal_close_btn').click(function(){
         $('#agree').prop("checked", true);
     })
+
+    //수정된 곳(작동X)
+
+    let userNum = [[${user.num}]];
+    var nickname = $('#nickname').val();
+    var phone = $('#phone').val();
+    var address = $('#address').val();
+    var addressdetail = $('#addressdetail').val();
+    $(document).ready(function(){
+        $.ajax({
+            url:"store/payment"+userNum,
+            type:"GET",
+            success:function(){
+
+                $("#num").value("3L");
+                $("#nickname").value(nickName);
+                $("#phone").value(phone);
+            },
+            error:function(){
+                alert('error');
+            }
+        });
+
+    });
+
+    $('#order_finish').onclick(function () {
+        $.ajax({
+            type:'POST',
+            url:'/store/paymentForm',
+            data: {userNum:'userNum',ProductNum:'ProductNum',address:'address',addressdetail:'addressdetail',point:'point'},
+            dataType: 'json',
+
+
+
+            success: function(result){
+                var point = $('#point').val();
+                var totalpayment = $('#totalpayment').val();
+                if(result == '1') {
+                    alert('성공');
+                    if(point>=totalpayment){
+                        point=point-totalpayment;
+                        return true;
+                    }
+                    else{
+                        alert('포인트가 부족합니다.');
+                        return false;
+                    }
+                }
+                else{
+                    alert('실패');
+                }
+            },
+            error: function(a,b,c){
+                console.log(a,b,c);
+            }
+        });
+    });
 
 </script>
 

@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Data
-
 public class UserVO {
     private Long num;
     private String email;
@@ -20,7 +19,6 @@ public class UserVO {
     private String point;
     private String registDate;
     private String category;
-
-
-
+    private String status;
+    private String approval;
 }

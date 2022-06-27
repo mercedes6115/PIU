@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>주문내역상세</title>
+</head>
+<link rel="stylesheet" href="/assets/css/admin_style.css">
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+
+<body>
+<div class="root">
+
+    <!-- sidebar -->
+    <div th:replace="~{/admin/adminSideBar :: AdminSideBarImport}"></div>
+
+    <!-- content -->
+    <div id="container">
+        <div>
+            <h2>주문내역</h2>
+        </div>
+        <div class="listBox" id="userDetail">
+            <div>
+                <h2>주문자 정보</h2>
+            </div>
+            <table id="basicInfo" th:object="${detailVO}">
+                <form>
+                    <tr>
+                        <th>아이디</th>
+                        <td th:text="*{email}"></td>
+                    </tr>
+                    <tr>
+                        <th>닉네임</th>
+                        <td th:text="*{nickname}"></td>
+                    <tr>
+                        <th>전화번호</th>
+                        <td th:text="*{phone}"></td>
+                    </tr>
+                    <tr>
+                        <th>주소</th>
+                        <td th:text="*{address} "></td>
+                    </tr>
+                    <tr>
+                        <th>배송주소</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+
+                    </tr>
+                </form>
+                <tr>
+                    <th>주문일자</th>
+                    <td th:text="*{registDate}"></td>
+                </tr>
+                <tr>
+                    <th>상태</th>
+                    <td>
+                        <span>배송준비</span>
+                        <a href="#">배송</a>
+                    </td>
+                </tr>
+            </table>
+
+            <div>
+                <h2>주문 상품정보</h2>
+            </div>
+
+            <table id="pointInfo">
+                <tr>
+                    <th>상품명</th>
+                    <td>친환경화장품</td>
+                    <th>상품번호</th>
+                    <td>120</td>
+                </tr>
+                <tr>
+                    <th>카테고리</th>
+                    <td>화장품</td>
+                    <th>상품가격</th>
+                    <td>5000P</td>
+                </tr>
+                <tr>
+                    <th>상품등록일</th>
+                    <td>2022-06-13 20:00</td>
+                    <th>주문수량</th>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <th>상품상태</th>
+                    <td>판매중</td>
+                    <th>총가격</th>
+                    <td>10000P</td>
+                </tr>
+                <tr>
+                    <th>원산지</th>
+                    <td>대한민국</td>
+                    <th>공급사</th>
+                    <td>삼성</td>
+                </tr>
+                <tr>
+                    <th>제조사</th>
+                    <td>삼성</td>
+                    <th>주문번호</th>
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <th>요청사항</th>
+                    <td colspan="3">부재시 경비실에 맡겨주세요</td>
+                </tr>
+            </table>
+            <div>
+                <button type="button">수정</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script th:replace="~{/admin/adminSideBar :: AdminSideBarJSImport}"></script>
+
+</html>

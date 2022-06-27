@@ -19,6 +19,9 @@ public class CompanyVO {
     private String registDate;
     private String profileFileName;
     private String profileUploadPath;
+
     private String category;
+    private String status;
+
 
 }

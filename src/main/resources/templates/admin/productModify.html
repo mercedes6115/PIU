@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="/assets/css/productRegister.css">
+    <link rel="stylesheet" href="/assets/css/adminSidebar.css">
+<!--    <link rel="stylesheet" href="/assets/css/admin_style.css">-->
+
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- include libraries(jQuery, bootstrap) -->
+<!--    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">-->
+<!--    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>-->
+<!--    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>-->
+
+<!--    &lt;!&ndash; include summernote css/js&ndash;&gt;-->
+<!--    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">-->
+<!--    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>-->
+
+
+</head>
+<body>
+
+<div class="wrap">
+
+    <div class="root">
+        <div th:replace="~{/admin/adminSideBar :: AdminSideBarImport}"></div>
+        <!-- sidebar -->
+
+        <div class="content">
+            <!-- content -->
+            <div class="productWrap">
+                <!-- product register -->
+
+                <!-- 상품등록 -->
+                <h2>상품등록</h2>
+
+            </div>
+
+            <form th:object="${product}" action="/admin/productModify" method="post" class="formlayout" id="registerForm" enctype="multipart/form-data">
+                <div class="togglebar">
+                    <!-- togglebar -->
+                    <h2>기본정보</h2>
+                </div>
+
+                <div class="toggleArea">
+                    <!-- togglecontent -->
+                    <table class="formTable" >
+
+                        <tbody class="formContent">
+                        <tr>
+                            <th>상품명
+                            </th>
+                            <td style="display: flex;">
+                                <input th:value="*{name}" class="productName" type="text" name="name" required="required" placeholder="예시 ) 친환경 세제로 지구를 지켜라 ">
+
+                                <div class="count">
+                                    [<p class="textCount"> 0</p>
+                                    /
+                                    <p class="textTotal"> 250</p>]
+                                </div>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <th scope='row'>상품가격
+                            </th>
+                            <td>
+                                <input th:value="*{price}" class="pay" type="number" name="price" required="required">point
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>상품카테고리
+                            </th>
+                            <td>
+                                <input class="check" type="checkbox"  name="category" onclick='checkOnlyOne(this)' value="생활"/>
+                                <label for="">생활</label>
+
+                                <input class="check" type="checkbox"  name="category" onclick='checkOnlyOne(this)' value="주방"/>
+                                <label for="">주방</label>
+
+                                <input class="check" type="checkbox"  name="category" onclick='checkOnlyOne(this)' value="욕실"/>
+                                <label for="">욕실</label>
+
+                                <input class="check" type="checkbox"  name="category" onclick='checkOnlyOne(this)' value="반려동물"/>
+                                <label for="">반려동물</label>
+
+                                <input class="check" type="checkbox"  name="category" onclick='checkOnlyOne(this)' value="화장품"/>
+                                <label for="">화장품</label>
+
+                                <input class="check" type="checkbox"  name="category" onclick='checkOnlyOne(this)' value="식품"/>
+                                <label for="">식품</label>
+
+                                <input class="check" type="checkbox"  name="category" onclick='checkOnlyOne(this)' value="문구"/>
+                                <label for="">문구</label>
+
+                                <input class="check" type="checkbox"  name="category" onclick='checkOnlyOne(this)' value="원예"/>
+                                <label for="">원예</label>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th>상품요약
+                            </th>
+                            <td style="display: flex;">
+                                <input th:value="*{content}" name="content" class="summary"  required="required">
+                                <div class="count">
+                                    [<p class="textCount"> 0</p>
+                                    /
+                                    <p class="textTotal"> 250</p>]
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th>상품재고
+                            </th>
+                            <td>
+                                <input th:value="*{stock}" class="pay" type="number" name="stock" required="required">개
+                            </td>
+                        </tr>
+                        <tr>
+                            <th rowspan="2">상품 이미지</th>
+                            <td>
+                                <h5>대표이미지</h5>
+                                <div class="flex" style="text-align: left; padding: 0  0 10px 24px;">
+                                    <label for="attach0" class="flex">
+                                        <div class="thumb0">
+                                            <div>+</div>
+                                        </div>
+                                    </label>
+                                </div>
+                                <input type="file" name="uploadFiles" id="attach0" class="attach0" style="display: none;">
+                                <p class="imgRequire">
+                                    -등록이미지 : gif, png, jpg(jpeg)
+                                </p>
+
+
+
+                            </td>
+                        </tr>
+
+                        <tr>
+
+                            <td>
+                                <span class="detailImg">추가이미지</span>
+                                <div class="flex" style="text-align: left; padding: 0  0 10px 24px;">
+                                    <label for="attach1" class="flex">
+                                        <div class="thumb1">
+                                            <div>+</div>
+                                        </div>
+                                    </label>
+                                    <label for="attach2" class="flex">
+                                        <div class="thumb2">
+                                            <div>+</div>
+                                        </div>
+                                    </label>
+                                    <label for="attach3" class="flex">
+                                        <div class="thumb3">
+                                            <div>+</div>
+                                        </div>
+                                    </label>
+                                    <label for="attach4" class="flex">
+                                        <div class="thumb4">
+                                            <div>+</div>
+                                        </div>
+                                    </label>
+                                    <input type="file" name="uploadFiles" id="attach1" class="attach1" style="display: none;" disabled>
+                                    <input type="file" name="uploadFiles" id="attach2" class="attach2" style="display: none;" disabled>
+                                    <input type="file" name="uploadFiles" id="attach3" class="attach3" style="display: none;" disabled>
+                                    <input type="file" name="uploadFiles" id="attach4" class="attach4" style="display: none;" disabled>
+                                </div>
+
+                                <p class="imgRequire">
+                                    -권장이미지 : gif, png, jpg(jpeg) / 4개까지 추가 가능
+                                </p>
+
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <th>제조사
+                            </th>
+                            <td>
+                                <input th:value="*{manufacturer}" class="" type="text" name="manufacturer" required="required" placeholder="제조사 이름">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>공급사
+                            </th>
+                            <td>
+                                <input th:value="*{supplier}" class="" type="text" name="supplier" required="required" placeholder="공급사 이름">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>원산지
+                            </th>
+                            <td>
+                                <input th:value="*{origin}" class="" type="text" name="origin" required="required" placeholder="원산지 이름">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+                <div class="submitbtn">
+                    <!-- button -->
+                    <button class="productbtn">상품수정</button>
+                    <button onclick="handleOnClick()"
+                            value="confirm">취소</button>
+                </div>
+                <input type="hidden" name="num" th:value="*{num}">
+            </form>
+        </div>
+
+    </div>
+</div>
+</body>
+
+<script th:replace="~{/admin/adminSideBar :: AdminSideBarJSImport}"></script>
+
+<script th:inline="javascript">
+    let productNum = [[${product.num}]];
+    console.log(productNum);
+
+    console.log("js파일"+productNum);
+    $.ajax({
+        url: "/productFile/list/" + productNum,
+        type: "get",
+        success: function (files) {  //파일들가져오기.
+            $(files).each(function (i, file) {
+                console.log("ajax");
+                let text = "";
+                text += "<img src='/productFile/display?fileName=" + file.uploadPath + "/" + file.uuid + "_" + file.fileName + "' width='100%' height='100%'>";
+                console.log(text);
+                text += "<input type='hidden' name='fileList[" + i + "].fileName' value='" + file.fileName + "'>"
+                text += "<input type='hidden' name='fileList[" + i + "].uuid' value='" + file.uuid + "'>"
+                text += "<input type='hidden' name='fileList[" + i + "].uploadPath' value='" + file.uploadPath + "'>"
+                $(".thumb"+(i)).html(text);
+            })
+            // text += "</div>";
+            // $(".thumb1").html(text);
+
+        }
+    })
+
+</script>
+<script src="/assets/js/productRegister.js"></script>
+</html>

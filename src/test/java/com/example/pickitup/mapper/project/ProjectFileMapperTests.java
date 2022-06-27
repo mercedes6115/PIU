@@ -14,9 +14,9 @@ import java.util.List;
 public class ProjectFileMapperTests {
     @Autowired
     private ProjectFileMapper projectFileMapper;
-
-    @Test
-    public void findByProjectNum(){
-        projectFileMapper.findByProjectNum(22L);
-    }
+//
+//    @Test
+//    public void findByProjectNum(){
+//        projectFileMapper.findProjectNum(22L);
+//    }
 }

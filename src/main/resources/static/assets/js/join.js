@@ -4,6 +4,7 @@ let $upw2 = $('input#password_check');
 let emailPass = true;  // 테스트용으로 true
 let pwPass = false;
 let namePass = false;
+let $unickname=$('input#nickname');
 let phonePass = false;
 let statePass = false;
 let phoneCheckPass = false; // sms 확인용
@@ -46,25 +47,11 @@ function checkEmail(){
 
 
 
-// db처리를 할수 없으므 테스트용으로 주석처리
-// 이메일 중복 확인(메세지 출력)
-// $uemail.blur(function () {
-//     let $uemailval = $uemail.val();
-//     if (!$uemailval) { // 아이디 입력칸이 비어 있을 경우
-//         $('span#emailCheck_text').empty().text("아이디를 입력해 주세요").css("color", "red");
-//         emailPass = false;
-//         return;
-//     } else {
-//         checkEmail();
-//     }
-// });
-
-
 
 $("#emailCheck").on("click",function () {
     let $uemailval = $uemail.val();
     $.ajax({
-        url: "/pickitup/emailMatching",
+        url: "/userR/emailMatching",
         type: "post",
         data: {email: $uemailval},
         success: function (result) {
@@ -121,9 +108,9 @@ $upw2.blur(function () {
 
 
 
-// 이름확인
-$("input#name").blur(function () {
-    if (!$("input#name").val()) {
+// 닉네임확인
+$("input#nickname").blur(function () {
+    if (!$("input#nickname").val()) {
         $('span#nameCheck_text').text("이름를 입력해주세요").css("color", "red");
         namePass = false;
         return;
@@ -132,6 +119,29 @@ $("input#name").blur(function () {
         namePass = true;
     }
 });
+// 닉네임 중복 체크
+$("#nameCheck").on("click",function () {
+    let $unicknameval = $unickname.val();
+    $.ajax({
+        url: "/userR/nicknameMatching",
+        type: "post",
+        data: {nickname: $unicknameval},
+        success: function (result) {
+            if (result===0) {
+                console.log(result);
+                $('span#nameCheck_text').empty().text("사용 가능한 닉네임 입니다.").css("color", "green");
+                namePass = true;
+            } else {
+                $('span#nameCheck_text').empty().text("이미 사용 중인 닉네임 입니다.").css("color", "red");
+                namePass = false;
+            }
+        },
+        error: function (xhr, status, er) {
+            console.log(xhr, status, er);
+        }
+    })
+
+})
 
 // 기업번호
 $("input#businessNumber").blur(function () {
@@ -291,7 +301,11 @@ $("#submit-user-final").on("click", function () {
         return;
     }
 
+    $('')
     console.log($('#joinForm'));
+    let enpw=btoa($('input[name=password]').val());
+    $('input[name=password]').val(enpw);
+    console.log($('input[name=password]').val())
     joinForm.submit();
     alert("환영합니다. 회원가입이 완료되었습니다.");
 
@@ -318,20 +332,70 @@ $("#submit-corp").on("click", function () {
         alert("사업자 등록증을 입력해주세요")
         return false;
     } else {
-        $.ajax({
-            type: "POST",
-            url: "/컨트롤러/joinCorp",  // userCorpVO랑 연결된 컨트롤러
-            data: {
-                companyEmail:$("#email"),
-                companyPassword:$("#password"),
-                companyName:$("#name"),
-                companyPhone:$("#phone"),
-                companyCorphone:$("#phone-corp") ,
-                companyAddress:$("#state") + $("#state-detail"),
-                companyBusinessNumber:"미정"
-            }
-        })
+        let enpw=btoa($('input[name=password]').val());
+        $('input[name=password]').val(enpw);
+        joinForm.submit();
     }
 })
 
+
+let regex = new RegExp("(.*?)\.(exe|sh|zip|alz)");
+
+function checkExtension(fileName, fileSize){
+    if(regex.test(fileName)){
+        alert("업로드 할 수 없는 파일의 형식입니다.");
+        return false;
+    }
+    if(fileSize >= 5242880){
+        alert("파일 사이즈 초과");
+        return false;
+    }
+    return true;
+}
+
+$("input[type='file']").on("change",function () {
+
+    let formData = new FormData();
+    let inputFile = $("input[name='uploadFile']");
+    let files = inputFile[0].files;
+    console.log(files);
+    for(let i=0; i<files.length; i++){
+        if(!checkExtension(files[i].name, files[i].size)){ return; }
+        formData.append("uploadFile", files[i]);
+    }
+    $.ajax({
+        url: "/userFile/businessFileUpload",
+        type: "post",
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function(data){
+            console.log(data);
+            console.log(data.profileFileName);
+            console.log(data.profileUploadPath);
+
+            $('input[name=profileFileName]').val(data.profileFileName);
+            $('input[name=profileUploadPath]').val(data.profileUploadPath);
+
+        }
+    });
+
+})
+
+// 입력받은 파일 이름 넘기기
+$(document).ready(function(){
+    var fileTarget = $('.upload-hidden');
+
+    fileTarget.on('change', function(){
+        if(window.FileReader){
+            var filename = $(this)[0].files[0].name;
+        } else {
+            var filename = $(this).val().split('/').pop().split('\\').pop();
+        }
+
+        $(this).siblings('#business-number').val(filename);
+
+        corpPass =true;
+    });
+});
 

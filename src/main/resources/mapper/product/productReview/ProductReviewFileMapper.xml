@@ -4,8 +4,9 @@
     <select id="findByProductReviewNum" resultType="productReviewFileVO">
         SELECT UUID, UPLOAD_PATH, FILE_NAME, REVIEW_NUM
         FROM TBL_PRODUCT_REVIEW_FILE
-        WHERE REVIEW_NUM=#{productReviewNum}
+        WHERE REVIEW_NUM=#{reviewNum}
     </select>
+
     <insert id="insert">
         INSERT INTO TBL_PRODUCT_REVIEW_FILE
             (
@@ -13,12 +14,12 @@
             )
         VALUES
             (
-                #{uuid},#{uploadPath},#{fileName},#{productReviewNum}
+                #{uuid},#{uploadPath},#{fileName},#{reviewNum}
             )
     </insert>
     <delete id="delete">
     DELETE FROM TBL_PRODUCT_REVIEW_FILE
-    WHERE UUID=#{uuid};
+    WHERE REVIEW_NUM=#{reviewNum}
     </delete>
 </mapper>
 

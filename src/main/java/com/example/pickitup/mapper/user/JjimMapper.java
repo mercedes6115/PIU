@@ -18,6 +18,12 @@ public interface JjimMapper {
 
     //   찜한 게시물 테이블 등록
     public void insert(JjimVO jjimVO);
+    //   찜한 게시물 테이블 등록
+    public void delete(JjimVO jjimVO);
+    // 찜한 상품 모두 가져오기
+    public List<JjimVO> getList();
+
+    public int count(Long productNum);
 
     // registDate update 해주기 
     // projectNum하고 userNum을 주세요
@@ -28,6 +34,14 @@ public interface JjimMapper {
     // projectNum하고 userNum을 주세요
     public boolean updateProduct(JjimVO jjimVO);
 
-    
+    // 프로젝트 찜 추가
+    public void insertProject(JjimVO jjimVO);
+
+    // 프로젝트 찜 해제
+    public void deleteProject(JjimVO jjimVO);
+
+
+
+
 
 }

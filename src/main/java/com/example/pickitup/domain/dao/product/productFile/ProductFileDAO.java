@@ -15,6 +15,7 @@ public class ProductFileDAO {
 
     // 파일 경로 가져오기
     public List<ProductFileVO> findByProductNum(Long productNum) {
+
         return productFileMapper.findByProductNum(productNum);
     }
 
@@ -29,7 +30,7 @@ public class ProductFileDAO {
     };
 
     // 사진 삭제(mapper 매개변수 수정)
-    public void remove(String uuid){
-        productFileMapper.delete(uuid);
+    public void remove(Long productNum){
+        productFileMapper.delete(productNum);
     }
 }

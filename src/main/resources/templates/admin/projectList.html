@@ -80,10 +80,9 @@
                         <div class="productFilterBox">
                             <th>프로젝트 상태</th>
                             <td>
-                                <span>전체</span><input type="radio" name="snsCheck" id="" checked>
-                                <span>승인대기</span><input type="radio" name="snsCheck" id="">
-                                <span>승인완료</span><input type="radio" name="snsCheck" id="">
-                                <span>지급완료</span><input type="radio" name="snsCheck" id="">
+                                <span>전체</span><input type="radio" name="Pstatus" id="" checked>
+                                <span>승인대기</span><input type="radio" name="Pstatus" id="">
+                                <span>승인완료</span><input type="radio" name="Pstatus" id="">
                             </td>
                         </div>
                     </tr>
@@ -119,10 +118,10 @@
 
                     <td colspan="12">
                         <div class="listTitle">
-                            <a href="" class="listBtn">삭제</a>
-                            <a href="" class="listBtn" id="productDisplayChage">상태변경</a>
-                            <a href="" class="listBtn">승인</a>
-                        </div>
+                            <a href="" class="listBtn" onclick="projectDelete()">삭제</a>
+                            <a href="" class="listBtn" onclick="projectApprove()">승인</a>
+                            <a href="" class="listBtn" onclick="projectAwaiting()">승인대기</a>
+                            <a href="" class="listBtn" onclick="projectDispprove()">승인거절</a></div>
                     </td>
             </tr>
                 <tr>
@@ -135,24 +134,36 @@
                     <th scope="col">모집자</th>
                     <th scope="col">상태</th>
                     <th scope="col">모집등록일</th>
-                    <th scope="col">모집상황</th>
+                    <th scope="col">거리</th>
                     <th scope="col">포인트</th>
                 </tr>
         <th:block th:each="project:${projectList}">
         <tr th:object="${project}">
-            <td><input type="checkbox"></td>
+            <td><input type="checkbox" th:value="*{num}" name="delList"></td>
             <td th:text="*{num}"></td>
             <td>
-                <div id="qrcode" th:text="*{num}">번 QR생성</div>
+                <form>
+                <button type="button" th:id="*{num}" onclick="makeQR(this.id)" th:text="*{num}+'번 QR생성'"></button>
+                <div th:id="qrcode+*{num}"></div>
+                </form>
             </td>
-            <td th:text="*{course}"></td>
-            <td th:text="*{terrain}"></td>
+            <td th:if ="*{course}=='C'">코스</td>
+            <td th:if ="*{course}=='L'">장소</td>
+            <td  th:if="*{terrain}=='1'">산</td>
+            <td  th:if="*{terrain}=='2'">바다</td>
+            <td  th:if="*{terrain}=='3'">평지</td>
+            <td  th:if="*{terrain}=='4'">기타</td>
             <td th:text="*{title}"></td>
             <td th:text="*{nickname}"></td>
-            <td th:text="*{approval}"></td>
-            <td th:text="*{registDate}"></td>
+            <td th:if="*{approval}=='0'" th:style="${'color:blue;'}">승인</td>
+            <td th:if="*{approval}=='1'">진행중</td>
+            <td th:if="*{approval}=='2'" th:style="${'color:red;'}">거절</td>
+            <td th:if="*{approval}=='3'">지급대기</td>
+            <td th:if="*{approval}=='4'">지급완료</td>
+            <td th:if="*{approval}=='5'">승인대기</td>
             <td th:text="*{registDate}"></td>
             <td th:text="*{point}"></td>
+            <td><a th:href="@{/admin/projectDetail(projectNum=*{num})}" class="userDetail">상세보기</a></td>
         </tr>
         </th:block>
         </table>
@@ -186,58 +197,165 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/assets/js/qrcode.js"></script>
+
 <script th:inline="javascript">
     // 접속한 와이파이ipV4로 접속해야함 localhost로 접속하면 127.0.0.1가져와서 모바일로 접속을 못함
     let ipV4=[[${ipV4}]];
 
-
     //접속한 와이파이 ipV4값을 가져와야 모바일로도 접속이 가능하기 때문에 localhost를 대신할 ipV4값을 가져오는지 확인
-    console.log(ipV4);
-    // function makeQR() {
-        var qrcode = new QRCode(document.getElementById("qrcode"), {
-            text: "http://"+ipV4+":10010/user/login?num=",
-            width: 100,  //가로
-            height: 100, //세로
-            colorDark: "#000000", //qr에서 어두운 색 (보통 검은색)
-            colorLight: "#ffffff", //qr에서 밝은 색 (보통 하얀색) colorDark 보다 옅어야한다.
-            correctLevel: QRCode.CorrectLevel.H //qr코드 오류복원능력임 (L->M->Q->H)
-        });
-    //}
+    function makeQR(qrnum){
+        let QRnum=qrnum;
+        let projectLink1 = "http://"+ipV4+"10010:/admin/qrStartlogin?num="+qrnum+"&state=start";
+        let projectLink2 = "http://"+ipV4+"10010:/admin/qrEndlogin?num="+qrnum+"&state=finish";
+        console.log(projectLink1);
+        if(confirm("해당 프로젝트의 QR코드 링크를 생성하시겠습니까?")){
+            $.ajax({
+                url:"/admin/insertQr",
+                type:"post",
+                data:{  "QRnum":QRnum,
+                        "projectLink1":projectLink1,
+                        "projectLink2":projectLink2
+                },
+                success: function () {
+                    alert("링크를 성공적으로 생성하였습니다");
+                }
 
+            })
+        }
+
+
+    }
+    // function makeQR(qrnum) {
+    //     var qrcode = new QRCode(document.getElementById("qrcode"+qrnum), {
+    //         text: "http://"+ipV4+":/user/login?num="+qrnum,
+    //         width: 100,  //가로
+    //         height: 100, //세로
+    //         colorDark: "#000000", //qr에서 어두운 색 (보통 검은색)
+    //         colorLight: "#ffffff", //qr에서 밝은 색 (보통 하얀색) colorDark 보다 옅어야한다.
+    //         correctLevel: QRCode.CorrectLevel.H //qr코드 오류복원능력 (L->M->Q->H)
+    //     });
+    //      $("#qrcode > img").css({"margin":"auto"});
+    // }
 </script>
 <script>
-    $('#userDisabled').on("click", function (e) {
-        if (confirm("해당 유저를 비활성화 하시겠습니까?")) {
-            // 해당 유저 비활성화 
+    function projectDelete(){
+
+        var valueArr =new Array();
+        let list = $("input[name='delList']:checked");
+        for(let i=0; i<list.length; i++){
+            console.log('list.length : ' + list.length);
+            console.log(("list[i] : " + list[i].value));
+            valueArr.push(list[i].value);
+        }
+
+        if (confirm("해당 프로젝트를 삭제 하시겠습니까?")) {
+            // 프로젝트 삭제
             $.ajax({
-                url: "",
+                url: "/admin/deleteProject",
                 type: "post",
-                data: {userNumber: $userNumber},
+                traditional: true,
+                data: {
+                    valueArr: valueArr
+                },
                 success: function () {
+                    alert("삭제 성공");
+                    location.replace("/admin/projectList")
                 }
             });
-        } else {
         }
-    });
-    // 승인 버튼 클릭시
-    $('#userApprove').on("click", function (e) {
-        if (confirm("해당 유저를 승인 하시겠습니까?")) {
-            // 해당 유저 승인처리
+    }
+
+    function projectApprove(){
+
+        var valueArr =new Array();
+        let list = $("input[name='delList']:checked");
+        for(let i=0; i<list.length; i++){
+            console.log('list.length : ' + list.length);
+            console.log(("list[i] : " + list[i].value));
+            valueArr.push(list[i].value);
+        }
+
+        if (confirm("해당 프로젝트를 승인 하시겠습니까?")) {
+            // 프로젝트 승인
             $.ajax({
-                url: "",
+                url: "/admin/approveProject",
                 type: "post",
-                data: {userNumber: $userNumber},
+                traditional: true,
+                data: {
+                    valueArr: valueArr
+                },
                 success: function () {
+                    alert("승인 성공");
+                    location.replace("/admin/projectList")
                 }
             });
-        } else {
         }
-    });
+    }
+
+    function projectAwaiting(){
+
+        var valueArr =new Array();
+        let list = $("input[name='delList']:checked");
+        for(let i=0; i<list.length; i++){
+            console.log('list.length : ' + list.length);
+            console.log(("list[i] : " + list[i].value));
+            valueArr.push(list[i].value);
+        }
+
+        if (confirm("해당 프로젝트를 승인대기로 하시겠습니까?")) {
+            // 프로젝트 승인
+            $.ajax({
+                url: "/admin/AwaitingProject",
+                type: "post",
+                traditional: true,
+                data: {
+                    valueArr: valueArr
+                },
+                success: function () {
+                    alert("승인대기 성공");
+                    location.replace("/admin/projectList")
+                }
+            });
+        }
+    }
+
+    function projectDispprove(){
+
+        var valueArr =new Array();
+        let list = $("input[name='delList']:checked");
+        for(let i=0; i<list.length; i++){
+            console.log('list.length : ' + list.length);
+            console.log(("list[i] : " + list[i].value));
+            valueArr.push(list[i].value);
+        }
+
+        if (confirm("해당 프로젝트를 승인거절 하시겠습니까?")) {
+            // 프로젝트 승인
+            $.ajax({
+                url: "/admin/DispproveProject",
+                type: "post",
+                traditional: true,
+                data: {
+                    valueArr: valueArr
+                },
+                success: function () {
+                    alert("승인거절 성공");
+                    location.replace("/admin/projectList")
+                }
+            });
+        }
+    }
 </script>
 
 <script>
     $('#productSearchBtn').on("click", function (e) {
         $("#projectSearchForm").submit();
+    });
+
+    $("a.changePage").click(function(e){
+        e.preventDefault();
+        $("#pageForm").find("input[name='pageNum']").val($(this).attr("href"));
+        $("#pageForm").submit();
     });
 </script>
 <script th:replace="~{/admin/adminSideBar :: AdminSideBarJSImport}"></script>

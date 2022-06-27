@@ -24,8 +24,7 @@
 <div class="banners-container-total">
     <div class="banner-container-inside1">
         <div class="banner-container-rightside" id="banner-container-rightside"></div>
-        <div class="banner-contanier-inside2">
-            <img src="/images/poster1.png" class="banner-container-inside-back-img" id="bannerBackGround">
+        <div class="banner-contanier-inside2" id="bannerBackGround">
         </div>
         <div class="banner-contanier-inside3"></div>
         <div class="banner-container-inside4">
@@ -36,6 +35,13 @@
                         <div class="banner-inside-component2"></div>
                         <div class="swiper-imgscontainer">
                             <div class="swiper-imgWrapper1">
+                                <div class="swiper-slide-sc">
+                                    <div class="swiper-slide-sc1">
+                                        <div class="swiper-slide-sc2">
+                                            <img src="/images/poster1.png" class="swiper-slide-sc-a">
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="swiper-slide-sc">
                                     <div class="swiper-slide-sc1">
                                         <div class="swiper-slide-sc2">
@@ -60,13 +66,6 @@
                                 <div class="swiper-slide-sc">
                                     <div class="swiper-slide-sc1">
                                         <div class="swiper-slide-sc2">
-                                            <img src="/images/poster4.jpg" class="swiper-slide-sc-a">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide-sc">
-                                    <div class="swiper-slide-sc1">
-                                        <div class="swiper-slide-sc2">
                                             <img src="/images/poster5.png" class="swiper-slide-sc-a">
                                         </div>
                                     </div>
@@ -78,6 +77,13 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="swiper-slide-sc">
+                                    <div class="swiper-slide-sc1">
+                                        <div class="swiper-slide-sc2">
+                                            <img src="/images/chun.png" class="swiper-slide-sc-a">
+                                        </div>
+                                    </div>
+                                </div>
 
                             </div>
                         </div>
@@ -85,8 +91,8 @@
                 </div>
                 <div class="advertising-container">
                     <a href="#" class="advertising-container-link">
-                        <p class="advertising-text" id="advertising-text">신사임당 유튜브 클래스
-                            오픈할인 종료 D-2</p>
+                        <p class="advertising-text" id="advertising-text">main.html에 써있는 내용 // 1회용 처음 들어왔을때 뜸 1번내용하고 같은거
+                            쓰면 됨</p>
                     </a>
                     <div class="progressbar-container">
                         <span class="advertisement-count-wrapper">
@@ -141,14 +147,16 @@
                             <th:block th:each="JJimList:${projectListJJim}">
                                 <li th:object="${JJimList}">
                                     <div class="plogging-thumbnail-wrap">
-                                        <img src="/images/poster1.png">
+                                        <!--                                        <img src="/images/poster1.png">-->
+                                        <span class="Jjim-image" th:href="*{num}">
+                                        </span>
                                     </div>
                                     <div class="deadline"><span class="material-symbols-outlined"
                                                                 style="font-size: 14px; margin-left: 5px;">
                             alarm
                             </span>
                                         <div class="deadline-text">프로젝트 시작까지</div>
-                                        <div class="d-day"  th:text="*{projectDate}">D-3</div>
+                                        <div class="d-day" th:text="*{projectDate}">D-3</div>
                                     </div>
                                     <div class="plogging-location-text" th:text="*{terrain}"></div>
                                     <div class="plogging-msg-text" th:text="*{title}"></div>
@@ -207,7 +215,8 @@
                             <th:block th:each="PointList:${projectListPoint}">"
                                 <li th:object="${PointList}">
                                     <div class="plogging-thumbnail-wrap">
-                                        <img src="/images/poster1.png">
+                                        <span class="Jjim-image" th:href="*{num}">
+                                        </span>
                                     </div>
                                     <div class="deadline"><span class="material-symbols-outlined"
                                                                 style="font-size: 14px; margin-left: 5px;">
@@ -225,7 +234,7 @@
                                                 <div class="heart-svg">
                                                     P
                                                 </div>
-                                                <div style="margin-top: 1px;margin-left: 2px;" th:text="*{point}"></div>
+                                                <div style="margin-left: 2px;" th:text="*{point}"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -248,23 +257,23 @@
             </div>
         </div>
         <div class="plogging-wrapper">
-            <div>
-                <div class="plogging-margin">
-                    <section>
-                        <div class="hot-plogging-text">
-                            <a href=#>
-                                <div class="hot-plogging-text1">
-                                    <img src="/images/running.png" style="width:40px">
-                                    <h2 class="hot-plogging-text2">지금 가장 참여가 많은 프로젝트</h2>
-                                </div>
-                            </a>
-                        </div>
-                        <div id="slideShow3">
-                            <ul class="slides3">
-                                <th:block th:each="ApplyList:${projectListApply}">"
+            <div class="plogging-margin">
+                <section>
+                    <div class="hot-plogging-text">
+                        <a href=#>
+                            <div class="hot-plogging-text1">
+                                <img src="/images/running.png" style="width:40px">
+                                <h2 class="hot-plogging-text2">지금 가장 참여가 많은 프로젝트</h2>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="slideShow3">
+                        <ul class="slides3">
+                            <th:block th:each="ApplyList:${projectListApply}">"
                                 <li th:object="${ApplyList}">
                                     <div class="plogging-thumbnail-wrap">
-                                        <img src="/images/poster1.png">
+                                        <span class="Jjim-image" th:href="*{num}">
+                                        </span>
                                     </div>
                                     <div class="deadline"><span class="material-symbols-outlined"
                                                                 style="font-size: 14px; margin-left: 5px;">
@@ -282,35 +291,35 @@
                                                 <div class="heart-svg">
                                                     人
                                                 </div>
-                                                <div style="margin-top: 1px;margin-left: 2px;" th:text="*{applyCount}"></div>
+                                                <div style="margin-left: 2px;"
+                                                     th:text="*{applyCount}"></div>
                                             </div>
                                         </div>
                                     </div>
                                 </li>
-                                </th:block>
-                            </ul>
-                            <p class="controller3">
-                                <!-- &lang: 왼쪽 방향 화살표 &rang: 오른쪽 방향 화살표 -->
-                                <span class="prev3"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                         fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd"
-                                                                                               d="M15.5 5.5l-6 6.5 6 6.5L14 20l-7.5-8L14 4l1.5 1.5z"
-                                                                                               fill="#1a1a1a">
+                            </th:block>
+                        </ul>
+                        <p class="controller3">
+                            <!-- &lang: 왼쪽 방향 화살표 &rang: 오른쪽 방향 화살표 -->
+                            <span class="prev3"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                     fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd"
+                                                                                           d="M15.5 5.5l-6 6.5 6 6.5L14 20l-7.5-8L14 4l1.5 1.5z"
+                                                                                           fill="#1a1a1a">
 
                                                                                         </path>
                                                     </svg>
                                 </span>
-                                <span class="next3"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                         fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd"
-                                                                                               d="M8.5 18.5l6-6.5-6-6.5L10 4l7.5 8-7.5 8-1.5-1.5z"
-                                                                                               fill="#1a1a1a">
+                            <span class="next3"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                     fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd"
+                                                                                           d="M8.5 18.5l6-6.5-6-6.5L10 4l7.5 8-7.5 8-1.5-1.5z"
+                                                                                           fill="#1a1a1a">
 
                                                                                         </path>
                                                     </svg>
                                 </span>
-                            </p>
-                        </div>
-                    </section>
-                </div>
+                        </p>
+                    </div>
+                </section>
             </div>
         </div>
         <!--여기까지 메인 컨텐츠-->
@@ -324,14 +333,42 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="/assets/js/SlideShow.js"></script>
 <script src="/assets/js/Banner.js"></script>
+<script src="/assets/js/Header.js"></script>
 <script th:inline="javascript">
-    let nickname=[[${nickname}]];
-    if(nickname!=null){
-        alert(nickname+"님 어서오세요!");
+    let strImg = "";
+    $(".Jjim-image").each(function (i, h) {
+        let projectNum = $(this).attr("href");
+        $.ajax({
+            url: "/projectFile/list/" + projectNum,
+            type: "get",
+            success: function (files) {
+                strImg += "<picture class='join-plogging-main-image'>";
+                strImg += "<img src='/projectFile/display1?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_" + files[0].fileName + "'>";
+                strImg += "</picture>";
+                $(h).html(strImg);
+                strImg = "";
+            }
+        })
+    })
+
+<<<<<<< HEAD
+    let nickname = [[${nickname}]];
+    let sessionnickname = [[${session.nickname}]];
+    if (sessionnickname != null) {
+        alert(sessionnickname + "님 어서오세요!");
     }
+    let sessioncategory = [[${session.category}]];
 </script>
+=======
+    let nickname=[[${nickname}]];
+    let sessionnickname=[[${session.nickname}]];
+    // if(sessionnickname!=null){
+    //     alert(sessionnickname+"님 어서오세요!");
+    // }
+>>>>>>> 27ee459a942ca37f230d0a9bc248bc974317caab
 
+    // 모든 페이지 적용
+    let sessioncategory=[[${session.category}]];
+
+</script>
 </html>
-
-
-

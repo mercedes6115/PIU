@@ -5,11 +5,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Data
-
 public class ProductReviewFileVO {
     private String uuid;
     private String uploadPath;
     private String fileName;
-    private Long productReviewNum;
+    private Long reviewNum;
 
 }

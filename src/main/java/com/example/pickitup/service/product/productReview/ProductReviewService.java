@@ -4,6 +4,7 @@ import com.example.pickitup.domain.dao.product.productReview.ProductReviewDAO;
 import com.example.pickitup.domain.dao.product.productReview.ProductReviewFileDAO;
 import com.example.pickitup.domain.vo.product.productReview.ProductReviewVO;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,7 +12,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-
+@Slf4j
 public class ProductReviewService {
 
     private final ProductReviewDAO productReviewDAO;
@@ -23,9 +24,9 @@ public class ProductReviewService {
     }
 
     // 리뷰 상세보기 -> 수정
-//    public ProductReviewVO read(Long num){
-//        return productReviewDAO.read(num);
-//    }
+    public ProductReviewVO read(Long num){
+        return productReviewDAO.read(num);
+    }
 
     // 리뷰 작성하기
     @Transactional(rollbackFor = Exception.class)
@@ -33,14 +34,23 @@ public class ProductReviewService {
         productReviewDAO.insert(productReviewVO);
         if(productReviewVO.getFileList() != null) {
             productReviewVO.getFileList().forEach(productReviewFileVO -> {
-                productReviewFileVO.setProductReviewNum(productReviewVO.getProductNum());
+                log.info(productReviewVO.getNum().toString());
+                productReviewFileVO.setReviewNum(productReviewVO.getNum());
                 productReviewFileDAO.register(productReviewFileVO);
             });
         }
     }
 
-    // 리뷰 수정하기
-    public boolean update(ProductReviewVO productReviewVO){
+    //리뷰 수정하기
+    @Transactional(rollbackFor = Exception.class)
+    public boolean modify(ProductReviewVO productReviewVO) {
+        productReviewFileDAO.remove(productReviewVO.getNum());
+        if(productReviewVO.getFileList() != null) {
+            productReviewVO.getFileList().forEach(productReviewFileVO -> {
+                productReviewFileVO.setReviewNum(productReviewVO.getNum());
+                productReviewFileDAO.register(productReviewFileVO);
+            });
+        }
         return productReviewDAO.update(productReviewVO);
     }
 

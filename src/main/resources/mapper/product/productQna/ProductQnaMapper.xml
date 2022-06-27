@@ -1,14 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.pickitup.mapper.product.productQna.ProductQnaMapper">
+<!--    <select id="getList" resultType="productQnaVO">-->
+<!--    SELECT-->
+<!--        NUM, CONTENT, REGIST_DATE, UPDATE_DATE,-->
+<!--        USER_NUM, PRODUCT_NUM-->
+<!--    FROM TBL_PRODUCT_QNA-->
+<!--    WHERE PRODUCT_NUM=#{productNum}-->
+<!--    ORDER BY UPDATE_DATE DESC-->
+<!--    </select>-->
+
+<!--    ======================criteria 완성시======================-->
     <select id="getList" resultType="productQnaVO">
-    SELECT
-        NUM, CONTENT, REGIST_DATE, UPDATE_DATE,
-        STATUS, USER_NUM, PRODUCT_NUM
-    FROM TBL_PRODUCT_QNA
-    WHERE PRODUCT_NUM=#{productNum}
-    ORDER BY UPDATE_DATE DESC
+        <![CDATA[
+        SELECT  NUM, CONTENT, REGIST_DATE, UPDATE_DATE, USER_NUM, PRODUCT_NUM
+        FROM
+            (
+                SELECT /*+ INDEX_DESC(TBL_PRODUCT_REVIEW SYS_C007137) */ROWNUM RN, NUM, CONTENT, REGIST_DATE, UPDATE_DATE, USER_NUM, PRODUCT_NUM
+                FROM (
+                        SELECT NUM, CONTENT, REGIST_DATE, UPDATE_DATE,USER_NUM, PRODUCT_NUM
+                        FROM TBL_PRODUCT_QNA
+                        ORDER BY UPDATE_DATE DESC
+                     )
+                WHERE ROWNUM <= #{productQnaCriteria.pageNum}*#{productQnaCriteria.amount} AND PRODUCT_NUM = #{productNum}
+            )
+        WHERE RN > (#{productQnaCriteria.pageNum}-1) * #{productQnaCriteria.amount}
+        ORDER BY UPDATE_DATE DESC
+        ]]>
     </select>
+<!--    ======================criteria 완성시======================-->
+
+
+
 <!--    <select id="getDetail" resultType="productQnaVO">-->
 <!--    SELECT-->
 <!--        NUM, CONTENT, REGIST_DATE, UPDATE_DATE,-->
@@ -40,6 +63,12 @@
     DELETE FROM TBL_PRODUCT_QNA
     WHERE NUM=#{num}
     </delete>
+
+    <select id="count" resultType="_int">
+    SELECT count(NUM)
+    FROM TBL_PRODUCT_QNA
+    WHERE PRODUCT_NUM = #{productNum}
+    </select>
 
 
 </mapper>

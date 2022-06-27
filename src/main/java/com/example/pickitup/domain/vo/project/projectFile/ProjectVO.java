@@ -13,6 +13,8 @@ public class ProjectVO {
     private String content;
     private String course;
     private String terrain;
+
+    // 체크
     private Long point;
     private String approval;
     private String startTime;
@@ -25,10 +27,15 @@ public class ProjectVO {
     private String updateDate;
     private String status;
     private Long companyNum;
-    private Long userNum;
     private Long jjimCount;
     private String projectDate;
-    private Long applyCount;
+    private String name;
+    private String summary;
+    private String companyComment;
+    private String startAddressDetail;
+    private String endAddressDetail;
 
+    // 체크
+    private Long applyCount;
     private List<ProjectFileVO> fileList;
 }

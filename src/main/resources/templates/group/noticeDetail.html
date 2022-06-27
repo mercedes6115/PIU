@@ -90,8 +90,8 @@
                     <div class="nDetailTitleBoundary"></div>
                     <div class="nTitleContainer">
                         <div class="nTitleBox">
-                            <h6 class="nDetailTitle" th:utext="*{title}"></h6>
-                            <h6 class="nDetailDate" th:utext="*{registDate}"></h6>
+                            <h6 class="nDetailTitle" th:text="*{title}"></h6>
+                            <h6 class="nDetailDate" th:text="*{registDate}"></h6>
                         </div>
                     </div>
                     <div class="nDetailBoundary"></div>
@@ -114,4 +114,12 @@
     </div>
 </div>
 </body>
+
+<script th:inline="javascript">
+
+
+    $(".backListBtn").click(function (e) {
+        location.replace("/notice")
+    })
+</script>
 </html>

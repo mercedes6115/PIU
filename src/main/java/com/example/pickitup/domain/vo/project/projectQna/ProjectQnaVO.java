@@ -13,5 +13,7 @@ public class ProjectQnaVO {
     private String updateDate;
     private Long userNum;
     private Long projectNum;
+    private Long companyNum;
+//    private String nickname;
 
 }
