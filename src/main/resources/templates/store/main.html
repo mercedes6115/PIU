@@ -185,59 +185,59 @@
                 }
                 for(let i =0; i<first;i++){
                     console.log("식품 리스트 = "+lists[i].name)
-                        str += "<li>";
-                        str += "<div class=\"item\">";
+                    str += "<li>";
+                    str += "<div class=\"item\">";
 
-                        str += "<span class='heart'></span>"
-                        str += "<span class=\"material-symbols-outlined jjim jjim-ajax\" name=\""+lists[i].num+"\" style='color: #d3cdcd; font-weight: bold;'>";
-                        str += "favorite";
-                        str += "</span>";
-                        str += "<a class=\"goDetail\" th:href=\""+lists[i].num+"\" style=\"cursor:pointer\">";
-                        (function () {
-                            $.ajax({
-                                url: "/productFile/list/"+lists[i].num,
-                                type : "get",
-                                async:false,  // ajax 안에 ajax를 사용할때는 동기식으로 바꿔줘야함
-                                success : function (files) {
-                                    // let str = "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
-                                    str += "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
-                                    // $("img#"+productNum).attr("src", "/upload/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName )
-                                }
-                            })
-                        })(i);
-                        str += "</a>";
-                        str += "<div class=\"flex\" style=\"flex-direction: column; margin: 12px 0;\">";
-                        str += "<div>";
-                        str += "<p class=\"store_main_item_title\">"+lists[i].name+"</p>";
-                        str += "</div>";
-                        str += "<div style=\"margin-top: 6px; height: 16px;\">";
-                        str += "<p class=\"store_main_item_category\">"+lists[i].category+"</p>";
-                        str += "</div>";
-                        str += "<div style=\"display: flex; align-items: end; margin-top: 5px\">";
-                        str += "<span class=\"material-symbols-outlined\" style=\"font-size: 12px;\">";
-                        str += "favorite";
-                        str += "</span>";
-                        str += "<small style=\"font-size: 11px; margin-left: 5px\">";
-                        //찜 갯수 ajax
-                        (function(){
-                            $.ajax({
-                                url: "/store/jjimCount?productNum="+lists[i].num,
-                                type : "get",
-                                async:false,  // ajax 안에 ajax를 사용할때는 동기식으로 바꿔줘야함
-                                success : function (count) {
-                                    str += count;
-                                }
-                            })
-                        })(i);
-                        str += "</small>";
-                        str += "</div>";
-                        str += "</div>";
-                        str += "<div style=\"height: 18px;\">";
-                        str += "<p class=\"store_item_price\">"+lists[i].price+"P</p>";
-                        str += "</div>";
-                        str += "</div>";
-                        str += "</li>";
-                    }
+                    str += "<span class='heart'></span>"
+                    str += "<span class=\"material-symbols-outlined jjim jjim-ajax\" name=\""+lists[i].num+"\" style='color: #d3cdcd; font-weight: bold;'>";
+                    str += "favorite";
+                    str += "</span>";
+                    str += "<a class=\"goDetail\" th:href=\""+lists[i].num+"\" style=\"cursor:pointer\">";
+                    (function () {
+                        $.ajax({
+                            url: "/productFile/list/"+lists[i].num,
+                            type : "get",
+                            async:false,  // ajax 안에 ajax를 사용할때는 동기식으로 바꿔줘야함
+                            success : function (files) {
+                                // let str = "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
+                                str += "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
+                                // $("img#"+productNum).attr("src", "/upload/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName )
+                            }
+                        })
+                    })(i);
+                    str += "</a>";
+                    str += "<div class=\"flex\" style=\"flex-direction: column; margin: 12px 0;\">";
+                    str += "<div>";
+                    str += "<p class=\"store_main_item_title\">"+lists[i].name+"</p>";
+                    str += "</div>";
+                    str += "<div style=\"margin-top: 6px; height: 16px;\">";
+                    str += "<p class=\"store_main_item_category\">"+lists[i].category+"</p>";
+                    str += "</div>";
+                    str += "<div style=\"display: flex; align-items: end; margin-top: 5px\">";
+                    str += "<span class=\"material-symbols-outlined\" style=\"font-size: 12px;\">";
+                    str += "favorite";
+                    str += "</span>";
+                    str += "<small style=\"font-size: 11px; margin-left: 5px\">";
+                    //찜 갯수 ajax
+                    (function(){
+                        $.ajax({
+                            url: "/store/jjimCount?productNum="+lists[i].num,
+                            type : "get",
+                            async:false,  // ajax 안에 ajax를 사용할때는 동기식으로 바꿔줘야함
+                            success : function (count) {
+                                str += count;
+                            }
+                        })
+                    })(i);
+                    str += "</small>";
+                    str += "</div>";
+                    str += "</div>";
+                    str += "<div style=\"height: 18px;\">";
+                    str += "<p class=\"store_item_price\">"+lists[i].price+"P</p>";
+                    str += "</div>";
+                    str += "</div>";
+                    str += "</li>";
+                }
                 $('.all_items ul').html(str);
 
 
@@ -398,7 +398,7 @@
         })
 
     }
-    //
+
 
 
     //반응형 웹

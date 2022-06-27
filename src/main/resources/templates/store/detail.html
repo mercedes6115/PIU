@@ -48,9 +48,9 @@
 <form action="/store/itemChoose" method="post" th:object="${product}">
     <div class="pay_bar_media" style="text-align: center;">
         <div class="flex" style="width: 100%;">
-<!--            <div style="width: 7%; padding-left: 10px;"><span class="material-symbols-outlined pointer jjim-ajax" th:name="*{num}" style="font-size: 40px; padding-top: 15px;">-->
-<!--                    favorite-->
-<!--                    </span></div>-->
+            <!--            <div style="width: 7%; padding-left: 10px;"><span class="material-symbols-outlined pointer jjim-ajax" th:name="*{num}" style="font-size: 40px; padding-top: 15px;">-->
+            <!--                    favorite-->
+            <!--                    </span></div>-->
             <input class="toBuy" type="submit" value="구매하기" style="width: 90%; height: 50px;">
         </div>
     </div>
@@ -399,6 +399,7 @@
                         type : "get",
                         async : false,
                         success:function (user) {
+                            console.log(user.nickname)
                             str += user.nickname;
                             // =======================================유저 사진 받아와서 뿌릴예정=========================================================
                             // let profileImg = "<img src='/userFile/display?fileName=" + user[0].uploadPath + "/_" + user[0].uuid + "_"  + user[0].fileName + "'>";
@@ -666,7 +667,7 @@
     $('.ProductQnas').on("click", ".makeComment", function (e) {
         e.preventDefault();
         if(수정중){
-           alert("수정중 인 댓글이 있습니다.")
+            alert("수정중 인 댓글이 있습니다.")
             return;
         }
         if(답글중){ // 답글중이면
@@ -756,11 +757,11 @@
     })
 
     //a태그 내부 페이지 이동
-   function usea(){
-       let intro = $('#toitem_intro').offset().top-230;
-       let review = $('#toitem_review').offset().top-130;
-       let question = $('#toitem_question').offset().top-180;
-       let policy = $('#toreturn_po').offset().top-170;
+    function usea(){
+        let intro = $('#toitem_intro').offset().top-230;
+        let review = $('#toitem_review').offset().top-130;
+        let question = $('#toitem_question').offset().top-180;
+        let policy = $('#toreturn_po').offset().top-170;
 
         $('#item_intro').click(function(){
             $('html, body').animate({scrollTop:intro},0);
