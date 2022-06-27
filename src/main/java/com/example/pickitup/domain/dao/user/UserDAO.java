@@ -116,6 +116,11 @@ public class UserDAO {
         userMapper.productQnaDelete(num);
     }
 
+    // 유저 내 리뷰 모두 보기
+    public List<MyReviewDTO> myAllReview(Long num) {
+        return userMapper.myAllReview(num);
+    }
+
     // 유저 목록(관리자용)
     public List<UserDTO> getList(Criteria criteria){
         return userMapper.getList(criteria);

@@ -27,8 +27,8 @@
             text: "http://"+ipV4+":10010/admin/qrLogin?num=36&state=end",
             width: 100,  //가로
             height: 100, //세로
-            colorDark: "#000000", //qr에서 어두운 색 (보통 검은색)
-            colorLight: "#ffffff", //qr에서 밝은 색 (보통 하얀색) colorDark 보다 옅어야한다.
+            colorDark: "#000000",   //qr에서 어두운 색  (보통 검은색)
+            colorLight: "#ffffff",  //qr에서 밝은   색  (보통 하얀색) colorDark 보다 옅어야한다.
             correctLevel: QRCode.CorrectLevel.H //qr코드 오류복원능력 (L->M->Q->H)
         });
          $("#qrcode > img").css({"margin":"auto"});

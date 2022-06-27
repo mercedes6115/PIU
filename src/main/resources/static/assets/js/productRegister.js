@@ -21,10 +21,9 @@ function invalidItem() {
     console.log(cnt);
     if (cnt < 1) {
         alert("한 개 이상을 선택하셔야 합니다.");
-        return;
-    } else {
-        alert(cnt + "개가 선택되었습니다. 게시글이 등록되었습니다.");
-        registerForm.submit();
+        return false;
+    }else{
+        return true;
     }
 }
 
@@ -51,14 +50,10 @@ $('.productName').keyup(function (e) {
 });
 
 
-$(document).ready(function() { $('#summernote').summernote();
-});
-
 function handleOnClick()  {
     let like = confirm("정말 취소하시겠습니까?");
     document.getElementById('result').innerText = like;
 }
-
 
 
 
@@ -101,29 +96,30 @@ file0.addEventListener("change", function(event){
         }
     }
 });
-
-file1.addEventListener("change", function(event){
-    //특정 경로의 파일을 읽어올 때 사용.
-    let reader = new FileReader();
-    reader.readAsDataURL(event.target.files[0]);
-    reader.onload = function(event){
-        //등록된 파일의 경로에 작성된 파일의 타입검사
-        if(event.target.result.includes("image")){
-            console.log("이미지 파일입니다.");
-            $(thumbnail1).text("");
-            //등록된 파일의 경로로 대체
-            thumbnail1.style.backgroundImage = "url(\"" + event.target.result + "\")";
-            file2.disabled = false;
-            $(thumbnail2).css("background-color","white");
-            number2()
-        }else{
-            alert("이미지 파일이 아닙니다.");
-            //미리 준비해놓은 이미지 경로로 대체
-            $(thumbnail1).text("");
-            thumbnail1.style.backgroundImage = "url(/images/error.png)";
+function number1(){
+    file1.addEventListener("change", function(event){
+        //특정 경로의 파일을 읽어올 때 사용.
+        let reader = new FileReader();
+        reader.readAsDataURL(event.target.files[0]);
+        reader.onload = function(event){
+            //등록된 파일의 경로에 작성된 파일의 타입검사
+            if(event.target.result.includes("image")){
+                console.log("이미지 파일입니다.");
+                $(thumbnail1).text("");
+                //등록된 파일의 경로로 대체
+                thumbnail1.style.backgroundImage = "url(\"" + event.target.result + "\")";
+                file2.disabled = false;
+                $(thumbnail2).css("background-color","white");
+                number2()
+            }else{
+                alert("이미지 파일이 아닙니다.");
+                //미리 준비해놓은 이미지 경로로 대체
+                $(thumbnail1).text("");
+                thumbnail1.style.backgroundImage = "url(/images/error.png)";
+            }
         }
-    }
-});
+    });
+}
 
 function number2(){
     file2.addEventListener("change", function(event){
@@ -174,19 +170,19 @@ function number3(){
         }
     });
 }
-function number4(){
-    file4.addEventListener("change", function(event){
+function number4() {
+    file4.addEventListener("change", function (event) {
         //특정 경로의 파일을 읽어올 때 사용.
         let reader = new FileReader();
         reader.readAsDataURL(event.target.files[0]);
-        reader.onload = function(event){
+        reader.onload = function (event) {
             //등록된 파일의 경로에 작성된 파일의 타입검사
-            if(event.target.result.includes("image")){
+            if (event.target.result.includes("image")) {
                 console.log("이미지 파일입니다.");
                 $(thumbnail4).text("");
                 //등록된 파일의 경로로 대체
                 thumbnail4.style.backgroundImage = "url(\"" + event.target.result + "\")";
-            }else{
+            } else {
                 alert("이미지 파일이 아닙니다.");
                 //미리 준비해놓은 이미지 경로로 대체
                 $(thumbnail4).text("");
@@ -194,25 +190,40 @@ function number4(){
             }
         }
     });
+}
 
-    function checkText(){
-        const textAreaval=$("textarea[name='context']").val();
-        if(textAreaval==null){
-            alert("상품 상세 설명을 기입해주세요");
-        }
-    }
+    //
+    // function checkText(){
+    //     const textAreaval=$("textarea[name='context']").val();
+    //     if(textAreaval==null){
+    //         alert("상품 상세 설명을 기입해주세요");
+    //     }
+    // }
 
 
 
 $(".productbtn").on("click", function(e){
         e.preventDefault();
-        invalidItem();
+        if(!invalidItem()){
+            return;
+        }else{
         let formData =   new FormData();
         let inputFile = $("input[name='uploadFiles']");
-        let files = inputFile[0].files;
-        for(let i=0; i<files.length; i++) {
-            formData.append("uploadFiles", files[i]);
-        }
+        let files0 = inputFile[0].files;
+        let files1 = inputFile[1].files;
+        let files2 = inputFile[2].files;
+        let files3 = inputFile[3].files;
+        let files4 = inputFile[4].files;
+        if(files0.length!=0){formData.append("uploadFiles", files0[0])}
+        if(files1.length!=0){formData.append("uploadFiles", files1[0])}
+        if(files2.length!=0){formData.append("uploadFiles", files2[0])}
+        if(files3.length!=0){formData.append("uploadFiles", files3[0])}
+        if(files4.length!=0){formData.append("uploadFiles", files4[0])}
+        console.log("ajax");
+
+        // for(let i=0; i<files.length; i++) {
+        //     formData.append("uploadFiles", files[i]);
+        // }
         $.ajax({
             url: "/productFile/upload",
             type: "post",
@@ -231,6 +242,6 @@ $(".productbtn").on("click", function(e){
             }
         });
         registerForm.submit();
-    });
-}
+        }
+});
 

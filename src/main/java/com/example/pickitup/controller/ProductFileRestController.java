@@ -66,6 +66,7 @@ public class ProductFileRestController {
             file.transferTo(saveFile);
 
             files.add(ProductFileVO);
+            log.info(""+ files);
         }
         return files;
     }

@@ -335,3 +335,12 @@ label[for='attach4'] div.thumb4{
 .flex{
     display: flex;
 }
+textarea {
+    resize: none;
+    width: 100%;
+    height: 200px;
+    border: 1px solid #d4d4d4;
+}
+.textCount, .textTotal{
+    margin-top: 0;
+}

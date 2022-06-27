@@ -193,8 +193,8 @@
 
     <insert id="insert">
         INSERT INTO TBL_ORDER
-        (NUM, TOTAL, COUNTING, PRODUCT_NUM, USER_NUM, REGIST_DATE)
-        VALUES(SEQ_ORDER.NEXTVAL, #{total}, #{counting}, #{productNum}, #{userNum}, SYSDATE)
+        (NUM, TOTAL, COUNTING, PRODUCT_NUM, USER_NUM, REGIST_DATE,ADDRESS_COMMENT,ADDRESS,ADDRESS_DETAIL)
+        VALUES(SEQ_ORDER.NEXTVAL, #{total}, #{counting}, #{productNum}, #{userNum}, SYSDATE#{addressComment},#{address},#{addressDetail})
     </insert>
 
     <delete id="delete">

@@ -42,7 +42,7 @@ public interface OrderMapper {
 
     //
     public List<UserVO> getUser(Long num);
-    public int updateUser(UserVO userVO);
+    public void updateUser(UserVO userVO);
     public List<ProductVO> getProduct(Long num);
 
     public List<MyOrderDTO> getBetweenOrder(Long userNum);

@@ -72,6 +72,9 @@ public interface UserMapper {
     //    유저가 상품 문의 남겼을때 adminboard 에도 저장
     public void qnaStoreSave(AdminQnaDTO adminQnaDTO);
 
+    //    유저 내 리뷰 모두 보기
+    public List<MyReviewDTO> myAllReview(Long num);
+
     //    유저 목록 관리자용
     public  List<UserDTO> getList(Criteria criteria);
     //    유저,회사 전체 목록 총 합
