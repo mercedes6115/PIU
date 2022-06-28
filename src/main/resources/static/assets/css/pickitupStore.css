@@ -561,6 +561,7 @@ li.active a{
 .store_detail_right{
     width: 33.3337%;
     padding: 0 12px;
+    display: block;
 }
 .store_detail{
     font-family: 'Noto Sans KR';
@@ -601,7 +602,7 @@ li.active a{
 .nav_item{
     z-index: 10;
     position: sticky;
-    top: 122px;
+    top: 121px;
     background-color: white;
     display: flex;
     border-bottom: 1px solid rgba(128, 128, 128, 0.058);
@@ -659,8 +660,8 @@ li.active a{
     border-radius: 50%;
     width: 100%;
     height: 100%;
-    border: 1px solid;
 }
+/*/*/
 .ProductReviews{
     display: flex;
     flex-flow: wrap;
@@ -1047,6 +1048,9 @@ code{
 
 /* -------------------상품 디테일 반응형--------------- */
 @media ( max-width: 1024px ) {
+    .store_detail_right{
+        display: none;
+    }
     .pay_bar{
         display: none;
     }
@@ -1080,9 +1084,6 @@ code{
         justify-content: space-between;
     }
     
-    .nav_item{
-        margin: 0 24px;
-    }
     .highlight{
         margin: 0 24px;
     }
