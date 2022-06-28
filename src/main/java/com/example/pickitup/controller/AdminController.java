@@ -10,6 +10,7 @@ import com.example.pickitup.domain.vo.dto.PageDTO;
 import com.example.pickitup.domain.vo.dto.ProductPageDTO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 import com.example.pickitup.domain.vo.user.AdminBoardVO;
+import com.example.pickitup.domain.vo.user.OrderVO;
 import com.example.pickitup.domain.vo.user.UserVO;
 import com.example.pickitup.domain.vo.*;
 import com.example.pickitup.domain.vo.adminVO.AdminBoardDTO;
@@ -70,7 +71,6 @@ public class AdminController {
         log.info(request.getRemoteAddr()+"==========");
         model.addAttribute("ipV4",request.getRemoteAddr());
     }
-
 
     @PostMapping("/qrEndLogin")
     public void qrEndCheck(String email, String password,HttpServletRequest request,Model model){
@@ -373,7 +373,7 @@ public class AdminController {
 
         log.info("==========="+startDate);
         log.info("==========="+endDate);
-        projectVO.setCompanyNum(11l);
+        projectVO.setCompanyNum(11l); // 관리자 companyNum설정
         projectService.register(projectVO);
     }
 
@@ -772,6 +772,28 @@ public class AdminController {
         log.info("=========="+nickname);
         log.info("===========+"+tempAdminService.readUserInfo(userNum1).getNickname());
         tempAdminService.addPoint(nickname,updatePoint,applynum1);
+    }
+
+    @GetMapping("/orderInfoDetail")
+    public void orderInfoDetail(Long orderNum,Long productNum,Model model){
+        OrderVO orderVO = tempAdminService.getOrderDetail(orderNum);
+
+        Long userNum = orderVO.getUserNum();
+
+        UserVO userVO = tempUserSerivce.readUserInfo(userNum);
+
+        ProductVO productVO = tempAdminService.getDetail(productNum);
+
+        model.addAttribute("userVO",userVO);
+        model.addAttribute("orderVO",orderVO);
+        model.addAttribute("productVO",productVO);
+    }
+
+    @PostMapping("/setDelivery")
+    @ResponseBody
+    public void setDelivery(String orderNum){
+        Long orderNum1=Long.parseLong(orderNum);
+        tempAdminService.setDelivery(orderNum1);
     }
 }
 

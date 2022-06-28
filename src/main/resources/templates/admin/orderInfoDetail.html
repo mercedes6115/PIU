@@ -26,10 +26,10 @@
             <div>
                 <h2>주문자 정보</h2>
             </div>
-            <table id="basicInfo" th:object="${detailVO}">
+            <table id="basicInfo" th:object="${userVO}">
                 <form>
                     <tr>
-                        <th>아이디</th>
+                        <th>이메일</th>
                         <td th:text="*{email}"></td>
                     </tr>
                     <tr>
@@ -41,11 +41,11 @@
                     </tr>
                     <tr>
                         <th>주소</th>
-                        <td th:text="*{address} "></td>
+                        <td th:text="*{address}"></td>
                     </tr>
                     <tr>
                         <th>배송주소</th>
-                        <td></td>
+                        <td th:text="${orderVO.address}"></td>
                     </tr>
                     <tr>
 
@@ -53,13 +53,17 @@
                 </form>
                 <tr>
                     <th>주문일자</th>
-                    <td th:text="*{registDate}"></td>
+                    <td th:text="${orderVO.registDate}"></td>
                 </tr>
                 <tr>
                     <th>상태</th>
                     <td>
-                        <span>배송준비</span>
-                        <a href="#">배송</a>
+                        <span th:if="${orderVO.status}=='0'">주문접수</span>
+                        <span th:if="${orderVO.status}=='1'">배송준비</span>
+                        <span th:if="${orderVO.status}=='2'">배송중</span>
+                        <span th:if="${orderVO.status}=='3'">배송완료</span>
+
+                        <a href="javascript:void(0);" onclick="setDelivery()">배송</a>
                     </td>
                 </tr>
             </table>
@@ -68,56 +72,77 @@
                 <h2>주문 상품정보</h2>
             </div>
 
-            <table id="pointInfo">
+            <table id="pointInfo" th:object="${productVO}">
                 <tr>
                     <th>상품명</th>
-                    <td>친환경화장품</td>
+                    <td th:text="*{name}"></td>
                     <th>상품번호</th>
-                    <td>120</td>
+                    <td th:text="*{num}"></td>
                 </tr>
                 <tr>
                     <th>카테고리</th>
-                    <td>화장품</td>
+                    <td th:text="*{category}"></td>
                     <th>상품가격</th>
-                    <td>5000P</td>
+                    <td th:text="*{price}"></td>
                 </tr>
                 <tr>
                     <th>상품등록일</th>
-                    <td>2022-06-13 20:00</td>
+                    <td th:text="*{registDate}"></td>
                     <th>주문수량</th>
-                    <td>2</td>
+                    <td th:text="${orderVO.counting}"></td>
                 </tr>
                 <tr>
                     <th>상품상태</th>
-                    <td>판매중</td>
+                    <td th:text="*{status}">판매중</td>
                     <th>총가격</th>
-                    <td>10000P</td>
+                    <td th:text="${orderVO.total}"></td>
                 </tr>
                 <tr>
                     <th>원산지</th>
-                    <td>대한민국</td>
+                    <td th:text="*{origin}">대한민국</td>
                     <th>공급사</th>
-                    <td>삼성</td>
+                    <td th:text="*{supplier}">삼성</td>
                 </tr>
                 <tr>
                     <th>제조사</th>
-                    <td>삼성</td>
+                    <td th:text="*{manufacturer}"></td>
                     <th>주문번호</th>
-                    <td>10</td>
+                    <td th:text="${orderVO.num}"></td>
                 </tr>
                 <tr>
                     <th>요청사항</th>
-                    <td colspan="3">부재시 경비실에 맡겨주세요</td>
+                    <td colspan="3" th:text="${orderVO.addressComment}"></td>
                 </tr>
             </table>
-            <div>
-                <button type="button">수정</button>
-            </div>
         </div>
     </div>
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script th:replace="~{/admin/adminSideBar :: AdminSideBarJSImport}"></script>
+<script th:inline="javascript">
+    let orderNum=[[${orderVO.num}]];
+    let productNum=[[${productVO.num}]];
+    console.log(productNum);
+    console.log(orderNum);
+    function setDelivery() {
 
+        var chk = confirm("배송완료 처리 하시겠습니까?");
+        if(chk){
+            $.ajax({
+                url: "/admin/setDelivery",
+                type: 'post',
+                data: {
+                    orderNum: orderNum
+                },
+                success: function () {
+                    alert("성공!!");
+                    location.replace("/admin/orderInfoDetail/?orderNum="+orderNum+"&productNum="+productNum);
+                }
+            });
+        }
+
+    }
+
+</script>
 </html>

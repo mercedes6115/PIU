@@ -53,6 +53,7 @@
                     AND (REGIST_DATE BETWEEN #{startDate} AND #{endDate})
                 </when>
             </choose>
+            ORDER BY REGIST_DATE DESC
     </select>
 
 
@@ -71,6 +72,7 @@
         AND TO_CHAR(TBL_ORDER.REGIST_DATE,'yyyy-mm-dd hh24:mi:ss') >= (#{startDate}||'00:00:00')
         AND TO_CHAR(TBL_ORDER.REGIST_DATE,'yyyy-mm-dd hh24:mi:ss') <= (#{endDate}||'23:59:59')
         ]]>
+        ORDER BY REGIST_DATE DESC
     </select>
 
 
@@ -265,7 +267,7 @@
     </select>
 
     <update id="updateUser">
-UPDATE TBL_USER set
+        UPDATE TBL_USER set
         NICKNAME = #{nickname},
         PHONE = #{phone},
         ADDRESS = #{address},
@@ -287,6 +289,18 @@ UPDATE TBL_USER set
             </if>
         </where>
     </select>
+
+    <select id="getOrderDetail" resultType="orderVO">
+        SELECT NUM,TOTAL,COUNTING,REGIST_DATE,PRODUCT_NUM,USER_NUM,STATUS,ADDRESS_COMMENT,ADDRESS,ADDRESS_DETAIL,ORDER_NAME,PHONE
+        FROM TBL_ORDER
+        WHERE NUM=#{orderNum}
+    </select>
+
+    <update id="setDelivery">
+        UPDATE TBL_ORDER
+        SET STATUS='3'
+        WHERE NUM=#{orderNum}
+    </update>
 </mapper>
 
 

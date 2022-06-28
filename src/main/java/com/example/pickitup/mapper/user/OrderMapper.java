@@ -47,6 +47,10 @@ public interface OrderMapper {
 
     public List<MyOrderDTO> getBetweenOrder(Long userNum);
 
+    public OrderVO getOrderDetail(Long productNum);
+
+    public boolean setDelivery(Long orderNum);
+
 
 }
 
