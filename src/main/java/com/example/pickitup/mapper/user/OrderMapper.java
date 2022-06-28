@@ -66,6 +66,10 @@ public interface OrderMapper {
     //상품 이름으로 정보 검색(1개)
     public Long getDetailByName(String itemname);
 
+    public OrderVO getOrderDetail(Long productNum);
+
+    public boolean setDelivery(Long orderNum);
+
 
     public OrderVO findByOrderNum(Long orderNum);
 

@@ -20,6 +20,7 @@ public interface ProductMapper {
     public int getTotal();
 
     public List<ProductVO> getFullList();
+
     //    상품 한개만 띄우기 (상세보기)
     public ProductVO getDetail(Long num);
 

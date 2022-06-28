@@ -298,4 +298,16 @@ public class TempAdminService {
         return companyDAO.companyApprovalEnable(num);
     }
 
+
+    public OrderVO getOrderDetail(Long orderNum){
+        return orderDAO.getOrderDetail(orderNum);
+    }
+
+    public ProductVO getDetail(Long productNum){
+        return productDAO.getDetail(productNum);
+    }
+
+    public boolean setDelivery(Long orderNum){
+        return orderDAO.setDelivery(orderNum);
+    }
 }

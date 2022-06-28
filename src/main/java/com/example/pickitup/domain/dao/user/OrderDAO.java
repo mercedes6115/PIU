@@ -103,6 +103,13 @@ public class OrderDAO {
     }
 
 
+    public OrderVO getOrderDetail(Long orderNum){
+        return orderMapper.getOrderDetail(orderNum);
+    }
 
+
+    public boolean setDelivery(Long orderNum){
+        return orderMapper.setDelivery(orderNum);
+    }
 
 }
