@@ -18,12 +18,13 @@ public class ProjectMapperTest {
     }
 
     @Test
-    public void getListPointTest(){
-        log.info(projectMapper.getListPoint().toString());
-    }
+    public void getListPointTest(){ log.info(projectMapper.getListPoint().toString());    }
 
     @Test
     public void getListApplyTest(){
         log.info(projectMapper.getListApply().toString());
     }
+    
+    @Test
+    public void getListCourseTest() { log.info(projectMapper.getListCourse("산").toString());}
 }

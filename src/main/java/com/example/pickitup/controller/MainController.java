@@ -8,8 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 
 import javax.servlet.http.HttpServletRequest;
@@ -51,10 +50,27 @@ public class MainController {
         model.addAttribute("projectListJJim", projectService.getListJJim());  // 내용가져오기
         model.addAttribute("projectListPoint", projectService.getListPoint());  // 내용가져오기
         model.addAttribute("projectListApply", projectService.getListApply());  // 내용가져오기
+
+//        String course = "asdf";
+        model.addAttribute("course1",projectService.getListCourse("산"));
+        model.addAttribute("course2",projectService.getListCourse("바다"));
+        model.addAttribute("course3",projectService.getListCourse("강"));
+
+        log.info("메인 들어옴");
        return "/main/main";
 
     }
 
+
+
+    @GetMapping("/getCourseList/{course}")
+    @ResponseBody
+    public String getCourseList(@PathVariable("course") String course, Model model) throws ParseException {
+        model.addAttribute("courseList", projectService.getListCourse(course));  // 내용가져오기
+        log.info("레스트 들어옴");
+        log.info(course);
+        return "/main/main";
+    }
 
 
 //    @GetMapping("/test")

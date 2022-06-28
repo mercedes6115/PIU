@@ -211,5 +211,14 @@
     <!--        WHERE PROJECT_NUM = #{NUM}-->
     <!--    </select>-->
 
+    <!--  메인 화면이동  -->
+    <select id="getListCourse" resultType="projectVO">
+    SELECT * FROM
+        (SELECT * FROM TBL_PROJECT
+        WHERE project_Date >= SYSDATE
+        ORDER BY PROJECT_DATE DESC)
+    WHERE COURSE = #{course}
+    </select>
+
 </mapper>
 
