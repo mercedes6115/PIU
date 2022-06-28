@@ -14,7 +14,7 @@
 <!--헤더 -->
 <div th:replace="~{/main/Header :: HeaderImport}"></div>
 <!--헤더 -->
-<form action="/store/payment" method="post">
+<form action="/store/payment" method="post" id="gogo">
     <div class="item_choose_main" th:object="${product}">
         <div class="item_select">
             <div class="space"></div>
@@ -34,7 +34,7 @@
             <div class="space"></div>
             <div class="item_amount flex" style="display: flex; position: relative; justify-content: center;">
                 <button type="button" class="amount_btn minus" style="left: 2%;">-</button>
-                <input class="item_amount_input" type="text" value="1" placeholder="1" readonly>
+                <input id="count" class="item_amount_input" type="text" value="1" placeholder="1" readonly>
                 <button type="button" class="amount_btn plus" style="right: 2%;">+</button>
             </div>
             <div class="space_line"></div>
@@ -44,13 +44,20 @@
             <!-- 결제하기 html로 쏴주기 -->
 
             <div class="flex" style="justify-content: space-between;">
+                <div>보유 포인트</div>
+                <div class="pay_point flex"> <p class="my-points" th:text="|${user.getPoint}P|"></p></div>
+                <input type="hidden" >
+            </div>
+
+            <div class="flex" style="justify-content: space-between;">
                 <div>총 결제 포인트</div>
                 <div class="pay_point flex"> <p class="total_price" th:text="|*{price}|">P</p></div>
                 <input type="hidden" name="ogprice" th:value="*{price}">
                 <input name="totalitems" type="hidden">
                 <input name="totalpayment" type="hidden">
             </div>
-            <div style="width: 100%;"> <button class="toBuy goPayment" type="submit" >결제 하기 </button></div>
+
+            <div style="width: 100%;"> <button class="toBuy goPayment" type="button" onclick="goNext()" >결제 하기 </button></div>
 
         </div>
     </div>
@@ -112,6 +119,65 @@
             $('input[name="totalpayment"]').val($amount*$item_price);
         }
     })
+
+
+</script>
+
+<script th:inline="javascript">
+    // var count = 1;
+    let price = [[${product.price}]];
+    let upoint = [[${user.point}]];
+    let count;
+
+    $('.amount_btn').on("click",function () {
+        count = document.getElementById('count').value;
+        if(upoint < price * count) {
+            $(".total_price").css("color","red");
+            $('.toBuy').css('background','gray');
+            $('.toBuy').attr("disabled", "disabled");
+        } else {
+            $(".total_price").css("color","black");
+            $('.toBuy').css('background','#005bed');
+            $('.toBuy').removeAttr("disabled");
+            $(".goPayment").on("click",function () {
+                $("#gogo").submit();
+            })
+        }
+    })
+
+
+    // if (price > upoint) {
+    //     $(".total_price").css("color","red");
+    // } else {
+    //     $(".total_price").css("color","black");
+    // }
+    //  $(".plus").on("click", function () {
+    //      count = count +1;
+    //      console.log(count);
+    //      if (price * count > upoint) {
+    //          $(".total_price").css("color","red");
+    //      } else {
+    //          $(".total_price").css("color","black");
+    //      }
+    //  })
+    // $(".minus").on("click", function () {
+    //     count = count - 1;
+    //     if(count <= 1){
+    //         count = 1;
+    //     }
+    //     console.log(count);
+    //     if (price * count > upoint) {
+    //         $(".total_price").css("color","red");
+    //     } else {
+    //         $(".total_price").css("color","black");
+    //     }
+    // })
+    //
+    $(".goPayment").on("click",function () {
+        $("#gogo").submit();
+    })
+    //  })
+
 
 
 </script>
