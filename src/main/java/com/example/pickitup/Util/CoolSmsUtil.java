@@ -12,7 +12,6 @@ import java.util.HashMap;
 
 @Component
 public class CoolSmsUtil {
-
     @Value("NCSQOOEMXARDESBI")  // api 키
     private String coolSmsApiKey;
 

@@ -8,8 +8,12 @@ import java.util.Date;
 import java.util.Properties;
 import java.util.Random;
 
+
+
 @Component
 public class EmailSend {
+    private RedisUtil redisUtil;
+    private EmailProperties emailProperties;
     public void sendEmail(String user_email) {
         System.out.println("이메일 시작");
         System.out.println(user_email);
@@ -31,6 +35,7 @@ public class EmailSend {
 
 
         try {
+            redisUtil.setDataExpire("123456", "email", emailProperties.getValidTime());
             System.out.println("5 시작");
             msg.setSentDate(new Date());
             InternetAddress from = new InternetAddress();

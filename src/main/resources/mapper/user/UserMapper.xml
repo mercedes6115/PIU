@@ -482,7 +482,6 @@
     </select>
 
 
-
 <!--    관리자용 유저 활성/비화성화 업데이트-->
     <update id="userStatusEnable">
         UPDATE TBL_USER
@@ -579,6 +578,7 @@
     ORDER BY UPDATE_DATE DESC
     </select>
 </mapper>
+
 
 
 
