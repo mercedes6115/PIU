@@ -15,6 +15,7 @@ public class ProductFileDAO {
 
     // 파일 경로 가져오기
     public List<ProductFileVO> findByProductNum(Long productNum) {
+
         return productFileMapper.findByProductNum(productNum);
     }
 

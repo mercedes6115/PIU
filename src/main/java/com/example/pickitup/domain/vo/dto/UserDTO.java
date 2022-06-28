@@ -18,6 +18,9 @@ public class UserDTO{
     private String phone;
     private String address;
     private String category;
+    private String point;
+    private String status;
+    private String approval;
 
 }
 

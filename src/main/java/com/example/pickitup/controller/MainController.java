@@ -46,7 +46,7 @@ public class MainController {
            checkLogin= 1;
        }
 
-       model.addAttribute("checkLogin",checkLogin);
+        model.addAttribute("checkLogin",checkLogin);
         model.addAttribute("projectListJJim", projectService.getListJJim());  // 내용가져오기
         model.addAttribute("projectListPoint", projectService.getListPoint());  // 내용가져오기
         model.addAttribute("projectListApply", projectService.getListApply());  // 내용가져오기
@@ -58,7 +58,6 @@ public class MainController {
 
         log.info("메인 들어옴");
        return "/main/main";
-
     }
 
 

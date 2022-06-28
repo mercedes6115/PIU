@@ -21,5 +21,7 @@ public class CompanyVO {
     private String profileUploadPath;
 
     private String category;
+    private String status;
+
 
 }

@@ -14,6 +14,10 @@ public interface ProjectMapper {
 //    프로젝트 전부 띄우기
     public List<ProjectVO> getList();
 
+//      관리자용 프로젝트 전체목록
+
+    public boolean insertQr(Long qrNum,String projectLink1,String projectLink2);
+
 //    관리자용 프로젝트 전체 목록
     public List<ProjectDTO> getProjectList(ProjectCriteria projectCriteria);
 
@@ -22,6 +26,7 @@ public interface ProjectMapper {
 
 //  특정 유저의 프로젝트 목록
     public List<ProjectVO> getUserProjectList(Long companyNum, ProjectCriteria projectCriteria);
+
 
 //    프로젝트 한개만 띄우기
     public ProjectVO getDetail(Long num);
@@ -44,7 +49,21 @@ public interface ProjectMapper {
     //    프로젝트 최대 참가자순 가져오기
     public List<ProjectVO> getListApply();
 
+
     // 프로젝트 코스별 가져오기
     public List<ProjectVO> getListCourse(String course);
+
+
+    public int adminStatistics(String date);
+
+    public boolean approveProject(Long num);
+
+    public boolean disapproveProject(Long num);
+
+    public boolean awaitProject(Long num);
+
+    public boolean setApprovaltoContinue(Long projectNum);
+
+    public List<ProjectDTO> getListToday(String startDate,String endDate);
 
 }

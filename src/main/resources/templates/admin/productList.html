@@ -140,26 +140,6 @@
                             </div>
                         </td>
                     </tr>
-                    <tr>
-                        <div class="productFilterBox">
-                            <th>진열상태</th>
-                            <td>
-                                <input type="radio" id="productFilterAll" name="productFilter" value="" checked>
-                                <input type="radio" id="productFilterOn" name="productFilter" value="">
-                                <label for="productFilterOn">진열함</label>
-                                <input type="radio" id="productFilterDown" name="productFilter" value="">
-                                <label for="productFilterDown">진열안함</label>
-                            </td>
-                            <th>재고상태</th>
-                            <td>
-                                <input type="radio" id="productFilterAll" name="productFilter" value="" checked>
-                                <input type="radio" id="productFilterOn" name="productFilter" value="">
-                                <label for="productFilterOn">판매함</label>
-                                <input type="radio" id="productFilterDown" name="productFilter" value="">
-                                <label for="productFilterDown">판매안함</label>
-                            </td>
-                        </div>
-                    </tr>
                 </table>
                 <div class="btnBox">
                     <button type="button" style="cursor:pointer;" id="productSearchBtn">검색</button>
@@ -192,10 +172,7 @@
 
                     <td colspan="12">
                         <div class="listTitle">
-                            <a href="" class="listBtn">삭제</a>
-                            <a href="" class="listBtn">진열변경</a>
-                            <a href="" class="listBtn">판매변경</a>
-                            <a href="" class="listBtn">상품등록</a>
+                            <a href="javascript:void(0);" onclick="deleteValue()" class="listBtn">삭제</a>
                         </div>
                     </td>
         </div>
@@ -205,30 +182,31 @@
         <tr>
             <!-- 생활, 주방, 욕실, 반려동물, 화장품, 식품, 문구, 원예  -->
             <th scope="col"></th>
-            <th scope="col">번호</th>
             <th scope="col">상품번호</th>
             <th scope="col">분류</th>
             <th scope="col">상품명</th>
             <th scope="col">판매가</th>
-            <th scope="col">진열상태</th>
-            <th scope="col">판매상태</th>
+            <th scope="col">제조사</th>
+            <th scope="col">공급사</th>
             <th scope="col">상품등록일</th>
-            <th scope="col">상품진열상황</th>
+            <th scope="col">재고상태</th>
+            <th scope="col">상품상태</th>
         </tr>
         <th:block  th:each="product,productStat:${productList}">
         <tr th:object="${product}">
-            <td><input type="checkbox"></td>
-            <td th:text="${productStat.index}"></td>
-            <td>20201918</td>
+            <td><input type="checkbox" th:value="*{num}" name="delList"></td>
+            <td th:text="*{num}"></td>
             <td th:text="*{category}"></td>
             <!-- 상품 수정하기로 이동 -->
             <td th:text="*{name}"><a href="#"></a></td>
             <td th:text="*{price}+p"></td>
-            <td >진열함</td>
-            <td>판매함</td>
+            <td th:text="*{manufacturer}"></td>
+            <td th:text="*{supplier}"></td>
             <td th:text="*{registDate}"></td>
             <!-- 상품 상세보기로 이동 -->
-            <td><a href="#">상세보기</a></td>
+            <td th:text="*{stock}"></td>
+            <td th:if="*{status}=='1'" th:style="${'color:blue;'}">진열함</td>
+            <td th:if="*{status}=='2'" th:style="${'color:red;'}">진열안함</td>
         </tr>
         </th:block>
 
@@ -274,6 +252,51 @@
     });
 </script>
 <script>
+
+    function deleteValue() {
+        var url = "/admin/deleteProduct";
+        var valueArr =new Array();
+        let list = $("input[name='delList']:checked");
+        for(let i=0; i<list.length; i++){
+            console.log('list.length : ' + list.length);
+            console.log(("list[i] : " + list[i].value));
+            valueArr.push(list[i].value);            }
+
+        console.log(valueArr);
+        if (valueArr.length == 0) {
+            alert("삭제할 항목을 선택해 주세요.");
+        }
+        else {
+            var chk = confirm("정말 삭제하시겠습니까?");
+            if(chk){
+                $.ajax({
+                    url: url,
+                    type: 'post',
+                    traditional: true,
+                    data: {
+                        valueArr: valueArr
+                    },
+                    success: function () {
+                        alert("삭제 성공");
+                        location.replace("/admin/productList")
+                    }
+                });
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
     $(document).ready(function() {
         //datepicker 한국어로 사용하기 위한 언어설정
         $.datepicker.setDefaults($.datepicker.regional['ko']);
@@ -360,9 +383,10 @@
         $("#productSearchForm").submit();
     });
 
-    $("a.goRead").click(function(e){
+    $("a.changePage").click(function(e){
         e.preventDefault();
-        location.href = "/board/read" + paging + "&boardBno="+$(this).attr('href');
+        $("#pageForm").find("input[name='pageNum']").val($(this).attr("href"));
+        $("#pageForm").submit();
     });
 
 </script>

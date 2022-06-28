@@ -24,7 +24,15 @@ public class ProjectMapperTest {
     public void getListApplyTest(){
         log.info(projectMapper.getListApply().toString());
     }
+
     
     @Test
     public void getListCourseTest() { log.info(projectMapper.getListCourse("산").toString());}
+
+
+    @Test
+    public void wewewe(){
+        log.info(projectMapper.adminStatistics("2022-06-24")+"============");
+    }
+
 }

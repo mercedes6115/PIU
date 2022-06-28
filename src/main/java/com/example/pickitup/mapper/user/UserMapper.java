@@ -4,15 +4,11 @@ import com.example.pickitup.domain.vo.AdminCriteria;
 import com.example.pickitup.domain.vo.Criteria;
 
 import com.example.pickitup.domain.vo.adminVO.AdminBoardDTO;
-import com.example.pickitup.domain.vo.dto.AdminBoardPageDTO;
-import com.example.pickitup.domain.vo.dto.AdminQnaCommentDTO;
-import com.example.pickitup.domain.vo.dto.AdminQnaDTO;
+import com.example.pickitup.domain.vo.dto.*;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 import com.example.pickitup.domain.vo.product.productQna.ProductQnaCommentVO;
 import com.example.pickitup.domain.vo.product.productQna.ProductQnaVO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
-
-import com.example.pickitup.domain.vo.dto.UserDTO;
 
 import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaCommentVO;
 
@@ -39,6 +35,9 @@ public interface UserMapper {
 
     //    관리자 공지사항 총갯수
     public int getNoticeTotal(AdminCriteria adminCriteria);
+
+    //     관리자 유저 비밀번호 수정
+    public boolean adminPwUpdate(String password, Long num);
 
     //    ADMINBOARD에 총 게시글 수 가져오기
     public int getAdminBoardCount(AdminCriteria adminCriteria);
@@ -72,6 +71,9 @@ public interface UserMapper {
 
     //    유저가 상품 문의 남겼을때 adminboard 에도 저장
     public void qnaStoreSave(AdminQnaDTO adminQnaDTO);
+
+    //    유저 내 리뷰 모두 보기
+    public List<MyReviewDTO> myAllReview(Long num);
 
     //    유저 목록 관리자용
     public  List<UserDTO> getList(Criteria criteria);
@@ -119,6 +121,17 @@ public interface UserMapper {
     public boolean updatePW(String email,String password);
 
 
+
+// 관리자용 유저 활성화/비활성화
+
+    public boolean userStatusDisable(Long num); // 비활성화
+    public boolean userStatusEnable(Long num); // 활성화
+    public boolean userApprovalDisable(Long num); // 비활성화
+    public boolean userApprovalEnable(Long num); // 활성화
+
+
+    public boolean addPoint(String nickname, String point);
+
 //  마이페이지 비밀번호 변경
     public boolean changePw(String password, Long num);
 
@@ -141,4 +154,8 @@ public interface UserMapper {
 //    해당 product 문의글에 작성된 답변
     public ProductQnaCommentVO myProductQnaComment(Long qnaNum);
 
+
+    public QrDTO getQrInfo(Long userNum);
+
+    public boolean autoPoint(String point,Long userNum);
 }

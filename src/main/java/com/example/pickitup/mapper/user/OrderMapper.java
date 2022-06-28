@@ -4,7 +4,9 @@ import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.OrderCriteria;
 import com.example.pickitup.domain.vo.dto.MyOrderDTO;
 import com.example.pickitup.domain.vo.dto.OrderDTO;
+
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
+
 import com.example.pickitup.domain.vo.user.OrderVO;
 import com.example.pickitup.domain.vo.user.UserVO;
 import org.apache.ibatis.annotations.Mapper;
@@ -18,6 +20,8 @@ public interface OrderMapper {
     public List<OrderDTO> getList(OrderCriteria orderCriteria);
 
     public int getTotal(OrderCriteria orderCriteria);
+
+    public List<OrderDTO> getListToday(String startDate, String endDate);
 
 
 //    주문 등록

@@ -1,6 +1,7 @@
 package com.example.pickitup.mapper.user;
 
 import com.example.pickitup.domain.vo.Criteria;
+import com.example.pickitup.domain.vo.OrderCriteria;
 import com.example.pickitup.domain.vo.user.OrderVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -31,10 +32,20 @@ public class OrderMapperTests {
         log.info("주문 상세 내용 " + orderMapper.getDetail(22L,21L));
     }
 
+
+    @Test
+    public void getOrderListTest(){
+        log.info("주문 전체 목록 페이징"+ orderMapper.getList(new OrderCriteria(1,10)));
+    }
+
 //    @Test
 //    public void getOrderListTest(){
 //        log.info("주문 전체 목록 페이징"+ orderMapper.getList(new Criteria(1,10)));
 //    }
+    @Test
+    public void getToday(){
+        log.info("오늘기준 한달치 "+orderMapper.getListToday("2022-06-25","2022-06-26").toString());
+    }
 
     @Test
     public void insertTest(){

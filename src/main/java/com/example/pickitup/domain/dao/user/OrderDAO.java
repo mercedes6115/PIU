@@ -3,7 +3,9 @@ package com.example.pickitup.domain.dao.user;
 import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.OrderCriteria;
 import com.example.pickitup.domain.vo.dto.OrderDTO;
+
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
+
 import com.example.pickitup.domain.vo.user.OrderVO;
 import com.example.pickitup.domain.vo.user.UserVO;
 import com.example.pickitup.mapper.user.OrderMapper;
@@ -14,7 +16,6 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-
 public class OrderDAO {
 
     private final OrderMapper orderMapper;
@@ -24,6 +25,10 @@ public class OrderDAO {
         return orderMapper.getList(orderCriteria);
     }
 
+
+    public List<OrderDTO> getListToday(String startDate,String endDate){
+        return orderMapper.getListToday(startDate,endDate);
+    }
     // 주문 목록(구매자용)
     public int getTotal(OrderCriteria orderCriteria){
         return orderMapper.getTotal(orderCriteria);

@@ -1,6 +1,4 @@
 package com.example.pickitup.controller;
-
-
 import com.example.pickitup.Util.CoolSmsUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;

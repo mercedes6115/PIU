@@ -3,16 +3,13 @@ package com.example.pickitup.domain.dao.user;
 import com.example.pickitup.domain.vo.AdminCriteria;
 import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.adminVO.AdminBoardDTO;
-import com.example.pickitup.domain.vo.dto.AdminBoardPageDTO;
-import com.example.pickitup.domain.vo.dto.AdminQnaCommentDTO;
-import com.example.pickitup.domain.vo.dto.AdminQnaDTO;
+import com.example.pickitup.domain.vo.dto.*;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 
 import com.example.pickitup.domain.vo.product.productQna.ProductQnaCommentVO;
 import com.example.pickitup.domain.vo.product.productQna.ProductQnaVO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 
-import com.example.pickitup.domain.vo.dto.UserDTO;
 import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaCommentVO;
 import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaVO;
 import com.example.pickitup.domain.vo.user.AdminBoardVO;
@@ -30,6 +27,16 @@ public class UserDAO {
 
     private final UserMapper userMapper;
 
+
+
+    public QrDTO getQrInfo(Long userNum){
+        return userMapper.getQrInfo(userNum);
+    }
+
+    public boolean autoPoint(String point,Long userNum){
+        return userMapper.autoPoint(point,userNum);
+    }
+
     //    관리자 공지등록
     public void registerWrite(AdminBoardVO adminBoardVO) {
         userMapper.write(adminBoardVO);
@@ -40,6 +47,10 @@ public class UserDAO {
         return userMapper.getNoticeList(adminCriteria);
     }
 
+
+    public boolean addPoint(String nickname,String point){
+        return userMapper.addPoint(nickname,point);
+    }
     //    관리자 공지 상세보기
     public AdminBoardVO getReadDetail(Long num){
         return userMapper.getNoticeDetail(num);
@@ -105,6 +116,11 @@ public class UserDAO {
         userMapper.productQnaDelete(num);
     }
 
+    // 유저 내 리뷰 모두 보기
+    public List<MyReviewDTO> myAllReview(Long num) {
+        return userMapper.myAllReview(num);
+    }
+
     // 유저 목록(관리자용)
     public List<UserDTO> getList(Criteria criteria){
         return userMapper.getList(criteria);
@@ -164,6 +180,26 @@ public class UserDAO {
 
 
 
+    public boolean updateUserAdminPW(String password, Long num){
+        return userMapper.adminPwUpdate(password,num);
+
+    }
+
+    public boolean UserStatusDisable(Long num) {// 비활성화
+        return userMapper.userStatusDisable(num);
+    }
+    public boolean UserStatusEnable(Long num) {// 비활성화
+        return userMapper.userStatusEnable(num);
+    }
+    public boolean UserApprovalDisable(Long num) {// 비활성화
+        return userMapper.userApprovalDisable(num);
+    }
+    public boolean UserApprovalEnable(Long num) {// 비활성화
+        return userMapper.userApprovalEnable(num);
+    }
+
+
+
     // 마이페이지 비밀번호 변경
     public boolean changePw(String password, Long num) {return userMapper.changePw(password, num);}
 
@@ -188,5 +224,6 @@ public class UserDAO {
 
     // 내가 작성한 product 문의글에 달린 답변 가져오기
     public ProductQnaCommentVO getMyProductQnaComment(Long qnaNum) {return userMapper.myProductQnaComment(qnaNum);}
+
 
 }

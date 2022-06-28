@@ -20,4 +20,6 @@ public class OrderDTO {
     private String supplier;
     private String registDate;
     private String status;
+    private String price;
+    private String category;
 }
