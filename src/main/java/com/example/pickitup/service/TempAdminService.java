@@ -264,6 +264,11 @@ public class TempAdminService {
         userDAO.qnaStoreSave(adminQnaDTO);
     }
 
+    //유저가 상품 문의 수정했을때 adminboard 에도 수정
+    public boolean qnaStoreModify(AdminQnaDTO adminQnaDTO) {
+        return userDAO.qnaStoreModify(adminQnaDTO);
+    }
+
     //관리자가 게시물 목록에서 상품문의 삭제 했을때 productQnA 테이블에서 삭제
     public void productQnaDelete(Long num) {
         userDAO.productQnaDelete(num);

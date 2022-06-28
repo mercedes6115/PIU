@@ -547,6 +547,14 @@
          #{content}, #{userNum}, '1', '1', #{projectQnaNum, jdbcType=VARCHAR}, (SELECT TBL_PRODUCT_QNA.NUM FROM TBL_PRODUCT_QNA  WHERE TBL_PRODUCT_QNA.NUM =(SELECT DISTINCT FIRST_VALUE(NUM) OVER (ORDER BY REGIST_DATE DESC) FROM TBL_PRODUCT_QNA) AND TBL_PRODUCT_QNA.PRODUCT_NUM =#{productNum}))
     </insert>
 
+    <update id="qnaStoreModify">
+        UPDATE TBL_ADMIN_BOARD
+        SET
+        CONTENT =#{content},
+        UPDATE_DATE=SYSDATE
+        WHERE PRODUCT_QNA_NUM =#{num}
+    </update>
+
     <select id="getMyProjectQna" resultType="projectQnaVO">
         SELECT NUM, CONTENT, REGIST_DATE, UPDATE_DATE, USER_NUM, PROJECT_NUM
         FROM TBL_PROJECT_QNA

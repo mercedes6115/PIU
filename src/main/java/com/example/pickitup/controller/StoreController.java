@@ -174,8 +174,9 @@ public class StoreController {
     }
     // 스토어 문의 수정폼
     @PostMapping("/qnaModify")
-    public String qnaModifyAction(ProductQnaVO productQnaVO, Model model){
+    public String qnaModifyAction(ProductQnaVO productQnaVO, AdminQnaDTO adminQnaDTO, Model model){
         productQnaService.update(productQnaVO);
+        tempAdminService.qnaStoreModify(adminQnaDTO);
         return storeDetail(productQnaVO.getProductNum(), model);
     }
 
