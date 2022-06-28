@@ -2,9 +2,14 @@ package com.example.pickitup.domain.dao.user;
 
 import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.OrderCriteria;
+import com.example.pickitup.domain.vo.dto.MyOrderDTO;
 import com.example.pickitup.domain.vo.dto.OrderDTO;
 
+import com.example.pickitup.domain.vo.dto.ProductDTO;
+
+
 import com.example.pickitup.domain.vo.dto.OrderUserDTO;
+
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 
 import com.example.pickitup.domain.vo.user.OrderVO;
@@ -61,15 +66,20 @@ public class OrderDAO {
         return orderMapper.getProduct(num1);
     };
 
-//    public List<OrderVO> getBetweenOrder(Long userNum) {
-//        return orderMapper.getBetweenOrder(userNum);
-//    }
-
-    // 유저 정보 수정
-    public void updateUser(UserVO userVO){
-        orderMapper.updateUser(userVO);
+    public List<MyOrderDTO> getBetweenOrder(Long userNum, String stardDate, String endDate) {
+        return orderMapper.getBetweenOrder(userNum, stardDate, endDate);
     }
 
+
+//    // 유저 정보 수정
+//    public boolean updateUser(UserVO userVO){
+//        return orderMapper.updateUser(userVO) != 0;
+//    }
+
+
+    public ProductDTO boughtDetail(Long orderNum) { return orderMapper.orderProductDetail(orderNum);}
+
+    public OrderVO findByOrderNum(Long orderNum) {return orderMapper.findByOrderNum(orderNum);}
 
 
     //상품 주문
@@ -91,6 +101,7 @@ public class OrderDAO {
     public Long getDetailByName(String itemname){
         return orderMapper.getDetailByName(itemname);
     }
+
 
 
 

@@ -1,5 +1,6 @@
 package com.example.pickitup.domain.dao.project.projectReview;
 
+import com.example.pickitup.domain.vo.dto.MyReviewDTO;
 import com.example.pickitup.domain.vo.project.projectReview.ProjectReviewVO;
 import com.example.pickitup.mapper.project.projectReview.ProjectReviewMapper;
 import lombok.RequiredArgsConstructor;
@@ -38,4 +39,5 @@ public class ProjectReviewDAO {
     public boolean remove(Long num){
         return projectReviewMapper.delete(num);
     }
+
 }

@@ -111,13 +111,16 @@ public class StoreController {
 
     // 스토어 리뷰 작성 폼
     @PostMapping("/reviewWrite")
-    public RedirectView reviewWriteForm(ProductReviewVO productReviewVO, RedirectAttributes rttr){
+    public RedirectView reviewWriteForm(ProductReviewVO productReviewVO, RedirectAttributes rttr,Long productNum){
 //        model.addAttribute("user", productNum); 유저의 정보 가져와야함.?? 어떻게??
         log.info("===================================");
         log.info("프로덕트넘버다"+productReviewVO.getProductNum());
         log.info("===================================");
-        productReviewVO.setUserNum(22L);
+        productReviewVO.setUserNum(2L);
+        log.info("productNum======="+productNum);
+        log.info("productNum======="+productReviewVO.getProductNum());
         productReviewService.insert(productReviewVO);
+        rttr.addAttribute("num",productNum);
         rttr.addAttribute("num",productReviewVO.getProductNum());
         return new RedirectView("/store/detail");
 //
@@ -133,7 +136,7 @@ public class StoreController {
     @PostMapping("/reviewModify")
     public String reviewModify(ProductReviewVO productReviewVO, Model model){
 //        model.addAttribute("user", productNum); 유저의 정보 가져와야함.?? 어떻게??
-        productReviewVO.setUserNum(22L);
+        productReviewVO.setUserNum(2L);
         productReviewService.modify(productReviewVO);
         return storeDetail(productReviewVO.getProductNum(), model);
     }
@@ -244,12 +247,23 @@ public class StoreController {
 
 
 
+
+//    // 스토어 결제 정보 입력
+//    @PostMapping("/payment")
+//    public String paymentForm(ProductDTO productDTO, ProductVO productVO,OrderVO orderVO,UserVO userVO,Model model){
+//        model.addAttribute("product", productVO);
+//        model.addAttribute("productinfo",productDTO);
+//        orderService.register(orderVO,userVO);
+//        return ("/store/payment");
+//    }
+
     // 스토어 결제 정보 입력
     @PostMapping("/payment")
     public void paymentForm(ProductDTO productDTO, ProductVO productVO,Model model){
         model.addAttribute("product", productVO);
         model.addAttribute("productinfo",productDTO);
     }
+
 //    @PostMapping("/payment")
 //    public void paymentForm(ProductDTO productDTO, ProductVO productVO,Model model){
 //        model.addAttribute("product", productVO);
@@ -288,9 +302,6 @@ public class StoreController {
         tempUserSerivce.getDetailByName(itemname); // 현재 재고
         Long stock = tempUserSerivce.getDetailByName(itemname) - Long.parseLong(productDTO.getTotalitems()); //수정될 재고
         tempUserSerivce.productMinus(itemname, stock);
-
-
-
 
 
         model.addAttribute("addressComment", addressComment);
@@ -335,4 +346,12 @@ public class StoreController {
         return jjimService.count(productNum);
     }
 
+    @GetMapping("/buyProductDetail")
+    public void myBoughtProductDetail(String orderNum, Model model){
+        Long orderNumber = Long.parseLong(orderNum);
+        model.addAttribute("product", tempUserSerivce.boughtOrderDetail(orderNumber));
+        OrderVO orderVO = orderService.findByOrderNum(orderNumber);
+        model.addAttribute("addressComment",orderVO.getAddressComment());
+        model.addAttribute("userinfo", tempUserSerivce.readUserInfo(orderVO.getUserNum()));
+    }
 }

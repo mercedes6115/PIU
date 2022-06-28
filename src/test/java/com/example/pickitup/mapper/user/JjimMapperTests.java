@@ -45,4 +45,18 @@ public class JjimMapperTests {
 //        vo.setProductNum(23L);
 //        jjimMapper.delete(vo);
 //    }
+
+    @Test
+    public void myProjectJjimListTest(){
+        jjimMapper.getList();
+    }
+
+    @Test
+    public void myProjectJjimInsertTest() {
+        JjimVO jjimVO = new JjimVO();
+        jjimVO.setUserNum(2L);
+        jjimVO.setProjectNum(30L);
+        jjimVO.setCategory("2");
+        jjimMapper.myProjectJjimInsert(jjimVO);
+    }
 }
