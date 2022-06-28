@@ -47,7 +47,7 @@
 <!-- 반응형 구매하기 폼태그 -->
 <form action="/store/itemChoose" method="post" th:object="${product}">
     <div class="pay_bar_media" style="text-align: center;">
-        <div class="flex" style="width: 100%;">
+        <div class="flex" style="width: 100%; justify-content: center;">
             <!--            <div style="width: 7%; padding-left: 10px;"><span class="material-symbols-outlined pointer jjim-ajax" th:name="*{num}" style="font-size: 40px; padding-top: 15px;">-->
             <!--                    favorite-->
             <!--                    </span></div>-->
@@ -521,7 +521,7 @@
                     str += "<div class=\"qnas\">";
                     str += "<div class=\"flex\" style=\"align-items: center;\">";
                     str += "<div class=\"profile_img\">";
-                    str+="</div>";
+                    str += "</div>";
                     str += "<div class=\"id_and_date\" style=\"flex-direction: column;\">";
                     str += "<div class=\"admin_id\" style=\"color: black;\">";
                     (function(){
@@ -549,9 +549,18 @@
                     str += "</div>";
                     str += "<div class=\"admin_date\">"+qna.updateDate.substring(0,10)+"</div>";
                     str += "</div>";
-                    str += "<div style='font-size: 11px; position: absolute; right: 1%;'>";
-                    str += "<a href=\""+qna.num+"\" class='makeComment' style='color: black'>답글달기</a>";
-                    str += "</div>";
+
+                    // 문의 수정 삭제 만들기
+                    if(qna.userNum == userNum){  // 현재 로그인 한 유저와 글쓴이가 같을경우에만 수정삭제 가능.
+                        str += "<div style='display: flex; margin-left: 5px; font-size: 11px; position: absolute; right: 1%'>";
+                        str += "<div style='margin-right: 5px;' class='qnaModify' name=\""+qna.num+"\"><a style='color: black; cursor:pointer;'>수정</a></div>";
+                        str += "<div class='qnaDelete' name=\""+qna.num+"\"><a style='color: black; cursor:pointer;'>삭제</a></div>";
+                        str += "</div>";
+                    }else if(userNum==1){
+                        str += "<div style='font-size: 11px; position: absolute; right: 1%;'>";
+                        str += "<a href=\""+qna.num+"\" class='makeComment' style='color: black'>답글달기</a>";
+                        str += "</div>";
+                    }
                     str += "</div>";
                     str += "<div class=\"space\"></div>";
                     str += "<div class=\"small_and_gray\"><p class=\"user_question\">"+qna.content+"</p></div>";
@@ -570,11 +579,15 @@
                                     str += "<div class=\"flex id_and_date\" style='width: 100%'>";
                                     str += "<div class=\"admin_id\">운영자" + "&nbsp; </div>";
                                     str += "<div class=\"admin_date\">" + comment.updateDate.substring(0,10) + "</div>";
-                                    str += "<div style='position: absolute; right: 0; font-weight: normal;'>";
-                                    str += "<a href=\""+comment.num+"\" name=\""+qna.num+"\" id=\""+comment.content+"\" class=\"modify_adminComment\" style='margin-right: 5px;'>수정</a>";
-                                    str += "<a href=\""+comment.num+"\" name='"+qna.num+"' class=\"delete_adminComment\">삭제</a>";
-                                    str += "<a href=\""+comment.num+"\" name='"+qna.num+"' class=\"cancel_adminComment\" style='display: none; color: #000000;'>취소</a>";
-                                    str += "</div>";
+
+                                    if(userNum==1){ //관리자면
+                                        str += "<div style='position: absolute; right: 0; font-weight: normal;'>";
+                                        str += "<a href=\""+comment.num+"\" name=\""+qna.num+"\" id=\""+comment.content+"\" class=\"modify_adminComment\" style='margin-right: 5px;'>수정</a>";
+                                        str += "<a href=\""+comment.num+"\" name='"+qna.num+"' class=\"delete_adminComment\">삭제</a>";
+                                        str += "<a href=\""+comment.num+"\" name='"+qna.num+"' class=\"cancel_adminComment\" style='display: none; color: #000000;'>취소</a>";
+                                        str += "</div>";
+                                    }
+
                                     str += "</div>";
                                     str += "</div>";
                                     str += "<div class=\"small_and_gray\" style=\"color: black;\">";
@@ -611,6 +624,27 @@
         },300);
     }
 
+    //문의 삭제
+    $(".ProductQnas").on("click",".qnaDelete",function (e) {
+        e.preventDefault();
+        if(confirm("정말 삭제하시겠습니까?")){
+            $.ajax({
+                url:"/store/qnaDelete?num="+$(this).attr("name"),
+                type:"get",
+                success : function (res) {
+                    showQnaList(pageNum);
+                }
+            })
+        }else{
+            return false;
+        }
+    })
+
+    //문의 수정
+    $(".ProductQnas").on("click",".qnaModify",function (e) {
+        e.preventDefault();
+        location.href = "/store/qnaModify?num="+$(this).attr("name");
+    })
 
     // ======================================================================
     // =======================문의 페이징 처리==========================
