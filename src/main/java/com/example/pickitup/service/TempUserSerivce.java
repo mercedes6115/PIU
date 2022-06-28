@@ -112,10 +112,12 @@ public class TempUserSerivce {
         }else if(countNickname!=0){
 
             log.info("nickname check "+userDAO.nicknameCheck(userVO.getNickname()));
-            userDAO.kakaoinsert(userVO);
             String temp=userVO.getNickname()+(countNickname+1);
-            userVO.setNickname(temp);
             log.info(temp);
+//            log.info(countNickname+1);
+            userVO.setNickname(temp);
+            userDAO.kakaoinsert(userVO);
+
             return userDAO.read(userVO.getNum());
         }
 
