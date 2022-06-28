@@ -241,33 +241,21 @@ form input::file-selector-button{
     float: left;
 }
 
-.bigThumb .largeImg{
-    width: 210px;
-    height: 210px;
-}
-
 label[for='attach0'] div.thumb0{
     width: 130px;
     height: 130px;
     background-image: url("");
     background-size: 100% 100%;
     cursor: pointer;
-    display: block;
-}
-
-
-
-.bigThumb .smallImg{
-    width: 100px;
-    height: 100px;
-    border: 1px solid;
     margin-right: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     border: 1px solid #d4d4d4;
-
 }
+
+
+
 label[for='attach0'] div.thumb0:hover{
     background-color: #f5f6f8;
 }
@@ -339,5 +327,8 @@ textarea {
     border: 1px solid #d4d4d4;
 }
 .textCount, .textTotal{
+    margin-top: 0;
+}
+.textCount1, .textTotal1{
     margin-top: 0;
 }

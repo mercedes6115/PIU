@@ -170,6 +170,24 @@ public class StoreController {
         return storeDetail(productQnaVO.getProductNum(), model);
     }
 
+    // 스토어 문의 수정
+    @GetMapping("/qnaModify")
+    public void qnaModify(Long num, Model model){
+        model.addAttribute("qnaDetail",productQnaService.read(num));
+    }
+    // 스토어 문의 수정폼
+    @PostMapping("/qnaModify")
+    public String qnaModifyAction(ProductQnaVO productQnaVO, Model model){
+        productQnaService.update(productQnaVO);
+        return storeDetail(productQnaVO.getProductNum(), model);
+    }
+
+    // 스토어 문의 삭제
+    @ResponseBody
+    @GetMapping("/qnaDelete")
+    public void qnaDelete(Long num){
+        productQnaService.remove(num);
+    }
 
 
 
