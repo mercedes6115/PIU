@@ -331,5 +331,25 @@ public class TempUserSerivce {
         return userDAO.myAllReview(num);
     }
 
+    // 상품 주문
+    public void orderStore(OrderUserDTO orderUserDTO) {
+        orderDAO.orderStore(orderUserDTO);
+    }
+
+    // 상품주문후 유저 포인트 차감
+    public void userPointMinus(Long num, String point) {
+        orderDAO.userPointMinus(num, point);
+    }
+
+    // 상품 주문후 재고 차감
+    public void productMinus(String itemname, Long stock){
+        orderDAO.productMinus(itemname, stock);
+    }
+
+    //상품명으로 정보 가져오기(1개)
+    public Long getDetailByName(String itemname){
+        return orderDAO.getDetailByName(itemname);
+    }
+
 
 }

@@ -169,23 +169,7 @@
         WHERE NUM=#{qrNum}
     </select>
 
-    <!--  특정 유저가 신청한 프로젝트 목록 -->
-    <select id="getUserProjectList" resultType="projectVO">
-    SELECT NUM, TITLE, CONTENT, COURSE, TERRAIN, POINT, APPROVAL, STARTTIME, ENDTIME, START_ADDRESS, END_ADDRESS, DISTANCE, START_QR, REGIST_DATE, UPDATE_DATE, STATUS, COMPANY_NUM
-    FROM TBL_PROJECT
-    WHERE COMPANY_NUM = #{companyNum}
-    </select>
 
-    <!-- 프로젝트 상세 정보  -->
-    <select id="getDetail" resultType="projectVO">
-     SELECT tp.NUM, tp.TITLE, tp.CONTENT, tp.COURSE, tp.TERRAIN, tp.POINT, tp.START_ADDRESS, tp.END_ADDRESS, tp.DISTANCE, tp.START_QR, tp.REGIST_DATE, tp.UPDATE_DATE,
-            tp.STATUS , tp.COMPANY_NUM , tp.JJIM_COUNT , tp.PROJECT_DATE, tp.COMPANY_COMMENT, tp.SUMMARY,
-            tc.NAME
-            FROM TBL_PROJECT tp
-            INNER JOIN TBL_COMPANY tc
-            ON tp.COMPANY_NUM = tc.NUM
-            WHERE tp.NUM = #{num}
-    </select>
 
     <!--    관리자용 프로젝트 전체 목록 불러오기-->
 
