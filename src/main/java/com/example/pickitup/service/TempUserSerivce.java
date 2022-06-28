@@ -99,15 +99,27 @@ public class TempUserSerivce {
     //    하나의 트랜잭션에 여러 개의 DML이 있을 경우 한 개라도 오류 시 전체 ROLLBACK
     @Transactional(rollbackFor = Exception.class)
     public UserVO kakaoLogin(UserVO userVO){
-        if(userDAO.emailCheck(userVO.getEmail())==0 && userDAO.nicknameCheck(userVO.getNickname())==0){
+        int countEmail=userDAO.emailCheck(userVO.getEmail());
+        int countNickname=userDAO.nicknameCheck(userVO.getNickname());
+        if(countEmail==0 && countNickname==0){
             userDAO.kakaoinsert(userVO);
             log.info("이제 저장할거임"+userDAO.emailCheck(userVO.getEmail()));
             return userDAO.read(userVO.getNum());
 
-        }else if(userDAO.emailCheck(userVO.getEmail())!=0){
+        }else if(countEmail!=0){
             log.info("Email check "+userDAO.emailCheck(userVO.getEmail()));
             return null;
-        }else {
+        }else if(countNickname!=0){
+
+            log.info("nickname check "+userDAO.nicknameCheck(userVO.getNickname()));
+            userDAO.kakaoinsert(userVO);
+            String temp=userVO.getNickname()+(countNickname+1);
+            userVO.setNickname(temp);
+            log.info(temp);
+            return userDAO.read(userVO.getNum());
+        }
+
+        else{
             log.info("디비저장된거" + userDAO.emailCheck(userVO.getEmail()));
             return userDAO.kakaoDetail(userVO.getEmail());
         }
