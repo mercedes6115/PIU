@@ -1,16 +1,15 @@
 package com.example.pickitup.domain.vo.dto;
 
-import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.OrderCriteria;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
 @Component
 @Data
-public class OrderDTO {
+public class OrderUserDTO {
     private OrderCriteria orderCriteria;
     private Long orderNum;
-    private String orderName;
+    private String name;
     private String email;
     private String phone;
     private String address;
@@ -27,6 +26,5 @@ public class OrderDTO {
     private Long num;
     private Long total;
     private String nickName;
-    private String category;
-    private int price;
+    private Long point;
 }

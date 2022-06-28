@@ -39,11 +39,11 @@
                                     </picture>
                                 </span></div>
                     <div class="review-step5">
-                        <div class="review-step6" th:text="*{userName}"></div>
+                        <div class="review-step6" th:text="${user.getNickname()}"></div>
                         <div class="review-step7">
 
                             <div class="review-step8" th:text="*{#temporals.createDate(updateDate, 'yyyy-MM-dd HH:mm:ss')}"></div>
-                            <div class="review-step9" th:text="*{productName}"></div>
+                            <div class="review-step9" th:text="*{title}"></div>
                         </div>
                     </div>
                 </div>
@@ -51,8 +51,8 @@
                 <pre
                         class="review-by1" th:text="*{content}"></pre>
             </a>
-                <div class="review-by2"></div>
-
+                <div class="review-by2" th:id="*{num}">
+                </div>
             </div>
             <div class="review-with4"></div>
             <div class="sc-f8caeb8b-0 review-with5">
@@ -77,5 +77,38 @@ let uploadPath = [[${user.profileUploadPath}]];
 let str = "";
 str += "<img src ='/userFile/display?fileName=" + uploadPath + "/" + fileName + "'>";
 profile.html(str);
+
+let reviews = [[${reviewList}]];
+$(reviews).each(function (i, review) {
+    var contentNum = review.num;
+    console.log(contentNum);
+    if(contentNum < 100) {
+        $.ajax({
+            url: "/productReviewFile/list/" + contentNum,
+            type: "get",
+            success: function (files) {  //각 리뷰의 파일들
+                let text = "";
+                $(files).each(function (i, file) {
+                    text += "<img width='100px' src='/productReviewFile/display?fileName=" + file.uploadPath + "/" + file.uuid + "_" + file.fileName + "'>";
+                })
+                $('#' + review.num).html(text);
+            }
+        })
+    } else {
+        $.ajax({
+            url: "/projectReviewFile/list/" + contentNum,
+            type: "get",
+            success: function (files) {  //각 리뷰의 파일들
+                let text = "";
+                $(files).each(function (i, file) {
+                    text += "<img width='100px' src='/projectReviewFile/display?fileName=" + file.uploadPath + "/" + file.uuid + "_" + file.fileName + "'>";
+                })
+                $('#' + review.num).html(text);
+            }
+        })
+    }
+})
+
+
 </script>
 </html>

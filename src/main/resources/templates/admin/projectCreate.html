@@ -48,9 +48,9 @@
                     <tr>
                         <th colspan="3">유형선택</th>
                         <td colspan="4">
-                            <select name="course">
+                            <select name="course" id = "chooseCL" onchange="startend()">
                                 <option value="C" >코스</option>
-                                <option value="L" n>장소</option>
+                                <option value="L" >장소</option>
                             </select>
                             <select name="terrain" class="formTerrainSelect">
                                 <option >지형</option>
@@ -84,7 +84,7 @@
 
                         <td colspan="4">
                             <div class="locationBox">
-                                <div>
+                                <div id="start">
                                     <button type="button" class="locationBtn" id="startPoint">주소검색</button>
                                     <span>출발지: </span><span class="startPoint"></span>
                                     <input type="text" name="startAddress"  id="startPoint"hidden>
@@ -94,14 +94,15 @@
                                 <input type="hidden" id="y1">
                                 <input type="hidden" id="x2">
                                 <input type="hidden" id="y2">
-                                <div>
-                                    <button type="button"  class="locationBtn1" id="endPoint">주소검색</button>
+
+                                <div id="end">
+                                    <button type="button" class="locationBtn1" id="endPoint">주소검색</button>
                                     <span>도착지: </span><span class="endPoint"></span>
                                     <input type="text" name="endAddress" id="endPoint" hidden>
                                     <input type="text" name="endAddressDetail" placeholder="상세주소">
                                 </div>
                                 <input type="number" id="distancekm" name="distance" placeholder="km단위">
-                            </div>
+
                         </td>
                     </tr>
                     <tr>
@@ -369,6 +370,19 @@
             }
         });
     });
+
+
+
+    function startend(){
+        var choice = document.getElementById("chooseCL").value;
+
+        console.log(choice);
+        if(choice=='L'){
+            $("#end").hide();
+        }else{
+            $("#end").show();
+        }
+    }
 </script>
 
 <script>
@@ -487,8 +501,6 @@
 
     // x,y 좌표 받아오기
 
-
-
     function dist(){
         let distance_point =  Math.sqrt(Math.pow(출발[0]-도착[0],2) + Math.pow(출발[1]-도착[1],2));
         let distance = distance_point*111;
@@ -502,7 +514,6 @@
         var dis=real_distance
         console.log(dis);
         $('#distancekm').val(dis);
-
     }
 </script>
 <script th:replace="~{/admin/adminSideBar :: AdminSideBarJSImport}"></script>

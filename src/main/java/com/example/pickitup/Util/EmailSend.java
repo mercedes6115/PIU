@@ -8,8 +8,12 @@ import java.util.Date;
 import java.util.Properties;
 import java.util.Random;
 
+
+
 @Component
 public class EmailSend {
+    private RedisUtil redisUtil;
+    private EmailProperties emailProperties;
     public void sendEmail(String user_email) {
         System.out.println("이메일 시작");
         System.out.println(user_email);
@@ -31,6 +35,7 @@ public class EmailSend {
 
 
         try {
+            redisUtil.setDataExpire("123456", "email", emailProperties.getValidTime());
             System.out.println("5 시작");
             msg.setSentDate(new Date());
             InternetAddress from = new InternetAddress();
@@ -83,7 +88,7 @@ public class EmailSend {
                     "<tbody><tr><td align='center' valign='top' style='padding: 24px'>" +
                     "<table align='center' width='600' cellspacing='0' cellpadding='0' border='0' style='max-width: 600px; width: 100%'>" +
                     "<tbody><tr><td align='center' valign='top'>" +
-                    "<a href='http://localhost:10010/user/updatePw?email="+user_email+" target='_self' >비밀번호 재설정하기</a>" +
+                    "<a href='http://localhost:10010/user/updatePw?email="+user_email+"' target='_self' >비밀번호 재설정하기</a>" +
                     "</td></tr></tbody></table>" +
                     "</td></tr></tbody></table>" +
                     "<table align='center' width='640' cellspacing='0' cellpadding='0' border='0' style='max-width: 640px; width: 100%' bgcolor='#FFFFFF'>" +

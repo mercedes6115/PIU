@@ -380,6 +380,7 @@ public class AdminController {
     @GetMapping("/projectDetail")
     public void projectDetail(Long projectNum,Model model){
         model.addAttribute("applyUserList",tempAdminService.getApplyUser(projectNum));
+        model.addAttribute("projectNum",projectNum);
     }
 
     // 관리자 상품 목록
@@ -706,7 +707,7 @@ public class AdminController {
 //        log.info("====================");
 //        return new RedirectView("/admin/boardList");
 //    }
-
+// 프로젝트 승인
     @PostMapping("/approveProject")
     @ResponseBody
     public void approveProject(Long num, HttpServletRequest request){
@@ -718,7 +719,7 @@ public class AdminController {
         }
     }
 
-
+// 프로젝트 승인 대기중
     @PostMapping("/AwaitingProject")
     @ResponseBody
     public void awaitingProject(Long num, HttpServletRequest request){
@@ -729,7 +730,7 @@ public class AdminController {
             tempAdminService.awaitProject(num);
         }
     }
-
+// 프로젝트 승인거절
     @PostMapping("/DispproveProject")
     @ResponseBody
     public void disapproveProject(Long num, HttpServletRequest request){
@@ -741,6 +742,7 @@ public class AdminController {
         }
     }
 
+    // 포인트 지급버튼을 통하여 프로젝트에 참여한 유저에게 포인트를 지급
     @PostMapping("/addPoint")
     @ResponseBody
     public void addPoint(String nickname, String point,String approach,String userNum,String applynum){

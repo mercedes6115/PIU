@@ -45,4 +45,12 @@ public class JjimDAO {
         return jjimMapper.getList();
     }
 
+    // 프로젝트 찜 등록(마이페이지)
+    public void myProjectJjimInsert(JjimVO jjimVO) { jjimMapper.myProjectJjimInsert(jjimVO);}
+
+    // 프로젝트 찜 삭제(마이페이지)
+    public void myProjectJjimDelete(JjimVO jjimVO) { jjimMapper.myProjectJjimDelete(jjimVO);}
+
+    // 프로젝트 찜 개수(마이페이지)
+    public int myProjectJjimCount(Long projectNum) { return jjimMapper.myProjectJjimCount(projectNum);}
 }

@@ -65,7 +65,7 @@ let check = 0;
 let width = 1
 
 function frame() {
-    console.log("늘어나기 시작")
+    // console.log("늘어나기 시작")
     if (width >= 100) {
         clearInterval(idk);
         i = 0;
@@ -77,7 +77,7 @@ function frame() {
 
 let idk = setInterval(frame, 30);
 function move() {
-    console.log("현재 위치 : " + currentBannerIdx);
+    // console.log("현재 위치 : " + currentBannerIdx);
 
 
     if (i == 0) {
@@ -92,7 +92,7 @@ function move() {
             width=1;
             idk = setInterval(frame, 30);
             intervals = setInterval(intervalclick, 3500);
-            console.log("늘어나는거 초기화")
+            // console.log("늘어나는거 초기화")
         }
         frame();
     }
@@ -169,8 +169,4 @@ prevBtn.addEventListener('click', function () {
         banner.style.transition = `${0.5}s ease-out`;
     }
 });
-<<<<<<< HEAD
-=======
-
->>>>>>> 27ee459a942ca37f230d0a9bc248bc974317caab
 

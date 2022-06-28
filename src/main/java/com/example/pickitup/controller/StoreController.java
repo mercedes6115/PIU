@@ -1,10 +1,7 @@
 package com.example.pickitup.controller;
 
 import com.example.pickitup.domain.vo.ProductQnaCriteria;
-import com.example.pickitup.domain.vo.dto.AdminQnaDTO;
-import com.example.pickitup.domain.vo.dto.ProductDTO;
-import com.example.pickitup.domain.vo.dto.ProductQnaPageDTO;
-import com.example.pickitup.domain.vo.dto.ProductReviewUserDTO;
+import com.example.pickitup.domain.vo.dto.*;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 import com.example.pickitup.domain.vo.product.productQna.ProductQnaCommentVO;
 import com.example.pickitup.domain.vo.product.productQna.ProductQnaVO;
@@ -114,13 +111,16 @@ public class StoreController {
 
     // 스토어 리뷰 작성 폼
     @PostMapping("/reviewWrite")
-    public RedirectView reviewWriteForm(ProductReviewVO productReviewVO, RedirectAttributes rttr){
+    public RedirectView reviewWriteForm(ProductReviewVO productReviewVO, RedirectAttributes rttr,Long productNum){
 //        model.addAttribute("user", productNum); 유저의 정보 가져와야함.?? 어떻게??
         log.info("===================================");
         log.info("프로덕트넘버다"+productReviewVO.getProductNum());
         log.info("===================================");
-        productReviewVO.setUserNum(22L);
+        productReviewVO.setUserNum(2L);
+        log.info("productNum======="+productNum);
+        log.info("productNum======="+productReviewVO.getProductNum());
         productReviewService.insert(productReviewVO);
+        rttr.addAttribute("num",productNum);
         rttr.addAttribute("num",productReviewVO.getProductNum());
         return new RedirectView("/store/detail");
 //
@@ -136,7 +136,7 @@ public class StoreController {
     @PostMapping("/reviewModify")
     public String reviewModify(ProductReviewVO productReviewVO, Model model){
 //        model.addAttribute("user", productNum); 유저의 정보 가져와야함.?? 어떻게??
-        productReviewVO.setUserNum(22L);
+        productReviewVO.setUserNum(2L);
         productReviewService.modify(productReviewVO);
         return storeDetail(productReviewVO.getProductNum(), model);
     }
@@ -170,6 +170,24 @@ public class StoreController {
         return storeDetail(productQnaVO.getProductNum(), model);
     }
 
+    // 스토어 문의 수정
+    @GetMapping("/qnaModify")
+    public void qnaModify(Long num, Model model){
+        model.addAttribute("qnaDetail",productQnaService.read(num));
+    }
+    // 스토어 문의 수정폼
+    @PostMapping("/qnaModify")
+    public String qnaModifyAction(ProductQnaVO productQnaVO, Model model){
+        productQnaService.update(productQnaVO);
+        return storeDetail(productQnaVO.getProductNum(), model);
+    }
+
+    // 스토어 문의 삭제
+    @ResponseBody
+    @GetMapping("/qnaDelete")
+    public void qnaDelete(Long num){
+        productQnaService.remove(num);
+    }
 
 
 
@@ -229,14 +247,23 @@ public class StoreController {
 
 
 
+
+//    // 스토어 결제 정보 입력
+//    @PostMapping("/payment")
+//    public String paymentForm(ProductDTO productDTO, ProductVO productVO,OrderVO orderVO,UserVO userVO,Model model){
+//        model.addAttribute("product", productVO);
+//        model.addAttribute("productinfo",productDTO);
+//        orderService.register(orderVO,userVO);
+//        return ("/store/payment");
+//    }
+
     // 스토어 결제 정보 입력
     @PostMapping("/payment")
-    public String paymentForm(ProductDTO productDTO, ProductVO productVO,OrderVO orderVO,UserVO userVO,Model model){
+    public void paymentForm(ProductDTO productDTO, ProductVO productVO,Model model){
         model.addAttribute("product", productVO);
         model.addAttribute("productinfo",productDTO);
-        orderService.register(orderVO,userVO);
-        return ("/store/payment");
     }
+
 //    @PostMapping("/payment")
 //    public void paymentForm(ProductDTO productDTO, ProductVO productVO,Model model){
 //        model.addAttribute("product", productVO);
@@ -245,16 +272,43 @@ public class StoreController {
 
     // 스토어 결제 전 상품 선택
     @PostMapping("/itemChoose")
-    public void itemChoose(ProductVO productVO,Model model){
+    public void itemChoose(UserVO userVO, ProductVO productVO,Model model){
+        userVO = tempUserSerivce.readUserInfo(22L);
+
         model.addAttribute("product",productVO);
+        model.addAttribute("user", userVO);
     }
 
     // 결제 완료 후 주문내역
-    @PostMapping("/buyProductDetail")//나중에 request 방식으로 바꿀것
-    public void buyProductDetail(UserVO userVO, ProductDTO productDTO,String addressComment,Model model){
+    @PostMapping("/buyProductDetail")
+    public void buyProductDetail(OrderUserDTO orderUserDTO, ProductVO productVO, UserVO userVO, ProductDTO productDTO, String addressComment, Model model){
+        Long num = 22L; // 유저넘버
+        orderUserDTO.setUserNum(num);
+        orderUserDTO.setNickName(productDTO.getNickName());
+        orderUserDTO.setPhone(productDTO.getPhone());
+        orderUserDTO.setCounting(Long.parseLong(productDTO.getTotalitems()));
+        orderUserDTO.setTotal(Long.parseLong(productDTO.getTotalpayment()));
+        orderUserDTO.setProductName(productDTO.getItemname());
+        orderUserDTO.setAddressComment(productDTO.getAddressComment());
+        orderUserDTO.setAddress(productDTO.getAddress());
+        orderUserDTO.setAddressDetail(productDTO.getAddressDetail());
+        tempUserSerivce.orderStore(orderUserDTO);
+
+        userVO = tempUserSerivce.readUserInfo(num);
+        String point = Long.toString(Long.parseLong(userVO.getPoint()) - Long.parseLong(productDTO.getTotalpayment())); //수정될 포인트
+        tempUserSerivce.userPointMinus(num, point);
+
+        String itemname = productDTO.getItemname();
+        tempUserSerivce.getDetailByName(itemname); // 현재 재고
+        Long stock = tempUserSerivce.getDetailByName(itemname) - Long.parseLong(productDTO.getTotalitems()); //수정될 재고
+        tempUserSerivce.productMinus(itemname, stock);
+
+
         model.addAttribute("addressComment", addressComment);
         model.addAttribute("userinfo",userVO);
+        model.addAttribute("orderinfo",orderUserDTO);
         model.addAttribute("product",productDTO);
+
     }
 
     private String getFolder(){
@@ -292,4 +346,12 @@ public class StoreController {
         return jjimService.count(productNum);
     }
 
+    @GetMapping("/buyProductDetail")
+    public void myBoughtProductDetail(String orderNum, Model model){
+        Long orderNumber = Long.parseLong(orderNum);
+        model.addAttribute("product", tempUserSerivce.boughtOrderDetail(orderNumber));
+        OrderVO orderVO = orderService.findByOrderNum(orderNumber);
+        model.addAttribute("addressComment",orderVO.getAddressComment());
+        model.addAttribute("userinfo", tempUserSerivce.readUserInfo(orderVO.getUserNum()));
+    }
 }

@@ -59,7 +59,8 @@
                                         <div class="sGroupInfoBox">
                                             <span class="material-symbols-outlined" id="gfSize">group</span>
                                             <div class="margin"></div>
-                                            <a class="sTitle" href="#">단체 정보</a>
+                                            <!-- 유저 정보 -->
+                                            <a class="sTitle" href="/group/modify">단체 정보</a>
                                         </div>
                                     </div>
                                 </div>
@@ -79,7 +80,6 @@
                                     <a class="sProjectList" href="main.html">전체 플로깅</a>
                                     <a class="sProjectQna" href="#">플로깅 문의</a>
                                 </div>
-
                                 <div class="sGuideFrame">
                                     <div class="sGuideForm">
                                         <div class="sGuideBox">
@@ -114,21 +114,21 @@
                             </a>
                         </div>
                         <div class="projectListFrame">
-                            <div class="projectListForm">
+                            <div class="projectListForm" id="projectList">
                                 <div class="projectListContainer">
                                     <div class="projectListBox">
-                                        <div class="searchForm">
-                                            <div class="searchBox">
-                                                <div class="searchProjectBox">
-                                                    <form action>
-                                                        <input placeholder="프로젝트명 검색" class="searchProject" value>
-                                                    </form>
-                                                </div>
-                                                <span class="searchImg">
-                                                <span class="material-symbols-outlined">search</span>                                                                                                        
-                                            </span>
-                                            </div>
-                                        </div>
+<!--                                        <div class="searchForm">-->
+<!--                                            <div class="searchBox">-->
+<!--                                                <div class="searchProjectBox">-->
+<!--                                                    <form action>-->
+<!--                                                        <input placeholder="프로젝트명 검색" class="searchProject" value>-->
+<!--                                                    </form>-->
+<!--                                                </div>-->
+<!--                                                <span class="searchImg">-->
+<!--                                                <span class="material-symbols-outlined">search</span>                                                                                                        -->
+<!--                                            </span>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
                                         <div class="showListFrame">
                                             <div class="showListForm">
                                                 <div class="showListBox">
@@ -142,9 +142,6 @@
                                                                 </label>
                                                             </div>
                                                         </span>
-                                                        </div>
-                                                        <div class="showListHeader2">
-                                                            <span class="showListBoundary"></span>
                                                         </div>
                                                         <div class="showListHeader3">
                                                             <span class="showListhTitle">제목</span>
@@ -176,29 +173,13 @@
                                                     <div class="showListBodyFrame">
                                                         <div class="showListBodyForm">
                                                             <!-- 프로젝트 목록 -->
-                                                            <div class="showListBody" th:each="project:${projectList}">
+                                                            <div class="showListBody" th:each="project:${projectList}" >
                                                                 <div class="showListBody1">
                                                                     <div class="sbCheckBoxFrame">
                                                                         <label class="sbCheckBoxForm">
                                                                             <span class="material-symbols-outlined" id="checkBoxBtn">check_box_outline_blank</span>
                                                                             <input type="checkbox" class="oneCheck">
                                                                         </label>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="showListBody2">
-                                                                    <div class="sbImageFrame">
-                                                                        <div class="sbImageForm">
-                                                                            <div class="sbImageContainer">
-                                                                                <div class="sbImageBox">
-                                                                                    <div class="sbImageWrap">
-                                                                                        <picture class="sbImageShow" th:id="${project.num}" >
-                                                                                            <source srcset="/src/main/resources/static/images/chun.png" media="all and (min-width: 1024px)" >
-                                                                                        </picture>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="showListBody3">
@@ -240,46 +221,38 @@
                                                                     <div class="sbMoreFrame">
                                                                         <div class="sbMoreForm">
                                                                             <div class="seeApplier" id="seeApplierBox">
-                                                                                <button class="qrCheckFrame" id="qrCheck">
+                                                                                <button class="qrCheckFrame sbMoreBox" id="qrCheck">
                                                                                 <span class="qrCheckForm">
-                                                                                    <span class="qrCheck">회원목록</span>
+                                                                                    <span class="qrCheck">QR</span>
+                                                                                </span>
+                                                                                </button>
+                                                                                <button class="qrCheckFrame sbMoreBox" th:id="${project.num}">
+                                                                                <span class="qrCheckForm">
+                                                                                    <span class="qrCheck">신청목록</span>
                                                                                 </span>
                                                                                 </button>
                                                                             </div>
-                                                                            <div class="moreBoundary"></div>
-                                                                            <div class="sbMoreContainer" id="sbMoreContainer">
-                                                                                <button class="sbMoreBox" id="showMoreBtn">
-                                                                                    <span class="material-symbols-outlined">more_horiz</span>
-                                                                                </button>
+
+                                                                            <!--  수정 버튼 -->
+                                                                            <div class="modifyForm" th:if="${project.status == '1' }">
+                                                                                <button type="button" class="moveProjectModify"><span class="material-symbols-outlined">edit</span></button>
+                                                                            </div>
+
+                                                                            <div class="deleteForm">
+                                                                                <button type="button" class="deleteProjectBtn"><span class="material-symbols-outlined">delete</span></button>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <!-- 수정 삭제 들어갈 자리  -->
-                                                                <div class="showMoreFrame" id="showMore">
-                                                                    <div class="showMoreForm">
-                                                                        <div class="modifyForm">
-                                                                            <button type="button" class="moveProjectModify"><span class="material-symbols-outlined pmBtn">build</span>수정</button>
-                                                                        </div>
-                                                                        <div class="deleteForm">
-                                                                            <button type="button" class="deleteProjectBtn"><span class="material-symbols-outlined pdBtn">delete</span>삭제</button>
 
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+
 
                                                             </div>
-
-
-
                                                         </div>
-
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -310,7 +283,7 @@
                                         <div class="showListFrame">
                                             <div class="showListForm">
                                                 <div class="showListBox">
-                                                    <div class="showListHeader">
+                                                    <div class="showListHeader apply">
                                                         <div class="showListHeader1">
                                                                 <span class="listCheckBoxFrame">
                                                                     <div class="listCheckBoxForm">
@@ -321,9 +294,7 @@
                                                                     </div>
                                                                 </span>
                                                         </div>
-                                                        <div class="showListHeader2">
-                                                            <span class="showListBoundary"></span>
-                                                        </div>
+
                                                         <div class="showListHeader3">
                                                             <span class="showListhTitle">이름</span>
                                                         </div>
@@ -334,10 +305,85 @@
                                                             <span class="showListhTerrain">신청 날짜</span>
                                                         </div>
                                                         <div class="showListHeader6">
-                                                            <span class="showListhCourse">신청자 상태</span>
+                                                            <span class="showListhCourse">출발 시각</span>
+                                                        </div>
+                                                        <div class="showListHeader7">
+                                                            <span class="showListhCourse">도착 시각</span>
+                                                        </div>
+                                                        <div class="showListHeader8">
+                                                            <span class="showListhCourse">완료 여부</span>
+                                                        </div>
+                                                        <div class="showListHeader9">
+                                                            <span class="showListhCourse"></span>
+                                                        </div>
+
+                                                        <div class="showListHeade11">
+                                                        <span class="material-symbols-outlined" id="closeBtn">close</span>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                    <div class="showListBodyFrame">
+                                                        <div class="showListBodyForm" id="replyList">
+<!--                                                            &lt;!&ndash; 신청자 목록 &ndash;&gt;-->
+<!--                                                            <div class="showListBody" >-->
+<!--                                                                <div class="showListBody1">-->
+<!--                                                                    <div class="sbCheckBoxFrame">-->
+<!--                                                                        <label class="sbCheckBoxForm">-->
+<!--                                                                            <span class="material-symbols-outlined" id="checkBoxBtn">check_box_outline_blank</span>-->
+<!--                                                                            <input type="checkbox" class="oneCheck">-->
+<!--                                                                        </label>-->
+<!--                                                                    </div>-->
+<!--                                                                </div>-->
+<!--                                                                &lt;!&ndash; 프로필 &ndash;&gt;-->
+<!--                                                                <div class="showListBody2">-->
+<!--                                                                    <div class="sbImageFrame">-->
+<!--                                                                        <div class="sbImageForm">-->
+<!--                                                                            <div class="sbImageContainer">-->
+<!--                                                                                <div class="sbImageBox">-->
+<!--                                                                                    <div class="sbImageWrap">-->
+<!--                                                                                        <picture class="sbImageShow">-->
+<!--                                                                                            <source srcset="/src/main/resources/static/images/chun.png" media="all and (min-width: 1024px)" >-->
+<!--                                                                                        </picture>-->
+<!--                                                                                    </div>-->
+<!--                                                                                </div>-->
+<!--                                                                            </div>-->
+<!--                                                                        </div>-->
+<!--                                                                    </div>-->
+<!--                                                                </div>-->
+<!--                                                                &lt;!&ndash; 닉네임 &ndash;&gt;-->
+<!--                                                                <div class="showListBody3">-->
+<!--                                                                    <div class="sbTitleForm">-->
+<!--                                                                        <p class="sbTitle"></p>-->
+<!--                                                                    </div>-->
+<!--                                                                </div>-->
+<!--                                                                &lt;!&ndash; 신청일자 &ndash;&gt;-->
+<!--                                                                <div class="showListBody6">-->
+<!--                                                                    <div class="sbCourseFrame">-->
+<!--                                                                        <p class="sbCousre"></p>-->
+<!--                                                                    </div>-->
+<!--                                                                </div>-->
+<!--                                                                &lt;!&ndash; 신청자 상태 &ndash;&gt;-->
+<!--                                                                <div class="showListBody7">-->
+<!--                                                                    <div class="sbPointFrame">-->
+<!--                                                                        <p class="sbPoint"></p>-->
+<!--                                                                    </div>-->
+<!--                                                                </div>-->
+<!--                                                                &lt;!&ndash; 시작 완료 &ndash;&gt;-->
+<!--                                                                <div class="showListBody9">-->
+<!--                                                                    <div class="sbMoreFrame">-->
+<!--                                                                        <div class="sbMoreForm">-->
+<!--                                                                            <div class="seeApplier" id="seeApplierBox">-->
+<!--                                                                                <button class="qrCheckFrame" id="qrCheck">-->
+<!--                                                                                <span class="qrCheckForm">-->
+<!--                                                                                    <span class="qrCheck">완료</span>-->
+<!--                                                                                </span>-->
+<!--                                                                                </button>-->
+<!--                                                                            </div>-->
+<!--                                                                        </div>-->
+<!--                                                                    </div>-->
+<!--                                                                </div>-->
+<!--                                                            </div>-->
+                                                        </div>
+                                                    </div>
                                             </div>
                                         </div>
                                     </div>
@@ -349,13 +395,6 @@
             </div>
         </div>
     </div>
-    <!-- <div class="footerBoundary"></div> -->
-    <footer class="groupPageFooter">
-        <!-- <div class="boundaryLine"></div> -->
-        <div class="footerFrame">
-
-        </div>
-    </footer>
 </div>
 
 </div>
@@ -372,6 +411,13 @@
 </div>
 
 </div>
+<!-- <div class="footerBoundary"></div> -->
+<footer class="groupPageFooter">
+    <!-- <div class="boundaryLine"></div> -->
+    <div class="footerFrame">
+
+    </div>
+</footer>
 </body>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>
@@ -394,18 +440,18 @@
     // const showMoreBox = document.getElementById("showMore");
     // const showMore = document.getElementById("showMoreBtn");
     //
-    // // showMore.addEventListener("click", e => {
-    // //     console.log("들어옴");
-    // //     if(!showFlag) {
-    // //         console.log("들어옴1");
-    // //         showMoreBox.style.display ="flex";
-    // //         showFlag = true;
-    // //     } else {
-    // //         console.log("들어옴2");
-    // //         showMoreBox.style.display ="none";
-    // //         showFlag = false;
-    // //     }
-    // // })
+    // showMore.addEventListener("click", e => {
+    //     console.log("들어옴");
+    //     if(!showFlag) {
+    //         console.log("들어옴1");
+    //         showMoreBox.style.display ="flex";
+    //         showFlag = true;
+    //     } else {
+    //         console.log("들어옴2");
+    //         showMoreBox.style.display ="none";
+    //         showFlag = false;
+    //     }
+    // })
     // let showFlag = false;
     // $("#showMoreBtn").click(function(){
     //
@@ -422,34 +468,34 @@
     // })
     //
     // // 승인상태에 따라 버튼을 다르게 보이게 함
-    // // var agreeState = $('#agreeState').text();
-    // // console.log(agreeState);
-    // // var agLength = $('.sbState').length;
+    // var agreeState = $('#agreeState').text();
+    // console.log(agreeState);
+    // var agLength = $('.sbState').length;
     //
     //
-    // // var agState = new Array(agLength);
+    // var agState = new Array(agLength);
     //
-    // // for(var i = 0; i < agLength; i++) {
-    // //     agState[i] = $('.sbState').eq(i).text();
-    // // }
+    // for(var i = 0; i < agLength; i++) {
+    //     agState[i] = $('.sbState').eq(i).text();
+    // }
     //
-    // // console.log(agState);
+    // console.log(agState);
+
     //
+    // const seeApplier = document.getElementById('seeApplierBox');
+    // const sbMoreContainer = document.getElementById('sbMoreContainer');
     //
-    // // const seeApplier = document.getElementById('seeApplierBox');
-    // // const sbMoreContainer = document.getElementById('sbMoreContainer');
-    //
-    // // for(var i = 0; i < agLength; i++) {
-    // //     if(agState[i] == "승인 대기"){
-    // //         console.log("승인 대기");
-    // //         seeApplier.style.display = "none";
-    // //         sbMoreContainer.style.display = "block";
-    // //     } else {
-    // //         console.log("승인");
-    // //         seeApplier.style.display = "block";
-    // //         sbMoreContainer.style.display = "none";
-    // //     }
-    // // }
+    // for(var i = 0; i < agLength; i++) {
+    //     if(agState[i] == "승인 대기"){
+    //         console.log("승인 대기");
+    //         seeApplier.style.display = "none";
+    //         sbMoreContainer.style.display = "block";
+    //     } else {
+    //         console.log("승인");
+    //         seeApplier.style.display = "block";
+    //         sbMoreContainer.style.display = "none";
+    //     }
+    // }
     //
     //
     // const modal = document.getElementById("moreBoxModalFrame");
@@ -457,12 +503,12 @@
     // btnModal.addEventListener("click", e => {
     //     modal.style.display = "flex";
     // });
-    //
-    // // const closeBtn = modal.querySelector(".close-modal")
-    // // closeBtn.addEventListener("click",e => {
-    // //     modal.style.display = "none";
-    // // })
-    //
+
+    // const closeBtn = modal.querySelector(".close-modal")
+    // closeBtn.addEventListener("click",e => {
+    //     modal.style.display = "none";
+    // })
+
     // modal.addEventListener("click", e => {
     //     const evTarget = e.target
     //     if(evTarget.classList.contains("moreBoxModalForm")) {
@@ -472,24 +518,157 @@
 
 
 
-    // 사진 가져오기
-    $('.sbImageShow').each(function(i, image){
-        let projectNum = $(image).attr('id');
-    $.ajax({
-        url: "/projectFile/list/" + projectNum,
-        type : "get",
-        success : function (files) {
-            let str = "<img src='/projectFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
-            $('picture#projectNum').html(str);
-        }
-    })
-    });
-
-
     $('.addProjectBtn').on("click", function () {
         location.href = "/project/createStep";
 
     })
+
+    // 신청목록
+    $('.qrCheckFrame').on("click", function (e) {
+        let projectNum = $(this).attr("id");
+        $.ajax({
+           url:"/project/apply/list/" + projectNum,
+            type: "get",
+            success: function (applies) {
+                showApplyList(applies);
+            }
+            });
+        $('.applierListFrame').show();
+        $('#projectList').hide();
+        $('.showListPagingFrame').hide();
+
+        });
+
+
+    function showApplyList(applies){
+        let str = "";
+        $(applies).each(function (i, apply){
+            str += "<div class=\"showListBodyForm\">";
+            str += "<div class=\"showListBody\">";
+            str += "<div class=\"showListBody1\">";
+            str += "<div class=\"sbCheckBoxFrame\">";
+            str += "<label class=\"sbCheckBoxForm\">";
+            str += "<span class=\"material-symbols-outlined\" id=\"checkBoxBtn\">check_box_outline_blank</span>";
+            str += "<input type=\"checkbox\" class=\"oneCheck\">";
+            str += "</label>";
+            str += "</div>";
+            str += "</div>";
+            str += "<div class=\"showListBody2\">";
+            str += "<div class=\"sbImageFrame\">";
+            str += "<div class=\"sbImageForm\">";
+            str += "<div class=\"sbImageContainer\">";
+            str += "<div class=\"sbImageBox\">";
+            str += "<div class=\"sbImageWrap\">";
+            str += "<picture class=\"sbImageShow\">";
+            str += "<source srcset=\"/src/main/resources/static/images/chun.png\" media=\"all and (min-width: 1024px)\" >";
+            str += "</picture>";
+            str += "</div>";
+            str += "</div>";
+            str += "</div>";
+            str += "</div>";
+            str += "</div>";
+            str += "</div>";
+            str += "<div class=\"showListBody3\">";
+            str += "<div class=\"sbTitleForm\">";
+            // 유저이름
+            str += "<p class=\"sbTitle\">" + apply.nickname +  "</p>";
+            str += "</div>";
+            str += "</div>";
+            str += "<div class=\"showListBody6\">";
+            str += "<div class=\"sbCourseFrame\">";
+            // 전화번호
+            str += "<p class=\"sbCousre\">" + apply.phone + "</p>";
+            str += "</div>";
+            str += "</div>";
+            str += "<div class=\"showListBody7\">";
+            str += "<div class=\"sbPointFrame\">";
+            // 신청날짜
+            str += "<p class=\"sbPoint\">" + apply.registDate + "</p>";
+            str += "</div>";
+            str += "</div>";
+            //
+
+            str += "<div class=\"showListBody8\">";
+            str += "<div class=\"sbDateFrame\" style='display: flex;'>";
+            if (apply.startTime == null){
+                str += "<p class=\"sbDate\">출발 대기&nbsp</p>";
+            }else {
+                str += "<p class=\"sbDate\">" + apply.startTime + "</p>";
+            }
+            if (apply.endTime == null){
+                str += "<p class=\"sbDate\">도착 대기</p>";
+            }else{
+                str += "<p class=\"sbDate\">" + apply.endTime + "</p>";
+
+            }
+
+            str += "</div>";
+            str += "</div>";
+
+            //
+
+            //
+
+            str += "<div class=\"showListBody9\">";
+            str += "<div class=\"sbDateFrame\" style='display: flex;'>";
+            if (apply.approach == '3'){
+                str += "<p class=\"sbDate\">완료</p>";
+            }else{
+                str += "<p class=\"sbDate\">미진행</p>";
+            }
+
+            str += "</div>";
+            str += "</div>"
+
+
+            //
+
+
+            str += "<div class=\"showListBody10\">";
+
+            str += "<div class=\"sbMoreFrame\">";
+
+            str += "<div class=\"sbMoreForm\">";
+
+            str += "<div class=\"seeApplier\" id=\"seeApplierBox\">";
+            str += "<button class=\"finish\" id=\"" + apply.num + "\" onclick='finishUser(this);'>";
+            str += "<span class=\"qrCheckForm\">";
+            str += "<span class=\"qrCheck\">완료</span>";
+            str += "</span>";
+            str += "</button>";
+            str += "</div>";
+
+            str += "</div>";
+
+            str += "</div>";
+
+            str += "</div>";
+
+            str += "</div>";
+            str += "</div>";
+
+        });
+        $('#replyList').html(str);
+    }
+
+    // 버그 수정 필요
+    $('#closeBtn').on("click", function () {
+        $('.applierListFrame').hide();
+        $('#projectList').show();
+        $('.showListPagingFrame').show();
+
+    })
+
+
+    // 모집자가 완료버튼 클릭시 -> 완료처리
+    function finishUser(btn){
+        let num = btn.id;
+        $.ajax({
+            url: "/project/apply/finish/" + num,
+            type: "get"
+        });
+    }
+
 
 
 </script>

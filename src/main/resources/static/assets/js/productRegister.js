@@ -49,6 +49,26 @@ $('.productName').keyup(function (e) {
     };
 });
 
+//상품요약 작성 할때 글자수 세기
+$('.summary').keyup(function (e) {
+    let content = $(this).val();
+
+    // 글자수 세기
+    if (content.length == 0 || content == '') {
+        $('.textCount1').text('0');
+    } else {
+        $('.textCount1').text(content.length);
+    }
+
+    // 글자수 제한
+    if (content.length > 250) {
+        // 250자 부터는 타이핑 되지 않도록
+        $(this).val($(this).val().substring(0, 250));
+        // 250자 넘으면 알림창 뜨도록
+        alert('글자수는 250자까지 입력 가능합니다.');
+    };
+});
+
 
 function handleOnClick()  {
     let like = confirm("정말 취소하시겠습니까?");
