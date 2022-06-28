@@ -169,8 +169,4 @@ prevBtn.addEventListener('click', function () {
         banner.style.transition = `${0.5}s ease-out`;
     }
 });
-<<<<<<< HEAD
-=======
-
->>>>>>> 27ee459a942ca37f230d0a9bc248bc974317caab
 

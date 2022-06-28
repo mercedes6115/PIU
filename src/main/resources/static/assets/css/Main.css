@@ -455,6 +455,10 @@ background: rgb(238, 238, 238);
   width: 290px;
   /*height: 200px;*/
 }
+.focus{
+  margin-top: -170px;
+  padding-top: 170px;
+}
 
 
 

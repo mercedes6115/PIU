@@ -134,10 +134,11 @@
                 <section>
                     <div class="hot-plogging-text">
                         <a href=#>
+                            <div id="focus1" class="focus">
                             <div class="hot-plogging-text1">
                                 <img src="/images/fire.png" style="width:25px">
                                 <h2 class="hot-plogging-text2">지금 가장 핫한 프로젝트</h2>
-                            </div>
+                            </div></div>
                         </a>
                     </div>
                     <div style="width:100%; height:100%;">
@@ -148,8 +149,9 @@
                                     <li th:object="${JJimList}">
                                         <div class="plogging-thumbnail-wrap">
                                             <!--                                        <img src="/images/poster1.png">-->
+                                            <a th:href="@{/project/projectDetail}">
                                             <span class="Jjim-image" th:href="*{num}">
-                                        </span>
+                                        </span></a>
                                         </div>
                                         <div class="deadline"><span class="material-symbols-outlined"
                                                                     style="font-size: 14px; margin-left: 5px;">
@@ -205,10 +207,11 @@
                     <section>
                         <div class="hot-plogging-text">
                             <a href=#>
+                                <div id="focus2" class="focus">
                                 <div class="hot-plogging-text1">
                                     <img src="/images/coin.png" style="width:50px">
                                     <h2 class="hot-plogging-text2">지금 가장 알찬 프로젝트</h2>
-                                </div>
+                                </div></div>
                             </a>
                         </div>
                         <div id="slideShow2">
@@ -262,15 +265,16 @@
                     <section>
                         <div class="hot-plogging-text">
                             <a href=#>
+                                <div id="focus3" class="focus">
                                 <div class="hot-plogging-text1">
                                     <img src="/images/running.png" style="width:40px">
                                     <h2 class="hot-plogging-text2">지금 가장 참여가 많은 프로젝트</h2>
-                                </div>
+                                </div></div>
                             </a>
                         </div>
                         <div id="slideShow3">
                             <ul class="slides3">
-                                <th:block th:each="ApplyList:${projectListApply}">"
+                                <th:block th:each="ApplyList:${projectListApply}">
                                     <li th:object="${ApplyList}">
                                         <div class="plogging-thumbnail-wrap">
                                         <span class="Jjim-image" th:href="*{num}">
@@ -332,139 +336,6 @@
 </div>
 
 
-<div class="find-wrapper-hide1" style="display:none;">
-    asfdasf<br>
-    asfdasf<br>
-    asfdasf<br>
-    asfdasf<br>
-    asfdasf<br>
-    asfdasf<br>
-    asfdasf<br>
-    <div class="plogging-wrapper">
-        <div>
-            <div class="plogging-margin">
-                <section>
-                    <div class="hot-plogging-text">
-                        <a href=#>
-                            <div class="hot-plogging-text1">
-                                <img src="/images/fire.png" style="width:25px">
-                                <h2 class="hot-plogging-text2">플로깅 프로젝트 전체 목록</h2>
-                            </div>
-                        </a>
-                    </div>
-                    <div>
-                        <table>
-
-                        </table>
-                    </div>
-                </section>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="find-wrapper-hide2" style="display:none;">
-    2222222<br>
-    2222222<br>
-    2222222<br>
-    2222222<br>
-    2222222<br>
-    2222222<br>
-    2222222<br>
-    2222222<br>
-    2222222<br>
-    2222222<br>
-    2222222<br>
-    2222222<br>
-    2222222<br>
-    2222222<br>
-    2222222<br>
-    2222222<br>
-    2222222<br>
-    2222222<br>
-    2222222<br>
-    2222222<br>
-    2222222<br>
-    2222222<br>
-
-    <div class="plogging-wrapper">
-        <div>
-            <div class="plogging-margin">
-                <section>
-                    <div class="hot-plogging-text">
-                        <a href=#>
-                            <div class="hot-plogging-text1">
-                                <img src="/images/fire.png" style="width:25px">
-                                <h2 class="hot-plogging-text2">플로깅 프로젝트 전체 목록</h2>
-                            </div>
-                        </a>
-                    </div>
-                    <div>
-                        <table>
-
-                        </table>
-                    </div>
-                </section>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="find-wrapper-hide3" style="display:none;">
-    3333333<br>
-    3333333<br>
-    3333333<br>
-    3333333<br>
-    3333333<br>
-    3333333<br>
-    3333333<br>
-    3333333<br>
-    3333333<br>
-    3333333<br>
-    3333333<br>
-    3333333<br>
-    3333333<br>
-    3333333<br>
-    3333333<br>
-    3333333<br>
-    3333333<br>
-    3333333<br>
-    3333333<br>
-    3333333<br>
-    3333333<br>
-    3333333<br>
-    3333333<br>
-    3333333<br>
-    3333333<br>
-    3333333<br>
-    3333333<br>
-    3333333<br>
-    3333333<br>
-    3333333<br>
-    3333333<br>
-    3333333<br>
-
-    <div class="plogging-wrapper">
-        <div>
-            <div class="plogging-margin">
-                <section>
-                    <div class="hot-plogging-text">
-                        <a href=#>
-                            <div class="hot-plogging-text1">
-                                <img src="/images/fire.png" style="width:25px">
-                                <h2 class="hot-plogging-text2">플로깅 프로젝트 전체 목록</h2>
-                            </div>
-                        </a>
-                    </div>
-                    <div>
-                        <table>
-
-                        </table>
-                    </div>
-                </section>
-            </div>
-        </div>
-    </div>
-</div>
-
 </body>
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -500,121 +371,5 @@
     let sessioncategory = [[${session.category}]];
 
 
-    //////////////// 네비 작업중
-
-
-    let Aa = [[${projectListJJim}]];
-    let lngth = 0;
-    let course = "";
-    let myDiv = document.querySelector(".find-wrapper-hide2");
-    ;
-
-    // 클릭시 이동
-    $(".HeaderNav1").on("click", function (e) {
-        Aa = [[${course1}]];
-        myDiv = document.querySelector(".find-wrapper-hide1");
-        $(".main-wrapper-hide").hide();
-        $(".find-wrapper-hide3").hide();
-        $(".find-wrapper-hide2").hide();
-        $(".find-wrapper-hide1").show();
-        console.log("mydiv" + myDiv);
-        console.log(Aa);
-    })
-
-    $(".HeaderNav2").on("click", function (e) {
-        Aa = [[${course2}]];
-        myDiv = document.querySelector(".find-wrapper-hide1");
-        $(".main-wrapper-hide").hide();
-        $(".find-wrapper-hide3").hide();
-        $(".find-wrapper-hide2").hide();
-        $(".find-wrapper-hide1").show();
-        console.log(Aa);
-    })
-    // $(".HeaderNav3").on("click", function (e) {
-    //     Aa = [[${course3}]];
-    //     myDiv = document.querySelector(".find-wrapper-hide3");
-    //     $(".main-wrapper-hide").hide();
-    //     $(".find-wrapper-hide1").hide();
-    //     $(".find-wrapper-hide2").hide();
-    //     $(".find-wrapper-hide3").show();
-    //     console.log(Aa);
-    // })
-
-
-    // 무한스크롤
-    function infinity_scroll() {
-        console.log("무한스크롤 시작");
-        const table = myDiv.querySelector('table');
-        console.log("table : " + table);
-        // console.log(table.firstChild);
-        // console.log(table.firstChild.childNodes);
-        let count = table.rows.length;
-        // console.log(count);
-
-
-        const template = function () {
-            const table = myDiv.querySelector('table');
-            var row = table.insertRow();
-            str = "";
-            for (var i = 0; i < 4; i++) {
-                str += '<td>';
-                str += '<div style="width:100%; height:100%;">';
-                str += '<div class="plogging-thumbnail-wrap2">';
-                str += '<span class="Jjim-image" id="image-list" href="'+Aa[lngth].num+'"></span>';
-                str += '</div>';
-                str += '<div class="deadline"><span class="material-symbols-outlined" style= "font-size: 14px; margin-left: 5px;">';
-                str += 'alarm';
-                str += '</span><div class="deadline-text">프로젝트 시작까지</div><div class="d-day">' + Aa[lngth].projectDate + '</div></div>';
-                // str += '</span><div class="deadline-text">프로젝트 시작까지</div><div class="d-day">asdfasfdasfd</div></div>';
-                str += '<div class = "plogging-location-text">' + Aa[lngth].terrain + '</div>';
-                str += '<div class = "plogging-msg-text">' + Aa[lngth].title + '</div>'
-                // str += '<div class = "plogging-location-text">22222222222</div>';
-                // str += '<div class = "plogging-msg-text">333333333333</div>'
-                str += '<div class="jjims-and-likes">';
-                str += '<div class="last-wrap">';
-                str += '<div class="heart-icon">';
-                str += '<div class="heart-svg">';
-                str += '<svg class="hearts" xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#d7d7d7"></path></svg>';
-                str += '</div> ';
-                str += ' 14919';
-                str += '</div>';
-                str += '<div class="likes-wrap">';
-                str += '<div class="likes-svg">';
-                str += '<svg class="likes" xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M2 10.68c0-.691.503-1.251 1.135-1.251h2.273V22H3.135C2.508 22 2 21.427 2 20.749V10.68zm11.361-2.508h6.366c1.255 0 2.272 1.126 2.272 2.514 0 .151-.012.301-.037.45l-1.616 9.832C20.25 21.566 19.779 22 19.23 22H7.681V9.429L11.089 0c1.704 0 2.84 1.257 2.84 3.143 0 1.257-.189 2.933-.568 5.029z" fill="#d7d7d7"></path>';
-                str += '</svg>';
-                str += '</div>';
-                str += '99%';
-                str += '</div>';
-                str += '</div>';
-                str += '</div>';
-                str += '</div>';
-                str += '</td>';
-                lngth += 1;
-                console.log("길이:" + lngth);
-                if (lngth >= Aa.length) {
-                    console.log("전체길이:" + Aa.length);
-                    console.log("탈출");
-                    break;
-                }
-                console.log("노탈출");
-            }
-            row.innerHTML = str;
-            console.log("무한스크롤 끝");
-
-        };
-
-        //스크롤 바닥 감지
-        if (lngth <= Aa.length) {
-            window.onscroll = function (e) {
-                //window height + window scrollY 값이 document height보다 클 경우
-                if ((window.innerHeight + window.scrollY + 2) >= document.body.offsetHeight) {
-                    count++;
-                    template(count);  //콘텐츠 추가
-                }
-            };
-        }
-    };
-
-    infinity_scroll();
 </script>
 </html>

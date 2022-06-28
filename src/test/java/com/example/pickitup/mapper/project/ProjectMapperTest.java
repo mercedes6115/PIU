@@ -35,4 +35,7 @@ public class ProjectMapperTest {
         log.info(projectMapper.adminStatistics("2022-06-24")+"============");
     }
 
+    @Test
+    public void getSearchTest(){ log.info(projectMapper.getSearchList("test").toString());}
+
 }

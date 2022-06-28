@@ -95,4 +95,7 @@ public class ProjectDAO {
     // 프로젝트 목록(코스별)
     public List<ProjectVO> getListCourse(String course){ return projectMapper.getListCourse(course); }
 
+    public List<ProjectVO> getListAll(){return projectMapper.getListAll();};
+
+    public List<ProjectVO> getSearchList(String searchStr){return projectMapper.getSearchList(searchStr);};
 }

@@ -49,6 +49,9 @@ public interface ProjectMapper {
     //    프로젝트 최대 참가자순 가져오기
     public List<ProjectVO> getListApply();
 
+    // 프로젝트 전부
+    public List<ProjectVO> getListAll();
+
 
     // 프로젝트 코스별 가져오기
     public List<ProjectVO> getListCourse(String course);
@@ -65,5 +68,7 @@ public interface ProjectMapper {
     public boolean setApprovaltoContinue(Long projectNum);
 
     public List<ProjectDTO> getListToday(String startDate,String endDate);
+
+    public List<ProjectVO> getSearchList(String searchStr);
 
 }

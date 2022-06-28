@@ -28,8 +28,10 @@ public class MainController {
 
     // 메인페이지
     @GetMapping("/main")
-    public String main(HttpSession session, Model model) throws ParseException {
+    public String main(HttpSession session, Model model,HttpServletRequest request) throws ParseException {
        int checkLogin=0;
+        System.out.println("=============="+request.getRequestURI().split("/")[1]);
+
 
         if(session.getAttribute("token")!=null){
 //            log.info("tokentokentokentokentokentokentoken");
@@ -62,27 +64,41 @@ public class MainController {
 
 
 
-    @GetMapping("/getCourseList/{course}")
-    @ResponseBody
-    public String getCourseList(@PathVariable("course") String course, Model model) throws ParseException {
+
+
+    @GetMapping("/list/{course}")
+    public String List(@PathVariable("course") String course, Model model) throws ParseException {
         model.addAttribute("courseList", projectService.getListCourse(course));  // 내용가져오기
-        log.info("레스트 들어옴");
-        log.info(course);
-        return "/main/main";
+        if(course.equals("평지")){
+            model.addAttribute("courseType", "평지 타입");
+        }else if(course.equals("바다")){
+            model.addAttribute("courseType", "바다 타입");
+        }else if(course.equals("산")){
+            model.addAttribute("courseType", "산 타입");
+        }
+        return "/main/list";
+    }
+
+    @GetMapping("/list")
+    public String List(HttpServletRequest request,Model model) throws ParseException {
+        String ch2  = request.getParameter("headerSearch");
+        System.out.println(ch2);
+        if(ch2!=null){
+            model.addAttribute("courseList", projectService.getSearchList(ch2));
+            model.addAttribute("courseType", ch2+" 검색결과 ");
+        }else {
+            model.addAttribute("courseList", projectService.getListAll());
+            model.addAttribute("courseType", " ");
+        }
+        return "/main/list";
     }
 
 
-//    @GetMapping("/test")
-//    public void test(Model model) throws ParseException {
-//
-////        model.addAttribute("projectListThumb", projectFileService.getList());   // 사진 가져오기
-//        model.addAttribute("projectListJJim", projectService.getListJJim());  // 내용가져오기
-//        model.addAttribute("projectListPoint", projectService.getListPoint());  // 내용가져오기
-//        model.addAttribute("projectListApply", projectService.getListApply());  // 내용가져오기
-//
-//        return "/main/main";
-//
+//    @GetMapping("/list")
+//    public void search(HttpServletRequest request,Model model){
+//        String ch2  = request.getParameter("headerSearch");
+//        System.out.println(ch2);
+//        model.addAttribute("courseList", projectService.getSearchList(ch2));
 //    }
-
 
 }

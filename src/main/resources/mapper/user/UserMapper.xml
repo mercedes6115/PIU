@@ -137,8 +137,6 @@
         WHERE EMAIL=#{email}
     </select>
 
-<<<<<<< HEAD
-=======
     <!--닉네임 중복 체크-->
     <select id="nicknameMatching" resultType="_int">
         SELECT COUNT(NICKNAME)
@@ -273,7 +271,6 @@
         )
     </select>
 
->>>>>>> 0627풀최종브랜치
 
     <select id="getNoticeList" resultType="adminBoardVO">
      SELECT NUM, TITLE, CATEGORY, CONTENT, USER_NUM, REGIST_DATE, UPDATE_DATE FROM
@@ -486,8 +483,6 @@
     </select>
 
 
-<<<<<<< HEAD
-=======
 <!--    관리자용 유저 활성/비화성화 업데이트-->
     <update id="userStatusEnable">
         UPDATE TBL_USER
@@ -579,8 +574,8 @@
     ORDER BY TBL_PRODUCT_REVIEW.UPDATE_DATE DESC
     </select>
 
->>>>>>> 0627풀최종브랜치
 </mapper>
+
 
 
 
