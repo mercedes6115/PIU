@@ -320,5 +320,8 @@ public class TempUserSerivce {
         return userDAO.myAllReview(num);
     }
 
-
+    // 상품 주문
+    public void orderStore(OrderDTO orderDTO) {
+        orderDAO.orderStore(orderDTO);
+    }
 }

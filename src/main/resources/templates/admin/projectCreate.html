@@ -48,9 +48,9 @@
                     <tr>
                         <th colspan="3">유형선택</th>
                         <td colspan="4">
-                            <select name="course">
+                            <select name="course" id = "chooseCL" onchange="startend()">
                                 <option value="C" >코스</option>
-                                <option value="L" n>장소</option>
+                                <option value="L" >장소</option>
                             </select>
                             <select name="terrain">
                                 <option >지형</option>
@@ -84,7 +84,7 @@
 
                         <td colspan="4">
                             <div class="locationBox">
-                                <div>
+                                <div id="start">
                                     <button type="button" class="locationBtn" id="startPoint">주소검색</button>
                                     <span>출발지: </span><span class="startPoint"></span>
                                     <input type="text" name="startAddress"  id="startPoint"hidden>
@@ -92,7 +92,7 @@
                                 </div>
 
 
-                                <div>
+                                <div id="end">
                                     <button type="button" class="locationBtn" id="endPoint">주소검색</button>
                                     <span>도착지: </span><span class="endPoint"></span>
                                     <input type="text" name="endAddress" id="endPoint" hidden>
@@ -348,6 +348,19 @@
             }
         });
     });
+
+
+
+    function startend(){
+        var choice = document.getElementById("chooseCL").value;
+
+        console.log(choice);
+        if(choice=='L'){
+            $("#end").hide();
+        }else{
+            $("#end").show();
+        }
+    }
 </script>
 <script th:replace="~{/admin/adminSideBar :: AdminSideBarJSImport}"></script>
 </html>

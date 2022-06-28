@@ -1,10 +1,7 @@
 package com.example.pickitup.controller;
 
 import com.example.pickitup.domain.vo.ProductQnaCriteria;
-import com.example.pickitup.domain.vo.dto.AdminQnaDTO;
-import com.example.pickitup.domain.vo.dto.ProductDTO;
-import com.example.pickitup.domain.vo.dto.ProductQnaPageDTO;
-import com.example.pickitup.domain.vo.dto.ProductReviewUserDTO;
+import com.example.pickitup.domain.vo.dto.*;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 import com.example.pickitup.domain.vo.product.productQna.ProductQnaCommentVO;
 import com.example.pickitup.domain.vo.product.productQna.ProductQnaVO;
@@ -119,7 +116,7 @@ public class StoreController {
         log.info("===================================");
         log.info("프로덕트넘버다"+productReviewVO.getProductNum());
         log.info("===================================");
-        productReviewVO.setUserNum(22L);
+        productReviewVO.setUserNum(2L);
         log.info("productNum======="+productNum);
         log.info("productNum======="+productReviewVO.getProductNum());
         productReviewService.insert(productReviewVO);
@@ -139,7 +136,7 @@ public class StoreController {
     @PostMapping("/reviewModify")
     public String reviewModify(ProductReviewVO productReviewVO, Model model){
 //        model.addAttribute("user", productNum); 유저의 정보 가져와야함.?? 어떻게??
-        productReviewVO.setUserNum(22L);
+        productReviewVO.setUserNum(2L);
         productReviewService.modify(productReviewVO);
         return storeDetail(productReviewVO.getProductNum(), model);
     }
@@ -222,7 +219,12 @@ public class StoreController {
         return "store/payment";
     }
 
-
+    // 스토어 결제 정보 입력
+    @PostMapping("/payment")
+    public void paymentForm(ProductDTO productDTO, ProductVO productVO,Model model){
+        model.addAttribute("product", productVO);
+        model.addAttribute("productinfo",productDTO);
+    }
 
 
 
@@ -253,11 +255,23 @@ public class StoreController {
     }
 
     // 결제 완료 후 주문내역
-    @PostMapping("/buyProductDetail")//나중에 request 방식으로 바꿀것
-    public void buyProductDetail(UserVO userVO, ProductDTO productDTO,String addressComment,Model model){
+    // 결제 완료 후 주문내역
+    @PostMapping("/buyProductDetail")
+    public void buyProductDetail(OrderDTO orderDTO, UserVO userVO, ProductDTO productDTO, String addressComment, Model model){
+        orderDTO.setUserNum(2L);
+        orderDTO.setNickName(productDTO.getNickName());
+        orderDTO.setPhone(productDTO.getPhone());
+        orderDTO.setCounting(Long.parseLong(productDTO.getTotalitems()));
+        orderDTO.setTotal(Long.parseLong(productDTO.getTotalpayment()));
+        orderDTO.setProductName(productDTO.getItemname());
+        orderDTO.setAddressComment(productDTO.getAddressComment());
+        orderDTO.setAddress(productDTO.getAddress());
+        orderDTO.setAddressDetail(productDTO.getAddressDetail());
+        tempUserSerivce.orderStore(orderDTO);
         model.addAttribute("addressComment", addressComment);
         model.addAttribute("userinfo",userVO);
         model.addAttribute("product",productDTO);
+
     }
 
     private String getFolder(){

@@ -114,6 +114,7 @@
                         <td th:id="nums" th:text="*{num}"></td>
                         <td th:if="*{category}=='user'"  th:text="유저"></td>
                         <td th:if="*{category}=='company'" th:text="회사"></td>
+                        <td th:if="*{category}=='admin'" th:text="관리자"></td>
                         <td th:if="*{status}=='0'" th:text="비활성화" th:style="${'color:red;'}"></td>
                         <td th:if="*{status}=='1'" th:text="활성화" th:style="${'color:blue;'}"></td>
                         <td th:if="*{approval}=='0'" th:text="승인" th:style="${'color:blue;'}"></td>

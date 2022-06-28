@@ -46,7 +46,8 @@ public class MainController {
 //           log.info("aaaaaaaaaaaaaaaaaaaaaaaaaa");
            checkLogin= 1;
        }
-
+        model.addAttribute("fileName",session.getAttribute("fileName"));
+        model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
         model.addAttribute("checkLogin",checkLogin);
         model.addAttribute("projectListJJim", projectService.getListJJim());  // 내용가져오기
         model.addAttribute("projectListPoint", projectService.getListPoint());  // 내용가져오기

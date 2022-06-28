@@ -96,7 +96,7 @@
                                         <div class="loginWrapper1-left">
                                             <div class="loginWrapper1-left1">
                                                 <div class="loginWrapper1-left2">
-                                                    <img src="/images/chun.png" class="loginWrapper1-left2-wrapper">
+                                                    <img th:src="@{/userFile/display?fileName=} + ${uploadPath} +@{/} + ${fileName}" class="loginWrapper1-left2-wrapper">
                                                 </div>
                                             </div>
                                             <div class="Modal1Whole"></div>

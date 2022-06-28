@@ -51,6 +51,8 @@ public interface OrderMapper {
 
     public OrderVO findByOrderNum(Long orderNum);
 
+    //상품 주문
+    public void orderStore(OrderDTO orderDTO);
 }
 
 

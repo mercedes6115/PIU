@@ -52,14 +52,19 @@ public class UserController {
 
     // 마이페이지 메인
     @GetMapping("/myPage")
-    public String mypage(Model model){
-        model.addAttribute("jjimProjectList", tempUserSerivce.getJjimProjectList(2L));
-        model.addAttribute("jjimProductList", tempUserSerivce.getJjimProductList(2L));
-        model.addAttribute("inProductList",tempUserSerivce.getInProductList(2L));
-        model.addAttribute("inProjectList",tempUserSerivce.getInProjectList(2L));
-        model.addAttribute("seenProductList",tempUserSerivce.getLatestProductList(2L));
-        model.addAttribute("seenProjectList",tempUserSerivce.getLatestProjectList(2L));
-        model.addAttribute("getDetail",tempUserSerivce.readUserInfo(2L));
+    public String mypage(HttpSession session, Model model){
+        int checkLogin=3;
+        Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("fileName",session.getAttribute("fileName"));
+        model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
+        model.addAttribute("checkLogin",checkLogin);
+        model.addAttribute("jjimProjectList", tempUserSerivce.getJjimProjectList(userNum));
+        model.addAttribute("jjimProductList", tempUserSerivce.getJjimProductList(userNum));
+        model.addAttribute("inProductList",tempUserSerivce.getInProductList(userNum));
+        model.addAttribute("inProjectList",tempUserSerivce.getInProjectList(userNum));
+        model.addAttribute("seenProductList",tempUserSerivce.getLatestProductList(userNum));
+        model.addAttribute("seenProjectList",tempUserSerivce.getLatestProjectList(userNum));
+        model.addAttribute("getDetail",tempUserSerivce.readUserInfo(userNum));
         return "/user/myPage";
     }
 
@@ -231,13 +236,14 @@ public class UserController {
             rttr.addFlashAttribute("num", userDTO.getNum());
             rttr.addFlashAttribute("nickname", userDTO.getNickname());
             rttr.addFlashAttribute("category",userDTO.getCategory());
-
+            UserVO userVO = tempUserSerivce.readUserInfo(userDTO.getNum());
             HttpSession session=request.getSession();
 
             session.setAttribute("num", userDTO.getNum().toString());
             session.setAttribute("nickname", userDTO.getNickname());
             session.setAttribute("category", userDTO.getCategory());
-
+            session.setAttribute("fileName", userVO.getProfileFileName());
+            session.setAttribute("uploadPath",userVO.getProfileUploadPath());
             log.info(session.getAttribute("category").toString());
 
             if(userDTO.getNickname().equals("admin")){

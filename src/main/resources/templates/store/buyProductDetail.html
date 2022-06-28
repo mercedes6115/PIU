@@ -14,7 +14,7 @@
         <div class="wrapper-product">
             <div class="title-wrapper">
                 <h1 class="font-check">주문이 완료되었습니다</h1>
-                <div style="margin-bottom: 20px;" th:text="${product.itemname}"></div>
+                <div style="margin-bottom: 20px;" th:text="*{product.itemname}"></div>
             </div>
             <div class="title-wrapper">
                 <div class="title-category">
@@ -31,6 +31,10 @@
                 <h4 class="font-check">결제 성공</h4>
                 <!-- <div class="bill-divide"></div> -->
                 <div class="bill-way-title">
+                    <div class="bill-way-wrapper">
+                        <p class="bill-wrapper-left">결제 수단</p>
+                        <p class="bill-wrapper-right">카카오페이</p>
+                    </div>
                 </div>
                 <div class =bill-divide></div>
                 <div class="bill-way-detail-wrapper">
@@ -38,11 +42,11 @@
 
                         <div class="bill-way-wrapper" id="bill-price-wrpper">
                             <p class="bill-wrapper-left">상품 금액</p>
-                            <p class="bill-wrapper-right" id="product-price" th:text="|${product.ogprice}P|"></p>
+                            <p class="bill-wrapper-right" id="product-price" th:text="|*{product.ogprice}P|"></p>
                         </div>
                         <div class="bill-way-wrapper" id="bill-count-wrpper">
                             <p class="bill-wrapper-left">상품 갯수</p>
-                            <p class="bill-wrapper-right" id="product-count" th:text="|${product.totalitems}개|"></p>
+                            <p class="bill-wrapper-right" id="product-count" th:text="|*{product.totalitems}개|"></p>
                         </div>
 
                         <div class="bill-way-wrapper" id="bill-deliver">
@@ -53,7 +57,7 @@
 
                         <div class="bill-way-wrapper" id="bill-total">
                             <p class="bill-wrapper-left">총 결제 금액</p>
-                            <p class="bill-wrapper-right" id="product-detail-total" th:text="|${product.totalpayment}P|"></p>
+                            <p class="bill-wrapper-right" id="product-detail-total" th:text="|*{product.totalpayment}P|"></p>
                         </div>
                     </div>
                 </div>
@@ -64,15 +68,15 @@
                 <div class="bill-way-detail-wrapper">
                     <div class="bill-way-wrapper" id="bill-price-wrpper">
                         <p class="bill-wrapper-left">받는분</p>
-                        <p class="bill-wrapper-right" id="userName" th:text="${userinfo.nickname}"></p>
+                        <p class="bill-wrapper-right" id="userName" th:text="*{userinfo.nickname}"></p>
                     </div>
                     <div class="bill-way-wrapper" id="bill-price-wrpper">
                         <p class="bill-wrapper-left">연락처</p>
-                        <p class="bill-wrapper-right" id="userPhone" th:text="${userinfo.phone}"></p>
+                        <p class="bill-wrapper-right" id="userPhone" th:text="*{userinfo.phone}"></p>
                     </div>
                     <div class="bill-way-wrapper" id="bill-price-wrpper">
                         <p class="bill-wrapper-left">주소</p>
-                        <p class="bill-wrapper-right" id="userState" th:text="|${userinfo.address} ${userinfo.addressDetail}|"></p>
+                        <p class="bill-wrapper-right" id="userState" th:text="|*{userinfo.address} *{userinfo.addressDetail}|"></p>
                     </div>
                     <div class="bill-way-wrapper" id="bill-price-wrpper">
                         <p class="bill-wrapper-left">배송 요청사항</p>

@@ -74,4 +74,9 @@ public class OrderDAO {
     public ProductDTO boughtDetail(Long orderNum) { return orderMapper.orderProductDetail(orderNum);}
 
     public OrderVO findByOrderNum(Long orderNum) {return orderMapper.findByOrderNum(orderNum);}
+
+    //상품 주문
+    public void orderStore(OrderDTO orderDTO) {
+        orderMapper.orderStore(orderDTO);
+    }
 }
