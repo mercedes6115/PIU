@@ -144,23 +144,23 @@
                                                             </div>
                                                             <div class="join-plogging-list-content" th:text="*{content}">
                                                             </div>
+                                                        </div>
+                                                    </div>
+                                                </a>
                                                             <div class="jjim-wrap" >
                                                                 <div class="jjim-plus" id="join-project-jjim">
                                                                     <div class="jjim-icon">
                                                                         <svg xmlns="http://www.w3.org/2000/svg"
                                                                              width="12" height="12" fill="none"
                                                                              viewBox="0 0 24 24">
-                                                                            <path id="join-project-jjim-icon" fill-rule="evenodd"
+                                                                            <path class="join-project-jjim check" th:name="*{num}" fill-rule="evenodd"
                                                                                   d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z"
                                                                                   fill="#d7d7d7"></path>
                                                                         </svg>
                                                                     </div>
                                                                 </div>
-                                                                <p th:text="*{jjimCount}"></p>
+                                                                <p class="join-project-jjim-count" th:name="*{num}"></p>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </a>
                                             </div>
                                         </div>
                                     </li>
@@ -478,10 +478,72 @@
 <script th:inline="javascript">
 let jjimProjectList = [[${jjimProjectList}]];
 let jjimProductList = [[${jjimProductList}]];
+let inProjectList = [[${inProjectList}]];
+let inProductList =[[${inProductList}]];
+let seenProjectList = [[${seenProjectList}]];
+let seenProductList = [[${seenProductList}]];
 
-    $('#join-project-jjim').on("click",function () {
-        if()
-        $('#join-project-jjim-icon').css("fill","red");
+let userNum = [[${getDetail.num}]];
+show()
+function show() {
+    $.ajax({
+        url: "/userR/jjim",
+        type: "get",
+        success: function (jjims) {
+            console.log("들어옴");
+            $(jjims).each(function (i, jjim) {
+                if (jjim.userNum == userNum) {
+                    if ($(".join-project-jjim[name=" + jjim.projectNum + "]").hasClass("check")) {
+                        $(".join-project-jjim[name=" + jjim.projectNum + "]").removeClass("check");
+                        $(".join-project-jjim[name=" + jjim.projectNum + "]").addClass("checked");
+                        $(".join-project-jjim[name=" + jjim.projectNum + "]").css("fill", "red")
+                    }
+                }
+                $.ajax({
+                    url : "/userR/jjimCount?projectNum=" + jjim.projectNum,
+                    type : "get",
+                    async : false,
+                    success : function(count) {
+                        $('.join-project-jjim-count').text(count);
+                    }
+                })
+            })
+        }
+    })
+
+}
+
+    $('.join-project-jjim').on("click",function () {
+        console.log("들어옴");
+        let projectNum = $(this).attr("name");
+        console.log(projectNum);
+        if($(this).hasClass("check")) {
+            $(this).removeClass("check");
+            $(this).addClass("checked");
+            $(this).css("fill","red");
+            $.ajax({
+                url : "/userR/jjim",
+                type : "post",
+                data : {userNum : userNum, category: "2", projectNum : projectNum},
+                success : function(result) {
+                    show();
+                }
+            })
+
+        } else {
+            $(this).addClass("check");
+            $(this).removeClass("checked");
+            $(this).css("fill","#d7d7d7");
+
+            $.ajax({
+                url : "/userR/jjim",
+                type : "delete",
+                data : {userNum : userNum, category : "2", projectNum : projectNum},
+                success : function () {
+                    show();
+                }
+            })
+        }
     })
 
 
