@@ -14,7 +14,7 @@ public class OrderVO {
     private Long userNum;
     private Long productNum;
     private String addressComment;
-
+    private String orderName;
     private String address;
     private String addressDetail;
 }

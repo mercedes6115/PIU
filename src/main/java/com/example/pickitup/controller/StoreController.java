@@ -349,9 +349,21 @@ public class StoreController {
     @GetMapping("/buyProductDetail")
     public void myBoughtProductDetail(String orderNum, Model model){
         Long orderNumber = Long.parseLong(orderNum);
-        model.addAttribute("product", tempUserSerivce.boughtOrderDetail(orderNumber));
+        OrderUserDTO orderUserDTO = new OrderUserDTO();
         OrderVO orderVO = orderService.findByOrderNum(orderNumber);
+        ProductDTO productDTO = tempUserSerivce.boughtOrderDetail(orderNumber);
+        orderUserDTO.setUserNum(orderVO.getUserNum());
+        orderUserDTO.setNickName(productDTO.getNickName());
+        orderUserDTO.setPhone(productDTO.getPhone());
+        orderUserDTO.setCounting(Long.parseLong(productDTO.getTotalitems()));
+        orderUserDTO.setTotal(Long.parseLong(productDTO.getTotalpayment()));
+        orderUserDTO.setProductName(productDTO.getItemname());
+        orderUserDTO.setAddressComment(productDTO.getAddressComment());
+        orderUserDTO.setAddress(productDTO.getAddress());
+        orderUserDTO.setAddressDetail(productDTO.getAddressDetail());
+        model.addAttribute("product", productDTO);
         model.addAttribute("addressComment",orderVO.getAddressComment());
+        model.addAttribute("orderInfo",orderUserDTO);
         model.addAttribute("userinfo", tempUserSerivce.readUserInfo(orderVO.getUserNum()));
     }
 }
