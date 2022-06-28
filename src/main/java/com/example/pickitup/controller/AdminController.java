@@ -10,6 +10,7 @@ import com.example.pickitup.domain.vo.dto.PageDTO;
 import com.example.pickitup.domain.vo.dto.ProductPageDTO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 import com.example.pickitup.domain.vo.user.AdminBoardVO;
+import com.example.pickitup.domain.vo.user.OrderVO;
 import com.example.pickitup.domain.vo.user.UserVO;
 import com.example.pickitup.domain.vo.*;
 import com.example.pickitup.domain.vo.adminVO.AdminBoardDTO;
@@ -70,7 +71,6 @@ public class AdminController {
         log.info(request.getRemoteAddr()+"==========");
         model.addAttribute("ipV4",request.getRemoteAddr());
     }
-
 
     @PostMapping("/qrEndLogin")
     public void qrEndCheck(String email, String password,HttpServletRequest request,Model model){
@@ -373,13 +373,14 @@ public class AdminController {
 
         log.info("==========="+startDate);
         log.info("==========="+endDate);
-        projectVO.setCompanyNum(11l);
+        projectVO.setCompanyNum(11l); // 관리자 companyNum설정
         projectService.register(projectVO);
     }
 
     @GetMapping("/projectDetail")
     public void projectDetail(Long projectNum,Model model){
         model.addAttribute("applyUserList",tempAdminService.getApplyUser(projectNum));
+        model.addAttribute("projectNum",projectNum);
     }
 
     // 관리자 상품 목록
@@ -706,7 +707,7 @@ public class AdminController {
 //        log.info("====================");
 //        return new RedirectView("/admin/boardList");
 //    }
-
+// 프로젝트 승인
     @PostMapping("/approveProject")
     @ResponseBody
     public void approveProject(Long num, HttpServletRequest request){
@@ -718,7 +719,7 @@ public class AdminController {
         }
     }
 
-
+// 프로젝트 승인 대기중
     @PostMapping("/AwaitingProject")
     @ResponseBody
     public void awaitingProject(Long num, HttpServletRequest request){
@@ -729,7 +730,7 @@ public class AdminController {
             tempAdminService.awaitProject(num);
         }
     }
-
+// 프로젝트 승인거절
     @PostMapping("/DispproveProject")
     @ResponseBody
     public void disapproveProject(Long num, HttpServletRequest request){
@@ -741,6 +742,7 @@ public class AdminController {
         }
     }
 
+    // 포인트 지급버튼을 통하여 프로젝트에 참여한 유저에게 포인트를 지급
     @PostMapping("/addPoint")
     @ResponseBody
     public void addPoint(String nickname, String point,String approach,String userNum,String applynum){
@@ -772,6 +774,28 @@ public class AdminController {
         log.info("=========="+nickname);
         log.info("===========+"+tempAdminService.readUserInfo(userNum1).getNickname());
         tempAdminService.addPoint(nickname,updatePoint,applynum1);
+    }
+
+    @GetMapping("/orderInfoDetail")
+    public void orderInfoDetail(Long orderNum,Long productNum,Model model){
+        OrderVO orderVO = tempAdminService.getOrderDetail(orderNum);
+
+        Long userNum = orderVO.getUserNum();
+
+        UserVO userVO = tempUserSerivce.readUserInfo(userNum);
+
+        ProductVO productVO = tempAdminService.getDetail(productNum);
+
+        model.addAttribute("userVO",userVO);
+        model.addAttribute("orderVO",orderVO);
+        model.addAttribute("productVO",productVO);
+    }
+
+    @PostMapping("/setDelivery")
+    @ResponseBody
+    public void setDelivery(String orderNum){
+        Long orderNum1=Long.parseLong(orderNum);
+        tempAdminService.setDelivery(orderNum1);
     }
 }
 

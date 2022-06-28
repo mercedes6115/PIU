@@ -206,7 +206,7 @@
         <![CDATA[
     WHERE RN > (#{pageNum} - 1) * #{amount}
         ]]>
-
+        ORDER BY REGIST_DATE DESC
 
     </select>
 

@@ -201,12 +201,12 @@
 <script th:inline="javascript">
     // 접속한 와이파이ipV4로 접속해야함 localhost로 접속하면 127.0.0.1가져와서 모바일로 접속을 못함
     let ipV4=[[${ipV4}]];
-
+    console.log(ipV4);
     //접속한 와이파이 ipV4값을 가져와야 모바일로도 접속이 가능하기 때문에 localhost를 대신할 ipV4값을 가져오는지 확인
     function makeQR(qrnum){
         let QRnum=qrnum;
-        let projectLink1 = "http://"+ipV4+"10010:/admin/qrStartlogin?num="+qrnum+"&state=start";
-        let projectLink2 = "http://"+ipV4+"10010:/admin/qrEndlogin?num="+qrnum+"&state=finish";
+        let projectLink1 = "http://"+ipV4+":10010/admin/qrStartLogin?num="+qrnum+"&state=start";
+        let projectLink2 = "http://"+ipV4+":10010/admin/qrEndLogin?num="+qrnum+"&state=finish";
         console.log(projectLink1);
         if(confirm("해당 프로젝트의 QR코드 링크를 생성하시겠습니까?")){
             $.ajax({
