@@ -17,4 +17,6 @@ public class ProductDTO {
     private String nickName;
     private String phone;
 
+    private Long stock;
 }
+

@@ -55,5 +55,6 @@
         <typeAlias type="com.example.pickitup.domain.vo.dto.AdminQnaCommentDTO" alias="adminQnaCommentDTO"/>
         <typeAlias type="com.example.pickitup.domain.vo.dto.AdminBoardPageDTO" alias="adminBoardPageDTO"/>
 
+        <typeAlias type="com.example.pickitup.domain.vo.dto.OrderUserDTO" alias="orderUserDTO"/>
     </typeAliases>
 </configuration>

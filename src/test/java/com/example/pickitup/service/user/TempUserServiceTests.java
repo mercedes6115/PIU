@@ -4,6 +4,7 @@ package com.example.pickitup.service.user;
 import com.example.pickitup.domain.vo.AdminCriteria;
 import com.example.pickitup.domain.vo.dto.AdminQnaCommentDTO;
 import com.example.pickitup.domain.vo.dto.AdminQnaDTO;
+import com.example.pickitup.domain.vo.dto.OrderUserDTO;
 import com.example.pickitup.domain.vo.dto.PointDTO;
 
 import com.example.pickitup.domain.vo.Criteria;
@@ -205,5 +206,33 @@ public class TempUserServiceTests {
     @Test
     public void getMyAllReview(){
         tempUserSerivce.myAllReview(22L);
+    }
+
+    @Test
+    public void orderStoreTest() {
+        OrderUserDTO orderUserDTO = new OrderUserDTO();
+        orderUserDTO.setUserNum(22L);
+        orderUserDTO.setCounting(4L);
+        orderUserDTO.setTotal(800L);
+        orderUserDTO.setProductName("상품1");
+        orderUserDTO.setAddressComment("잘부탁드립니다");
+        orderUserDTO.setAddress("경기도");
+        orderUserDTO.setAddressDetail("광명시");
+        tempUserSerivce.orderStore(orderUserDTO);
+    }
+
+    @Test
+    public void userPointMinusTest() {
+        tempUserSerivce.userPointMinus(22L, "4000");
+    }
+
+    @Test
+    public void productMinusTest(){
+        tempUserSerivce.productMinus("상품2",200L);
+    }
+
+    @Test
+    public void getDetailByName(){
+        tempUserSerivce.getDetailByName("상품3");
     }
 }

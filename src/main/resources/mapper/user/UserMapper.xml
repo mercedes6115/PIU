@@ -271,7 +271,6 @@
         )
     </select>
 
-
     <select id="getNoticeList" resultType="adminBoardVO">
      SELECT NUM, TITLE, CATEGORY, CONTENT, USER_NUM, REGIST_DATE, UPDATE_DATE FROM
     (
@@ -579,7 +578,6 @@
     WHERE tpr2.PROJECT_NUM =tp2.NUM AND tpr2.USER_NUM = #{userNum})
     ORDER BY UPDATE_DATE DESC
     </select>
-
 </mapper>
 
 

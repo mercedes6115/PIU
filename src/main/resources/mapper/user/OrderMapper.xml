@@ -302,6 +302,7 @@ UPDATE TBL_USER set
         WHERE NUM=#{orderNUM}
     </select>
 
+
     <!--상품 주문-->
     <insert id="orderStore">
         <selectKey keyProperty="num" resultType="long" order="BEFORE">
@@ -311,6 +312,28 @@ UPDATE TBL_USER set
         (NUM, ORDER_NAME, TOTAL, COUNTING, PHONE, PRODUCT_NUM, USER_NUM, ADDRESS_COMMENT, ADDRESS, ADDRESS_DETAIL)
         VALUES (#{num}, #{nickName}, #{total}, #{counting}, #{phone}, (SELECT TBL_PRODUCT.NUM FROM TBL_PRODUCT WHERE TBL_PRODUCT.NAME = #{productName}) , #{userNum}, #{addressComment}, #{address}, #{addressDetail})
     </insert>
+
+
+    <!--상품구입후 유저포인트 차감-->
+    <update id="userPointMinus">
+        UPDATE TBL_USER
+        SET POINT = #{point}
+        WHERE NUM = #{num}
+    </update>
+
+    <!--상품 구입후 재고 차감-->
+    <update id="productMinus">
+        UPDATE TBL_PRODUCT
+        SET STOCK = #{stock}
+        WHERE TBL_PRODUCT.NAME =#{itemname}
+    </update>
+
+    <!--상품이름으로 검색-->
+    <select id="getDetailByName" resultType="Long">
+        SELECT STOCK
+        FROM TBL_PRODUCT
+        WHERE NAME=#{itemname}
+    </select>
 </mapper>
 
 

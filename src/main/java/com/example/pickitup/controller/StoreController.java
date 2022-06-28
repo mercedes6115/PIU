@@ -237,17 +237,13 @@ public class StoreController {
         return "store/payment";
     }
 
-    // 스토어 결제 정보 입력
-    @PostMapping("/payment")
-    public void paymentForm(ProductDTO productDTO, ProductVO productVO,Model model){
-        model.addAttribute("product", productVO);
-        model.addAttribute("productinfo",productDTO);
-    }
+
 
 
 
 
     //업데이트는 아직 안됨
+
 
 
 
@@ -260,6 +256,14 @@ public class StoreController {
 //        orderService.register(orderVO,userVO);
 //        return ("/store/payment");
 //    }
+
+    // 스토어 결제 정보 입력
+    @PostMapping("/payment")
+    public void paymentForm(ProductDTO productDTO, ProductVO productVO,Model model){
+        model.addAttribute("product", productVO);
+        model.addAttribute("productinfo",productDTO);
+    }
+
 //    @PostMapping("/payment")
 //    public void paymentForm(ProductDTO productDTO, ProductVO productVO,Model model){
 //        model.addAttribute("product", productVO);
@@ -268,26 +272,41 @@ public class StoreController {
 
     // 스토어 결제 전 상품 선택
     @PostMapping("/itemChoose")
-    public void itemChoose(ProductVO productVO,Model model){
+    public void itemChoose(UserVO userVO, ProductVO productVO,Model model){
+        userVO = tempUserSerivce.readUserInfo(22L);
+
         model.addAttribute("product",productVO);
+        model.addAttribute("user", userVO);
     }
 
     // 결제 완료 후 주문내역
-    // 결제 완료 후 주문내역
     @PostMapping("/buyProductDetail")
-    public void buyProductDetail(OrderDTO orderDTO, UserVO userVO, ProductDTO productDTO, String addressComment, Model model){
-        orderDTO.setUserNum(2L);
-        orderDTO.setNickName(productDTO.getNickName());
-        orderDTO.setPhone(productDTO.getPhone());
-        orderDTO.setCounting(Long.parseLong(productDTO.getTotalitems()));
-        orderDTO.setTotal(Long.parseLong(productDTO.getTotalpayment()));
-        orderDTO.setProductName(productDTO.getItemname());
-        orderDTO.setAddressComment(productDTO.getAddressComment());
-        orderDTO.setAddress(productDTO.getAddress());
-        orderDTO.setAddressDetail(productDTO.getAddressDetail());
-        tempUserSerivce.orderStore(orderDTO);
+    public void buyProductDetail(OrderUserDTO orderUserDTO, ProductVO productVO, UserVO userVO, ProductDTO productDTO, String addressComment, Model model){
+        Long num = 22L; // 유저넘버
+        orderUserDTO.setUserNum(num);
+        orderUserDTO.setNickName(productDTO.getNickName());
+        orderUserDTO.setPhone(productDTO.getPhone());
+        orderUserDTO.setCounting(Long.parseLong(productDTO.getTotalitems()));
+        orderUserDTO.setTotal(Long.parseLong(productDTO.getTotalpayment()));
+        orderUserDTO.setProductName(productDTO.getItemname());
+        orderUserDTO.setAddressComment(productDTO.getAddressComment());
+        orderUserDTO.setAddress(productDTO.getAddress());
+        orderUserDTO.setAddressDetail(productDTO.getAddressDetail());
+        tempUserSerivce.orderStore(orderUserDTO);
+
+        userVO = tempUserSerivce.readUserInfo(num);
+        String point = Long.toString(Long.parseLong(userVO.getPoint()) - Long.parseLong(productDTO.getTotalpayment())); //수정될 포인트
+        tempUserSerivce.userPointMinus(num, point);
+
+        String itemname = productDTO.getItemname();
+        tempUserSerivce.getDetailByName(itemname); // 현재 재고
+        Long stock = tempUserSerivce.getDetailByName(itemname) - Long.parseLong(productDTO.getTotalitems()); //수정될 재고
+        tempUserSerivce.productMinus(itemname, stock);
+
+
         model.addAttribute("addressComment", addressComment);
         model.addAttribute("userinfo",userVO);
+        model.addAttribute("orderinfo",orderUserDTO);
         model.addAttribute("product",productDTO);
 
     }
@@ -334,6 +353,5 @@ public class StoreController {
         OrderVO orderVO = orderService.findByOrderNum(orderNumber);
         model.addAttribute("addressComment",orderVO.getAddressComment());
         model.addAttribute("userinfo", tempUserSerivce.readUserInfo(orderVO.getUserNum()));
-
     }
 }
