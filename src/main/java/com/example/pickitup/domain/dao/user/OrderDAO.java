@@ -4,6 +4,7 @@ import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.OrderCriteria;
 import com.example.pickitup.domain.vo.dto.OrderDTO;
 
+import com.example.pickitup.domain.vo.dto.OrderUserDTO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 
 import com.example.pickitup.domain.vo.user.OrderVO;
@@ -67,6 +68,28 @@ public class OrderDAO {
     // 유저 정보 수정
     public void updateUser(UserVO userVO){
         orderMapper.updateUser(userVO);
+    }
+
+
+
+    //상품 주문
+    public void orderStore(OrderUserDTO orderUserDTO) {
+        orderMapper.orderStore(orderUserDTO);
+    }
+
+    //상품 주문후 유저 포인트 차감
+    public void userPointMinus(Long num, String point) {
+        orderMapper.userPointMinus(num, point);
+    }
+
+    //상품 주문후 상품 재고 차감
+    public void productMinus(String itemname, Long stock) {
+        orderMapper.productMinus(itemname, stock);
+    }
+
+    //상품명으로 정보 가져오기(1개)
+    public Long getDetailByName(String itemname){
+        return orderMapper.getDetailByName(itemname);
     }
 
 
