@@ -83,13 +83,19 @@ public class ProjectDAO {
     public List<ProjectVO> getListJJim(){
         return projectMapper.getListJJim();
     }
+
     // 프로젝트 목록(포인트순)
     public List<ProjectVO> getListPoint(){
         return projectMapper.getListPoint();
     }
-    // 프로젝트 목록(참가자순)
-    public List<ProjectVO> getListApply(){
-        return projectMapper.getListApply();
-    }
 
+    // 프로젝트 목록(참가자순)
+    public List<ProjectVO> getListApply(){ return projectMapper.getListApply();    }
+
+    // 프로젝트 목록(코스별)
+    public List<ProjectVO> getListCourse(String course){ return projectMapper.getListCourse(course); }
+
+    public List<ProjectVO> getListAll(){return projectMapper.getListAll();};
+
+    public List<ProjectVO> getSearchList(String searchStr){return projectMapper.getSearchList(searchStr);};
 }

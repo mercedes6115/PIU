@@ -103,8 +103,9 @@ public class UserController {
 
     // 비밀번호 재설정
     @GetMapping("/updatePw")
-    public void updatePw(){
+    public void updatePw(@RequestParam(value="email")String email){
         log.info("비밀번호 재설정 들어옴");
+        log.info(email);
 
     }
 

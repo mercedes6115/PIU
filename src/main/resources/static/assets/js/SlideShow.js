@@ -109,10 +109,10 @@ prev2.addEventListener('click', function () {
   }
   if (currentIdx2 == 0) {
     setTimeout(function () {
-      slide2.style.left = -(slideCount2) * (slideWidth2 + slideMargin2) + 'px';
+      slide2.style.left = -(slideCount2-3) * (slideWidth2 + slideMargin2) + 'px';
       slide2.style.transition = `${0}s ease-out`;
     }, 0);
-    currentIdx2 = slideCount2;
+    currentIdx2 = slideCount2-3;
   }
   currentIdx2 -= 1;
 });
@@ -174,10 +174,10 @@ prev3.addEventListener('click', function () {
   }
   if (currentIdx3 == 0) {
     setTimeout(function () {
-      slide3.style.left = -(slideCount3) * (slideWidth3 + slideMargin3) + 'px';
+      slide3.style.left = -(slideCount3-3) * (slideWidth3 + slideMargin3) + 'px';
       slide3.style.transition = `${0}s ease-out`;
     }, 0);
-    currentIdx3 = slideCount3;
+    currentIdx3 = slideCount3-3;
   }
   currentIdx3 -= 1;
 })
