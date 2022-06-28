@@ -2,6 +2,7 @@ package com.example.pickitup.service.user;
 
 import com.example.pickitup.domain.dao.user.OrderDAO;
 import com.example.pickitup.domain.vo.Criteria;
+import com.example.pickitup.domain.vo.dto.MyOrderDTO;
 import com.example.pickitup.domain.vo.OrderCriteria;
 import com.example.pickitup.domain.vo.dto.OrderDTO;
 import com.example.pickitup.domain.vo.user.OrderVO;
@@ -32,11 +33,11 @@ public class OrderService {
     // 주문 목록(구매자용)
 
 
-    // 주문 등록
-    public void register(OrderVO orderVO,UserVO userVO){
-        orderDAO.register(orderVO);
-        orderDAO.updateUser(userVO);
-    }
+//    // 주문 등록
+//    public void register(OrderVO orderVO,UserVO userVO){
+//        orderDAO.register(orderVO);
+//        orderDAO.updateUser(userVO);
+//    }
     // 주문 취소
     public boolean remove(Long num){
         return orderDAO.remove(num);
@@ -58,5 +59,13 @@ public class OrderService {
     }
 
 
+
+    public List<MyOrderDTO> getBetweenOrder(Long userNum, String startDate, String endDate){
+        return orderDAO.getBetweenOrder(userNum, startDate, endDate);
+    }
+
+    public OrderVO findByOrderNum(Long orderNum) {
+        return orderDAO.findByOrderNum(orderNum);
+    }
 
 }

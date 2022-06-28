@@ -76,7 +76,7 @@ public interface UserMapper {
     public boolean qnaStoreModify(AdminQnaDTO adminQnaDTO);
 
     //    유저 내 리뷰 모두 보기
-    public List<MyReviewDTO> myAllReview(Long num);
+    public List<MyReviewDTO> myAllReview(Long userNum);
 
     //    유저 목록 관리자용
     public  List<UserDTO> getList(Criteria criteria);

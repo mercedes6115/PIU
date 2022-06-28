@@ -63,19 +63,6 @@
                         </td>
                     </tr>
                     <tr>
-                        <div class="checkBox">
-                            <th>주문상태</th>
-                            <td>
-                                <input type="checkbox" name="" id="orderCheckAll">
-                                <label for="orderSearchCheck">전체</label>
-                                <input type="checkbox" name="" id="orderCheckAll">
-                                <label for="orderSearchCheck">배송준비중</label>
-                                <input type="checkbox" name="" id="orderSearchCheck">
-                                <label for="orderSearchCheck">배송중</label>
-                                <input type="checkbox" name="" id="orderSearchCheck">
-                                <label for="orderSearchCheck">배송완료</label>
-                            </td>
-                        </div>
                     </tr>
                 </table>
                 <div class="btnBox">
@@ -120,15 +107,15 @@
                     <td th:text="*{registDate}"></td>
                     <td th:text="*{productNum}"></td>
 <!--                <td th:text="*{productName}"><a href="#">파랑이</a></td>-->
-                    <td th:text="*{nickname}"></td>
+                    <td th:text="*{orderName}"></td>
                     <td th:text="*{productName}"></td>
-                    <td th:text="*{price}">50point</td>
+                    <td th:text="*{price}"></td>
                     <td th:if="*{status}=='0'" th:style="${'color:blue;'}">주문접수</td>
                     <td th:if="*{status}=='1'" th:style="${'color:blue;'}">배송준비</td>
                     <td th:if="*{status}=='2'" th:style="${'color:blue;'}">배송중</td>
                     <td th:if="*{status}=='3'" th:style="${'color:blue;'}">배송완료</td>
                     <td th:text="*{category}"></td>
-                    <td>상세보기</td>
+                    <td><a th:href="@{/admin/orderInfoDetail(orderNum=*{orderNum},productNum=*{productNum})}">상세보기</a></td>
                 </tr>
                 </th:block>
             </table>

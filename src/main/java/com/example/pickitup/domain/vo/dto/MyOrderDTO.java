@@ -20,4 +20,8 @@ public class MyOrderDTO {
     private String endDate;
     private String status;
     private String addressComment;
+    private Long productNum;
+    private Long num;
+    private Long orderNum;
+
 }

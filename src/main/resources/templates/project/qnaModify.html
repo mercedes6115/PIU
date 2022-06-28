@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <!-- <link rel="stylesheet" href="/assets/css/header.css" />
-    <link rel="stylesheet" href="/assets/css/footer.css" />
-    <link rel="stylesheet" href="/assets/css/pickitupStore.css" /> -->
+    <title>프로젝트 후기 작성 </title>
+
     <link rel="stylesheet" href="/assets/css/Header.css">
     <link rel="stylesheet" href="/assets/css/Footer.css">
     <link rel="stylesheet" href="/assets/css/pickitupStore.css">
@@ -23,63 +21,62 @@
                     </span>
             </div>
             <div style="width: 100%;">
-                <h5>상품 후기 작성</h5>
+                <h5>프로젝트 후기 수정</h5>
             </div>
         </div>
     </div>
     <div class="space"></div>
     <section class="review_write_container">
-        <form action="/store/reviewWrite" method="post" id="registerForm" enctype="multipart/form-data">
-            <div>
-                <div class="flex p-24" style="align-items: center; padding-bottom: 15px;">
-                    <div class="profile_img"><img src="/images/chun2.png"></div>
-                    <div class="flex justify-content" style="width: 100%; align-items: center;">
-                        <div class="id_and_date">
-                            <div class="review_id" th:text="|춘식이|"></div>
-                            <div class="admin_date" id="admin_date"></div>
-                        </div>
-                        <div><input class="btn_qnaToadmin" type="button" value="글등록"></div>
-                    </div>
-                </div>
-                <div class="space flex" style="padding-left: 24px; justify-content: space-between;">
-                    <div class="review_item_title" th:text="|[${product.category}] &nbsp ${product.name}|">
-                    </div>
-                    <input type="hidden" name="productNum" th:value="${product.num}">
-                </div>
-                <div style="margin-bottom: 10px;"></div>
-                <div class="flex" style="text-align: left; padding: 0  0 10px 24px;">
-                    <label for="attach1" class="flex">
-                        <div class="thumb1">
-                            <div>+</div>
-                        </div>
-                    </label>
-                    <label for="attach2" class="flex">
-                        <div class="thumb2">
-                            <div>+</div>
-                        </div>
-                    </label>
-                    <label for="attach3" class="flex">
-                        <div class="thumb3">
-                            <div>+</div>
-                        </div>
-                    </label>
-                    <input type="file" name="uploadFiles" id="attach1" class="attach1" style="display: none;">
-                    <input type="file" name="uploadFiles" id="attach2" class="attach2" style="display: none;" disabled>
-                    <input type="file" name="uploadFiles" id="attach3" class="attach3"style="display: none;" disabled>
-                </div>
+        <form action="/project/review/add" method="post" id="reviewForm">
 
-                <div class="admin_comment" style="font-size: 10px; margin-top:5px; margin-left: 24px;">첨부파일은 3개 까지만 가능합니다.</div>
-
-                <div style="margin-top: 8px;">
-                    <div style="text-align: center;">
-                        <textarea class="user_review" name="content" id="" cols="30" rows="10" required></textarea>
+        <div>
+            <div class="flex p-24" style="align-items: center; padding-bottom: 15px;">
+                <div class="profile_img"><img src="/images/chun2.png"></div>
+                <div class="flex justify-content" style="width: 100%; align-items: center;">
+                    <div class="id_and_date">
+<!--                        <div class="review_id" th:text="|춘식이|"></div>-->
+                        <div class="admin_date">2022-06-14</div>
                     </div>
-                </div>
-                <div class="reviewInfo">
-
+                    <div><input class="btn_qnaToadmin" type="button" value="수정완료 "></div>
                 </div>
             </div>
-        </form>
+            <div class="space flex" style="padding-left: 24px; justify-content: space-between;">
+<!--                <div class="review_item_title" th:text="|[${product.category}] &nbsp ${product.name}|">-->
+                </div>
+            </div>
+            <div style="margin-bottom: 10px;"></div>
+
+        <div class="flex" style="text-align: left; padding: 0  0 10px 24px;" id="imageBox">
+                <label for="attach1" class="flex">
+                    <div class="thumb1">
+                        <div>+</div>
+                    </div>
+                </label>
+                <label for="attach2" class="flex">
+                    <div class="thumb2">
+                        <div>+</div>
+                    </div>
+                </label>
+                <label for="attach3" class="flex">
+                    <div class="thumb3">
+                        <div>+</div>
+                    </div>
+                </label>
+                <input type="file" name="uploadFiles" id="attach1" class="attach1" style="display: none;" >
+                <input type="file" name="uploadFiles" id="attach2" class="attach2" style="display: none;" disabled >
+                <input type="file" name="uploadFiles" id="attach3" class="attach3" style="display: none;" disabled >
+
+            </div>
+
+            <div class="admin_comment" style="font-size: 10px; margin-top:5px; margin-left: 24px;">첨부파일은 3개 까지만 가능합니다.</div>
+
+            <div style="margin-top: 8px;">
+                <div style="text-align: center;">
+                    <textarea class="user_review" id="" cols="30" rows="10" name="content"></textarea>
+                </div>
+            </div>
+ </div>
+</form>
     </section>
 </div>
 
@@ -93,18 +90,7 @@
 <div th:replace="~{/main/Footer :: FooterImport}"></div>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-<script th:inline="javascript">
-    //현재 받은 세션으로 userNum 값 구하기
-    let userNum = 2;  // 임시 데이터
-    $.ajax({
-        url : "/store/userInfo?userNum="+userNum,
-        type : "get",
-        success : function (user) {
-            $(".review_id").text(user.nickname);
-        }
-
-    })
-
+<script>
     //첨부파일 input태그 가져오기
     const file1 = document.querySelector("input.attach1");
     const file2 = document.querySelector("input.attach2");
@@ -133,7 +119,9 @@
                 $(thumbnail1).text("");
                 thumbnail1.style.backgroundImage = "url(/images/error.png)";
             }
+
         }
+
     });
 
     function number2(){
@@ -183,49 +171,41 @@
         });
     }
 
-    $('.review-header-left').click(function () {
-        location.href ="/store/detail?num="+productNum;
-    })
-
-    //현재날짜 띄우기
-    date = new Date();
-    year = date.getFullYear();
-    month = date.getMonth() + 1;
-    day = date.getDate();
-    document.getElementById("admin_date").innerHTML = year + "." + month + "." + day;
-
+    // 사진 등록
     $(".btn_qnaToadmin").on("click", function(e){
-        e.preventDefault();
         let formData =   new FormData();
         let inputFile = $("input[name='uploadFiles']");
-        let files1 = inputFile[0].files;
-        let files2 = inputFile[1].files;
-        let files3 = inputFile[2].files;
-        if(files1.length!=0){formData.append("uploadFiles", files1[0])}
-        if(files2.length!=0){formData.append("uploadFiles", files2[0])}
-        if(files3.length!=0){formData.append("uploadFiles", files3[0])}
-        //
-        // for(let i=0; i<files.length; i++) {
-        //     formData.append("uploadFiles", files[i]);
-        // }
+        for(let i=0; i<inputFile.length; i++){
+            if($(inputFile[i]).val() != ""){
+                formData.append("uploadFiles", inputFile[i].files[0]);
+            }
+        }
+
         $.ajax({
-            url: "/productReviewFile/upload",
+            url: "/projectFile/upload",
             type: "post",
             data: formData,
             contentType: false,
             processData: false,
-            async : false,
             success: function(files){
-                let str = "";
-                $.each(files, function(i, file){
+                str = "";
+                $(files).each(function(i, file){
                     str += "<input type='hidden' name='fileList[" + i + "].fileName' value='" + file.fileName + "'>"
                     str += "<input type='hidden' name='fileList[" + i + "].uuid' value='" + file.uuid + "'>"
                     str += "<input type='hidden' name='fileList[" + i + "].uploadPath' value='" + file.uploadPath + "'>"
                 });
-                $('#registerForm').append(str);
+                $('#imageBox').append(str);
+                $('#reviewForm').submit();
+
             }
         });
-        registerForm.submit();
+
     });
+
+    // 사진 삭제시
+
+
+
 </script>
+
 </html>

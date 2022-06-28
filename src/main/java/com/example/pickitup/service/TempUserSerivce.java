@@ -353,5 +353,6 @@ public class TempUserSerivce {
         return orderDAO.getDetailByName(itemname);
     }
 
+    public ProductDTO boughtOrderDetail(Long orderNum) { return orderDAO.boughtDetail(orderNum);}
 
 }

@@ -5,7 +5,11 @@ import com.example.pickitup.domain.vo.OrderCriteria;
 import com.example.pickitup.domain.vo.dto.MyOrderDTO;
 import com.example.pickitup.domain.vo.dto.OrderDTO;
 
+import com.example.pickitup.domain.vo.dto.ProductDTO;
+
+
 import com.example.pickitup.domain.vo.dto.OrderUserDTO;
+
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 
 import com.example.pickitup.domain.vo.user.OrderVO;
@@ -46,7 +50,9 @@ public interface OrderMapper {
     public void updateUser(UserVO userVO);
     public List<ProductVO> getProduct(Long num);
 
-    public List<MyOrderDTO> getBetweenOrder(Long userNum);
+    public List<MyOrderDTO> getBetweenOrder(Long userNum, String startDate, String endDate);
+
+    public ProductDTO orderProductDetail(Long orderNum);
 
     //상품 주문
     public void orderStore(OrderUserDTO orderUserDTO);
@@ -60,6 +66,15 @@ public interface OrderMapper {
     //상품 이름으로 정보 검색(1개)
     public Long getDetailByName(String itemname);
 
+    public OrderVO getOrderDetail(Long productNum);
+
+    public boolean setDelivery(Long orderNum);
+
+
+    public OrderVO findByOrderNum(Long orderNum);
+
+    //상품 주문
+    public void orderStore(OrderDTO orderDTO);
 }
 
 

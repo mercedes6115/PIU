@@ -230,5 +230,6 @@ public class UserDAO {
     // 내가 작성한 product 문의글에 달린 답변 가져오기
     public ProductQnaCommentVO getMyProductQnaComment(Long qnaNum) {return userMapper.myProductQnaComment(qnaNum);}
 
+    public List<MyReviewDTO> getAllMyReview(Long userNum) {return userMapper.myAllReview(userNum);}
 
 }

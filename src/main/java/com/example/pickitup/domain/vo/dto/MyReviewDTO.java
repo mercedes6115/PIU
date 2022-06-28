@@ -6,15 +6,8 @@ import org.springframework.stereotype.Component;
 @Component
 @Data
 public class MyReviewDTO {
-    private String userName;
-    private String registDate;
-    private String content;
-    private String fileName;
-    private String uploadPath;
-    private String projectName;
-    private String productName;
-    private Long num;
-    private Long productNum;
-    private Long projectNum;
+    private String title;
     private String updateDate;
+    private String content;
+    private Long num;
 }
