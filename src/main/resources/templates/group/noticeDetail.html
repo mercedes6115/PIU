@@ -90,8 +90,8 @@
                     <div class="nDetailTitleBoundary"></div>
                     <div class="nTitleContainer">
                         <div class="nTitleBox">
-                            <h6 class="nDetailTitle" th:text="*{title}"></h6>
-                            <h6 class="nDetailDate" th:text="*{registDate}"></h6>
+                            <h6 class="nDetailTitle" th:utext="*{title}"></h6>
+                            <h6 class="nDetailDate" th:utext="*{registDate}"></h6>
                         </div>
                     </div>
                     <div class="nDetailBoundary"></div>
@@ -104,7 +104,7 @@
                         <a class="backListBtnForm" href="notice.html">
                                 <span class="backListBtnBox">
                                     <span class="material-symbols-outlined" id="returnList">keyboard_return</span>
-                                    <span class="backListBtn">목록으로</span>                                                                               
+                                    <span class="backListBtn">목록으로</span>
                                 </span>
                         </a>
                     </div>
@@ -114,12 +114,4 @@
     </div>
 </div>
 </body>
-
-<script th:inline="javascript">
-
-
-    $(".backListBtn").click(function (e) {
-        location.replace("/notice")
-    })
-</script>
 </html>

@@ -35,5 +35,9 @@ public class CompanyService {
 
     // 로그인 select count -> read 사용?
 
+    // 단체 정보 수정
+    public void update(CompanyVO companyVO){
+        companyDAO.update(companyVO);
+    }
 
 }

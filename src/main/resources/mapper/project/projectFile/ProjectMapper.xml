@@ -14,10 +14,12 @@
     <!--    관리자용 프로젝트 전체 목록 불러오기-->
 
     <!--  특정 유저가 신청한 프로젝트 목록 -->
+    <!--  특정 유저가 작성한 프로젝트 목록 -->
     <select id="getUserProjectList" resultType="projectVO">
-    SELECT NUM, TITLE, CONTENT, COURSE, TERRAIN, POINT, APPROVAL, STARTTIME, ENDTIME, START_ADDRESS, END_ADDRESS, DISTANCE, START_QR, REGIST_DATE, UPDATE_DATE, STATUS, COMPANY_NUM
+    SELECT NUM, TITLE, CONTENT, COURSE, TERRAIN, POINT, APPROVAL, STARTTIME, ENDTIME, START_ADDRESS, END_ADDRESS, DISTANCE, START_QR, END_QR, REGIST_DATE, UPDATE_DATE, STATUS, COMPANY_NUM
     FROM TBL_PROJECT
     WHERE COMPANY_NUM = #{companyNum}
+    ORDER BY REGIST_DATE DESC
     </select>
 
 
@@ -153,6 +155,7 @@
     <select id="getList" resultType="projectVO">
         SELECT NUM, TITLE, CONTENT, COURSE, TERRAIN, POINT, APPROVAL, STARTTIME, ENDTIME, START_ADDRESS, END_ADDRESS, DISTANCE, START_QR, REGIST_DATE, UPDATE_DATE, STATUS, COMPANY_NUM
         FROM TBL_PROJECT
+        ORDER  BY REGIST_DATE DESC
 
     </select>
 
@@ -227,7 +230,6 @@
     <!-- 프로젝트 찜순 목록(상위 10개)   -->
     <select id="getListJJim" resultType="projectVO">
     <![CDATA[
-
                 SELECT *
                 FROM (
                     SELECT * FROM TBL_PROJECT
@@ -319,6 +321,12 @@
         select * from TBL_PROJECT where TITLE
         LIKE '%'||#{searchStr}||'%' OR CONTENT  LIKE '%'||#{searchStr}||'%' OR
         COMPANY_NUM = (SELECT NUM FROM TBL_COMPANY WHERE NICKNAME='%'||#{searchStr}||'%')
+    </select>
+
+    <select id="getUserProjectTotal" resultType="_int">
+        SELECT COUNT(NUM)
+        FROM TBL_PROJECT
+        WHERE COMPANY_NUM = #{companyNum}
     </select>
 
 </mapper>
