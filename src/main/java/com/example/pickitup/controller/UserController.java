@@ -70,32 +70,44 @@ public class UserController {
 
     // 마이페이지 포인트
     @GetMapping("/myPoint")
-    public String mypoint(Model model) throws ParseException {
-        model.addAttribute("changePoint",tempUserSerivce.changePoint(2L));
-        model.addAttribute("user",tempUserSerivce.readUserInfo(2L));
+    public String mypoint(HttpSession session, Model model) throws ParseException {
+        int checkLogin=3;
+        model.addAttribute("checkLogin",checkLogin);
+        Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("changePoint",tempUserSerivce.changePoint(userNum));
+        model.addAttribute("user",tempUserSerivce.readUserInfo(userNum));
         return "/user/myPoint";
     }
 
     // 마이페이지 QnA
     @GetMapping("/myQnA")
-    public String myQnA(Model model){
-        model.addAttribute("qnaList",tempUserSerivce.getMyProductQna(2L));
-        model.addAttribute("user",tempUserSerivce.readUserInfo(2L));
+    public String myQnA(HttpSession session, Model model){
+        int checkLogin=3;
+        model.addAttribute("checkLogin",checkLogin);
+        Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("qnaList",tempUserSerivce.getMyProductQna(userNum));
+        model.addAttribute("user",tempUserSerivce.readUserInfo(userNum));
         return "/user/myQnA";
     }
 
     // 마이페이지 내후기
     @GetMapping("/myReview")
-    public String myReview(Model model){
-        model.addAttribute("reviewList",tempUserSerivce.myAllReview(2L));
-        model.addAttribute("user",tempUserSerivce.readUserInfo(2L));
+    public String myReview(HttpSession session, Model model){
+        int checkLogin=3;
+        model.addAttribute("checkLogin",checkLogin);
+        Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("reviewList",tempUserSerivce.myAllReview(userNum));
+        model.addAttribute("user",tempUserSerivce.readUserInfo(userNum));
 
         return "/user/myReview";
     }
 
     // 마이페이지 주문내역
     @GetMapping("/myOrderList")
-    public String myOrderList(Model model,String num){
+    public String myOrderList(HttpSession session, Model model,String num){
+        int checkLogin=3;
+        model.addAttribute("checkLogin",checkLogin);
+        Long userNum = Long.parseLong(session.getAttribute("num").toString());
         SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
         Calendar now = Calendar.getInstance();
@@ -103,7 +115,7 @@ public class UserController {
         mon.add(Calendar.MONTH,-3);
         String nowTime = sdf1.format(now.getTime());
         String beforeMonth = sdf1.format(mon.getTime());
-        List<MyOrderDTO> myOrderDTOList = orderService.getBetweenOrder(2L,beforeMonth,nowTime);
+        List<MyOrderDTO> myOrderDTOList = orderService.getBetweenOrder(userNum,beforeMonth,nowTime);
         int totalCount = myOrderDTOList.size();
         model.addAttribute("myOrderList", myOrderDTOList);
         String startDate = sdf2.format(mon.getTime());
@@ -151,8 +163,10 @@ public class UserController {
 
     // 마이페이지 비밀번호 수정
     @GetMapping("/myPassword")
-    public String myPassword(Model model){
-        model.addAttribute("getDetail",tempUserSerivce.readUserInfo(2L));
+    public String myPassword(HttpSession session, Model model){
+        int checkLogin=3;
+        Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("getDetail",tempUserSerivce.readUserInfo(userNum));
         return "/user/myPassword";
     }
 
@@ -164,8 +178,11 @@ public class UserController {
 
     // 회원 정보 수정
     @GetMapping("/infoUpdate")
-    public void infoUpdate(Model model){
-        model.addAttribute("user", tempUserSerivce.readUserInfo(22L));
+    public void infoUpdate(HttpSession session, Model model){
+        int checkLogin=3;
+        model.addAttribute("checkLogin",checkLogin);
+        Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("user", tempUserSerivce.readUserInfo(userNum));
     }
 
     // 회원 정보 수정 폼
@@ -218,9 +235,10 @@ public class UserController {
 
     // 로그인
     @GetMapping("/login")
-    public void login(Model model){
+    public String login(){
 //        boolean checkEmail=true;
 //        model.addAttribute("")
+        return "/user/login";
     }
 
     // 로그인 폼
@@ -245,7 +263,12 @@ public class UserController {
             session.setAttribute("category", userDTO.getCategory());
             session.setAttribute("fileName", userVO.getProfileFileName());
             session.setAttribute("uploadPath",userVO.getProfileUploadPath());
+            log.info("사진 : " + userVO.getProfileFileName());
+            log.info("파일 경로 : " + userVO.getProfileUploadPath());
             log.info(session.getAttribute("category").toString());
+
+            log.info("사진 : " + userVO.getProfileFileName());
+            log.info("파일 경로 : " + userVO.getProfileUploadPath());
 
             if(userDTO.getNickname().equals("admin")){
                 return new RedirectView("/admin/login");
@@ -258,9 +281,11 @@ public class UserController {
 
 
     // 회원탈퇴
-    @DeleteMapping("/delete")
-    public void delete(){
-
+    @GetMapping("/delete")
+    public String delete(HttpSession session){
+        Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        tempUserSerivce.removeUser(userNum);
+        return login();
     }
 
     @GetMapping("/guide")

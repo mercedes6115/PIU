@@ -71,9 +71,14 @@ public interface ProjectMapper {
 
     public List<ProjectVO> getSearchList(String searchStr);
 
+
     // 프로젝트 생성한 개수
     public int getUserProjectTotal(Long companyNum);
 
     //  특정 유저의 프로젝트 목록
     public List<ProjectVO> getUserProjectList(Long companyNum, Criteria criteria);
+
+    // 지형 검색
+    public List<ProjectVO> getListTerrain(String terrain);
+
 }

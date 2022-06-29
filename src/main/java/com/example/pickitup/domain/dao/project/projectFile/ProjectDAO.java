@@ -99,9 +99,14 @@ public class ProjectDAO {
 
     public List<ProjectVO> getSearchList(String searchStr){return projectMapper.getSearchList(searchStr);};
 
+
     // 프로젝트 생성한 개수
     public int getUserProjectTotal(Long companyNum){
         return projectMapper.getUserProjectTotal(companyNum);
 
     }
+
+    // 프로젝트 목록(지형으로 찾기)
+    public List<ProjectVO> getListTerrain(String terrain) {return projectMapper.getListTerrain(terrain);}
+
 }

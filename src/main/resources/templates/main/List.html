@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="/assets/css/Header.css"/>
+
     <link rel="stylesheet" href="/assets/css/Main.css"/>
     <link rel="stylesheet" href="/assets/css/Footer.css"/>
     <link rel="stylesheet"
@@ -58,8 +59,8 @@
     let Aa = [[${courseList}]];
     let lngth = 0;
     let course = "";
-
-
+    console.log(Aa);
+    let str = "";
 
     function infinity_scroll() {
         console.log("무한스크롤 시작");
@@ -72,6 +73,7 @@
 
 
         const template = function () {
+            console.log("들어옴");
             const table = document.querySelector('table');
             var row = table.insertRow();
             str = "";
@@ -81,9 +83,9 @@
                 str += '<div class="plogging-thumbnail-wrap2">';
                 str += '<span class="Jjim-image" id="image-list" href="'+Aa[lngth].num+'"></span>';
                 str += '</div>';
-                str += '<div class="deadline"><span class="material-symbols-outlined" style= "font-size: 14px; margin-left: 5px;">';
+                str += '<div class="deadline" style="width: 96%;" ><span class="material-symbols-outlined" style= "font-size: 14px; margin-left: 5px;">';
                 str += 'alarm';
-                str += '</span><div class="deadline-text">프로젝트 시작까지</div><div class="d-day">' + Aa[lngth].projectDate + '</div></div>';
+                str += '</span><div class="deadline-text">프로젝트 시작까지</div><div class="d-day">' + Aa[lngth].startTime + '</div></div>';
                 // str += '</span><div class="deadline-text">프로젝트 시작까지</div><div class="d-day">asdfasfdasfd</div></div>';
                 str += '<div class = "plogging-location-text">' + Aa[lngth].terrain + '</div>';
                 str += '<div class = "plogging-msg-text">' + Aa[lngth].title + '</div>'
@@ -120,14 +122,15 @@
                     type: "get",
                     success: function (files) {
                         strImg += "<picture class='join-plogging-main-image'>";
-                        strImg += "<img src='/projectFile/display1?fileName=" + files[0].uploadPath + "/" + files[0].uuid + "_" + files[0].fileName + "'style='width: 100%;height: 100%'>";
+                        strImg += "<img src='/projectFile/display1?fileName=" + files[0].uploadPath + "/" + files[0].uuid + "_" + files[0].fileName + "'style='width: 98%;height: 100%'>";
                         strImg += "</picture>";
                         $(h).html(strImg);
                         strImg = "";
                     }
                 })
             })
-        };
+        }
+        template();
 
         //스크롤 바닥 감지
         if (lngth <= Aa.length) {
