@@ -84,6 +84,9 @@
 <div th:replace="~{/main/Footer :: FooterImport}"></div>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<script src="/assets/js/storeQna.js"></script>
+<script src="/assets/js/storeMain.js"></script>
+<script src="/assets/js/storeReview.js"></script>
 <script th:inline="javascript">
     let productNum = [[${productNum}]];
     let reviews = [[${reviews}]] //리뷰 리스트
@@ -99,17 +102,11 @@
     function reviewWriter(){
         for (let i = start; i < end; i++){  //0 , 1 인덱스 >> 0부터 2까지
             let userNum = reviews[i].userNum;
-            $.ajax({
-                url : "/store/userInfo?userNum=" + userNum,
-                type : "get",
-                async : false,
-                success:function (user) {
-                    $(".review_id#"+reviews[i].num+"").text(user.nickname);
-                    insertImg(user);
-                }
+            qnaService.getUserinfo(userNum,function (user) {
+                $(".review_id#"+reviews[i].num+"").text(user.nickname);
+                insertImg(user);
             })
         }
-        // })
     }
     ///-----------------------------------------------------------------------------------------------
     function insertImg(user){
@@ -136,16 +133,12 @@
     function reviewFiles(){
         $('.reviewNumber').each(function (i, review) {
             let cla = $(this).val();
-            $.ajax({
-                url: "/productReviewFile/list/" + cla,
-                type: "get",
-                success: function (files) {  //각 리뷰의 파일들
-                    let text = "";
-                    $(files).each(function (i, file) {
-                        text += "<img src='/productReviewFile/display?fileName=" + file.uploadPath + "/" + file.uuid + "_" + file.fileName + "'>";
-                    })
-                    $("."+cla+"").html(text);
-                }
+            reviewService.getReviewFiles(cla,function (files) {
+                let text = "";
+                $(files).each(function (i, file) {
+                    text += "<img src='/productReviewFile/display?fileName=" + file.uploadPath + "/" + file.uuid + "_" + file.fileName + "'>";
+                })
+                $("."+cla+"").html(text);
             })
         })
     }
@@ -165,12 +158,9 @@
     // 리뷰 삭제
     $(".review_delete").on("click",function (e) {
         e.preventDefault();
-        $.ajax({
-            url : "/store/reviewDelete?num="+$(this).attr("id"),
-            type: "get",
-            success : function (res) {
-                location.href = "/store/goReviewList/"+productNum;
-            }
+        reviewService.reviewDelete($(this).attr("id"),function () {
+            location.href = "/store/goReviewList/"+productNum;
+
         })
     })
 
