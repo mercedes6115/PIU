@@ -148,7 +148,7 @@
         success : function (files) {
             // let str = "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
             // $(".mainImage").html(str);
-            $(".order_img img").attr("src", "/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName )
+            $(".order_img img").attr("src", "/productFile/display?fileName=" + files[0].uploadPath + "/" + files[0].uuid + "_"  + files[0].fileName )
         }
     })
 
