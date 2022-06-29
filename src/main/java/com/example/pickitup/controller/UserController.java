@@ -3,23 +3,16 @@ package com.example.pickitup.controller;
 
 import com.example.pickitup.Util.EmailSend;
 import com.example.pickitup.domain.vo.dto.MyOrderDTO;
-import com.example.pickitup.domain.vo.dto.PageDTO;
-import com.example.pickitup.domain.vo.dto.PointDTO;
-import com.example.pickitup.domain.vo.product.productFile.ProductVO;
-import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
-import com.example.pickitup.domain.vo.dto.PageDTO;
-import com.example.pickitup.domain.vo.dto.ReviewDTO;
 
 
 import com.example.pickitup.domain.vo.dto.UserDTO;
 import com.example.pickitup.domain.vo.user.CompanyVO;
 import com.example.pickitup.domain.vo.user.UserVO;
-import com.example.pickitup.service.TempCompanyService;
+import com.example.pickitup.service.CompanyService;
 import com.example.pickitup.service.TempUserSerivce;
 import com.example.pickitup.service.user.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -30,9 +23,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
@@ -44,7 +34,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserController {
     private final TempUserSerivce tempUserSerivce;
-    private final TempCompanyService tempCompanyService;
+    private final CompanyService companyService;
     private final OrderService orderService;
 
     @Resource
@@ -226,7 +216,7 @@ public class UserController {
 
         log.info(companyVO.getPhone());
         log.info(companyVO.getBusinessPhone());
-        tempCompanyService.registerCompany(companyVO);
+        companyService.registerCompany(companyVO);
         return "/user/login";
 
     }

@@ -5,9 +5,9 @@ import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.dto.AdminBoardPageDTO;
 import com.example.pickitup.domain.vo.dto.PageDTO;
 import com.example.pickitup.domain.vo.user.CompanyVO;
+import com.example.pickitup.service.CompanyService;
 import com.example.pickitup.service.ProjectService;
 import com.example.pickitup.service.TempAdminService;
-import com.example.pickitup.service.user.CompanyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -63,6 +63,7 @@ public class GroupController {
     public void modify(Model model, Long companyNum){
         model.addAttribute("company", companyService.read(companyNum));
     }
+
 
 
     // 그룹 프로필 수정 폼

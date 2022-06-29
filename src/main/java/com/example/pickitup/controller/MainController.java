@@ -1,9 +1,6 @@
 package com.example.pickitup.controller;
 
-import com.example.pickitup.service.project.projectFile.ProjectFileService;
-
 import com.example.pickitup.service.ProjectService;
-import com.example.pickitup.service.project.projectFile.ProjectFileService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -24,7 +21,6 @@ import java.text.ParseException;
 @RequiredArgsConstructor
 public class MainController {
     private final ProjectService projectService;
-    private final ProjectFileService projectFileService;
 
 
     // 메인페이지
@@ -81,7 +77,13 @@ public class MainController {
 //    }
 
     @GetMapping("/list/{terrain}")
-    public String List(@PathVariable("terrain") String terrain, Model model) throws ParseException {
+    public String List(HttpSession session, @PathVariable("terrain") String terrain, Model model) throws ParseException {
+        int checkLogin=3;
+        Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("fileName",session.getAttribute("fileName"));
+        model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
+        model.addAttribute("checkLogin",checkLogin);
+
         model.addAttribute("courseList", projectService.getListTerrain(terrain));  // 내용가져오기
         if(terrain.equals("1")){
             model.addAttribute("courseType", "평지 타입");
@@ -94,7 +96,13 @@ public class MainController {
     }
 
     @GetMapping("/list")
-    public String List(HttpServletRequest request,Model model) throws ParseException {
+    public String List(HttpSession session, HttpServletRequest request,Model model) throws ParseException {
+        int checkLogin=3;
+        Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("fileName",session.getAttribute("fileName"));
+        model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
+        model.addAttribute("checkLogin",checkLogin);
+        
         String ch2  = request.getParameter("headerSearch");
         System.out.println(ch2);
         if(ch2!=null){

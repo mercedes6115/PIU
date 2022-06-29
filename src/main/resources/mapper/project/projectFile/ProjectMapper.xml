@@ -2,19 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.pickitup.mapper.project.projectFile.ProjectMapper">
 
-
-    <!-- 프로젝트 전체 목록   -->
-
-    <!--    <select id="getList" resultType="projectVO">-->
-    <!--    SELECT NUM, TITLE, CONTENT, COURSE, TERRAIN, POINT, APPROVAL, STARTTIME, ENDTIME, START_ADDRESS, END_ADDRESS, DISTANCE, QR, REGIST_DATE, UPDATE_DATE, STATUS, COMPANY_NUM, USER_NUM-->
-    <!--    FROM TBL_PROJECT-->
-    <!--    </select>-->
-
-
-    <!--    관리자용 프로젝트 전체 목록 불러오기-->
-
-    <!--  특정 유저가 신청한 프로젝트 목록 -->
-    <!--  특정 유저가 작성한 프로젝트 목록 -->
+    <!--  모집자 작성한 프로젝트 목록 -->
     <select id="getUserProjectList" resultType="projectVO">
     SELECT NUM, TITLE, CONTENT, COURSE, TERRAIN, POINT, APPROVAL, STARTTIME, ENDTIME, START_ADDRESS, END_ADDRESS, DISTANCE, START_QR, END_QR, REGIST_DATE, UPDATE_DATE, STATUS, COMPANY_NUM
     FROM TBL_PROJECT
@@ -22,6 +10,12 @@
     ORDER BY REGIST_DATE DESC
     </select>
 
+    <!-- 모집자가 작성한 프로젝트 목록 총 개수   -->
+    <select id="getUserProjectTotal" resultType="_int">
+        SELECT COUNT(NUM)
+        FROM TBL_PROJECT
+        WHERE COMPANY_NUM = #{companyNum}
+    </select>
 
     <!-- 프로젝트 상세 정보  -->
     <select id="getDetail" resultType="projectVO">
@@ -34,8 +28,39 @@
             WHERE tp.NUM = #{num}
     </select>
 
-    <!--    관리자용 프로젝트 전체 목록 불러오기-->
 
+    <!-- 프로젝트 등록  -->
+    <insert id="insert" parameterType="projectVO">
+        INSERT INTO TBL_PROJECT
+        <selectKey keyProperty="num" resultType="long" order="BEFORE">
+            SELECT SEQ_PROJECT.NEXTVAL FROM DUAL
+        </selectKey>
+        (NUM, TITLE, CONTENT, COURSE, TERRAIN, POINT, APPROVAL, START_ADDRESS, END_ADDRESS, DISTANCE, START_QR,
+        REGIST_DATE, UPDATE_DATE, STATUS, COMPANY_NUM, JJIM_COUNT, PROJECT_DATE, COMPANY_COMMENT,
+        SUMMARY,START_ADDRESS_DETAIL,END_ADDRESS_DETAIL,STARTTIME,ENDTIME)
+        VALUES(SEQ_PROJECT.NEXTVAL, #{title}, #{content}, #{course}, #{terrain}, #{point}, '0', #{startAddress},
+        #{endAddress}, #{distance}, NULL, SYSDATE, SYSDATE, '1' , #{companyNum}, NULL, NULL,
+        #{companyComment},NULL,#{startAddressDetail},#{endAddressDetail},TO_DATE(#{startTime},'yyyy-mm-dd
+        hh24:mi:ss'),TO_DATE(#{endTime},'yyyy-mm-dd hh24:mi:ss'))
+    </insert>
+
+
+    <!-- 프로젝트 수정  -->
+    <update id="update" parameterType="projectVO">
+        UPDATE TBL_PROJECT
+        SET
+        TITLE = #{title}, CONTENT = #{content}, COURSE = #{course}, TERRAIN = #{terrain}, POINT = #{point}, APPROVAL = #{approval}, STARTTIME = #{startTime} , ENDTIME = #{endTime},
+        START_ADDRESS = #{startAddress}, END_ADDRESS = #{endAddress}, DISTANCE = #{distance}, START_QR = #{qr}, UPDATE_DATE = SYSDATE, STATUS = #{status}
+        WHERE NUM = #{num}
+    </update>
+
+    <!-- 프로젝트 삭제 -->
+    <delete id="delete" parameterType="long">
+       DELETE FROM TBL_PROJECT WHERE NUM = #{num}
+    </delete>
+
+
+    <!--    관리자용 프로젝트 전체 목록 불러오기-->
     <select id="getProjectList" resultType="projectDTO">
         SELECT
         RN,NUM,TITLE,CONTENT,TERRAIN,POINT,APPROVAL,REGIST_DATE,START_QR,UPDATE_DATE,START_ADDRESS,END_ADDRESS,NICKNAME,STARTTIME,ENDTIME,COURSE,DISTANCE
@@ -97,6 +122,8 @@
         ORDER BY REGIST_DATE DESC
     </select>
 
+
+    <!--    관리자용 프로젝트 전체 개수 불러오기-->
     <select id="getProjectTotal" resultType="_int">
         SELECT COUNT(NUM)
         FROM
@@ -152,12 +179,47 @@
         </choose>
     </select>
 
+
+    <!-- QR 생성(관리자용)   -->
+    <select id="insertQr">
+        UPDATE TBL_PROJECT
+        SET START_QR=#{projectLink1},END_QR=#{projectLink2}
+        WHERE NUM=#{qrNum}
+    </select>
+
+    <!--  프로젝트 승인 처리(관리자용)  -->
+    <update id="approveProject">
+    UPDATE TBL_PROJECT
+    SET APPROVAL='0'
+    WHERE NUM=#{num}
+</update>
+
+    <update id="setApprovaltoContinue">
+    UPDATE TBL_PROJECT
+    SET APPROVAL='1'
+    WHERE NUM=#{num}
+</update>
+
+    <update id="disapproveProject">
+    UPDATE TBL_PROJECT
+    SET APPROVAL='2'
+    WHERE NUM=#{num}
+</update>
+
+    <update id="awaitProject">
+    UPDATE TBL_PROJECT
+    SET APPROVAL='5'
+    WHERE NUM=#{num}
+</update>
+
+
+    <!-- 모든 프로젝트 목록(메인화면)   -->
     <select id="getList" resultType="projectVO">
         SELECT NUM, TITLE, CONTENT, COURSE, TERRAIN, POINT, APPROVAL, STARTTIME, ENDTIME, START_ADDRESS, END_ADDRESS, DISTANCE, START_QR, REGIST_DATE, UPDATE_DATE, STATUS, COMPANY_NUM
         FROM TBL_PROJECT
         ORDER  BY REGIST_DATE DESC
-
     </select>
+
 
     <select id="getListToday" resultType="projectDTO">
 
@@ -169,63 +231,8 @@
         AND TO_CHAR(P.REGIST_DATE,'yyyy-mm-dd hh24:mi:ss') <= (#{endDate}||'23:59:59')
 
         ]]>
-
     </select>
 
-    <select id="insertQr">
-        UPDATE TBL_PROJECT
-        SET START_QR=#{projectLink1},END_QR=#{projectLink2}
-        WHERE NUM=#{qrNum}
-    </select>
-
-<!--    &lt;!&ndash;  특정 유저가 신청한 프로젝트 목록 &ndash;&gt;-->
-<!--    <select id="getUserProjectList" resultType="projectVO">-->
-<!--    SELECT NUM, TITLE, CONTENT, COURSE, TERRAIN, POINT, APPROVAL, STARTTIME, ENDTIME, START_ADDRESS, END_ADDRESS, DISTANCE, START_QR, REGIST_DATE, UPDATE_DATE, STATUS, COMPANY_NUM-->
-<!--    FROM TBL_PROJECT-->
-<!--    WHERE COMPANY_NUM = #{companyNum}-->
-<!--    </select>-->
-
-<!--    &lt;!&ndash; 프로젝트 상세 정보  &ndash;&gt;-->
-<!--    <select id="getDetail" resultType="projectVO">-->
-<!--     SELECT tp.NUM, tp.TITLE, tp.CONTENT, tp.COURSE, tp.TERRAIN, tp.POINT, tp.START_ADDRESS, tp.END_ADDRESS, tp.DISTANCE, tp.START_QR, tp.REGIST_DATE, tp.UPDATE_DATE,-->
-<!--            tp.STATUS , tp.COMPANY_NUM , tp.JJIM_COUNT , tp.PROJECT_DATE, tp.COMPANY_COMMENT, tp.SUMMARY,-->
-<!--            tc.NAME-->
-<!--            FROM TBL_PROJECT tp-->
-<!--            INNER JOIN TBL_COMPANY tc-->
-<!--            ON tp.COMPANY_NUM = tc.NUM-->
-<!--            WHERE tp.NUM = #{num}-->
-<!--    </select>-->
-
-    <!--    관리자용 프로젝트 전체 목록 불러오기-->
-
-    <!-- 프로젝트 등록  -->
-    <insert id="insert" parameterType="projectVO">
-        INSERT INTO TBL_PROJECT
-        <selectKey keyProperty="num" resultType="long" order="BEFORE">
-            SELECT SEQ_PROJECT.NEXTVAL FROM DUAL
-        </selectKey>
-        (NUM, TITLE, CONTENT, COURSE, TERRAIN, POINT, APPROVAL, START_ADDRESS, END_ADDRESS, DISTANCE, START_QR,
-        REGIST_DATE, UPDATE_DATE, STATUS, COMPANY_NUM, JJIM_COUNT, PROJECT_DATE, COMPANY_COMMENT,
-        SUMMARY,START_ADDRESS_DETAIL,END_ADDRESS_DETAIL,STARTTIME,ENDTIME)
-        VALUES(SEQ_PROJECT.NEXTVAL, #{title}, #{content}, #{course}, #{terrain}, #{point}, '0', #{startAddress},
-        #{endAddress}, #{distance}, NULL, SYSDATE, SYSDATE, '1' , #{companyNum}, NULL, NULL,
-        #{companyComment},NULL,#{startAddressDetail},#{endAddressDetail},TO_DATE(#{startTime},'yyyy-mm-dd
-        hh24:mi:ss'),TO_DATE(#{endTime},'yyyy-mm-dd hh24:mi:ss'))
-    </insert>
-
-    <!-- 프로젝트 수정  -->
-    <update id="update" parameterType="projectVO">
-        UPDATE TBL_PROJECT
-        SET
-        TITLE = #{title}, CONTENT = #{content}, COURSE = #{course}, TERRAIN = #{terrain}, POINT = #{point}, APPROVAL = #{approval}, STARTTIME = #{startTime} , ENDTIME = #{endTime},
-        START_ADDRESS = #{startAddress}, END_ADDRESS = #{endAddress}, DISTANCE = #{distance}, START_QR = #{qr}, UPDATE_DATE = SYSDATE, STATUS = #{status}
-        WHERE NUM = #{num}
-    </update>
-
-    <!-- 프로젝트 삭제 -->
-    <delete id="delete" parameterType="long">
-       DELETE FROM TBL_PROJECT WHERE NUM = #{num}
-    </delete>
 
     <!-- 프로젝트 찜순 목록(상위 10개)   -->
     <select id="getListJJim" resultType="projectVO">
@@ -274,17 +281,6 @@
         ]]>
     </select>
 
-    <!--    -->
-    <!--    <select id="test">-->
-    <!--        SELECT UUID, UPLOAD_PATH, FILE_NAME-->
-    <!--        FROM TBL_PROJECT_FILE-->
-    <!--        WHERE PROJECT_NUM = #{NUM}-->
-    <!--    </select>-->
-    <update id="approveProject">
-    UPDATE TBL_PROJECT
-    SET APPROVAL='0'
-    WHERE NUM=#{num}
-</update>
 
     <!--  메인 화면이동  -->
     <select id="getListCourse" resultType="projectVO">
@@ -303,23 +299,6 @@
     WHERE TERRAIN = #{course}
     </select>
 
-    <update id="setApprovaltoContinue">
-    UPDATE TBL_PROJECT
-    SET APPROVAL='1'
-    WHERE NUM=#{num}
-</update>
-
-    <update id="disapproveProject">
-    UPDATE TBL_PROJECT
-    SET APPROVAL='2'
-    WHERE NUM=#{num}
-</update>
-
-    <update id="awaitProject">
-    UPDATE TBL_PROJECT
-    SET APPROVAL='5'
-    WHERE NUM=#{num}
-</update>
 
     <select id="getListAll" resultType="projectVO">
         SELECT * FROM TBL_PROJECT
@@ -331,11 +310,6 @@
         COMPANY_NUM = (SELECT NUM FROM TBL_COMPANY WHERE NICKNAME='%'||#{searchStr}||'%')
     </select>
 
-    <select id="getUserProjectTotal" resultType="_int">
-        SELECT COUNT(NUM)
-        FROM TBL_PROJECT
-        WHERE COMPANY_NUM = #{companyNum}
-    </select>
 
 </mapper>
 

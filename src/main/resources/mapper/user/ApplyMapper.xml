@@ -36,6 +36,27 @@
         SET APPROACH='2'
         WHERE NUM=#{applynum}
     </update>
+
+    <!-- 유저 플로깅 시작  -->
+    <update id="userStart">
+        UPDATE TBL_APPLY
+        SET APPROACH='1', START_TIME= SYSDATE
+        WHERE USER_NUM = #{userNum} AND PROJECT_NUM = #{projectNum}
+    </update>
+
+    <!-- 유저 플로깅 종료   -->
+    <update id="userEnd">
+        UPDATE TBL_APPLY
+        SET APPROACH='2', END_TIME = SYSDATE
+        WHERE USER_NUM = #{userNum} AND PROJECT_NUM = #{projectNum}
+    </update>
+
+    <!-- 유저 플로깅 완료   -->
+    <update id="userFinish">
+        UPDATE TBL_APPLY
+        SET APPROACH='3'
+        WHERE NUM = #{num}
+    </update>
 </mapper>
 
 

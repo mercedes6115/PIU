@@ -1,10 +1,8 @@
 package com.example.pickitup.controller;
 
-import com.example.pickitup.domain.vo.project.projectFile.ProjectFileVO;
+
 import com.example.pickitup.domain.vo.project.projectReview.ProjectReviewFileVO;
 import com.example.pickitup.service.ProjectService;
-import com.example.pickitup.service.project.projectFile.ProjectFileService;
-import com.example.pickitup.service.project.projectReview.ProjectReviewFileSerivce;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.FileSystemResource;
@@ -34,7 +32,6 @@ import java.util.UUID;
 public class ProjectReviewRestController {
 
     private final ProjectService projectService;
-    private final ProjectReviewFileSerivce projectReviewFileSerivce;
 
     @PostMapping("/upload")
     @ResponseBody
@@ -67,13 +64,10 @@ public class ProjectReviewRestController {
 //                fileVO.setImage(true);
 //            }
             files.add(projectReviewFileVO);
-            projectService.testFile(projectReviewFileVO);
         }
 
         return files;
     }
-
-
 
     @GetMapping("/display")
     @ResponseBody
@@ -114,10 +108,9 @@ public class ProjectReviewRestController {
         if(file.exists()){ file.delete(); }
     }
 
-    @GetMapping("/list")
+    @GetMapping("/list/{reviewNum}")
     @ResponseBody
-    public List<ProjectReviewFileVO> getList(Long boardBno){
-        log.info("get file list....... : " + boardBno);
-        return projectReviewFileSerivce.findProjectReviewNum(boardBno);
+    public List<ProjectReviewFileVO> getList(@PathVariable("reviewNum") Long reviewNum){
+        return projectService.getReviewFileList(reviewNum);
     }
 }

@@ -12,6 +12,7 @@ import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.ProjectCriteria;
 import com.example.pickitup.domain.vo.dto.ProjectDTO;
 import com.example.pickitup.domain.vo.dto.ProjectMainDTO;
+import com.example.pickitup.domain.vo.dto.ReviewDTO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectFileVO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaCommentVO;
@@ -51,16 +52,10 @@ public class ProjectService {
     }
 
 
-
+    // QR생성 (관리자용)
     public boolean insertQr(Long qrNum, String projectLink1,String projectLink2 ){
         return projectDAO.insertQr(qrNum,projectLink1,projectLink2);
     }
-
-    // 프로젝트 목록(특정 단체 유저)
-//    public List<ProjectVO> getProjectList(Long companyNum, ProjectCriteria projectCriteria){
-//        return projectDAO.getUserProjectList(companyNum, projectCriteria);
-//    }
-
 
     // 관리자용 프로젝트 전체 목록
     public List<ProjectDTO> getProjectList(ProjectCriteria projectCriteria){
@@ -71,36 +66,47 @@ public class ProjectService {
         return projectDAO.getListToday(startDate,endDate);
     }
 
-    // 프로젝트 상세보기
-    public ProjectVO read(Long num){
-        return projectDAO.read(num);
-    }
-
     public int getProjectTotal(ProjectCriteria projectCriteria){
         return projectDAO.getProjectTotal(projectCriteria);
     }
 
+
+    // 프로젝트 목록(특정 단체 유저)
+    public List<ProjectVO> getUserProjectList(Long companyNum, Criteria criteria){
+        return projectDAO.getUserProjectList(companyNum, criteria);
+    }
+
+
+    // 모집자가 만든 프로젝트 개수
+    public int getUserProjectTotal(Long companyNum){
+        return projectDAO.getUserProjectTotal(companyNum);
+    }
+
+    // 프로젝트 상세보기
+    public ProjectVO read(Long num){
+        return projectDAO.read(num);
+    }
 
     // 프로젝트 등록
 
     public List<ProjectFileVO> getList1(Long num) {
         return projectFileDAO.findByProjectNum(num);
     }
-//    하나의 트랜잭션에 여러 개의 DML이 있을 경우 한 개라도 오류 시 전체 ROLLBACK
 
+    // 하나의 트랜잭션에 여러 개의 DML이 있을 경우 한 개라도 오류 시 전체 ROLLBACK
     @Transactional(rollbackFor = Exception.class)
-    public void register(ProjectVO projectVO) {
+    public void registerProject (ProjectVO projectVO) {
         //게시글 추가
         projectDAO.register(projectVO);
-        log.info("============"+projectVO.getNum());
         //게시글에 업로드된 첨부파일 정보 중 게시글 번호를 따로 추가
         if(projectVO.getFileList() != null) {
-            projectVO.getFileList().forEach(projectfileVO -> {
-                projectfileVO.setProjectNum(projectVO.getNum()+1l);
-                projectFileDAO.register(projectfileVO);
+            projectVO.getFileList().forEach(projectFileVO -> {
+                projectFileVO.setProjectNum(projectVO.getNum());
+                projectFileDAO.register(projectFileVO);
             });
         }
     }
+
 
     // 프로젝트 수정
     public boolean update(ProjectVO projectVO){
@@ -112,6 +118,11 @@ public class ProjectService {
         return projectDAO.remove(num);
     }
 
+    // 프로젝트 사진 가져오기
+    public List<ProjectFileVO>getProjectFileList(Long num){
+        return projectFileDAO.findByProjectNum(num);
+    }
+
     // QnA 등록
     public void registerQnA(ProjectQnaVO projectQnaVO){
         projectQnaDAO.register(projectQnaVO);
@@ -121,11 +132,6 @@ public class ProjectService {
     public List<ProjectQnaVO> getQnAList(Long projectNum){
         return projectQnaDAO.getList(projectNum);
     }
-
-//    // QnA 댓글 등록
-//    public ProjectQnaCommentVO getComment (Long qnaNum){
-//        return projectQnaCommentDAO.getComment(qnaNum);
-//    }
 
     // QnA 댓글 목록
     public List<ProjectQnaCommentVO> getCommentList(Long qnaNum){
@@ -147,35 +153,7 @@ public class ProjectService {
         applyDAO.register(applyVO);
     }
 
-    // 프로젝트 참가자 상태 변경
-
-
-//
-//    // 리뷰 등록
-//    @Transactional(rollbackFor = Exception.class)
-//    public void registerReview(ProjectReivewVO projectReivewVO) {
-//        //게시글 추가
-//        boardDAO.register(boardVO);
-//        //게시글에 업로드된 첨부파일 정보 중 게시글 번호를 따로 추가
-//        if(boardVO.getFileList() != null) {
-//            boardVO.getFileList().forEach(fileVO -> {
-//                fileVO.setBoardBno(boardVO.getBoardBno());
-//                fileDAO.register(fileVO);
-//            });
-//        }
-//    }
-
-
-    public int getUserProjectTotal(Long companyNum){
-        return projectDAO.getUserProjectTotal(companyNum);
-    }
-
-    @Transactional
-    public boolean setApproval(Long projectNum, Long applyNum){
-        applyDAO.setApproachToContinue(applyNum);
-        return projectDAO.setApprovaltoContinue(projectNum);
-    }
-    // 파일
+    // 리뷰 등록
     @Transactional(rollbackFor = Exception.class)
     public void registerReview(ProjectReviewVO projectReviewVO) {
         //게시글 추가
@@ -190,29 +168,33 @@ public class ProjectService {
         }
     }
 
-    public List<ProjectVO> getUserProjectList(Long companyNum, Criteria criteria){
-        return projectDAO.getUserProjectList(companyNum, criteria);
+    // 리뷰 사진 가져오기
+    public List<ProjectReviewFileVO>getReviewFileList(Long num){
+        return projectReviewFileDAO.findProjectReviewNum(num);
     }
 
-    // 하나의 트랜잭션에 여러 개의 DML이 있을 경우 한 개라도 오류 시 전체 ROLLBACK
-    @Transactional(rollbackFor = Exception.class)
-    public void registerProject (ProjectVO projectVO) {
-        //게시글 추가
-        projectDAO.register(projectVO);
-        //게시글에 업로드된 첨부파일 정보 중 게시글 번호를 따로 추가
-        if(projectVO.getFileList() != null) {
-            projectVO.getFileList().forEach(projectFileVO -> {
-                projectFileVO.setProjectNum(projectVO.getNum());
-                projectFileDAO.register(projectFileVO);
-            });
-        }
+    // 리뷰 정보 가져오기(수정용)
+    public ReviewDTO readReview(Long reviewNum){
+        return projectReviewDAO.readReview(reviewNum);
+    }
+
+    // 리뷰 삭제
+    public void removeReview(Long reviewNum){
+        projectReviewDAO.remove(reviewNum);
+    }
+
+    // 리뷰 목록
+    public List<ReviewDTO> getProjectReviewList(Long projectNum){
+        return projectReviewDAO.getReviewList(projectNum);
     }
 
 
-    // 파일 테스트
-    public void testFile(ProjectReviewFileVO projectReviewFileVO){
-        projectReviewFileDAO.register(projectReviewFileVO);
+    @Transactional
+    public boolean setApproval(Long projectNum, Long applyNum){
+        applyDAO.setApproachToContinue(applyNum);
+        return projectDAO.setApprovaltoContinue(projectNum);
     }
+
 
     // 프로젝트 목록(찜순)
     public List<ProjectMainDTO> getListJJim() throws ParseException {
