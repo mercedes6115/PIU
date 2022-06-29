@@ -65,6 +65,7 @@ public class GroupController {
     }
 
 
+
     // 그룹 프로필 수정 폼
     @PostMapping("/modifyForm")
     public String modifyForm( CompanyVO companyVO, Model model){
