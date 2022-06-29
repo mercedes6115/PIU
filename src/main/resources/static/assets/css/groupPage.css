@@ -181,7 +181,7 @@ body {
     width: 216px;
     height: 100%;
     background-color: rgb(255, 255, 255);
-    border-color: rgb(229, 229, 229);
+    border-color: rgb(229, 229, 229);    
     top: 72px;
     left: 0px;
     position: fixed;
@@ -799,14 +799,14 @@ body {
     margin-right: 50px;
     text-overflow: ellipsis;
     white-space: nowrap;
-
+    
     min-width: 0;
 }
 
 .sbStateFrame, .sbTitleForm, .sbTerrainForm, .sbImageFrame, .sbCourseFrame, .sbPointFrame,  .sbMoreFrame, .sbDateFrame {
     padding: 24px 12px;
     font-size: 13px;
-
+    
 }
 
 .sbImageForm {
@@ -1393,7 +1393,7 @@ body {
     font-weight: 700;
     line-height: 1.125rem;
     font-family: 'Noto Sans KR', sans-serif;
-
+    
 }
 
 .nDetailDate {
@@ -1915,8 +1915,8 @@ option:disabled {
 
 .modal-content{
     background-color: white;
-    width: 900px;
-    height: 400px;
+    width: 800px;
+    height: 800px;
 }
 
 .qrImg{
@@ -1929,5 +1929,8 @@ option:disabled {
     font-size: 30px;
     display: block;
     margin-top: 10px;
-    margin-left: 20px;
+}
+
+.qrtitle{
+    text-align: center;
 }
