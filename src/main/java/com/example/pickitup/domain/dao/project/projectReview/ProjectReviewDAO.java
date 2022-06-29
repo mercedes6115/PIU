@@ -26,6 +26,8 @@ public class ProjectReviewDAO {
         return projectReviewMapper.getDetail(num);
     }
 
+
+
     // 리뷰 상세보기2
     public ReviewDTO readReview(Long num){
         return projectReviewMapper.getReviewDetail(num);

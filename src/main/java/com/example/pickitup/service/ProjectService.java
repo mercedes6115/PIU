@@ -57,7 +57,6 @@ public class ProjectService {
         return projectDAO.insertQr(qrNum,projectLink1,projectLink2);
     }
 
-
     // 관리자용 프로젝트 전체 목록
     public List<ProjectDTO> getProjectList(ProjectCriteria projectCriteria){
         return projectDAO.getProjectList(projectCriteria);
@@ -71,18 +70,12 @@ public class ProjectService {
         return projectDAO.getProjectTotal(projectCriteria);
     }
 
-//
-//     프로젝트 목록(특정 단체 유저)
-//    public List<ProjectVO> getProjectList(Long companyNum, ProjectCriteria projectCriteria){
-//        return projectDAO.getUserProjectList(companyNum, projectCriteria);
-//    }
-//
-
 
     // 프로젝트 목록(특정 단체 유저)
-    public List<ProjectVO> getProjectList(Long companyNum, Criteria criteria){
+    public List<ProjectVO> getUserProjectList(Long companyNum, Criteria criteria){
         return projectDAO.getUserProjectList(companyNum, criteria);
     }
+
 
     // 모집자가 만든 프로젝트 개수
     public int getUserProjectTotal(Long companyNum){
@@ -123,6 +116,11 @@ public class ProjectService {
     // 프로젝트 삭제
     public boolean remove(Long num){
         return projectDAO.remove(num);
+    }
+
+    // 프로젝트 사진 가져오기
+    public List<ProjectFileVO>getProjectFileList(Long num){
+        return projectFileDAO.findByProjectNum(num);
     }
 
     // QnA 등록
@@ -170,9 +168,14 @@ public class ProjectService {
         }
     }
 
+    // 리뷰 사진 가져오기
+    public List<ProjectReviewFileVO>getReviewFileList(Long num){
+        return projectReviewFileDAO.findProjectReviewNum(num);
+    }
+
     // 리뷰 정보 가져오기(수정용)
     public ReviewDTO readReview(Long reviewNum){
-        return projectReviewDAO.read(reviewNum);
+        return projectReviewDAO.readReview(reviewNum);
     }
 
     // 리뷰 삭제
@@ -192,12 +195,6 @@ public class ProjectService {
         return projectDAO.setApprovaltoContinue(projectNum);
     }
 
-
-
-    // 파일 테스트
-    public void testFile(ProjectReviewFileVO projectReviewFileVO){
-        projectReviewFileDAO.register(projectReviewFileVO);
-    }
 
     // 프로젝트 목록(찜순)
     public List<ProjectMainDTO> getListJJim() throws ParseException {

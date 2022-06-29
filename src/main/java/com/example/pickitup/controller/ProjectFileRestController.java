@@ -1,10 +1,8 @@
 package com.example.pickitup.controller;
 
 
-import com.example.pickitup.domain.vo.product.productFile.ProductFileVO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectFileVO;
 import com.example.pickitup.service.ProjectService;
-import com.example.pickitup.service.project.projectFile.ProjectFileService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnailator;
@@ -35,7 +33,6 @@ import java.util.UUID;
 public class ProjectFileRestController {
 
     private final ProjectService projectService;
-    private final ProjectFileService projectFileService;
 
 
     @PostMapping("/upload")
@@ -175,8 +172,8 @@ public class ProjectFileRestController {
 
     @GetMapping("/list/{projectNum}")
     @ResponseBody
-    public List<ProjectFileVO> findByProductNum(@PathVariable("projectNum") Long projectNum){
-        return projectFileService.findByProjectNum(projectNum);
+    public List<ProjectFileVO> getList(@PathVariable("projectNum") Long projectNum){
+        return projectService.getProjectFileList(projectNum);
     }
 }
 
