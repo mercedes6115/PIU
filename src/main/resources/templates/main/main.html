@@ -149,7 +149,7 @@
                                     <li th:object="${JJimList}">
                                         <div class="plogging-thumbnail-wrap">
                                             <!--                                        <img src="/images/poster1.png">-->
-                                            <a th:href="@{/project/projectDetail}">
+                                            <a th:href="@{/project/projectDetail(num=*{num})}">
                                             <span class="Jjim-image" th:href="*{num}">
                                         </span></a>
                                         </div>
