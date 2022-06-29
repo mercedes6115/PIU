@@ -462,6 +462,11 @@
         WHERE NUM=(SELECT PRODUCT_QNA_NUM FROM TBL_ADMIN_BOARD WHERE TBL_ADMIN_BOARD.NUM = #{num})
     </delete>
 
+    <delete id="projectQnaDelete">
+        DELETE FROM TBL_PROJECT_QNA
+        WHERE NUM=(SELECT PROJECT_QNA_NUM FROM TBL_ADMIN_BOARD WHERE TBL_ADMIN_BOARD.NUM = #{num})
+    </delete>
+
     <update id="noticeCancel">
         UPDATE TBL_ADMIN_BOARD
         SET STATUS= '2'
@@ -543,12 +548,31 @@
          #{content}, #{userNum}, '1', '1', #{projectQnaNum, jdbcType=VARCHAR}, (SELECT TBL_PRODUCT_QNA.NUM FROM TBL_PRODUCT_QNA  WHERE TBL_PRODUCT_QNA.NUM =(SELECT DISTINCT FIRST_VALUE(NUM) OVER (ORDER BY REGIST_DATE DESC) FROM TBL_PRODUCT_QNA) AND TBL_PRODUCT_QNA.PRODUCT_NUM =#{productNum}))
     </insert>
 
+    <insert id="qnaProjectSave" parameterType="adminQnaDTO">
+        <selectKey keyProperty="num" resultType="long" order="BEFORE">
+            SELECT SEQ_ADMIN_BOARD.NEXTVAL FROM DUAL
+        </selectKey>
+        INSERT INTO TBL_ADMIN_BOARD
+        (NUM, CATEGORY, TITLE, CONTENT, USER_NUM, STATUS, ANSWER_STATUS, PROJECT_QNA_NUM, PRODUCT_QNA_NUM)
+        VALUES(#{num}, '1',
+        (SELECT DISTINCT TBL_PROJECT.TITLE NAME FROM TBL_PROJECT,TBL_PROJECT_QNA  WHERE TBL_PROJECT_QNA.PROJECT_NUM = TBL_PROJECT.NUM AND TBL_PROJECT.NUM =#{projectNum}),
+        #{content}, #{userNum}, '1', '1', (SELECT TBL_PROJECT_QNA.NUM FROM TBL_PROJECT_QNA  WHERE TBL_PROJECT_QNA.NUM =(SELECT DISTINCT FIRST_VALUE(NUM) OVER (ORDER BY REGIST_DATE DESC) FROM TBL_PROJECT_QNA) AND TBL_PROJECT_QNA.PROJECT_NUM =#{projectNum}) ,#{productQnaNum, jdbcType=VARCHAR})
+    </insert>
+
     <update id="qnaStoreModify">
         UPDATE TBL_ADMIN_BOARD
         SET
         CONTENT =#{content},
         UPDATE_DATE=SYSDATE
         WHERE PRODUCT_QNA_NUM =#{num}
+    </update>
+
+    <update id="qnaProjectModify">
+        UPDATE TBL_ADMIN_BOARD
+        SET
+        CONTENT =#{content},
+        UPDATE_DATE=SYSDATE
+        WHERE PROJECT_QNA_NUM =#{num}
     </update>
 
     <select id="getMyProjectQna" resultType="projectQnaVO">
