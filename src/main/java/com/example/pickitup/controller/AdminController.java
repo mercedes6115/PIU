@@ -73,16 +73,19 @@ public class AdminController {
     }
 
     @PostMapping("/qrEndLogin")
-    public void qrEndCheck(String email, String password,HttpServletRequest request,Model model){
+    public String qrEndCheck(String email, String password,HttpServletRequest request,Model model){
 
         // 이메일과 비밀번호를 통해 userDTO를 불러옴
-        UserDTO userDTO=tempUserSerivce.loginUser(email, password);
+        UserDTO userDTO = tempUserSerivce.loginUser(email, password);
 
         Long userNum = userDTO.getNum();
 
         log.info("============="+userNum);
 
         QrDTO qrDTO = tempUserSerivce.getQrInfo(userNum);
+        if(qrDTO.getApproach().equals("4")){
+            return "/admin/wrong";
+        }
 
         log.info(qrDTO.getUserNum() + "===================");
         log.info(qrDTO.getProjectApproval() + "===================");
@@ -92,7 +95,7 @@ public class AdminController {
         log.info(qrDTO.getEndQr() + "===================");
         log.info(qrDTO.getStartQr() + "===================");
         log.info(qrDTO.getApplyNum() + "===================");
-            // DTO에서 필요한 정보들을 빼냄
+        // DTO에서 필요한 정보들을 빼냄
         Long applyNum = qrDTO.getApplyNum();
         int user_point=Integer.parseInt(qrDTO.getUserPoint());
         int add_point=Integer.parseInt(qrDTO.getAddPoint());
@@ -104,11 +107,16 @@ public class AdminController {
         request=((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
         log.info(request.getRemoteAddr()+"==========");
         model.addAttribute("ipV4",request.getRemoteAddr());
-
+        return "/main/main";
     }
 
+
+    @GetMapping("/avatar")
+    public void avatar(){
+
+    }
     @PostMapping("/qrStartLogin")
-    public void qrStartCheck(String email, String password,HttpServletRequest request,Model model){
+    public String qrStartCheck(String email, String password,HttpServletRequest request,Model model){
 
         // 이메일과 비밀번호를 통해 userDTO를 불러옴
         UserDTO userDTO=tempUserSerivce.loginUser(email, password);
@@ -118,6 +126,7 @@ public class AdminController {
         log.info("============="+userNum);
 
         QrDTO qrDTO = tempUserSerivce.getQrInfo(userNum);
+
 
         log.info(qrDTO.getUserNum() + "===================");
         log.info(qrDTO.getProjectApproval() + "===================");
@@ -134,10 +143,12 @@ public class AdminController {
 
         projectService.setApproval(projectNum,applyNum);
 
+
+
         request=((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
         log.info(request.getRemoteAddr()+"==========");
         model.addAttribute("ipV4",request.getRemoteAddr());
-
+        return "/main/main";
     }
 
 
@@ -171,6 +182,11 @@ public class AdminController {
 
     }
 
+
+    @GetMapping("/wrong")
+    public void wrong(){
+
+    }
     // 관리자 메인
     @GetMapping("/main")
     public void main(Model model,OrderCriteria orderCriteria){

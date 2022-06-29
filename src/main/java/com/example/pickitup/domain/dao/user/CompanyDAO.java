@@ -57,4 +57,9 @@ public class CompanyDAO {
         return companyMapper.companyApprovalEnable(num);
     }
 
+    // 회원 정보 수정
+    public void update(CompanyVO companyVO){
+        companyMapper.update(companyVO);
+    }
+
 }

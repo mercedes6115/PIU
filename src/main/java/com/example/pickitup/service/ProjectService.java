@@ -166,6 +166,10 @@ public class ProjectService {
 //    }
 
 
+    public int getUserProjectTotal(Long companyNum){
+        return projectDAO.getUserProjectTotal(companyNum);
+    }
+
     @Transactional
     public boolean setApproval(Long projectNum, Long applyNum){
         applyDAO.setApproachToContinue(applyNum);
@@ -184,6 +188,10 @@ public class ProjectService {
                 projectReviewFileDAO.register(projectReviewFileVO);
             });
         }
+    }
+
+    public List<ProjectVO> getUserProjectList(Long companyNum, Criteria criteria){
+        return projectDAO.getUserProjectList(companyNum, criteria);
     }
 
     // 하나의 트랜잭션에 여러 개의 DML이 있을 경우 한 개라도 오류 시 전체 ROLLBACK
