@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
@@ -47,7 +48,7 @@ public class StoreController {
     private final TempAdminService tempAdminService;
     // 스토어 메인페이지
     @GetMapping("/main")
-    public void storeMain(HttpSession session, String category, Model model){
+    public void storeMain(HttpSession session, String category, Model model, HttpServletRequest request){
         int checkLogin=3;
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
         model.addAttribute("fileName",session.getAttribute("fileName"));
@@ -60,6 +61,7 @@ public class StoreController {
         model.addAttribute("productsCount",productService.count());
         model.addAttribute("productlist",productService.getList(category));
         log.info("유저 넘버 : " + userNum);
+        log.info("========================="+request.getRequestURI().split("/")[1]);
     }
 
     @ResponseBody

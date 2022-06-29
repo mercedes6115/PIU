@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import javax.servlet.http.HttpSession;
 
+import java.awt.event.WindowFocusListener;
 import java.text.ParseException;
 
 @Controller
@@ -31,7 +32,6 @@ public class MainController {
     public String main(HttpSession session, Model model,HttpServletRequest request) throws ParseException {
        int checkLogin=0;
         System.out.println("=============="+request.getRequestURI().split("/")[1]);
-
 
         if(session.getAttribute("token")!=null){
 //            log.info("tokentokentokentokentokentokentoken");
@@ -67,14 +67,27 @@ public class MainController {
 
 
 
-    @GetMapping("/list/{course}")
-    public String List(@PathVariable("course") String course, Model model) throws ParseException {
-        model.addAttribute("courseList", projectService.getListCourse(course));  // 내용가져오기
-        if(course.equals("3")){
+//    @GetMapping("/list/{course}")
+//    public String List(@PathVariable("course") String course, Model model) throws ParseException {
+//        model.addAttribute("courseList", projectService.getListCourse(course));  // 내용가져오기
+//        if(course.equals("평지")){
+//            model.addAttribute("courseType", "평지 타입");
+//        }else if(course.equals("바다")){
+//            model.addAttribute("courseType", "바다 타입");
+//        }else if(course.equals("산")){
+//            model.addAttribute("courseType", "산 타입");
+//        }
+//        return "/main/list";
+//    }
+
+    @GetMapping("/list/{terrain}")
+    public String List(@PathVariable("terrain") String terrain, Model model) throws ParseException {
+        model.addAttribute("courseList", projectService.getListTerrain(terrain));  // 내용가져오기
+        if(terrain.equals("1")){
             model.addAttribute("courseType", "평지 타입");
-        }else if(course.equals("2")){
+        }else if(terrain.equals("2")){
             model.addAttribute("courseType", "바다 타입");
-        }else if(course.equals("1")){
+        }else if(terrain.equals("3")){
             model.addAttribute("courseType", "산 타입");
         }
         return "/main/list";
