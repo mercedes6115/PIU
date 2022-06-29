@@ -111,6 +111,11 @@ public class UserDAO {
         userMapper.qnaStoreSave(adminQnaDTO);
     }
 
+    // 유저가 상품 문의 수정했을때 adminboard 에도 수정
+    public boolean qnaStoreModify(AdminQnaDTO adminQnaDTO) {
+        return userMapper.qnaStoreModify(adminQnaDTO);
+    }
+
     // 관리자가 게시물 목록에서 상품문의 글 지웠을때 productQnA 테이블에서도 삭제
     public void productQnaDelete(Long num) {
         userMapper.productQnaDelete(num);
