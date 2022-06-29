@@ -224,7 +224,7 @@ public class TempUserSerivce {
         }
         for(OrderVO orderVO : orderVOList) {
             ProductVO productVO = productDAO.getDetail(orderVO.getProductNum());
-            pointDTOList.add(new PointDTO(productVO.getName(), orderVO.getRegistDate(), productVO.getPrice(), "1"));
+            pointDTOList.add(new PointDTO(productVO.getName(), orderVO.getRegistDate(), orderVO.getTotal(), "1"));
             // 상품은 category = 1
         }
         pointDTOList.sort(Comparator.comparing(PointDTO::getPointDate).reversed());
