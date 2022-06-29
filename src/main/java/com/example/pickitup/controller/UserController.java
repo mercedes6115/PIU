@@ -235,9 +235,10 @@ public class UserController {
 
     // 로그인
     @GetMapping("/login")
-    public void login(){
+    public String login(){
 //        boolean checkEmail=true;
 //        model.addAttribute("")
+        return "/user/login";
     }
 
     // 로그인 폼
@@ -262,6 +263,8 @@ public class UserController {
             session.setAttribute("category", userDTO.getCategory());
             session.setAttribute("fileName", userVO.getProfileFileName());
             session.setAttribute("uploadPath",userVO.getProfileUploadPath());
+            log.info("사진 : " + userVO.getProfileFileName());
+            log.info("파일 경로 : " + userVO.getProfileUploadPath());
             log.info(session.getAttribute("category").toString());
 
             log.info("사진 : " + userVO.getProfileFileName());
@@ -278,9 +281,11 @@ public class UserController {
 
 
     // 회원탈퇴
-    @DeleteMapping("/delete")
-    public void delete(){
-
+    @GetMapping("/delete")
+    public String delete(HttpSession session){
+        Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        tempUserSerivce.removeUser(userNum);
+        return login();
     }
 
     @GetMapping("/guide")

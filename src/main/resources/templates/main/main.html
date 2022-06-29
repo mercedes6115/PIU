@@ -160,7 +160,7 @@
                                             <div class="deadline-text">프로젝트 시작까지</div>
                                             <div class="d-day" th:text="*{projectDate}">D-3</div>
                                         </div>
-                                        <div class="plogging-location-text" th:text="*{terrain}"></div>
+                                        <div class="plogging-location-text" th:if="*{terrain} == '1'"></div>
                                         <div class="plogging-msg-text" th:text="*{title}"></div>
                                         <!-- <div class="jjims-and-likes" ><div class="last-wrap"></div>12312</div> -->
                                         <div class="jjims-and-likes">
@@ -352,7 +352,7 @@
             type: "get",
             success: function (files) {
                 strImg += "<picture class='join-plogging-main-image'>";
-                strImg += "<img src='/projectFile/display1?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_" + files[0].fileName + "'>";
+                strImg += "<img src='/projectFile/display1?fileName=" + files[0].uploadPath + "/" + files[0].uuid + "_" + files[0].fileName + "'>";
                 strImg += "</picture>";
                 $(h).html(strImg);
                 strImg = "";

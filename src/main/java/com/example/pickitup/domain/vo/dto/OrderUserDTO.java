@@ -2,10 +2,12 @@ package com.example.pickitup.domain.vo.dto;
 
 import com.example.pickitup.domain.vo.OrderCriteria;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
 @Data
+@NoArgsConstructor
 public class OrderUserDTO {
     private OrderCriteria orderCriteria;
     private Long orderNum;

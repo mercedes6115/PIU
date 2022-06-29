@@ -292,7 +292,7 @@
     </select>
 
     <select id="orderProductDetail" resultType="productDTO">
-        SELECT prod.NAME as itemName, ord.COUNTING as totalitems, ord.TOTAL as totalpayment, prod.PRICE as ogprice
+        SELECT prod.NAME as itemName, ord.COUNTING as totalitems, ord.TOTAL as totalpayment, ord.ADDRESS, ord.ADDRESS_DETAIL, ord.PHONE, prod.PRICE as ogprice, ord.ORDER_NAME as NICKNAME
         FROM TBL_PRODUCT prod, TBL_ORDER ord
         WHERE ord.NUM = #{orderNum}  AND ord.PRODUCT_NUM = prod.NUM
     </select>

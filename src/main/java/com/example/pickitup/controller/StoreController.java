@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
@@ -47,18 +48,20 @@ public class StoreController {
     private final TempAdminService tempAdminService;
     // 스토어 메인페이지
     @GetMapping("/main")
-    public void storeMain(HttpSession session, String category, Model model){
+    public void storeMain(HttpSession session, String category, Model model, HttpServletRequest request){
         int checkLogin=3;
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
         model.addAttribute("fileName",session.getAttribute("fileName"));
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
+        model.addAttribute("userNum", userNum);
         model.addAttribute("checkLogin",checkLogin);
-
         if(category == ""){
             category = null;
         }
         model.addAttribute("productsCount",productService.count());
         model.addAttribute("productlist",productService.getList(category));
+        log.info("유저 넘버 : " + userNum);
+        log.info("========================="+request.getRequestURI().split("/")[1]);
     }
 
     @ResponseBody
@@ -510,9 +513,24 @@ public class StoreController {
         model.addAttribute("checkLogin",checkLogin);
 
         Long orderNumber = Long.parseLong(orderNum);
-        model.addAttribute("product", tempUserSerivce.boughtOrderDetail(orderNumber));
+        OrderUserDTO orderUserDTO = new OrderUserDTO();
         OrderVO orderVO = orderService.findByOrderNum(orderNumber);
+        ProductDTO productDTO = tempUserSerivce.boughtOrderDetail(orderNumber);
+        log.info("유저 닉네임 : " + productDTO.getNickName());
+        orderUserDTO.setUserNum(orderVO.getUserNum());
+        orderUserDTO.setNickName(productDTO.getNickName());
+        orderUserDTO.setPhone(productDTO.getPhone());
+        orderUserDTO.setCounting(Long.parseLong(productDTO.getTotalitems()));
+        orderUserDTO.setTotal(Long.parseLong(productDTO.getTotalpayment()));
+        orderUserDTO.setProductName(productDTO.getItemname());
+        orderUserDTO.setAddressComment(productDTO.getAddressComment());
+        orderUserDTO.setAddress(productDTO.getAddress());
+        orderUserDTO.setAddressDetail(productDTO.getAddressDetail());
+        log.info("유저 닉네임 : " + orderUserDTO.getNickName());
+        log.info("orderInfo : " + orderUserDTO);
+        model.addAttribute("product", productDTO);
         model.addAttribute("addressComment",orderVO.getAddressComment());
+        model.addAttribute("orderinfo",orderUserDTO);
         model.addAttribute("userinfo", tempUserSerivce.readUserInfo(orderVO.getUserNum()));
     }
 }

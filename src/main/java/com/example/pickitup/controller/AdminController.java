@@ -385,7 +385,7 @@ public class AdminController {
 
     // 관리자 상품 목록
     @GetMapping("/productList")
-    public void productList(ProductCriteria productCriteria, Model model){
+    public String productList(ProductCriteria productCriteria, Model model){
             log.info("=============");
             log.info("===Product===");
             log.info("=============");
@@ -409,7 +409,7 @@ public class AdminController {
 
             model.addAttribute( "productList",tempAdminService.getProductList(productCriteria));
             model.addAttribute("productPageDTO",new ProductPageDTO(productCriteria,(tempAdminService.getTotal())));
-
+            return "/admin/productList";
     }
 
     // 관리자 상품 등록
@@ -420,10 +420,10 @@ public class AdminController {
 
     // 관리자 상품 등록
     @PostMapping("/productRegister")
-    public String productRegisterForm(ProductVO productVO){
+    public String productRegisterForm(ProductVO productVO, ProductCriteria productCriteria, Model model){
         adminProductService.register(productVO);
 
-        return "admin/productList";
+        return productList(productCriteria, model);
     }
 
     @PostMapping("/deleteProduct")

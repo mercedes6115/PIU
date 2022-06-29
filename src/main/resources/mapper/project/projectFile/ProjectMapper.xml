@@ -92,7 +92,7 @@
                 AND (UPDATE_DATE BETWEEN #{startDate} AND #{endDate})
             </when>
         </choose>
-
+        ORDER BY REGIST_DATE DESC
     </select>
 
     <select id="getProjectTotal" resultType="_int">
@@ -231,7 +231,7 @@
                 SELECT *
                 FROM (
                     SELECT * FROM TBL_PROJECT
-                    WHERE PROJECT_DATE >= SYSDATE
+                    WHERE STARTTIME >= SYSDATE
                     ORDER BY JJIM_COUNT DESC
                     )
                     WHERE ROWNUM <=10
@@ -247,7 +247,7 @@
                 SELECT *
                 FROM (
                     SELECT * FROM TBL_PROJECT
-                    WHERE PROJECT_DATE >= SYSDATE
+                    WHERE STARTTIME >= SYSDATE
                     ORDER BY POINT DESC
                     )
                     WHERE ROWNUM <=10
@@ -265,7 +265,7 @@
                 (SELECT PROJECT_NUM, COUNT(PROJECT_NUM) APPLYCOUNT  FROM TBL_APPLY a
                 GROUP BY a.PROJECT_NUM) a JOIN TBL_PROJECT p
                 ON a.PROJECT_NUM = p.NUM
-                WHERE PROJECT_DATE >= SYSDATE
+                WHERE STARTTIME >= SYSDATE
                 ORDER BY APPLYCOUNT DESC)
             WHERE ROWNUM <=10
 
@@ -288,9 +288,17 @@
     <select id="getListCourse" resultType="projectVO">
     SELECT * FROM
         (SELECT * FROM TBL_PROJECT
-        WHERE project_Date >= SYSDATE
-        ORDER BY PROJECT_DATE DESC)
+        WHERE STARTTIME >= SYSDATE
+        ORDER BY STARTTIME DESC)
     WHERE COURSE = #{course}
+    </select>
+
+    <select id="getListTerrain" resultType="projectVO">
+        SELECT * FROM
+        (SELECT * FROM TBL_PROJECT
+        WHERE STARTTIME >= SYSDATE
+        ORDER BY STARTTIME DESC)
+    WHERE TERRAIN = #{course}
     </select>
 
     <update id="setApprovaltoContinue">
