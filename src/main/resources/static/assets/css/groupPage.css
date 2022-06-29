@@ -181,7 +181,7 @@ body {
     width: 216px;
     height: 100%;
     background-color: rgb(255, 255, 255);
-    border-color: rgb(229, 229, 229);    
+    border-color: rgb(229, 229, 229);
     top: 72px;
     left: 0px;
     position: fixed;
@@ -799,14 +799,14 @@ body {
     margin-right: 50px;
     text-overflow: ellipsis;
     white-space: nowrap;
-    
+
     min-width: 0;
 }
 
 .sbStateFrame, .sbTitleForm, .sbTerrainForm, .sbImageFrame, .sbCourseFrame, .sbPointFrame,  .sbMoreFrame, .sbDateFrame {
     padding: 24px 12px;
     font-size: 13px;
-    
+
 }
 
 .sbImageForm {
@@ -1107,7 +1107,7 @@ body {
 }
 
 
-.moveProjectModify, .deleteProjectBtn {
+.moveProjectModify, .deleteProjectBtn, .moreQR {
     text-decoration: none;
     color: black;
     display: flex;
@@ -1115,6 +1115,8 @@ body {
     background-color: white;
     border: 1px silver solid;
     font-size: 8px;
+    margin-left: 6px;
+    padding: 6px;
 }
 
 .modifyForm {
@@ -1391,7 +1393,7 @@ body {
     font-weight: 700;
     line-height: 1.125rem;
     font-family: 'Noto Sans KR', sans-serif;
-    
+
 }
 
 .nDetailDate {
@@ -1911,3 +1913,21 @@ option:disabled {
     min-width: 0;
 }
 
+.modal-content{
+    background-color: white;
+    width: 900px;
+    height: 400px;
+}
+
+.qrImg{
+    margin:50px;
+    ustify-content: center;
+    padding: 50px;
+}
+
+.close{
+    font-size: 30px;
+    display: block;
+    margin-top: 10px;
+    margin-left: 20px;
+}

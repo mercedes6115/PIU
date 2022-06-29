@@ -14,5 +14,6 @@ public class QrDTO {
     private String addPoint;
     private String projectApproval;
     private Long applyNum;
+    private String approach;
 
 }
