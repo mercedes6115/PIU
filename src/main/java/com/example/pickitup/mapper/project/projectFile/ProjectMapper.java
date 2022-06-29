@@ -71,4 +71,6 @@ public interface ProjectMapper {
 
     public List<ProjectVO> getSearchList(String searchStr);
 
+    // 지형 검색
+    public List<ProjectVO> getListTerrain(String terrain);
 }

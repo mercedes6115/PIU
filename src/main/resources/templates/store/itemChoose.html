@@ -87,7 +87,7 @@
         url: "/productFile/list/"+productNum,
         type : "get",
         success : function (files) {
-            let str = "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
+            let str = "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/" + files[0].uuid + "_"  + files[0].fileName + "'>";
             $(".item_img").html(str);
             // $("img#"+productNum).attr("src", "/upload/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName )
         }

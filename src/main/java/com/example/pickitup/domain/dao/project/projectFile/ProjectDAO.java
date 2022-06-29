@@ -98,4 +98,7 @@ public class ProjectDAO {
     public List<ProjectVO> getListAll(){return projectMapper.getListAll();};
 
     public List<ProjectVO> getSearchList(String searchStr){return projectMapper.getSearchList(searchStr);};
+
+    // 프로젝트 목록(지형으로 찾기)
+    public List<ProjectVO> getListTerrain(String terrain) {return projectMapper.getListTerrain(terrain);}
 }

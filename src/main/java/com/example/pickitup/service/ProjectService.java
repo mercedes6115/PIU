@@ -212,7 +212,7 @@ public class ProjectService {
         List<ProjectVO> projectVOS = projectDAO.getListJJim();
 
         for(ProjectVO pp : projectVOS){
-            String strDate = pp.getProjectDate();  // 기준 날짜 데이터 (("yyyy-MM-dd")의 형태)
+            String strDate = pp.getStartTime();  // 기준 날짜 데이터 (("yyyy-MM-dd")의 형태)
             String todayFm = new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())); // 오늘날짜
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -240,7 +240,7 @@ public class ProjectService {
         List<ProjectVO> projectVOS = projectDAO.getListPoint();
 
         for(ProjectVO pp : projectVOS){
-            String strDate = pp.getProjectDate();  // 기준 날짜 데이터 (("yyyy-MM-dd")의 형태)
+            String strDate = pp.getStartTime();  // 기준 날짜 데이터 (("yyyy-MM-dd")의 형태)
             String todayFm = new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())); // 오늘날짜
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -271,7 +271,7 @@ public class ProjectService {
 
 
         for(ProjectVO pp : projectVOS){
-            String strDate = pp.getProjectDate();  // 기준 날짜 데이터 (("yyyy-MM-dd")의 형태)
+            String strDate = pp.getStartTime();  // 기준 날짜 데이터 (("yyyy-MM-dd")의 형태)
             String todayFm = new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())); // 오늘날짜
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -301,7 +301,7 @@ public class ProjectService {
         List<ProjectVO> projectVOS = projectDAO.getListCourse(course);
 
         for(ProjectVO pp : projectVOS){
-            String strDate = pp.getProjectDate();  // 기준 날짜 데이터 (("yyyy-MM-dd")의 형태)
+            String strDate = pp.getStartTime();  // 기준 날짜 데이터 (("yyyy-MM-dd")의 형태)
             String todayFm = new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())); // 오늘날짜
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -330,7 +330,7 @@ public class ProjectService {
         List<ProjectVO> projectVOS = projectDAO.getListAll();
 
         for(ProjectVO pp : projectVOS){
-            String strDate = pp.getProjectDate();  // 기준 날짜 데이터 (("yyyy-MM-dd")의 형태)
+            String strDate = pp.getStartTime();  // 기준 날짜 데이터 (("yyyy-MM-dd")의 형태)
             String todayFm = new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())); // 오늘날짜
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -358,4 +358,8 @@ public class ProjectService {
     public List<ProjectVO> getSearchList(String searchStr){
         return projectDAO.getSearchList(searchStr);
     }
+
+    // 프로젝트 지형별로 찾기
+    public List<ProjectVO> getListTerrain(String terrain) { return projectDAO.getListTerrain(terrain);}
+
 }

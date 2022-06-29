@@ -70,11 +70,11 @@ public class MainController {
     @GetMapping("/list/{course}")
     public String List(@PathVariable("course") String course, Model model) throws ParseException {
         model.addAttribute("courseList", projectService.getListCourse(course));  // 내용가져오기
-        if(course.equals("평지")){
+        if(course.equals("3")){
             model.addAttribute("courseType", "평지 타입");
-        }else if(course.equals("바다")){
+        }else if(course.equals("2")){
             model.addAttribute("courseType", "바다 타입");
-        }else if(course.equals("산")){
+        }else if(course.equals("1")){
             model.addAttribute("courseType", "산 타입");
         }
         return "/main/list";

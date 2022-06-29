@@ -29,9 +29,9 @@ public class ProjectController {
     public String projectDetail(Long num, Model model) throws ParseException {
         ProjectVO projectVO = projectService.read(num);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date projectDate = sdf.parse(projectVO.getProjectDate());
+        Date projectDate = sdf.parse(projectVO.getStartTime());
         SimpleDateFormat addSdf = new SimpleDateFormat("yyyy년 MM월 dd일 EE요일 HH:mm");
-        projectVO.setProjectDate(addSdf.format(projectDate));
+        projectVO.setStartTime(addSdf.format(projectDate));
 
         model.addAttribute("project", projectVO);
         model.addAttribute("qna", projectService.getQnAList(num));

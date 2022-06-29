@@ -164,8 +164,9 @@ public class UserController {
 
     // 회원 정보 수정
     @GetMapping("/infoUpdate")
-    public void infoUpdate(Model model){
-        model.addAttribute("user", tempUserSerivce.readUserInfo(22L));
+    public void infoUpdate(HttpSession session, Model model){
+        Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("user", tempUserSerivce.readUserInfo(userNum));
     }
 
     // 회원 정보 수정 폼
@@ -218,9 +219,10 @@ public class UserController {
 
     // 로그인
     @GetMapping("/login")
-    public void login(Model model){
+    public String login(){
 //        boolean checkEmail=true;
 //        model.addAttribute("")
+        return "/user/login";
     }
 
     // 로그인 폼
@@ -245,6 +247,8 @@ public class UserController {
             session.setAttribute("category", userDTO.getCategory());
             session.setAttribute("fileName", userVO.getProfileFileName());
             session.setAttribute("uploadPath",userVO.getProfileUploadPath());
+            log.info("사진 : " + userVO.getProfileFileName());
+            log.info("파일 경로 : " + userVO.getProfileUploadPath());
             log.info(session.getAttribute("category").toString());
 
             if(userDTO.getNickname().equals("admin")){
@@ -258,9 +262,11 @@ public class UserController {
 
 
     // 회원탈퇴
-    @DeleteMapping("/delete")
-    public void delete(){
-
+    @GetMapping("/delete")
+    public String delete(HttpSession session){
+        Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        tempUserSerivce.removeUser(userNum);
+        return login();
     }
 
     @GetMapping("/guide")
