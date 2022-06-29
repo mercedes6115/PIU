@@ -7,6 +7,7 @@ import com.example.pickitup.domain.dao.product.productQna.ProductQnaCommentDAO;
 import com.example.pickitup.domain.dao.product.productQna.ProductQnaDAO;
 import com.example.pickitup.domain.dao.product.productReview.ProductReviewDAO;
 import com.example.pickitup.domain.dao.product.productReview.ProductReviewFileDAO;
+import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 import com.example.pickitup.service.product.productQna.ProductQnaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,8 +27,9 @@ public class TempProductService {
     private final ProductReviewFileDAO productReviewFileDAO;
 
 
-
-
+    public List<ProductVO> getFullList(){
+        return productDAO.getFullList();
+    }
 
 
 }

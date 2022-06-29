@@ -29,7 +29,6 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-
 public class TempUserSerivce {
     private final UserDAO userDAO;
     private final ApplyDAO applyDAO;
@@ -43,6 +42,11 @@ public class TempUserSerivce {
 
 
     // userDAO
+
+    //해당 유저의 qr찍는데 필요한 정보 뽑아오기
+    public QrDTO getQrInfo(Long userNum){
+        return userDAO.getQrInfo(userNum);
+    }
 
     // 일반 유저 가입
     public void registerUser(UserVO userVO) {
@@ -95,13 +99,32 @@ public class TempUserSerivce {
     //    하나의 트랜잭션에 여러 개의 DML이 있을 경우 한 개라도 오류 시 전체 ROLLBACK
     @Transactional(rollbackFor = Exception.class)
     public UserVO kakaoLogin(UserVO userVO){
-        if(userDAO.emailCheck(userVO.getEmail())==0){
+        int countEmail=userDAO.emailCheck(userVO.getEmail());
+        int countNickname=userDAO.nicknameCheck(userVO.getNickname());
+        if(countEmail==0 && countNickname==0){
             userDAO.kakaoinsert(userVO);
             log.info("이제 저장할거임"+userDAO.emailCheck(userVO.getEmail()));
             return userDAO.read(userVO.getNum());
+
+        }else if(countEmail!=0){
+            log.info("Email check "+userDAO.emailCheck(userVO.getEmail()));
+            return null;
+        }else if(countNickname!=0){
+
+            log.info("nickname check "+userDAO.nicknameCheck(userVO.getNickname()));
+            String temp=userVO.getNickname()+(countNickname+1);
+            log.info(temp);
+//            log.info(countNickname+1);
+            userVO.setNickname(temp);
+            userDAO.kakaoinsert(userVO);
+
+            return userDAO.read(userVO.getNum());
         }
-        log.info("디비저장된거"+userDAO.emailCheck(userVO.getEmail()));
-        return userDAO.kakaoDetail(userVO.getEmail());
+
+        else{
+            log.info("디비저장된거" + userDAO.emailCheck(userVO.getEmail()));
+            return userDAO.kakaoDetail(userVO.getEmail());
+        }
     }
 
     // 카카오 로그인 즉시 회원가입
@@ -201,7 +224,7 @@ public class TempUserSerivce {
         }
         for(OrderVO orderVO : orderVOList) {
             ProductVO productVO = productDAO.getDetail(orderVO.getProductNum());
-            pointDTOList.add(new PointDTO(productVO.getName(), orderVO.getRegistDate(), productVO.getPrice(), "1"));
+            pointDTOList.add(new PointDTO(productVO.getName(), orderVO.getRegistDate(), orderVO.getTotal(), "1"));
             // 상품은 category = 1
         }
         pointDTOList.sort(Comparator.comparing(PointDTO::getPointDate).reversed());
@@ -214,10 +237,12 @@ public class TempUserSerivce {
     // 주문 목록(관리자용)
     public List<OrderDTO> getOrderList(OrderCriteria orderCriteria){
         return orderDAO.getList(orderCriteria);
+
     }
 
     public int getOrderTotal(OrderCriteria orderCriteria){
         return orderDAO.getTotal(orderCriteria);
+
     }
 
     // 주문 취소
@@ -242,6 +267,12 @@ public class TempUserSerivce {
     public boolean updatePW(String email,String password) {
         return userDAO.updatePW(email,password);
     }
+
+    // 관리자 페이지용 유저 비밀번호 수정
+    public boolean adminPwUpdate(String password,Long num) {
+        return userDAO.updateUserAdminPW(password,num);
+    }
+
 
     // 내 주문내역 조회 (상품 이름 추가)
 //    public List<MyOrderDTO> myOrderList(Long userNum) {
@@ -295,5 +326,33 @@ public class TempUserSerivce {
 
         return productQnaDTOList;
     }
+
+
+    // 유저 내 후기 다 가져오기
+    public List<MyReviewDTO> myAllReview(Long num){
+        return userDAO.myAllReview(num);
+    }
+
+    // 상품 주문
+    public void orderStore(OrderUserDTO orderUserDTO) {
+        orderDAO.orderStore(orderUserDTO);
+    }
+
+    // 상품주문후 유저 포인트 차감
+    public void userPointMinus(Long num, String point) {
+        orderDAO.userPointMinus(num, point);
+    }
+
+    // 상품 주문후 재고 차감
+    public void productMinus(String itemname, Long stock){
+        orderDAO.productMinus(itemname, stock);
+    }
+
+    //상품명으로 정보 가져오기(1개)
+    public Long getDetailByName(String itemname){
+        return orderDAO.getDetailByName(itemname);
+    }
+
+    public ProductDTO boughtOrderDetail(Long orderNum) { return orderDAO.boughtDetail(orderNum);}
 
 }

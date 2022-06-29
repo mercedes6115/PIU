@@ -1,5 +1,5 @@
 //package com.example.pickitup.util;
-package com.example.pickitup.util;
+package com.example.pickitup.Util;
 
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
@@ -12,7 +12,6 @@ import java.util.HashMap;
 
 @Component
 public class CoolSmsUtil {
-
     @Value("NCSQOOEMXARDESBI")  // api 키
     private String coolSmsApiKey;
 

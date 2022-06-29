@@ -87,8 +87,8 @@
                 <tr>
                     <td colspan="12">
                         <div class="listTitle">
-                            <button type="button" class="listBtn" id="userDisabled">비활성화</button>
-                            <button type="button" class="listBtn" id="userApprove">승인</button>
+                            <button type="button" onclick="disable()" class="listBtn" id="userDisabled">비활성화</button>
+                            <button type="button" onclick="enable()" class="listBtn" id="userEnable">활성화</button>
                         </div>
                     </td>
                 </tr>
@@ -105,27 +105,31 @@
                     <th scope="col">전화번호</th>
                     <th scope="col">주소</th>
                     <th scope="col">포인트</th>
-                    <th scope="col"></th>
+                    <th scope="col">상세보기</th>
                 </tr>
-                <!--            https://ifuwanna.tistory.com/200 Stat선언하여 rownum을 대신하여 출력-->
-                <th:block  th:each="user,userStat:${userList}">
+
+                <th:block  th:each="user:${userList}">
                     <tr th:object="${user}">
-                        <td><input type="checkbox" class="userCheck"></td>
-                        <td th:text="${userStat.index}"></td>
-                        <td th:if="*{category}=='user'" th:text="유저"></td>
+                        <td><input type="checkbox"  name="statusList" class="userCheck" th:value="*{category}"></td>
+                        <td th:id="nums" th:text="*{num}"></td>
+                        <td th:if="*{category}=='user'"  th:text="유저"></td>
                         <td th:if="*{category}=='company'" th:text="회사"></td>
-                        <td>활성화</td>
-                        <td>승인완료</td>
+                        <td th:if="*{category}=='admin'" th:text="관리자"></td>
+                        <td th:if="*{status}=='0'" th:text="비활성화" th:style="${'color:red;'}"></td>
+                        <td th:if="*{status}=='1'" th:text="활성화" th:style="${'color:blue;'}"></td>
+                        <td th:if="*{approval}=='0'" th:text="승인" th:style="${'color:blue;'}"></td>
+                        <td th:if="*{approval}=='1'" th:text="승인거절" th:style="${'color:red;'}"></td>
                         <td th:text ="*{nickname}"></td>
                         <td th:text="*{email}"></td>
                         <td th:text="*{registDate}"></td>
                         <td th:text="*{phone}"></td>
                         <td th:text="*{address}"></td>
-                        <td></td>
+                        <td th:if="*{category}=='user'" th:text="*{point}"></td>
+                        <td th:if="*{category}=='company'">없음</td>
                         <td><a th:href="@{/admin/userDetail(num=*{num},category=*{category})}" class="userDetail">상세보기</a></td>
                     </tr>
                 </th:block>
-                <!-- 더미 데이터 -->
+
 
             </table>
             <div th:object="${pageDTO}" class="paging" style="text-align: center">
@@ -166,38 +170,111 @@
         $("#pageForm").submit();
     });
     // 비활성화 버튼 클릭시
-    $('#userDisabled').on("click", function (e) {
-        if (confirm("해당 유저를 비활성화 하시겠습니까?")) {
+    // $('#userDisabled').on("click", function (e) {
+    //     if (confirm("해당 유저를 비활성화 하시겠습니까?")) {
+    //
+    //         // 해당 유저 비활성화
+    //         $.ajax({
+    //             url: "",
+    //             type: "post",
+    //             data: {userNumber: $userNumber},
+    //             success: function () {
+    //             }
+    //         });
+    //     } else {
+    //
+    //     }
+    // });
+    // 활성화 버튼 클릭시
 
-            // 해당 유저 비활성화
-            $.ajax({
-                url: "",
-                type: "post",
-                data: {userNumber: $userNumber},
-                success: function () {
-                }
-            });
+
+
+    let user=[[${userList}]];
+    // console.log(user);
+    var value1= document.getElementById('nums').innerText;
+    // console.log(value1);
+    // var object= {
+    //     "category":,
+    //     "num":
+    // }
+
+    function disable(){
+        var url = "/admin/statusDisable";
+
+        var categoryArr = new Array();
+        var totalArray = $("input[name='statusList']:checked");
+        var categoryArray = new Array();
+        var numberArray=new Array();
+
+        totalArray.each(function (i) {
+            var tr = totalArray.parent().parent().eq(i);
+            var td = tr.children();
+            categoryArr.push(tr.text());
+            var number = td.eq(1).text(); // 회원번호를 가져오기위함
+            categoryArray.push(totalArray[i].value);
+            numberArray.push(number);
+        })
+
+        if (numberArray.length == 0) {
+            alert("비활성화 할 유저들을 선택해 주세요.");
         } else {
-
+            var chk = confirm("정말 비활성화 하시겠습니까?");
+            if (chk) {
+                $.ajax({
+                    url: url,
+                    type: 'post',
+                    traditional: true, // 데이터 직렬화
+                    data:{list:categoryArray,
+                        list1:numberArray},
+                    success: function () {
+                        alert("비활성화 성공");
+                        location.replace("/admin/userList")
+                    }
+                });
+            }
         }
-    });
-    // 승인 버튼 클릭시
-    $('#userApprove').on("click", function (e) {
-        if (confirm("해당 유저를 승인 하시겠습니까?")) {
+    };
 
-            // 해당 유저 승인처리
-            $.ajax({
-                url: "",
-                type: "post",
-                data: {userNumber: $userNumber},
-                success: function () {
 
-                }
-            });
+    function enable(){
+        var url = "/admin/statusEnable";
+
+        var categoryArr1 = new Array();
+        var totalArray1 = $("input[name='statusList']:checked");
+        var categoryArray1 = new Array();
+        var numberArray1=new Array();
+
+        totalArray1.each(function (i) {
+            var tr1 = totalArray1.parent().parent().eq(i);
+            var td1 = tr1.children();
+            categoryArr1.push(tr1.text());
+            var number1 = td1.eq(1).text(); // 회원번호를 가져오기위함
+            categoryArray1.push(totalArray1[i].value);
+            numberArray1.push(number1);
+        })
+
+        if (numberArray1.length == 0) {
+            alert("활성화 할 유저들을 선택해 주세요.");
         } else {
-
+            var chk = confirm("정말 활성화 하시겠습니까?");
+            if (chk) {
+                $.ajax({
+                    url: url,
+                    type: 'post',
+                    traditional: true, // 데이터 직렬화
+                    data:{listEn:categoryArray1,
+                        listEn1:numberArray1},
+                    success: function () {
+                        alert("활성화 성공");
+                        location.replace("/admin/userList")
+                    }
+                });
+            }
         }
-    });
+    };
+
+
+
 
 </script>
 <script>

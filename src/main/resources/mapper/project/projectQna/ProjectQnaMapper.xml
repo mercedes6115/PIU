@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.pickitup.mapper.project.projectQna.ProjectQnaMapper">
 
+    <!-- 문의글 목록   -->
     <select id="getList" resultType="projectQnaVO">
         SELECT tpq.NUM, tpq.CONTENT, tpq.UPDATE_DATE, tu.NICKNAME
         FROM TBL_PROJECT_QNA tpq
@@ -10,14 +11,14 @@
         WHERE tpq.PROJECT_NUM = #{projectNum}
     </select>
 
-
+    <!-- 문의글 등록  -->
     <insert id="insert" parameterType="projectQnaVO">
         INSERT INTO TBL_PROJECT_QNA
         (NUM, CONTENT, REGIST_DATE, UPDATE_DATE, USER_NUM, PROJECT_NUM)
         VALUES(SEQ_PROJECT_QNA.NEXTVAL, #{content}, SYSDATE , SYSDATE , #{userNum}, #{projectNum})
     </insert>
 
-
+    <!-- 문의글 수정   -->
     <update id="update" parameterType="projectQnaVO">
         UPDATE TBL_PROJECT
         SET
@@ -25,10 +26,13 @@
         WHERE NUM = #{num}
     </update>
 
+    <!-- 문의글 삭제  -->
     <delete id="delete" parameterType="long">
         DELETE FROM TBL_PROJECT_QNA
         WHERE NUM= #{num}
     </delete>
+
+
 </mapper>
 
 

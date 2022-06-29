@@ -43,21 +43,21 @@
             <h2>프로젝트 등록</h2>
         </div>
         <div class="searchBox">
-            <form id="projectCreateForm" action="/adminR/create" method="post" enctype="multipart/form-data">
+            <form id="projectCreateForm" action="/admin/projectCreate" method="post" enctype="multipart/form-data">
                 <table class="projectCreateTbl">
                     <tr>
                         <th colspan="3">유형선택</th>
                         <td colspan="4">
-                            <select>
-                                <option value="Course">코스</option>
-                                <option value="Location">장소</option>
+                            <select name="course" id = "chooseCL" onchange="startend()">
+                                <option value="C" >코스</option>
+                                <option value="L" >장소</option>
                             </select>
-                            <select>
-                                <option value="TERRAIN">지형</option>
-                                <option value="MOUNTAIN">산</option>
-                                <option value="COAST">바다</option>
-                                <option value="GROUND">평지</option>
-                                <option value="ETC">기타</option>
+                            <select name="terrain" class="formTerrainSelect">
+                                <option >지형</option>
+                                <option value="1" name="terrain">산</option>
+                                <option value="2" name="terrain">바다</option>
+                                <option value="3" name="terrain">평지</option>
+                                <option value="4" name="terrain">기타</option>
                             </select>
 
                         </td>
@@ -84,23 +84,35 @@
 
                         <td colspan="4">
                             <div class="locationBox">
-                                <div>
+                                <div id="start">
                                     <button type="button" class="locationBtn" id="startPoint">주소검색</button>
                                     <span>출발지: </span><span class="startPoint"></span>
                                     <input type="text" name="startAddress"  id="startPoint"hidden>
+                                    <input type="text" name="startAddressDetail" placeholder="상세주소">
                                 </div>
+                                <input type="hidden" id="x1">
+                                <input type="hidden" id="y1">
+                                <input type="hidden" id="x2">
+                                <input type="hidden" id="y2">
 
-                                <div>
-                                    <button type="button" class="locationBtn" id="endPoint">주소검색</button>
+                                <div id="end">
+                                    <button type="button" class="locationBtn1" id="endPoint">주소검색</button>
                                     <span>도착지: </span><span class="endPoint"></span>
+                                    <input type="text" name="endAddress" id="endPoint" hidden>
+                                    <input type="text" name="endAddressDetail" placeholder="상세주소">
                                 </div>
-                                <input type="text" name="endAddress" id="endPoint" hidden>
-                            </div>
+                                <input type="number" id="distancekm" name="distance" placeholder="km단위">[km]
+
                         </td>
                     </tr>
                     <tr>
                         <th colspan="3">플로깅이미지</th>
-                        <td colspan="4"><input type="file" name="fileName" required></td>
+                        <td colspan="4"><input type="file" name="uploadFiles" multiple>
+                            <div class="uploadResult">
+                                <ul style="list-style: none"></ul>
+                            </div>
+                        </td>
+
                     </tr>
                     <tr>
 
@@ -116,12 +128,12 @@
                     </tr>
                     <tr>
                         <th colspan="3">포인트</th>
-                        <td colspan="4"><input type="number" name="point" required><span> point</span></td>
+                        <td colspan="4"><input type="text" id="distance_point" name="point" required><span> point</span></td>
                     </tr>
 
                     <tr>
                         <th colspan="3">모집자 정보</th>
-                        <td colspan="4"><textarea name="" cols="100" rows="5" required></textarea></td>
+                        <td colspan="4"><textarea name="companyComment" cols="100" rows="5" required></textarea></td>
                     </tr>
 
                 </table>
@@ -139,10 +151,12 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=nshb4pb9af&submodules=geocoder"></script>
 <script>
-
-
-
+    
+    let regex = new RegExp("(.*?)\.(exe|sh|zip|alz)");
+    const $uploadResult = $(".uploadResult ul");
+    let arFile = Array.from($("input[type='file']")[0].files);
     function getAddress(point) {
         new daum.Postcode({
             oncomplete: function (data) {
@@ -150,6 +164,19 @@
                 $('.' + point).html(data.address);
                 // 주소 검색시 input 태그 value 변경
                 $('input#' + point).val(data.address);
+                xy(data.address,1);
+            }
+        }).open();
+    }
+
+    function getAddress2(point) {
+        new daum.Postcode({
+            oncomplete: function (data) {
+                // 주소 검색시 span 태그 html 변경
+                $('.' + point).html(data.address);
+                // 주소 검색시 input 태그 value 변경
+                $('input#' + point).val(data.address);
+                xy(data.address,2);
             }
         }).open();
     }
@@ -158,6 +185,86 @@
         let point = $(this).attr('id');
         getAddress(point);
     })
+
+    $('button.locationBtn1').on("click", function () {
+        let point = $(this).attr('id');
+        getAddress2(point);
+    })
+
+
+
+    // 이미지 원본이 있는 지 검사
+    let check = false;
+    // 애니메이션이 진행중인 지 검사
+    let progress = false;
+    // 이전에 클릭한 이미지 경로 저장
+    let temp = "";
+
+    function showImage(filePath){
+
+        // 만약 temp에 무언가가 들어가 있다면(undefined가 아니라면)
+        if(temp){
+            //현재 클릭한 썸네일의 경로와 이전에 클릭했던 썸네일의 경로를 비교한다.
+            if(filePath == temp){
+                //만약 이전에 눌렀던 썸네일과 동일하다면 애니메이션을 막아준다.
+                //똑같은 거 또 누르지 않게 막아주기
+                return;
+            }
+        }
+
+        // 애니메이션이 진행중일 경우 true
+        if(progress) { return; }
+        // 만약 애니메이션 진행중이 아닐 때에는
+        // 썸네일을 클릭했기 때문에 progress를 true로 변경시켜준다.
+        progress = true;
+
+        //정상적으로 해당 썸네일의 원본이 보이게 된다면,
+        //클릭한 썸네일의 경로를 temp에 담아준다.
+        temp = filePath;
+
+        let time = 0;
+
+        if(check){ //만약 check가 true라면 원본 이미지가 이미 보여지고 있는 상태
+
+            //이미 있는 원본 이미지를 없애준다.
+            $(".bigPicture").animate({width:"0%", height:"0%"}, 1000);
+            setTimeout(function(){
+                $(".bigPictureWrapper").hide();
+                // 애니메이션이 다 끝났을 때
+                progress = false;
+            },950);
+
+            //이미 있는 원본 이미지가 없어지는 데에 걸리는 시간을 time에 담아놓는다.
+            time = 1000;
+        }
+        setTimeout(function(){
+            $(".bigPictureWrapper").css("display", "flex").show();
+            $(".bigPicture").html("<img src='/upload/display?fileName=" + filePath + "'>")
+                .animate({width:"100%", height:"100%"}, 1000);
+            // 이미지 원본이 보이고 있음.
+            check = true;
+
+            setTimeout(function(){
+                // 애니메이션이 다 끝났을 때
+                progress = false;
+            }, 1000);
+
+            //    만약 원본 이미지가 있었다면 time에는 1000이 들어가서 없어지는 동안 기다리게 되고
+            //    원본 이미지가 없었다면 time에는 초기값인 0이 들어가서 클릭한 썸네일의 원본이 바로 보이게 된다.
+        }, time);
+    }
+
+    function checkExtension(fileName, fileSize){
+        if(regex.test(fileName)){
+            alert("업로드 할 수 없는 파일의 형식입니다.");
+            return false;
+        }
+        if(fileSize >= 5242880){
+            alert("파일 사이즈 초과");
+            return false;
+        }
+        return true;
+    }
 
 
     // 유효성 검사
@@ -183,9 +290,231 @@
 
     let projectCreateForm = $('#projectCreateForm');
     // 이상없을시 제출
-    $('#productSearchBtn').on("click", function () {
-        projectCreateForm.submit();
+
+
+    $('#productSearchBtn').on("click", function (e) {
+            e.preventDefault();
+            let $form = $("form#projectCreateForm");
+            let str = "";
+
+            $.each($(".uploadResult ul li"), function(i, li){
+                str += "<input type='hidden' name='fileList[" + i + "].fileName' value='" + $(li).data("filename") + "'>"
+                str += "<input type='hidden' name='fileList[" + i + "].uuid' value='" + $(li).data("uuid") + "'>"
+                str += "<input type='hidden' name='fileList[" + i + "].uploadPath' value='" + $(li).data("uploadpath") + "'>"
+                str += "<input type='hidden' name='fileList[" + i + "].image' value='" + $(li).data("image") + "'>"
+                str += "<input type='hidden' name='fileList[" + i + "].fileSize' value='" + $(li).data("filesize") + "'>"
+            });
+            $form.append(str).submit();
+        });
+
+    function showUploadResult(files){
+        let str ="";
+        $(files).each(function(i, file){
+            console.log(file);
+            str += "<li style='float:left; margin-left: 10px;' data-filesize='" + file.fileSize + "' data-filename='" + file.fileName + "' data-uuid='" + file.uuid + "' data-uploadpath='" + file.uploadPath + "' data-image='" + file.image + "'>";
+            str += "<a href=\"javascript:showImage(\'" + file.uploadPath + "/" + file.uuid + "_" + file.fileName +"\');\"><img src='/adminR/display?fileName=" + file.uploadPath + "/s_" + file.uuid + "_"  + file.fileName + "'></a>";
+            str += "<a href='/adminR/download?fileName=" + file.uploadPath + "/" + file.uuid + "_" + file.fileName + "'><img src='/images/attach.png' width='10'     style='position: absolute;' ></a>";
+            str += "<span data-file='" + file.uploadPath + "/s_" + file.uuid + "_" + file.fileName + "' style='cursor: pointer;'>x</span>"
+            str += "<p>" + file.fileName + "</p>"
+            str += "</li>"
+        });
+        $uploadResult.append(str);
+    }
+
+    $("input[type='file']").on("change", function(e){
+        let formData =   new FormData();
+        let inputFile = $("input[name='uploadFiles']");
+        let files = inputFile[0].files;
+        console.log(files);
+        for(let i=0; i<files.length; i++){
+            if(!checkExtension(files[i].name, files[i].size)){ return; }
+            formData.append("uploadFiles", files[i]);
+        }
+        Array.from($(this)[0].files).forEach(file => arFile.push(file));
+        const dataTransfer = new DataTransfer();
+        arFile.forEach(file => dataTransfer.items.add(file));
+        $(this)[0].files = dataTransfer.files;
+
+        $.ajax({
+            url: "/adminR/create",
+            type: "post",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(files){
+                showUploadResult(files);
+            }
+        });
+    });
+
+    $(".uploadResult").on("click", "span", function(){
+        let $target = $(this).data("file");
+        let $li = $(this).closest("li");
+
+        $.ajax({
+            url: "/adminR/delete",
+            type: "post",
+            data: {fileName: $target},
+            success: function(){
+                $li.remove();
+                let temp = $target.substring($target.indexOf("_") + 1);
+                temp = temp.substring(temp.indexOf("_") + 1);
+                const dataTransfer = new DataTransfer();
+                for(let i=0; i<arFile.length; i++){
+                    if(arFile[i].name == temp){
+                        arFile.splice(i, 1);
+                    }
+                }
+                arFile.forEach(file => dataTransfer.items.add(file));
+                $("input[name='uploadFiles']")[0].files = dataTransfer.files;
+            }
+        });
+    });
+
+
+
+    function startend(){
+        var choice = document.getElementById("chooseCL").value;
+
+        console.log(choice);
+        if(choice=='L'){
+            $("#end").hide();
+        }else{
+            $("#end").show();
+        }
+    }
+</script>
+
+<script>
+
+    function xy(ad,i){
+        if(i==1){ //출발지 눌렀을떄
+            naver.maps.Service.geocode({
+                query: ad
+            }, function(status, response) {
+                if (status !== naver.maps.Service.Status.OK) {
+                    return alert('Something wrong!');
+                }
+
+
+                var result = response.v2, // 검색 결과의 컨테이너
+                    items = result.addresses; // 검색 결과의 배열
+
+                try {
+                    $('#x'+i).val(items[0].x);  //주소의 x좌표값을 input에 삽입
+                    $('#y'+i).val(items[0].y);  //주소의 x좌표값을 input에 삽입
+                } catch (error) {
+                    alert('요청하신 주소의 좌표를 찾을 수 없습니다.');
+                    document.getElementById("start_address").value = "";
+                    return;
+                }
+
+                if(출발.length==0){ //처음 장소 넣을때
+                    출발.push(items[0].x);
+                    출발.push(items[0].y);
+
+                    console.log(출발[0]);
+                    console.log(출발[1]);
+
+
+                }else if(출발.length==2){ //출발지만 입력후 출발지 수정
+                    출발[0]=items[0].x;      //수정함
+                    출발[1]=items[0].y;      //수정함
+                    console.log(출발[0]);
+                    console.log(출발[1]);
+                }
+                if((출발.length + 도착.length) == 4){
+                    dist();
+                }
+            });
+        }else{ //도착지 눌렀을때.
+            naver.maps.Service.geocode({
+                query: ad
+            }, function(status, response) {
+                if (status !== naver.maps.Service.Status.OK) {
+                    return alert('Something wrong!');
+                }
+
+                var result = response.v2, // 검색 결과의 컨테이너
+                    items = result.addresses; // 검색 결과의 배열
+
+                try {
+                    $('#x'+i).val(items[0].x);  //주소의 x좌표값을 input에 삽입
+                    $('#y'+i).val(items[0].y);  //주소의 x좌표값을 input에 삽입
+                } catch (error) {
+                    alert('요청하신 주소의 좌표를 찾을 수 없습니다.');
+                    document.getElementById("end_address").value = "";
+                    return;
+                }
+
+                if(도착.length==0){ //처음 도착지 눌렀을때
+                    도착.push(items[0].x);
+                    도착.push(items[0].y);
+                    console.log(도착[0]);
+                    console.log(도착[1]);
+                }else if(도착.length==2){
+                    도착[0] = (items[0].x); //수정함
+                    도착[1] = (items[0].y);
+                    console.log(도착[0]);
+                    console.log(도착[1]);
+                }
+                if((출발.length + 도착.length) == 4){
+                    dist();
+                }
+            });
+        }
+    }
+
+    let 출발 = [];
+    let 도착 = [];
+    let default_point=100;
+    let real_point=0;
+    $('#distance_point').text(default_point);
+
+    $('.formTerrainSelect').change(function(){
+        if($(this).val()=="1"){
+            if(real_point!=0){
+                default_point = 100;
+            }else{
+                default_point = 200;
+            }
+            $('#distance_point').text(default_point+real_point);
+        }
+        else if($(this).val()=="2"){
+            if(real_point!=0){
+                default_point = 50;
+            }else{
+                default_point = 150;
+            }
+            $('#distance_point').text(default_point+real_point);
+        }
+        else if($(this).val()=="3"){
+            if(real_point!=0){
+                default_point = 0;
+            }else{
+                default_point = 100;
+            }
+            $('#distance_point').text(default_point+real_point);
+        }
+
     })
+
+    // x,y 좌표 받아오기
+
+    function dist(){
+        let distance_point =  Math.sqrt(Math.pow(출발[0]-도착[0],2) + Math.pow(출발[1]-도착[1],2));
+        let distance = distance_point*111;
+        let real_distance = Math.round(distance);  // km 단위
+        console.log(real_distance);
+        real_point = default_point+(real_distance-3)*50; //3 키로가 넘으면 1km 당 50p
+        if(real_point<default_point){
+            real_point = default_point;
+        }
+        $('p#distance_point').empty().text(real_point);
+        var dis=real_distance
+        console.log(dis);
+        $('#distancekm').val(dis);
+    }
 </script>
 <script th:replace="~{/admin/adminSideBar :: AdminSideBarJSImport}"></script>
 </html>

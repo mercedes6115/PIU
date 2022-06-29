@@ -20,6 +20,8 @@
 
  -->
 
+
+
 <body>
 <div class="root">
 
@@ -33,51 +35,44 @@
             <h2>프로젝트 목록</h2>
         </div>
         <div class="searchBox" id="projectSearchBox">
-            <form id="projectSearchForm">
+            <form id="projectSearchForm" action="/admin/projectList" method="get" th:object="${projectCriteria}">
                 <table id="searchTbl">
                     <tr>
                         <th>검색분류</th>
                         <td colspan="3">
-                            <select>
-                                <option>프로젝트명</option>
-                                <option>프로젝트번호</option>
-                                <option>프로젝트장소</option>
-                                <option>모집자명</option>
+                            <select name="type">
+                                <option value="title" th:selected="*{type} == 'title'">프로젝트명</option>
+                                <option value="num" th:selected="*{type} == 'num'">프로젝트번호</option>
+                                <option value="startAddress" th:selected="*{type} == 'startAddress'">프로젝트장소</option>
+                                <option value="nickname" th:selected="*{type} == 'nickname'">모집자명</option>
                             </select>
-                            <input type="text" name="" id="">
+                            <input type="text" name="keyword" id="">
                         </td>
                     </tr>
                     <tr>
                         <th>유형분류</th>
                         <td colspan="3">
-                            <select>
-                                <option>전체</option>
-                                <option>산</option>
-                                <option>바다</option>
-                                <option>평지</option>
-                                <option>기타</option>
-
+                            <select name="type1">
+                                <option value="total" th:selected="*{type1} == 'total'">전체</option>
+                                <option value="mountain" th:selected="*{type1} == 'mountain'">산</option>
+                                <option value="coast" th:selected="*{type1} == 'coast'">바다</option>
+                                <option value="ground" th:selected="*{type1} == 'ground'">평지</option>
+                                <option value="etc" th:selected="*{type1} == 'etc'">기타</option>
                             </select>
-                            <input type="text" name="" id="">
                         </td>
                     </tr>
                     <tr>
-                        <th>상품등록일</th>
+                        <th>프로젝트등록일</th>
                         <td colspan="3">
                             <div class="dateSelect">
-                                <select>
-                                    <option>프로젝트생성일</option>
-                                    <option>프로젝트시작일</option>
-                                    <option>프로젝트종료일</option>
-                                    <option>프로젝트승인일</option>
+                                <select name="type2">
+                                    <option value="registDate1" th:selected="*{type2} == 'registDate1'">프로젝트생성일</option>
+                                    <option value="startDate1" th:selected="*{type2} == 'startDate1'">프로젝트시작일</option>
+                                    <option value="endDate1" th:selected="*{type2} == 'endDate1'">프로젝트종료일</option>
+                                    <option value="updateDate1" th:selected="*{type2} == 'updateDate1'">프로젝트승인일</option>
                                 </select>
-                                <a class="btnDate" href="">오늘</a>
-                                <a class="btnDate" href="">3일</a>
-                                <a class="btnDate" href="">7일</a>
-                                <a class="btnDate" href="">1개월</a>
-                                <a class="btnDate" href="">3개월</a>
-                                <a class="btnDate" href="">1년</a>
-                                <a class="btnDate" href="">전체</a>
+                                <input type="date" name="startDate"  id="" >
+                                <input type="date" name="endDate"  id="" >
                             </div>
                         </td>
                     </tr>
@@ -85,18 +80,15 @@
                         <div class="productFilterBox">
                             <th>프로젝트 상태</th>
                             <td>
-                                <span>전체</span><input type="radio" name="snsCheck" id="" checked>
-                                <span>승인대기</span><input type="radio" name="snsCheck" id="">
-                                <span>승인완료</span><input type="radio" name="snsCheck" id="">
-                                <span>지급완료</span><input type="radio" name="snsCheck" id="">
+                                <span>전체</span><input type="radio" name="Pstatus" id="" checked>
+                                <span>승인대기</span><input type="radio" name="Pstatus" id="">
+                                <span>승인완료</span><input type="radio" name="Pstatus" id="">
                             </td>
-
                         </div>
                     </tr>
                 </table>
                 <div class="btnBox">
                     <button type="button" id="productSearchBtn">검색</button>
-                    <button type="button" id="productSearchBtn">초기화</button>
                 </div>
             </form>
         </div>
@@ -105,9 +97,9 @@
         <div class="listBox">
             <table>
                 <tr>
-                    <div class="listFilter">
+                    <div class="listFilter" th:object="${projectPageDTO}">
                             <span>[총
-                                <strong>2</strong>
+                                <strong th:text="*{total}"></strong>
                                 개]</span>
                         <select>
                             <option>등록일 역순</option>
@@ -126,120 +118,246 @@
 
                     <td colspan="12">
                         <div class="listTitle">
-                            <a href="" class="listBtn">삭제</a>
-                            <a href="" class="listBtn" id="productDisplayChage">상태변경</a>
-                            <a href="" class="listBtn">승인</a>
-
-                        </div>
+                            <a href="" class="listBtn" onclick="projectDelete()">삭제</a>
+                            <a href="" class="listBtn" onclick="projectApprove()">승인</a>
+                            <a href="" class="listBtn" onclick="projectAwaiting()">승인대기</a>
+                            <a href="" class="listBtn" onclick="projectDispprove()">승인거절</a></div>
                     </td>
-        </div>
+            </tr>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">번호</th>
+                    <th scope="col">qr코드생성</th>
+                    <th scope="col">유형</th>
+                    <th scope="col">지형</th>
+                    <th scope="col">플로깅제목</th>
+                    <th scope="col">모집자</th>
+                    <th scope="col">상태</th>
+                    <th scope="col">모집등록일</th>
+                    <th scope="col">거리</th>
+                    <th scope="col">포인트</th>
+                </tr>
+        <th:block th:each="project:${projectList}">
+        <tr th:object="${project}">
+            <td><input type="checkbox" th:value="*{num}" name="delList"></td>
+            <td th:text="*{num}"></td>
+            <td>
+                <form>
+                <button type="button" th:id="*{num}" onclick="makeQR(this.id)" th:text="*{num}+'번 QR생성'"></button>
+                <div th:id="qrcode+*{num}"></div>
+                </form>
+            </td>
+            <td th:if ="*{course}=='C'">코스</td>
+            <td th:if ="*{course}=='L'">장소</td>
+            <td  th:if="*{terrain}=='1'">산</td>
+            <td  th:if="*{terrain}=='2'">바다</td>
+            <td  th:if="*{terrain}=='3'">평지</td>
+            <td  th:if="*{terrain}=='4'">기타</td>
+            <td th:text="*{title}"></td>
+            <td th:text="*{nickname}"></td>
+            <td th:if="*{approval}=='0'" th:style="${'color:blue;'}">승인</td>
+            <td th:if="*{approval}=='1'">진행중</td>
+            <td th:if="*{approval}=='2'" th:style="${'color:red;'}">거절</td>
+            <td th:if="*{approval}=='3'">지급대기</td>
+            <td th:if="*{approval}=='4'">지급완료</td>
+            <td th:if="*{approval}=='5'">승인대기</td>
+            <td th:text="*{registDate}"></td>
+            <td th:text="*{point}"></td>
+            <td><a th:href="@{/admin/projectDetail(projectNum=*{num})}" class="userDetail">상세보기</a></td>
         </tr>
-
-
-        <tr>
-            <!-- 생활, 주방, 욕실, 반려동물, 화장품, 식품, 문구, 원예  -->
-
-            <th scope="col"></th>
-            <th scope="col">번호</th>
-            <th scope="col">프로젝트번호</th>
-            <th scope="col">유형</th>
-            <th scope="col">지형</th>
-            <th scope="col">플로깅제목</th>
-            <th scope="col">모집자</th>
-            <th scope="col">상태</th>
-            <th scope="col">모집등록일</th>
-            <th scope="col">모집상황</th>
-            <th scope="col">포인트</th>
-        </tr>
-        <tr>
-            <td><input type="checkbox"></td>
-            <td>1</td>
-            <td>P123456</td>
-            <td>코스</td>
-            <td>산</td>
-            <td>강남구청과 함께하는</td>
-            <td>강남구청</td>
-            <td>승인대기중</td>
-            <td>2022-06-14</td>
-            <td>모집중</td>
-            <td>110point</td>
-        </tr>
-        <tr>
-            <td><input type="checkbox"></td>
-            <td>1</td>
-            <td>P123456</td>
-            <td>코스</td>
-            <td>산</td>
-            <td>강남구청과 함께하는</td>
-            <td>강남구청</td>
-            <td>승인대기중</td>
-            <td>2022-06-14</td>
-            <td>모집중</td>
-            <td>110point</td>
-        </tr>
-
+        </th:block>
         </table>
+        </div>
         <!-- 페이징 처리  -->
-        <div class="paging">
-            <a href="#">&lt;</a>
-            <a href="#">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">&gt;</a>
+        <div th:object="${projectPageDTO}" class="paging" style="text-align: center">
+            <a class="changePage" th:href="*{startPage - 1}" th:if="*{prev}">&lt;</a>
+            <th:block th:each="num:${#numbers.sequence(projectPageDTO.startPage, projectPageDTO.endPage)}">
+                <a class= "changePages"  href="javascript:void(0);" th:if="${num == projectPageDTO.projectCriteria.pageNum}" th:text="${num}"></a>
+                <a class="changePage" th:href="${num}" th:unless="${num == projectPageDTO.projectCriteria.pageNum}" th:text="${num}"></a>
+            </th:block>
+            <a class="changePage" th:href="*{endPage + 1}" th:if="*{next}">&gt;</a>
+            <a class="changePage" th:href="*{projectCriteria.pageNum + 1}" th:if="*{projectCriteria.pageNum < realEnd}">&gt;</a>
         </div>
     </div>
-
-
+    <form action="/admin/projectList"  method="get" id="pageForm" th:object="${projectCriteria}">
+        <input type="hidden" th:field="*{pageNum}">
+        <input type="hidden" th:field="*{amount}">
+        <input type="hidden" th:field="*{total}" th:value="*{total}">
+        <input type="hidden" th:field="*{startDate}" th:value="*{startDate}">
+        <input type="hidden" th:field="*{endDate}" th:value="*{endDate}">
+        <input type="hidden" th:field="*{keyword}" th:value="*{keyword}">
+        <input type="hidden" th:field="*{type1}" th:value="*{type1}">
+        <input type="hidden" th:field="*{type2}" th:value="*{type2}">
+        <input type="hidden" th:field="*{type}" th:value="*{type}">
+    </form>
 </div>
 
 
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/assets/js/qrcode.js"></script>
+
+<script th:inline="javascript">
+    // 접속한 와이파이ipV4로 접속해야함 localhost로 접속하면 127.0.0.1가져와서 모바일로 접속을 못함
+    let ipV4=[[${ipV4}]];
+    console.log(ipV4);
+    //접속한 와이파이 ipV4값을 가져와야 모바일로도 접속이 가능하기 때문에 localhost를 대신할 ipV4값을 가져오는지 확인
+    function makeQR(qrnum){
+        let QRnum=qrnum;
+        let projectLink1 = "http://"+ipV4+":10010/admin/qrStartLogin?num="+qrnum+"&state=start";
+        let projectLink2 = "http://"+ipV4+":10010/admin/qrEndLogin?num="+qrnum+"&state=finish";
+        console.log(projectLink1);
+        if(confirm("해당 프로젝트의 QR코드 링크를 생성하시겠습니까?")){
+            $.ajax({
+                url:"/admin/insertQr",
+                type:"post",
+                data:{  "QRnum":QRnum,
+                        "projectLink1":projectLink1,
+                        "projectLink2":projectLink2
+                },
+                success: function () {
+                    alert("링크를 성공적으로 생성하였습니다");
+                }
+
+            })
+        }
+
+
+    }
+    // function makeQR(qrnum) {
+    //     var qrcode = new QRCode(document.getElementById("qrcode"+qrnum), {
+    //         text: "http://"+ipV4+":/user/login?num="+qrnum,
+    //         width: 100,  //가로
+    //         height: 100, //세로
+    //         colorDark: "#000000", //qr에서 어두운 색 (보통 검은색)
+    //         colorLight: "#ffffff", //qr에서 밝은 색 (보통 하얀색) colorDark 보다 옅어야한다.
+    //         correctLevel: QRCode.CorrectLevel.H //qr코드 오류복원능력 (L->M->Q->H)
+    //     });
+    //      $("#qrcode > img").css({"margin":"auto"});
+    // }
+</script>
 <script>
+    function projectDelete(){
 
+        var valueArr =new Array();
+        let list = $("input[name='delList']:checked");
+        for(let i=0; i<list.length; i++){
+            console.log('list.length : ' + list.length);
+            console.log(("list[i] : " + list[i].value));
+            valueArr.push(list[i].value);
+        }
 
-    $('#userDisabled').on("click", function (e) {
-
-        if (confirm("해당 유저를 비활성화 하시겠습니까?")) {
-
-            // 해당 유저 비활성화 
+        if (confirm("해당 프로젝트를 삭제 하시겠습니까?")) {
+            // 프로젝트 삭제
             $.ajax({
-                url: "",
+                url: "/admin/deleteProject",
                 type: "post",
-                data: {userNumber: $userNumber},
+                traditional: true,
+                data: {
+                    valueArr: valueArr
+                },
                 success: function () {
-
+                    alert("삭제 성공");
+                    location.replace("/admin/projectList")
                 }
             });
-
-
-        } else {
-
         }
-    });
+    }
 
+    function projectApprove(){
 
-    // 승인 버튼 클릭시
-    $('#userApprove').on("click", function (e) {
-        if (confirm("해당 유저를 승인 하시겠습니까?")) {
+        var valueArr =new Array();
+        let list = $("input[name='delList']:checked");
+        for(let i=0; i<list.length; i++){
+            console.log('list.length : ' + list.length);
+            console.log(("list[i] : " + list[i].value));
+            valueArr.push(list[i].value);
+        }
 
-            // 해당 유저 승인처리
+        if (confirm("해당 프로젝트를 승인 하시겠습니까?")) {
+            // 프로젝트 승인
             $.ajax({
-                url: "",
+                url: "/admin/approveProject",
                 type: "post",
-                data: {userNumber: $userNumber},
+                traditional: true,
+                data: {
+                    valueArr: valueArr
+                },
                 success: function () {
-
+                    alert("승인 성공");
+                    location.replace("/admin/projectList")
                 }
             });
-
-
-        } else {
-
         }
+    }
+
+    function projectAwaiting(){
+
+        var valueArr =new Array();
+        let list = $("input[name='delList']:checked");
+        for(let i=0; i<list.length; i++){
+            console.log('list.length : ' + list.length);
+            console.log(("list[i] : " + list[i].value));
+            valueArr.push(list[i].value);
+        }
+
+        if (confirm("해당 프로젝트를 승인대기로 하시겠습니까?")) {
+            // 프로젝트 승인
+            $.ajax({
+                url: "/admin/AwaitingProject",
+                type: "post",
+                traditional: true,
+                data: {
+                    valueArr: valueArr
+                },
+                success: function () {
+                    alert("승인대기 성공");
+                    location.replace("/admin/projectList")
+                }
+            });
+        }
+    }
+
+    function projectDispprove(){
+
+        var valueArr =new Array();
+        let list = $("input[name='delList']:checked");
+        for(let i=0; i<list.length; i++){
+            console.log('list.length : ' + list.length);
+            console.log(("list[i] : " + list[i].value));
+            valueArr.push(list[i].value);
+        }
+
+        if (confirm("해당 프로젝트를 승인거절 하시겠습니까?")) {
+            // 프로젝트 승인
+            $.ajax({
+                url: "/admin/DispproveProject",
+                type: "post",
+                traditional: true,
+                data: {
+                    valueArr: valueArr
+                },
+                success: function () {
+                    alert("승인거절 성공");
+                    location.replace("/admin/projectList")
+                }
+            });
+        }
+    }
+</script>
+
+<script>
+    $('#productSearchBtn').on("click", function (e) {
+        $("#projectSearchForm").submit();
     });
 
+    $("a.changePage").click(function(e){
+        e.preventDefault();
+        $("#pageForm").find("input[name='pageNum']").val($(this).attr("href"));
+        $("#pageForm").submit();
+    });
 </script>
 <script th:replace="~{/admin/adminSideBar :: AdminSideBarJSImport}"></script>
 </html>
+

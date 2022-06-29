@@ -2,11 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.pickitup.mapper.user.UserMapper">
 
-
     <!--마이페이지, 관리자 사용-->
     <select id="getDetail" resultType="userVO">
         SELECT
-        NUM, EMAIL, NICKNAME,PHONE, ADDRESS, PROFILE_FILE_NAME, PROFILE_UPLOAD_PATH, POINT, REGIST_DATE, CATEGORY, ADDRESS_DETAIL
+        NUM, EMAIL, PASSWORD,NICKNAME,PHONE, ADDRESS, PROFILE_FILE_NAME, PROFILE_UPLOAD_PATH, POINT, REGIST_DATE,CATEGORY,STATUS,APPROVAL
         FROM TBL_USER
         WHERE NUM=#{num}
     </select>
@@ -20,12 +19,14 @@
     </select>
 
 <!--회원 가입-->
+
     <!--회원 가입-->
     <insert id="insert">
         INSERT INTO TBL_USER
         (NUM, EMAIL, PASSWORD, NICKNAME, PHONE, ADDRESS,ADDRESS_DETAIL, REGIST_DATE)
         VALUES(SEQ_USER.NEXTVAL,#{email}, #{password}, #{nickname}, #{phone}, #{address},#{addressDetail}, SYSDATE)
     </insert>
+
 
 <!--카카오톡 로그인 즉시 회원가입-->
     <insert id="kakaoinsert">
@@ -38,17 +39,30 @@
 
         </insert>
 
+
     <!--회원탈퇴-->
     <delete id="delete">
         DELETE FROM TBL_USER
         WHERE NUM=#{num}
     </delete>
 
+    <update id="adminPwUpdate">
+        UPDATE TBL_USER
+        SET PASSWORD=#{password}
+        WHERE NUM=#{num}
+    </update>
+
+    <update id="addPoint">
+        UPDATE TBL_USER
+        SET POINT=#{point}
+        WHERE NICKNAME=#{nickname}
+    </update>
+
     <!--  회원 수정  -->
     <update id="update">
         UPDATE TBL_USER
         SET NICKNAME=#{nickname}, PHONE=#{phone},ADDRESS=#{address},
-        ADDRESS_DETAIL=#{addressDetail},PROFILE_FILE_NAME=#{profileFileName}, PROFILE_UPLOAD_PATH=#{profileUploadPath}, REGIST_DATE=SYSDATE,
+        ADDRESS_DETAIL=#{addressDetail},PROFILE_FILE_NAME=#{profileFileName}, PROFILE_UPLOAD_PATH=#{profileUploadPath}, REGIST_DATE=SYSDATE
         WHERE NUM=#{num}
     </update>
 
@@ -76,7 +90,7 @@
     <!-- 사용자가 참여한 플로깅 목록 -->
     <select id="getInProjectList" resultType="projectVO">
         <![CDATA[
-        SELECT proj.NUM, proj.TITLE, proj.CONTENT, proj.COURSE, proj.TERRAIN, proj.POINT, proj.APPROVAL, proj.STARTTIME, proj.ENDTIME, proj.START_ADDRESS, proj.END_ADDRESS, proj.DISTANCE, proj.QR, proj.REGIST_DATE, proj.UPDATE_DATE, proj.STATUS, proj.COMPANY_NUM, proj.JJIM_COUNT, proj.PROJECT_DATE
+        SELECT proj.NUM, proj.TITLE, proj.CONTENT, proj.COURSE, proj.TERRAIN, proj.POINT, proj.APPROVAL, proj.STARTTIME, proj.ENDTIME, proj.START_ADDRESS, proj.END_ADDRESS, proj.DISTANCE, proj.START_QR, proj.REGIST_DATE, proj.UPDATE_DATE, proj.STATUS, proj.COMPANY_NUM, proj.JJIM_COUNT, proj.PROJECT_DATE
 	        FROM TBL_PROJECT proj
 	            INNER JOIN TBL_APPLY app ON app.PROJECT_NUM = proj.NUM
 	            INNER JOIN TBL_USER u ON u.NUM = app.USER_NUM
@@ -85,9 +99,7 @@
         ]]>
     </select>
 
-
     <select id="login" resultType="userDTO">
-
         SELECT NUM, NICKNAME, CATEGORY, EMAIL
         FROM
         (SELECT NUM, NICKNAME, CATEGORY, PASSWORD ,EMAIL
@@ -96,9 +108,21 @@
         SELECT NUM, NICKNAME, CATEGORY , PASSWORD, EMAIL
         FROM TBL_COMPANY)
         WHERE EMAIL=#{email} AND PASSWORD=#{password}
-
-
     </select>
+
+
+<!--   해당 유저가 참여한 프로젝트에서 필요한 정보-->
+    <select id="getQrInfo" resultType="qrDTO">
+        SELECT TBL_USER.NUM AS USERNUM, TBL_USER.POINT AS USERPOINT,TBL_APPLY.PROJECT_NUM AS PROJECTNUM, TBL_PROJECT.POINT AS ADDPOINT,TBL_PROJECT.APPROVAL AS PROJECTAPPROVAL,TBL_PROJECT.START_QR AS STARTQR,TBL_PROJECT.END_QR AS ENDQR,TBL_APPLY.NUM AS APPLYNUM,TBL_APPLY.APPROACH as APPROACH
+        FROM TBL_USER,TBL_APPLY,TBL_PROJECT
+        WHERE TBL_USER.NUM = TBL_APPLY.NUM
+        AND TBL_APPLY.PROJECT_NUM =TBL_PROJECT.NUM
+        AND TBL_USER.NUM = #{userNum}
+    </select>
+
+
+
+
 
 <!--이메일 중복 체크-->
     <select id="emailMatching" resultType="_int">
@@ -112,6 +136,7 @@
         WHERE EMAIL=#{email}
     </select>
 
+
     <!--닉네임 중복 체크-->
     <select id="nicknameMatching" resultType="_int">
         SELECT COUNT(NICKNAME)
@@ -124,16 +149,14 @@
         WHERE NICKNAME=#{nickname}
     </select>
 
-
-
     <select id="getList"  resultType="userDTO">
-        SELECT NUM,NICKNAME,EMAIL,REGIST_DATE ,PHONE,ADDRESS,CATEGORY
+        SELECT NUM,NICKNAME,EMAIL,REGIST_DATE ,PHONE,ADDRESS,CATEGORY,POINT,STATUS,APPROVAL
         FROM
         (
-        SELECT ROWNUM RN,NUM,NICKNAME,EMAIL,REGIST_DATE ,PHONE,ADDRESS,CATEGORY
+        SELECT ROWNUM RN,NUM,NICKNAME,EMAIL,REGIST_DATE ,PHONE,ADDRESS,CATEGORY,POINT,STATUS,APPROVAL
         FROM(
         SELECT
-        NUM,NICKNAME,EMAIL,REGIST_DATE ,PHONE,ADDRESS,CATEGORY
+        NUM,NICKNAME,EMAIL,REGIST_DATE ,PHONE,ADDRESS,CATEGORY,POINT,STATUS,APPROVAL
         FROM TBL_USER
         <where>
             <if test="type1 == 'nickname'.toString()">
@@ -151,7 +174,7 @@
         </where>
         UNION ALL
         SELECT
-        NUM,NICKNAME,EMAIL,REGIST_DATE ,PHONE,ADDRESS,CATEGORY
+        NUM,NICKNAME,EMAIL,REGIST_DATE ,PHONE,ADDRESS,CATEGORY,POINT,STATUS,APPROVAL
         FROM TBL_COMPANY
         <where>
             <if test="type1 == 'nickname'.toString()">
@@ -183,9 +206,15 @@
         <![CDATA[
     WHERE RN > (#{pageNum} - 1) * #{amount}
         ]]>
-
+        ORDER BY REGIST_DATE DESC
 
     </select>
+
+    <update id="autoPoint">
+        UPDATE TBL_USER
+        SET POINT=#{point}
+        WHERE NUM=#{userNum}
+    </update>
 
     <!-- 위 테이블의 총 개수-->
     <select id="getTotal" resultType="_int">
@@ -241,8 +270,6 @@
         </choose>
         )
     </select>
-    
-
 
     <select id="getNoticeList" resultType="adminBoardVO">
      SELECT NUM, TITLE, CATEGORY, CONTENT, USER_NUM, REGIST_DATE, UPDATE_DATE FROM
@@ -286,7 +313,6 @@
         (NUM, CATEGORY, TITLE, CONTENT, USER_NUM, STATUS, ANSWER_STATUS, PROJECT_QNA_NUM, PRODUCT_QNA_NUM)
         VALUES(#{num}, '4', #{title}, #{content}, #{userNum}, '1', '1', #{projectQnaNum, jdbcType=VARCHAR}, #{productQnaNum, jdbcType=VARCHAR})
     </insert>
-
 
     <!--  회원 수정  -->
     <update id="updatePW">
@@ -340,7 +366,6 @@
             </if>
         </where>
     </select>
-
 
     <!-- ADMINBOARD에 게시글 리스트 가져오기-->
     <select id="getAdminboardList" resultType="adminboardDTO">
@@ -437,6 +462,10 @@
         WHERE NUM=(SELECT PRODUCT_QNA_NUM FROM TBL_ADMIN_BOARD WHERE TBL_ADMIN_BOARD.NUM = #{num})
     </delete>
 
+    <delete id="projectQnaDelete">
+        DELETE FROM TBL_PROJECT_QNA
+        WHERE NUM=(SELECT PROJECT_QNA_NUM FROM TBL_ADMIN_BOARD WHERE TBL_ADMIN_BOARD.NUM = #{num})
+    </delete>
 
     <update id="noticeCancel">
         UPDATE TBL_ADMIN_BOARD
@@ -456,6 +485,33 @@
         WHERE TBL_USER.NUM = TBL_ADMIN_BOARD.USER_NUM
         AND TBL_ADMIN_BOARD.NUM = #{num}
     </select>
+
+
+<!--    관리자용 유저 활성/비화성화 업데이트-->
+    <update id="userStatusEnable">
+        UPDATE TBL_USER
+        SET STATUS = '1'
+        WHERE NUM=#{num}
+    </update>
+
+    <update id="userStatusDisable">
+        UPDATE TBL_USER
+        SET STATUS = '0'
+        WHERE NUM=#{num}
+    </update>
+
+<!--    관리자용 승인/거절상태 업데이트-->
+    <update id="userApprovalEnable">
+        UPDATE TBL_USER
+        SET APPROVAL = '1'
+        WHERE NUM=#{num}
+    </update>
+
+    <update id="userApprovalDisable">
+        UPDATE TBL_USER
+        SET APPROVAL = '0'
+        WHERE NUM=#{num}
+    </update>
 
     <insert id="projectQnaReply">
         <selectKey keyProperty="num" resultType="long" order="BEFORE">
@@ -492,6 +548,33 @@
          #{content}, #{userNum}, '1', '1', #{projectQnaNum, jdbcType=VARCHAR}, (SELECT TBL_PRODUCT_QNA.NUM FROM TBL_PRODUCT_QNA  WHERE TBL_PRODUCT_QNA.NUM =(SELECT DISTINCT FIRST_VALUE(NUM) OVER (ORDER BY REGIST_DATE DESC) FROM TBL_PRODUCT_QNA) AND TBL_PRODUCT_QNA.PRODUCT_NUM =#{productNum}))
     </insert>
 
+    <insert id="qnaProjectSave" parameterType="adminQnaDTO">
+        <selectKey keyProperty="num" resultType="long" order="BEFORE">
+            SELECT SEQ_ADMIN_BOARD.NEXTVAL FROM DUAL
+        </selectKey>
+        INSERT INTO TBL_ADMIN_BOARD
+        (NUM, CATEGORY, TITLE, CONTENT, USER_NUM, STATUS, ANSWER_STATUS, PROJECT_QNA_NUM, PRODUCT_QNA_NUM)
+        VALUES(#{num}, '1',
+        (SELECT DISTINCT TBL_PROJECT.TITLE NAME FROM TBL_PROJECT,TBL_PROJECT_QNA  WHERE TBL_PROJECT_QNA.PROJECT_NUM = TBL_PROJECT.NUM AND TBL_PROJECT.NUM =#{projectNum}),
+        #{content}, #{userNum}, '1', '1', (SELECT TBL_PROJECT_QNA.NUM FROM TBL_PROJECT_QNA  WHERE TBL_PROJECT_QNA.NUM =(SELECT DISTINCT FIRST_VALUE(NUM) OVER (ORDER BY REGIST_DATE DESC) FROM TBL_PROJECT_QNA) AND TBL_PROJECT_QNA.PROJECT_NUM =#{projectNum}) ,#{productQnaNum, jdbcType=VARCHAR})
+    </insert>
+
+    <update id="qnaStoreModify">
+        UPDATE TBL_ADMIN_BOARD
+        SET
+        CONTENT =#{content},
+        UPDATE_DATE=SYSDATE
+        WHERE PRODUCT_QNA_NUM =#{num}
+    </update>
+
+    <update id="qnaProjectModify">
+        UPDATE TBL_ADMIN_BOARD
+        SET
+        CONTENT =#{content},
+        UPDATE_DATE=SYSDATE
+        WHERE PROJECT_QNA_NUM =#{num}
+    </update>
+
     <select id="getMyProjectQna" resultType="projectQnaVO">
         SELECT NUM, CONTENT, REGIST_DATE, UPDATE_DATE, USER_NUM, PROJECT_NUM
         FROM TBL_PROJECT_QNA
@@ -516,7 +599,18 @@
         WHERE QNA_NUM = #{qnaNum}
     </select>
 
+    <select id="myAllReview" resultType="myReviewDTO">
+    (SELECT tpr.CONTENT,tpr.UPDATE_DATE, tp.NAME AS TITLE, tpr.NUM as NUM
+    FROM TBL_PRODUCT_REVIEW tpr, TBL_PRODUCT tp
+    WHERE tpr.PRODUCT_NUM = tp.NUM AND tpr.USER_NUM = #{userNum}
+    UNION
+    SELECT tpr2.CONTENT,tpr2.UPDATE_DATE, tp2.TITLE, tpr2.NUM as NUM
+    FROM TBL_PROJECT_REVIEW tpr2, TBL_PROJECT tp2
+    WHERE tpr2.PROJECT_NUM =tp2.NUM AND tpr2.USER_NUM = #{userNum})
+    ORDER BY UPDATE_DATE DESC
+    </select>
 </mapper>
+
 
 
 

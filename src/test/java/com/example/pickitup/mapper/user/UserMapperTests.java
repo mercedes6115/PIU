@@ -231,6 +231,11 @@ public class UserMapperTests {
 
     @Test
     public void getProductQnaComment() {userMapper.myProductQnaComment(13L);}
+
+    @Test
+    public void getMyAllReview() {
+        userMapper.myAllReview(2L);
+    }
 }
 
 

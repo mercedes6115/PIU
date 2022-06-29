@@ -1107,7 +1107,7 @@ body {
 }
 
 
-.moveProjectModify, .deleteProjectBtn {
+.moveProjectModify, .deleteProjectBtn, .moreQR {
     text-decoration: none;
     color: black;
     display: flex;
@@ -1115,6 +1115,8 @@ body {
     background-color: white;
     border: 1px silver solid;
     font-size: 8px;
+    margin-left: 6px;
+    padding: 6px;
 }
 
 .modifyForm {
@@ -1911,3 +1913,24 @@ option:disabled {
     min-width: 0;
 }
 
+.modal-content{
+    background-color: white;
+    width: 800px;
+    height: 800px;
+}
+
+.qrImg{
+    margin:50px;
+    ustify-content: center;
+    padding: 50px;
+}
+
+.close{
+    font-size: 30px;
+    display: block;
+    margin-top: 10px;
+}
+
+.qrtitle{
+    text-align: center;
+}

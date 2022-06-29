@@ -447,7 +447,24 @@ background: rgb(238, 238, 238);
 
 .plogging-thumbnail-wrap{
   height:207px;
-  
+  /*width: 290px;*/
+  /*height: 200px;*/
+}
+.plogging-thumbnail-wrap2{
+  height:207px;
+  width: 290px;
+  /*height: 200px;*/
+}
+.focus{
+  margin-top: -170px;
+  padding-top: 170px;
+}
+
+
+
+.plogging-thumbnail-wrap > img {
+  width: 100%;
+  height: 100%;
 }
 .slides3 > li > .plogging-thumbnail-wrap > img{
   border-radius: 5px;
@@ -587,7 +604,7 @@ px
   position: absolute;
     top: 0px;
     right: 0px;
-    width: 50%;
+    width: 100%;
     height: calc(100% - 32px);
     background-color:#1F89FF;
 }
@@ -606,11 +623,11 @@ px
     height: 100%;
     top: 0px;
     left: 0px;
-    filter: blur(28px);
+    /*filter: blur(28px);*/
     backface-visibility: hidden;
     perspective: 1000px;
     transform: translateZ(0px);
-    background: linear-gradient(270.44deg, rgb(196, 48, 43) 0.21%, rgba(196, 48, 43, 0.4) 99.18%) 0% 0% / 100%;
+    /*background: linear-gradient(270.44deg, rgb(196, 48, 43) 0.21%, rgba(196, 48, 43, 0.4) 99.18%) 0% 0% / 100%;*/
 
 }
 
@@ -1151,3 +1168,10 @@ px
   flex-direction: column;
   cursor: pointer;
 }
+
+
+/* ---------------------------------수정중----------------------------------------- */
+
+/*.join-plogging-main-image img{*/
+/*  width: 98%;*/
+/*}*/

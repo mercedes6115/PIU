@@ -47,10 +47,10 @@
 <!-- 반응형 구매하기 폼태그 -->
 <form action="/store/itemChoose" method="post" th:object="${product}">
     <div class="pay_bar_media" style="text-align: center;">
-        <div class="flex" style="width: 100%;">
-<!--            <div style="width: 7%; padding-left: 10px;"><span class="material-symbols-outlined pointer jjim-ajax" th:name="*{num}" style="font-size: 40px; padding-top: 15px;">-->
-<!--                    favorite-->
-<!--                    </span></div>-->
+        <div class="flex" style="width: 100%; justify-content: center;">
+            <!--            <div style="width: 7%; padding-left: 10px;"><span class="material-symbols-outlined pointer jjim-ajax" th:name="*{num}" style="font-size: 40px; padding-top: 15px;">-->
+            <!--                    favorite-->
+            <!--                    </span></div>-->
             <input class="toBuy" type="submit" value="구매하기" style="width: 90%; height: 50px;">
         </div>
     </div>
@@ -89,7 +89,7 @@
                         <div class="flex" style="width: 100%;">
                             <div class="flex" style="width: 100%;">
                                 <div class="btn text-align flex" style="margin-right: 5px;  justify-content: center; align-items: center;">
-                                        <span class="padding-t material-symbols-outlined jjim-ajax" th:name="*{num}" style="font-size: 20px;">
+                                        <span class="padding-t material-symbols-outlined jjim-ajax" th:name="*{num}" style="font-size: 20px; ">
                                         favorite
                                         </span> <p style="font-weight: normal; font-size: 14px; margin: 0;" class="jjimCount">&nbsp;</p></div>
                                 <div class="btn text-align flex share_btn" style="margin-right: 5px;  justify-content: center; align-items: center;"><span class="padding-t material-symbols-outlined" style="font-size: 18px;">
@@ -216,7 +216,7 @@
 
                     <div class="flex" style="width: 100%;">
                         <div class="btn text-align flex" style="margin-right: 5px;  justify-content: center; align-items: center;">
-                                <span class="padding-t material-symbols-outlined jjim-ajax" th:name="*{num}" style="font-size: 20px;">
+                                <span class="padding-t material-symbols-outlined jjim-ajax" th:name="*{num}" style="font-size: 20px; color: rgb(167, 162, 162);">
                                 favorite
                                 </span> <p style="font-weight: normal; font-size: 14px; margin: 0;" class="jjimCount">&nbsp;</p></div>
                         <div class="btn text-align flex share_btn" style="margin-right: 5px;  justify-content: center; align-items: center;"><span class="padding-t material-symbols-outlined" style="font-size: 18px;">
@@ -287,7 +287,7 @@
     let pageNum = 1;
     showJjimcheck()
     // 임시 유저 userNum = 22;
-    let userNum = 22;
+    let userNum = [[${userNum}]];
     //찜 ajax
     $('.jjim-ajax').on("click",function() {
 
@@ -315,7 +315,7 @@
             //
             $(this).addClass("material-symbols-outlined");
             $(this).removeClass("material-icons");
-            $(this).css("color","#d3cdcd");
+            $(this).css("color","rgb(167 162 162)");
         }
     });
 
@@ -335,7 +335,7 @@
                         }else{                                                                             //찜되어있다면
                             $(".jjim-ajax[name="+jjim.productNum+"]").addClass("material-symbols-outlined");
                             $(".jjim-ajax[name="+jjim.productNum+"]").removeClass("material-icons");
-                            $(".jjim-ajax[name="+jjim.productNum+"]").css("color","gray");
+                            $(".jjim-ajax[name="+jjim.productNum+"]").css("color","rgb(167 162 162)");
 
                         }
                     }
@@ -383,7 +383,7 @@
                 str += "<div class=\"reviewDetailProfile\">";
                 str += "<div class=\"reviewProfileForm\">";
                 str += "<span class=\"reviewProfile\">";
-                str += "<picture class=\"profile\">";
+                str += "<picture class=\"profile\" >";
                 // str += "<img src=\"/images/chun.png\">";
                 str += "</picture>";
                 str += "</span>";
@@ -391,7 +391,7 @@
                 str += "<div class=\"reviewNameDate\">";
                 str += "<div class=\"reviewName\">";
 
-                // 유저 아이디 가져오기
+                // 유저 아이디 & 사진 가져오기
                 (function(){
                     let userNum = reviews[i].userNum;
                     $.ajax({
@@ -400,10 +400,19 @@
                         async : false,
                         success:function (user) {
                             str += user.nickname;
+
+
+                            //사진 가져오기
+                            setTimeout(function () {
+                                let ps = $(".profile");
+                                $(ps[0]).attr("class","profile"+user.nickname);
+                            },50)
+
                             // =======================================유저 사진 받아와서 뿌릴예정=========================================================
-                            // let profileImg = "<img src='/userFile/display?fileName=" + user[0].uploadPath + "/_" + user[0].uuid + "_"  + user[0].fileName + "'>";
-                            // $(".profile").html(profileImg);
-                            // console.log($(".profile"))
+                            let profileImg = "<img src='/userFile/display?fileName=" + user.profileUploadPath + "/"  + user.profileFileName + "' style='width: 34px; height: 34px;'>";
+                            setTimeout(function () {
+                                $(".profile"+user.nickname).html(profileImg);
+                            },100)
                         }
                     })
                 })(i);
@@ -463,7 +472,7 @@
         url: "/productFile/list/"+productNum,
         type : "get",
         success : function (files) {
-            let str = "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
+            let str = "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/" + files[0].uuid + "_"  + files[0].fileName + "'>";
             $(".mainImage").html(str);
             // $("img#"+productNum).attr("src", "/upload/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName )
         }
@@ -477,11 +486,11 @@
             let str ="";
             if(files.length>1){
                 for(let i =1; i< files.length;i++){
-                    str += "<img src='/productFile/display?fileName=" + files[i].uploadPath + "/s_" + files[i].uuid + "_"  + files[i].fileName + "'>";
+                    str += "<img src='/productFile/display?fileName=" + files[i].uploadPath + "/" + files[i].uuid + "_"  + files[i].fileName + "'>";
                     $(".subImage").append(str);
                 }
             }else{
-                str += "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
+                str += "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/" + files[0].uuid + "_"  + files[0].fileName + "'>";
                 $(".mainImage").html(str);
             }
             // $("img#"+productNum).attr("src", "/upload/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName )
@@ -511,7 +520,8 @@
                 $.each(qnaDTO.list, function(i, qna){
                     str += "<div class=\"qnas\">";
                     str += "<div class=\"flex\" style=\"align-items: center;\">";
-                    str += "<div class=\"profile_img\"><img src=\"/images/1.jpg\" style=\"width: 100%; height: 100%;\"></div>";
+                    str += "<div class=\"profile_img\">";
+                    str += "</div>";
                     str += "<div class=\"id_and_date\" style=\"flex-direction: column;\">";
                     str += "<div class=\"admin_id\" style=\"color: black;\">";
                     (function(){
@@ -521,15 +531,36 @@
                             async : false,
                             success:function (user) {
                                 str += user.nickname;
+
+                                //사진 가져오기
+                                setTimeout(function () {
+                                    let ps = $(".profile_img");
+                                    $(ps[0]).attr("class","profile_img"+user.nickname);
+                                },50)
+
+                                // =======================================유저 사진 받아와서 뿌릴예정=========================================================
+                                let profileImg = "<img src='/userFile/display?fileName=" + user.profileUploadPath + "/"  + user.profileFileName + "' style='width: 34px; height: 34px; border-radius: 50%; margin-right: 5px;'>";
+                                setTimeout(function () {
+                                    $(".profile_img"+user.nickname).html(profileImg);
+                                },100)
                             }
                         })
                     })(i);
                     str += "</div>";
                     str += "<div class=\"admin_date\">"+qna.updateDate.substring(0,10)+"</div>";
                     str += "</div>";
-                    str += "<div style='font-size: 11px; position: absolute; right: 1%;'>";
-                    str += "<a href=\""+qna.num+"\" class='makeComment' style='color: black'>답글달기</a>";
-                    str += "</div>";
+
+                    // 문의 수정 삭제 만들기
+                    if(qna.userNum == userNum){  // 현재 로그인 한 유저와 글쓴이가 같을경우에만 수정삭제 가능.
+                        str += "<div style='display: flex; margin-left: 5px; font-size: 11px; position: absolute; right: 1%'>";
+                        str += "<div style='margin-right: 5px;' class='qnaModify' name=\""+qna.num+"\"><a style='color: black; cursor:pointer;'>수정</a></div>";
+                        str += "<div class='qnaDelete' name=\""+qna.num+"\"><a style='color: black; cursor:pointer;'>삭제</a></div>";
+                        str += "</div>";
+                    }else if(userNum==1){
+                        str += "<div style='font-size: 11px; position: absolute; right: 1%;'>";
+                        str += "<a href=\""+qna.num+"\" class='makeComment' style='color: black'>답글달기</a>";
+                        str += "</div>";
+                    }
                     str += "</div>";
                     str += "<div class=\"space\"></div>";
                     str += "<div class=\"small_and_gray\"><p class=\"user_question\">"+qna.content+"</p></div>";
@@ -544,15 +575,19 @@
                             success : function (qnaCommentLists) {
                                 $.each(qnaCommentLists, function (i, comment) {
                                     str += "<div class=\"flex\" style=\"align-items: center;\">";
-                                    str += "<div class=\"admin_profile_img\"><img src=\"/images/4.jpg\"></div>";
+                                    str += "<div class=\"admin_profile_img\"><img src=\"/images/chun8.png\"></div>";
                                     str += "<div class=\"flex id_and_date\" style='width: 100%'>";
-                                    str += "<div class=\"admin_id\">관리자번호" + "&nbsp; </div>";
+                                    str += "<div class=\"admin_id\">운영자" + "&nbsp; </div>";
                                     str += "<div class=\"admin_date\">" + comment.updateDate.substring(0,10) + "</div>";
-                                    str += "<div style='position: absolute; right: 0; font-weight: normal;'>";
-                                    str += "<a href=\""+comment.num+"\" name=\""+qna.num+"\" id=\""+comment.content+"\" class=\"modify_adminComment\" style='margin-right: 5px;'>수정</a>";
-                                    str += "<a href=\""+comment.num+"\" name='"+qna.num+"' class=\"delete_adminComment\">삭제</a>";
-                                    str += "<a href=\""+comment.num+"\" name='"+qna.num+"' class=\"cancel_adminComment\" style='display: none; color: black;'>취소</a>";
-                                    str += "</div>";
+
+                                    if(userNum==1){ //관리자면
+                                        str += "<div style='position: absolute; right: 0; font-weight: normal;'>";
+                                        str += "<a href=\""+comment.num+"\" name=\""+qna.num+"\" id=\""+comment.content+"\" class=\"modify_adminComment\" style='margin-right: 5px;'>수정</a>";
+                                        str += "<a href=\""+comment.num+"\" name='"+qna.num+"' class=\"delete_adminComment\">삭제</a>";
+                                        str += "<a href=\""+comment.num+"\" name='"+qna.num+"' class=\"cancel_adminComment\" style='display: none; color: #000000;'>취소</a>";
+                                        str += "</div>";
+                                    }
+
                                     str += "</div>";
                                     str += "</div>";
                                     str += "<div class=\"small_and_gray\" style=\"color: black;\">";
@@ -589,6 +624,27 @@
         },300);
     }
 
+    //문의 삭제
+    $(".ProductQnas").on("click",".qnaDelete",function (e) {
+        e.preventDefault();
+        if(confirm("정말 삭제하시겠습니까?")){
+            $.ajax({
+                url:"/store/qnaDelete?num="+$(this).attr("name"),
+                type:"get",
+                success : function (res) {
+                    showQnaList(pageNum);
+                }
+            })
+        }else{
+            return false;
+        }
+    })
+
+    //문의 수정
+    $(".ProductQnas").on("click",".qnaModify",function (e) {
+        e.preventDefault();
+        location.href = "/store/qnaModify?num="+$(this).attr("name");
+    })
 
     // ======================================================================
     // =======================문의 페이징 처리==========================
@@ -666,7 +722,7 @@
     $('.ProductQnas').on("click", ".makeComment", function (e) {
         e.preventDefault();
         if(수정중){
-           alert("수정중 인 댓글이 있습니다.")
+            alert("수정중 인 댓글이 있습니다.")
             return;
         }
         if(답글중){ // 답글중이면
@@ -756,11 +812,11 @@
     })
 
     //a태그 내부 페이지 이동
-   function usea(){
-       let intro = $('#toitem_intro').offset().top-230;
-       let review = $('#toitem_review').offset().top-130;
-       let question = $('#toitem_question').offset().top-180;
-       let policy = $('#toreturn_po').offset().top-170;
+    function usea(){
+        let intro = $('#toitem_intro').offset().top-230;
+        let review = $('#toitem_review').offset().top-130;
+        let question = $('#toitem_question').offset().top-180;
+        let policy = $('#toreturn_po').offset().top-170;
 
         $('#item_intro').click(function(){
             $('html, body').animate({scrollTop:intro},0);

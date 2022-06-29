@@ -46,4 +46,12 @@ public class JjimService {
 
     // 찜 update -> 필요?
 
+    // 프로젝트 찜 등록(마이페이지 이용)
+    public void myProjectJjimInsert(JjimVO jjimVO) {jjimDAO.myProjectJjimInsert(jjimVO);}
+
+    // 프로젝트 찜 해제(마이페이지 이용)
+    public void myProjectJjimDelete(JjimVO jjimVO) { jjimDAO.myProjectJjimDelete(jjimVO);}
+
+    // 프로젝트 찜 개수(마이페이지 이용)
+    public int myProjectJjimCount(Long projectNum) { return jjimDAO.myProjectJjimCount(projectNum);}
 }

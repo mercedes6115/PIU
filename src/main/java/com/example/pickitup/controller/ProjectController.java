@@ -1,11 +1,16 @@
 package com.example.pickitup.controller;
 
+import com.example.pickitup.domain.vo.dto.AdminQnaDTO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaVO;
 import com.example.pickitup.domain.vo.project.projectReview.ProjectReviewVO;
 import com.example.pickitup.domain.vo.user.ApplyVO;
 import com.example.pickitup.domain.vo.user.JjimVO;
+import com.example.pickitup.service.CompanyService;
 import com.example.pickitup.service.ProjectService;
+import com.example.pickitup.service.TempAdminService;
+import com.example.pickitup.service.TempUserSerivce;
+import com.example.pickitup.service.user.ApplyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -23,20 +28,29 @@ import java.util.Date;
 public class ProjectController {
 
     private final ProjectService projectService;
+    private final TempAdminService tempAdminService;
+    private final ApplyService applyService;
+    private final CompanyService companyService;
+    private final TempUserSerivce tempUserSerivce;
 
     // 프로젝트 상세보기
     @GetMapping("/projectDetail")
     public String projectDetail(Long num, Model model) throws ParseException {
+
         ProjectVO projectVO = projectService.read(num);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date projectDate = sdf.parse(projectVO.getProjectDate());
         SimpleDateFormat addSdf = new SimpleDateFormat("yyyy년 MM월 dd일 EE요일 HH:mm");
+
         projectVO.setProjectDate(addSdf.format(projectDate));
 
+        model.addAttribute("company", companyService.read(projectVO.getCompanyNum()));
         model.addAttribute("project", projectVO);
         model.addAttribute("qna", projectService.getQnAList(num));
+        model.addAttribute("img", projectService.getProjectFileList(num));
         return "/project/projectDetail";
     }
+
 
     // 프로젝트 문의 작성
     @GetMapping("/qnaWrite")
@@ -50,10 +64,11 @@ public class ProjectController {
 
     // 프로젝트 문의 작성폼
     @PostMapping("/qnaWriteForm")
-    public String qnaWriteForm(ProjectQnaVO projectQnaVO, Model model) throws ParseException {
+    public String qnaWriteForm(ProjectQnaVO projectQnaVO, AdminQnaDTO adminQnaDTO, Model model) throws ParseException {
         // 임시
         projectQnaVO.setUserNum(42L);
         projectService.registerQnA(projectQnaVO);
+        tempAdminService.qnaProjectSave(adminQnaDTO);
         return projectDetail(41L, model);
 
     }

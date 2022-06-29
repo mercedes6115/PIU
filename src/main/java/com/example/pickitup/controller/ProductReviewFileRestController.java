@@ -138,7 +138,4 @@ public class ProductReviewFileRestController {
         return productReviewFileService.findByProductReviewNum(productReviewNum);
     }
 
-
-
-
 }

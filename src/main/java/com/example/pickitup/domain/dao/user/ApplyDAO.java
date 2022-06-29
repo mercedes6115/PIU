@@ -1,5 +1,6 @@
 package com.example.pickitup.domain.dao.user;
 
+import com.example.pickitup.domain.vo.dto.ApplyDTO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 import com.example.pickitup.domain.vo.user.ApplyVO;
 import com.example.pickitup.mapper.user.ApplyMapper;
@@ -29,6 +30,10 @@ public class ApplyDAO {
         return applyMapper.getDetail(num);
     }
 
+    // 프로젝트 지급완료로 상태변경
+    public boolean setApproach(Long applyNum){
+        return applyMapper.setApproach(applyNum);
+    }
     // 프로젝트 참가자 정보 수정(완수여부)
     public boolean update(Long approach, Long userNum){
         return applyMapper.update(approach, userNum);
@@ -39,4 +44,15 @@ public class ApplyDAO {
 
     // 총 신청자 수
     public Long countApply(Long projectNum) { return applyMapper.countApply(projectNum);}
+
+    //프로젝트한 참여한 유저 목록
+    public List<ApplyDTO> getApplyUser(Long projectNum){
+        return applyMapper.getApplyUser(projectNum);
+    }
+
+
+    // 프로젝트 진행중으로 상태변경
+    public boolean setApproachToContinue(Long applyNum){
+        return applyMapper.setApproachToContinue(applyNum);
+    }
 }

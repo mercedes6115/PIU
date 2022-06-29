@@ -201,8 +201,8 @@
                                 <div class="groupPageProfileForm">                                
                                     <div class="groupPageProfileContainer">
                                         <picture class="groupPageProfile">
-                                            <source srcset="/src/main/resources/static/images/chun2.png" media="all and (min-width: 1024px)" >
-                                            <img src="/src/main/resources/static/images/chun2.png" class="profileImage" alt="">
+<!--                                            <source srcset="/src/main/resources/static/images/chun2.png" media="all and (min-width: 1024px)" >-->
+                                            <img th:src="${ }" class="profileImage" alt="">
                                         </picture>
                                     </div>
                                     </div>
@@ -275,7 +275,8 @@
                 <!-- 우측 메인내용 -->
                 <div class="groupPageModifyFrame" th:object="${company}">
                     <div class="groupPageModifyFrameMain">
-                        <form method="post" action="/group/modifyForm">
+                        <form method="post" action="/group/modifyForm" name="modifyForm">
+                            <input type="hidden" name="num" th:value="*{num}">
                             <div class="groupPageModifyFormFrame">
                                 <div class="groupPageModifyTitleWrapper">
                                 <div class="groupPageModifyTitleFrame">
@@ -289,13 +290,13 @@
                                 <div class="groupIntroProfileFrame">
                                     <label class="groupIntroProfileTitle">프로필</label>
                                     <label for="attach" class="groupIntroProfileInsertFrame" >
-                                        <input type="file" id="attach" class="groupProfile">
+                                        <input type="file" id="attach" class="groupProfile" name="uploadFiles">
+                                        <div class="imgBox"></div>
                                         <div class="groupIntroProfileForm">
                                             <div class="groupIntroProfileBox">
                                                 <span class="showGroupProfile">
                                                     <picture class="showGroupImg">
-
-                                                        <!--<img src="/src/main/resources/static/images/chun2.png" class="profileImage" alt="">-->
+                                                        <img th:src="@{/groupFile/display?fileName=} + ${company.profileUploadPath} + @{/} + ${company.profileFileName}" id="companyImg" style="max-width: 100%; height: auto;">
                                                     </picture>
                                                 </span>
                                             </div>
@@ -349,14 +350,38 @@
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>
 
-//    $('#submitBtn').on("click", function () {
-//        $('input[type="text"]');
-//
-//    })
+    $("input[type='file']").on("change", function (e) {
+        let formData =   new FormData();
+        let inputFile = $("input[name='uploadFiles']");
+        for(let i=0; i<inputFile.length; i++){
+            if($(inputFile[i]).val() != ""){
+                formData.append("uploadFiles", inputFile[i].files[0]);
+                console.log(inputFile[i].files[0]);
+            }
+        };
+        $.ajax({
+            url: "/groupFile/upload",
+            type: "post",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (file) {
+                    console.log(file.profileFileName);
+                    console.log(file.profileUploadPath);
+                    str = "";
+                    str += "<input type='hidden' name='profileFileName' value='" + file.profileFileName + "'>"
+                    str += "<input type='hidden' name='profileUploadPath' value='" + file.profileUploadPath + "'>"
+                    $('#companyImg').attr("src", "/groupFile/display?fileName=" + file.profileUploadPath + "/" + file.profileFileName);
+                $('.imgBox').html(str);
 
-    $.ajax({
+            }
+        });
+    });
 
+    $('#submitBtn').on("click", function () {
+        modifyForm.submit();
     })
+
 
 
 </script>

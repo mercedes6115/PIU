@@ -13,35 +13,36 @@
         ORDER BY REGIST_DATE DESC
     </select>
     <!--상품 리스트 관리자용-->
+
     <select id="getProductList" resultType="productVO">
     <![CDATA[
     SELECT
         NUM, NAME, CONTENT, CATEGORY, PRICE, STOCK,
-        ORIGIN, MANUFACTURER, SUPPLIER, REGIST_DATE
+        ORIGIN, MANUFACTURER, SUPPLIER, REGIST_DATE,STATUS
     FROM (
     ]]>
-        SELECT /*+ INDEX_DESC(TBL_BOARD SYS_C007228) */
+        SELECT /*+ INDEX_DESC(TBL_BOARD SYS_C007258) */
         ROWNUM RN,NUM, NAME, CONTENT, CATEGORY, PRICE, STOCK,
-            ORIGIN, MANUFACTURER, SUPPLIER, REGIST_DATE
+            ORIGIN, MANUFACTURER, SUPPLIER, REGIST_DATE,STATUS
               FROM TBL_PRODUCT
+        <![CDATA[
+            WHERE ROWNUM <= #{pageNum} * #{amount}
+            ]]>
                 <choose>
                     <when test="type == 'name'.toString()">
-                        WHERE NAME LIKE '%'||#{keyword}||'%'
+                        AND NAME LIKE '%'||#{keyword}||'%'
                     </when>
                     <when test="type == 'productnumber'.toString()">
-                        WHERE  NUM LIKE '%'||#{keyword}||'%'
+                        AND  NUM LIKE '%'||#{keyword}||'%'
                     </when>
                     <when test="type == 'manufacturer'.toString()">
-                        WHERE  MANUFACTURER LIKE '%'||#{keyword}||'%'
+                        AND  MANUFACTURER LIKE '%'||#{keyword}||'%'
                     </when>
                     <when test="type == 'supplier'.toString()">
-                        WHERE  SUPPLIER LIKE '%'||#{keyword}||'%'
+                        AND  SUPPLIER LIKE '%'||#{keyword}||'%'
                     </when>
                 </choose>
                 <choose>
-                    <when test="type1 == 'total'.toString()">
-                        AND CATEGORY = '생활'
-                    </when>
                     <when test="type1 == 'life'.toString()">
                         AND CATEGORY = '생활'
                     </when>
@@ -72,22 +73,69 @@
                         AND (REGIST_DATE BETWEEN #{startDate} AND #{endDate})
                     </when>
                 </choose>
-                <choose>
-                    <when test="type!=null || type1!=null || keyword!=null || startDate != null || endDate !=null " >
-                            <![CDATA[
-                            AND ROWNUM <= #{pageNum} * #{amount}
-                            ]]>
-                    </when>
-                    <otherwise>
-                           <![CDATA[
-                           WHERE ROWNUM <= #{pageNum} * #{amount}
-                           ]]>
-                    </otherwise>
-                </choose>
         )
         <![CDATA[
         WHERE RN > (#{pageNum} - 1) * #{amount}
         ]]>
+        ORDER BY REGIST_DATE DESC
+    </select>
+
+
+    <select id="getProductTotal" resultType="_int">
+        SELECT count(NUM)
+        FROM TBL_PRODUCT
+        <choose>
+            <when test="type == 'name'.toString()">
+                WHERE NAME LIKE '%'||#{keyword}||'%'
+            </when>
+            <when test="type == 'productnumber'.toString()">
+                WHERE  NUM LIKE '%'||#{keyword}||'%'
+            </when>
+            <when test="type == 'manufacturer'.toString()">
+                WHERE  MANUFACTURER LIKE '%'||#{keyword}||'%'
+            </when>
+            <when test="type == 'supplier'.toString()">
+                WHERE  SUPPLIER LIKE '%'||#{keyword}||'%'
+            </when>
+        </choose>
+        <choose>
+            <when test="type1 == 'life'.toString()">
+                AND CATEGORY = '생활'
+            </when>
+            <when test="type1 == 'kitchen'.toString()">
+                AND CATEGORY = '주방'
+            </when>
+            <when test="type1 == 'bathroom'.toString()">
+                AND CATEGORY = '욕실'
+            </when>
+            <when test="type1 == 'pet'.toString()">
+                AND CATEGORY = '반려동물'
+            </when>
+            <when test="type1 == 'cosmetics'.toString()">
+                AND CATEGORY = '화장품'
+            </when>
+            <when test="type1 == 'foods'.toString()">
+                AND CATEGORY = '식품'
+            </when>
+            <when test="type1 == 'stationary'.toString()">
+                AND CATEGORY = '문구'
+            </when>
+            <when test="type1 == 'horticulture'.toString()">
+                AND CATEGORY = '원예'
+            </when>
+        </choose>
+        <choose>
+            <when test="startDate != null">
+                AND (REGIST_DATE BETWEEN #{startDate} AND #{endDate})
+            </when>
+        </choose>
+    </select>
+
+    <select id="getFullList" resultType="productVO">
+        SELECT
+        NUM, NAME, CONTENT, CATEGORY, PRICE, STOCK,
+        ORIGIN, MANUFACTURER, SUPPLIER, REGIST_DATE,STATUS
+        FROM TBL_PRODUCT
     </select>
 
     <select id="getTotal" resultType="_int">
@@ -102,6 +150,9 @@
     WHERE NUM = #{num}
     </select>
     <insert id="insert">
+    <selectKey keyProperty="num" resultType="long" order="BEFORE">
+        SELECT SEQ_PRODUCT_REVIEW.NEXTVAL FROM DUAL
+    </selectKey>
     INSERT INTO TBL_PRODUCT
         (
             NUM, NAME, CONTENT, CATEGORY, PRICE, STOCK,ORIGIN,
@@ -109,7 +160,7 @@
         )
     VALUES
         (
-            SEQ_PRODUCT.NEXTVAL,#{name},#{content},#{category},#{price},
+             #{num},#{name},#{content},#{category},#{price},
             #{stock},#{origin},#{manufacturer},#{supplier},SYSDATE
         )
     </insert>
@@ -127,7 +178,8 @@
         REGIST_DATE = SYSDATE
     WHERE NUM=#{num}
     </update>
-    <update id="delete">
+
+    <update id="deleteProduct">
     DELETE FROM TBL_PRODUCT
     WHERE NUM=#{num}
     </update>

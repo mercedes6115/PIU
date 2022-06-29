@@ -13,6 +13,50 @@
         FROM TBL_APPLY app
         WHERE app.PROJECT_NUM = #{projectNum}
     </select>
+
+<!--    지급완료-->
+    <update id="setApproach">
+        UPDATE TBL_APPLY
+        SET APPROACH='4'
+        WHERE NUM=#{applynum}
+    </update>
+
+    <select id="getApplyUser" resultType="applyDTO">
+        SELECT TBL_PROJECT.POINT AS POINT,TBL_USER.NICKNAME AS NICKNAME,TBL_PROJECT.NUM AS PROJECTNUM,TBL_APPLY.NUM AS NUM,TBL_APPLY.APPROACH AS APPROACH,TBL_USER.NUM AS userNum,TBL_PROJECT.STARTTIME AS startTime ,TBL_PROJECT.ENDTIME AS endTime, TBL_USER.PHONE AS PHONE,TBL_PROJECT.TERRAIN AS TERRAIN,TBL_PROJECT.COURSE AS COURSE,TBL_PROJECT.REGIST_DATE AS REGIST_DATE
+        FROM TBL_PROJECT,TBL_APPLY,TBL_USER
+        WHERE TBL_PROJECT.NUM = TBL_APPLY.PROJECT_NUM
+        AND TBL_USER.NUM = TBL_APPLY.USER_NUM
+        AND TBL_PROJECT.NUM =#{projectNum}
+    </select>
+
+
+<!--    프로젝트 진행중-->
+    <update id="setApproachToContinue">
+        UPDATE TBL_APPLY
+        SET APPROACH='2'
+        WHERE NUM=#{applynum}
+    </update>
+
+    <!-- 유저 플로깅 시작  -->
+    <update id="userStart">
+        UPDATE TBL_APPLY
+        SET APPROACH='1', START_TIME= SYSDATE
+        WHERE USER_NUM = #{userNum} AND PROJECT_NUM = #{projectNum}
+    </update>
+
+    <!-- 유저 플로깅 종료   -->
+    <update id="userEnd">
+        UPDATE TBL_APPLY
+        SET APPROACH='2', END_TIME = SYSDATE
+        WHERE USER_NUM = #{userNum} AND PROJECT_NUM = #{projectNum}
+    </update>
+
+    <!-- 유저 플로깅 완료   -->
+    <update id="userFinish">
+        UPDATE TBL_APPLY
+        SET APPROACH='3'
+        WHERE NUM = #{num}
+    </update>
 </mapper>
 
 

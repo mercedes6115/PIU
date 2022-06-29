@@ -38,15 +38,22 @@
                                 <div class="search-box1">
                                     <div class="search-box2">
                                         <div class="search-box3">
-                                            <div class="search-box4">
-                                                <div class="header-search-text1">
-                                                    <input type="text" style="outline: none;" class="search-icon111" placeholder="찾으시는 플로깅이 있으신가요?"></input>
-                                                    <span class="searching-svg-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="css-skwyyj">
-                                                <path d="m22.925 21.16-5.605-5.605A8.453 8.453 0 0 0 19 10.5 8.5 8.5 0 0 0 10.5 2 8.5 8.5 0 0 0 2 10.5a8.5 8.5 0 0 0 8.5 8.5c1.895 0 3.64-.63 5.055-1.68l5.605 5.605c.1.1.255.1.355 0l1.415-1.415a.246.246 0 0 0-.005-.35ZM4.5 10.5c0-3.31 2.69-6 6-6s6 2.69 6 6-2.69 6-6 6-6-2.69-6-6Z" class="header-search-icon1"></path>
+                                            <form action="/main/list" method="get">
+                                                <div class="search-box4">
+                                                    <div class="header-search-text1">
+                                                        <input type="text" style="outline: none;" class="search-icon111"
+                                                               name="headerSearch"
+                                                               placeholder="찾으시는 플로깅이 있으신가요?"></input>
+                                                        <span class="searching-svg-icon"><svg
+                                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                                class="css-skwyyj">
+                                                <path d="m22.925 21.16-5.605-5.605A8.453 8.453 0 0 0 19 10.5 8.5 8.5 0 0 0 10.5 2 8.5 8.5 0 0 0 2 10.5a8.5 8.5 0 0 0 8.5 8.5c1.895 0 3.64-.63 5.055-1.68l5.605 5.605c.1.1.255.1.355 0l1.415-1.415a.246.246 0 0 0-.005-.35ZM4.5 10.5c0-3.31 2.69-6 6-6s6 2.69 6 6-2.69 6-6 6-6-2.69-6-6Z"
+                                                      class="header-search-icon1"></path>
                                             </svg>
-                                        </span>
+                                                    </span>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -56,15 +63,15 @@
                             <div class="header-right-menu-wrap1">
                                 <div class="header-right-menu-wrap2">
 
-<!--  관리자면, 단체(회사)일경우 마이플로깅 -> 플로거 센터로 변경 타임리프 이용-->
-                                <div class="header-right-menu1" th:if="${checkLogin}==3 or ${checkLogin}==2">
-                                    <a class="creater" href="/user/center">
-                                        <p class="myplogging">마이플로깅</p>
-                                    </a>
-                                </div>
-                                <div class="right-empty-space1"></div>
+                                    <!--  관리자면, 단체(회사)일경우 마이플로깅 -> 플로거 센터로 변경 타임리프 이용-->
                                     <div class="header-right-menu1" th:if="${checkLogin}==3 or ${checkLogin}==2">
-                                        <a  href="/user/myPage">
+                                        <a class="creater" href="/user/center">
+                                            <p class="myplogging">마이플로깅</p>
+                                        </a>
+                                    </div>
+                                    <div class="right-empty-space1"></div>
+                                    <div class="header-right-menu1" th:if="${checkLogin}==3 or ${checkLogin}==2">
+                                        <a href="/user/myPage">
                                             <p class="myplogging">마이페이지</p>
                                         </a>
                                     </div>
@@ -72,14 +79,15 @@
 
                                     <div class="right-menu-wrapper2" style="display:flex;">
                                         <div th:if="${checkLogin}==1" class="right-empty-space1"></div>
-                                        <a href="/user/join" th:if="${checkLogin}==1" class="myplogging" >일반회원가입</a>
-                                        <div th:if="${checkLogin}==1" class="right-empty-space1" ></div>
-                                        <a href="/user/joinGroup" th:if="${checkLogin}==1" class="myplogging" >기업회원가입</a>
-                                        <div  class="right-empty-space1"></div>
-                                        <a href="/user/login" th:if="${checkLogin}==1" class="myplogging" >로그인</a>
-                                        <a href="/user/logout" th:if="${checkLogin}==3" class="myplogging" >로그아웃</a>
+                                        <a href="/user/join" th:if="${checkLogin}==1" class="myplogging">일반회원가입</a>
+                                        <div th:if="${checkLogin}==1" class="right-empty-space1"></div>
+                                        <a href="/user/joinGroup" th:if="${checkLogin}==1" class="myplogging">기업회원가입</a>
+                                        <div class="right-empty-space1"></div>
+                                        <a href="/user/login" th:if="${checkLogin}==1" class="myplogging">로그인</a>
+                                        <a href="/user/logout" th:if="${checkLogin}==3" class="myplogging">로그아웃</a>
 
-                                        <a th:if="${checkLogin}==2" class="myplogging" href="https://kauth.kakao.com/oauth/logout?client_id=810e43afb4176b21144a9e5b00273aac&logout_redirect_uri=http://localhost:10010/logout">로그아웃</a>
+                                        <a th:if="${checkLogin}==2" class="myplogging"
+                                           href="https://kauth.kakao.com/oauth/logout?client_id=810e43afb4176b21144a9e5b00273aac&logout_redirect_uri=http://localhost:10010/logout">로그아웃</a>
 
                                     </div>
                                     <!--                                <div class="right-empty-space1"></div>-->
@@ -92,11 +100,11 @@
                                     <!--                                </a>-->
                                     <div class="right-empty-space1"></div>
                                     <!--                                로그아웃 상태이면 해당 영역 display:none-->
-                                    <div class="loginWrapper1" th:if="${checkLogin}==3" >
+                                    <div class="loginWrapper1" th:if="${checkLogin}==3">
                                         <div class="loginWrapper1-left">
                                             <div class="loginWrapper1-left1">
                                                 <div class="loginWrapper1-left2">
-                                                    <img src="/images/chun.png" class="loginWrapper1-left2-wrapper">
+                                                    <img th:src="@{/userFile/display?fileName=} + ${uploadPath} +@{/} + ${fileName}" class="loginWrapper1-left2-wrapper">
                                                 </div>
                                             </div>
                                             <div class="Modal1Whole"></div>
@@ -117,7 +125,10 @@
                                                                     <button class="MyPageGoGo">
                                                                         <div class=" ModalMyPageText">
                                                             <span class="LinkBtn">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="css-jdqsvn"><path d="M8.825 21.93 7.41 20.515c-.1-.1-.1-.255 0-.355l8.155-8.155-8.16-8.16c-.1-.1-.1-.255 0-.355L8.82 2.075c.1-.1.255-.1.355 0l9.75 9.75c.1.1.1.255 0 .355L9.18 21.93c-.1.1-.26.1-.355 0Z" class="css-bchp3n"></path></svg>
+                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                     viewBox="0 0 24 24" class="css-jdqsvn"><path
+                                                                        d="M8.825 21.93 7.41 20.515c-.1-.1-.1-.255 0-.355l8.155-8.155-8.16-8.16c-.1-.1-.1-.255 0-.355L8.82 2.075c.1-.1.255-.1.355 0l9.75 9.75c.1.1.1.255 0 .355L9.18 21.93c-.1.1-.26.1-.355 0Z"
+                                                                        class="css-bchp3n"></path></svg>
                                                             </span>
                                                                             <div class="ModalSpace"></div>
                                                                             <span class="RealButtonText">마이페이지</span>
@@ -127,9 +138,11 @@
                                                             </div>
                                                         </a>
                                                         <div class="ModalBorderLine"></div>
-                                                        <div class="ModalMenuWrap123" >
-                                                            <a href="/user/login" th:if="${checkLogin}==1" class="myplogging" >로그인</a>
-                                                            <a href="/user/logout" th:if="${checkLogin}==3" class="myplogging" >로그아웃</a>
+                                                        <div class="ModalMenuWrap123">
+                                                            <a href="/user/login" th:if="${checkLogin}==1"
+                                                               class="myplogging">로그인</a>
+                                                            <a href="/user/logout" th:if="${checkLogin}==3"
+                                                               class="myplogging">로그아웃</a>
                                                         </div>
                                                         <div class="ModalHeight"></div>
                                                         <div class="ModalMenuWrap12">
@@ -165,13 +178,14 @@
                             <div class="nav-category-icon">
                                 <div class="nav-category-text-wrap">
                                     <div class="nav-category-text-wrap1">
-                                        <h6 class="nav-category-text-style"  onclick="listShow()">전체 카테고리</h6>
+                                        <h6 class="nav-category-text-style">전체 카테고리</h6>
                                     </div>
                                 </div>
                                 <div class="nav-empty-space1"></div>
                                 <span class="nav-category-icon1">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="css-uxrfz2">
-                                <path d="m16.95 9.397-4.75 7c-.1.15-.3.15-.4 0l-4.75-7c-.1-.15 0-.4.2-.4h9.5c.2 0 .3.25.2.4Z" class="css-17ivn46">
+                                <path d="m16.95 9.397-4.75 7c-.1.15-.3.15-.4 0l-4.75-7c-.1-.15 0-.4.2-.4h9.5c.2 0 .3.25.2.4Z"
+                                      class="css-17ivn46">
                                 </path>
                             </svg>
                         </span>
@@ -181,24 +195,32 @@
                                     <div class="CategoryConList">
                                         <div class="CategoryTotalWrap">
                                             <div class="CategoryTotalPadding">
-                                                <div class="CategoryTotalFlex">
-                                                    <p class="CateogryMMTEXT">전체</p>
-                                                </div>
+                                                <a href="/main/list">
+                                                    <div class="CategoryTotalFlex">
+                                                        <p class="CateogryMMTEXT">전체</p>
+                                                    </div>
+                                                </a>
                                             </div>
                                             <div class="CategoryTotalPadding">
-                                                <div class="CategoryTotalFlex">
-                                                    <p class="CateogryMMTEXT">산</p>
-                                                </div>
+                                                <a href="/main/list/1">
+                                                    <div class="CategoryTotalFlex">
+                                                        <p class="CateogryMMTEXT">산</p>
+                                                    </div>
+                                                </a>
                                             </div>
                                             <div class="CategoryTotalPadding">
-                                                <div class="CategoryTotalFlex">
-                                                    <p class="CateogryMMTEXT">바다</p>
-                                                </div>
+                                                <a href="/main/list/2">
+                                                    <div class="CategoryTotalFlex">
+                                                        <p class="CateogryMMTEXT">바다</p>
+                                                    </div>
+                                                </a>
                                             </div>
                                             <div class="CategoryTotalPadding">
-                                                <div class="CategoryTotalFlex">
-                                                    <p class="CateogryMMTEXT">평지</p>
-                                                </div>
+                                                <a href="/main/list/3">
+                                                    <div class="CategoryTotalFlex">
+                                                        <p class="CateogryMMTEXT">평지</p>
+                                                    </div>
+                                                </a>
                                             </div>
 
                                         </div>
@@ -207,7 +229,7 @@
                             </div>
                         </div>
                         <div class="nav-rest-contents-wrapper">
-                            <a href="/event-papers/best_class">
+                            <a href="/main/main#focus1" id="scroll_move1">
                                 <div class="nav-rest-content1-wrapper1">
                                     <div class="nav-rest-content1-wrapper2">
                                         <h6 class="nav-rest-content1-text1">핫한 플로깅</h6>
@@ -217,7 +239,7 @@
                                 </div>
                             </a>
                             <div class="nav-empty-space11"></div>
-                            <a href="/event-papers/best_class">
+                            <a href="/main/main#focus2" id="scroll_move2">
                                 <div class="nav-rest-content1-wrapper1">
                                     <div class="nav-rest-content1-wrapper2">
                                         <h6 class="nav-rest-content1-text1">인기많은 플로깅</h6>
@@ -227,7 +249,7 @@
                                 </div>
                             </a>
                             <div class="nav-empty-space11"></div>
-                            <a href="/event-papers/best_class">
+                            <a href="/main/main#focus3" id="scroll_move3">
                                 <div class="nav-rest-content1-wrapper1">
                                     <div class="nav-rest-content1-wrapper2">
                                         <h6 class="nav-rest-content1-text1">알찬 플로깅</h6>
@@ -245,4 +267,5 @@
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/assets/js/Header.js"></script>
 </html>

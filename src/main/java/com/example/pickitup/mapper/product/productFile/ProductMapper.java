@@ -19,6 +19,8 @@ public interface ProductMapper {
 
     public int getTotal();
 
+    public List<ProductVO> getFullList();
+
     //    상품 한개만 띄우기 (상세보기)
     public ProductVO getDetail(Long num);
 
@@ -29,8 +31,12 @@ public interface ProductMapper {
     public boolean update(ProductVO productVO);
 
     //    상품 삭제하기 ->관리자
+
+    public boolean deleteProduct(Long num);
+
     public boolean delete(Long num);
 
     // 상품 전체 개수
     public int count();
+
 }

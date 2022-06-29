@@ -3,7 +3,7 @@
 <mapper namespace="com.example.pickitup.mapper.user.JjimMapper">
     <select id="getProjectList" resultType="projectVO">
         <![CDATA[
-        SELECT proj.NUM, proj.TITLE, proj.CONTENT, proj.COURSE, proj.TERRAIN, proj.POINT, proj.APPROVAL, proj.STARTTIME, proj.ENDTIME, proj.START_ADDRESS, proj.END_ADDRESS, proj.DISTANCE, proj.QR, proj.REGIST_DATE, proj.UPDATE_DATE, proj.STATUS, proj.COMPANY_NUM, proj.JJIM_COUNT, proj.PROJECT_DATE
+        SELECT proj.NUM, proj.TITLE, proj.CONTENT, proj.COURSE, proj.TERRAIN, proj.POINT, proj.APPROVAL, proj.STARTTIME, proj.ENDTIME, proj.START_ADDRESS, proj.END_ADDRESS, proj.DISTANCE, proj.START_QR, proj.REGIST_DATE, proj.UPDATE_DATE, proj.STATUS, proj.COMPANY_NUM, proj.JJIM_COUNT, proj.PROJECT_DATE
 	        FROM TBL_JJIM jj
 	            INNER JOIN TBL_PROJECT proj ON jj.PROJECT_NUM = proj.NUM
 	            INNER JOIN TBL_USER u ON jj.USER_NUM = u.NUM
@@ -44,6 +44,21 @@
     WHERE PRODUCT_NUM =#{productNum}
     </select>
 
+    <insert id="myProjectJjimInsert">
+        INSERT INTO TBL_JJIM
+        (NUM, CATEGORY, REGIST_DATE, USER_NUM, PROJECT_NUM)
+        VALUES(SEQ_JJIM.NEXTVAL, #{category}, SYSDATE, #{userNum}, #{projectNum})
+    </insert>
+
+    <select id="myProjectJjimCount" resultType="_int">
+    SELECT COUNT(NUM) FROM TBL_JJIM
+    WHERE PROJECT_NUM =#{projectNum}
+    </select>
+
+    <delete id="myProjectJjimDelete">
+        DELETE FROM TBL_JJIM
+        WHERE USER_NUM = #{userNum} AND PROJECT_NUM = #{projectNum}
+    </delete>
 
 </mapper>
 

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+
+<input type="text" name="nickname" id="nickname">
+<input type="password" name="password" id="password">
+<input type="button" onclick="startCheck()" name="button">
+<div id="qrcode"></div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/assets/js/qrcode.js"></script>
+<script th:inline="javascript">
+ var ipV4=[[${ipV4}]];
+
+ console.log(ipV4);
+    function makeQR() {
+        var qrcode = new QRCode(document.getElementById("qrcode"), {
+            text: "http://"+ipV4+":10010/admin/qrEndLogin?num=36&state=end",
+            width: 100,  //가로
+            height: 100, //세로
+            colorDark: "#000000",   //qr에서 어두운 색  (보통 검은색)
+            colorLight: "#ffffff",  //qr에서 밝은   색  (보통 하얀색) colorDark 보다 옅어야한다.
+            correctLevel: QRCode.CorrectLevel.H //qr코드 오류복원능력 (L->M->Q->H)
+        });
+         $("#qrcode > img").css({"margin":"auto"});
+    }
+
+    function startCheck(){
+
+        makeQR();
+        var nickname = document.getElementById("nickname").value;
+        var password = document.getElementById("password").value;
+
+        console.log(nickname);
+        console.log(password);
+    }
+
+</script>
+</html>

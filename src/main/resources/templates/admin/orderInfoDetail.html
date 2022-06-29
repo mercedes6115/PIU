@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>주문내역상세</title>
+</head>
+<link rel="stylesheet" href="/assets/css/admin_style.css">
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+
+<body>
+<div class="root">
+
+    <!-- sidebar -->
+    <div th:replace="~{/admin/adminSideBar :: AdminSideBarImport}"></div>
+
+    <!-- content -->
+    <div id="container">
+        <div>
+            <h2>주문내역</h2>
+        </div>
+        <div class="listBox" id="userDetail">
+            <div>
+                <h2>주문자 정보</h2>
+            </div>
+            <table id="basicInfo" th:object="${userVO}">
+                <form>
+                    <tr>
+                        <th>이메일</th>
+                        <td th:text="*{email}"></td>
+                    </tr>
+                    <tr>
+                        <th>닉네임</th>
+                        <td th:text="*{nickname}"></td>
+                    <tr>
+                        <th>전화번호</th>
+                        <td th:text="*{phone}"></td>
+                    </tr>
+                    <tr>
+                        <th>주소</th>
+                        <td th:text="*{address}"></td>
+                    </tr>
+                    <tr>
+                        <th>배송주소</th>
+                        <td th:text="${orderVO.address}"></td>
+                    </tr>
+                    <tr>
+
+                    </tr>
+                </form>
+                <tr>
+                    <th>주문일자</th>
+                    <td th:text="${orderVO.registDate}"></td>
+                </tr>
+                <tr>
+                    <th>상태</th>
+                    <td>
+                        <span th:if="${orderVO.status}=='0'">주문접수</span>
+                        <span th:if="${orderVO.status}=='1'">배송준비</span>
+                        <span th:if="${orderVO.status}=='2'">배송중</span>
+                        <span th:if="${orderVO.status}=='3'">배송완료</span>
+
+                        <a href="javascript:void(0);" onclick="setDelivery()">배송</a>
+                    </td>
+                </tr>
+            </table>
+
+            <div>
+                <h2>주문 상품정보</h2>
+            </div>
+
+            <table id="pointInfo" th:object="${productVO}">
+                <tr>
+                    <th>상품명</th>
+                    <td th:text="*{name}"></td>
+                    <th>상품번호</th>
+                    <td th:text="*{num}"></td>
+                </tr>
+                <tr>
+                    <th>카테고리</th>
+                    <td th:text="*{category}"></td>
+                    <th>상품가격</th>
+                    <td th:text="*{price}"></td>
+                </tr>
+                <tr>
+                    <th>상품등록일</th>
+                    <td th:text="*{registDate}"></td>
+                    <th>주문수량</th>
+                    <td th:text="${orderVO.counting}"></td>
+                </tr>
+                <tr>
+                    <th>상품상태</th>
+                    <td th:text="*{status}">판매중</td>
+                    <th>총가격</th>
+                    <td th:text="${orderVO.total}"></td>
+                </tr>
+                <tr>
+                    <th>원산지</th>
+                    <td th:text="*{origin}">대한민국</td>
+                    <th>공급사</th>
+                    <td th:text="*{supplier}">삼성</td>
+                </tr>
+                <tr>
+                    <th>제조사</th>
+                    <td th:text="*{manufacturer}"></td>
+                    <th>주문번호</th>
+                    <td th:text="${orderVO.num}"></td>
+                </tr>
+                <tr>
+                    <th>요청사항</th>
+                    <td colspan="3" th:text="${orderVO.addressComment}"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script th:replace="~{/admin/adminSideBar :: AdminSideBarJSImport}"></script>
+<script th:inline="javascript">
+    let orderNum=[[${orderVO.num}]];
+    let productNum=[[${productVO.num}]];
+    console.log(productNum);
+    console.log(orderNum);
+    function setDelivery() {
+
+        var chk = confirm("배송완료 처리 하시겠습니까?");
+        if(chk){
+            $.ajax({
+                url: "/admin/setDelivery",
+                type: 'post',
+                data: {
+                    orderNum: orderNum
+                },
+                success: function () {
+                    alert("성공!!");
+                    location.replace("/admin/orderInfoDetail/?orderNum="+orderNum+"&productNum="+productNum);
+                }
+            });
+        }
+
+    }
+
+</script>
+</html>

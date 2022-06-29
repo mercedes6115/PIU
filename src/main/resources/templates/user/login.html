@@ -63,7 +63,6 @@
                 </div>
                 <button type="submit" class="loginbutton"> 로그인</button>
             </form>
-
             <hr class="line">
 
 
@@ -85,6 +84,11 @@
     let msg=[[${msg}]];
     if(msg!=null){
         alert(msg);
+    }
+
+    let check=[[${checkEmail}]];
+    if(check==true){
+        alert("이미 가입한 회원입니다. 일반 사용자로 로그인해주세요.");
     }
 </script>
 </html>

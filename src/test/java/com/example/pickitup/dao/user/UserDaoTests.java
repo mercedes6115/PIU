@@ -1,11 +1,14 @@
 package com.example.pickitup.dao.user;
 
+import com.example.pickitup.domain.dao.user.OrderDAO;
 import com.example.pickitup.domain.dao.user.UserDAO;
 import com.example.pickitup.domain.vo.AdminCriteria;
 import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.adminVO.AdminBoardDTO;
 import com.example.pickitup.domain.vo.dto.AdminQnaCommentDTO;
 import com.example.pickitup.domain.vo.dto.AdminQnaDTO;
+import com.example.pickitup.domain.vo.dto.OrderUserDTO;
+import com.example.pickitup.domain.vo.dto.ReviewDTO;
 import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaCommentVO;
 import com.example.pickitup.domain.vo.user.AdminBoardVO;
 import com.example.pickitup.domain.vo.user.UserVO;
@@ -14,11 +17,16 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 @SpringBootTest
 @Slf4j
 public class UserDaoTests {
     @Autowired
     private UserDAO userDAO;
+
+    @Autowired
+    private OrderDAO orderDAO;
 
     @Test
     public void getDetail() {
@@ -181,6 +189,39 @@ public class UserDaoTests {
     @Test
     public void getMyProjectQnaTest() {
         userDAO.getMyProjectQna(2L);
+    }
+
+    @Test
+    public void getMyAllReviewTest(){
+        userDAO.myAllReview(22L);
+    }
+
+    @Test
+    public void orderStoreTest() {
+        OrderUserDTO orderUserDTO = new OrderUserDTO();
+        orderUserDTO.setUserNum(22L);
+        orderUserDTO.setCounting(5L);
+        orderUserDTO.setTotal(250L);
+        orderUserDTO.setProductName("상품2");
+        orderUserDTO.setAddressComment("배송중 던지지 마세요");
+        orderUserDTO.setAddress("인천광역시");
+        orderUserDTO.setAddressDetail("주안");
+        orderDAO.orderStore(orderUserDTO);
+    }
+
+    @Test
+    public void userPointMinus(){
+        orderDAO.userPointMinus(22L, "3000");
+    };
+
+    @Test
+    public void productMinusTest() {
+        orderDAO.productMinus("상품1",30L);
+    }
+
+    @Test
+    public void getDetailByNameTest(){
+        orderDAO.getDetailByName("상품2");
     }
 }
 

@@ -2,19 +2,17 @@ package com.example.pickitup.controller;
 
 
 import com.example.pickitup.Util.EmailSend;
-import com.example.pickitup.domain.vo.dto.PageDTO;
-import com.example.pickitup.domain.vo.dto.PointDTO;
-import com.example.pickitup.domain.vo.product.productFile.ProductVO;
-import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
+import com.example.pickitup.domain.vo.dto.MyOrderDTO;
+
+
 import com.example.pickitup.domain.vo.dto.UserDTO;
 import com.example.pickitup.domain.vo.user.CompanyVO;
 import com.example.pickitup.domain.vo.user.UserVO;
-import com.example.pickitup.service.TempCompanyService;
+import com.example.pickitup.service.CompanyService;
 import com.example.pickitup.service.TempUserSerivce;
-import com.example.pickitup.util.SessionManager;
+import com.example.pickitup.service.user.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -25,9 +23,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.List;
 
 
 @Controller
@@ -36,50 +34,87 @@ import java.text.ParseException;
 @RequiredArgsConstructor
 public class UserController {
     private final TempUserSerivce tempUserSerivce;
-    private final TempCompanyService tempCompanyService;
-    private final SessionManager sessionManager;
+    private final CompanyService companyService;
+    private final OrderService orderService;
+
     @Resource
     private EmailSend emailSend;
 
     // 마이페이지 메인
     @GetMapping("/myPage")
-    public String mypage(Model model){
-        model.addAttribute("jjimProjectList", tempUserSerivce.getJjimProjectList(2L));
-        model.addAttribute("jjimProductList", tempUserSerivce.getJjimProductList(2L));
-        model.addAttribute("inProductList",tempUserSerivce.getInProductList(2L));
-        model.addAttribute("inProjectList",tempUserSerivce.getInProjectList(2L));
-        model.addAttribute("seenProductList",tempUserSerivce.getLatestProductList(2L));
-        model.addAttribute("seenProjectList",tempUserSerivce.getLatestProjectList(2L));
-        model.addAttribute("getDetail",tempUserSerivce.readUserInfo(2L));
+    public String mypage(HttpSession session, Model model){
+        int checkLogin=3;
+        Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("fileName",session.getAttribute("fileName"));
+        model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
+        model.addAttribute("checkLogin",checkLogin);
+        model.addAttribute("jjimProjectList", tempUserSerivce.getJjimProjectList(userNum));
+        model.addAttribute("jjimProductList", tempUserSerivce.getJjimProductList(userNum));
+        model.addAttribute("inProductList",tempUserSerivce.getInProductList(userNum));
+        model.addAttribute("inProjectList",tempUserSerivce.getInProjectList(userNum));
+        model.addAttribute("seenProductList",tempUserSerivce.getLatestProductList(userNum));
+        model.addAttribute("seenProjectList",tempUserSerivce.getLatestProjectList(userNum));
+        model.addAttribute("getDetail",tempUserSerivce.readUserInfo(userNum));
         return "/user/myPage";
     }
 
     // 마이페이지 포인트
     @GetMapping("/myPoint")
-    public String mypoint(Model model) throws ParseException {
-        model.addAttribute("changePoint",tempUserSerivce.changePoint(2L));
-        model.addAttribute("user",tempUserSerivce.readUserInfo(2L));
+    public String mypoint(HttpSession session, Model model) throws ParseException {
+        int checkLogin=3;
+        model.addAttribute("checkLogin",checkLogin);
+        Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("changePoint",tempUserSerivce.changePoint(userNum));
+        model.addAttribute("user",tempUserSerivce.readUserInfo(userNum));
         return "/user/myPoint";
     }
 
     // 마이페이지 QnA
     @GetMapping("/myQnA")
-    public String myQnA(Model model){
-        model.addAttribute("qnaList",tempUserSerivce.getMyProductQna(2L));
-        model.addAttribute("user",tempUserSerivce.readUserInfo(2L));
+    public String myQnA(HttpSession session, Model model){
+        int checkLogin=3;
+        model.addAttribute("checkLogin",checkLogin);
+        Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("qnaList",tempUserSerivce.getMyProductQna(userNum));
+        model.addAttribute("user",tempUserSerivce.readUserInfo(userNum));
         return "/user/myQnA";
     }
 
-    // 마이페이지 문의
+    // 마이페이지 내후기
     @GetMapping("/myReview")
-    public void myReview(){
+    public String myReview(HttpSession session, Model model){
+        int checkLogin=3;
+        model.addAttribute("checkLogin",checkLogin);
+        Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("reviewList",tempUserSerivce.myAllReview(userNum));
+        model.addAttribute("user",tempUserSerivce.readUserInfo(userNum));
 
+        return "/user/myReview";
     }
 
     // 마이페이지 주문내역
     @GetMapping("/myOrderList")
-    public void myOrderList(){
+    public String myOrderList(HttpSession session, Model model,String num){
+        int checkLogin=3;
+        model.addAttribute("checkLogin",checkLogin);
+        Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar now = Calendar.getInstance();
+        Calendar mon = Calendar.getInstance();
+        mon.add(Calendar.MONTH,-3);
+        String nowTime = sdf1.format(now.getTime());
+        String beforeMonth = sdf1.format(mon.getTime());
+        List<MyOrderDTO> myOrderDTOList = orderService.getBetweenOrder(userNum,beforeMonth,nowTime);
+        int totalCount = myOrderDTOList.size();
+        model.addAttribute("myOrderList", myOrderDTOList);
+        String startDate = sdf2.format(mon.getTime());
+        String endDate = sdf2.format(now.getTime());
+        model.addAttribute("startDate", startDate);
+        model.addAttribute("endDate", endDate);
+        model.addAttribute("totalCount", totalCount);
 
+        return "/user/myOrderList";
     }
 
     // 비밀번호 찾기
@@ -102,8 +137,9 @@ public class UserController {
 
     // 비밀번호 재설정
     @GetMapping("/updatePw")
-    public void updatePw(){
+    public void updatePw(@RequestParam(value="email")String email){
         log.info("비밀번호 재설정 들어옴");
+        log.info(email);
 
     }
 
@@ -117,8 +153,10 @@ public class UserController {
 
     // 마이페이지 비밀번호 수정
     @GetMapping("/myPassword")
-    public String myPassword(Model model){
-        model.addAttribute("getDetail",tempUserSerivce.readUserInfo(2L));
+    public String myPassword(HttpSession session, Model model){
+        int checkLogin=3;
+        Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("getDetail",tempUserSerivce.readUserInfo(userNum));
         return "/user/myPassword";
     }
 
@@ -130,8 +168,11 @@ public class UserController {
 
     // 회원 정보 수정
     @GetMapping("/infoUpdate")
-    public void infoUpdate(Model model){
-        model.addAttribute("user", tempUserSerivce.readUserInfo(2L));
+    public void infoUpdate(HttpSession session, Model model){
+        int checkLogin=3;
+        model.addAttribute("checkLogin",checkLogin);
+        Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("user", tempUserSerivce.readUserInfo(userNum));
     }
 
     // 회원 정보 수정 폼
@@ -175,7 +216,7 @@ public class UserController {
 
         log.info(companyVO.getPhone());
         log.info(companyVO.getBusinessPhone());
-        tempCompanyService.registerCompany(companyVO);
+        companyService.registerCompany(companyVO);
         return "/user/login";
 
     }
@@ -184,8 +225,10 @@ public class UserController {
 
     // 로그인
     @GetMapping("/login")
-    public void login(){
-
+    public String login(){
+//        boolean checkEmail=true;
+//        model.addAttribute("")
+        return "/user/login";
     }
 
     // 로그인 폼
@@ -202,14 +245,20 @@ public class UserController {
             rttr.addFlashAttribute("num", userDTO.getNum());
             rttr.addFlashAttribute("nickname", userDTO.getNickname());
             rttr.addFlashAttribute("category",userDTO.getCategory());
-
+            UserVO userVO = tempUserSerivce.readUserInfo(userDTO.getNum());
             HttpSession session=request.getSession();
 
             session.setAttribute("num", userDTO.getNum().toString());
             session.setAttribute("nickname", userDTO.getNickname());
             session.setAttribute("category", userDTO.getCategory());
-
+            session.setAttribute("fileName", userVO.getProfileFileName());
+            session.setAttribute("uploadPath",userVO.getProfileUploadPath());
+            log.info("사진 : " + userVO.getProfileFileName());
+            log.info("파일 경로 : " + userVO.getProfileUploadPath());
             log.info(session.getAttribute("category").toString());
+
+            log.info("사진 : " + userVO.getProfileFileName());
+            log.info("파일 경로 : " + userVO.getProfileUploadPath());
 
             if(userDTO.getNickname().equals("admin")){
                 return new RedirectView("/admin/login");
@@ -222,9 +271,11 @@ public class UserController {
 
 
     // 회원탈퇴
-    @DeleteMapping("/delete")
-    public void delete(){
-
+    @GetMapping("/delete")
+    public String delete(HttpSession session){
+        Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        tempUserSerivce.removeUser(userNum);
+        return login();
     }
 
     @GetMapping("/guide")
@@ -245,9 +296,4 @@ public class UserController {
         return "/user/login";
     }
 
-//    @GetMapping("/myOrderList")
-//    public String myOrderList(Long num, Model model){
-//        model.addAttribute("myOrderList", tempUserSerivce.myOrderList(2L));
-//        return  "/user/myOrderList";
-//    }
 }
