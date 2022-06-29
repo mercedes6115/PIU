@@ -1,11 +1,13 @@
 package com.example.pickitup.controller;
 
+import com.example.pickitup.domain.vo.dto.AdminQnaDTO;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaVO;
 import com.example.pickitup.domain.vo.project.projectReview.ProjectReviewVO;
 import com.example.pickitup.domain.vo.user.ApplyVO;
 import com.example.pickitup.domain.vo.user.JjimVO;
 import com.example.pickitup.service.ProjectService;
+import com.example.pickitup.service.TempAdminService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -23,6 +25,7 @@ import java.util.Date;
 public class ProjectController {
 
     private final ProjectService projectService;
+    private final TempAdminService tempAdminService;
 
     // 프로젝트 상세보기
     @GetMapping("/projectDetail")
@@ -50,10 +53,11 @@ public class ProjectController {
 
     // 프로젝트 문의 작성폼
     @PostMapping("/qnaWriteForm")
-    public String qnaWriteForm(ProjectQnaVO projectQnaVO, Model model) throws ParseException {
+    public String qnaWriteForm(ProjectQnaVO projectQnaVO, AdminQnaDTO adminQnaDTO, Model model) throws ParseException {
         // 임시
         projectQnaVO.setUserNum(42L);
         projectService.registerQnA(projectQnaVO);
+        tempAdminService.qnaProjectSave(adminQnaDTO);
         return projectDetail(41L, model);
 
     }
