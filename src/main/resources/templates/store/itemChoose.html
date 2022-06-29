@@ -129,15 +129,34 @@
     let upoint = [[${user.point}]];
     let count;
 
+
+    $(document).ready(function() {
+        count = document.getElementById('count').value;
+        if(upoint < price * count) {
+            $(".total_price").css("color","red");
+            $('.toBuy').css({'background':'gray', 'cursor':'not-allowed'});
+            $('.toBuy').attr("disabled", "disabled");
+        } else {
+            $(".total_price").css("color","black");
+            $('.toBuy').css({'background':'#005bed', 'cursor':'pointer'});
+            $('.toBuy').removeAttr("disabled");
+            $(".goPayment").on("click",function () {
+                $("#gogo").submit();
+            });
+        }
+    });
+
+
+
     $('.amount_btn').on("click",function () {
         count = document.getElementById('count').value;
         if(upoint < price * count) {
             $(".total_price").css("color","red");
-            $('.toBuy').css('background','gray');
+            $('.toBuy').css({'background':'gray', 'cursor':'not-allowed'});
             $('.toBuy').attr("disabled", "disabled");
         } else {
             $(".total_price").css("color","black");
-            $('.toBuy').css('background','#005bed');
+            $('.toBuy').css({'background':'#005bed', 'cursor':'pointer'});
             $('.toBuy').removeAttr("disabled");
             $(".goPayment").on("click",function () {
                 $("#gogo").submit();
