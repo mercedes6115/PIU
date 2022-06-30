@@ -289,7 +289,7 @@
     let productNum = [[${product.num}]];
     let pageNum = 1;
     // 임시 유저 userNum = 22;
-    let userNum = 22;
+    let userNum = [[${userNum}]];
 
     showJjimcheck()
 
@@ -363,8 +363,6 @@
         })
         $('.share_container').css("display","none");
     }
-
-
 
     //찜 ajax
     $('.jjim-ajax').on("click",function() {
@@ -450,9 +448,11 @@
 
                 // 유저 아이디 & 사진 가져오기
                 (function(){
-                    let userNum = reviews[i].userNum;
-                    qnaService.getUserinfo(userNum,function (user) {
+                    let reuserNum = reviews[i].userNum;
+                    console.log("유저 넘버"+reuserNum)
+                    qnaService.getUserinfo(reuserNum,function (user) {
                         str += user.nickname;
+                        console.log("유저 이름"+user.nickname)
                         //사진 가져오기
                         setTimeout(function () {
                             let ps = $(".profile");
@@ -515,7 +515,7 @@
     //메인 사진걸기
     function mainimg(){
         mainService.getFileLists(productNum,function (files) {
-            let str = "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
+            let str = "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_" + files[0].fileName + "'>";
             $(".mainImage").html(str);
         })
     }
@@ -527,11 +527,11 @@
             let str ="";
             if(files.length>1){
                 for(let i =1; i< files.length;i++){
-                    str += "<img src='/productFile/display?fileName=" + files[i].uploadPath + "/s_" + files[i].uuid + "_"  + files[i].fileName + "'>";
+                    str += "<img src='/productFile/display?fileName=" + files[i].uploadPath + "/" + files[i].uuid + "_"  + files[i].fileName + "'>";
                     $(".subImage").append(str);
                 }
             }else{
-                str += "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
+                str += "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/" + files[0].uuid + "_"  + files[0].fileName + "'>";
                 $(".mainImage").html(str);
             }
         })
@@ -889,19 +889,6 @@
         $('.share_container').css("display","none");
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </script>
 </html>

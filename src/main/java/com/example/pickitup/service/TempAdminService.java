@@ -264,9 +264,29 @@ public class TempAdminService {
         userDAO.qnaStoreSave(adminQnaDTO);
     }
 
+    //유저가 프로젝트 문의 남겼을때 adminboard 에도 저장
+    public void qnaProjectSave(AdminQnaDTO adminQnaDTO) {
+        userDAO.qnaProjectSave(adminQnaDTO);
+    }
+
+    //유저가 상품 문의 수정했을때 adminboard 에도 수정
+    public boolean qnaStoreModify(AdminQnaDTO adminQnaDTO) {
+        return userDAO.qnaStoreModify(adminQnaDTO);
+    }
+
+    //유저가 프로젝트 문의 수정했을때 adminboard 에도 수정
+    public boolean qnaProjectModify(AdminQnaDTO adminQnaDTO) {
+        return userDAO.qnaProjectModify(adminQnaDTO);
+    }
+
     //관리자가 게시물 목록에서 상품문의 삭제 했을때 productQnA 테이블에서 삭제
     public void productQnaDelete(Long num) {
         userDAO.productQnaDelete(num);
+    }
+
+    //관리자가 게시물 목록에서 프로젝트문의 삭제 했을때 projectQnA 테이블에서 삭제
+    public void projectQnaDelete(Long num) {
+        userDAO.projectQnaDelete(num);
     }
 
 
@@ -298,4 +318,16 @@ public class TempAdminService {
         return companyDAO.companyApprovalEnable(num);
     }
 
+
+    public OrderVO getOrderDetail(Long orderNum){
+        return orderDAO.getOrderDetail(orderNum);
+    }
+
+    public ProductVO getDetail(Long productNum){
+        return productDAO.getDetail(productNum);
+    }
+
+    public boolean setDelivery(Long orderNum){
+        return orderDAO.setDelivery(orderNum);
+    }
 }

@@ -4,11 +4,11 @@
 
     <select id="getList" resultType="orderDTO">
 
-            SELECT RN, ORDERNUM, NICKNAME, EMAIL, PHONE, ADDRESS, PRODUCTNUM, PRODUCTNAME, MANUFACTURER, SUPPLIER, REGIST_DATE, STATUS,PRICE,CATEGORY
+            SELECT RN, ORDERNUM, ORDER_NAME, EMAIL, PHONE, ADDRESS, PRODUCTNUM, PRODUCTNAME, MANUFACTURER, SUPPLIER, REGIST_DATE, STATUS,PRICE,CATEGORY
             FROM
             (
             SELECT
-            ROWNUM RN,TBL_ORDER.NUM AS ORDERNUM,TBL_USER.NICKNAME AS NICKNAME ,TBL_USER.EMAIL AS EMAIL,TBL_USER.PHONE AS PHONE ,TBL_USER.ADDRESS AS ADDRESS,TBL_PRODUCT.NUM AS PRODUCTNUM,TBL_PRODUCT.NAME AS PRODUCTNAME,TBL_PRODUCT.MANUFACTURER  AS  MANUFACTURER,TBL_PRODUCT.SUPPLIER AS SUPPLIER,TBL_ORDER.REGIST_DATE AS REGIST_DATE,TBL_ORDER.STATUS AS STATUS,TBL_PRODUCT.PRICE AS PRICE,TBL_PRODUCT.CATEGORY AS CATEGORY
+            ROWNUM RN,TBL_ORDER.NUM AS ORDERNUM,TBL_USER.NICKNAME AS ORDER_NAME ,TBL_USER.EMAIL AS EMAIL,TBL_USER.PHONE AS PHONE ,TBL_USER.ADDRESS AS ADDRESS,TBL_PRODUCT.NUM AS PRODUCTNUM,TBL_PRODUCT.NAME AS PRODUCTNAME,TBL_PRODUCT.MANUFACTURER  AS  MANUFACTURER,TBL_PRODUCT.SUPPLIER AS SUPPLIER,TBL_ORDER.REGIST_DATE AS REGIST_DATE,TBL_ORDER.STATUS AS STATUS,TBL_PRODUCT.PRICE AS PRICE,TBL_PRODUCT.CATEGORY AS CATEGORY
             FROM TBL_USER,TBL_ORDER,TBL_PRODUCT
             WHERE TBL_ORDER.USER_NUM  = TBL_USER.NUM
             AND TBL_ORDER.PRODUCT_NUM = TBL_PRODUCT.NUM
@@ -17,6 +17,7 @@
             )
             WHERE RN >(#{pageNum} - 1) * #{amount}
             ]]>
+
             <choose>
                 <when test="type == 'orderNum'.toString()">
                     AND ORDERNUM LIKE '%'||#{keyword}||'%'
@@ -53,6 +54,7 @@
                     AND (REGIST_DATE BETWEEN #{startDate} AND #{endDate})
                 </when>
             </choose>
+            ORDER BY REGIST_DATE DESC
     </select>
 
 
@@ -71,6 +73,7 @@
         AND TO_CHAR(TBL_ORDER.REGIST_DATE,'yyyy-mm-dd hh24:mi:ss') >= (#{startDate}||'00:00:00')
         AND TO_CHAR(TBL_ORDER.REGIST_DATE,'yyyy-mm-dd hh24:mi:ss') <= (#{endDate}||'23:59:59')
         ]]>
+        ORDER BY REGIST_DATE DESC
     </select>
 
 
@@ -215,7 +218,7 @@
 
 
     <select id="boughtItem" resultType="orderVO">
-        SELECT NUM, TOTAL, COUNTING, REGIST_DATE, PRODUCT_NUM, USER_NUM, STATUS, USER_COMMENT, ADDRESS_COMMENT
+        SELECT NUM, TOTAL, COUNTING, REGIST_DATE, PRODUCT_NUM, USER_NUM, STATUS, ADDRESS_COMMENT
         FROM TBL_ORDER
         WHERE USER_NUM = #{userNum} AND STATUS = '1'
     </select>
@@ -265,7 +268,7 @@
     </select>
 
     <update id="updateUser">
-UPDATE TBL_USER set
+        UPDATE TBL_USER set
         NICKNAME = #{nickname},
         PHONE = #{phone},
         ADDRESS = #{address},
@@ -275,18 +278,75 @@ UPDATE TBL_USER set
     </update>
     
     <select id="getBetweenOrder" resultType="myOrderDTO">
-        SELECT TOTAL, COUNTING, STATUS, ADDRESS_COMMENT, ADDRESS, ADDRESS_DETAIL
-	    FROM TBL_ORDER
-        <where>
-            <if test="userNum != null">
-                USER_NUM = #{userNum}
-            </if>
-            <if test="startDate != null and endDate != null">
-                AND (TO_CHAR(REGIST_DATE,'yyyy-mm-dd hh24:mi:ss')) BETWEEN
+        SELECT prod.NAME as productName, ord.REGIST_DATE, ord.TOTAL, ord.COUNTING, ord.ADDRESS, ord.ADDRESS_DETAIL, ord.STATUS, ord.ADDRESS_COMMENT, ord.PRODUCT_NUM, ord.USER_NUM as num, ord.NUM as orderNum
+	    FROM TBL_ORDER ord, TBL_PRODUCT prod
+        WHERE ord.USER_NUM = #{userNum}
+        AND ord.PRODUCT_NUM = prod.NUM
+        <choose>
+            <when test="startDate != null and endDate != null">
+                AND (TO_CHAR(ord.REGIST_DATE,'yyyy-mm-dd hh24:mi:ss')) BETWEEN
                 #{startDate} AND (#{endDate}||'23:59:59')
-            </if>
-        </where>
+            </when>
+        </choose>
+        ORDER BY ord.REGIST_DATE DESC
     </select>
+
+    <select id="orderProductDetail" resultType="productDTO">
+        SELECT prod.NAME as itemName, ord.COUNTING as totalitems, ord.TOTAL as totalpayment, ord.ADDRESS, ord.ADDRESS_DETAIL, ord.PHONE, prod.PRICE as ogprice, ord.ORDER_NAME as NICKNAME
+        FROM TBL_PRODUCT prod, TBL_ORDER ord
+        WHERE ord.NUM = #{orderNum}  AND ord.PRODUCT_NUM = prod.NUM
+    </select>
+
+    <select id="findByOrderNum" resultType="orderVO">
+        SELECT NUM, TOTAL, COUNTING, REGIST_DATE, PRODUCT_NUM, USER_NUM, STATUS, ADDRESS_COMMENT, ADDRESS, ADDRESS_DETAIL
+        FROM TBL_ORDER
+        WHERE NUM=#{orderNUM}
+    </select>
+
+
+    <!--상품 주문-->
+    <insert id="orderStore">
+        <selectKey keyProperty="num" resultType="long" order="BEFORE">
+            SELECT SEQ_ORDER.NEXTVAL FROM DUAL
+        </selectKey>
+        INSERT INTO TBL_ORDER
+        (NUM, ORDER_NAME, TOTAL, COUNTING, PHONE, PRODUCT_NUM, USER_NUM, ADDRESS_COMMENT, ADDRESS, ADDRESS_DETAIL)
+        VALUES (#{num}, #{nickName}, #{total}, #{counting}, #{phone}, (SELECT TBL_PRODUCT.NUM FROM TBL_PRODUCT WHERE TBL_PRODUCT.NAME = #{productName}) , #{userNum}, #{addressComment}, #{address}, #{addressDetail})
+    </insert>
+
+
+    <!--상품구입후 유저포인트 차감-->
+    <update id="userPointMinus">
+        UPDATE TBL_USER
+        SET POINT = #{point}
+        WHERE NUM = #{num}
+    </update>
+
+    <!--상품 구입후 재고 차감-->
+    <update id="productMinus">
+        UPDATE TBL_PRODUCT
+        SET STOCK = #{stock}
+        WHERE TBL_PRODUCT.NAME =#{itemname}
+    </update>
+
+    <!--상품이름으로 검색-->
+    <select id="getDetailByName" resultType="Long">
+        SELECT STOCK
+        FROM TBL_PRODUCT
+        WHERE NAME=#{itemname}
+    </select>
+
+    <select id="getOrderDetail" resultType="orderVO">
+        SELECT NUM,TOTAL,COUNTING,REGIST_DATE,PRODUCT_NUM,USER_NUM,STATUS,ADDRESS_COMMENT,ADDRESS,ADDRESS_DETAIL,ORDER_NAME,PHONE
+        FROM TBL_ORDER
+        WHERE NUM=#{orderNum}
+    </select>
+
+    <update id="setDelivery">
+        UPDATE TBL_ORDER
+        SET STATUS='3'
+        WHERE NUM=#{orderNum}
+    </update>
 </mapper>
 
 

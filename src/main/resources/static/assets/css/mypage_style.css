@@ -765,6 +765,10 @@ body {
     margin-left: 40px;
 }
 
+.productImage {
+    width: 100px;
+}
+
 .review-with9 {
     font-family: 'Noto Sans KR', sans-serif;
     display: flex;
@@ -2893,7 +2897,6 @@ calen ul li {list-style-type: none; float: left;}
     -webkit-box-align: center;
     align-items: center;
     padding-top: 16px;
-    padding-bottom: 52px;
     background-color: white;
 }
 

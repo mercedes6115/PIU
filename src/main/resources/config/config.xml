@@ -3,6 +3,7 @@
 <configuration>
     <typeAliases>
         <typeAlias type="com.example.pickitup.domain.vo.user.AdminBoardVO" alias="adminBoardVO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.adminVO.AdminVO" alias="adminVO"/>
         <typeAlias type="com.example.pickitup.domain.vo.user.ApplyVO" alias="applyVO"/>
         <typeAlias type="com.example.pickitup.domain.vo.user.CompanyVO" alias="companyVO"/>
         <typeAlias type="com.example.pickitup.domain.vo.user.JjimVO" alias="jjimVO"/>
@@ -35,6 +36,25 @@
         <typeAlias type="com.example.pickitup.domain.vo.dto.AdminQnaDTO" alias="adminQnaDTO"/>
         <typeAlias type="com.example.pickitup.domain.vo.dto.MyOrderDTO" alias="myOrderDTO"/>
         <typeAlias type="com.example.pickitup.domain.vo.dto.MyReviewDTO" alias="myReviewDTO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.dto.ProductPageDTO" alias="productPageDTO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.dto.ProductDTO" alias="productDTO"/>
         <typeAlias type="com.example.pickitup.domain.vo.dto.ReviewDTO" alias="reviewDTO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.dto.ApplyDTO" alias="applyDTO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.dto.ReviewDTO" alias="reviewDTO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.dto.ProjectMainDTO" alias="projectMainDTO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.dto.SearchDTO" alias="searchDTO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.dto.UserDTO" alias="userDTO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.dto.QnaPageDTO" alias="qnaPageDTO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.dto.ProjectPageDTO" alias="ProjectPageDTO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.dto.ProductReviewUserDTO" alias="productReviewUserDTO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.dto.ProductQnaUserDTO" alias="productQnaUserDTO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.dto.ProductQnaPageDTO" alias="productQnaPageDTO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.dto.ProductQnaDTO" alias="productQnaDTO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.dto.OrderPageDTO" alias="orderPageDTO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.dto.AdminQnaDTO" alias="adminQnaDTO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.dto.AdminQnaCommentDTO" alias="adminQnaCommentDTO"/>
+        <typeAlias type="com.example.pickitup.domain.vo.dto.AdminBoardPageDTO" alias="adminBoardPageDTO"/>
+
+        <typeAlias type="com.example.pickitup.domain.vo.dto.OrderUserDTO" alias="orderUserDTO"/>
     </typeAliases>
 </configuration>

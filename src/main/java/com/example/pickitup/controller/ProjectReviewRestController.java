@@ -3,6 +3,8 @@ package com.example.pickitup.controller;
 import com.example.pickitup.domain.vo.project.projectFile.ProjectFileVO;
 import com.example.pickitup.domain.vo.project.projectReview.ProjectReviewFileVO;
 import com.example.pickitup.service.ProjectService;
+import com.example.pickitup.service.project.projectFile.ProjectFileService;
+import com.example.pickitup.service.project.projectReview.ProjectReviewFileSerivce;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.FileSystemResource;
@@ -32,11 +34,12 @@ import java.util.UUID;
 public class ProjectReviewRestController {
 
     private final ProjectService projectService;
+    private final ProjectReviewFileSerivce projectReviewFileSerivce;
 
     @PostMapping("/upload")
     @ResponseBody
     public List<ProjectReviewFileVO> upload(MultipartFile[] uploadFiles) throws IOException {
-        String uploadFolder = "/Users/minmin/aigb_0900_sms/upload/";
+        String uploadFolder = "C:/upload/";
         ArrayList<ProjectReviewFileVO> files = new ArrayList<>();
 
 //        yyyy/MM/dd 경로 만들기
@@ -93,7 +96,7 @@ public class ProjectReviewRestController {
     @GetMapping("/download")
     @ResponseBody
     public ResponseEntity<Resource> downloadFile(String fileName) throws UnsupportedEncodingException {
-        Resource resource = new FileSystemResource("/Users/minmin/aigb_0900_sms/upload/" + fileName);
+        Resource resource = new FileSystemResource("C:/upload/" + fileName);
         HttpHeaders header = new HttpHeaders();
         String name = resource.getFilename();
         name = name.substring(name.indexOf("_") + 1);
@@ -111,10 +114,10 @@ public class ProjectReviewRestController {
         if(file.exists()){ file.delete(); }
     }
 
-//    @GetMapping("/list")
-//    @ResponseBody
-//    public List<projectFileVO> getList(Long boardBno){
-//        log.info("get file list....... : " + boardBno);
-//        return projectService.getList(boardBno);
-//    }
+    @GetMapping("/list")
+    @ResponseBody
+    public List<ProjectReviewFileVO> getList(Long boardBno){
+        log.info("get file list....... : " + boardBno);
+        return projectReviewFileSerivce.findProjectReviewNum(boardBno);
+    }
 }

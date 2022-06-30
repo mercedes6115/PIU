@@ -166,6 +166,10 @@ public class ProjectService {
 //    }
 
 
+    public int getUserProjectTotal(Long companyNum){
+        return projectDAO.getUserProjectTotal(companyNum);
+    }
+
     @Transactional
     public boolean setApproval(Long projectNum, Long applyNum){
         applyDAO.setApproachToContinue(applyNum);
@@ -184,6 +188,10 @@ public class ProjectService {
                 projectReviewFileDAO.register(projectReviewFileVO);
             });
         }
+    }
+
+    public List<ProjectVO> getUserProjectList(Long companyNum, Criteria criteria){
+        return projectDAO.getUserProjectList(companyNum, criteria);
     }
 
     // 하나의 트랜잭션에 여러 개의 DML이 있을 경우 한 개라도 오류 시 전체 ROLLBACK
@@ -212,7 +220,7 @@ public class ProjectService {
         List<ProjectVO> projectVOS = projectDAO.getListJJim();
 
         for(ProjectVO pp : projectVOS){
-            String strDate = pp.getProjectDate();  // 기준 날짜 데이터 (("yyyy-MM-dd")의 형태)
+            String strDate = pp.getStartTime();  // 기준 날짜 데이터 (("yyyy-MM-dd")의 형태)
             String todayFm = new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())); // 오늘날짜
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -240,7 +248,7 @@ public class ProjectService {
         List<ProjectVO> projectVOS = projectDAO.getListPoint();
 
         for(ProjectVO pp : projectVOS){
-            String strDate = pp.getProjectDate();  // 기준 날짜 데이터 (("yyyy-MM-dd")의 형태)
+            String strDate = pp.getStartTime();  // 기준 날짜 데이터 (("yyyy-MM-dd")의 형태)
             String todayFm = new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())); // 오늘날짜
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -264,14 +272,14 @@ public class ProjectService {
         }
         return projectMainDTOS;
     }
-    // 프로젝트 목록(포인트순)
+    // 프로젝트 목록(참가자순)
     public List<ProjectMainDTO> getListApply() throws ParseException {
         List<ProjectMainDTO> projectMainDTOS = new ArrayList<>();
         List<ProjectVO> projectVOS = projectDAO.getListApply();
 
 
         for(ProjectVO pp : projectVOS){
-            String strDate = pp.getProjectDate();  // 기준 날짜 데이터 (("yyyy-MM-dd")의 형태)
+            String strDate = pp.getStartTime();  // 기준 날짜 데이터 (("yyyy-MM-dd")의 형태)
             String todayFm = new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())); // 오늘날짜
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -295,5 +303,71 @@ public class ProjectService {
         }
         return projectMainDTOS;
     }
+
+    public List<ProjectMainDTO> getListCourse(String course) throws ParseException {
+        List<ProjectMainDTO> projectMainDTOS = new ArrayList<>();
+        List<ProjectVO> projectVOS = projectDAO.getListCourse(course);
+
+        for(ProjectVO pp : projectVOS){
+            String strDate = pp.getStartTime();  // 기준 날짜 데이터 (("yyyy-MM-dd")의 형태)
+            String todayFm = new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())); // 오늘날짜
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+            Date date = new Date(dateFormat.parse(strDate).getTime());
+            Date today = new Date(dateFormat.parse(todayFm).getTime());
+
+            long calculate = date.getTime() - today.getTime();
+
+            int Ddays = (int) (calculate / ( 24*60*60*1000));
+
+            String Ddate ="";
+            if(Ddays==0){
+                Ddate = "오늘이에요!";
+            }else {
+                Ddate = "D" + Integer.toString(Ddays * (-1));
+            }
+            projectMainDTOS.add(new ProjectMainDTO(pp.getNum(),pp.getTitle(),pp.getTerrain(),pp.getPoint(),pp.getJjimCount(),Ddate,pp.getApplyCount()));
+        }
+
+        return projectMainDTOS;
+    }
+
+    public List<ProjectMainDTO> getListAll() throws ParseException {
+        List<ProjectMainDTO> projectMainDTOS = new ArrayList<>();
+        List<ProjectVO> projectVOS = projectDAO.getListAll();
+
+        for(ProjectVO pp : projectVOS){
+            String strDate = pp.getStartTime();  // 기준 날짜 데이터 (("yyyy-MM-dd")의 형태)
+            String todayFm = new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())); // 오늘날짜
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+            Date date = new Date(dateFormat.parse(strDate).getTime());
+            Date today = new Date(dateFormat.parse(todayFm).getTime());
+
+            long calculate = date.getTime() - today.getTime();
+
+            int Ddays = (int) (calculate / ( 24*60*60*1000));
+
+            String Ddate ="";
+            if(Ddays==0){
+                Ddate = "오늘이에요!";
+            }else {
+                Ddate = "D" + Integer.toString(Ddays * (-1));
+            }
+            projectMainDTOS.add(new ProjectMainDTO(pp.getNum(),pp.getTitle(),pp.getTerrain(),pp.getPoint(),pp.getJjimCount(),Ddate,pp.getApplyCount()));
+        }
+
+        return projectMainDTOS;
+    }
+
+
+    public List<ProjectVO> getSearchList(String searchStr){
+        return projectDAO.getSearchList(searchStr);
+    }
+
+    // 프로젝트 지형별로 찾기
+    public List<ProjectVO> getListTerrain(String terrain) { return projectDAO.getListTerrain(terrain);}
 
 }

@@ -33,7 +33,7 @@
                 <div class="bill-way-title">
                     <div class="bill-way-wrapper">
                         <p class="bill-wrapper-left">결제 수단</p>
-                        <p class="bill-wrapper-right">카카오페이</p>
+                        <p class="bill-wrapper-right">마이포인트</p>
                     </div>
                 </div>
                 <div class =bill-divide></div>
@@ -68,15 +68,15 @@
                 <div class="bill-way-detail-wrapper">
                     <div class="bill-way-wrapper" id="bill-price-wrpper">
                         <p class="bill-wrapper-left">받는분</p>
-                        <p class="bill-wrapper-right" id="userName" th:text="*{userinfo.nickname}"></p>
+                        <p class="bill-wrapper-right" id="userName" th:text="*{orderinfo.nickName}"></p>
                     </div>
                     <div class="bill-way-wrapper" id="bill-price-wrpper">
                         <p class="bill-wrapper-left">연락처</p>
-                        <p class="bill-wrapper-right" id="userPhone" th:text="*{userinfo.phone}"></p>
+                        <p class="bill-wrapper-right" id="userPhone" th:text="*{orderinfo.phone}"></p>
                     </div>
                     <div class="bill-way-wrapper" id="bill-price-wrpper">
                         <p class="bill-wrapper-left">주소</p>
-                        <p class="bill-wrapper-right" id="userState" th:text="|*{userinfo.address} *{userinfo.addressDetail}|"></p>
+                        <p class="bill-wrapper-right" id="userState" th:text="|*{orderinfo.address} *{orderinfo.addressDetail}|"></p>
                     </div>
                     <div class="bill-way-wrapper" id="bill-price-wrpper">
                         <p class="bill-wrapper-left">배송 요청사항</p>

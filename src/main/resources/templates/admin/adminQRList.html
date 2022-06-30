@@ -24,7 +24,7 @@
  console.log(ipV4);
     function makeQR() {
         var qrcode = new QRCode(document.getElementById("qrcode"), {
-            text: "http://"+ipV4+":10010/admin/qrLogin?num=36&state=end",
+            text: "http://"+ipV4+":10010/admin/qrEndLogin?num=36&state=end",
             width: 100,  //가로
             height: 100, //세로
             colorDark: "#000000",   //qr에서 어두운 색  (보통 검은색)

@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/assets/css/Header.css"/>
+
+    <link rel="stylesheet" href="/assets/css/Main.css"/>
+    <link rel="stylesheet" href="/assets/css/Footer.css"/>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+</head>
+</head>
+<body>
+<!--여기까지가 헤더 입니다-->
+<div th:replace="~{/main/Header :: HeaderImport}"></div>
+<!--여기까지가 헤더 입니다-->
+
+
+<!--여기서부터 메인 컨텐츠-->
+
+<div class="plogging-wrapper">
+    <div>
+        <div class="plogging-margin">
+            <section>
+                <div class="hot-plogging-text">
+                    <a href=#>
+                        <div class="hot-plogging-text1">
+                            <img src="/images/fire.png" style="width:25px">
+                            <h2 class="hot-plogging-text2" th:text="${courseType}+' 프로젝트 전체 목록'"></h2>
+                        </div>
+                    </a>
+                </div>
+                <div>
+                    <table>
+
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<!--여기까지 메인 컨텐츠-->
+
+
+<!--여기부터 푸터-->
+<div th:replace="~{/main/Footer :: FooterImport}"></div>
+</body>
+
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script th:inline="javascript">
+    <!--    이미지 출력-->
+    let strImg = "";
+
+
+    let Aa = [[${courseList}]];
+    let lngth = 0;
+    let course = "";
+    console.log(Aa);
+    let str = "";
+
+    function infinity_scroll() {
+        console.log("무한스크롤 시작");
+        const table = document.querySelector('table');
+        console.log("table : " + table);
+        // console.log(table.firstChild);
+        // console.log(table.firstChild.childNodes);
+        let count = table.rows.length;
+        // console.log(count);
+
+
+        const template = function () {
+            console.log("들어옴");
+            const table = document.querySelector('table');
+            var row = table.insertRow();
+            str = "";
+            for (var i = 0; i < 4; i++) {
+                str += '<td>';
+                str += '<div style="width:100%; height:100%;">';
+                str += '<div class="plogging-thumbnail-wrap2">';
+                str += '<span class="Jjim-image" id="image-list" href="'+Aa[lngth].num+'"></span>';
+                str += '</div>';
+                str += '<div class="deadline" style="width: 96%;" ><span class="material-symbols-outlined" style= "font-size: 14px; margin-left: 5px;">';
+                str += 'alarm';
+                str += '</span><div class="deadline-text">프로젝트 시작까지</div><div class="d-day">' + Aa[lngth].startTime + '</div></div>';
+                // str += '</span><div class="deadline-text">프로젝트 시작까지</div><div class="d-day">asdfasfdasfd</div></div>';
+                str += '<div class = "plogging-location-text">' + Aa[lngth].terrain + '</div>';
+                str += '<div class = "plogging-msg-text">' + Aa[lngth].title + '</div>'
+                // str += '<div class = "plogging-location-text">22222222222</div>';
+                // str += '<div class = "plogging-msg-text">333333333333</div>'
+                str += '<div class="jjims-and-likes">';
+                str += '<div class="last-wrap">';
+                str += '<div class="heart-icon">';
+                str += '<div class="heart-svg">';
+                str += '<svg class="hearts" xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#d7d7d7"></path></svg>';
+                str += '</div> ';
+                str += Aa[lngth].jjimCount;
+                str += '</div>';
+                str += '</div>';
+                str += '</div>';
+                str += '</div>';
+                str += '</td>';
+                lngth += 1;
+                console.log("길이:" + lngth);
+                if (lngth >= Aa.length) {
+                    console.log("전체길이:" + Aa.length);
+                    console.log("탈출");
+                    break;
+                }
+                console.log("노탈출");
+            }
+            row.innerHTML = str;
+            console.log("무한스크롤 끝");
+
+            $(".Jjim-image").each(function (i, h) {
+                let projectNum = $(this).attr("href");
+                $.ajax({
+                    url: "/projectFile/list/" + projectNum,
+                    type: "get",
+                    success: function (files) {
+                        strImg += "<picture class='join-plogging-main-image'>";
+                        strImg += "<img src='/projectFile/display1?fileName=" + files[0].uploadPath + "/" + files[0].uuid + "_" + files[0].fileName + "'style='width: 98%;height: 100%'>";
+                        strImg += "</picture>";
+                        $(h).html(strImg);
+                        strImg = "";
+                    }
+                })
+            })
+        }
+        template();
+
+        //스크롤 바닥 감지
+        if (lngth <= Aa.length) {
+            console.log(lngth);
+            window.onscroll = function (e) {
+                //window height + window scrollY 값이 document height보다 클 경우
+                if ((window.innerHeight + window.scrollY + 2) >= document.body.offsetHeight) {
+                    count++;
+                    template(count);  //콘텐츠 추가
+                }
+            };
+        }
+    };
+
+    infinity_scroll();
+</script>
+</html>
+
+
+

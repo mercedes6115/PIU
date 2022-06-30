@@ -40,8 +40,13 @@ public interface JjimMapper {
     // 프로젝트 찜 해제
     public void deleteProject(JjimVO jjimVO);
 
+    // 프로젝트 찜 추가(마이페이지 이용)
+    public void myProjectJjimInsert(JjimVO jjimVO);
 
+    // 프로젝트 찜 해제(마이페이지 이용)
+    public void myProjectJjimDelete(JjimVO jjimVO);
 
-
+    // 프로젝트 찜 개수(마이페이지 이용)
+    public int myProjectJjimCount(Long projectNum);
 
 }

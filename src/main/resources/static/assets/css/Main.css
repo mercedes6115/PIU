@@ -447,7 +447,24 @@ background: rgb(238, 238, 238);
 
 .plogging-thumbnail-wrap{
   height:207px;
-  
+  /*width: 290px;*/
+  /*height: 200px;*/
+}
+.plogging-thumbnail-wrap2{
+  height:207px;
+  width: 290px;
+  /*height: 200px;*/
+}
+.focus{
+  margin-top: -170px;
+  padding-top: 170px;
+}
+
+
+
+.plogging-thumbnail-wrap > img {
+  width: 100%;
+  height: 100%;
 }
 .slides3 > li > .plogging-thumbnail-wrap > img{
   border-radius: 5px;
@@ -1151,3 +1168,10 @@ px
   flex-direction: column;
   cursor: pointer;
 }
+
+
+/* ---------------------------------수정중----------------------------------------- */
+
+/*.join-plogging-main-image img{*/
+/*  width: 98%;*/
+/*}*/

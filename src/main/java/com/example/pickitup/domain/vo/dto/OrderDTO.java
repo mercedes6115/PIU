@@ -10,16 +10,23 @@ import org.springframework.stereotype.Component;
 public class OrderDTO {
     private OrderCriteria orderCriteria;
     private Long orderNum;
-    private String nickname;
+    private String orderName;
     private String email;
     private String phone;
     private String address;
+    private String addressDetail;
     private Long productNum;
     private String productName;
     private String manufacturer;
     private String supplier;
     private String registDate;
     private String status;
-    private String price;
+    private Long userNum;
+    private Long counting;
+    private String addressComment;
+    private Long num;
+    private Long total;
+    private String nickName;
     private String category;
+    private int price;
 }

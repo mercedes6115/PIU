@@ -97,11 +97,21 @@
 <script src="/assets/js/storeMain.js"></script>
 <script src="/assets/js/storeReview.js"></script>
 <script th:inline="javascript">
-
     //현재 받은 세션으로 userNum 값 구하기
+<<<<<<< HEAD
     let userNum = 22;  // 임시 데이터
     qnaService.getUserinfo(userNum,function (user) {
         $(".review_id").text(user.nickname);
+=======
+    let userNum = 2;  // 임시 데이터
+    $.ajax({
+        url : "/store/userInfo?userNum="+userNum,
+        type : "get",
+        success : function (user) {
+            $(".review_id").text(user.nickname);
+        }
+
+>>>>>>> 305ade8be05585d327df6aa8cdb430f175b8f8af
     })
 
 

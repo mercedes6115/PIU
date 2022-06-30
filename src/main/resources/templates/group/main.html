@@ -178,7 +178,7 @@
                                                                     <div class="sbCheckBoxFrame">
                                                                         <label class="sbCheckBoxForm">
                                                                             <span class="material-symbols-outlined" id="checkBoxBtn">check_box_outline_blank</span>
-                                                                            <input type="checkbox" class="oneCheck">
+                                                                            <input type="checkbox" class="oneCheck" >
                                                                         </label>
                                                                     </div>
                                                                 </div>
@@ -187,7 +187,7 @@
                                                                         <p class="sbTitle" th:text="${project.title}"></p>
                                                                     </div>
                                                                 </div>
-                                                                <div class="showListBody4">
+                                                                <div class="showListBody4" >
                                                                     <div class="sbStateFrame">
                                                                         <div class="sbStateForm">
                                                                             <p class="sbState" id="agreeState" th:if="${project.approval.equals('0')}" th:text="|승인대기|"></p>
@@ -220,11 +220,10 @@
                                                                 <div class="showListBody9">
                                                                     <div class="sbMoreFrame">
                                                                         <div class="sbMoreForm">
-                                                                            <div class="seeApplier" id="seeApplierBox">
-                                                                                <button class="qrCheckFrame sbMoreBox" id="qrCheck">
-                                                                                <span class="qrCheckForm">
-                                                                                    <span class="qrCheck">QR</span>
-                                                                                </span>
+                                                                            <div class="seeApplier"  style="display: flex;" id="seeApplierBox">
+                                                                                <button class="moreQR" id="qrCheck">
+                                                                                    <span class="getStartQr" th:id="${project.startQr}">QR</span>
+                                                                                    <span class="getEndQr" th:id="${project.endQr}"></span>
                                                                                 </button>
                                                                                 <button class="qrCheckFrame sbMoreBox" th:id="${project.num}">
                                                                                 <span class="qrCheckForm">
@@ -235,7 +234,7 @@
 
                                                                             <!--  수정 버튼 -->
                                                                             <div class="modifyForm" th:if="${project.status == '1' }">
-                                                                                <button type="button" class="moveProjectModify"><span class="material-symbols-outlined">edit</span></button>
+                                                                                <button type="button" class="moveProjectModify" style="margin-left: 6px; padding: 6px;" ><span class="material-symbols-outlined">edit</span></button>
                                                                             </div>
 
                                                                             <div class="deleteForm">
@@ -245,8 +244,6 @@
                                                                     </div>
                                                                 </div>
 
-
-
                                                             </div>
                                                         </div>
                                                     </div>
@@ -255,23 +252,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="showListPagingFrame">
-                                <nav class="showListPagingForm">
-                                    <button class="pageMoveBtn">
-                                        <span class="material-symbols-outlined" id="prevBtnImg">chevron_left</span>
-                                    </button>
-                                    <div class="btnBoundary"></div>
-                                    <div class="showPageNum">
-                                        <button class="movePageNum">
-                                            <span class="displayPageNum">1</span>
-                                        </button>
-                                    </div>
-                                    <div class="btnBoundary"></div>
-                                    <button class="pageMoveBtn">
-                                        <span class="material-symbols-outlined" id="nextBtnImg">chevron_right</span>
-                                    </button>
-                                </nav>
                             </div>
 
 
@@ -321,6 +301,7 @@
                                                             <span class="material-symbols-outlined" id="closeBtn">close</span>
                                                         </div>
                                                     </div>
+
                                                     <div class="showListBodyFrame">
                                                         <div class="showListBodyForm" id="replyList">
                                                             <!--                                                            &lt;!&ndash; 신청자 목록 &ndash;&gt;-->
@@ -384,12 +365,23 @@
                                                             <!--                                                            </div>-->
                                                         </div>
                                                     </div>
+
+
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="big-width" style="text-align: center">
+                            <a class="changePage" th:href="*{startPage - 1}" th:if="*{prev}"><code>&lt;</code></a>
+                            <th:block th:each="num:${#numbers.sequence(pageDTO.startPage, pageDTO.endPage)}">
+                                <code th:if="${num == pageDTO.criteria.pageNum}" th:text="${num}"></code>
+                                <a class="changePage" th:href="${num}" th:unless="${num == pageDTO.criteria.pageNum}"><code th:text="${num}"></code></a>
+                            </th:block>
+                            <a class="changePage" th:href="*{endPage + 1}" th:if="*{next}"><code>&gt;</code></a>
                         </div>
                     </div>
                 </div>
@@ -400,15 +392,20 @@
 </div>
 </div>
 
+
 <div id="qrModal" class="qrModal-overlay">
-    <div class="close-modal">X</div>
-    <div class="content">
-        <picture class="qrShow">
-            <source srcset="/static/images/qrCheck.png" media="all and (min-width: 1024px)" >
-            <img src="/static/images/qrCheck.png" class="qrImage" alt="">
-        </picture>
+    <!-- Modal content -->
+    <div class="modal-content">
+        <div style="margin-left: 50px; display: flex;">
+            <p class="close">&times;</p>
+            <p id="startP"> 출발QR</p>
+<!--            <div class="qrImg" id="qrcode"></div>-->
+            <p id="endP"> 도착QR</p>
+<!--            <div class="qrImg" id="qrcode2"></div>-->
+        </div>
     </div>
 </div>
+
 
 </div>
 <!-- <div class="footerBoundary"></div> -->
@@ -420,7 +417,11 @@
 </footer>
 </body>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="/assets/js/qrcode.js"></script>
+
 <script>
+
+
     // let spanText = document.getElementById("listClose").textContent;
     // let sProjectContainer = document.querySelector('.sProjectContainer');
     //
@@ -656,7 +657,18 @@
         $('.applierListFrame').hide();
         $('#projectList').show();
         $('.showListPagingFrame').show();
+    });
 
+    $('.deleteProjectBtn').on("click", function(){
+        if (confirm("해당 프로젝트를 삭제하시겠습니까?")) {
+            $.ajax({
+                url:"/project/remove/" + projectNum,
+                type: "get",
+                success: function (applies) {
+                    alert('프로젝트가 삭제되었습니다');
+                }
+            });
+        }
     })
 
 
@@ -669,6 +681,106 @@
         });
     }
 
+
+
+    function makeQr(id, qr) {
+        let lo = $(id).attr('id');
+        console.log(lo);
+        console.log(qr);
+        var qrcode = new QRCode(document.getElementById(lo), {
+            text: qr,
+            width: 150,  //가로
+            height: 150, //세로
+            colorDark: "#000000", //qr에서 어두운 색 (보통 검은색)
+            colorLight: "#ffffff", //qr에서 밝은 색 (보통 하얀색) colorDark 보다 옅어야한다.
+            correctLevel: QRCode.CorrectLevel.H //qr코드 오류복원능력 (L->M->Q->H)
+        });
+
+
+    };
+
+
+    function modal(id) {
+        var zIndex = 9999;
+        var modal = document.getElementById(id);
+
+        var startP = document.getElementById('startP');
+        var endP = document.getElementById('endP');
+        var g = document.createElement('div');
+        g.setAttribute("id", "qrcode");
+        g.setAttribute('class',"qrImg");
+        console.log(g);
+        var f = document.createElement('div');
+        f.setAttribute("id", "qrcode2");
+        f.setAttribute("class", "qrImg");
+        startP.appendChild(g);
+        endP.appendChild(f);
+
+        // 모달 div 뒤에 희끄무레한 레이어
+        var bg = document.createElement('div');
+        bg.setStyle({
+            position: 'fixed',
+            zIndex: zIndex,
+            left: '0px',
+            top: '0px',
+            width: '100%',
+            height: '100%',
+            overflow: 'auto',
+            // 레이어 색갈은 여기서 바꾸면 됨
+            backgroundColor: 'rgba(0,0,0,0.4)'
+        });
+        document.body.append(bg);
+
+        // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
+        modal.querySelector('.close').addEventListener('click', function() {
+            bg.remove();
+            modal.style.display = 'none';
+            console.log("들어옴");
+            document.getElementById("qrcode").remove();
+            document.getElementById("qrcode2").remove();
+        });
+
+        modal.setStyle({
+            position: 'fixed',
+            display: 'block',
+            display: 'flex',
+            boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+
+            // 시꺼먼 레이어 보다 한칸 위에 보이기
+            zIndex: zIndex + 1,
+
+            // div center 정렬
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            msTransform: 'translate(-50%, -50%)',
+            webkitTransform: 'translate(-50%, -50%)'
+        });
+    }
+
+    // Element 에 style 한번에 오브젝트로 설정하는 함수 추가
+    Element.prototype.setStyle = function(styles) {
+        for (var k in styles) this.style[k] = styles[k];
+        return this;
+    };
+
+
+    let count = 0;
+
+    $('.moreQR').on("click", function(e){
+        modal('qrModal');
+
+            var start = $(this).find('span')[0];
+            var end = $(this).find('span')[1];
+            // console.log(start);
+            // console.log(end);
+            // console.log($(start).attr('id'));
+            // console.log($(end).attr('id'));
+            makeQr(qrcode, $(start).attr('id'));
+            makeQr(qrcode2, $(end).attr('id'));
+
+
+    })
 
 
 </script>

@@ -2,7 +2,13 @@ package com.example.pickitup.domain.dao.user;
 
 import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.OrderCriteria;
+import com.example.pickitup.domain.vo.dto.MyOrderDTO;
 import com.example.pickitup.domain.vo.dto.OrderDTO;
+
+import com.example.pickitup.domain.vo.dto.ProductDTO;
+
+
+import com.example.pickitup.domain.vo.dto.OrderUserDTO;
 
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 
@@ -60,15 +66,50 @@ public class OrderDAO {
         return orderMapper.getProduct(num1);
     };
 
-//    public List<OrderVO> getBetweenOrder(Long userNum) {
-//        return orderMapper.getBetweenOrder(userNum);
-//    }
-
-    // 유저 정보 수정
-    public void updateUser(UserVO userVO){
-        orderMapper.updateUser(userVO);
+    public List<MyOrderDTO> getBetweenOrder(Long userNum, String stardDate, String endDate) {
+        return orderMapper.getBetweenOrder(userNum, stardDate, endDate);
     }
 
 
+//    // 유저 정보 수정
+//    public boolean updateUser(UserVO userVO){
+//        return orderMapper.updateUser(userVO) != 0;
+//    }
+
+
+    public ProductDTO boughtDetail(Long orderNum) { return orderMapper.orderProductDetail(orderNum);}
+
+    public OrderVO findByOrderNum(Long orderNum) {return orderMapper.findByOrderNum(orderNum);}
+
+
+    //상품 주문
+    public void orderStore(OrderUserDTO orderUserDTO) {
+        orderMapper.orderStore(orderUserDTO);
+    }
+
+    //상품 주문후 유저 포인트 차감
+    public void userPointMinus(Long num, String point) {
+        orderMapper.userPointMinus(num, point);
+    }
+
+    //상품 주문후 상품 재고 차감
+    public void productMinus(String itemname, Long stock) {
+        orderMapper.productMinus(itemname, stock);
+    }
+
+    //상품명으로 정보 가져오기(1개)
+    public Long getDetailByName(String itemname){
+        return orderMapper.getDetailByName(itemname);
+    }
+
+
+    public OrderVO getOrderDetail(Long orderNum){
+        return orderMapper.getOrderDetail(orderNum);
+    }
+
+
+    public boolean setDelivery(Long orderNum){
+        return orderMapper.setDelivery(orderNum);
+    }
 
 }

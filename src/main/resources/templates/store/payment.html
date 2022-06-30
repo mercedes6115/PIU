@@ -45,21 +45,21 @@
             <div class="shipment">
                 <div class="order_info">배송정보</div>
                 <div class="receiver">받으시는 분</div>
-                <div class="ship_input"><input type="text" id="nickname" name="nickname"  th:value="*{nickname}" required></div>
+                <div class="ship_input"><input type="text" id="personname" name="nickName"  required></div>
                 <div class="checkValid" id="personname_check"></div>
                 <div class="valid" style="margin-bottom: 10px;">정확한 배송을 위해 실명을 입력하세요</div>
                 <div class="receiver">휴대폰번호</div>
-                <div class="phone_input"><input type="text" name="phone" th:value="*{phone}" id="phone" placeholder=" '-'없이 입력해주세요" required></div>
+                <div class="phone_input"><input type="text" name="phone" id="personphone"  placeholder=" '-'없이 입력해주세요" required></div>
                 <div class="checkValid" id="personphone_check"></div>
                 <div class="receiver">배송주소</div>
                 <div class="flex" style="width: 102%;">
-                    <input id="address" name="address" class="addr_input" th:value="*{address}"  type="text" required readonly>
+                    <input id="personaddr" name="address"  class="addr_input" type="text" required readonly>
                     <button type="button" id="personaddrbtn" class="personaddrbtn">주소 검색</button>
                 </div>
                 <div class="checkValid" style="margin-bottom: 10px;">필수입력입니다.</div>
-                <div class="phone_input"><input id="addressdetail" name="addressDetail" type="text" th:value="*{addressdetail}" placeholder="상세주소"></div>
+                <div class="phone_input"><input id="addr_detail"  name="addressDetail" type="text" placeholder="상세주소"></div>
                 <div class="receiver">배송요청사항</div>
-                <div class="phone_input"><input type="text" name="addressComment" th:value="*{usercomment}"  placeholder=" 예) 부재시 경비실에 맡겨주세요"></div>
+                <div class="phone_input"><input type="text" name="addressComment"  placeholder=" 예) 부재시 경비실에 맡겨주세요"></div>
             </div>
             <div class="order_info" style="margin-top: 50px;">결제금액</div>
             <div class="space"></div>
@@ -148,7 +148,7 @@
         success : function (files) {
             // let str = "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
             // $(".mainImage").html(str);
-            $(".order_img img").attr("src", "/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName )
+            $(".order_img img").attr("src", "/productFile/display?fileName=" + files[0].uploadPath + "/" + files[0].uuid + "_"  + files[0].fileName )
         }
     })
 
@@ -210,63 +210,6 @@
     $('#modal_close_btn').click(function(){
         $('#agree').prop("checked", true);
     })
-
-    //수정된 곳(작동X)
-
-    let userNum = [[${user.num}]];
-    var nickname = $('#nickname').val();
-    var phone = $('#phone').val();
-    var address = $('#address').val();
-    var addressdetail = $('#addressdetail').val();
-    $(document).ready(function(){
-        $.ajax({
-            url:"store/payment"+userNum,
-            type:"GET",
-            success:function(){
-
-                $("#num").value("3L");
-                $("#nickname").value(nickName);
-                $("#phone").value(phone);
-            },
-            error:function(){
-                alert('error');
-            }
-        });
-
-    });
-
-    $('#order_finish').onclick(function () {
-        $.ajax({
-            type:'POST',
-            url:'/store/paymentForm',
-            data: {userNum:'userNum',ProductNum:'ProductNum',address:'address',addressdetail:'addressdetail',point:'point'},
-            dataType: 'json',
-
-
-
-            success: function(result){
-                var point = $('#point').val();
-                var totalpayment = $('#totalpayment').val();
-                if(result == '1') {
-                    alert('성공');
-                    if(point>=totalpayment){
-                        point=point-totalpayment;
-                        return true;
-                    }
-                    else{
-                        alert('포인트가 부족합니다.');
-                        return false;
-                    }
-                }
-                else{
-                    alert('실패');
-                }
-            },
-            error: function(a,b,c){
-                console.log(a,b,c);
-            }
-        });
-    });
 
 </script>
 

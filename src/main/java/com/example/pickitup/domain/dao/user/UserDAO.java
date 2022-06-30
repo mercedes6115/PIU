@@ -111,9 +111,29 @@ public class UserDAO {
         userMapper.qnaStoreSave(adminQnaDTO);
     }
 
+    // 유저가 프로젝트 문의 남겼을때 adminboard 에도 저장
+    public void qnaProjectSave(AdminQnaDTO adminQnaDTO) {
+        userMapper.qnaProjectSave(adminQnaDTO);
+    }
+
+    // 유저가 상품 문의 수정했을때 adminboard 에도 수정
+    public boolean qnaStoreModify(AdminQnaDTO adminQnaDTO) {
+        return userMapper.qnaStoreModify(adminQnaDTO);
+    }
+
+    // 유저가 프로젝트 문의 수정했을때 adminboard 에도 수정
+    public boolean qnaProjectModify(AdminQnaDTO adminQnaDTO) {
+        return userMapper.qnaProjectModify(adminQnaDTO);
+    }
+
     // 관리자가 게시물 목록에서 상품문의 글 지웠을때 productQnA 테이블에서도 삭제
     public void productQnaDelete(Long num) {
         userMapper.productQnaDelete(num);
+    }
+
+    // 관리자가 게시물 목록에서 프로젝트 문의 글 지웠을때 projectQnA 테이블에서도 삭제
+    public void projectQnaDelete(Long num) {
+        userMapper.projectQnaDelete(num);
     }
 
     // 유저 내 리뷰 모두 보기
@@ -225,5 +245,6 @@ public class UserDAO {
     // 내가 작성한 product 문의글에 달린 답변 가져오기
     public ProductQnaCommentVO getMyProductQnaComment(Long qnaNum) {return userMapper.myProductQnaComment(qnaNum);}
 
+    public List<MyReviewDTO> getAllMyReview(Long userNum) {return userMapper.myAllReview(userNum);}
 
 }

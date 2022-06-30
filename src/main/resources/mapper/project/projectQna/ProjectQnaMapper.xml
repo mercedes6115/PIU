@@ -29,6 +29,8 @@
         DELETE FROM TBL_PROJECT_QNA
         WHERE NUM= #{num}
     </delete>
+
+
 </mapper>
 
 

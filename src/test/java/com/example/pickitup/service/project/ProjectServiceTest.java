@@ -29,5 +29,9 @@ public class ProjectServiceTest {
         log.info(projectService.getListApply().toString());
     }
 
+    @Test
+    public void getListCourseTest() throws ParseException {
+        log.info(projectService.getListCourse("산").toString());
+    }
 
 }

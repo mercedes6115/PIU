@@ -109,7 +109,7 @@
             <div class="order and deliver">
                 <div class="my-order-step1">
                     <div class="my-order-step2">
-                        <div class="my-order-step3"><a target="_self" class="my-order-step4" href="/me">마이페이지</a>
+                        <div class="my-order-step3"><a target="_self" class="my-order-step4" href="/user/myPage">마이페이지</a>
                         </div>
                         <div class="title-divide"></div>
                         <div disabled="" class="my-order-step6"><a target="_self" class="my-order-step7"
@@ -121,10 +121,7 @@
                             <div class="my-order-step11">
                                 <h4 class="my-order-step12">주문 및 배송</h4>
                                 <div class="my-order-step13"></div>
-                                <p class="my-order-step14">총
-                                    <!-- -->0
-                                    <!-- -->개
-                                </p>
+                                <p class="my-order-step14" th:text="|총 ${totalCount}개|"></p>
                             </div>
                             <div class="my-order-step15"><button class="my-order-step16">
                                 <div class="my-order-step17"><span class="my-order-step18"><svg
@@ -152,19 +149,20 @@
                                                         class="my-order-by7"></path>
                                             </svg></span></span>
                                     <div class="my-order-by8"></div><span class="my-order-by9"><span
-                                class="my-order-by10">2022. 3. 14 ~ 2022. 6. 14</span></span>
+                                class="my-order-by10" th:text="|${startDate} ~ ${endDate}|"></span></span>
                                 </span></button>
                     </div>
                 </div>
                 <div class="my-order-by11"></div>
-                <div class="my-order-by12">
-                    <div class="my-ordered-object" th:object="${myOrderList}">
+                <div class="myOrderWrapper">
+                <div class="my-order-by12" id="please" th:each="myOrder:${myOrderList}">
+                    <div class="my-ordered-object" th:object="${myOrder}">
                         <div class="my-ordered-object1">
-                            <div color="#3a3a3a" class="my-ordered-object2">2022. 06. 11</div><span
+                            <div color="#3a3a3a" class="my-ordered-object2" th:text="*{#temporals.createDate(registDate, 'yyyy-MM-dd HH:mm:ss')}"></div><span
                                 class="my-ordered-object3"><a icon-position="1"
                                                               color="orange" theme="[object Object]"
                                                               class="my-ordered-object4"
-                                                              href="/me/orders/62a4401682ad13a6dd2e6023">
+                                                              th:href="@{/store/buyProductDetail(orderNum=*{orderNum})}">
                                         <div class="my-ordered-object5"><svg xmlns="http://www.w3.org/2000/svg"
                                                                              width="18" height="18" fill="none" viewBox="0 0 24 24">
                                                 <path fill-rule="evenodd"
@@ -178,43 +176,25 @@
                         </div>
                         <div class="my-ordered-object8">
                             <div class="my-ordered-object9">
-                                <div color="#3a3a3a" font-weight="bold" class="my-ordered-object10">취소 성공</div>
+                                <div color="#3a3a3a" font-weight="bold" class="my-ordered-object10" th:if="*{status == '1'}">주문 완료</div>
+                                <div color="#3a3a3a" font-weight="bold" class="my-ordered-object10" th:unless="*{status == '1'}">배송 완료</div>
                             </div>
                             <div class="my-ordered-object11"></div>
                             <div class="my-ordered-object12">
-                                <div class="my-ordered-object13"><span class="my-ordered-object14"><svg
-                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                        class="my-ordered-object15">
-                                                <path
-                                                        d="M14.405 4.24H6.509v-2c0-.2-.2-.3-.4-.2L1.112 5.29c-.15.1-.15.3 0 .4L6.11 8.943c.15.1.4 0 .4-.2V6.742h7.946c3.048 0 5.746 2.251 5.996 5.303.35 3.502-2.399 6.454-5.847 6.454H5.26c-.15 0-.25.1-.25.25v2c0 .15.1.251.25.251h9.345c4.547 0 8.295-3.702 8.395-8.255.05-4.702-3.948-8.504-8.595-8.504Z"
-                                                        class="css-dudu3d"></path>
-                                            </svg></span>
-                                    <div class="my-ordered-object16"></div>
-                                    <div class="my-ordered-object17">
-                                        <p class="my-ordered-object18">반품이 완료되었습니다</p>
-                                        <div class="my-ordered-object19"></div>
-                                        <p class="my-ordered-object20"></p>
-                                    </div>
-                                </div>
                             </div>
                             <div class="my-ordered-object21">
                                 <div class=".my-ordered-object22">
-                                    <picture class="my-ordered-object23">
-                                        <source type="image/webp"
-                                                srcset="https://cdn.class101.net/images/e589554c-e748-4ea8-8bed-8cb24b0695ee/640xauto.webp 640w,https://cdn.class101.net/images/e589554c-e748-4ea8-8bed-8cb24b0695ee/750xauto.webp 750w,https://cdn.class101.net/images/e589554c-e748-4ea8-8bed-8cb24b0695ee/828xauto.webp 828w,https://cdn.class101.net/images/e589554c-e748-4ea8-8bed-8cb24b0695ee/1080xauto.webp 1080w,https://cdn.class101.net/images/e589554c-e748-4ea8-8bed-8cb24b0695ee/1200xauto.webp 1200w,https://cdn.class101.net/images/e589554c-e748-4ea8-8bed-8cb24b0695ee/1920xauto.webp 1920w,https://cdn.class101.net/images/e589554c-e748-4ea8-8bed-8cb24b0695ee/2048xauto.webp 2048w,https://cdn.class101.net/images/e589554c-e748-4ea8-8bed-8cb24b0695ee/3840xauto.webp 3840w"
-                                                sizes="96px"><img alt="단순생활 천연거품 입욕제 아로마 배스밤"
-                                                                  srcset="https://cdn.class101.net/images/e589554c-e748-4ea8-8bed-8cb24b0695ee/640xauto 640w,https://cdn.class101.net/images/e589554c-e748-4ea8-8bed-8cb24b0695ee/750xauto 750w,https://cdn.class101.net/images/e589554c-e748-4ea8-8bed-8cb24b0695ee/828xauto 828w,https://cdn.class101.net/images/e589554c-e748-4ea8-8bed-8cb24b0695ee/1080xauto 1080w,https://cdn.class101.net/images/e589554c-e748-4ea8-8bed-8cb24b0695ee/1200xauto 1200w,https://cdn.class101.net/images/e589554c-e748-4ea8-8bed-8cb24b0695ee/1920xauto 1920w,https://cdn.class101.net/images/e589554c-e748-4ea8-8bed-8cb24b0695ee/2048xauto 2048w,https://cdn.class101.net/images/e589554c-e748-4ea8-8bed-8cb24b0695ee/3840xauto 3840w"
-                                                                  src="https://cdn.class101.net/images/e589554c-e748-4ea8-8bed-8cb24b0695ee"
-                                                                  sizes="96px" style="height:96px" class="my-ordered-object24">
+                                    <picture class="my-ordered-object23" th:href="*{productNum}">
                                     </picture>
                                 </div>
                                 <div class="my-ordered-object27"></div>
                                 <div class="my-ordered-object28">
                                     <div class="my-ordered-object29">
-                                        <p class="my-ordered-object26">단순생활 천연거품 입욕제 아로마 배스밤</p>
+                                        <p class="my-ordered-object26" th:text="|상품명 : *{productName}|"></p>
                                     </div>
                                     <div class="my-ordered-object30"></div>
-                                    <p class="my-ordered-object31">옵션: 쟈스민<br><br>수량 1개<br><br></p>
+                                    <p class="my-ordered-object26" th:text="|결제 포인트 : *{total}P|"></p>
+                                    <p class="my-ordered-object31" th:text="|수량 : *{counting}개|"></p>
                                     <div class="my-ordered-object32"></div>
                                     <div class="my-ordered-object33"></div>
                                 </div>
@@ -222,70 +202,8 @@
                             <div class="sc-6bafafbf-0 jlgpeI"></div>
                         </div>
                         <div class="my-order-by11"></div>
-                        <div class="my-ordered-object1">
-                            <div color="#3a3a3a" class="my-ordered-object2">2022. 06. 11</div><span
-                                class="my-ordered-object3"><a icon-position="1"
-                                                              color="orange" theme="[object Object]"
-                                                              class="my-ordered-object4"
-                                                              href="/me/orders/62a4401682ad13a6dd2e6023">
-                                        <div class="my-ordered-object5"><svg xmlns="http://www.w3.org/2000/svg"
-                                                                             width="18" height="18" fill="none" viewBox="0 0 24 24">
-                                                <path fill-rule="evenodd"
-                                                      d="M8.5 18.5l6-6.5-6-6.5L10 4l7.5 8-7.5 8-1.5-1.5z" fill="#ff5600">
-                                                </path>
-                                            </svg></div><span class="my-ordered-object6">자세히 보기</span>
-                                    </a></span>
-                        </div>
-                        <div class="sc-f8caeb8b-0 ihCtaW">
-                            <hr class="my-ordered-object7">
-                        </div>
-                        <div class="my-ordered-object8">
-                            <div class="my-ordered-object9">
-                                <div color="#3a3a3a" font-weight="bold" class="my-ordered-object10">취소 성공</div>
-                            </div>
-                            <div class="my-ordered-object11"></div>
-                            <div class="my-ordered-object12">
-                                <div class="my-ordered-object13"><span class="my-ordered-object14"><svg
-                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                        class="my-ordered-object15">
-                                                <path
-                                                        d="M14.405 4.24H6.509v-2c0-.2-.2-.3-.4-.2L1.112 5.29c-.15.1-.15.3 0 .4L6.11 8.943c.15.1.4 0 .4-.2V6.742h7.946c3.048 0 5.746 2.251 5.996 5.303.35 3.502-2.399 6.454-5.847 6.454H5.26c-.15 0-.25.1-.25.25v2c0 .15.1.251.25.251h9.345c4.547 0 8.295-3.702 8.395-8.255.05-4.702-3.948-8.504-8.595-8.504Z"
-                                                        class="css-dudu3d"></path>
-                                            </svg></span>
-                                    <div class="my-ordered-object16"></div>
-                                    <div class="my-ordered-object17">
-                                        <p class="my-ordered-object18">반품이 완료되었습니다</p>
-                                        <div class="my-ordered-object19"></div>
-                                        <p class="my-ordered-object20"></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="my-ordered-object21">
-                                <div class=".my-ordered-object22">
-                                    <picture class="my-ordered-object23">
-                                        <source type="image/webp"
-                                                srcset="https://cdn.class101.net/images/e589554c-e748-4ea8-8bed-8cb24b0695ee/640xauto.webp 640w,https://cdn.class101.net/images/e589554c-e748-4ea8-8bed-8cb24b0695ee/750xauto.webp 750w,https://cdn.class101.net/images/e589554c-e748-4ea8-8bed-8cb24b0695ee/828xauto.webp 828w,https://cdn.class101.net/images/e589554c-e748-4ea8-8bed-8cb24b0695ee/1080xauto.webp 1080w,https://cdn.class101.net/images/e589554c-e748-4ea8-8bed-8cb24b0695ee/1200xauto.webp 1200w,https://cdn.class101.net/images/e589554c-e748-4ea8-8bed-8cb24b0695ee/1920xauto.webp 1920w,https://cdn.class101.net/images/e589554c-e748-4ea8-8bed-8cb24b0695ee/2048xauto.webp 2048w,https://cdn.class101.net/images/e589554c-e748-4ea8-8bed-8cb24b0695ee/3840xauto.webp 3840w"
-                                                sizes="96px"><img alt="단순생활 천연거품 입욕제 아로마 배스밤"
-                                                                  srcset="https://cdn.class101.net/images/e589554c-e748-4ea8-8bed-8cb24b0695ee/640xauto 640w,https://cdn.class101.net/images/e589554c-e748-4ea8-8bed-8cb24b0695ee/750xauto 750w,https://cdn.class101.net/images/e589554c-e748-4ea8-8bed-8cb24b0695ee/828xauto 828w,https://cdn.class101.net/images/e589554c-e748-4ea8-8bed-8cb24b0695ee/1080xauto 1080w,https://cdn.class101.net/images/e589554c-e748-4ea8-8bed-8cb24b0695ee/1200xauto 1200w,https://cdn.class101.net/images/e589554c-e748-4ea8-8bed-8cb24b0695ee/1920xauto 1920w,https://cdn.class101.net/images/e589554c-e748-4ea8-8bed-8cb24b0695ee/2048xauto 2048w,https://cdn.class101.net/images/e589554c-e748-4ea8-8bed-8cb24b0695ee/3840xauto 3840w"
-                                                                  src="https://cdn.class101.net/images/e589554c-e748-4ea8-8bed-8cb24b0695ee"
-                                                                  sizes="96px" style="height:96px"  class="my-ordered-object24">
-                                    </picture>
-                                </div>
-                                <div class="my-ordered-object27"></div>
-                                <div class="my-ordered-object28">
-                                    <div class="my-ordered-object29">
-                                        <p class="my-ordered-object26">단순생활 천연거품 입욕제 아로마 배스밤</p>
-                                    </div>
-                                    <div class="my-ordered-object30"></div>
-                                    <p class="my-ordered-object31">옵션: 쟈스민<br><br>수량 1개<br><br></p>
-                                    <div class="my-ordered-object32"></div>
-                                    <div class="my-ordered-object33"></div>
-                                </div>
-                            </div>
-
-                        </div>
                     </div>
-
+                </div>
                 </div>
             </div>
         </div>
@@ -339,7 +257,7 @@
                     <div class="d-flex flex-column">
                         <div>
                             <span class="badge badge-info  mr-1">선택날짜</span>&nbsp;<span
-                                class="selectDateStr"></span>&nbsp;<span class="selectDateStr2"></span>
+                                class="selectDateStr" name="startDate"></span>&nbsp;<span class="selectDateStr2" name="endDate"></span>
                         </div>
                     </div>
                     <div class="d-flex flex-nowrap">
@@ -379,7 +297,23 @@
 <script type="text/javascript" src="/js/bootstrap.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<script>
+<script th:inline="javascript">
+    let str= "";
+    let List = [[${myOrderList}]];
+    let num = List[0]["num"];
+    $(".my-ordered-object23").each(function (i, h) {
+        let productNum=$(this).attr("href");
+        $.ajax({
+            url:"/productFile/list/"+productNum,
+            type: "get",
+            success:function (files) {
+                str+= "<img class='productImage' src='/productFile/display?fileName=" + files[0].uploadPath + "/" + files[0].uuid + "_" + files[0].fileName + "'>";
+                $(h).html(str);
+                str ="";
+            }
+        })
+    })
+
     function modal(id) {
         var zIndex = 9999;
         var modal = document.getElementById(id);
@@ -438,6 +372,9 @@
 
 <script>
     let checkNum
+    let startDate ="";
+    let endDate ="";
+
     calendarModal = {
         target: null,
         //CalendarYear: null,
@@ -535,8 +472,11 @@
                     }
                 });
                 calendarModal.selectDate = calendarModal.getDateString(cd);
+                startDate = calendarModal.selectDate;
+                console.log("시작일" + startDate);
                 $('#CalendarModal .selectDateStr').text(calendarModal.getDateString(cd));
                 checkNum += 1;
+                console.log(calendarModal.selectDate);
             }
             else if (checkNum == 1) {
                 var cd = new Date($(src).attr('date'));
@@ -548,11 +488,72 @@
                     }
                 });
                 calendarModal.selectDate = calendarModal.getDateString(cd);
+                endDate = calendarModal.selectDate;
+                console.log("종료일" + endDate);
                 $('#CalendarModal .selectDateStr2').text(calendarModal.getDateString(cd));
                 checkNum += 1;
                 $("#CalendarModal .btn-primary").trigger('click');
             }
-
+            $.ajax({
+                url: "/userR/betweenOrder",
+                type: "post",
+                data: {'startDate' : startDate, 'endDate' : endDate, 'num' : num},
+                success: function (myOrderDTO) {
+                    let str1 = "";
+                    console.log(myOrderDTO);
+                    $('.my-order-by12').replaceWith("");
+                    $.each(myOrderDTO, function (i, myOrder) {
+                        str1 += "<div class=\"my-order-by12\">"
+                        str1 += "<div class='my-ordered-object'>"
+                        str1 += "<div class='my-ordered-object1'>"
+                        str1 += "<div color='#3a3a3a' class='my-ordered-object2'>"+ myOrder.registDate + "</div>"
+                        str1 += "<span class='my-ordered-object3'>"
+                        str1 += "<a icon-position='1' color='orange' theme='[object Object]' class='my-ordered-object4' href='/me/orders/62a4401682ad13a6dd2e6023'>"
+                        str1 += "<div class='my-ordered-object5'>"
+                        str1 += "<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='none' viewBox='0 0 24 24'>"
+                        str1 += "<path fill-rule='evenodd' d='M8.5 18.5l6-6.5-6-6.5L10 4l7.5 8-7.5 8-1.5-1.5z' fill='#ff5600'></path> </svg></div>"
+                        str1 += "<span class='my-ordered-object6'>자세히 보기</span></a></span></div>";
+                        str1 += "<div class='sc-f8caeb8b-0 ihCtaW'>";
+                        str1 += "<hr class='my-ordered-object7'></div>";
+                        str1 += "<div class='my-ordered-object8'>";
+                        str1 += "<div class='my-ordered-object9'>";
+                        if(myOrder.status == 1){
+                            str1 += "<div color='#3a3a3a' font-weight='bold' class='my-ordered-object10'>주문 완료</div></div>";
+                        } else {
+                            str1 += "<div color='#3a3a3a' font-weight='bold' class='my-ordered-object10'>배송 완료</div></div>";
+                        }
+                        str1 += "<div class='my-ordered-object11'></div>";
+                        str1 += "<div class='my-ordered-object12'></div>";
+                        str1 += "<div class=\"my-ordered-object21\">"
+                        str1 += "<div class=\".my-ordered-object22\" style='display: flex'>"
+                        str1 += "<picture class=\"my-ordered-object23\" id=\"" + myOrder.productNum + "\"></picture>"
+                        str1 += "<div class=\"my-ordered-object27\"></div>";
+                        str1 += "<div class=\"my-ordered-object28\">"
+                        str1 += "<div class=\"my-ordered-object29\">"
+                        str1 += "<p class=\"my-ordered-object26\">" + "상품명 : " + myOrder.productName + "</p></div>";
+                        str1 += "<div class=\"my-ordered-object30\"></div>";
+                        str1 += "<p class=\"my-ordered-object26\">" + "결제 포인트 : " + myOrder.total + "P</p>";
+                        str1 += "<p class=\"my-ordered-object31\">" + "수량 : " + myOrder.counting + "개</p>";
+                        str1 += "<div class=\"my-ordered-object32\"></div>";
+                        str1 += "<div class=\"my-ordered-object33\"></div></div></div>";
+                        str1 += "<div class=\"sc-6bafafbf-0 jlgpeI\"></div></div>";
+                        str1 += "</div></div></div>";
+                        console.log(myOrder.productNum);
+                        $.ajax({
+                            url:"/productFile/list/"+myOrder.productNum,
+                            type: "get",
+                            success:function (files) {
+                                console.log("사진불러오기")
+                                str+= "<img class='productImage' src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_" + files[0].fileName + "'>";
+                                $('#' + myOrder.productNum).html(str);
+                                console.log(files);
+                                str ="";
+                            }
+                        })
+                        $('.myOrderWrapper').html(str1);
+                    })
+                }
+            })
         },
         applyDate: function () {
             //var sd = new Date($('#CalendarModal .selectDateStr').text());

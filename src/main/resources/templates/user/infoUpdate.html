@@ -28,7 +28,7 @@
                     fill="#cacaca"></path>
         </svg></div>
     </h1>
-    <form action="#">
+    <form action="/user/delete" class="deleteUser">
         <div color="#666666" font-weight="bold" class="modal-in3">회원탈퇴 신청 전 아래 사항을
             확인 부탁드립니다 😊</div>
         <div color="#666666" class="modal-in3">1. 삭제하기 클릭후 바로 회원탈퇴가 처리됩니다.</div>
@@ -59,7 +59,7 @@
         <div class="myinfo-list">
             <div class="first-info-forms">
                 <div class="top-bar">
-                    <div class="top-bar2"><a target="_self" class="top-bar3" href="/me">마이페이지</a></div>
+                    <div class="top-bar2"><a target="_self" class="top-bar3" href="/user/myPage">마이페이지</a></div>
                     <div class="title-divide"></div>
                     <div disabled="" class="top-bar-middle"><a target="_self" class="top-bar-middle2"
                                                                href="/me/edit">프로필 수정</a></div>
@@ -169,11 +169,13 @@
             </form>
             <div class="bottom-line"></div>
             <div class="out-confirm-q">
+
                 <div class="out-confirm-q2"><input type="button" class="out-confirm-b" color="default" value="회원탈퇴"
                                                    fill="true" onclick="document.getElementById('popup_open_btn2').click();">
                     <button id="popup_open_btn2">팝업창 띄어 줘염</button>
 
                 </div>
+
             </div>
 
         </div>
@@ -188,7 +190,12 @@
 
     let str = "<img sizes='100vw' width='100px' src='/userFile/display?fileName=" + uploadPath + "/"  + fileName + "'>";
     $('#profileImage').html(str);
-    
+
+    $('.modal-by8').on("click", function () {
+        $('.deleteUser').submit;
+        alert("정상적으로 탈퇴되었습니다.");
+    })
+
     function checkExtension(fileName, fileSize){
         if(regex.test(fileName)){
             alert("업로드 할 수 없는 파일의 형식입니다.");

@@ -34,8 +34,8 @@ public class ProjectDAO {
     }
 
     // 특정 유저의 프로젝트 목록
-    public List<ProjectVO> getUserProjectList(Long companyNum, ProjectCriteria projectCriteria){
-        return projectMapper.getUserProjectList(companyNum, projectCriteria);
+    public List<ProjectVO> getUserProjectList(Long companyNum, Criteria criteria){
+        return projectMapper.getUserProjectList(companyNum, criteria);
     }
 
     // 전체 프로젝트 목록
@@ -83,13 +83,30 @@ public class ProjectDAO {
     public List<ProjectVO> getListJJim(){
         return projectMapper.getListJJim();
     }
+
     // 프로젝트 목록(포인트순)
     public List<ProjectVO> getListPoint(){
         return projectMapper.getListPoint();
     }
+
     // 프로젝트 목록(참가자순)
-    public List<ProjectVO> getListApply(){
-        return projectMapper.getListApply();
+    public List<ProjectVO> getListApply(){ return projectMapper.getListApply();    }
+
+    // 프로젝트 목록(코스별)
+    public List<ProjectVO> getListCourse(String course){ return projectMapper.getListCourse(course); }
+
+    public List<ProjectVO> getListAll(){return projectMapper.getListAll();};
+
+    public List<ProjectVO> getSearchList(String searchStr){return projectMapper.getSearchList(searchStr);};
+
+
+    // 프로젝트 생성한 개수
+    public int getUserProjectTotal(Long companyNum){
+        return projectMapper.getUserProjectTotal(companyNum);
+
     }
+
+    // 프로젝트 목록(지형으로 찾기)
+    public List<ProjectVO> getListTerrain(String terrain) {return projectMapper.getListTerrain(terrain);}
 
 }

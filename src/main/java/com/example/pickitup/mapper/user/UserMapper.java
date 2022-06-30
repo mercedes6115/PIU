@@ -69,11 +69,23 @@ public interface UserMapper {
     //    관리자 게시물 목록에서 문의글 삭제 했을때 QnA테이블에서 같이 삭제
     public void productQnaDelete(Long num);
 
+    //    관리자 게시물 목록에서 문의글 삭제 했을때 QnA테이블에서 같이 삭제
+    public void projectQnaDelete(Long num);
+
     //    유저가 상품 문의 남겼을때 adminboard 에도 저장
     public void qnaStoreSave(AdminQnaDTO adminQnaDTO);
 
+    //    유저가 상품 문의 남겼을때 adminboard 에도 저장
+    public void qnaProjectSave(AdminQnaDTO adminQnaDTO);
+
+    //    유저가 상품 문의 수정했을때 adminboard 에도 수정
+    public boolean qnaStoreModify(AdminQnaDTO adminQnaDTO);
+
+    //    유저가 상품 문의 수정했을때 adminboard 에도 수정
+    public boolean qnaProjectModify(AdminQnaDTO adminQnaDTO);
+
     //    유저 내 리뷰 모두 보기
-    public List<MyReviewDTO> myAllReview(Long num);
+    public List<MyReviewDTO> myAllReview(Long userNum);
 
     //    유저 목록 관리자용
     public  List<UserDTO> getList(Criteria criteria);

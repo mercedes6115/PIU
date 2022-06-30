@@ -99,15 +99,29 @@ public class TempUserSerivce {
     //    하나의 트랜잭션에 여러 개의 DML이 있을 경우 한 개라도 오류 시 전체 ROLLBACK
     @Transactional(rollbackFor = Exception.class)
     public UserVO kakaoLogin(UserVO userVO){
-        if(userDAO.emailCheck(userVO.getEmail())==0 && userDAO.nicknameCheck(userVO.getNickname())==0){
+        int countEmail=userDAO.emailCheck(userVO.getEmail());
+        int countNickname=userDAO.nicknameCheck(userVO.getNickname());
+        if(countEmail==0 && countNickname==0){
             userDAO.kakaoinsert(userVO);
             log.info("이제 저장할거임"+userDAO.emailCheck(userVO.getEmail()));
             return userDAO.read(userVO.getNum());
 
-        }else if(userDAO.emailCheck(userVO.getEmail())!=0){
+        }else if(countEmail!=0){
             log.info("Email check "+userDAO.emailCheck(userVO.getEmail()));
             return null;
-        }else {
+        }else if(countNickname!=0){
+
+            log.info("nickname check "+userDAO.nicknameCheck(userVO.getNickname()));
+            String temp=userVO.getNickname()+(countNickname+1);
+            log.info(temp);
+//            log.info(countNickname+1);
+            userVO.setNickname(temp);
+            userDAO.kakaoinsert(userVO);
+
+            return userDAO.read(userVO.getNum());
+        }
+
+        else{
             log.info("디비저장된거" + userDAO.emailCheck(userVO.getEmail()));
             return userDAO.kakaoDetail(userVO.getEmail());
         }
@@ -210,7 +224,7 @@ public class TempUserSerivce {
         }
         for(OrderVO orderVO : orderVOList) {
             ProductVO productVO = productDAO.getDetail(orderVO.getProductNum());
-            pointDTOList.add(new PointDTO(productVO.getName(), orderVO.getRegistDate(), productVO.getPrice(), "1"));
+            pointDTOList.add(new PointDTO(productVO.getName(), orderVO.getRegistDate(), orderVO.getTotal(), "1"));
             // 상품은 category = 1
         }
         pointDTOList.sort(Comparator.comparing(PointDTO::getPointDate).reversed());
@@ -319,5 +333,26 @@ public class TempUserSerivce {
         return userDAO.myAllReview(num);
     }
 
+    // 상품 주문
+    public void orderStore(OrderUserDTO orderUserDTO) {
+        orderDAO.orderStore(orderUserDTO);
+    }
+
+    // 상품주문후 유저 포인트 차감
+    public void userPointMinus(Long num, String point) {
+        orderDAO.userPointMinus(num, point);
+    }
+
+    // 상품 주문후 재고 차감
+    public void productMinus(String itemname, Long stock){
+        orderDAO.productMinus(itemname, stock);
+    }
+
+    //상품명으로 정보 가져오기(1개)
+    public Long getDetailByName(String itemname){
+        return orderDAO.getDetailByName(itemname);
+    }
+
+    public ProductDTO boughtOrderDetail(Long orderNum) { return orderDAO.boughtDetail(orderNum);}
 
 }

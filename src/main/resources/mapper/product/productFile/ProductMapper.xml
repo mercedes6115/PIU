@@ -21,7 +21,7 @@
         ORIGIN, MANUFACTURER, SUPPLIER, REGIST_DATE,STATUS
     FROM (
     ]]>
-        SELECT /*+ INDEX_DESC(TBL_BOARD SYS_C007228) */
+        SELECT /*+ INDEX_DESC(TBL_BOARD SYS_C007258) */
         ROWNUM RN,NUM, NAME, CONTENT, CATEGORY, PRICE, STOCK,
             ORIGIN, MANUFACTURER, SUPPLIER, REGIST_DATE,STATUS
               FROM TBL_PRODUCT
@@ -77,6 +77,7 @@
         <![CDATA[
         WHERE RN > (#{pageNum} - 1) * #{amount}
         ]]>
+        ORDER BY REGIST_DATE DESC
     </select>
 
 

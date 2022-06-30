@@ -181,7 +181,7 @@ body {
     width: 216px;
     height: 100%;
     background-color: rgb(255, 255, 255);
-    border-color: rgb(229, 229, 229);    
+    border-color: rgb(229, 229, 229);
     top: 72px;
     left: 0px;
     position: fixed;
@@ -592,6 +592,7 @@ body {
     color: rgb(26, 26, 26);
     display: flex;
     flex-direction: row;
+    justify-content: space-evenly;
     align-items: center;
     font-weight: 700;
     text-transform: uppercase;
@@ -640,11 +641,7 @@ body {
     margin-right: 98px;
 }
 
-.showListHeader3 {
-    display: flex;
-    padding: 19px 16px;
-    flex: 0 1 228px;
-}
+
 
 .userListHeader3 {
     display: flex;
@@ -652,11 +649,7 @@ body {
     margin-right: 76px;
 }
 
-.showListHeader4 {
-    display: flex;
-    padding: 19px 0px;
-    flex: 0 1 182px
-}
+
 
 .userListHeader4 {
     display: flex;
@@ -664,11 +657,6 @@ body {
     margin-right: 99px;
 }
 
-.showListHeader5 {
-    display: flex;
-    padding: 19px 16px;
-    flex: 0 1 102px;
-}
 
 .userListHeader5 {
     display: flex;
@@ -713,14 +701,6 @@ body {
     display: flex;
     padding: 19px 16px;
     flex: 0 1 180px;
-    margin-right: 10px;
-    min-width: 0;
-}
-
-.showListHeader9 {
-    display: flex;
-    padding: 19px 16px;
-    flex: 0 1 155px;
     margin-right: 10px;
     min-width: 0;
 }
@@ -819,14 +799,14 @@ body {
     margin-right: 50px;
     text-overflow: ellipsis;
     white-space: nowrap;
-    
+
     min-width: 0;
 }
 
 .sbStateFrame, .sbTitleForm, .sbTerrainForm, .sbImageFrame, .sbCourseFrame, .sbPointFrame,  .sbMoreFrame, .sbDateFrame {
     padding: 24px 12px;
     font-size: 13px;
-    
+
 }
 
 .sbImageForm {
@@ -1013,7 +993,7 @@ body {
 
 .showListBody9 {
     overflow: hidden;
-    flex: 0 1 198px;
+    flex: 0 1 255px;
     text-overflow: ellipsis;
     white-space: nowrap;
     margin-right: 10px;
@@ -1127,7 +1107,7 @@ body {
 }
 
 
-.moveProjectModify, .deleteProjectBtn {
+.moveProjectModify, .deleteProjectBtn, .moreQR {
     text-decoration: none;
     color: black;
     display: flex;
@@ -1135,6 +1115,8 @@ body {
     background-color: white;
     border: 1px silver solid;
     font-size: 8px;
+    margin-left: 6px;
+    padding: 6px;
 }
 
 .modifyForm {
@@ -1411,7 +1393,7 @@ body {
     font-weight: 700;
     line-height: 1.125rem;
     font-family: 'Noto Sans KR', sans-serif;
-    
+
 }
 
 .nDetailDate {
@@ -1742,4 +1724,210 @@ option:disabled {
     display: flex;
     color: #101010;
     font-weight: 700;
+}
+
+
+/*******************/
+
+
+.groupIntroProfileFrame {
+    margin-bottom: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0px 0px 16px;
+}
+
+.groupIntroProfileTitle {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px 0px 4px;
+    color: rgb(26, 26, 26);
+}
+
+.groupIntroProfileInsertFrame {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.groupProfile {
+    display: none;
+    margin: 0;
+}
+
+.groupIntroProfileForm {
+    border: 1px silver solid;
+    position: relative;
+    width: 76px;
+    height: 76px;
+    background-size: 100% 100%;
+    border-radius: 40px;
+}
+
+.groupIntroProfileBox {
+    position: relative;
+    width: 76px;
+    height: 76px;
+}
+
+.showGroupProfile {
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgb(192, 192, 192);
+    border-radius: 100%;
+    line-height: 0;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    font-size: 0px;
+    background: rgb(238, 238, 238);
+}
+
+.showGroupImg {
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.insertImgIcon {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+    border-radius: 100%;
+    background-color: rgb(26, 26, 26);
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+
+/*******************************/
+
+.qrModal-overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 999;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(1.5px);
+    -webkit-backdrop-filter: blur(1.5px);
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.18);
+}
+
+.modal-qr {
+    background: rgba( 69, 139, 197, 0.70 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 13.5px );
+    -webkit-backdrop-filter: blur( 13.5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );        width: 400px;
+    height: 500px;
+    position: relative;
+    top: -100px;
+    padding: 10px;
+}
+
+.modal-title {
+    padding-left: 10px;
+    display: inline;
+    text-shadow: 1px 1px 2px gray;
+    color: white;
+}
+
+.modal-title h2 {
+    display: inline;
+}
+
+.close-modal {
+    display: inline;
+    float: right;
+    padding-right: 10px;
+    cursor: pointer;
+    text-shadow: 1px 1px 2px gray;
+    color: white;
+}
+
+.content {
+    margin-top: 20px;
+    padding: 0px 10px;
+    text-shadow: 1px 1px 2px gray;
+    color: white;
+}
+
+/**************************************/
+
+.showListHeade11{
+    display: flex;
+    padding: 19px 16px;
+    flex: -1 1 108px
+}
+
+.showListHeader3 {
+    display: flex;
+    padding: 19px 16px;
+    flex: 0 1 208px;
+}
+
+
+.showListHeader4 {
+    display: flex;
+    padding: 19px 0px;
+    flex: 0 1 170px;
+}
+
+.showListHeader5 {
+    display: flex;
+    padding: 19px 16px;
+    flex: 0 1 102px;
+}
+
+.showListHeader apply{
+    justify-content: space-between;
+
+}
+
+
+.showListHeader9 {
+    display: flex;
+    padding: 19px 16px;
+    flex: 0 1 335px;
+    margin-right: 10px;
+    min-width: 0;
+}
+
+.modal-content{
+    background-color: white;
+    width: 900px;
+    height: 400px;
+}
+
+.qrImg{
+    margin:50px;
+    ustify-content: center;
+    padding: 50px;
+}
+
+.close{
+    font-size: 30px;
+    display: block;
+    margin-top: 10px;
+    margin-left: 20px;
 }

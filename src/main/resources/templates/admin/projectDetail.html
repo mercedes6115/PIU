@@ -93,6 +93,7 @@
 <script th:inline="javascript">
     // 접속한 와이파이ipV4로 접속해야함 localhost로 접속하면 127.0.0.1가져와서 모바일로 접속을 못함
     let ipV4=[[${ipV4}]];
+    let projectNum=[[${projectNum}]];
 
     //접속한 와이파이 ipV4값을 가져와야 모바일로도 접속이 가능하기 때문에 localhost를 대신할 ipV4값을 가져오는지 확인
     $(".checkBtn").click(function(){
@@ -128,7 +129,7 @@
                 },
                 success: function () {
                     alert("포인트 지급 성공!!");
-                    location.replace("/admin/projectList")
+                    location.replace("/admin/projectDetail?projectNum="+projectNum);
                 }
             });
         }
