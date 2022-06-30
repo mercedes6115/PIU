@@ -102,11 +102,13 @@
     <select id="login" resultType="userDTO">
         SELECT NUM, NICKNAME, CATEGORY, EMAIL
         FROM
-        (SELECT NUM, NICKNAME, CATEGORY, PASSWORD ,EMAIL
+        (
+        SELECT NUM, NICKNAME, CATEGORY, PASSWORD ,EMAIL
         FROM TBL_USER
-        UNION
+        UNION ALL
         SELECT NUM, NICKNAME, CATEGORY , PASSWORD, EMAIL
-        FROM TBL_COMPANY)
+        FROM TBL_COMPANY
+        )
         WHERE EMAIL=#{email} AND PASSWORD=#{password}
     </select>
 

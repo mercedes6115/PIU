@@ -78,12 +78,14 @@
                                 </div>
                                 <div class="sProjectContainer">
                                     <a class="sProjectList" href="main.html">전체 플로깅</a>
+                                    <a class="sProjectQna" href="#">플로깅 문의</a>
                                 </div>
                                 <div class="sGuideFrame">
                                     <div class="sGuideForm">
                                         <div class="sGuideBox">
                                             <span class="material-symbols-outlined" id="gfSize">help</span>
                                             <div class="margin"></div>
+                                            <a class="sTitle" href="#">플로거 가이드 센터</a>
                                         </div>
                                     </div>
                                 </div>
@@ -115,6 +117,18 @@
                             <div class="projectListForm" id="projectList">
                                 <div class="projectListContainer">
                                     <div class="projectListBox">
+                                        <!--                                        <div class="searchForm">-->
+                                        <!--                                            <div class="searchBox">-->
+                                        <!--                                                <div class="searchProjectBox">-->
+                                        <!--                                                    <form action>-->
+                                        <!--                                                        <input placeholder="프로젝트명 검색" class="searchProject" value>-->
+                                        <!--                                                    </form>-->
+                                        <!--                                                </div>-->
+                                        <!--                                                <span class="searchImg">-->
+                                        <!--                                                <span class="material-symbols-outlined">search</span>                                                                                                        -->
+                                        <!--                                            </span>-->
+                                        <!--                                            </div>-->
+                                        <!--                                        </div>-->
                                         <div class="showListFrame">
                                             <div class="showListForm">
                                                 <div class="showListBox">
@@ -184,12 +198,16 @@
                                                                 </div>
                                                                 <div class="showListBody5">
                                                                     <div class="sbTerrainForm">
-                                                                        <p class="sbTerrain" th:text="${project.terrain}"></p>
+                                                                        <p class="sbTerrain" th:if="${project.terrain}=='1'">산</p>
+                                                                        <p class="sbTerrain" th:if="${project.terrain}=='2'">바다</p>
+                                                                        <p class="sbTerrain" th:if="${project.terrain}=='3'">평지</p>
+                                                                        <p class="sbTerrain" th:if="${project.terrain}=='4'">기타</p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="showListBody6">
                                                                     <div class="sbCourseFrame">
-                                                                        <p class="sbCousre" th:text="${project.course}"></p>
+                                                                        <p class="sbCousre"  th:if="${project.course}=='L'">장소</p>
+                                                                        <p class="sbCousre"  th:if="${project.course}=='C'">코스</p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="showListBody7">
@@ -290,7 +308,65 @@
 
                                                     <div class="showListBodyFrame">
                                                         <div class="showListBodyForm" id="replyList">
-
+                                                            <!--                                                            &lt;!&ndash; 신청자 목록 &ndash;&gt;-->
+                                                            <!--                                                            <div class="showListBody" >-->
+                                                            <!--                                                                <div class="showListBody1">-->
+                                                            <!--                                                                    <div class="sbCheckBoxFrame">-->
+                                                            <!--                                                                        <label class="sbCheckBoxForm">-->
+                                                            <!--                                                                            <span class="material-symbols-outlined" id="checkBoxBtn">check_box_outline_blank</span>-->
+                                                            <!--                                                                            <input type="checkbox" class="oneCheck">-->
+                                                            <!--                                                                        </label>-->
+                                                            <!--                                                                    </div>-->
+                                                            <!--                                                                </div>-->
+                                                            <!--                                                                &lt;!&ndash; 프로필 &ndash;&gt;-->
+                                                            <!--                                                                <div class="showListBody2">-->
+                                                            <!--                                                                    <div class="sbImageFrame">-->
+                                                            <!--                                                                        <div class="sbImageForm">-->
+                                                            <!--                                                                            <div class="sbImageContainer">-->
+                                                            <!--                                                                                <div class="sbImageBox">-->
+                                                            <!--                                                                                    <div class="sbImageWrap">-->
+                                                            <!--                                                                                        <picture class="sbImageShow">-->
+                                                            <!--                                                                                            <source srcset="/src/main/resources/static/images/chun.png" media="all and (min-width: 1024px)" >-->
+                                                            <!--                                                                                        </picture>-->
+                                                            <!--                                                                                    </div>-->
+                                                            <!--                                                                                </div>-->
+                                                            <!--                                                                            </div>-->
+                                                            <!--                                                                        </div>-->
+                                                            <!--                                                                    </div>-->
+                                                            <!--                                                                </div>-->
+                                                            <!--                                                                &lt;!&ndash; 닉네임 &ndash;&gt;-->
+                                                            <!--                                                                <div class="showListBody3">-->
+                                                            <!--                                                                    <div class="sbTitleForm">-->
+                                                            <!--                                                                        <p class="sbTitle"></p>-->
+                                                            <!--                                                                    </div>-->
+                                                            <!--                                                                </div>-->
+                                                            <!--                                                                &lt;!&ndash; 신청일자 &ndash;&gt;-->
+                                                            <!--                                                                <div class="showListBody6">-->
+                                                            <!--                                                                    <div class="sbCourseFrame">-->
+                                                            <!--                                                                        <p class="sbCousre"></p>-->
+                                                            <!--                                                                    </div>-->
+                                                            <!--                                                                </div>-->
+                                                            <!--                                                                &lt;!&ndash; 신청자 상태 &ndash;&gt;-->
+                                                            <!--                                                                <div class="showListBody7">-->
+                                                            <!--                                                                    <div class="sbPointFrame">-->
+                                                            <!--                                                                        <p class="sbPoint"></p>-->
+                                                            <!--                                                                    </div>-->
+                                                            <!--                                                                </div>-->
+                                                            <!--                                                                &lt;!&ndash; 시작 완료 &ndash;&gt;-->
+                                                            <!--                                                                <div class="showListBody9">-->
+                                                            <!--                                                                    <div class="sbMoreFrame">-->
+                                                            <!--                                                                        <div class="sbMoreForm">-->
+                                                            <!--                                                                            <div class="seeApplier" id="seeApplierBox">-->
+                                                            <!--                                                                                <button class="qrCheckFrame" id="qrCheck">-->
+                                                            <!--                                                                                <span class="qrCheckForm">-->
+                                                            <!--                                                                                    <span class="qrCheck">완료</span>-->
+                                                            <!--                                                                                </span>-->
+                                                            <!--                                                                                </button>-->
+                                                            <!--                                                                            </div>-->
+                                                            <!--                                                                        </div>-->
+                                                            <!--                                                                    </div>-->
+                                                            <!--                                                                </div>-->
+                                                            <!--                                                            </div>-->
                                                         </div>
                                                     </div>
 
@@ -326,17 +402,10 @@
     <div class="modal-content">
         <div style="margin-left: 50px; display: flex;">
             <p class="close">&times;</p>
-            <div style="display: flex;">
-                <div>
-                    <p class="qrtitle"> 출발QR</p>
-                    <div class="qrImg" id="qrcode"></div>
-                </div>
-                <div>
-                    <p class="qrtitle"> 도착QR</p>
-                    <div class="qrImg" id="qrcode2"></div>
-                </div>
-            </div>
-
+            <p id="startP"> 출발QR</p>
+            <!--            <div class="qrImg" id="qrcode"></div>-->
+            <p id="endP"> 도착QR</p>
+            <!--            <div class="qrImg" id="qrcode2"></div>-->
         </div>
     </div>
 </div>
@@ -355,6 +424,103 @@
 <script src="/assets/js/qrcode.js"></script>
 
 <script>
+
+
+    // let spanText = document.getElementById("listClose").textContent;
+    // let sProjectContainer = document.querySelector('.sProjectContainer');
+    //
+    // $("#listClose").click(function(){
+    //     if(spanText == "expand_less"){
+    //         document.getElementById("listClose").textContent="expand_more";
+    //         spanText = document.getElementById("listClose").textContent;
+    //         sProjectContainer.classList.add('hidden');
+    //     } else {
+    //         document.getElementById("listClose").textContent="expand_less";
+    //         spanText=document.getElementById("listClose").textContent;
+    //         sProjectContainer.classList.remove('hidden');
+    //     }
+    // });
+    //
+    //
+    // const showMoreBox = document.getElementById("showMore");
+    // const showMore = document.getElementById("showMoreBtn");
+    //
+    // showMore.addEventListener("click", e => {
+    //     console.log("들어옴");
+    //     if(!showFlag) {
+    //         console.log("들어옴1");
+    //         showMoreBox.style.display ="flex";
+    //         showFlag = true;
+    //     } else {
+    //         console.log("들어옴2");
+    //         showMoreBox.style.display ="none";
+    //         showFlag = false;
+    //     }
+    // })
+    // let showFlag = false;
+    // $("#showMoreBtn").click(function(){
+    //
+    //     if(!showFlag) {
+    //         console.log("들어옴1");
+    //         showMoreBox.style.display ="flex";
+    //         showFlag = true;
+    //     } else {
+    //         console.log("들어옴2");
+    //         showMoreBox.style.display ="none";
+    //         showFlag = false;
+    //     }
+    //     console.log(showFlag)
+    // })
+    //
+    // // 승인상태에 따라 버튼을 다르게 보이게 함
+    // var agreeState = $('#agreeState').text();
+    // console.log(agreeState);
+    // var agLength = $('.sbState').length;
+    //
+    //
+    // var agState = new Array(agLength);
+    //
+    // for(var i = 0; i < agLength; i++) {
+    //     agState[i] = $('.sbState').eq(i).text();
+    // }
+    //
+    // console.log(agState);
+
+    //
+    // const seeApplier = document.getElementById('seeApplierBox');
+    // const sbMoreContainer = document.getElementById('sbMoreContainer');
+    //
+    // for(var i = 0; i < agLength; i++) {
+    //     if(agState[i] == "승인 대기"){
+    //         console.log("승인 대기");
+    //         seeApplier.style.display = "none";
+    //         sbMoreContainer.style.display = "block";
+    //     } else {
+    //         console.log("승인");
+    //         seeApplier.style.display = "block";
+    //         sbMoreContainer.style.display = "none";
+    //     }
+    // }
+    //
+    //
+    // const modal = document.getElementById("moreBoxModalFrame");
+    // const btnModal = document.getElementById("showMoreBtn");
+    // btnModal.addEventListener("click", e => {
+    //     modal.style.display = "flex";
+    // });
+
+    // const closeBtn = modal.querySelector(".close-modal")
+    // closeBtn.addEventListener("click",e => {
+    //     modal.style.display = "none";
+    // })
+
+    // modal.addEventListener("click", e => {
+    //     const evTarget = e.target
+    //     if(evTarget.classList.contains("moreBoxModalForm")) {
+    //         modal.style.display = "none";
+    //     }
+    // })
+
 
 
     $('.addProjectBtn').on("click", function () {
@@ -533,12 +699,26 @@
             colorLight: "#ffffff", //qr에서 밝은 색 (보통 하얀색) colorDark 보다 옅어야한다.
             correctLevel: QRCode.CorrectLevel.H //qr코드 오류복원능력 (L->M->Q->H)
         });
+
+
     };
 
 
     function modal(id) {
         var zIndex = 9999;
         var modal = document.getElementById(id);
+
+        var startP = document.getElementById('startP');
+        var endP = document.getElementById('endP');
+        var g = document.createElement('div');
+        g.setAttribute("id", "qrcode");
+        g.setAttribute('class',"qrImg");
+        console.log(g);
+        var f = document.createElement('div');
+        f.setAttribute("id", "qrcode2");
+        f.setAttribute("class", "qrImg");
+        startP.appendChild(g);
+        endP.appendChild(f);
 
         // 모달 div 뒤에 희끄무레한 레이어
         var bg = document.createElement('div');
@@ -560,7 +740,8 @@
             bg.remove();
             modal.style.display = 'none';
             console.log("들어옴");
-
+            document.getElementById("qrcode").remove();
+            document.getElementById("qrcode2").remove();
         });
 
         modal.setStyle({
@@ -592,16 +773,16 @@
 
     $('.moreQR').on("click", function(e){
         modal('qrModal');
-        if(count == 0){
-            var start = $(this).find('span')[0];
-            var end = $(this).find('span')[1];
-            console.log(start);
-            console.log(end);
-            makeQr(qrcode, $(start).attr('id'));
-            makeQr(qrcode2, $(end).attr('id'));
 
-            count++;
-        }
+        var start = $(this).find('span')[0];
+        var end = $(this).find('span')[1];
+        // console.log(start);
+        // console.log(end);
+        // console.log($(start).attr('id'));
+        // console.log($(end).attr('id'));
+        makeQr(qrcode, $(start).attr('id'));
+        makeQr(qrcode2, $(end).attr('id'));
+
 
     })
 

@@ -101,7 +101,8 @@ public class ProjectService {
         //게시글에 업로드된 첨부파일 정보 중 게시글 번호를 따로 추가
         if(projectVO.getFileList() != null) {
             projectVO.getFileList().forEach(projectFileVO -> {
-                projectFileVO.setProjectNum(projectVO.getNum());
+                log.info("프로젝트 번호 : " + projectVO.getNum());
+                projectFileVO.setProjectNum(projectVO.getNum() + 1);
                 projectFileDAO.register(projectFileVO);
             });
         }

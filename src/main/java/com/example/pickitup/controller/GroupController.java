@@ -32,8 +32,8 @@ public class GroupController {
     @GetMapping("/main")
     public void main(Model model, Criteria criteria){
         // 사용자 번호 이용
-        model.addAttribute("projectList", projectService.getUserProjectList(10L,criteria ));
-        model.addAttribute("pageDTO", new PageDTO(criteria, projectService.getUserProjectTotal(10L)));
+        model.addAttribute("projectList", projectService.getUserProjectList(1L,criteria ));
+        model.addAttribute("pageDTO", new PageDTO(criteria, projectService.getUserProjectTotal(1L)));
 
     }
 
