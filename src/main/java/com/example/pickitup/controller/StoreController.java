@@ -58,10 +58,11 @@ public class StoreController {
         if(category == ""){
             category = null;
         }
+        log.info(request.getRequestURI().split("/")[1]);
         model.addAttribute("productsCount",productService.count());
         model.addAttribute("productlist",productService.getList(category));
         log.info("유저 넘버 : " + userNum);
-        log.info("========================="+request.getRequestURI().split("/")[1]);
+        model.addAttribute("url",request.getRequestURI().split("/")[1]);
     }
 
     @ResponseBody

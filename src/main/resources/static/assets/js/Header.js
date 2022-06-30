@@ -9,6 +9,18 @@ $('.creater').click(function (e) {
     }
 })
 
+if(url == "store") {
+    $('.nav-container').css("display", "none");
+    $('.menu-plogging').css("color", "black");
+    $('.menu-store').css("color","#1F89FF");
+} else {
+    $('.nav-container').css("display", "block");
+    $('.menu-plogging').css("color", "#1F89FF");
+    $('.menu-store').css("color","black");
+}
+
+
+
 
 $(function () {
     $(document).mousedown(function (e) {

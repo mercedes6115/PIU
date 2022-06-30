@@ -1,7 +1,7 @@
 본문체 noto sans kr
 @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
 
-.notosanskr * { 
+.notosanskr * {
 font-family: 'Noto Sans KR', sans-serif;
 }
 
