@@ -135,10 +135,10 @@
                     <div class="hot-plogging-text">
                         <a href=#>
                             <div id="focus1" class="focus">
-                            <div class="hot-plogging-text1">
-                                <img src="/images/fire.png" style="width:25px">
-                                <h2 class="hot-plogging-text2">지금 가장 핫한 플로깅</h2>
-                            </div></div>
+                                <div class="hot-plogging-text1">
+                                    <img src="/images/fire.png" style="width:25px">
+                                    <h2 class="hot-plogging-text2">지금 가장 핫한 프로젝트</h2>
+                                </div></div>
                         </a>
                     </div>
                     <div style="width:100%; height:100%;">
@@ -149,7 +149,7 @@
                                     <li th:object="${JJimList}">
                                         <div class="plogging-thumbnail-wrap">
                                             <!--                                        <img src="/images/poster1.png">-->
-                                            <a th:href="@{/project/projectDetail(num=*{num})}">
+                                            <a th:href="@{/project/projectDetail}">
                                             <span class="Jjim-image" th:href="*{num}">
                                         </span></a>
                                         </div>
@@ -157,7 +157,7 @@
                                                                     style="font-size: 14px; margin-left: 5px;">
                             alarm
                             </span>
-                                            <div class="deadline-text">플로깅 시작까지</div>
+                                            <div class="deadline-text">프로젝트 시작까지</div>
                                             <div class="d-day" th:text="*{projectDate}">D-3</div>
                                         </div>
                                         <div class="plogging-location-text" th:if="*{terrain} == '1'"></div>
@@ -208,10 +208,10 @@
                         <div class="hot-plogging-text">
                             <a href=#>
                                 <div id="focus2" class="focus">
-                                <div class="hot-plogging-text1">
-                                    <img src="/images/coin.png" style="width:50px">
-                                    <h2 class="hot-plogging-text2">지금 가장 알찬 플로깅</h2>
-                                </div></div>
+                                    <div class="hot-plogging-text1">
+                                        <img src="/images/coin.png" style="width:50px">
+                                        <h2 class="hot-plogging-text2">지금 가장 알찬 프로젝트</h2>
+                                    </div></div>
                             </a>
                         </div>
                         <div id="slideShow2">
@@ -226,7 +226,7 @@
                                                                     style="font-size: 14px; margin-left: 5px;">
                             alarm
                             </span>
-                                            <div class="deadline-text">플로깅 시작까지</div>
+                                            <div class="deadline-text">프로젝트 시작까지</div>
                                             <div class="d-day" th:text="*{projectDate}">D-3</div>
                                         </div>
                                         <div class="plogging-location-text" th:text="*{terrain}"></div>
@@ -266,10 +266,10 @@
                         <div class="hot-plogging-text">
                             <a href=#>
                                 <div id="focus3" class="focus">
-                                <div class="hot-plogging-text1">
-                                    <img src="/images/running.png" style="width:40px">
-                                    <h2 class="hot-plogging-text2">지금 가장 참여가 많은 플로깅</h2>
-                                </div></div>
+                                    <div class="hot-plogging-text1">
+                                        <img src="/images/running.png" style="width:40px">
+                                        <h2 class="hot-plogging-text2">지금 가장 참여가 많은 프로젝트</h2>
+                                    </div></div>
                             </a>
                         </div>
                         <div id="slideShow3">
@@ -284,7 +284,7 @@
                                                                     style="font-size: 14px; margin-left: 5px;">
                                     alarm
                                     </span>
-                                            <div class="deadline-text">플로깅 시작까지</div>
+                                            <div class="deadline-text">프로젝트 시작까지</div>
                                             <div class="d-day" th:text="*{projectDate}">D-3</div>
                                         </div>
                                         <div class="plogging-location-text" th:text="*{terrain}">강남구청</div>
@@ -363,9 +363,9 @@
 
     let nickname = [[${nickname}]];
     let sessionnickname = [[${session.nickname}]];
-    if (sessionnickname != null) {
-        alert(sessionnickname + "님 어서오세요!");
-    }
+    // if (sessionnickname != null) {
+    //     alert(sessionnickname + "님 어서오세요!");
+    // }
     let sessioncategory = [[${session.category}]];
 
 
