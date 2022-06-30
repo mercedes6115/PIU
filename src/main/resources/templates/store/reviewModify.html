@@ -23,7 +23,7 @@
                     </span>
             </div>
             <div style="width: 100%;">
-                <h5>상품 후기 작성</h5>
+                <h5>상품 후기 수정</h5>
             </div>
         </div>
     </div>
@@ -32,10 +32,10 @@
         <form action="/store/reviewModify" method="post" id="registerForm" enctype="multipart/form-data">
             <div>
                 <div class="flex p-24" style="align-items: center; padding-bottom: 15px;">
-                    <div class="profile_img"><img src="/images/chun2.png"></div>
+                    <div class="profile_img"><img th:src="@{/userFile/display?fileName=}+ ${user.profileUploadPath} + @{/} + ${user.profileFileName}"></div>
                     <div class="flex justify-content" style="width: 100%; align-items: center;">
                         <div class="id_and_date">
-                            <div class="review_id" th:text="|춘식이|"></div>
+                            <div class="review_id" th:text="${user.nickname}"></div>
                             <div class="admin_date" id="admin_date"></div>
                         </div>
                         <div><input class="btn_qnaToadmin" type="button" value="글수정"></div>
@@ -100,6 +100,7 @@
 <script th:inline="javascript">
     let productNum = [[${product.num}]];
     let reviewNum = [[${review.num}]];
+    let userNum = [[${userNum}]];
 
     reviewService.getReviewFiles(reviewNum, function (files) {
         $(files).each(function (i, file) {

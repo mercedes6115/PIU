@@ -47,7 +47,7 @@ let reviewService = (function(){
             url: "/store/reviewDelete?num=" + num,
             type: "get",
             success: function (res) {
-
+                location.href = "/store/goReviewList/"+productNum;
             }
         })
 

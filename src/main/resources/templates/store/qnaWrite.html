@@ -37,7 +37,7 @@
                         <div class="id_and_date">
                             <div class="review_id"></div>
                             <div class="admin_date" id="admin_date"></div>
-                                                        <!--세션으로 받을값-->
+                            <!--세션으로 받을값-->
                             <input type="hidden" name="userNum" th:value="22">
                             <input type="hidden" name="productNum" th:value="${productNum}">
                         </div>
@@ -68,7 +68,7 @@
     let productNum = [[${productNum}]];
 
     //현재 받은 세션으로 userNum 값 구하기
-    let userNum = 22;  // 임시 데이터
+    let userNum = [[${userNum}]];
 
     qnaService.getUserinfo(userNum,function (user) {
         $(".review_id").text(user.nickname);

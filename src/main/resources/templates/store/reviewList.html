@@ -32,13 +32,13 @@
     <div class="review-wrapper" th:object="${reviews}">
         <!-- 댓글 한개 -->
         <div th:each="review,index : ${reviews}">
-                                     <!--갯수제한 조건 js의 standard 랑 맞춰줘야함 -->
+            <!--갯수제한 조건 js의 standard 랑 맞춰줘야함 -->
             <th:block th:if="${index.index} < 2">
                 <section class="allreveiws" th:object="${review}"> <!--실제 후기 컨테이너-->
                     <div class="p-24">
                         <div class="flex">
                             <div class="profile_img">
-    <!--                            유저 프로필 사진 넣을곳-->
+                                <!--                            유저 프로필 사진 넣을곳-->
 
                             </div>
                             <div class="review_id_and_date">
@@ -47,8 +47,8 @@
                                 <div class="review_date" th:text="|${#strings.substring(review.updateDate,0,10)}|" ></div>
                             </div>
                             <div class="flex" style="margin-left: 10px; width: 100%; justify-content: flex-end; align-items: center;">
-                                <div class="review_modify" th:id="*{num}"><a href="#"><img src="/images/modify.png"></a></div>
-                                <div class="review_delete" th:id="*{num}"><a href="#"><img src="/images/delete.png"></a></div>
+                                <div class="review_modify" th:if="${userNum} == *{userNum}" th:id="*{num}"><a href="#"><img src="/images/modify.png"></a></div>
+                                <div class="review_delete" th:if="${userNum} == *{userNum}" th:id="*{num}"><a href="#"><img src="/images/delete.png"></a></div>
                             </div>
                         </div>
                         <div style="margin-top: 10px;"></div>
@@ -88,6 +88,8 @@
 <script src="/assets/js/storeMain.js"></script>
 <script src="/assets/js/storeReview.js"></script>
 <script th:inline="javascript">
+    let userNum = [[${userNum}]];
+    console.log(userNum)
     let productNum = [[${productNum}]];
     let reviews = [[${reviews}]] //리뷰 리스트
     ///-----------------------------------------------------------------------------------------------
@@ -152,15 +154,14 @@
     // 리뷰 수정
     $(".review_modify").on("click",function (e) {
         e.preventDefault();
-          location.href = "/store/reviewModify?num=" +$(this).attr("id");
+        location.href = "/store/reviewModify?num=" +$(this).attr("id");
     })
 
     // 리뷰 삭제
     $(".review_delete").on("click",function (e) {
         e.preventDefault();
         reviewService.reviewDelete($(this).attr("id"),function () {
-            location.href = "/store/goReviewList/"+productNum;
-
+            // location.href = "/store/goReviewList/"+productNum;
         })
     })
 
@@ -198,8 +199,10 @@
                     str += "<div class=\"review_date\" >" + reviews[i].updateDate.substring(0, 10) + "</div>";
                     str += "</div>";
                     str += "<div class=\"flex\" style=\"margin-left: 10px; width: 100%; justify-content: flex-end; align-items: center;\">";
-                    str += "<div class=\"review_modify\" id=\"" + reviews[i].num + "\"><a href=\"#\"><img src=\"/images/modify.png\"></a></div>";
-                    str += "<div class=\"review_delete\" id=\"" + reviews[i].num + "\"><a href=\"#\"><img src=\"/images/delete.png\"></a></div>";
+                    if(userNum == reviews[i].userNum){
+                        str += "<div class=\"review_modify\" id=\"" + reviews[i].num + "\"><a href=\"#\"><img src=\"/images/modify.png\"></a></div>";
+                        str += "<div class=\"review_delete\" id=\"" + reviews[i].num + "\"><a href=\"#\"><img src=\"/images/delete.png\"></a></div>";
+                    }
                     str += "</div>";
                     str += "</div>";
                     str += "<div style=\"margin-top: 10px;\"></div>";

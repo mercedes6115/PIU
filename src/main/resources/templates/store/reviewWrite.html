@@ -32,10 +32,10 @@
         <form action="/store/reviewWrite" method="post" id="registerForm" enctype="multipart/form-data">
             <div>
                 <div class="flex p-24" style="align-items: center; padding-bottom: 15px;">
-                    <div class="profile_img"><img src="/images/chun2.png"></div>
+                    <div class="profile_img"><img th:src="@{/userFile/display?fileName=}+ ${user.profileUploadPath} + @{/} + ${user.profileFileName}"></div>
                     <div class="flex justify-content" style="width: 100%; align-items: center;">
                         <div class="id_and_date">
-                            <div class="review_id" th:text="|춘식이|"></div>
+                            <div class="review_id" th:text="${user.nickname}"></div>
                             <div class="admin_date" id="admin_date"></div>
                         </div>
                         <div><input class="btn_qnaToadmin" type="button" value="글등록"></div>
@@ -97,21 +97,12 @@
 <script src="/assets/js/storeMain.js"></script>
 <script src="/assets/js/storeReview.js"></script>
 <script th:inline="javascript">
+    let productNum = [[${product.num}]];
     //현재 받은 세션으로 userNum 값 구하기
-<<<<<<< HEAD
-    let userNum = 22;  // 임시 데이터
+    let userNum = [[${userNum}]];
+
     qnaService.getUserinfo(userNum,function (user) {
         $(".review_id").text(user.nickname);
-=======
-    let userNum = 2;  // 임시 데이터
-    $.ajax({
-        url : "/store/userInfo?userNum="+userNum,
-        type : "get",
-        success : function (user) {
-            $(".review_id").text(user.nickname);
-        }
-
->>>>>>> 305ade8be05585d327df6aa8cdb430f175b8f8af
     })
 
 
