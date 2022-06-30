@@ -14,6 +14,7 @@ import com.example.pickitup.service.TempUserSerivce;
 import com.example.pickitup.service.user.ApplyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import oracle.jdbc.proxy.annotation.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -49,18 +50,18 @@ public class ProjectController {
 
         model.addAttribute("company", companyService.readCompanyInfo(projectVO.getCompanyNum()));
         model.addAttribute("project", projectVO);
-        model.addAttribute("qna", projectService.getQnAList(num));
+        model.addAttribute("qnaList", projectService.getQnAList(num));
         model.addAttribute("img", projectService.getProjectFileList(num));
         return "/project/projectDetail";
     }
 
     // 프로젝트 문의 작성
     @GetMapping("/qnaWrite")
-    public void qnaWrite(Long num, Model model){
+    public void qnaWrite(Long userNum, Long projectNum, Model model){
 
         // projectNum, title -> model 사용
         // userNum -> 쿠키 및 세션 사용
-        model.addAttribute("project", projectService.read(num));
+        model.addAttribute("user", tempUserSerivce.readUserInfo(userNum));
     }
 
 
@@ -68,12 +69,27 @@ public class ProjectController {
     @PostMapping("/qnaWriteForm")
     public String qnaWriteForm(ProjectQnaVO projectQnaVO, Model model) throws ParseException {
         // 임시
-        projectQnaVO.setUserNum(42L);
         projectService.registerQnA(projectQnaVO);
         // 임시
         return projectDetail(41L, model);
 
     }
+
+    // 프로젝트 문의 수정
+    @GetMapping("/qnaModify")
+    public void qnaModify(Long qnaNum, Long userNum, Model model){
+        model.addAttribute("user", tempUserSerivce.readUserInfo(userNum));
+        model.addAttribute("qna", projectService.readQnA(qnaNum));
+    }
+
+    // 프로젝트 문의 수정폼
+    @PostMapping("/qnaModifyForm")
+    public String qnaModifyForm(ProjectQnaVO projectQnaVO,Model model) throws ParseException {
+        projectService.updateQnA(projectQnaVO);
+        return projectDetail(41L, model);
+    }
+
+
 
     // 프로젝트 등록 스텝 1
     @GetMapping("/createStep")

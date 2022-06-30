@@ -14,7 +14,7 @@ public interface ApplyMapper {
     public List<ProjectVO> get(Long userNum);
 
 //    프로젝트 신청하기
-    public void insert(ApplyVO applyVO);
+    public void applyProject(ApplyVO applyVO);
 
 //    프로젝트 신청 한개 객체 정보 가져오기
     public ApplyVO getDetail(Long num);
