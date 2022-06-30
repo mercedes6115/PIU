@@ -276,17 +276,17 @@
 
     // 내부 페이지 이동
 
-    // var pIntroOffset = $(".pIntroduceFrame").offset().top - 150;
-    // var gIntroOffset = $(".gIntroduceFrame").offset().top - 200;
-    // var qnaOffset = $(".qnaFrame").offset().top - 150;
-    // var guideOffset = $(".useGuideFrame").offset().top;
-    //
-    // var currentScroll = document.documentElement.scrollTop;
-    // if(currentScroll < pIntroOffset) {
-    //     if(!$currentPlace.hasClass('active')) {
-    //         $currentPlace.addClass('active');
-    //     }
-    // }
+    var pIntroOffset = $(".pIntroduceFrame").offset().top - 150;
+    var gIntroOffset = $(".gIntroduceFrame").offset().top - 200;
+    var qnaOffset = $(".qnaFrame").offset().top - 150;
+    var guideOffset = $(".useGuideFrame").offset().top;
+
+    var currentScroll = document.documentElement.scrollTop;
+    if(currentScroll < pIntroOffset) {
+        if(!$currentPlace.hasClass('active')) {
+            $currentPlace.addClass('active');
+        }
+    }
 
     function modal(id) {
         var zIndex = 9999;
