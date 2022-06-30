@@ -18,6 +18,14 @@
     WHERE tpr.NUM = #{num} ORDER BY tpr.UPDATE_DATE DESC
     </select>
 
+
+    <select id="getDetail" resultType="reviewDTO">
+    SELECT tpr.NUM, tp.TITLE, tpr.CONTENT, tpr.UPDATE_DATE, tu.NICKNAME, tu.PROFILE_FILE_NAME, tu.PROFILE_UPLOAD_PATH
+    FROM TBL_PROJECT tp JOIN TBL_PROJECT_REVIEW tpr ON tp.NUM = tpr.PROJECT_NUM
+    JOIN TBL_USER tu ON tu.NUM = tpr.USER_NUM
+    WHERE tpr.NUM = #{num} ORDER BY tpr.UPDATE_DATE DESC
+    </select>
+
     <!-- 후기 등록하기   -->
     <insert id="insert" parameterType="projectReviewVO">
         <selectKey keyProperty="num" resultType="long" order="BEFORE">

@@ -18,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -46,7 +47,7 @@ public class ProjectController {
 
         projectVO.setProjectDate(addSdf.format(projectDate));
 
-        model.addAttribute("company", companyService.read(projectVO.getCompanyNum()));
+        model.addAttribute("company", companyService.readCompanyInfo(projectVO.getCompanyNum()));
         model.addAttribute("project", projectVO);
         model.addAttribute("qna", projectService.getQnAList(num));
         model.addAttribute("img", projectService.getProjectFileList(num));
@@ -77,15 +78,18 @@ public class ProjectController {
     // 프로젝트 등록 스텝 1
     @GetMapping("/createStep")
     public void createStep1(){
+
     }
 
     // 프로젝트 등록 스텝 1
     @PostMapping("/createStepForm")
-    public String projectCreate(ProjectVO projectVO){
+    public String projectCreate(HttpSession session, ProjectVO projectVO){
+        Long companyNum = Long.parseLong(session.getAttribute("num").toString());
         String startDate = projectVO.getStartTime().substring(0,10)+" "+projectVO.getStartTime().substring(11,16)+":00";
         String endDate = projectVO.getEndTime().substring(0,10)+" "+projectVO.getEndTime().substring(11,16)+":00";
         projectVO.setStartTime(startDate);
         projectVO.setEndTime(endDate);
+        projectVO.setCompanyNum(companyNum);
         projectService.registerProject(projectVO);
         return "/group/main";
 

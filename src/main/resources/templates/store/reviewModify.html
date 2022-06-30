@@ -23,7 +23,7 @@
                     </span>
             </div>
             <div style="width: 100%;">
-                <h5>상품 후기 작성</h5>
+                <h5>상품 후기 수정</h5>
             </div>
         </div>
     </div>
@@ -32,10 +32,10 @@
         <form action="/store/reviewModify" method="post" id="registerForm" enctype="multipart/form-data">
             <div>
                 <div class="flex p-24" style="align-items: center; padding-bottom: 15px;">
-                    <div class="profile_img"><img src="/images/chun2.png"></div>
+                    <div class="profile_img"><img th:src="@{/userFile/display?fileName=}+ ${user.profileUploadPath} + @{/} + ${user.profileFileName}"></div>
                     <div class="flex justify-content" style="width: 100%; align-items: center;">
                         <div class="id_and_date">
-                            <div class="review_id" th:text="|춘식이|"></div>
+                            <div class="review_id" th:text="${user.nickname}"></div>
                             <div class="admin_date" id="admin_date"></div>
                         </div>
                         <div><input class="btn_qnaToadmin" type="button" value="글수정"></div>
@@ -94,25 +94,23 @@
 <div th:replace="~{/main/Footer :: FooterImport}"></div>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<script src="/assets/js/storeQna.js"></script>
+<script src="/assets/js/storeMain.js"></script>
+<script src="/assets/js/storeReview.js"></script>
 <script th:inline="javascript">
     let productNum = [[${product.num}]];
     let reviewNum = [[${review.num}]];
-    $.ajax({
-        url: "/productReviewFile/list/" + reviewNum,
-        type: "get",
-        success: function (files) {  //파일들가져오기.
-            $(files).each(function (i, file) {
-                let text = "";
-                text += "<img src='/productReviewFile/display?fileName=" + file.uploadPath + "/" + file.uuid + "_" + file.fileName + "' width='132' height='132'>";
-                text += "<input type='hidden' name='fileList[" + i + "].fileName' value='" + file.fileName + "'>"
-                text += "<input type='hidden' name='fileList[" + i + "].uuid' value='" + file.uuid + "'>"
-                text += "<input type='hidden' name='fileList[" + i + "].uploadPath' value='" + file.uploadPath + "'>"
-                $(".thumb"+(i+1)).html(text);
-            })
-            // text += "</div>";
-            // $(".thumb1").html(text);
+    let userNum = [[${userNum}]];
 
-        }
+    reviewService.getReviewFiles(reviewNum, function (files) {
+        $(files).each(function (i, file) {
+            let text = "";
+            text += "<img src='/productReviewFile/display?fileName=" + file.uploadPath + "/" + file.uuid + "_" + file.fileName + "' width='132' height='132'>";
+            text += "<input type='hidden' name='fileList[" + i + "].fileName' value='" + file.fileName + "'>"
+            text += "<input type='hidden' name='fileList[" + i + "].uuid' value='" + file.uuid + "'>"
+            text += "<input type='hidden' name='fileList[" + i + "].uploadPath' value='" + file.uploadPath + "'>"
+            $(".thumb"+(i+1)).html(text);
+        })
     })
 
     //첨부파일 input태그 가져오기
@@ -214,27 +212,16 @@
         if(files1.length!=0){formData.append("uploadFiles", files1[0])}
         if(files2.length!=0){formData.append("uploadFiles", files2[0])}
         if(files3.length!=0){formData.append("uploadFiles", files3[0])}
-        //
-        // for(let i=0; i<files.length; i++) {
-        //     formData.append("uploadFiles", files[i]);
-        // }
-        $.ajax({
-            url: "/productReviewFile/upload",
-            type: "post",
-            data: formData,
-            contentType: false,
-            processData: false,
-            async : false,
-            success: function(files){
-                let str = "";
-                $.each(files, function(i, file){
-                    str += "<input type='hidden' name='fileList[" + i + "].fileName' value='" + file.fileName + "'>"
-                    str += "<input type='hidden' name='fileList[" + i + "].uuid' value='" + file.uuid + "'>"
-                    str += "<input type='hidden' name='fileList[" + i + "].uploadPath' value='" + file.uploadPath + "'>"
-                });
-                $('#registerForm').append(str);
-            }
-        });
+
+        reviewService.reviewFileUpload(formData,function (files) {
+            let str = "";
+            $.each(files, function(i, file){
+                str += "<input type='hidden' name='fileList[" + i + "].fileName' value='" + file.fileName + "'>"
+                str += "<input type='hidden' name='fileList[" + i + "].uuid' value='" + file.uuid + "'>"
+                str += "<input type='hidden' name='fileList[" + i + "].uploadPath' value='" + file.uploadPath + "'>"
+            });
+            $('#registerForm').append(str);
+        })
         registerForm.submit();
     });
 </script>
