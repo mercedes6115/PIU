@@ -97,7 +97,7 @@
                     <div class="gIntroduceContentFrame" th:text="*{companyComment}">
                     </div>
                 </div>
-                <div id="toitem_question" th:object="">
+                <div id="toitem_question" th:object="${qna}">
                     <div class="flex" style="align-items: center; justify-content: space-between;">
                         <p class="highlight">문의</p>
                         <div><a th:href="@{/project/qnaWrite?num={num}(num = ${project.num})}" class="btn_qnaToadmin">문의하기</a></div>

@@ -47,7 +47,7 @@ public class ProjectController {
 
         projectVO.setProjectDate(addSdf.format(projectDate));
 
-        model.addAttribute("company", companyService.read(projectVO.getCompanyNum()));
+        model.addAttribute("company", companyService.readCompanyInfo(projectVO.getCompanyNum()));
         model.addAttribute("project", projectVO);
         model.addAttribute("qna", projectService.getQnAList(num));
         model.addAttribute("img", projectService.getProjectFileList(num));
