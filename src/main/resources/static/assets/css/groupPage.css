@@ -1916,7 +1916,7 @@ option:disabled {
 .modal-content{
     background-color: white;
     width: 800px;
-    height: 800px;
+    height: 400px;
 }
 
 .qrImg{

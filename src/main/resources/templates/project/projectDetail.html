@@ -50,9 +50,13 @@
                     <h2 class="projectInfo">플로깅 정보</h2>
                     <dl class="infoDetail">
                         <dt class="courseInfo">코스/장소</dt>
-                        <dd class="course" th:text="*{course}"></dd>
+                        <dd class="course" th:if="*{course}=='C'">코스</dd>
+                        <dd class="course" th:if="*{course}=='L'">장소</dd>
                         <dt class="terrainInfo">지형</dt>
-                        <dd class="terrain" th:text="*{terrain}"></dd>
+                        <dd class="terrain" th:if="*{terrain}=='1'">산</dd>
+                        <dd class="terrain" th:if="*{terrain}=='2'">바다</dd>
+                        <dd class="terrain" th:if="*{terrain}=='3'">평지</dd>
+                        <dd class="terrain" th:if="*{terrain}=='4'">기타</dd>
                         <dt class="pointInfo">포인트</dt>
                         <dd class="point" th:text="*{point}"></dd>
                     </dl>
@@ -97,7 +101,7 @@
                     <div class="gIntroduceContentFrame" th:text="*{companyComment}">
                     </div>
                 </div>
-                <div id="toitem_question" th:object="">
+                <div id="toitem_question" th:object="${qna}">
                     <div class="flex" style="align-items: center; justify-content: space-between;">
                         <p class="highlight">문의</p>
                         <div><a th:href="@{/project/qnaWrite?num={num}(num = ${project.num})}" class="btn_qnaToadmin">문의하기</a></div>
@@ -135,11 +139,15 @@
                             <div class="readApplicantCategory">
                                 <div class="readApplicantCourseForm">
                                     <!-- 코스/ 장소-->
-                                    <div class="readApplicantCourse" th:text="*{course}"></div>
+                                    <div class="readApplicantCourse" th:if="*{course}=='L'">장소</div>
+                                    <div class="readApplicantCourse" th:if="*{course}=='C'">코스</div>
                                 </div>
                                 <div class="readApplicantTerrainForm">
                                     <!-- 지형-->
-                                    <div class="readApplicantTerrain" th:text="*{terrain}"></div>
+                                    <div class="readApplicantTerrain" th:if="*{terrain}=='1'">산</div>
+                                    <div class="readApplicantTerrain" th:if="*{terrain}=='2'">바다</div>
+                                    <div class="readApplicantTerrain" th:if="*{terrain}=='3'">평지</div>
+                                    <div class="readApplicantTerrain" th:if="*{terrain}=='4'">기타</div>
                                 </div>
                             </div>
                             <div class="readApplicantContentFrame">
@@ -154,8 +162,8 @@
                                     <div>
                                         <p class="readApplicantAddress" th:text="|출발지: *{startAddress}|"></p>
                                         <!-- 조건문 처리 -->
-                                        <p class="readApplicantAddress" th:if="${project.course.equals('코스')}" th:text="|도착지: *{endAddress}|"></p>
-                                        <p class="readApplicantAddress" th:if="${project.course.equals('코스')}" th:text="|거리: *{distance}|">3km</p>
+                                        <p class="readApplicantAddress" th:if="${project.course.equals('C')}" th:text="|도착지: *{endAddress}|"></p>
+                                        <p class="readApplicantAddress" th:if="${project.course.equals('C')}" th:text="|거리: *{distance}|">3km</p>
                                     </div>
                                 </div>
                             </div>
@@ -192,7 +200,6 @@
                                         <div class="pShareImage">
                                             <span class="padding-t material-symbols-outlined">ios_share</span>
                                         </div>
-
                                     </button>
                                 </div>
                             </div>
@@ -339,7 +346,7 @@
 
 
     document.getElementById('applyBtn').addEventListener('click', function() {
-        modal('applyModal')
+        modal('applyModal');
     });
 
     $(".moveIntroduce").click(function(){

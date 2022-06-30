@@ -32,30 +32,30 @@ public class GroupController {
     @GetMapping("/main")
     public void main(Model model, Criteria criteria){
         // 사용자 번호 이용
-        model.addAttribute("projectList", projectService.getUserProjectList(10L,criteria ));
-        model.addAttribute("pageDTO", new PageDTO(criteria, projectService.getUserProjectTotal(10L)));
+        model.addAttribute("projectList", projectService.getUserProjectList(1L,criteria ));
+        model.addAttribute("pageDTO", new PageDTO(criteria, projectService.getUserProjectTotal(1L)));
 
     }
 
     // 그룹 공지사항
     @GetMapping("/notice")
-    public String notice(AdminCriteria admincriteria, Model model){
-        model.addAttribute("adminBoardList", tempAdminService.getNoticeList(admincriteria));
-        model.addAttribute("pageDTO", new AdminBoardPageDTO(admincriteria, tempAdminService.getNoticeTotal(admincriteria)));
+    public String notice(AdminCriteria adminCriteria, Model model){
+        log.info("=====pagenum : "+adminCriteria.getPageNum());
+        log.info("=====amount : "+adminCriteria.getAmount());
+        model.addAttribute("adminBoardList", tempAdminService.getNoticeList(adminCriteria));
+        model.addAttribute("adminBoardPageDTO", new AdminBoardPageDTO(adminCriteria, tempAdminService.getNoticeTotal(adminCriteria)));
         return "group/notice";
     }
 
     // 그룹 공지사항 상세보기
     @GetMapping("/noticeDetail")
-    public void noticeDetail(Long num, Criteria criteria, HttpServletRequest request, Model model) {
+    public void noticeDetail(Long num, HttpServletRequest request, Model model){
         String requestURL = request.getRequestURI();
         log.info(requestURL.substring(requestURL.lastIndexOf("/")));
         log.info("*************");
         log.info("================================");
-        log.info(criteria.toString());
         log.info("================================");
-        model.addAttribute("adminBoard", tempAdminService.getReadDetail(51L));
-
+        model.addAttribute("adminBoard", tempAdminService.getReadDetail(num));
     }
 
     // 그룹 프로필 수정
