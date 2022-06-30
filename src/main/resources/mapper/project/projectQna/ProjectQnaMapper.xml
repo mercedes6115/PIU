@@ -4,7 +4,7 @@
 
     <!-- 문의글 목록   -->
     <select id="getList" resultType="projectQnaVO">
-        SELECT tpq.NUM, tpq.CONTENT, tpq.UPDATE_DATE, tu.NICKNAME
+        SELECT tpq.NUM, tpq.CONTENT, tpq.UPDATE_DATE, tu.NICKNAME, tpq.PROJECT_NUM
         FROM TBL_PROJECT_QNA tpq
         INNER JOIN TBL_USER tu
         ON tpq.USER_NUM = tu.NUM
@@ -31,6 +31,13 @@
         DELETE FROM TBL_PROJECT_QNA
         WHERE NUM= #{num}
     </delete>
+
+    <select id="getDetail" resultType="projectQnaVO">
+        SELECT tpq.NUM , tpq.CONTENT , tpq.UPDATE_DATE, tpq.USER_NUM, tpq.PROJECT_NUM
+        FROM TBL_PROJECT_QNA tpq
+        WHERE NUM = #{num}
+    </select>
+
 
 
 </mapper>

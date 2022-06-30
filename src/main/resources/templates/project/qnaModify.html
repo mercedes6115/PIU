@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>프로젝트 문의</title>
     <link rel="stylesheet" href="/assets/css/Header.css">
     <link rel="stylesheet" href="/assets/css/Footer.css">
     <link rel="stylesheet" href="/assets/css/pickitupStore.css">
@@ -20,12 +20,12 @@
                     </span>
             </div>
             <div style="width: 100%;">
-                <h5>상품 문의 작성</h5>
+                <h5>프로젝트 문의 작성</h5>
             </div>
         </div>
     </div>
     <div class="space"></div>
-    <section class="review_write_container" th:objec="${user}">
+    <section class="review_write_container">
         <form action="/review/modify" method="post" id="qnaregisterForm">
             <div>
                 <div class="flex p-24" style="align-items: center; padding-bottom: 15px;">
@@ -33,18 +33,18 @@
                     </div>
                     <div class="flex justify-content" style="width: 100%; align-items: center;">
                         <div class="id_and_date">
-                            <div class="review_id"></div>
-                            <div class="admin_date" id="admin_date" th:text="*{nickname}"></div>
+                            <div class="review_id" th:text="${user.nickname}"></div>
+                            <div class="admin_date" id="admin_date"></div>
                             <!--세션으로 받을값-->
                             <input type="hidden" name="userNum" th:value="22">
-                            <input type="hidden" name="productNum" th:value="${productNum}">
+                            <input type="hidden" name="productNum" th:value="${qna.projectNum}">
                         </div>
                         <div><input class="btn_qnaToadmin" type="submit" value="글등록"></div>
                     </div>
                 </div>
                 <div style="margin-top: 8px;">
                     <div style="text-align: center;">
-                        <textarea class="user_review" name="content" id="" cols="30" rows="10" required th:text="${review.content}"></textarea>
+                        <textarea class="user_review" name="content" id="" cols="30" rows="10" required th:text="${qna.content}"></textarea>
                     </div>
                 </div>
             </div>
@@ -64,7 +64,7 @@
     year = date.getFullYear();
     month = date.getMonth() + 1;
     day = date.getDate();
-    document.getElementById("today").innerHTML = year + "-" + month + "-" + day;
+    $('#tody').text(year + "-" + month + "-" + day);
 
     // 글 등록 클릭시
     $('.btn_qnaToadmin').on("click", function () {

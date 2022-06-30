@@ -30,7 +30,7 @@ public class UserFileRestController {
     @GetMapping("/display")
     @ResponseBody
     public byte[] getFile(String fileName) throws IOException {
-        File file = new File("C:/upload/", fileName);
+        File file = new File("/Users/minmin/aigb_0900_sms/upload/", fileName);
         log.info(file.getPath());
         return FileCopyUtils.copyToByteArray(file);
     }
@@ -55,7 +55,7 @@ public class UserFileRestController {
     @PostMapping("/upload")
     @ResponseBody
     public Object upload(MultipartFile uploadFile) throws IOException {
-        String uploadFolder = "C:/upload";
+        String uploadFolder = "/Users/minmin/aigb_0900_sms/upload/";
 //        yyyy/MM/dd 경로 만들기
         File uploadPath = new File(uploadFolder, getFolder());
         if(!uploadPath.exists()){uploadPath.mkdirs();}
@@ -85,7 +85,7 @@ public class UserFileRestController {
     @PostMapping("/businessFileUpload")
     @ResponseBody
     public Object businessFileUpload(MultipartFile uploadFile) throws IOException{
-        String uploadFolder="C:/upload";
+        String uploadFolder="/Users/minmin/aigb_0900_sms/upload/";
         //        yyyy/MM/dd 경로 만들기
         File uploadPath = new File(uploadFolder, getFolder());
         if(!uploadPath.exists()){uploadPath.mkdirs();}

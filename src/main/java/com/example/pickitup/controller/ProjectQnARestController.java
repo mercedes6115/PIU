@@ -1,6 +1,7 @@
 package com.example.pickitup.controller;
 
 import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaCommentVO;
+import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaVO;
 import com.example.pickitup.service.ProjectService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +29,13 @@ public class ProjectQnARestController {
     public List<ProjectQnaCommentVO> getComment(@PathVariable("qnaNum") Long qnaNum){
         return projectService.getCommentList(qnaNum);
     }
+
+    // 문의글 목록
+    @GetMapping("/qnaList/{projectNum}")
+    public List<ProjectQnaVO> getQnAList(@PathVariable("projectNum") Long projectNum){
+        return projectService.getQnAList(projectNum);
+    }
+
 
 
 
