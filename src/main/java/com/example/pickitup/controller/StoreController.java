@@ -72,6 +72,7 @@ public class StoreController {
         model.addAttribute("fileName",session.getAttribute("fileName"));
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
         model.addAttribute("checkLogin",checkLogin);
+        model.addAttribute("userNum", userNum);
 
         if(category == ""){
             category = null;
@@ -91,6 +92,7 @@ public class StoreController {
         model.addAttribute("fileName",session.getAttribute("fileName"));
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
         model.addAttribute("checkLogin",checkLogin);
+        model.addAttribute("userNum", userNum);
 
         model.addAttribute("jjimCount",jjimService.count(num));
         model.addAttribute("count",productReviewService.count(num));
@@ -105,6 +107,7 @@ public class StoreController {
         // 유저 세션으로 받아서 num 넣어줘야함
         int checkLogin=3;
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("userNum", userNum);
         model.addAttribute("fileName",session.getAttribute("fileName"));
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
         model.addAttribute("checkLogin",checkLogin);
@@ -114,21 +117,17 @@ public class StoreController {
     //유저 정보 얻어오기
     @ResponseBody
     @GetMapping("/userInfo")
-    public UserVO userinfo(HttpSession session, Model model){
-        int checkLogin=3;
-        Long userNum = Long.parseLong(session.getAttribute("num").toString());
-        model.addAttribute("fileName",session.getAttribute("fileName"));
-        model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
-        model.addAttribute("checkLogin",checkLogin);
+    public UserVO userinfo(Long userNum,Model model){
         return tempUserSerivce.readUserInfo(userNum);
     }
 
 
     // 전체 리뷰 보기 페이지
     @GetMapping("/goReviewList/{productNum}")
-    public String goReviewList(@PathVariable("productNum") Long productNum,Model model){
-//        // 유저 세션으로 받아서 num 넣어줘야함
-//        model.addAttribute("user",tempUserSerivce.readUserInfo(22L));
+    public String goReviewList(HttpSession session,@PathVariable("productNum") Long productNum,Model model){
+        int checkLogin=3;
+        Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("userNum", userNum);
         model.addAttribute("products",productService.getDetail(productNum));
         model.addAttribute("productNum",productNum);
         model.addAttribute("reviews",productReviewService.getList(productNum));
@@ -137,7 +136,14 @@ public class StoreController {
 
     // 스토어 리뷰 작성
     @GetMapping("/reviewWrite")
-    public void reviewWrite(Long num, Model model){
+    public void reviewWrite(HttpSession session,Long num, Model model){
+        int checkLogin=3;
+        Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("fileName",session.getAttribute("fileName"));
+        model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
+        model.addAttribute("checkLogin",checkLogin);
+        model.addAttribute("userNum",userNum);
+        model.addAttribute("user",tempUserSerivce.readUserInfo(userNum));
         model.addAttribute("product",productService.getDetail(num));
     }
 
@@ -168,10 +174,11 @@ public class StoreController {
     public void reviewModify(HttpSession session, Long num,Model model){
         int checkLogin=3;
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("userNum", userNum);
         model.addAttribute("fileName",session.getAttribute("fileName"));
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
         model.addAttribute("checkLogin",checkLogin);
-
+        model.addAttribute("user",tempUserSerivce.readUserInfo(userNum));
         model.addAttribute("review",productReviewService.read(num));
         model.addAttribute("product", productService.getDetail(productReviewService.read(num).getProductNum()));
     }
@@ -197,6 +204,7 @@ public class StoreController {
     public void reviewDelete(HttpSession session, Long num, Model model){
         int checkLogin=3;
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("userNum", userNum);
         model.addAttribute("fileName",session.getAttribute("fileName"));
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
         model.addAttribute("checkLogin",checkLogin);
@@ -209,6 +217,7 @@ public class StoreController {
     public ProductQnaPageDTO qnaList(HttpSession session, @PathVariable("pageNum") int pageNum, @PathVariable("productNum") Long productNum, Model model){
         int checkLogin=3;
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("userNum", userNum);
         model.addAttribute("fileName",session.getAttribute("fileName"));
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
         model.addAttribute("checkLogin",checkLogin);
@@ -220,6 +229,7 @@ public class StoreController {
     public void qnaWrite(HttpSession session, Long productNum, Model model){
         int checkLogin=3;
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("userNum", userNum);
         model.addAttribute("fileName",session.getAttribute("fileName"));
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
         model.addAttribute("checkLogin",checkLogin);
@@ -232,6 +242,7 @@ public class StoreController {
     public String qnaWriteForm(HttpSession session, ProductQnaVO productQnaVO, AdminQnaDTO adminQnaDTO, Model model){
         int checkLogin=3;
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("userNum", userNum);
         model.addAttribute("fileName",session.getAttribute("fileName"));
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
         model.addAttribute("checkLogin",checkLogin);
@@ -246,6 +257,7 @@ public class StoreController {
     public void qnaModify(HttpSession session, Long num, Model model){
         int checkLogin=3;
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("userNum", userNum);
         model.addAttribute("fileName",session.getAttribute("fileName"));
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
         model.addAttribute("checkLogin",checkLogin);
@@ -256,6 +268,7 @@ public class StoreController {
     public String qnaModifyAction(HttpSession session, ProductQnaVO productQnaVO, AdminQnaDTO adminQnaDTO, Model model){
         int checkLogin=3;
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("userNum", userNum);
         model.addAttribute("fileName",session.getAttribute("fileName"));
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
         model.addAttribute("checkLogin",checkLogin);
@@ -271,6 +284,7 @@ public class StoreController {
     public void qnaDelete(HttpSession session, Long num, Model model){
         int checkLogin=3;
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("userNum", userNum);
         model.addAttribute("fileName",session.getAttribute("fileName"));
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
         model.addAttribute("checkLogin",checkLogin);
@@ -285,6 +299,7 @@ public class StoreController {
     public List<ProductQnaCommentVO> qnaCommentList(HttpSession session, @PathVariable("qnaNum") Long qnaNum, Model model){
         int checkLogin=3;
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("userNum", userNum);
         model.addAttribute("fileName",session.getAttribute("fileName"));
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
         model.addAttribute("checkLogin",checkLogin);
@@ -299,6 +314,7 @@ public class StoreController {
         //(관리자) 정보도 같이 보내야함
         int checkLogin=3;
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("userNum", userNum);
         model.addAttribute("fileName",session.getAttribute("fileName"));
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
         model.addAttribute("checkLogin",checkLogin);
@@ -314,6 +330,7 @@ public class StoreController {
     public String qnaCommentDeleteForm(HttpSession session, Long qnaCommentNum, Model model){
         int checkLogin=3;
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("userNum", userNum);
         model.addAttribute("fileName",session.getAttribute("fileName"));
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
         model.addAttribute("checkLogin",checkLogin);
@@ -330,15 +347,11 @@ public class StoreController {
     public String qnaCommentUpdateForm(HttpSession session, ProductQnaCommentVO productQnaCommentVO, Model model) throws UnsupportedEncodingException {
         int checkLogin=3;
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("userNum", userNum);
         model.addAttribute("fileName",session.getAttribute("fileName"));
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
         model.addAttribute("checkLogin",checkLogin);
 
-        log.info("=============================================");
-        log.info("=============================================");
-        log.info("=============================================");
-        log.info("=============================================");
-        log.info("=============================================");
         productQnaCommentService.update(productQnaCommentVO);
         return "success";
     }
@@ -380,6 +393,7 @@ public class StoreController {
     public void paymentForm(HttpSession session, ProductDTO productDTO, ProductVO productVO,Model model){
         int checkLogin=3;
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("userNum", userNum);
         model.addAttribute("fileName",session.getAttribute("fileName"));
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
         model.addAttribute("checkLogin",checkLogin);
@@ -458,6 +472,7 @@ public class StoreController {
     public List<JjimVO> listJjim(HttpSession session, Model model){
         int checkLogin=3;
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("userNum", userNum);
         model.addAttribute("fileName",session.getAttribute("fileName"));
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
         model.addAttribute("checkLogin",checkLogin);
@@ -471,6 +486,7 @@ public class StoreController {
     public void addJjim(HttpSession session, JjimVO jjimVO, Model model){
         int checkLogin=3;
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("userNum", userNum);
         model.addAttribute("fileName",session.getAttribute("fileName"));
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
         model.addAttribute("checkLogin",checkLogin);
@@ -484,6 +500,7 @@ public class StoreController {
     public void removeJjim(HttpSession session, JjimVO jjimVO, Model model){
         int checkLogin=3;
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("userNum", userNum);
         model.addAttribute("fileName",session.getAttribute("fileName"));
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
         model.addAttribute("checkLogin",checkLogin);
@@ -497,6 +514,7 @@ public class StoreController {
     public int count(HttpSession session, Long productNum, Model model){
         int checkLogin=3;
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("userNum", userNum);
         model.addAttribute("fileName",session.getAttribute("fileName"));
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
         model.addAttribute("checkLogin",checkLogin);
@@ -508,6 +526,7 @@ public class StoreController {
     public void myBoughtProductDetail(HttpSession session, String orderNum, Model model){
         int checkLogin=3;
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("userNum", userNum);
         model.addAttribute("fileName",session.getAttribute("fileName"));
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
         model.addAttribute("checkLogin",checkLogin);
