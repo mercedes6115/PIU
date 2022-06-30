@@ -121,10 +121,6 @@
     showmain(category);
 
     // 스크롤이 바닥에 닿았을때
-<<<<<<< HEAD
-
-=======
->>>>>>> d620152a70aea1f6ccfd602fa25b3c221c7e7bff
     $(window).on("scroll", function() {
         var scrollHeight = $(document).height();
         var scrollPosition = $(window).height() + $(window).scrollTop();
@@ -291,11 +287,14 @@
         let str="";
 
         next = start + standard;
-
+        console.log("start = " + start)
+        console.log("next = " + next)
+        console.log("total = " + total)
         if (next >= total) {
             next = total;
             possible = false;
         }
+
 
         for (let i = start; i < next; i++) {
             str += "<li>";
@@ -341,7 +340,7 @@
             str += "</li>";
         }
         $('.all_items ul').append(str);
-        // start += standard;
+        start += standard;
 
         mainService.jjimCheck(function (jjims) {
             $(jjims).each(function (i, jjim) {
