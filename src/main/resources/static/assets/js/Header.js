@@ -5,7 +5,7 @@ $('.creater').click(function (e) {
         alert("기업 회원만 이용가능합니다. 기업으로 회원가입해주세요.");
 
     } else {
-        location.href = "/user/center";
+        location.href = "/group/main";
     }
 })
 
