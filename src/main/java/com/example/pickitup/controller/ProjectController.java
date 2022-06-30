@@ -65,15 +65,6 @@ public class ProjectController {
     }
 
 
-    // 프로젝트 문의 작성폼
-    @PostMapping("/qnaWriteForm")
-    public String qnaWriteForm(ProjectQnaVO projectQnaVO, Model model) throws ParseException {
-        // 임시
-        projectService.registerQnA(projectQnaVO);
-        // 임시
-        return projectDetail(41L, model);
-
-    }
 
     // 프로젝트 문의 수정
     @GetMapping("/qnaModify")
@@ -82,14 +73,17 @@ public class ProjectController {
         model.addAttribute("qna", projectService.readQnA(qnaNum));
     }
 
-    // 프로젝트 문의 수정폼
-    @PostMapping("/qnaModifyForm")
-    public String qnaModifyForm(ProjectQnaVO projectQnaVO,Model model) throws ParseException {
-        projectService.updateQnA(projectQnaVO);
-        return projectDetail(41L, model);
+    // 프로젝트 문의 작성폼
+    @PostMapping("/qnaWriteForm")
+    public String qnaWriteForm(ProjectQnaVO projectQnaVO, Model model) throws ParseException {
+        // 임시
+        projectService.registerQnA(projectQnaVO);
+        // 임시
+        return  "redirect:/project/projectDetail?num=" + projectQnaVO.getProjectNum();
+
     }
 
-
+    
 
     // 프로젝트 등록 스텝 1
     @GetMapping("/createStep")
