@@ -364,6 +364,8 @@
         $('.share_container').css("display","none");
     }
 
+
+
     //찜 ajax
     $('.jjim-ajax').on("click",function() {
         let data = {userNum : userNum, category: "1", productNum : productNum};
@@ -448,11 +450,9 @@
 
                 // 유저 아이디 & 사진 가져오기
                 (function(){
-                    let reuserNum = reviews[i].userNum;
-                    console.log("유저 넘버"+reuserNum)
-                    qnaService.getUserinfo(reuserNum,function (user) {
+                    let userNum = reviews[i].userNum;
+                    qnaService.getUserinfo(userNum,function (user) {
                         str += user.nickname;
-                        console.log("유저 이름"+user.nickname)
                         //사진 가져오기
                         setTimeout(function () {
                             let ps = $(".profile");
@@ -515,7 +515,7 @@
     //메인 사진걸기
     function mainimg(){
         mainService.getFileLists(productNum,function (files) {
-            let str = "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_" + files[0].fileName + "'>";
+            let str = "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
             $(".mainImage").html(str);
         })
     }
@@ -527,11 +527,11 @@
             let str ="";
             if(files.length>1){
                 for(let i =1; i< files.length;i++){
-                    str += "<img src='/productFile/display?fileName=" + files[i].uploadPath + "/" + files[i].uuid + "_"  + files[i].fileName + "'>";
+                    str += "<img src='/productFile/display?fileName=" + files[i].uploadPath + "/s_" + files[i].uuid + "_"  + files[i].fileName + "'>";
                     $(".subImage").append(str);
                 }
             }else{
-                str += "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/" + files[0].uuid + "_"  + files[0].fileName + "'>";
+                str += "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
                 $(".mainImage").html(str);
             }
         })
@@ -711,7 +711,7 @@
         if(!수정중){//수정중==false 문의 댓글 등록
             let data = {content : $content,userNum: 22,qnaNum:$qnaNum};
 
-        qnaService.qnaCommentWrite(data, function () {
+            qnaService.qnaCommentWrite(data, function () {
                 showQnaList(pageNum);
                 수정중=false;
                 답글중 = false;
@@ -889,6 +889,7 @@
         $('.share_container').css("display","none");
 
     }
+
 
 </script>
 </html>
