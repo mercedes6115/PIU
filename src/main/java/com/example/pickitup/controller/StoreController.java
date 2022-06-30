@@ -72,6 +72,7 @@ public class StoreController {
         model.addAttribute("fileName",session.getAttribute("fileName"));
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
         model.addAttribute("checkLogin",checkLogin);
+        model.addAttribute("userNum", userNum);
 
         if(category == ""){
             category = null;
@@ -91,6 +92,7 @@ public class StoreController {
         model.addAttribute("fileName",session.getAttribute("fileName"));
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
         model.addAttribute("checkLogin",checkLogin);
+        model.addAttribute("userNum", userNum);
 
         model.addAttribute("jjimCount",jjimService.count(num));
         model.addAttribute("count",productReviewService.count(num));
@@ -105,6 +107,7 @@ public class StoreController {
         // 유저 세션으로 받아서 num 넣어줘야함
         int checkLogin=3;
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("userNum", userNum);
         model.addAttribute("fileName",session.getAttribute("fileName"));
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
         model.addAttribute("checkLogin",checkLogin);
@@ -192,6 +195,7 @@ public class StoreController {
     public void reviewDelete(HttpSession session, Long num, Model model){
         int checkLogin=3;
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("userNum", userNum);
         model.addAttribute("fileName",session.getAttribute("fileName"));
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
         model.addAttribute("checkLogin",checkLogin);
@@ -215,6 +219,7 @@ public class StoreController {
     public void qnaWrite(HttpSession session, Long productNum, Model model){
         int checkLogin=3;
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("userNum", userNum);
         model.addAttribute("fileName",session.getAttribute("fileName"));
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
         model.addAttribute("checkLogin",checkLogin);
@@ -227,6 +232,7 @@ public class StoreController {
     public String qnaWriteForm(HttpSession session, ProductQnaVO productQnaVO, AdminQnaDTO adminQnaDTO, Model model){
         int checkLogin=3;
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("userNum", userNum);
         model.addAttribute("fileName",session.getAttribute("fileName"));
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
         model.addAttribute("checkLogin",checkLogin);
@@ -241,6 +247,7 @@ public class StoreController {
     public void qnaModify(HttpSession session, Long num, Model model){
         int checkLogin=3;
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("userNum", userNum);
         model.addAttribute("fileName",session.getAttribute("fileName"));
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
         model.addAttribute("checkLogin",checkLogin);
@@ -251,6 +258,7 @@ public class StoreController {
     public String qnaModifyAction(HttpSession session, ProductQnaVO productQnaVO, AdminQnaDTO adminQnaDTO, Model model){
         int checkLogin=3;
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("userNum", userNum);
         model.addAttribute("fileName",session.getAttribute("fileName"));
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
         model.addAttribute("checkLogin",checkLogin);
@@ -266,6 +274,7 @@ public class StoreController {
     public void qnaDelete(HttpSession session, Long num, Model model){
         int checkLogin=3;
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("userNum", userNum);
         model.addAttribute("fileName",session.getAttribute("fileName"));
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
         model.addAttribute("checkLogin",checkLogin);
@@ -280,6 +289,7 @@ public class StoreController {
     public List<ProductQnaCommentVO> qnaCommentList(HttpSession session, @PathVariable("qnaNum") Long qnaNum, Model model){
         int checkLogin=3;
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("userNum", userNum);
         model.addAttribute("fileName",session.getAttribute("fileName"));
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
         model.addAttribute("checkLogin",checkLogin);
@@ -294,6 +304,7 @@ public class StoreController {
         //(관리자) 정보도 같이 보내야함
         int checkLogin=3;
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("userNum", userNum);
         model.addAttribute("fileName",session.getAttribute("fileName"));
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
         model.addAttribute("checkLogin",checkLogin);
@@ -309,6 +320,7 @@ public class StoreController {
     public String qnaCommentDeleteForm(HttpSession session, Long qnaCommentNum, Model model){
         int checkLogin=3;
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("userNum", userNum);
         model.addAttribute("fileName",session.getAttribute("fileName"));
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
         model.addAttribute("checkLogin",checkLogin);
@@ -325,6 +337,7 @@ public class StoreController {
     public String qnaCommentUpdateForm(HttpSession session, ProductQnaCommentVO productQnaCommentVO, Model model) throws UnsupportedEncodingException {
         int checkLogin=3;
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("userNum", userNum);
         model.addAttribute("fileName",session.getAttribute("fileName"));
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
         model.addAttribute("checkLogin",checkLogin);
