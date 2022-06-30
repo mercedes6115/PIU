@@ -171,7 +171,8 @@
                         </div>
                     </div>
                 </div>
-                <div id="map" style="width:500px;height:500px;"></div>
+                <div>
+                    <div id="map" style="width:500px;height:500px;"></div></div>
                 <div class="nextBtnFrame">
                     <button type="button" class="nextPage step2">
                         <span class="nextPageBtn">다음</span>
@@ -696,6 +697,8 @@
                 }
                 if ((출발.length + 도착.length) == 4) {
                     // 지도 생성 시킬것
+                    $('#map').remove();
+
                     getMap($('#y1').val(), $('#x1').val(), $('#y2').val(), $('#x2').val());
                     dist();
                 }
