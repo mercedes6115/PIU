@@ -306,7 +306,7 @@
 
     <select id="getSearchList" resultType="projectVO">
         select * from TBL_PROJECT where TITLE
-        LIKE '%'||#{searchStr}||'%' OR CONTENT  LIKE '%'||#{searchStr}||'%' OR
+        LIKE '%'||#{searchStr}||'%' OR SUMMARY  LIKE '%'||#{searchStr}||'%' OR
         COMPANY_NUM = (SELECT NUM FROM TBL_COMPANY WHERE NICKNAME='%'||#{searchStr}||'%')
     </select>
 
