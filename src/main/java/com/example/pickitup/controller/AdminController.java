@@ -12,23 +12,15 @@ import com.example.pickitup.domain.vo.project.projectFile.ProjectVO;
 import com.example.pickitup.domain.vo.user.AdminBoardVO;
 import com.example.pickitup.domain.vo.user.OrderVO;
 import com.example.pickitup.domain.vo.user.UserVO;
-import com.example.pickitup.domain.vo.*;
 import com.example.pickitup.domain.vo.adminVO.AdminBoardDTO;
-import com.example.pickitup.domain.vo.dto.*;
-import com.example.pickitup.domain.vo.dto.AdminBoardPageDTO;
-import com.example.pickitup.domain.vo.dto.PageDTO;
-import com.example.pickitup.domain.vo.dto.ProductPageDTO;
 import com.example.pickitup.domain.vo.product.productFile.ProductVO;
 import com.example.pickitup.domain.vo.dto.UserDTO;
-import com.example.pickitup.domain.vo.project.projectQna.ProjectQnaCommentVO;
-import com.example.pickitup.domain.vo.user.AdminBoardVO;
 import com.example.pickitup.service.TempAdminService;
-import com.example.pickitup.service.TempCompanyService;
+import com.example.pickitup.service.CompanyService;
 import com.example.pickitup.service.AdminProductService;
 import com.example.pickitup.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.javassist.Loader;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -41,12 +33,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
-
-
-import org.springframework.beans.factory.annotation.Autowired;
 
 @Controller
 @Slf4j
@@ -55,7 +43,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class AdminController {
     private final TempAdminService tempAdminService;
     private final AdminProductService adminProductService;
-    private final TempCompanyService tempCompanyService;
+    private final CompanyService companyService;
     private final TempUserSerivce tempUserSerivce;
     private final ProjectService projectService;
     // 관리자 로그인
@@ -338,7 +326,7 @@ public class AdminController {
         model.addAttribute("detailVO",tempAdminService.readUserInfo(num));
 
         log.info("sssss"+tempAdminService.readUserInfo(num).toString());
-        log.info("sssss"+tempCompanyService.readCompanyInfo(num).toString());
+        log.info("sssss"+ companyService.readCompanyInfo(num).toString());
     }
 
     // 관리자 프로젝트 목록
@@ -391,7 +379,7 @@ public class AdminController {
         log.info("==========="+startDate);
         log.info("==========="+endDate);
         projectVO.setCompanyNum(11l); // 관리자 companyNum설정
-        projectService.register(projectVO);
+        projectService.registerProject(projectVO);
     }
 
     @GetMapping("/projectDetail")
@@ -621,7 +609,7 @@ public class AdminController {
             model.addAttribute("detailVO",tempAdminService.readUserInfo(num));
         }
         if(category.equals("company")) {
-            model.addAttribute("detailVO", tempCompanyService.readCompanyInfo(num));
+            model.addAttribute("detailVO", companyService.readCompanyInfo(num));
         }
 
     }

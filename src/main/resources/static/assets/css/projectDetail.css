@@ -26,6 +26,281 @@ body {
     margin: 0;
 }
 
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+.notosanskr * {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+/* ---------------------------------공통------------------------- */
+html, body{
+    margin: 0;
+}
+p{
+    margin: 0;
+}
+
+/* --------------------------------임시헤더----------------------- */
+
+
+.header-wrap{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.header{
+    border-radius: 0;
+    width: 100%;
+    height: auto;
+    background-color: #FFFFFF;
+    border-color: #E5E5E5;
+    z-index: 101;
+    top: 0;
+    left: 0;
+    position: sticky;
+    display: block;
+
+
+}
+.header1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header2{
+    display: flex;
+    max-width: 1176px;
+    width: calc(100% - 40px);
+    margin-left: 20px;
+    margin-right: 20px;
+    align-items: stretch;
+    flex-direction: column;
+}
+.header3{
+    height: 78px;
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    position: relative;
+}
+.header3 > a {
+    color: black;
+    text-decoration-line: none;
+}
+.logo-wrap{
+    display: block;
+    align-items: stretch;
+    flex-direction: column;
+}
+.logo-font{
+    font-family:'Openas';
+    display: block;
+    width: auto;
+    height: 24px;
+    FONT-WEIGHT: 600;
+    font-size: 25px;
+    padding-top: 33%;
+}
+.empty-space{
+    width:36px;
+    display: flex;
+    height:0;
+}
+.menu-search-wrap{
+    margin-right: 32px;
+    display: flex;
+    flex: 1;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0%;
+    align-items: stretch;
+    flex-direction: row;
+}
+.menu-wrap{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+.menu-plogging{
+    font-family: 'SDSamliphopangche_Basic';
+    border-width: 0;
+    color: #1F89FF;
+    margin: 0;
+    padding: 0;
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.625rem;
+    white-space: nowrap;
+    text-decoration-line: none;
+}
+
+.menu-space{
+    width: 16px;
+    height: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+.menu-store{
+    font-family: 'SDSamliphopangche_Basic';
+    border-width: 0;
+    color: #1A1A1A;
+    margin: 0;
+    padding: 0;
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.625rem;
+    white-space: nowrap;
+    text-decoration-line: none;
+}
+h4> .menu-store{
+    text-decoration-line: none;
+}
+.search-box{
+    max-width: 380px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: row;
+}
+.search-box1{
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+    flex-direction: column;
+}
+.search-box2{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+.search-box3{
+    display: flex;
+    margin-top: -9px;
+    margin-bottom: -9px;
+    margin-left: -4px;
+    margin-right: -4px;
+    width: 100%;
+    align-items: stretch;
+    flex-direction: row;
+    cursor: unset;
+}
+.search-box4{
+    border-radius: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #F8F8F8;
+    border-color: #E5E5E5;
+}
+.search-text-icon{
+    display: flex;
+    height: 38px;
+    padding-left: 16px;
+    padding-right: 10px;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+.search-text{
+    font-family: 'Noto Sans KR', sans-serif;
+    border-width: 0;
+    color: #A2A2A2;
+    margin: 0;
+    width:100%;
+    padding: 0;
+    outline: none;
+    background-color:rgb(248, 248, 248);
+    font-size: 0.675rem;
+    font-weight: 400;
+    line-height: 1.125rem;
+}
+.search-icon{
+    display: block;
+    width: 20px;
+    height: 20px;
+}
+.header-right-menu-wrap{
+    display: flex;
+    margin-left: auto;
+    align-items: stretch;
+    flex-direction: row;
+}
+.header-right-menu-wrap1{
+    display: flex;
+    align-items: stretch;
+    flex-direction: row;
+    flex-direction: row;
+}
+
+.header-right-menu-wrap2{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+.header-right-menu-wrap3{
+    display: flex;
+    align-items: stretch;
+    flex-direction: row;
+}
+.myplogging{
+    font-family: 'Noto Sans KR', sans-serif;
+    border-width: 0px;
+    color: #1A1A1A;
+    margin: 0px;
+    padding: 0px;
+    padding-top: 10px;
+    font-size: 0.875rem;
+    font-weight: bold;
+    line-height: 1.125rem;
+    text-decoration-line: none;
+}
+.empty-space1{
+    width: 20px;
+    height: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+.loginout{
+    /*font-family: 'SDSamliphopangche_Basic';*/
+    border-width: 0px;
+    color: #1A1A1A;
+    margin: 0px;
+    padding: 0px;
+    padding-top: 10px;
+    font-size: 0.875rem;
+    font-weight: bold;
+    line-height: 1.125rem;
+
+}
+.profile{
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    position: relative;
+}
+.profile-img-wrap{
+    width: 34px;
+    height: 34px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+.profile-img{
+    background-color: rgb(248, 248, 248);
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.profile-img1{
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: relative;
+}
 
 .allFrame {
     font-family: 'Noto Sans KR', sans-serif;
@@ -59,6 +334,7 @@ body {
 
 .readDetail {
     font-family: 'Noto Sans KR', sans-serif;
+    height: 100%;
     width: 66.6667%;
     min-height: 1px;
     padding-right: 12px;
@@ -239,15 +515,8 @@ body {
     width: 100%;
 }
 
-.projectApplicantFrame :hover{
-    background-color: rgba(255, 85, 0, 0.532);
-}
 
 .projectApplicantBtn :hover {
-    background-color: rgba(255, 85, 0, 0.532);
-}
-
-.projectApplicant :hover{
     background-color: rgba(255, 85, 0, 0.532);
 }
 
@@ -916,8 +1185,9 @@ body {
     font-family: 'Noto Sans KR', sans-serif;
 }
 
-.qnaFrame {
+#toitem_question {
     display: flex;
+    display: block;
     flex-wrap: wrap;
     -webkit-box-pack: start;
     place-content: stretch flex-start;
@@ -1157,32 +1427,6 @@ body {
     display: block;
 }
 
-.modalFrame {
-    position: fixed;
-    top: 0;
-    left:0;
-    right: 0;
-    bottom: 0;
-    z-index: 999;
-    background: rgba(0, 0, 0, 0.6) !important;
-    display: none;
-    width: auto;
-}
-
-
-.modalForm {
-    position: relative;
-    display: flex;
-    transform: translate(10px, 55px);
-}
-
-.modalItem {
-    min-height: 80vh;
-    background: url("/src/main/resources/static/images/chun.png") center/cover fixed no-repeat;
-    border-radius: 0.3rem;
-    width: 96%
-}
-
 .btnClose {
     color: #fff;
     font-size: 3rem;
@@ -1194,17 +1438,6 @@ body {
     color: rgb(249,228,148);
 }
 
-.modalControl {
-    position: absolute;
-    font-size: 4rem;
-    color: var(--mainWhite);
-    transition: all 1s linear;
-    cursor: pointer;
-}
-
-.modalControl :hover {
-    color: rgb(249,228,148);
-}
 
 .btnLeft {
     top: 50%;
@@ -1236,20 +1469,6 @@ body {
     text-decoration: none;
 }
 
-#applyModal {
-    display: none;
-    width: 300px;
-    padding: 20px 60px;
-    background-color: #fefefe;
-    border: 1px solid #888;
-    border-radius: 3px;
-}
-
-.modal_close_btn {
-    position:absolute;
-    top:10px;
-    right:10px;
-}
 
 .applyInfo {
     font-family: 'Noto Sans KR', sans-serif;
@@ -1389,3 +1608,80 @@ share_container{
 .link_copy{
     padding-bottom: 3px;
 }
+
+.imgBox{
+    height: 100%;
+}
+
+.material-icons-outlined like{
+    color:red;
+}
+
+#likebtn{
+    color:red;
+}
+
+/*********************/
+/* The Modal (background) */
+.projectModal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 3; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.project-modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    border: 1px solid #888;
+    display: flex;
+    flex-direction: column;
+    padding: 32px;
+    width: 480px;
+    font-size:14px;
+    max-height: 800px;
+    border-radius: 8px;
+    background-color: rgb(255, 255, 255);
+    box-sizing: border-box;
+}
+
+/* The Close Button */
+.close_btn {
+    color: #aaa;
+    float: right;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    justify-content: end;
+}
+
+.close_btn:hover,
+.close_btn:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+.projectApplyBtn{
+    width: 20%;
+    height: 30px;
+
+}
+
+.project-modal-content span:first-child{
+    display: flex;
+}
+
+
+.project-modal-content span:nth-child(3){
+    margin-bottom:20px;
+}
+

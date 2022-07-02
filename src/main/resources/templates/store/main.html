@@ -103,6 +103,7 @@
 <script src="/assets/js/storeMain.js"></script>
 <script src="/assets/js/storeReview.js"></script>
 <script th:inline="javascript">
+    let url = [[${url}]];
     let productlist = [[${productlist}]];
     let li = {};
     // 임시 유저 userNum = 22;
@@ -115,6 +116,12 @@
     let start = standard;
     let next =0;
     let total = productsCount;
+    console.log(url);
+    if(url == "store") {
+        $('.nav-container').css("display", "none");
+        $('.menu-plogging').css("color", "black");
+        $('.menu-store').css("color","#1F89FF");
+    }
 
     //메인 리스트 뿌려주기
     let category = ""; //카테고리 클릭안했을때 공백 넘겨줌
@@ -287,11 +294,14 @@
         let str="";
 
         next = start + standard;
-
+        console.log("start = " + start)
+        console.log("next = " + next)
+        console.log("total = " + total)
         if (next >= total) {
             next = total;
             possible = false;
         }
+
 
         for (let i = start; i < next; i++) {
             str += "<li>";

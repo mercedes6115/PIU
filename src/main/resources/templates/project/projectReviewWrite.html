@@ -31,7 +31,9 @@
 
         <div>
             <div class="flex p-24" style="align-items: center; padding-bottom: 15px;">
-                <div class="profile_img"><img src="/images/chun2.png"></div>
+                <div class="profile_img">
+                    <img th:src="@{/groupFile/display?fileName=} + ${review.profileUploadPath} + @{/} + ${review.profileFileName}" alt="">
+                </div>
                 <div class="flex justify-content" style="width: 100%; align-items: center;">
                     <div class="id_and_date">
 <!--                        <div class="review_id" th:text="|춘식이|"></div>-->

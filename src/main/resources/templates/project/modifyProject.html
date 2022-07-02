@@ -11,7 +11,7 @@
 </head>
 
 <body>
-<div class="main">
+<div class="main" th:object="${project}">
     <div class="cpTitleFrame">
         <div class="cpTitleForm">
             <span class="material-symbols-outlined">directions_walk</span>
@@ -30,6 +30,7 @@
     <div class="cpBodyFrame">
         <div class="cpSidebarBoundary"></div>
         <form action="/project/createStepForm" method="post" enctype="multipart/form-data" id="projectForm">
+
             <div class="cpSidebarFrame" id="sidebar">
                 <div class="cpSidebarForm">
                         <span class="sidebarStepFrame1">
@@ -97,7 +98,7 @@
 
                                     <div class="formTerrain">
                                         <label class="formTerrainLabel">지형</label>
-                                        <select class="formTerrainSelect" name="terrain">
+                                        <select class="formTerrainSelect" name="terrain" th:selected="*{terrain}">
                                             <option value hidden disalbed>지형을 입력해주세요.</option>
                                             <option class="mountain" value="mountain">산 ( +100p )</option>
                                             <option class="beach" value="beach">바닷가 ( + 50p )</option>
@@ -105,14 +106,14 @@
                                         </select>
                                     </div>
                                     <label class="startTimeLabel">시작일자</label>
-                                    <input type="datetime-local" class="startTime" name="startTime">
+                                    <input type="datetime-local" class="startTime" name="startTime" th:value="*{startTime}">
                                     <label class="endTimeLabel">종료일자</label>
-                                    <input type="datetime-local" class="endTime" name="endTime">
+                                    <input type="datetime-local" class="endTime" name="endTime" th:value="*{endTime}">
                                 <div class="formCourse">
                                     <label class="formCourseLabel">코스 / 장소</label>
                                     <div class="formCoureSelectBox">
                                         <select class="formCourseSelect" id="selectCourse" onchange="changeValue()"
-                                                name="course">
+                                                name="course" th:selected="*{course}">
                                             <option value="place">장소</option>
                                             <option value="course">코스 ( 3km까지 100p 3km 초과 시 1km 마다 50p 추가 )</option>
                                         </select>
@@ -120,14 +121,14 @@
                                             <label class="formCourseLabel">출발지</label>
                                             <div class="addressForm">
                                                 <input type="text" id="start_address" placeholder="주소" readonly
-                                                       name="startAddress">
+                                                       name="startAddress" th:value="*{startAddress}">
                                                 <input type="button" class="find_address" id="find_start_address"
                                                        value="주소 찾기">
                                             </div>
                                             <div style="width: 100%;">
                                                 <div style="width: 71%;">
                                                     <input type="text" id="start_addressDetail" placeholder="상세주소"
-                                                           name="startAddressDetail">
+                                                           name="startAddressDetail" th:value="*{startAddressDetail}">
                                                 </div>
                                             </div>
                                         </div>
@@ -139,14 +140,14 @@
                                             <label class="formCourseLabel">도착지</label>
                                             <div class="addressForm">
                                                 <input type="text" id="end_address" placeholder="주소" readonly
-                                                       name="endAddress">
+                                                       name="endAddress"th:value="*{endAddress}" >
                                                 <input type="button" class="end_address" id="find_end_address"
                                                        value="주소 찾기">
                                             </div>
                                             <div style="width: 100%;">
                                                 <div style="width: 71%;">
                                                     <input type="text" id="end_addressDetail" placeholder="상세주소"
-                                                           name="endAddressDetail">
+                                                           name="endAddressDetail" th:value="*{endAddressDetail}">
                                                 </div>
                                             </div>
                                         </div>
@@ -159,8 +160,8 @@
                                                     <p style="margin: 0;" id="distance_point"></p>P
                                                 </div>
                                                 <input type="text" name="point" hidden="hidden" id="projectPoint"
-                                                       value="100">
-                                                <input type="text" name="distance" value="0" hidden="hidden">
+                                                       value="100" th:value="*{point}">
+                                                <input type="text" name="distance" value="0" hidden="hidden" th:value="*{distance}">
                                             </div>
 
                                         </div>
@@ -170,8 +171,7 @@
                         </div>
                     </div>
                 </div>
-                <div>
-                    <div id="map" style="width:500px;height:500px;"></div></div>
+                <div id="map" style="width:500px;height:500px;"></div>
                 <div class="nextBtnFrame">
                     <button type="button" class="nextPage step2">
                         <span class="nextPageBtn">다음</span>
@@ -194,10 +194,10 @@
 
                                         <label class="subImgBox" for="attach">
                                             <input type="file" id="attach" class="subImgInput" name="uploadFiles">
+
                                             <div class="photoImgFrame">
                                                 <div class="photoImgForm">
-                                                    <img
-                                                            src="/src/main/resources/static/images/add-photo-portrait.png"
+                                                    <img src="/src/main/resources/static/images/add-photo-portrait.png"
                                                             id="img0" style="max-width: 100%; height: auto;">
                                                     <p class="photoFieldDescription"></p>
                                                 </div>
@@ -256,17 +256,17 @@
                                     <label class="subImgTitle">프로젝트 제목</label>
                                     <div class="subImgTitleFrame">
                                         <input type="text" name="title" class="subTitleInput"
-                                               placeholder="프로젝트의 특징이 잘 드러나는 제목을 지어주세요.">
+                                               placeholder="프로젝트의 특징이 잘 드러나는 제목을 지어주세요." th:value="*{title}">
                                     </div>
                                     <label class="subImgTitle">프로젝트 요약 </label>
                                     <div class="subImgTitleFrame">
                                         <input type="text" name="summary" class="subTitleInput"
-                                               placeholder="프로젝트를 간략하게 요약해주세요.">
+                                               placeholder="프로젝트를 간략하게 요약해주세요." th:value="*{summary}">
                                     </div>
                                     <label class="subImgTitle">프로젝트 상세내용 </label>
                                     <div>
                                             <textarea class="groupTextInput" name="content"
-                                                      placeholder="프로젝트의 상세내용을 기재해주세요"></textarea>
+                                                      placeholder="프로젝트의 상세내용을 기재해주세요" th:value="*{content}"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -367,7 +367,7 @@
                             <label class="groupIntroText">단체 소개</label>
                             <div class="groupIntroTextForm">
                                     <textarea class="groupTextInput" name="companyComment"
-                                              placeholder="어떤 단체인지 소개해 주세요."></textarea>
+                                              placeholder="어떤 단체인지 소개해 주세요." th:value="*{companyComment}"></textarea>
                             </div>
                         </div>
                         <div class="introGroupGuideFrame">사용자님 단체의 매력을 소개해주세요. 단체 소개가 플로거의 마음을 움직일 수 있을거예요!
@@ -401,12 +401,6 @@
                                 <div class="cpCheckBoxFrame">
                                     <label class="cpCheckBoxForm">
                                         <div class="cpCheckBoxContainer">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                 fill="none" viewBox="0 0 24 24">
-                                                <path fill-rule="evenodd"
-                                                      d="M20 20H4V4h16v16zM4 2c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2H4z"
-                                                      fill="#1B1C1D"></path>
-                                            </svg>
                                             <input name="cpCheckBox1" type="checkbox" class="cpCheckBox1">
                                         </div>
                                         <span class="cpCheckBoxInfo1">네, 모두 잘 적었어요.</span>
@@ -429,8 +423,11 @@
                                 <div class="cpCheckBoxFrame">
                                     <label class="cpCheckBoxForm">
                                         <div class="cpCheckBoxContainer">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                 fill="none" viewBox="0 0 24 24">
+                                                <input name="cpCheckBox2" type="checkbox" class="cpCheckBox1">
+                                            </svg>
 
-                                            <input name="cpCheckBox2" type="checkbox" class="cpCheckBox1">
                                         </div>
                                         <span class="cpCheckBoxInfo2">네, 모두 잘 적었어요.</span>
                                     </label>
@@ -447,8 +444,11 @@
                                 <div class="cpCheckBoxFrame">
                                     <label class="cpCheckBoxForm">
                                         <div class="cpCheckBoxContainer">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                 fill="none" viewBox="0 0 24 24">
+                                                <input name="cpCheckBox3" type="checkbox" class="cpCheckBox1">
+                                            </svg>
 
-                                            <input name="cpCheckBox3" type="checkbox" class="cpCheckBox1">
                                         </div>
                                         <span class="cpCheckBoxInfo3">네, 모두 잘 적었어요.</span>
                                     </label>
@@ -696,8 +696,6 @@
                 }
                 if ((출발.length + 도착.length) == 4) {
                     // 지도 생성 시킬것
-                    $('#map').remove();
-
                     getMap($('#y1').val(), $('#x1').val(), $('#y2').val(), $('#x2').val());
                     dist();
                 }
