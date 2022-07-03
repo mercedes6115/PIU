@@ -383,6 +383,18 @@
                 strImg = "";
             }
         })
+
+        // mainService.jjimCheck(function (jjims) {
+        //     $(jjims).each(function (i, jjim) {
+        //         if(jjim.userNum==userNum){
+        //             if($(".projectjjim[name="+jjim.projectNum+"]").hasClass("material-symbols-outlined")){
+        //                 $(".projectjjim[name="+jjim.projectNum+"]").removeClass("material-symbols-outlined");
+        //                 $(".projectjjim[name="+jjim.projectNum+"]").addClass("material-icons");
+        //                 $(".projectjjim[name="+jjim.projectNum+"]").css("color","red")
+        //             }
+        //         }
+        //     })
+        // })
     })
 
 
@@ -413,7 +425,6 @@
                     type : "post",
                     data : data,
                     success : function () {
-                        alert('찜 성공')
                     }
                 })
 
@@ -427,7 +438,6 @@
                     type : "delete",
                     data : data,
                     success : function () {
-                        alert('찜 해제 성공')
                     }
                 })
             }
