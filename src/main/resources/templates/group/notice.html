@@ -49,7 +49,7 @@
                                 <div class="sNoticeForm">
                                     <span class="material-symbols-outlined">notifications</span>
                                     <div class="margin"></div>
-                                    <a class="sTitle" href="notice.html">공지사항</a>
+                                    <a class="sTitle" href="/group/notice">공지사항</a>
                                 </div>
                             </div>
                             <div class="sGroupInfoFrame">
@@ -98,7 +98,7 @@
                                     <div class="noticeList">
                                         <div class="noticeItemFrame">
                                             <div class="noticeItemForm">
-                                                <a class="noticeItem" th:text="*{title}" th:href="*{num}"></a>
+                                                <a class="noticeItem" th:text="*{title}" th:style="${'font-weight:bold;'}" th:href="*{num}"></a>
                                             </div>
                                         </div>
                                         <div class="noticeItemBoundary"></div>
@@ -108,24 +108,20 @@
                         </th:block>
                     </div>
                     <div class="nPagingBoundary"></div>
-                    <div class="showListPagingFrame">
-                        <nav class="showListPagingForm">
-                            <button class="pageMoveBtn">
-                                <span class="material-symbols-outlined" id="prevBtnImg">chevron_left</span>
-                            </button>
-                            <div class="btnBoundary"></div>
-                            <div class="showPageNum">
-                                <button class="movePageNum">
-                                    <span class="displayPageNum">1</span>
-                                </button>
-                            </div>
-                            <div class="btnBoundary"></div>
-                            <button class="pageMoveBtn">
-                                <span class="material-symbols-outlined" id="nextBtnImg">chevron_right</span>
-                            </button>
-                        </nav>
+                    <div th:object="${adminBoardPageDTO}" class="paging" style="text-align: center">
+                        <a class="changePage" th:href="*{startPage - 1}" th:if="*{prev}">&lt;</a>
+                        <th:block th:each="num:${#numbers.sequence(adminBoardPageDTO.startPage, adminBoardPageDTO.endPage)}">
+                            <a class= "changePages"  href="javascript:void(0);" th:if="${num == adminBoardPageDTO.adminCriteria.pageNum}" th:text="${num}"></a>
+                            <a class="changePage" th:href="${num}" th:unless="${num == adminBoardPageDTO.adminCriteria.pageNum}" th:text="${num}"></a>
+                        </th:block>
+                        <a class="changePage" th:href="*{endPage + 1}" th:if="*{next}">&gt;</a>
+                        <a class="changePage" th:href="*{adminCriteria.pageNum + 1}" th:if="*{adminCriteria.pageNum < realEnd}">&gt;</a>
                     </div>
                 </div>
+                <form action="/group/notice" name="pageForm" th:object="${adminCriteria}">
+                    <input type="hidden" th:field="*{pageNum}">
+                    <input type="hidden" th:field="*{amount}">
+                </form>
             </div>
         </div>
     </div>
@@ -133,11 +129,21 @@
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script>
+
+<script th:inline="javascript">
     let spanText = document.getElementById("listClose").textContent;
     let sProjectContainer = document.querySelector('.sProjectContainer');
+    let num = [[${num}]];
+    let paging = [[${adminCriteria.listLink}]];
 
-    $("#listClose").click(function(){
+    //타임리프에서 필드값으로 해당 유저의 번호 뿌려줄것
+    $("a.changePage").click(function(e){
+        e.preventDefault();
+        $(pageForm).find("input[name='pageNum']").val($(this).attr("href"));
+        $(pageForm).submit();
+    });
+
+    /*$("#listClose").click(function(){
         if(spanText == "expand_less"){
             document.getElementById("listClose").textContent="expand_more";
             spanText = document.getElementById("listClose").textContent;
@@ -147,11 +153,12 @@
             spanText=document.getElementById("listClose").textContent;
             sProjectContainer.classList.remove('hidden');
         }
-    });
+    });*/
 
     $("a.noticeItem").click(function(e){
         e.preventDefault();
         location.href = "/group/noticeDetail" + paging + "&num="+$(this).attr('href');
+        console.log("들어옴");
     });
 </script>
 </html>

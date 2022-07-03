@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.pickitup.mapper.project.projectFile.ProjectFileMapper">
+
+
     <insert id="insert">
      INSERT INTO TBL_PROJECT_FILE
     (UUID, UPLOAD_PATH, FILE_NAME, PROJECT_NUM)
@@ -22,4 +24,6 @@
         FROM TBL_PROJECT_FILE
         WHERE UPLOAD_PATH = TO_CHAR(SYSDATE - 1, 'YYYY/MM/DD')
     </select>
+
+
 </mapper>

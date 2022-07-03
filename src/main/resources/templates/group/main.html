@@ -403,9 +403,9 @@
         <div style="margin-left: 50px; display: flex;">
             <p class="close">&times;</p>
             <p id="startP"> 출발QR</p>
-<!--            <div class="qrImg" id="qrcode"></div>-->
+            <!--            <div class="qrImg" id="qrcode"></div>-->
             <p id="endP"> 도착QR</p>
-<!--            <div class="qrImg" id="qrcode2"></div>-->
+            <!--            <div class="qrImg" id="qrcode2"></div>-->
         </div>
     </div>
 </div>
@@ -774,14 +774,14 @@
     $('.moreQR').on("click", function(e){
         modal('qrModal');
 
-            var start = $(this).find('span')[0];
-            var end = $(this).find('span')[1];
-            // console.log(start);
-            // console.log(end);
-            // console.log($(start).attr('id'));
-            // console.log($(end).attr('id'));
-            makeQr(qrcode, $(start).attr('id'));
-            makeQr(qrcode2, $(end).attr('id'));
+        var start = $(this).find('span')[0];
+        var end = $(this).find('span')[1];
+        // console.log(start);
+        // console.log(end);
+        // console.log($(start).attr('id'));
+        // console.log($(end).attr('id'));
+        makeQr(qrcode, $(start).attr('id'));
+        makeQr(qrcode2, $(end).attr('id'));
 
 
     })

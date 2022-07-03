@@ -5,9 +5,9 @@ import com.example.pickitup.domain.vo.Criteria;
 import com.example.pickitup.domain.vo.dto.AdminBoardPageDTO;
 import com.example.pickitup.domain.vo.dto.PageDTO;
 import com.example.pickitup.domain.vo.user.CompanyVO;
+import com.example.pickitup.service.CompanyService;
 import com.example.pickitup.service.ProjectService;
 import com.example.pickitup.service.TempAdminService;
-import com.example.pickitup.service.user.CompanyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -33,29 +33,35 @@ public class GroupController {
     @GetMapping("/main")
     public void main(HttpSession session, Model model, Criteria criteria){
         // 사용자 번호 이용
+
         int checkLogin= 3;
         Long companyNum = Long.parseLong(session.getAttribute("num").toString());
         model.addAttribute("projectList", projectService.getUserProjectList(companyNum,criteria ));
         model.addAttribute("pageDTO", new PageDTO(criteria, projectService.getUserProjectTotal(companyNum)));
 
+        model.addAttribute("projectList", projectService.getUserProjectList(1L,criteria ));
+        model.addAttribute("pageDTO", new PageDTO(criteria, projectService.getUserProjectTotal(1L)));
+
+
     }
 
     // 그룹 공지사항
     @GetMapping("/notice")
-    public String notice(AdminCriteria admincriteria, Model model){
-        model.addAttribute("adminBoardList", tempAdminService.getNoticeList(admincriteria));
-        model.addAttribute("pageDTO", new AdminBoardPageDTO(admincriteria, tempAdminService.getNoticeTotal(admincriteria)));
+    public String notice(AdminCriteria adminCriteria, Model model){
+        log.info("=====pagenum : "+adminCriteria.getPageNum());
+        log.info("=====amount : "+adminCriteria.getAmount());
+        model.addAttribute("adminBoardList", tempAdminService.getNoticeList(adminCriteria));
+        model.addAttribute("adminBoardPageDTO", new AdminBoardPageDTO(adminCriteria, tempAdminService.getNoticeTotal(adminCriteria)));
         return "group/notice";
     }
 
     // 그룹 공지사항 상세보기
     @GetMapping("/noticeDetail")
-    public void noticeDetail(Long num, Criteria criteria, HttpServletRequest request, Model model) {
+    public void noticeDetail(Long num, HttpServletRequest request, Model model){
         String requestURL = request.getRequestURI();
         log.info(requestURL.substring(requestURL.lastIndexOf("/")));
         log.info("*************");
         log.info("================================");
-        log.info(criteria.toString());
         log.info("================================");
         model.addAttribute("adminBoard", tempAdminService.getReadDetail(num));
 
@@ -69,7 +75,6 @@ public class GroupController {
         model.addAttribute("company", companyService.read(companyNum));
     }
 
-
     // 그룹 프로필 수정 폼
     @PostMapping("/modifyForm")
     public String modifyForm( CompanyVO companyVO, Model model){
@@ -82,7 +87,6 @@ public class GroupController {
     public void qna(CompanyVO companyVO){
 
     }
-
 
 
 }

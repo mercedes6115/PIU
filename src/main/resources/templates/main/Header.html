@@ -64,16 +64,20 @@
                                 <div class="header-right-menu-wrap2">
 
                                     <!--  관리자면, 단체(회사)일경우 마이플로깅 -> 플로거 센터로 변경 타임리프 이용-->
+                                    <div th:if="${category} == 0">
                                     <div class="header-right-menu1" th:if="${checkLogin}==3 or ${checkLogin}==2">
-                                        <a class="creater" href="/user/center">
+                                        <a class="creater" href="/group/main">
                                             <p class="myplogging">마이플로깅</p>
                                         </a>
                                     </div>
+                                    </div>
+                                    <div th:unless="${category} == 0">
                                     <div class="right-empty-space1"></div>
                                     <div class="header-right-menu1" th:if="${checkLogin}==3 or ${checkLogin}==2">
                                         <a href="/user/myPage">
                                             <p class="myplogging">마이페이지</p>
                                         </a>
+                                    </div>
                                     </div>
                                     <!--                                <h1 th:text="${category}"></h1>-->
 
@@ -242,7 +246,7 @@
                             <a href="/main/main#focus2" id="scroll_move2">
                                 <div class="nav-rest-content1-wrapper1">
                                     <div class="nav-rest-content1-wrapper2">
-                                        <h6 class="nav-rest-content1-text1">인기많은 플로깅</h6>
+                                        <h6 class="nav-rest-content1-text1">알찬 플로깅</h6>
                                         <div class="nav-dot-space"></div>
                                         <div class="nav-dot"></div>
                                     </div>
@@ -252,7 +256,17 @@
                             <a href="/main/main#focus3" id="scroll_move3">
                                 <div class="nav-rest-content1-wrapper1">
                                     <div class="nav-rest-content1-wrapper2">
-                                        <h6 class="nav-rest-content1-text1">알찬 플로깅</h6>
+                                        <h6 class="nav-rest-content1-text1">인기많은 플로깅</h6>
+                                        <div class="nav-dot-space"></div>
+                                        <div class="nav-dot"></div>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="nav-empty-space11"></div>
+                            <a href="/project/review/list">
+                                <div class="nav-rest-content1-wrapper1">
+                                    <div class="nav-rest-content1-wrapper2">
+                                        <h6 class="nav-rest-content1-text1">플로깅 후기</h6>
                                         <div class="nav-dot-space"></div>
                                         <div class="nav-dot"></div>
                                     </div>

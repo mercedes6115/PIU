@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.pickitup.mapper.user.CompanyMapper">
+
+
     <!--회원 가입-->
     <insert id="insert">
         INSERT INTO TBL_COMPANY
@@ -8,24 +10,26 @@
         VALUES(SEQ_COMPANY.NEXTVAL, #{email}, #{password}, #{nickname}, #{phone}, #{businessPhone}, #{address},#{addressDetail}, #{businessNumber} , SYSDATE, #{profileFileName}, #{profileUploadPath})
     </insert>
 
+    <!-- 유저 정보 상세보기   -->
     <select id="getDetail" resultType="companyVO">
         SELECT NUM, EMAIL, PASSWORD, NICKNAME, PHONE, BUSINESS_PHONE, ADDRESS, BUSINESS_NUMBER, REGIST_DATE, PROFILE_FILE_NAME, PROFILE_UPLOAD_PATH,CATEGORY,STATUS,APPROVAL
         FROM TBL_COMPANY
         WHERE NUM=#{num}
     </select>
 
+    <!-- 로그인   -->
     <select id="login" resultType="_int">
         SELECT NUM, NICKNAME
         FROM TBL_COMPANY
         WHERE EMAIL=#{email} AND PASSWORD=#{password}
     </select>
 
+    <!-- (관리자용) 비밀번호 변경   -->
     <update id="adminCompanyPwUpdate">
         UPDATE TBL_COMPANY
         SET PASSWORD=#{password}
         WHERE NUM=#{num}
     </update>
-
 
     <!--    관리자용 유저 활성/비화성화 업데이트-->
     <update id="companyStatusEnable">

@@ -1,6 +1,7 @@
 package com.example.pickitup.domain.dao.project.projectReview;
 
 import com.example.pickitup.domain.vo.dto.MyReviewDTO;
+import com.example.pickitup.domain.vo.dto.ReviewDTO;
 import com.example.pickitup.domain.vo.project.projectReview.ProjectReviewVO;
 import com.example.pickitup.mapper.project.projectReview.ProjectReviewMapper;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +26,13 @@ public class ProjectReviewDAO {
         return projectReviewMapper.getDetail(num);
     }
 
+
+
+    // 리뷰 상세보기2
+    public ReviewDTO readReview(Long num){
+        return projectReviewMapper.getReviewDetail(num);
+    }
+
     // 리뷰 작성
     public void register(ProjectReviewVO projectReviewVO){
         projectReviewMapper.insert(projectReviewVO);
@@ -38,6 +46,11 @@ public class ProjectReviewDAO {
     // 리뷰 삭제
     public boolean remove(Long num){
         return projectReviewMapper.delete(num);
+    }
+
+    // 리뷰 목록
+    public List<ReviewDTO> getReviewList(Long projectNum){
+        return projectReviewMapper.getReviewList(projectNum);
     }
 
 }

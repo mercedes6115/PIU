@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.pickitup.mapper.project.projectReview.ProjectReviewMapper">
+
+    <!-- 후기 목록   -->
     <select id="getReviewList" resultType="reviewDTO">
     SELECT tp.TITLE, tpr.CONTENT, tpr.UPDATE_DATE, tu.NICKNAME, tu.PROFILE_FILE_NAME, tu.PROFILE_UPLOAD_PATH
     FROM TBL_PROJECT tp JOIN TBL_PROJECT_REVIEW tpr ON tp.NUM = tpr.PROJECT_NUM
@@ -8,13 +10,7 @@
     WHERE tp.NUM = #{projectNum} ORDER BY tpr.UPDATE_DATE DESC
     </select>
 
-    <select id="getReview" resultType="reviewDTO">
-    SELECT tp.NAME, tpr.CONTENT, tpr.UPDATE_DATE, tu.NICKNAME, tu.PROFILE_FILE_NAME, tu.PROFILE_UPLOAD_PATH
-    FROM TBL_PRODUCT tp JOIN TBL_PRODUCT_REVIEW tpr ON tp.NUM = tpr.PRODUCT_NUM
-    JOIN TBL_USER tu ON tu.NUM = tpr.USER_NUM
-    WHERE tp.NUM = #{productNum} ORDER BY tpr.UPDATE_DATE DESC
-    </select>
-
+    <!-- 후기 상세보기   -->
     <select id="getReviewDetail" resultType="reviewDTO">
     SELECT tpr.NUM, tp.TITLE, tpr.CONTENT, tpr.UPDATE_DATE, tu.NICKNAME, tu.PROFILE_FILE_NAME, tu.PROFILE_UPLOAD_PATH
     FROM TBL_PROJECT tp JOIN TBL_PROJECT_REVIEW tpr ON tp.NUM = tpr.PROJECT_NUM
@@ -23,6 +19,14 @@
     </select>
 
 
+    <select id="getDetail" resultType="reviewDTO">
+    SELECT tpr.NUM, tp.TITLE, tpr.CONTENT, tpr.UPDATE_DATE, tu.NICKNAME, tu.PROFILE_FILE_NAME, tu.PROFILE_UPLOAD_PATH
+    FROM TBL_PROJECT tp JOIN TBL_PROJECT_REVIEW tpr ON tp.NUM = tpr.PROJECT_NUM
+    JOIN TBL_USER tu ON tu.NUM = tpr.USER_NUM
+    WHERE tpr.NUM = #{num} ORDER BY tpr.UPDATE_DATE DESC
+    </select>
+
+    <!-- 후기 등록하기   -->
     <insert id="insert" parameterType="projectReviewVO">
         <selectKey keyProperty="num" resultType="long" order="BEFORE">
             SELECT SEQ_PROJECT_REVIEW.NEXTVAL FROM DUAL
@@ -32,13 +36,14 @@
         VALUES(#{num}, #{content}, SYSDATE , SYSDATE , #{userNum}, #{projectNum})
     </insert>
 
-
+    <!-- 후기글 수정하기   -->
     <update id="update" parameterType="projectReviewVO">
         UPDATE TBL_PROJECT_REVIEW
         SET CONTENT=#{content}, UPDATE_DATE=SYSDATE
         WHERE NUM= #{num}
     </update>
 
+    <!-- 후기글 삭제   -->
     <delete id="delete" parameterType="long">
         DELETE FROM TBL_PROJECT_REVIEW
         WHERE NUM= #{num}

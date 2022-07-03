@@ -32,10 +32,10 @@
         <form action="/store/reviewWrite" method="post" id="registerForm" enctype="multipart/form-data">
             <div>
                 <div class="flex p-24" style="align-items: center; padding-bottom: 15px;">
-                    <div class="profile_img"><img src="/images/chun2.png"></div>
+                    <div class="profile_img"><img th:src="@{/userFile/display?fileName=}+ ${user.profileUploadPath} + @{/} + ${user.profileFileName}"></div>
                     <div class="flex justify-content" style="width: 100%; align-items: center;">
                         <div class="id_and_date">
-                            <div class="review_id" th:text="|춘식이|"></div>
+                            <div class="review_id" th:text="${user.nickname}"></div>
                             <div class="admin_date" id="admin_date"></div>
                         </div>
                         <div><input class="btn_qnaToadmin" type="button" value="글등록"></div>
@@ -93,17 +93,28 @@
 <div th:replace="~{/main/Footer :: FooterImport}"></div>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<script src="/assets/js/storeQna.js"></script>
+<script src="/assets/js/storeMain.js"></script>
+<script src="/assets/js/storeReview.js"></script>
 <script th:inline="javascript">
+    let productNum = [[${product.num}]];
     //현재 받은 세션으로 userNum 값 구하기
-    let userNum = 2;  // 임시 데이터
+<<<<<<< HEAD
+    let userNum = [[${userNum}]];  // 임시 데이터
     $.ajax({
         url : "/store/userInfo?userNum="+userNum,
         type : "get",
         success : function (user) {
             $(".review_id").text(user.nickname);
         }
+=======
+    let userNum = [[${userNum}]];
+>>>>>>> d620152a70aea1f6ccfd602fa25b3c221c7e7bff
 
+    qnaService.getUserinfo(userNum,function (user) {
+        $(".review_id").text(user.nickname);
     })
+
 
     //첨부파일 input태그 가져오기
     const file1 = document.querySelector("input.attach1");
@@ -204,27 +215,16 @@
         if(files1.length!=0){formData.append("uploadFiles", files1[0])}
         if(files2.length!=0){formData.append("uploadFiles", files2[0])}
         if(files3.length!=0){formData.append("uploadFiles", files3[0])}
-        //
-        // for(let i=0; i<files.length; i++) {
-        //     formData.append("uploadFiles", files[i]);
-        // }
-        $.ajax({
-            url: "/productReviewFile/upload",
-            type: "post",
-            data: formData,
-            contentType: false,
-            processData: false,
-            async : false,
-            success: function(files){
-                let str = "";
-                $.each(files, function(i, file){
-                    str += "<input type='hidden' name='fileList[" + i + "].fileName' value='" + file.fileName + "'>"
-                    str += "<input type='hidden' name='fileList[" + i + "].uuid' value='" + file.uuid + "'>"
-                    str += "<input type='hidden' name='fileList[" + i + "].uploadPath' value='" + file.uploadPath + "'>"
-                });
-                $('#registerForm').append(str);
-            }
-        });
+
+        reviewService.reviewFileUpload(formData,function (files) {
+            let str = "";
+            $.each(files, function(i, file){
+                str += "<input type='hidden' name='fileList[" + i + "].fileName' value='" + file.fileName + "'>"
+                str += "<input type='hidden' name='fileList[" + i + "].uuid' value='" + file.uuid + "'>"
+                str += "<input type='hidden' name='fileList[" + i + "].uploadPath' value='" + file.uploadPath + "'>"
+            });
+            $('#registerForm').append(str);
+        })
         registerForm.submit();
     });
 </script>

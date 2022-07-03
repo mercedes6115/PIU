@@ -55,4 +55,26 @@ public class ApplyDAO {
     public boolean setApproachToContinue(Long applyNum){
         return applyMapper.setApproachToContinue(applyNum);
     }
+
+
+//    // 프로젝트 참가자 정보 수정(완수여부)
+//    public boolean update(Long approach, Long userNum){
+//        return applyMapper.update(approach, userNum);
+//    }
+
+    // 유저 프로젝트 시작
+    public void userStart(ApplyDTO applyDTO){
+        applyMapper.userStart(applyDTO);
+    }
+
+    // 유저 프로젝트 종료
+    public void userEnd(ApplyDTO applyDTO){
+        applyMapper.userEnd(applyDTO);
+    }
+
+    // 유저 프로젝트 완료
+    public void userFinish(Long num){
+        applyMapper.userFinish(num);
+    }
+
 }
