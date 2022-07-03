@@ -28,12 +28,12 @@ public class MainController {
     public String main(HttpSession session, Model model,HttpServletRequest request) throws ParseException {
        int checkLogin=0;
         System.out.println("=============="+request.getRequestURI().split("/")[1]);
-
+        Long userNum = Long.parseLong(session.getAttribute("num").toString());
         if(session.getAttribute("token")!=null){
-//            log.info("tokentokentokentokentokentokentoken");
-//            log.info(session.toString());
-//            log.info((String)session.getAttribute("token"));
-//            log.info("aaaaaaaaaaaaaaaaaaaaaaaaaa");
+            log.info("tokentokentokentokentokentokentoken");
+            log.info(session.getAttribute("num")+"----------------");
+            log.info((String)session.getAttribute("token"));
+            log.info("aaaaaaaaaaaaaaaaaaaaaaaaaa");
             checkLogin = 2;
         }else if(session.getAttribute("num")!=null&&session.getAttribute("nickname")!=null){
             checkLogin= 3;
@@ -54,6 +54,7 @@ public class MainController {
         model.addAttribute("course1",projectService.getListCourse("산"));
         model.addAttribute("course2",projectService.getListCourse("바다"));
         model.addAttribute("course3",projectService.getListCourse("강"));
+        model.addAttribute("userNum", userNum);
 
         log.info("메인 들어옴");
        return "/main/main";

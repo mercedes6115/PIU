@@ -233,7 +233,6 @@
         ]]>
     </select>
 
-<<<<<<< HEAD
     <select id="insertQr">
         UPDATE TBL_PROJECT
         SET START_QR=#{projectLink1},END_QR=#{projectLink2}

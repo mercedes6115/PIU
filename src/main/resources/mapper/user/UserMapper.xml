@@ -9,14 +9,14 @@
         FROM TBL_USER
         WHERE NUM=#{num}
     </select>
-
-<!--카카오로그인 후 회원정보-->
+    <!--카카오로그인 후 회원정보-->
     <select id="kakaoDetail" resultType="userVO">
         SELECT
-        NUM, EMAIL, NICKNAME,PHONE, ADDRESS, PROFILE_FILE_NAME, PROFILE_UPLOAD_PATH, POINT, REGIST_DATE
+        NUM, EMAIL, NICKNAME,PHONE, ADDRESS, PROFILE_FILE_NAME, PROFILE_UPLOAD_PATH, POINT, REGIST_DATE,CATEGORY,STATUS,APPROVAL
         FROM TBL_USER
         WHERE EMAIL=#{email}
     </select>
+
 
 <!--회원 가입-->
 

@@ -38,17 +38,27 @@ public class KakaoController {
         userVO.setEmail(kakaoInfo.get("email").toString());
         userVO.setNickname(kakaoInfo.get("nickname").toString());
 
-        if(tempUserSerivce.kakaoLogin(userVO)==null){
+        UserVO tempVO=tempUserSerivce.kakaoLogin(userVO);
+        if(tempVO==null){
             boolean checkEmail=true;
             log.info("널인가 "+tempUserSerivce.kakaoLogin(userVO));
             rttr.addFlashAttribute("checkEmail",checkEmail);
+
             return new RedirectView("user/login");
         }else {
-            log.info("null 아닌가"+tempUserSerivce.kakaoLogin(userVO));
+            log.info("null 아닌가"+tempVO);
             session.setAttribute("token", token);
-            session.setAttribute("num", userVO.getNum());
-            session.setAttribute("nickname", userVO.getNickname());
-            session.setAttribute("category", userVO.getCategory());
+            log.info("///////////////////////////////////////////////////////");
+            log.info("///////////////////////////////////////////////////////");
+            log.info("///////////////////////////////////////////////////////");
+            session.setAttribute("num", tempVO.getNum());
+            log.info("sessionnum"+ tempVO.getNum());
+            session.setAttribute("nickname", tempVO.getNickname());
+            log.info("sessionNickname"+ tempVO.getNickname());
+            session.setAttribute("category", tempVO.getCategory());
+            log.info("sessioncategory"+tempVO.getCategory());
+            log.info("sessioncategory"+tempVO.getProfileFileName());
+
             return new RedirectView("main/main");
         }
 

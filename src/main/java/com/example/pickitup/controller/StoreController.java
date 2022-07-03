@@ -127,19 +127,15 @@ public class StoreController {
     // 전체 리뷰 보기 페이지
     @GetMapping("/goReviewList/{productNum}")
     public String goReviewList(HttpSession session,@PathVariable("productNum") Long productNum,Model model){
-
+        int checkLogin=3;
 //        // 유저 세션으로 받아서 num 넣어줘야함
 //        model.addAttribute("user",tempUserSerivce.readUserInfo(22L));
-        int checkLogin=3;
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
         model.addAttribute("fileName",session.getAttribute("fileName"));
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
         model.addAttribute("checkLogin",checkLogin);
-
-        int checkLogin=3;
         userNum = Long.parseLong(session.getAttribute("num").toString());
         model.addAttribute("userNum", userNum);
-
         model.addAttribute("products",productService.getDetail(productNum));
         model.addAttribute("productNum",productNum);
         model.addAttribute("reviews",productReviewService.getList(productNum));
@@ -149,10 +145,8 @@ public class StoreController {
     // 스토어 리뷰 작성
     @GetMapping("/reviewWrite")
 
-    public void reviewWrite(Long num, Model model, HttpSession session){
 
     public void reviewWrite(HttpSession session,Long num, Model model){
-
         int checkLogin=3;
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
         model.addAttribute("fileName",session.getAttribute("fileName"));
@@ -167,7 +161,7 @@ public class StoreController {
     // 스토어 리뷰 작성 폼
     @PostMapping("/reviewWrite")
     public RedirectView reviewWriteForm(HttpSession session, ProductReviewVO productReviewVO, RedirectAttributes rttr,Long productNum, Model model){
-//        model.addAttribute("user", productNum); 유저의 정보 가져와야함.?? 어떻게??
+//      model.addAttribute("user", productNum); 유저의 정보 가져와야함.?? 어떻게??
         int checkLogin=3;
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
         model.addAttribute("fileName",session.getAttribute("fileName"));

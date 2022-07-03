@@ -69,7 +69,6 @@ public class ProjectController {
     // 프로젝트 문의 작성폼
     @PostMapping("/qnaWriteForm")
     public String qnaWriteForm(HttpSession session, ProjectQnaVO projectQnaVO, AdminQnaDTO adminQnaDTO, Model model) throws ParseException {
-    public String qnaWriteForm(ProjectQnaVO projectQnaVO, Model model) throws ParseException {
         // 임시
         int checkLogin=3;
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
@@ -79,7 +78,7 @@ public class ProjectController {
         return projectDetail(11L, model);
 
         // 임시
-        return projectDetail(41L, model);
+
 
 
     }
@@ -126,33 +125,12 @@ public class ProjectController {
         projectService.remove(num);
     }
 
-
-
-    // 프로젝트 등록 스텝 1
-    @PostMapping("/createStepForm")
-    public String projectCreate(ProjectVO projectVO){
-        String startDate = projectVO.getStartTime().substring(0,10)+" "+projectVO.getStartTime().substring(11,16)+":00";
-        String endDate = projectVO.getEndTime().substring(0,10)+" "+projectVO.getEndTime().substring(11,16)+":00";
-        projectVO.setStartTime(startDate);
-        projectVO.setEndTime(endDate);
-        projectService.registerProject(projectVO);
-        return "/group/main";
-    }
-
-    // 프로젝트 찜 추가
-    @PostMapping("/jjim")
-    @ResponseBody
-    public void addJjim(@RequestBody JjimVO jjimVO){
-        projectService.addJjim(jjimVO);
-    }
-
     // 프로젝트 찜 해제
     @DeleteMapping("/jjim")
     @ResponseBody
     public void removeJjim(@RequestBody JjimVO jjimVO){
         projectService.removeJjim(jjimVO);
     }
-
 
     // 프로젝트 지원
     @PostMapping("/apply")
