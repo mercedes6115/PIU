@@ -540,6 +540,7 @@
 
 
     function showQnaList(pageNum){
+        alert("qnaList")
         수정중 = false;
         qnaService.qnaList({productNum:productNum,pageNum:pageNum},function (qnaDTO) {
 
@@ -649,9 +650,7 @@
     $(".ProductQnas").on("click",".qnaDelete",function (e) {
         e.preventDefault();
         if(confirm("정말 삭제하시겠습니까?")){
-            qnaService.qnaDelete($(this).attr("name"),function () {
-                showQnaList(pageNum);
-            })
+            qnaService.qnaDelete($(this).attr("name"))
         }else{
             return false;
         }
