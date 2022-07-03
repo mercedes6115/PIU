@@ -36,7 +36,7 @@ public class ProjectReviewRestController {
     @PostMapping("/upload")
     @ResponseBody
     public List<ProjectReviewFileVO> upload(MultipartFile[] uploadFiles) throws IOException {
-        String uploadFolder = "/Users/minmin/aigb_0900_sms/upload/";
+        String uploadFolder = "C:/upload/";
         ArrayList<ProjectReviewFileVO> files = new ArrayList<>();
 
 //        yyyy/MM/dd 경로 만들기
@@ -74,7 +74,7 @@ public class ProjectReviewRestController {
     @GetMapping("/display")
     @ResponseBody
     public byte[] getFile(String fileName) throws IOException{
-        File file = new File( "/Users/minmin/aigb_0900_sms/upload/", fileName);
+        File file = new File( "C:/upload/", fileName);
         return FileCopyUtils.copyToByteArray(file);
     }
 
@@ -93,7 +93,7 @@ public class ProjectReviewRestController {
     @PostMapping("/delete")
     @ResponseBody
     public void delete(String fileName){
-        File file = new File("/Users/minmin/aigb_0900_sms/upload/", fileName);
+        File file = new File("C:/upload/", fileName);
         if(file.exists()){ file.delete(); }
 
     }

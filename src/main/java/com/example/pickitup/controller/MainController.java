@@ -37,6 +37,8 @@ public class MainController {
             checkLogin = 2;
         }else if(session.getAttribute("num")!=null&&session.getAttribute("nickname")!=null){
             checkLogin= 3;
+            Long userNum = Long.parseLong(session.getAttribute("num").toString());
+            model.addAttribute("userNum", userNum);
         }else{
 //           log.info("elseelseelseelseelseelseelseelseelse");
 //           log.info(session.toString());

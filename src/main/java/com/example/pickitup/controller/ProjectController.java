@@ -131,15 +131,15 @@ public class ProjectController {
     // 프로젝트 찜 추가
     @PostMapping("/jjim")
     @ResponseBody
-    public void addJjim(@RequestBody JjimVO jjimVO){
-        projectService.addJjim(jjimVO);
+    public void addJjim(JjimVO jjimVO){
+        projectService.myProjectJjimInsert(jjimVO);
     }
 
     // 프로젝트 찜 해제
     @DeleteMapping("/jjim")
     @ResponseBody
-    public void removeJjim(@RequestBody JjimVO jjimVO){
-        projectService.removeJjim(jjimVO);
+    public void removeJjim(JjimVO jjimVO){
+        projectService.myProjectJjimDelete(jjimVO);
     }
 
 

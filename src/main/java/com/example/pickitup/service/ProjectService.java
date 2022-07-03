@@ -155,13 +155,13 @@ public class ProjectService {
     }
 
     // 찜 추가
-    public void addJjim(JjimVO jjimVO){
-        jjimDAO.register(jjimVO);
+    public void myProjectJjimInsert(JjimVO jjimVO){
+        jjimDAO.myProjectJjimInsert(jjimVO);
     }
 
     // 찜 해제
-    public void removeJjim(JjimVO jjimVO){
-        jjimDAO.remove(jjimVO);
+    public void myProjectJjimDelete(JjimVO jjimVO){
+        jjimDAO.myProjectJjimDelete(jjimVO);
     }
 
     // 프로젝트 지원
