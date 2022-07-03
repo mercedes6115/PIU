@@ -137,7 +137,7 @@ public class StoreController {
         model.addAttribute("checkLogin",checkLogin);
 
         int checkLogin=3;
-        Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        userNum = Long.parseLong(session.getAttribute("num").toString());
         model.addAttribute("userNum", userNum);
 
         model.addAttribute("products",productService.getDetail(productNum));
@@ -201,8 +201,7 @@ public class StoreController {
     }
     //스토어 리뷰 수정 폼
     @PostMapping("/reviewModify")
-    public String reviewModify(HttpSession session,
-                               ProductReviewVO productReviewVO, Model model){
+    public String reviewModify(HttpSession session,ProductReviewVO productReviewVO, Model model){
 //        model.addAttribute("user", productNum); 유저의 정보 가져와야함.?? 어떻게??
         int checkLogin=3;
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
@@ -241,18 +240,6 @@ public class StoreController {
        return new ProductQnaPageDTO(productQnaService.getList(new ProductQnaCriteria(pageNum,5),productNum),productQnaService.count(productNum));
     }
 
-    // 스토어 문의 작성
-    @GetMapping("/qnaWrite")
-    public void qnaWrite(HttpSession session, Long productNum, Model model){
-        int checkLogin=3;
-        Long userNum = Long.parseLong(session.getAttribute("num").toString());
-        model.addAttribute("userNum", userNum);
-        model.addAttribute("fileName",session.getAttribute("fileName"));
-        model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
-        model.addAttribute("checkLogin",checkLogin);
-        //유저 정보도 같이 보내야함
-        model.addAttribute("productNum",productNum);
-    }
 
     // 스토어 문의 작성 폼
     @PostMapping("/qnaWrite")
@@ -269,17 +256,7 @@ public class StoreController {
         return storeDetail(session, productQnaVO.getProductNum(), model);
     }
 
-    // 스토어 문의 수정
-    @GetMapping("/qnaModify")
-    public void qnaModify(HttpSession session, Long num, Model model){
-        int checkLogin=3;
-        Long userNum = Long.parseLong(session.getAttribute("num").toString());
-        model.addAttribute("userNum", userNum);
-        model.addAttribute("fileName",session.getAttribute("fileName"));
-        model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
-        model.addAttribute("checkLogin",checkLogin);
-        model.addAttribute("qnaDetail",productQnaService.read(num));
-    }
+
     // 스토어 문의 수정폼
     @PostMapping("/qnaModify")
     public String qnaModifyAction(HttpSession session, ProductQnaVO productQnaVO, AdminQnaDTO adminQnaDTO, Model model){
