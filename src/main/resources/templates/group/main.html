@@ -198,12 +198,16 @@
                                                                 </div>
                                                                 <div class="showListBody5">
                                                                     <div class="sbTerrainForm">
-                                                                        <p class="sbTerrain" th:text="${project.terrain}"></p>
+                                                                        <p class="sbTerrain" th:if="${project.terrain}=='1'">산</p>
+                                                                        <p class="sbTerrain" th:if="${project.terrain}=='2'">바다</p>
+                                                                        <p class="sbTerrain" th:if="${project.terrain}=='3'">평지</p>
+                                                                        <p class="sbTerrain" th:if="${project.terrain}=='4'">기타</p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="showListBody6">
                                                                     <div class="sbCourseFrame">
-                                                                        <p class="sbCousre" th:text="${project.course}"></p>
+                                                                        <p class="sbCousre"  th:if="${project.course}=='L'">장소</p>
+                                                                        <p class="sbCousre"  th:if="${project.course}=='C'">코스</p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="showListBody7">

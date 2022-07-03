@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @Slf4j
@@ -30,10 +31,12 @@ public class GroupController {
 
     // 그룹 메인
     @GetMapping("/main")
-    public void main(Model model, Criteria criteria){
+    public void main(HttpSession session, Model model, Criteria criteria){
         // 사용자 번호 이용
-        model.addAttribute("projectList", projectService.getUserProjectList(10L,criteria ));
-        model.addAttribute("pageDTO", new PageDTO(criteria, projectService.getUserProjectTotal(10L)));
+        int checkLogin= 3;
+        Long companyNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("projectList", projectService.getUserProjectList(companyNum,criteria ));
+        model.addAttribute("pageDTO", new PageDTO(criteria, projectService.getUserProjectTotal(companyNum)));
 
     }
 
@@ -54,13 +57,15 @@ public class GroupController {
         log.info("================================");
         log.info(criteria.toString());
         log.info("================================");
-        model.addAttribute("adminBoard", tempAdminService.getReadDetail(51L));
+        model.addAttribute("adminBoard", tempAdminService.getReadDetail(num));
 
     }
 
     // 그룹 프로필 수정
     @GetMapping("/modify")
-    public void modify(Model model, Long companyNum){
+    public void modify(HttpSession session,Model model, Long companyNum){
+        int checkLogin= 3;
+        companyNum = Long.parseLong(session.getAttribute("num").toString());
         model.addAttribute("company", companyService.read(companyNum));
     }
 

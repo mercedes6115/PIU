@@ -53,7 +53,8 @@ public class UserController {
     // 마이페이지 메인
     @GetMapping("/myPage")
     public String mypage(HttpSession session, Model model){
-        int checkLogin=3;
+        int checkLogin= 3;
+
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
         model.addAttribute("fileName",session.getAttribute("fileName"));
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
@@ -71,9 +72,10 @@ public class UserController {
     // 마이페이지 포인트
     @GetMapping("/myPoint")
     public String mypoint(HttpSession session, Model model) throws ParseException {
-        int checkLogin=3;
-        model.addAttribute("checkLogin",checkLogin);
+        int checkLogin= 3;
+
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("checkLogin",checkLogin);
         model.addAttribute("changePoint",tempUserSerivce.changePoint(userNum));
         model.addAttribute("user",tempUserSerivce.readUserInfo(userNum));
         return "/user/myPoint";
@@ -82,7 +84,7 @@ public class UserController {
     // 마이페이지 QnA
     @GetMapping("/myQnA")
     public String myQnA(HttpSession session, Model model){
-        int checkLogin=3;
+        int checkLogin= 3;
         model.addAttribute("checkLogin",checkLogin);
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
         model.addAttribute("qnaList",tempUserSerivce.getMyProductQna(userNum));
@@ -93,7 +95,7 @@ public class UserController {
     // 마이페이지 내후기
     @GetMapping("/myReview")
     public String myReview(HttpSession session, Model model){
-        int checkLogin=3;
+        int checkLogin= 3;
         model.addAttribute("checkLogin",checkLogin);
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
         model.addAttribute("reviewList",tempUserSerivce.myAllReview(userNum));
@@ -105,7 +107,7 @@ public class UserController {
     // 마이페이지 주문내역
     @GetMapping("/myOrderList")
     public String myOrderList(HttpSession session, Model model,String num){
-        int checkLogin=3;
+        int checkLogin= 3;
         model.addAttribute("checkLogin",checkLogin);
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
         SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -129,12 +131,17 @@ public class UserController {
 
     // 비밀번호 찾기
     @GetMapping("/findPw")
-    public void findPW(){
-
+    public void findPW(HttpSession session, Model model) {
+        int checkLogin= 3;
+            Long userNum = Long.parseLong(session.getAttribute("num").toString());
+            model.addAttribute("fileName", session.getAttribute("fileName"));
+            model.addAttribute("uploadPath", session.getAttribute("uploadPath"));
+            model.addAttribute("checkLogin", checkLogin);
     }
 
     @PostMapping("/findPw")
-    public String findPWForm(String email, Model model) throws Exception {
+    public String findPWForm(HttpSession session,String email, Model model) throws Exception {
+
         log.info("전달받은 이메일 : " + email);
         if(tempUserSerivce.emailcheck(email)==1){ //이메일 확인
             model.addAttribute("msg","인증메일을 보냈습니다. 메일을 확인해 주세요");
@@ -147,7 +154,12 @@ public class UserController {
 
     // 비밀번호 재설정
     @GetMapping("/updatePw")
-    public void updatePw(@RequestParam(value="email")String email){
+    public void updatePw(@RequestParam(value="email")String email, HttpSession session, Model model){
+        int checkLogin= 3;
+        Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("fileName", session.getAttribute("fileName"));
+        model.addAttribute("uploadPath", session.getAttribute("uploadPath"));
+        model.addAttribute("checkLogin", checkLogin);
         log.info("비밀번호 재설정 들어옴");
         log.info(email);
 
@@ -164,8 +176,11 @@ public class UserController {
     // 마이페이지 비밀번호 수정
     @GetMapping("/myPassword")
     public String myPassword(HttpSession session, Model model){
-        int checkLogin=3;
+        int checkLogin= 3;
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("fileName", session.getAttribute("fileName"));
+        model.addAttribute("uploadPath", session.getAttribute("uploadPath"));
+        model.addAttribute("checkLogin", checkLogin);
         model.addAttribute("getDetail",tempUserSerivce.readUserInfo(userNum));
         return "/user/myPassword";
     }

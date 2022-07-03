@@ -208,7 +208,7 @@
         REGIST_DATE, UPDATE_DATE, STATUS, COMPANY_NUM, JJIM_COUNT, PROJECT_DATE, COMPANY_COMMENT,
         SUMMARY,START_ADDRESS_DETAIL,END_ADDRESS_DETAIL,STARTTIME,ENDTIME)
         VALUES(SEQ_PROJECT.NEXTVAL, #{title}, #{content}, #{course}, #{terrain}, #{point}, '0', #{startAddress},
-        #{endAddress}, #{distance}, NULL, SYSDATE, SYSDATE, '1' , #{companyNum}, NULL, NULL,
+        #{endAddress}, #{distance}, NULL, SYSDATE, SYSDATE, NULL , #{companyNum}, NULL, NULL,
         #{companyComment},NULL,#{startAddressDetail},#{endAddressDetail},TO_DATE(#{startTime},'yyyy-mm-dd
         hh24:mi:ss'),TO_DATE(#{endTime},'yyyy-mm-dd hh24:mi:ss'))
     </insert>

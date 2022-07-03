@@ -5,9 +5,18 @@
 
 @keyframes ani{
     from {
-        transform: translate(1519px,0)
+        transform: translate(1519px,0);
     } to {
-          transform:translate(0,0)
+          transform:translate(0,0);
+          animation-direction:alternate;
+      }
+}
+@keyframes ani2{
+    from {
+        transform: rotateY(180deg);
+        transform: translate(0,0);
+    } to {
+          transform:translate(1519px,0);
       }
 }
 
@@ -17,10 +26,21 @@ body {
 }
 
 .back{
-    background-image: url("/images/chun.gif");
+    background-image: url("/images/chunsik.gif");
     background-repeat: no-repeat;
-    transition: all ease 2s 0s;
-    animation:ani 3s infinite linear;
+    animation:ani 4s infinite linear;
+    /*animation: ani2 6s infinite linear ;*/
+    width: 250px;
+    height: 250px;
+    background-size: cover;
+    background-color: white;
+}
+
+.back2{
+    background-image: url("/images/chunsik.gif");
+    background-repeat: no-repeat;
+    animation:ani2 4s infinite linear;
+    /*animation: ani2 6s infinite linear ;*/
     width: 250px;
     height: 250px;
     background-size: cover;
