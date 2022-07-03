@@ -68,16 +68,7 @@
     let productNum = [[${productNum}]];
 
     //현재 받은 세션으로 userNum 값 구하기
-<<<<<<< HEAD
-    let userNum = [[${userNum}]];  // 임시 데이터
-    $.ajax({
-        url : "/store/userInfo?userNum="+userNum,
-        type : "get",
-        success : function (user) {
-            $(".review_id").text(user.nickname);
-=======
     let userNum = [[${userNum}]];
->>>>>>> d620152a70aea1f6ccfd602fa25b3c221c7e7bff
 
     qnaService.getUserinfo(userNum,function (user) {
         $(".review_id").text(user.nickname);
