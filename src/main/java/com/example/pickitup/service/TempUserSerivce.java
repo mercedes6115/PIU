@@ -57,7 +57,10 @@ public class TempUserSerivce {
     public UserVO readUserInfo(Long num) {
         return userDAO.read(num);
     }
-
+    //회사 상세보기
+    public CompanyVO readCompanyInfo(Long num) {
+        return companyDAO.read(num);
+    }
     // 유저 정보 수정
     public boolean updateUserInfo(UserVO userVO) {
 

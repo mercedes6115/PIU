@@ -64,14 +64,14 @@
                                 <div class="header-right-menu-wrap2">
 
                                     <!--  관리자면, 단체(회사)일경우 마이플로깅 -> 플로거 센터로 변경 타임리프 이용-->
-                                    <div th:if="${category} == 0">
+                                    <div th:if="${category} == 'company'">
                                     <div class="header-right-menu1" th:if="${checkLogin}==3 or ${checkLogin}==2">
                                         <a class="creater" href="/group/main">
                                             <p class="myplogging">마이플로깅</p>
                                         </a>
                                     </div>
                                     </div>
-                                    <div th:unless="${category} == 0">
+                                    <div th:unless="${category} == 'company'">
                                     <div class="right-empty-space1"></div>
                                     <div class="header-right-menu1" th:if="${checkLogin}==3 or ${checkLogin}==2">
                                         <a href="/user/myPage">
