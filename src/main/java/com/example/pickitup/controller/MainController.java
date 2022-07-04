@@ -54,7 +54,6 @@ public class MainController {
         model.addAttribute("course1",projectService.getListCourse("산"));
         model.addAttribute("course2",projectService.getListCourse("바다"));
         model.addAttribute("course3",projectService.getListCourse("강"));
-        model.addAttribute("userNum", userNum);
 
         log.info("메인 들어옴");
        return "/main/main";

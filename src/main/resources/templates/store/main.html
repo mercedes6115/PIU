@@ -314,7 +314,7 @@
             str += "<a class=\"goDetail\" th:href=\"" + lists[i].num + "\" style=\"cursor:pointer\">";
             (function () {
                 mainService.getFileLists(lists[i].num,function (files) {
-                    str += "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
+                    str += "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/" + files[0].uuid + "_"  + files[0].fileName + "'>";
                 })
             })(i);
             str += "</a>";

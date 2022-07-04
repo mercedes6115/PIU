@@ -55,7 +55,6 @@ public class StoreController {
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
         model.addAttribute("userNum", userNum);
         model.addAttribute("checkLogin",checkLogin);
-//        model.addAttribute("checkLogin",checkLogin);
         if(category == ""){
             category = null;
         }
@@ -113,7 +112,7 @@ public class StoreController {
         model.addAttribute("fileName",session.getAttribute("fileName"));
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
         model.addAttribute("checkLogin",checkLogin);
-       return productReviewService.getList(productNum);
+        return productReviewService.getList(productNum);
     }
 
     //유저 정보 얻어오기
@@ -128,13 +127,7 @@ public class StoreController {
     @GetMapping("/goReviewList/{productNum}")
     public String goReviewList(HttpSession session,@PathVariable("productNum") Long productNum,Model model){
         int checkLogin=3;
-//        // 유저 세션으로 받아서 num 넣어줘야함
-//        model.addAttribute("user",tempUserSerivce.readUserInfo(22L));
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
-        model.addAttribute("fileName",session.getAttribute("fileName"));
-        model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
-        model.addAttribute("checkLogin",checkLogin);
-        userNum = Long.parseLong(session.getAttribute("num").toString());
         model.addAttribute("userNum", userNum);
         model.addAttribute("products",productService.getDetail(productNum));
         model.addAttribute("productNum",productNum);
@@ -144,15 +137,12 @@ public class StoreController {
 
     // 스토어 리뷰 작성
     @GetMapping("/reviewWrite")
-
-
     public void reviewWrite(HttpSession session,Long num, Model model){
         int checkLogin=3;
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
         model.addAttribute("fileName",session.getAttribute("fileName"));
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
         model.addAttribute("checkLogin",checkLogin);
-
         model.addAttribute("userNum",userNum);
         model.addAttribute("user",tempUserSerivce.readUserInfo(userNum));
         model.addAttribute("product",productService.getDetail(num));
@@ -161,7 +151,7 @@ public class StoreController {
     // 스토어 리뷰 작성 폼
     @PostMapping("/reviewWrite")
     public RedirectView reviewWriteForm(HttpSession session, ProductReviewVO productReviewVO, RedirectAttributes rttr,Long productNum, Model model){
-//      model.addAttribute("user", productNum); 유저의 정보 가져와야함.?? 어떻게??
+//        model.addAttribute("user", productNum); 유저의 정보 가져와야함.?? 어떻게??
         int checkLogin=3;
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
         model.addAttribute("fileName",session.getAttribute("fileName"));
@@ -195,7 +185,8 @@ public class StoreController {
     }
     //스토어 리뷰 수정 폼
     @PostMapping("/reviewModify")
-    public String reviewModify(HttpSession session,ProductReviewVO productReviewVO, Model model){
+    public String reviewModify(HttpSession session,
+                               ProductReviewVO productReviewVO, Model model){
 //        model.addAttribute("user", productNum); 유저의 정보 가져와야함.?? 어떻게??
         int checkLogin=3;
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
@@ -231,9 +222,21 @@ public class StoreController {
         model.addAttribute("fileName",session.getAttribute("fileName"));
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
         model.addAttribute("checkLogin",checkLogin);
-       return new ProductQnaPageDTO(productQnaService.getList(new ProductQnaCriteria(pageNum,5),productNum),productQnaService.count(productNum));
+        return new ProductQnaPageDTO(productQnaService.getList(new ProductQnaCriteria(pageNum,5),productNum),productQnaService.count(productNum));
     }
 
+    // 스토어 문의 작성
+    @GetMapping("/qnaWrite")
+    public void qnaWrite(HttpSession session, Long productNum, Model model){
+        int checkLogin=3;
+        Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("userNum", userNum);
+        model.addAttribute("fileName",session.getAttribute("fileName"));
+        model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
+        model.addAttribute("checkLogin",checkLogin);
+        //유저 정보도 같이 보내야함
+        model.addAttribute("productNum",productNum);
+    }
 
     // 스토어 문의 작성 폼
     @PostMapping("/qnaWrite")
@@ -246,11 +249,21 @@ public class StoreController {
         model.addAttribute("checkLogin",checkLogin);
 
         productQnaService.register(productQnaVO);
-        tempAdminService.qnaStoreSave(adminQnaDTO);
+//        tempAdminService.qnaStoreSave(adminQnaDTO);
         return storeDetail(session, productQnaVO.getProductNum(), model);
     }
 
-
+    // 스토어 문의 수정
+    @GetMapping("/qnaModify")
+    public void qnaModify(HttpSession session, Long num, Model model){
+        int checkLogin=3;
+        Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        model.addAttribute("userNum", userNum);
+        model.addAttribute("fileName",session.getAttribute("fileName"));
+        model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
+        model.addAttribute("checkLogin",checkLogin);
+        model.addAttribute("qnaDetail",productQnaService.read(num));
+    }
     // 스토어 문의 수정폼
     @PostMapping("/qnaModify")
     public String qnaModifyAction(HttpSession session, ProductQnaVO productQnaVO, AdminQnaDTO adminQnaDTO, Model model){
@@ -310,7 +323,7 @@ public class StoreController {
         productQnaCommentService.register(productQnaCommentVO);
         return "success";
     }
-//
+    //
     // 스토어 문의 댓글 삭제
     // 관리자 번호와 같이 넘어와야함
     @ResponseBody
@@ -464,7 +477,7 @@ public class StoreController {
         model.addAttribute("fileName",session.getAttribute("fileName"));
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
         model.addAttribute("checkLogin",checkLogin);
-       return jjimService.getList();
+        return jjimService.getList();
     }
 
 
