@@ -30,11 +30,13 @@ public class MainController {
         System.out.println("=============="+request.getRequestURI().split("/")[1]);
 
         if(session.getAttribute("token")!=null){
-//            log.info("tokentokentokentokentokentokentoken");
-//            log.info(session.toString());
-//            log.info((String)session.getAttribute("token"));
-//            log.info("aaaaaaaaaaaaaaaaaaaaaaaaaa");
+            log.info("tokentokentokentokentokentokentoken");
+            log.info(session.toString());
+            log.info((String)session.getAttribute("token"));
+            log.info("aaaaaaaaaaaaaaaaaaaaaaaaaa");
             checkLogin = 2;
+            Long userNum = Long.parseLong(session.getAttribute("num").toString());
+            model.addAttribute("userNum", userNum);
         }else if(session.getAttribute("num")!=null&&session.getAttribute("nickname")!=null){
             checkLogin= 3;
             Long userNum = Long.parseLong(session.getAttribute("num").toString());
