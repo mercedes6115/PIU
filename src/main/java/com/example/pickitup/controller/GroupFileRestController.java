@@ -1,6 +1,5 @@
 package com.example.pickitup.controller;
 
-import com.example.pickitup.domain.vo.project.projectFile.ProjectFileVO;
 import com.example.pickitup.domain.vo.user.CompanyVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,9 +20,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.UUID;
 
 @Controller
@@ -35,7 +32,7 @@ public class GroupFileRestController {
     @PostMapping("/upload")
     @ResponseBody
     public CompanyVO upload(MultipartFile[] uploadFiles) throws IOException {
-        String uploadFolder = "/Users/minmin/aigb_0900_sms/upload/";
+        String uploadFolder = "C:/upload/";
         CompanyVO companyVO = new CompanyVO();
 
 //        yyyy/MM/dd 경로 만들기
@@ -61,7 +58,7 @@ public class GroupFileRestController {
     @GetMapping("/display")
     @ResponseBody
     public byte[] getFile(String fileName) throws IOException{
-        File file = new File("/Users/minmin/aigb_0900_sms/upload/", fileName);
+        File file = new File("C:/upload/", fileName);
         return FileCopyUtils.copyToByteArray(file);
     }
 
@@ -74,7 +71,7 @@ public class GroupFileRestController {
     @GetMapping("/download")
     @ResponseBody
     public ResponseEntity<Resource> downloadFile(String fileName) throws UnsupportedEncodingException {
-        Resource resource = new FileSystemResource("/Users/minmin/aigb_0900_sms/upload/" + fileName);
+        Resource resource = new FileSystemResource("C:/upload/" + fileName);
         HttpHeaders header = new HttpHeaders();
         String name = resource.getFilename();
         name = name.substring(name.indexOf("_") + 1);

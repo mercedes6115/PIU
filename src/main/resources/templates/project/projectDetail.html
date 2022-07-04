@@ -92,7 +92,7 @@
                             <div class="gIntroduceProfileFrame">
                                     <span class="gIntroduceProfileForm">
                                         <picture class="gIntroduceProfile">
-                                            <img th:src="@{/groupFile/display?fileName=} + ${company.profileUploadPath} + @{/} + ${company.profileFileName}" alt="">
+<!--                                            <img th:src="@{/groupFile/display?fileName=} + ${company.profileUploadPath} + @{/} + ${company.profileFileName}" alt="">-->
                                         </picture>
                                     </span>
                             </div>
@@ -116,18 +116,18 @@
                     </div>
                 </div>
 
-                <div id="toitem_question">
-                    <div class="flex" style="align-items: center; justify-content: space-between;">
-                        <p class="highlight">문의</p>
-                        <!--                                문의하기 a 태그에 num 태워서 보내기-->
-                        <div><a th:href="@{/project/qnaWrite?num={num}(num = ${project.num})}" class="btn_qnaToadmin"></div>
-                    </div>
-                    <div class="space"></div>
-                    <div class="ProductQnas"></div>
-                    <div class="QnaPaging" style="text-align: center;"></div>
-                    <div class="space_line"></div>
-                    <!-- 댓글 끝 -->
-                </div>
+                <!--                <div id="toitem_question">-->
+                <!--                    <div class="flex" style="align-items: center; justify-content: space-between;">-->
+                <!--                        <p class="highlight">문의</p>-->
+                <!--                        &lt;!&ndash;                                문의하기 a 태그에 num 태워서 보내기&ndash;&gt;-->
+                <!--                        <div><a th:href="@{/project/qnaWrite?num={num}(num = ${project.num})}" class="btn_qnaToadmin"></div>-->
+                <!--                    </div>-->
+                <!--                    <div class="space"></div>-->
+                <!--                    <div class="ProductQnas"></div>-->
+                <!--                    <div class="QnaPaging" style="text-align: center;"></div>-->
+                <!--                    <div class="space_line"></div>-->
+                <!--                    &lt;!&ndash; 댓글 끝 &ndash;&gt;-->
+                <!--                </div>-->
 
             </div>
             <div class="readApplicantBody">
@@ -167,7 +167,7 @@
                                         <p class="readApplicantAddress" th:text="|출발지: *{startAddress}|"></p>
                                         <!-- 조건문 처리 -->
                                         <p class="readApplicantAddress" th:if="${project.course.equals('C')}" th:text="|도착지: *{endAddress}|"></p>
-                                        <p class="readApplicantAddress" th:if="${project.course.equals('C')}" th:text="|거리: *{distance}|">3km</p>
+                                        <p class="readApplicantAddress" th:if="${project.course.equals('C')}" th:text="|거리: *{distance}km|"></p>
                                     </div>
                                 </div>
                             </div>
@@ -229,7 +229,7 @@
         <span class="applyInfo">신청하시면 취소하실 수 없습니다!</span>
         <span>신중히 신청해주시기 바랍니다.</span>
         <div><input type="button" id="projectApplyBtn" class="projectApplyBtn" value="신청하기" ></div>
-        </div>
+    </div>
 </div>
 
 <!-------------------------------- 공유하기 모달창---------------------------------------------------- -->
@@ -274,7 +274,8 @@
     // 프로젝트 번호
     let projectNum = [[${project.num}]];
     // 유저 번호(접속)
-    let userNum = 41;
+    // let userNum = [[${userNum}]];
+    let userNum = 44;
 
 
     let start = [[${project.startAddress}]];
@@ -292,41 +293,38 @@
 
     // 내부 페이지 이동
 
-    // var pIntroOffset = $(".pIntroduceFrame").offset().top - 150;
-    // var gIntroOffset = $(".gIntroduceFrame").offset().top - 200;
+    var pIntroOffset = $(".pIntroduceFrame").offset().top - 150;
+    var gIntroOffset = $(".gIntroduceFrame").offset().top - 200;
     // var qnaOffset = $(".qnaFrame").offset().top - 150;
-    // var guideOffset = $(".useGuideFrame").offset().top;
-    //
-    // var currentScroll = document.documentElement.scrollTop;
-    // if(currentScroll < pIntroOffset) {
-    //     if(!$currentPlace.hasClass('active')) {
-    //         $currentPlace.addClass('active');
-    //     }
-    // }
+    var guideOffset = $(".useGuideFrame").offset().top;
 
-
-        // 지원하기 모달
-        let modal = document.getElementById("applyModal");
-        let btn = document.getElementById("applyBtn");
-        let span = document.getElementsByClassName("close_btn")[0];
-
-
-        btn.onclick = function() {
-            console.log('hello');
-            console.log(modal);
-            modal.style.display = "block";
+    var currentScroll = document.documentElement.scrollTop;
+    if(currentScroll < pIntroOffset) {
+        if(!$currentPlace.hasClass('active')) {
+            $currentPlace.addClass('active');
         }
-        span.onclick = function() {
+    }
+
+
+    // 지원하기 모달
+    let modal = document.getElementById("applyModal");
+    let btn = document.getElementById("applyBtn");
+    let span = document.getElementsByClassName("close_btn")[0];
+
+
+    btn.onclick = function() {
+        console.log('hello');
+        console.log(modal);
+        modal.style.display = "block";
+    }
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+    window.onclick = function(event) {
+        if (event.target == modal) {
             modal.style.display = "none";
         }
-
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-
-
+    }
 
 
     $(".moveIntroduce").click(function(){
@@ -393,10 +391,20 @@
             $.ajax({
                 url: "/project/jjim",
                 type: "post",
-                data: JSON.stringify({"userNum": userNum, "projectNum": num, "category": "2"}),
+                data: JSON.stringify({"userNum": userNum, "projectNum": projectNum, "category": "2"}),
                 contentType: "application/json; charset=utf-8;",
                 success: function(){
-                    $('.pLikeImage').html("<span class=\"material-icons-outlined like\" id=\"likebtn\" style='color: black'>favorite</span>")
+                    $('.pLikeImage').html("<span class='material-icons-outlined'>favorite</span>");
+
+                    // 찜 개수
+                    $.ajax({
+                        url: "/project/jjim/" + projectNum,
+                        type: "get",
+                        success: function(count){
+                            $('.pLikeCount').html(count);
+
+                        }
+                    });
                 }
             });
             jjimCheck++;
@@ -406,11 +414,19 @@
             $.ajax({
                 url: "/project/jjim",
                 type: "delete",
-                data: JSON.stringify({"userNum": userNum, "projectNum": num}),
+                data: JSON.stringify({"userNum": userNum, "projectNum": projectNum}),
                 contentType: "application/json; charset=utf-8;",
                 success: function(){
                     $('.pLikeImage').html("<span class=\"material-symbols-outlined\" id=\"heart\">favorite</span>\n");
+                    // 찜 개수
+                    $.ajax({
+                        url: "/project/jjim/" + num,
+                        type: "get",
+                        success: function(count){
+                            $('.pLikeCount').html(count);
 
+                        }
+                    });
                 }
             });
             jjimCheck--;
@@ -418,6 +434,18 @@
         }
 
     });
+
+
+    // 찜 개수
+    $.ajax({
+        url: "/project/jjim/" + projectNum,
+        type: "get",
+        success: function(count){
+            $('.pLikeCount').html(count);
+
+        }
+    });
+
 
 
 
@@ -428,10 +456,11 @@
             $.ajax({
                 url: "/project/apply",
                 type: "post",
-                data: JSON.stringify({"userNum": userNum, "projectNum": num}),
+                data: JSON.stringify({"userNum": userNum, "projectNum": projectNum}),
                 contentType: "application/json; charset=utf-8;",
                 success: function(){
                     apply = 1;
+                    alert("신청되었습니다.")
                 }
             });
         }else{
@@ -440,25 +469,24 @@
         }
     });
 
-    //
-    // // 사진 불러오기
-    // let projectNum = 41;
-    // $.ajax({
-    //     url: "/projectFile/list/"+ projectNum,
-    //     type : "get",
-    //     success : function (files) {
-    //         str = "";
-    //         for (let i = 1; i < files.length; i++){
-    //             console.log(files[i].fileName);
-    //             console.log(files[i]);
-    //
-    //             str += "<picture class=\"pIntroduceContent\" >";
-    //             str += "<img src=\"/projectFile/display?fileName="+ files[i].uploadPath + "/" + files[i].uuid + "_" + files[i].fileName + "\">";
-    //             str += "</picture>";
-    //         }
-    //         $('.imgBox').append(str);
-    //     }
-    // })
+
+    // 사진 불러오기
+    $.ajax({
+        url: "/projectFile/list/"+ projectNum,
+        type : "get",
+        success : function (files) {
+            str = "";
+            for (let i = 1; i < files.length; i++){
+                console.log(files[i].fileName);
+                console.log(files[i]);
+
+                str += "<picture class=\"pIntroduceContent\" >";
+                str += "<img src=\"/projectFile/display?fileName="+ files[i].uploadPath + "/" + files[i].uuid + "_" + files[i].fileName + "\">";
+                str += "</picture>";
+            }
+            $('.imgBox').append(str);
+        }
+    })
 
 
     //공유하기 모달창
@@ -486,7 +514,7 @@
     // 주소값과 번호를 받아와서  주소 값으로 좌표 생성, 번호로 어느것을 눌렀는지 확인.
     test()
     function test() {
-        if(end.toString()=="null") {
+        if(end==null) {
             xy(start);
             // console.log(address[0], address[1]);
             // getStartMap(address[0], address[1]);
@@ -680,61 +708,63 @@
 
 
 
-
-    $.ajax({
-        url: "/project/qnaList/" + projectNum,
-        type: "get",
-        dataType: "json",
-        success: function(qnaVO){
-            let str = "";
-            if(qnaVO.length==0){
-                str += "현재 문의가 없습니다.";
-                $('.ProductQnas').html(str);
-                return;
-            }
-            $.each(qnaVO, function(i, qna){
-                str += "<div class=\"qnas\">";
-                str += "<div class=\"flex\" style=\"align-items: center;\">";
-                str += "<div class=\"profile_img\"><img src=\"/images/1.jpg\" style=\"width: 100%; height: 100%;\"></div>";
-                str += "<div class=\"id_and_date\" style=\"flex-direction: column;\">";
-                str += "<div class=\"admin_id\" style=\"color: black;\">"+qna.userNum+"</div>";
-                str += "<div class=\"admin_date\">"+qna.updateDate+"</div>";
-                str += "</div>";
-                str += "</div>";
-                str += "<div class=\"space\"></div>";
-                str += "<div class=\"small_and_gray\"><p class=\"user_question\">"+qna.content+"</p></div>";
-                str += "<div class=\"space\"></div>";
-                str += "<div class=\"qna_replys\">";
-                str += "<div class=\"qna_reply\">";
-                str += "<div class=\"flex\" style=\"align-items: center;\">";
-                str += "<div class=\"admin_profile_img\"><img src=\"/images/4.jpg\"></div>";
-                str += "<div class=\"flex id_and_date\">";
-                str += "<div class=\"admin_id\">관리자 아이디 &nbsp;</div>";
-                str += "<div class=\"admin_date\">2022.06.11</div>";
-                str += "</div>";
-                str += "</div>";
-                str += "<div class=\"small_and_gray\" style=\"color: black;\">";
-                str += "<p class=\"admin_comment\"> 네 고객님 초록색 고무장갑 특 엑스 라지가 없으셔서 많이 당황하셨죠? 금방 재고가 들어올 예정이니 구독과 알람설정 부탁드려요!</p>";
-                str += "</div>";
-                str += "<div class=\"space\"></div>";
-                str += "</div>";
-                str += "</div>";
-                str += "<div class=\"flex\" style=\"position: relative; align-items: center; height: 48px;\">";
-                str += "<div class=\"do_admin_comment\">";
-                str += "<div class=\"flex\">";
-                str += "<input class=\"doComment\" type=\"text\" placeholder=\"관리자만 입력할 수 있습니다\">";
-                str += "<div class=\"send_plane\" style=\"width: 20px; height: 20px;\"><span class=\"material-symbols-outlined\">";
-                str += "send";
-                str += " </span></div>";
-                str += "</div>";
-                str += "</div>";
-                str += "</div>";
-                str += "</div>";
-            });
-            $('.ProductQnas').html(str);
-
-        }
-    });
+    //
+    // $.ajax({
+    //     url: "/project/qnaList/" + projectNum,
+    //     type: "get",
+    //     dataType: "json",
+    //     success: function(qnaVO){
+    //         let str = "";
+    //         if(qnaVO.length==0){
+    //             str += "현재 문의가 없습니다.";
+    //             $('.ProductQnas').html(str);
+    //             return;
+    //         }
+    //         $.each(qnaVO, function(i, qna){
+    //             str += "<div class=\"qnas\">";
+    //             str += "<div class=\"flex\" style=\"align-items: center;\">";
+    //             str += "<div class=\"profile_img\"><img src=\"/images/1.jpg\" style=\"width: 100%; height: 100%;\"></div>";
+    //             str += "<div class=\"id_and_date\" style=\"flex-direction: column;\">";
+    //             str += "<div class=\"admin_id\" style=\"color: black;\">"+qna.userNum+"</div>";
+    //             str += "<div class=\"admin_date\">"+qna.updateDate+"</div>";
+    //             str += "</div>";
+    //             str += "</div>";
+    //             str += "<div class=\"space\"></div>";
+    //             str += "<div class=\"small_and_gray\"><p class=\"user_question\">"+qna.content+"</p></div>";
+    //             str += "<div class=\"space\"></div>";
+    //             str += "<div class=\"qna_replys\">";
+    //             str += "<div class=\"qna_reply\">";
+    //             str += "<div class=\"flex\" style=\"align-items: center;\">";
+    //             str += "<div class=\"admin_profile_img\"><img src=\"/images/4.jpg\"></div>";
+    //             str += "<div class=\"flex id_and_date\">";
+    //             str += "<div class=\"admin_id\">관리자 아이디 &nbsp;</div>";
+    //             str += "<div class=\"admin_date\">2022.06.11</div>";
+    //             str += "</div>";
+    //             str += "</div>";
+    //             str += "<div class=\"small_and_gray\" style=\"color: black;\">";
+    //             str += "<p class=\"admin_comment\"> 네 고객님 초록색 고무장갑 특 엑스 라지가 없으셔서 많이 당황하셨죠? 금방 재고가 들어올 예정이니 구독과 알람설정 부탁드려요!</p>";
+    //             str += "</div>";
+    //             str += "<div class=\"space\"></div>";
+    //             str += "</div>";
+    //             str += "</div>";
+    //             str += "<div class=\"flex\" style=\"position: relative; align-items: center; height: 48px;\">";
+    //             str += "<div class=\"do_admin_comment\">";
+    //             str += "<div class=\"flex\">";
+    //             str += "<input class=\"doComment\" type=\"text\" placeholder=\"관리자만 입력할 수 있습니다\">";
+    //             str += "<div class=\"send_plane\" style=\"width: 20px; height: 20px;\"><span class=\"material-symbols-outlined\">";
+    //             str += "send";
+    //             str += " </span></div>";
+    //             str += "</div>";
+    //             str += "</div>";
+    //             str += "</div>";
+    //             str += "</div>";
+    //         });
+    //         $('.ProductQnas').html(str);
+    //         // $.each(reviewVO, function(i, review){
+    //         // });
+    //         // $('.ProductReviews').html(str);
+    //     }
+    // });
 
 
 </script>

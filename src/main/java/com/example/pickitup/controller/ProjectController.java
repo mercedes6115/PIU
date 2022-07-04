@@ -14,7 +14,6 @@ import com.example.pickitup.service.TempUserSerivce;
 import com.example.pickitup.service.user.ApplyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import oracle.jdbc.proxy.annotation.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -50,40 +49,39 @@ public class ProjectController {
 
         model.addAttribute("company", companyService.readCompanyInfo(projectVO.getCompanyNum()));
         model.addAttribute("project", projectVO);
-        model.addAttribute("qnaList", projectService.getQnAList(num));
+//        model.addAttribute("qna", projectService.getQnAList(num));
         model.addAttribute("img", projectService.getProjectFileList(num));
         return "/project/projectDetail";
     }
 
     // 프로젝트 문의 작성
     @GetMapping("/qnaWrite")
-    public void qnaWrite(Long userNum, Long projectNum, Model model){
+    public void qnaWrite(HttpSession session, Long num, Model model){
+        int checkLogin=3;
+        Long userNum = Long.parseLong(session.getAttribute("num").toString());
 
         // projectNum, title -> model 사용
         // userNum -> 쿠키 및 세션 사용
-        model.addAttribute("user", tempUserSerivce.readUserInfo(userNum));
+        model.addAttribute("project", projectService.read(num));
     }
 
-
-
-    // 프로젝트 문의 수정
-    @GetMapping("/qnaModify")
-    public void qnaModify(Long qnaNum, Long userNum, Model model){
-        model.addAttribute("user", tempUserSerivce.readUserInfo(userNum));
-        model.addAttribute("qna", projectService.readQnA(qnaNum));
-    }
 
     // 프로젝트 문의 작성폼
     @PostMapping("/qnaWriteForm")
-    public String qnaWriteForm(ProjectQnaVO projectQnaVO, Model model) throws ParseException {
+    public String qnaWriteForm(HttpSession session, ProjectQnaVO projectQnaVO, AdminQnaDTO adminQnaDTO, Model model) throws ParseException {
         // 임시
+        int checkLogin=3;
+        Long userNum = Long.parseLong(session.getAttribute("num").toString());
+        projectQnaVO.setUserNum(userNum);
         projectService.registerQnA(projectQnaVO);
+        tempAdminService.qnaProjectSave(adminQnaDTO);
+        return projectDetail(11L, model);
+
         // 임시
-        return  "redirect:/project/projectDetail?num=" + projectQnaVO.getProjectNum();
+
+
 
     }
-
-    
 
     // 프로젝트 등록 스텝 1
     @GetMapping("/createStep")
@@ -127,21 +125,12 @@ public class ProjectController {
         projectService.remove(num);
     }
 
-
-    // 프로젝트 찜 추가
-    @PostMapping("/jjim")
-    @ResponseBody
-    public void addJjim(@RequestBody JjimVO jjimVO){
-        projectService.addJjim(jjimVO);
-    }
-
     // 프로젝트 찜 해제
     @DeleteMapping("/jjim")
     @ResponseBody
     public void removeJjim(@RequestBody JjimVO jjimVO){
         projectService.removeJjim(jjimVO);
     }
-
 
     // 프로젝트 지원
     @PostMapping("/apply")

@@ -125,22 +125,22 @@
 
     for(let cnt1=0;cnt1<list.length;cnt1++){
         console.log(typeof(list[cnt1]["terrain"]));
-        if(list[cnt1]["course"]=='L'){
+        if(list[cnt1]["course"]=='place'){
             location1++;
         }
-        if(list[cnt1]["course"]=='C'){
+        if(list[cnt1]["course"]=='course'){
             course1++;
         }
-        if(list[cnt1]["terrain"]=='1'){
+        if(list[cnt1]["terrain"]=='mountain'){
             mountain1++;
         }
-        if(list[cnt1]["terrain"]=='2'){
+        if(list[cnt1]["terrain"]=='beach'){
             coast1++;
         }
-        if(list[cnt1]["terrain"]=='3'){
+        if(list[cnt1]["terrain"]=='ground'){
             ground1++;
         }
-        if(list[cnt1]["terrain"]=='4'){
+        if(list[cnt1]["terrain"]=='etc'){
             etc1++;
         }
         if(list[cnt1]["approval"]=='5'){
@@ -197,31 +197,31 @@
     google.charts.load('current', {'packages': ['corechart']});
     google.charts.setOnLoadCallback(drawChart21);
     google.charts.setOnLoadCallback(drawChart2);
-    google.charts.setOnLoadCallback(drawChart());
+    // google.charts.setOnLoadCallback(drawChart());
 
-    function drawChart() {
-        let date = new Date();
-
-        var data = google.visualization.arrayToDataTable([
-            ['Year', '진행중', '모집중'],
-            ['06.07', 1000, 400],
-            ['06.08', 1000, 400],
-            ['06.09', 1000, 400],
-            ['06.10', 1000, 400],
-            ['06.11', 1170, 460],
-            ['06.12', 660, 1120],
-            ['06.13', 1030, 540]
-        ]);
-
-        var options = {
-            title: '플로깅 현황',
-            hAxis: {title: date.toLocaleDateString(), titleTextStyle: {color: '#333'}},
-            vAxis: {minValue: 0}
-        };
-
-        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
-    }
+    // function drawChart() {
+    //     let date = new Date();
+    //
+    //     var data = google.visualization.arrayToDataTable([
+    //         ['Year', '진행중', '모집중'],
+    //         ['06.07', 1000, 400],
+    //         ['06.08', 1000, 400],
+    //         ['06.09', 1000, 400],
+    //         ['06.10', 1000, 400],
+    //         ['06.11', 1170, 460],
+    //         ['06.12', 660, 1120],
+    //         ['06.13', 1030, 540]
+    //     ]);
+    //
+    //     var options = {
+    //         title: '플로깅 현황',
+    //         hAxis: {title: date.toLocaleDateString(), titleTextStyle: {color: '#333'}},
+    //         vAxis: {minValue: 0}
+    //     };
+    //
+    //     var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+    //     chart.draw(data, options);
+    // }
 
     function drawChart2() {
         var data = google.visualization.arrayToDataTable([

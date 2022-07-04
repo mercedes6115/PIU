@@ -515,7 +515,7 @@
     //메인 사진걸기
     function mainimg(){
         mainService.getFileLists(productNum,function (files) {
-            let str = "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
+            let str = "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/" + files[0].uuid + "_"  + files[0].fileName + "'>";
             $(".mainImage").html(str);
         })
     }
@@ -527,11 +527,11 @@
             let str ="";
             if(files.length>1){
                 for(let i =1; i< files.length;i++){
-                    str += "<img src='/productFile/display?fileName=" + files[i].uploadPath + "/s_" + files[i].uuid + "_"  + files[i].fileName + "'>";
+                    str += "<img src='/productFile/display?fileName=" + files[i].uploadPath + "/" + files[i].uuid + "_"  + files[i].fileName + "'>";
                     $(".subImage").append(str);
                 }
             }else{
-                str += "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
+                str += "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/" + files[0].uuid + "_"  + files[0].fileName + "'>";
                 $(".mainImage").html(str);
             }
         })
@@ -649,9 +649,7 @@
     $(".ProductQnas").on("click",".qnaDelete",function (e) {
         e.preventDefault();
         if(confirm("정말 삭제하시겠습니까?")){
-            qnaService.qnaDelete($(this).attr("name"),function () {
-                showQnaList(pageNum);
-            })
+            qnaService.qnaDelete($(this).attr("name"))
         }else{
             return false;
         }

@@ -22,7 +22,7 @@ public class ApplyDAO {
 
     // 프로젝트 신청
     public void register(ApplyVO applyVO){
-        applyMapper.applyProject(applyVO);
+        applyMapper.insert(applyVO);
     }
 
     // 프로젝트 참가 정보 확인
