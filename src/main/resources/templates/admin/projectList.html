@@ -147,12 +147,12 @@
                 <div th:id="qrcode+*{num}"></div>
                 </form>
             </td>
-            <td th:if ="*{course}=='C'">코스</td>
-            <td th:if ="*{course}=='L'">장소</td>
-            <td  th:if="*{terrain}=='1'">산</td>
-            <td  th:if="*{terrain}=='2'">바다</td>
-            <td  th:if="*{terrain}=='3'">평지</td>
-            <td  th:if="*{terrain}=='4'">기타</td>
+            <td th:if ="*{course}=='course'">코스</td>
+            <td th:if ="*{course}=='place'">장소</td>
+            <td  th:if="*{terrain}=='mountain'">산</td>
+            <td  th:if="*{terrain}=='beach'">바다</td>
+            <td  th:if="*{terrain}=='ground'">평지</td>
+            <td  th:if="*{terrain}=='etc'">기타</td>
             <td th:text="*{title}"></td>
             <td th:text="*{nickname}"></td>
             <td th:if="*{approval}=='0'" th:style="${'color:blue;'}">승인</td>

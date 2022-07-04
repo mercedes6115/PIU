@@ -139,29 +139,14 @@ public class ProjectService {
         return projectQnaCommentDAO.getComment(qnaNum);
     }
 
-    // QnA 보기
-    public ProjectQnaVO readQnA(Long qnaNum){
-        return projectQnaDAO.read(qnaNum);
-    }
-
-    // QnA 삭제
-    public void removeQnA(Long qnaNum){
-        projectQnaDAO.remove(qnaNum);
-    }
-
-    // QnA 수정
-    public void updateQnA(ProjectQnaVO projectQnaVO){
-        projectQnaDAO.update(projectQnaVO);
-    }
-
     // 찜 추가
-    public void myProjectJjimInsert(JjimVO jjimVO){
-        jjimDAO.myProjectJjimInsert(jjimVO);
+    public void addJjim(JjimVO jjimVO){
+        jjimDAO.register(jjimVO);
     }
 
     // 찜 해제
-    public void myProjectJjimDelete(JjimVO jjimVO){
-        jjimDAO.myProjectJjimDelete(jjimVO);
+    public void removeJjim(JjimVO jjimVO){
+        jjimDAO.remove(jjimVO);
     }
 
     // 프로젝트 지원

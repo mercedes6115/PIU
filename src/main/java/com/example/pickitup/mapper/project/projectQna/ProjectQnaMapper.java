@@ -15,8 +15,6 @@ public interface ProjectQnaMapper {
 //    관리자에서 필요함 관리자가 댓글 달아준것만 리스트 업
 //    public List<ProjectQnaVO> getDetail(Long projectNum);
 
-    // 문의글 정보 불러오기 (수정)
-    public ProjectQnaVO getDetail(Long num);
     //    qna 삽입
     public void insert(ProjectQnaVO projectQnaVO);
 
@@ -25,9 +23,6 @@ public interface ProjectQnaMapper {
 
     //    qna 삭제하기 qna 글 기본키 받아오기
     public boolean delete(Long num);
-
-
-
 
 
 }

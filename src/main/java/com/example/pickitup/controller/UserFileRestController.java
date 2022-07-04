@@ -55,7 +55,7 @@ public class UserFileRestController {
     @PostMapping("/upload")
     @ResponseBody
     public Object upload(MultipartFile uploadFile) throws IOException {
-        String uploadFolder = "C:/upload/";
+        String uploadFolder = "C:/upload";
 //        yyyy/MM/dd 경로 만들기
         File uploadPath = new File(uploadFolder, getFolder());
         if(!uploadPath.exists()){uploadPath.mkdirs();}
@@ -85,7 +85,7 @@ public class UserFileRestController {
     @PostMapping("/businessFileUpload")
     @ResponseBody
     public Object businessFileUpload(MultipartFile uploadFile) throws IOException{
-        String uploadFolder="C:/upload/";
+        String uploadFolder="C:/upload";
         //        yyyy/MM/dd 경로 만들기
         File uploadPath = new File(uploadFolder, getFolder());
         if(!uploadPath.exists()){uploadPath.mkdirs();}

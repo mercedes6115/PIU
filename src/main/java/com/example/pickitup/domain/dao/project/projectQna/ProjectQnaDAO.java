@@ -34,9 +34,6 @@ public class ProjectQnaDAO {
         return projectQnaMapper.delete(num);
     }
 
-    // qna 상세조회
-    public ProjectQnaVO read(Long num){
-        return projectQnaMapper.getDetail(num);
-    }
+
 
 }

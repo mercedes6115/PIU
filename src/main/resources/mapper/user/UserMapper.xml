@@ -9,7 +9,6 @@
         FROM TBL_USER
         WHERE NUM=#{num}
     </select>
-
     <!--카카오로그인 후 회원정보-->
     <select id="kakaoDetail" resultType="userVO">
         SELECT
@@ -17,6 +16,7 @@
         FROM TBL_USER
         WHERE EMAIL=#{email}
     </select>
+
 
 <!--회원 가입-->
 
@@ -117,7 +117,7 @@
     <select id="getQrInfo" resultType="qrDTO">
         SELECT TBL_USER.NUM AS USERNUM, TBL_USER.POINT AS USERPOINT,TBL_APPLY.PROJECT_NUM AS PROJECTNUM, TBL_PROJECT.POINT AS ADDPOINT,TBL_PROJECT.APPROVAL AS PROJECTAPPROVAL,TBL_PROJECT.START_QR AS STARTQR,TBL_PROJECT.END_QR AS ENDQR,TBL_APPLY.NUM AS APPLYNUM,TBL_APPLY.APPROACH as APPROACH
         FROM TBL_USER,TBL_APPLY,TBL_PROJECT
-        WHERE TBL_USER.NUM = TBL_APPLY.NUM
+        WHERE TBL_USER.NUM = TBL_APPLY.USER_NUM
         AND TBL_APPLY.PROJECT_NUM =TBL_PROJECT.NUM
         AND TBL_USER.NUM = #{userNum}
     </select>

@@ -1,6 +1,6 @@
 package com.example.pickitup.controller;
 
-import com.example.pickitup.domain.vo.project.projectFile.ProjectFileVO;
+
 import com.example.pickitup.domain.vo.project.projectReview.ProjectReviewFileVO;
 import com.example.pickitup.service.ProjectService;
 import lombok.RequiredArgsConstructor;
@@ -69,12 +69,10 @@ public class ProjectReviewRestController {
         return files;
     }
 
-
-
     @GetMapping("/display")
     @ResponseBody
     public byte[] getFile(String fileName) throws IOException{
-        File file = new File( "C:/upload/", fileName);
+        File file = new File("C:/upload/", fileName);
         return FileCopyUtils.copyToByteArray(file);
     }
 
@@ -89,6 +87,16 @@ public class ProjectReviewRestController {
         return sdf.format(date);
     }
 
+    @GetMapping("/download")
+    @ResponseBody
+    public ResponseEntity<Resource> downloadFile(String fileName) throws UnsupportedEncodingException {
+        Resource resource = new FileSystemResource("C:/upload/" + fileName);
+        HttpHeaders header = new HttpHeaders();
+        String name = resource.getFilename();
+        name = name.substring(name.indexOf("_") + 1);
+        header.add("Content-Disposition", "attachment;filename="+ new String(name.getBytes("UTF-8"), "ISO-8859-1"));
+        return new ResponseEntity<>(resource, header, HttpStatus.OK);
+    }
 
     @PostMapping("/delete")
     @ResponseBody
@@ -96,6 +104,8 @@ public class ProjectReviewRestController {
         File file = new File("C:/upload/", fileName);
         if(file.exists()){ file.delete(); }
 
+        file = new File("C:/upload/", fileName.replace("s_", ""));
+        if(file.exists()){ file.delete(); }
     }
 
     @GetMapping("/list/{reviewNum}")

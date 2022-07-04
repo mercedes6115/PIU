@@ -45,6 +45,7 @@
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
+        <!--  원격 DB 설정   -->
         <!-- https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc10 -->
         <dependency>
             <groupId>com.oracle.database.jdbc</groupId>
@@ -71,7 +72,6 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
-
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -177,6 +177,7 @@
                 </configuration>
             </plugin>
         </plugins>
+
     </build>
 
 </project>

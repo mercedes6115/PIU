@@ -112,7 +112,7 @@ public class StoreController {
         model.addAttribute("fileName",session.getAttribute("fileName"));
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
         model.addAttribute("checkLogin",checkLogin);
-       return productReviewService.getList(productNum);
+        return productReviewService.getList(productNum);
     }
 
     //유저 정보 얻어오기
@@ -222,7 +222,7 @@ public class StoreController {
         model.addAttribute("fileName",session.getAttribute("fileName"));
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
         model.addAttribute("checkLogin",checkLogin);
-       return new ProductQnaPageDTO(productQnaService.getList(new ProductQnaCriteria(pageNum,5),productNum),productQnaService.count(productNum));
+        return new ProductQnaPageDTO(productQnaService.getList(new ProductQnaCriteria(pageNum,5),productNum),productQnaService.count(productNum));
     }
 
     // 스토어 문의 작성
@@ -249,7 +249,7 @@ public class StoreController {
         model.addAttribute("checkLogin",checkLogin);
 
         productQnaService.register(productQnaVO);
-        tempAdminService.qnaStoreSave(adminQnaDTO);
+//        tempAdminService.qnaStoreSave(adminQnaDTO);
         return storeDetail(session, productQnaVO.getProductNum(), model);
     }
 
@@ -275,7 +275,7 @@ public class StoreController {
         model.addAttribute("checkLogin",checkLogin);
 
         productQnaService.update(productQnaVO);
-        tempAdminService.qnaStoreModify(adminQnaDTO);
+//        tempAdminService.qnaStoreModify(adminQnaDTO);
         return storeDetail(session, productQnaVO.getProductNum(), model);
     }
 
@@ -323,7 +323,7 @@ public class StoreController {
         productQnaCommentService.register(productQnaCommentVO);
         return "success";
     }
-//
+    //
     // 스토어 문의 댓글 삭제
     // 관리자 번호와 같이 넘어와야함
     @ResponseBody
@@ -477,7 +477,7 @@ public class StoreController {
         model.addAttribute("fileName",session.getAttribute("fileName"));
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
         model.addAttribute("checkLogin",checkLogin);
-       return jjimService.getList();
+        return jjimService.getList();
     }
 
 

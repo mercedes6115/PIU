@@ -41,18 +41,11 @@
                     <div class="review-step5">
                         <div class="review-step6" th:text="${user.getNickname()}"></div>
                         <div class="review-step7">
-                            <div class="review-step8" th:text="*{#temporals.createDate(updateDate, 'yyyy-MM-dd HH:mm:ss')}"></div>
-                        </div>
-                        <div class="review-step9" th:text="|*{title} |"></div>
-                    </div>
-                    <div class="here">
 
+                            <div class="review-step8" th:text="*{#temporals.createDate(updateDate, 'yyyy-MM-dd HH:mm:ss')}"></div>
+                            <div class="review-step9" th:text="*{title}"></div>
+                        </div>
                     </div>
-<!--&lt;!&ndash;                    내 후기 수정, 삭제,&ndash;&gt;-->
-<!--                    <div style="display: flex;">-->
-<!--                        <div><a href="">수정</a></div>-->
-<!--                        <div><a href="">삭제</a></div>-->
-<!--                    </div>-->
                 </div>
                 <div class="my-review-bottom-space"></div>
                 <pre
@@ -89,14 +82,14 @@ let reviews = [[${reviewList}]];
 $(reviews).each(function (i, review) {
     var contentNum = review.num;
     console.log(contentNum);
-    if(contentNum > 100) {
+    if(contentNum < 100) {
         $.ajax({
             url: "/productReviewFile/list/" + contentNum,
             type: "get",
             success: function (files) {  //각 리뷰의 파일들
                 let text = "";
                 $(files).each(function (i, file) {
-                    text += "<img style='width: 100px; height: 100px; margin-right: 5px; margin-top: 10px;'  src='/productReviewFile/display?fileName=" + file.uploadPath + "/" + file.uuid + "_" + file.fileName + "'>";
+                    text += "<img width='100px' src='/productReviewFile/display?fileName=" + file.uploadPath + "/" + file.uuid + "_" + file.fileName + "'>";
                 })
                 $('#' + review.num).html(text);
             }
@@ -108,7 +101,7 @@ $(reviews).each(function (i, review) {
             success: function (files) {  //각 리뷰의 파일들
                 let text = "";
                 $(files).each(function (i, file) {
-                    text += "<img style='width: 100px; height: 100px; margin-right: 5px; margin-top: 10px;' src='/projectReviewFile/display?fileName=" + file.uploadPath + "/" + file.uuid + "_" + file.fileName + "'>";
+                    text += "<img width='100px' src='/projectReviewFile/display?fileName=" + file.uploadPath + "/" + file.uuid + "_" + file.fileName + "'>";
                 })
                 $('#' + review.num).html(text);
             }
