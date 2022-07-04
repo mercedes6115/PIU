@@ -272,6 +272,7 @@ public class AdminController {
         for(int i = 0; i<size; i++){
             num = Long.parseLong(ajaxMsg[i]);
             tempAdminService.productQnaDelete(num);
+            tempAdminService.productQnaDelete(num);
             tempAdminService.deleteById(num);
         }
         return "/admin/boardList";

@@ -1,49 +1,23 @@
 //------------------------------공통----------------------//
 
-//scroll top
-// $('.gotoTop').click(function(){
-//     $('html, body').animate({scrollTop : 0},300);
-// });
-// let replyService = (function(){
-//     function getList(productNum, callback, error){
-//         // let page = param.page || 1;
-//         // $.getJSON("/reply/list/" + param.bno + "/" + page, function(replyPageDTO){
-//         //     if(callback){
-//         //         callback(replyPageDTO.total, replyPageDTO.list);
-//         //     }
-//         // }).fail(function(xhr, status, er){
-//         //     if(error){
-//         //         error(er);
-//         //     }
-//         // });
-//         $.ajax({
-//             url: "/reviewList/" + productNum,
-//             type: "get",
-//             dataType: "json",
-//             success: function(productReviewVO){
-//                 if(callback){
-//                     callback(productReviewVO);
-//                 }
-//             }
-//         });
-//     }
-//
-//     return {getList: getList};
-// })();
+// //scroll top
+$('.gototop').click(function(){
+    $('html, body').animate({scrollTop : 0},300);
+});
 // -------------------------payment 페이지-------------------//
 //메인 사진 걸기
-let productNum = [[${product.num}]];
-
-$.ajax({
-    url: "/productFile/list/"+productNum,
-    type : "get",
-    success : function (files) {
-        alert('success');
-        // let str = "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
-        // $(".mainImage").html(str);
-        $(".order_img img").attr("src", "/upload/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName )
-    }
-})
+// let productNum = [[${product.num}]];
+//
+// $.ajax({
+//     url: "/productFile/list/"+productNum,
+//     type : "get",
+//     success : function (files) {
+//         alert('success');
+//         // let str = "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName + "'>";
+//         // $(".mainImage").html(str);
+//         $(".order_img img").attr("src", "/upload/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName )
+//     }
+// })
 
 //개인정보 동의 모달
 let modal = document.getElementById("agree_modal");
