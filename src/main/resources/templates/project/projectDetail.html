@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/assets/css/pickitupStore.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 </head>
 
 <body>
@@ -50,13 +51,13 @@
                     <h2 class="projectInfo">플로깅 정보</h2>
                     <dl class="infoDetail">
                         <dt class="courseInfo">코스/장소</dt>
-                        <dd class="course" th:if="*{course}=='C'">코스</dd>
-                        <dd class="course" th:if="*{course}=='L'">장소</dd>
+                        <dd class="course" th:if="*{course}=='course'">코스</dd>
+                        <dd class="course" th:if="*{course}=='place'">장소</dd>
                         <dt class="terrainInfo">지형</dt>
-                        <dd class="terrain" th:if="*{terrain}=='1'">산</dd>
-                        <dd class="terrain" th:if="*{terrain}=='2'">바다</dd>
-                        <dd class="terrain" th:if="*{terrain}=='3'">평지</dd>
-                        <dd class="terrain" th:if="*{terrain}=='4'">기타</dd>
+                        <dd class="terrain" th:if="*{terrain}=='mountain'">산</dd>
+                        <dd class="terrain" th:if="*{terrain}=='beach'">바다</dd>
+                        <dd class="terrain" th:if="*{terrain}=='ground'">평지</dd>
+                        <dd class="terrain" th:if="*{terrain}=='etc'">기타</dd>
                         <dt class="pointInfo">포인트</dt>
                         <dd class="point" th:text="*{point}"></dd>
                     </dl>
@@ -91,7 +92,7 @@
                             <div class="gIntroduceProfileFrame">
                                     <span class="gIntroduceProfileForm">
                                         <picture class="gIntroduceProfile">
-                                            <img th:src="@{/groupFile/display?fileName=} + ${company.profileUploadPath} + @{/} + ${company.profileFileName}" alt="">
+<!--                                            <img th:src="@{/groupFile/display?fileName=} + ${company.profileUploadPath} + @{/} + ${company.profileFileName}" alt="">-->
                                         </picture>
                                     </span>
                             </div>
@@ -101,18 +102,7 @@
                     <div class="gIntroduceContentFrame" th:text="*{companyComment}">
                     </div>
                 </div>
-                <div id="toitem_question" th:object="${qna}">
-                    <div class="flex" style="align-items: center; justify-content: space-between;">
-                        <p class="highlight">문의</p>
-                        <div><a th:href="@{/project/qnaWrite?num={num}(num = ${project.num})}" class="btn_qnaToadmin">문의하기</a></div>
-                    </div>
-                    <div class="space"></div>
-                    <div class="ProductQnas"></div>
-                    <div class="QnaPaging" style="text-align: center;"></div>
-                    <div class="space_line"></div>
-                    <!-- 댓글 끝 -->
-                </div>
-                <!--                    </div>-->
+
                 <div class="useGuideFrame">
                     <div class="useGuide">
                         <h3 class="useGuideTitle">지도</h3>
@@ -125,6 +115,20 @@
                         </div>
                     </div>
                 </div>
+
+                <!--                <div id="toitem_question">-->
+                <!--                    <div class="flex" style="align-items: center; justify-content: space-between;">-->
+                <!--                        <p class="highlight">문의</p>-->
+                <!--                        &lt;!&ndash;                                문의하기 a 태그에 num 태워서 보내기&ndash;&gt;-->
+                <!--                        <div><a th:href="@{/project/qnaWrite?num={num}(num = ${project.num})}" class="btn_qnaToadmin"></div>-->
+                <!--                    </div>-->
+                <!--                    <div class="space"></div>-->
+                <!--                    <div class="ProductQnas"></div>-->
+                <!--                    <div class="QnaPaging" style="text-align: center;"></div>-->
+                <!--                    <div class="space_line"></div>-->
+                <!--                    &lt;!&ndash; 댓글 끝 &ndash;&gt;-->
+                <!--                </div>-->
+
             </div>
             <div class="readApplicantBody">
                 <div class="readApplicantContainer">
@@ -163,7 +167,7 @@
                                         <p class="readApplicantAddress" th:text="|출발지: *{startAddress}|"></p>
                                         <!-- 조건문 처리 -->
                                         <p class="readApplicantAddress" th:if="${project.course.equals('C')}" th:text="|도착지: *{endAddress}|"></p>
-                                        <p class="readApplicantAddress" th:if="${project.course.equals('C')}" th:text="|거리: *{distance}|">3km</p>
+                                        <p class="readApplicantAddress" th:if="${project.course.equals('C')}" th:text="|거리: *{distance}km|"></p>
                                     </div>
                                 </div>
                             </div>
@@ -216,11 +220,18 @@
     </div>
 </div>
 <!-- 신청하기 모달창 -->
-<div id="applyModal">
-    <span class="applyInfo">신청하시면 취소하실 수 없습니다!<br>신중히 신청해주시기 바랍니다.<br></span>
-    <input type="button" id="projectApplyBtn" class="projectApplyBtn" value="신청하기">
-    <a class="close_btn">X</a>
+
+
+
+<div id="applyModal" class="projectModal">
+    <div class="project-modal-content">
+        <span class="material-symbols-outlined close_btn">close</span>
+        <span class="applyInfo">신청하시면 취소하실 수 없습니다!</span>
+        <span>신중히 신청해주시기 바랍니다.</span>
+        <div><input type="button" id="projectApplyBtn" class="projectApplyBtn" value="신청하기" ></div>
+    </div>
 </div>
+
 <!-------------------------------- 공유하기 모달창---------------------------------------------------- -->
 <div class="share_container" style="font-family: Noto Sans KR;">
     <div class="share">
@@ -261,15 +272,14 @@
 <script th:inline="javascript">
 
     // 프로젝트 번호
-    let num = [[${project.num}]];
+    let projectNum = [[${project.num}]];
     // 유저 번호(접속)
-    let userNum = 41;
+    // let userNum = [[${userNum}]];
+    let userNum = 44;
 
 
     let start = [[${project.startAddress}]];
     let end = [[${project.endAddress}]];
-    console.log("출발지="+start);
-    console.log(end);
 
 
     // 현재 위치 강조
@@ -283,75 +293,42 @@
 
     // 내부 페이지 이동
 
-    // var pIntroOffset = $(".pIntroduceFrame").offset().top - 150;
-    // var gIntroOffset = $(".gIntroduceFrame").offset().top - 200;
+    var pIntroOffset = $(".pIntroduceFrame").offset().top - 150;
+    var gIntroOffset = $(".gIntroduceFrame").offset().top - 200;
     // var qnaOffset = $(".qnaFrame").offset().top - 150;
-    // var guideOffset = $(".useGuideFrame").offset().top;
-    //
-    // var currentScroll = document.documentElement.scrollTop;
-    // if(currentScroll < pIntroOffset) {
-    //     if(!$currentPlace.hasClass('active')) {
-    //         $currentPlace.addClass('active');
-    //     }
-    // }
+    var guideOffset = $(".useGuideFrame").offset().top;
 
-    function modal(id) {
-        var zIndex = 9999;
-        var modal = document.getElementById(id);
-
-        // 모달 div 뒤에 희끄무레한 레이어
-        var bg = document.createElement('div');
-        bg.setStyle({
-            position: 'fixed',
-            zIndex: zIndex,
-            left: '0px',
-            top: '0px',
-            width: '100%',
-            height: '100%',
-            overflow: 'auto',
-            // 레이어 색갈은 여기서 바꾸면 됨
-            backgroundColor: 'rgba(0,0,0,0.4)'
-        });
-        document.body.append(bg);
-
-        // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
-        modal.querySelector('.modal_close_btn').addEventListener('click', function() {
-            bg.remove();
-            modal.style.display = 'none';
-            console.log("들어옴");
-        });
-
-        modal.setStyle({
-            position: 'fixed',
-            display: 'block',
-            boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
-
-            // 시꺼먼 레이어 보다 한칸 위에 보이기
-            zIndex: zIndex + 1,
-
-            // div center 정렬
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            msTransform: 'translate(-50%, -50%)',
-            webkitTransform: 'translate(-50%, -50%)'
-        });
+    var currentScroll = document.documentElement.scrollTop;
+    if(currentScroll < pIntroOffset) {
+        if(!$currentPlace.hasClass('active')) {
+            $currentPlace.addClass('active');
+        }
     }
 
-    // Element 에 style 한번에 오브젝트로 설정하는 함수 추가
-    Element.prototype.setStyle = function(styles) {
-        for (var k in styles) this.style[k] = styles[k];
-        return this;
-    };
+
+    // 지원하기 모달
+    let modal = document.getElementById("applyModal");
+    let btn = document.getElementById("applyBtn");
+    let span = document.getElementsByClassName("close_btn")[0];
 
 
-    document.getElementById('applyBtn').addEventListener('click', function() {
-        modal('applyModal');
-    });
+    btn.onclick = function() {
+        console.log('hello');
+        console.log(modal);
+        modal.style.display = "block";
+    }
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
 
     $(".moveIntroduce").click(function(){
         $("html, body").animate({scrollTop: pIntroOffset}, 0);
-        console.log("들어옴");
     });
     $(".moveGroup").click(function(){
         $("html, body").animate({scrollTop: gIntroOffset}, 0);
@@ -370,8 +347,7 @@
         $('button.qContentAddBtn').on("click", function () {
             let $qnaNum = $(this).attr('name');
             let $content = $('#' + $qnaNum).val();
-            console.log($qnaNum);
-            console.log($content);
+
             $.ajax({
                 url: "/projectQnA/add",
                 type: "post",
@@ -415,10 +391,20 @@
             $.ajax({
                 url: "/project/jjim",
                 type: "post",
-                data: JSON.stringify({"userNum": userNum, "projectNum": num, "category": "2"}),
+                data: JSON.stringify({"userNum": userNum, "projectNum": projectNum, "category": "2"}),
                 contentType: "application/json; charset=utf-8;",
                 success: function(){
-                    $('.pLikeImage').html("<span class=\"material-icons-outlined like\" id=\"likebtn\" style='color: black'>favorite</span>")
+                    $('.pLikeImage').html("<span class='material-icons-outlined'>favorite</span>");
+
+                    // 찜 개수
+                    $.ajax({
+                        url: "/project/jjim/" + projectNum,
+                        type: "get",
+                        success: function(count){
+                            $('.pLikeCount').html(count);
+
+                        }
+                    });
                 }
             });
             jjimCheck++;
@@ -428,17 +414,36 @@
             $.ajax({
                 url: "/project/jjim",
                 type: "delete",
-                data: JSON.stringify({"userNum": userNum, "projectNum": num}),
+                data: JSON.stringify({"userNum": userNum, "projectNum": projectNum}),
                 contentType: "application/json; charset=utf-8;",
                 success: function(){
                     $('.pLikeImage').html("<span class=\"material-symbols-outlined\" id=\"heart\">favorite</span>\n");
+                    // 찜 개수
+                    $.ajax({
+                        url: "/project/jjim/" + num,
+                        type: "get",
+                        success: function(count){
+                            $('.pLikeCount').html(count);
 
+                        }
+                    });
                 }
             });
             jjimCheck--;
 
         }
 
+    });
+
+
+    // 찜 개수
+    $.ajax({
+        url: "/project/jjim/" + projectNum,
+        type: "get",
+        success: function(count){
+            $('.pLikeCount').html(count);
+
+        }
     });
 
 
@@ -451,10 +456,11 @@
             $.ajax({
                 url: "/project/apply",
                 type: "post",
-                data: JSON.stringify({"userNum": userNum, "projectNum": num}),
+                data: JSON.stringify({"userNum": userNum, "projectNum": projectNum}),
                 contentType: "application/json; charset=utf-8;",
                 success: function(){
                     apply = 1;
+                    alert("신청되었습니다.")
                 }
             });
         }else{
@@ -465,7 +471,6 @@
 
 
     // 사진 불러오기
-    let projectNum = 41;
     $.ajax({
         url: "/projectFile/list/"+ projectNum,
         type : "get",
@@ -509,14 +514,12 @@
     // 주소값과 번호를 받아와서  주소 값으로 좌표 생성, 번호로 어느것을 눌렀는지 확인.
     test()
     function test() {
-        if(end.toString()=="null") {
-            console.log("도착지가 null일때")
+        if(end==null) {
             xy(start);
             // console.log(address[0], address[1]);
             // getStartMap(address[0], address[1]);
             return;
         }else {
-            console.log("도착지가 null이 아닐때")
             xy(start);  //출발지 좌표 address에 push
             xy2(end);   //도착지 좌표 address에 push
             // console.log(address[1], address[0], address[3], address[2]);
@@ -525,7 +528,6 @@
 
     //출발지만 있을때 x,y좌표값 배열에 넣어주기
     function xy(ad) {
-        console.log("xy들어옴")
         naver.maps.Service.geocode({
             query: ad
         }, function (status, response) {
@@ -534,12 +536,7 @@
             }
             var result = response.v2, // 검색 결과의 컨테이너
                 items = result.addresses; // 검색 결과의 배열
-            console.log("뽑아보자")
-            console.log(items[0]);
-            console.log("==============y");
-            console.log(items[0].y);
-            console.log("==============x");
-            console.log(items[0].x);
+
 
             address.push(items[0].y);
             address.push(items[0].x);
@@ -559,12 +556,6 @@
             }
             var result = response.v2, // 검색 결과의 컨테이너
                 items = result.addresses; // 검색 결과의 배열
-            console.log("뽑아보자")
-            console.log(items[0]);
-            console.log("==============y");
-            console.log(items[0].y);
-            console.log("==============x");
-            console.log(items[0].x);
 
             address.push(items[0].y);
             address.push(items[0].x);
@@ -579,10 +570,6 @@
 
     // 도착지 존재 지도
     function getMap(x1, y1, x2, y2) {
-        console.log("x1 = " + x1)
-        console.log("y1 = " + y1)
-        console.log("x2 = " + x2);
-        console.log("y2 = " + y2);
 
 
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div
@@ -630,8 +617,7 @@
     // 도착지 존재 X 지도
 
     function getStartMap(x1, y1) {
-        console.log(x1);
-        console.log(y1);
+
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div
             mapOption = {
                 center: new kakao.maps.LatLng(x1,y1), // 지도의 중심좌표
@@ -659,7 +645,6 @@
     Kakao.init('a976ec1bd79664fdd82edd1c18835ef7');
 
     // SDK 초기화 여부를 판단합니다.
-    console.log(Kakao.isInitialized());
     function kakaoShare() {
 
         Kakao.Link.sendDefault({
@@ -688,8 +673,6 @@
         })
         $('.share_container').css("display","none");
     }
-
-
 
 
     //  클립보드 복사하기
@@ -725,62 +708,63 @@
 
 
 
-    $.ajax({
-        url: "/project/qnaList/" + productNum,
-        type: "get",
-        dataType: "json",
-        success: function(qnaVO){
-            let str = "";
-            if(qnaVO.length==0){
-                str += "현재 문의가 없습니다.";
-                $('.ProductQnas').html(str);
-                return;
-            }
-            $.each(qnaVO, function(i, qna){
-                str += "<div class=\"qnas\">";
-                str += "<div class=\"flex\" style=\"align-items: center;\">";
-                str += "<div class=\"profile_img\"><img src=\"/images/1.jpg\" style=\"width: 100%; height: 100%;\"></div>";
-                str += "<div class=\"id_and_date\" style=\"flex-direction: column;\">";
-                str += "<div class=\"admin_id\" style=\"color: black;\">"+qna.userNum+"</div>";
-                str += "<div class=\"admin_date\">"+qna.updateDate+"</div>";
-                str += "</div>";
-                str += "</div>";
-                str += "<div class=\"space\"></div>";
-                str += "<div class=\"small_and_gray\"><p class=\"user_question\">"+qna.content+"</p></div>";
-                str += "<div class=\"space\"></div>";
-                str += "<div class=\"qna_replys\">";
-                str += "<div class=\"qna_reply\">";
-                str += "<div class=\"flex\" style=\"align-items: center;\">";
-                str += "<div class=\"admin_profile_img\"><img src=\"/images/4.jpg\"></div>";
-                str += "<div class=\"flex id_and_date\">";
-                str += "<div class=\"admin_id\">관리자 아이디 &nbsp;</div>";
-                str += "<div class=\"admin_date\">2022.06.11</div>";
-                str += "</div>";
-                str += "</div>";
-                str += "<div class=\"small_and_gray\" style=\"color: black;\">";
-                str += "<p class=\"admin_comment\"> 네 고객님 초록색 고무장갑 특 엑스 라지가 없으셔서 많이 당황하셨죠? 금방 재고가 들어올 예정이니 구독과 알람설정 부탁드려요!</p>";
-                str += "</div>";
-                str += "<div class=\"space\"></div>";
-                str += "</div>";
-                str += "</div>";
-                str += "<div class=\"flex\" style=\"position: relative; align-items: center; height: 48px;\">";
-                str += "<div class=\"do_admin_comment\">";
-                str += "<div class=\"flex\">";
-                str += "<input class=\"doComment\" type=\"text\" placeholder=\"관리자만 입력할 수 있습니다\">";
-                str += "<div class=\"send_plane\" style=\"width: 20px; height: 20px;\"><span class=\"material-symbols-outlined\">";
-                str += "send";
-                str += " </span></div>";
-                str += "</div>";
-                str += "</div>";
-                str += "</div>";
-                str += "</div>";
-            });
-            $('.ProductQnas').html(str);
-            // $.each(reviewVO, function(i, review){
-            // });
-            // $('.ProductReviews').html(str);
-        }
-    });
+    //
+    // $.ajax({
+    //     url: "/project/qnaList/" + projectNum,
+    //     type: "get",
+    //     dataType: "json",
+    //     success: function(qnaVO){
+    //         let str = "";
+    //         if(qnaVO.length==0){
+    //             str += "현재 문의가 없습니다.";
+    //             $('.ProductQnas').html(str);
+    //             return;
+    //         }
+    //         $.each(qnaVO, function(i, qna){
+    //             str += "<div class=\"qnas\">";
+    //             str += "<div class=\"flex\" style=\"align-items: center;\">";
+    //             str += "<div class=\"profile_img\"><img src=\"/images/1.jpg\" style=\"width: 100%; height: 100%;\"></div>";
+    //             str += "<div class=\"id_and_date\" style=\"flex-direction: column;\">";
+    //             str += "<div class=\"admin_id\" style=\"color: black;\">"+qna.userNum+"</div>";
+    //             str += "<div class=\"admin_date\">"+qna.updateDate+"</div>";
+    //             str += "</div>";
+    //             str += "</div>";
+    //             str += "<div class=\"space\"></div>";
+    //             str += "<div class=\"small_and_gray\"><p class=\"user_question\">"+qna.content+"</p></div>";
+    //             str += "<div class=\"space\"></div>";
+    //             str += "<div class=\"qna_replys\">";
+    //             str += "<div class=\"qna_reply\">";
+    //             str += "<div class=\"flex\" style=\"align-items: center;\">";
+    //             str += "<div class=\"admin_profile_img\"><img src=\"/images/4.jpg\"></div>";
+    //             str += "<div class=\"flex id_and_date\">";
+    //             str += "<div class=\"admin_id\">관리자 아이디 &nbsp;</div>";
+    //             str += "<div class=\"admin_date\">2022.06.11</div>";
+    //             str += "</div>";
+    //             str += "</div>";
+    //             str += "<div class=\"small_and_gray\" style=\"color: black;\">";
+    //             str += "<p class=\"admin_comment\"> 네 고객님 초록색 고무장갑 특 엑스 라지가 없으셔서 많이 당황하셨죠? 금방 재고가 들어올 예정이니 구독과 알람설정 부탁드려요!</p>";
+    //             str += "</div>";
+    //             str += "<div class=\"space\"></div>";
+    //             str += "</div>";
+    //             str += "</div>";
+    //             str += "<div class=\"flex\" style=\"position: relative; align-items: center; height: 48px;\">";
+    //             str += "<div class=\"do_admin_comment\">";
+    //             str += "<div class=\"flex\">";
+    //             str += "<input class=\"doComment\" type=\"text\" placeholder=\"관리자만 입력할 수 있습니다\">";
+    //             str += "<div class=\"send_plane\" style=\"width: 20px; height: 20px;\"><span class=\"material-symbols-outlined\">";
+    //             str += "send";
+    //             str += " </span></div>";
+    //             str += "</div>";
+    //             str += "</div>";
+    //             str += "</div>";
+    //             str += "</div>";
+    //         });
+    //         $('.ProductQnas').html(str);
+    //         // $.each(reviewVO, function(i, review){
+    //         // });
+    //         // $('.ProductReviews').html(str);
+    //     }
+    // });
 
 
 </script>

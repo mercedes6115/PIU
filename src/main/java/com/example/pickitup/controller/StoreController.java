@@ -275,7 +275,7 @@ public class StoreController {
         model.addAttribute("checkLogin",checkLogin);
 
         productQnaService.update(productQnaVO);
-        tempAdminService.qnaStoreModify(adminQnaDTO);
+//        tempAdminService.qnaStoreModify(adminQnaDTO);
         return storeDetail(session, productQnaVO.getProductNum(), model);
     }
 

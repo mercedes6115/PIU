@@ -49,7 +49,7 @@ public class ProjectController {
 
         model.addAttribute("company", companyService.readCompanyInfo(projectVO.getCompanyNum()));
         model.addAttribute("project", projectVO);
-        model.addAttribute("qna", projectService.getQnAList(num));
+//        model.addAttribute("qna", projectService.getQnAList(num));
         model.addAttribute("img", projectService.getProjectFileList(num));
         return "/project/projectDetail";
     }

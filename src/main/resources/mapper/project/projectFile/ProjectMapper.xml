@@ -238,6 +238,11 @@
         SET START_QR=#{projectLink1},END_QR=#{projectLink2}
         WHERE NUM=#{qrNum}
     </select>
+<!--    <select id="insertQr">-->
+<!--        UPDATE TBL_PROJECT-->
+<!--        SET START_QR=#{projectLink1},END_QR=#{projectLink2}-->
+<!--        WHERE NUM=#{qrNum}-->
+<!--    </select>-->
 
 <!--    &lt;!&ndash;  특정 유저가 신청한 프로젝트 목록 &ndash;&gt;-->
 <!--    <select id="getUserProjectList" resultType="projectVO">-->
@@ -289,6 +294,34 @@
     </delete>
 =======
 >>>>>>> b2cd0901126a359fe8df5d467f801c46a2af1f90
+<!--    <insert id="insert" parameterType="projectVO">-->
+<!--        INSERT INTO TBL_PROJECT-->
+<!--        <selectKey keyProperty="num" resultType="long" order="BEFORE">-->
+<!--            SELECT SEQ_PROJECT.NEXTVAL FROM DUAL-->
+<!--        </selectKey>-->
+<!--        (NUM, TITLE, CONTENT, COURSE, TERRAIN, POINT, APPROVAL, START_ADDRESS, END_ADDRESS, DISTANCE, START_QR,-->
+<!--        REGIST_DATE, UPDATE_DATE, STATUS, COMPANY_NUM, JJIM_COUNT, PROJECT_DATE, COMPANY_COMMENT,-->
+<!--        SUMMARY,START_ADDRESS_DETAIL,END_ADDRESS_DETAIL,STARTTIME,ENDTIME)-->
+<!--        VALUES(SEQ_PROJECT.NEXTVAL, #{title}, #{content}, #{course}, #{terrain}, #{point}, '0', #{startAddress},-->
+<!--        #{endAddress}, #{distance}, NULL, SYSDATE, SYSDATE, NULL , #{companyNum}, NULL, NULL,-->
+<!--        #{companyComment},NULL,#{startAddressDetail},#{endAddressDetail},TO_DATE(#{startTime},'yyyy-mm-dd-->
+<!--        hh24:mi:ss'),TO_DATE(#{endTime},'yyyy-mm-dd hh24:mi:ss'))-->
+<!--    </insert>-->
+
+<!--    &lt;!&ndash; 프로젝트 수정  &ndash;&gt;-->
+<!--    <update id="update" parameterType="projectVO">-->
+<!--        UPDATE TBL_PROJECT-->
+<!--        SET-->
+<!--        TITLE = #{title}, CONTENT = #{content}, COURSE = #{course}, TERRAIN = #{terrain}, POINT = #{point}, APPROVAL = #{approval}, STARTTIME = #{startTime} , ENDTIME = #{endTime},-->
+<!--        START_ADDRESS = #{startAddress}, END_ADDRESS = #{endAddress}, DISTANCE = #{distance}, START_QR = #{qr}, UPDATE_DATE = SYSDATE, STATUS = #{status}-->
+<!--        WHERE NUM = #{num}-->
+<!--    </update>-->
+
+    <!-- 프로젝트 삭제 -->
+<!--    <delete id="delete" parameterType="long">-->
+<!--       DELETE FROM TBL_PROJECT WHERE NUM = #{num}-->
+<!--    </delete>-->
+>>>>>>> bb94eb11b3c61be2b1a8473dd9872121aa718257
 
     <!-- 프로젝트 찜순 목록(상위 10개)   -->
     <select id="getListJJim" resultType="projectVO">

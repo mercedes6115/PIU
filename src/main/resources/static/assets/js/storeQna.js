@@ -46,6 +46,7 @@ let qnaService = (function(){
             url: "/store/qnaDelete?num=" + num,
             type: "get",
             success: function (res) {
+                showQnaList(pageNum);
             }
         })
     }

@@ -26,7 +26,7 @@ public class MainController {
     // 메인페이지
     @GetMapping("/main")
     public String main(HttpSession session, Model model,HttpServletRequest request) throws ParseException {
-       int checkLogin=0;
+        int checkLogin=0;
         System.out.println("=============="+request.getRequestURI().split("/")[1]);
         Long userNum = Long.parseLong(session.getAttribute("num").toString());
         if(session.getAttribute("token")!=null){
@@ -37,12 +37,14 @@ public class MainController {
             checkLogin = 2;
         }else if(session.getAttribute("num")!=null&&session.getAttribute("nickname")!=null){
             checkLogin= 3;
+            Long userNum = Long.parseLong(session.getAttribute("num").toString());
+            model.addAttribute("userNum", userNum);
         }else{
 //           log.info("elseelseelseelseelseelseelseelseelse");
 //           log.info(session.toString());
 //           log.info("aaaaaaaaaaaaaaaaaaaaaaaaaa");
-           checkLogin= 1;
-       }
+            checkLogin= 1;
+        }
         model.addAttribute("fileName",session.getAttribute("fileName"));
         model.addAttribute("uploadPath",session.getAttribute("uploadPath"));
         model.addAttribute("checkLogin",checkLogin);
@@ -56,8 +58,9 @@ public class MainController {
         model.addAttribute("course3",projectService.getListCourse("강"));
 
         log.info("메인 들어옴");
-       return "/main/main";
+        return "/main/main";
     }
+
 
 
 
