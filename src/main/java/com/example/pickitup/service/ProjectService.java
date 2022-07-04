@@ -101,7 +101,8 @@ public class ProjectService {
         //게시글에 업로드된 첨부파일 정보 중 게시글 번호를 따로 추가
         if(projectVO.getFileList() != null) {
             projectVO.getFileList().forEach(projectFileVO -> {
-                projectFileVO.setProjectNum(projectVO.getNum());
+                log.info("프로젝트 번호 : " + projectVO.getNum());
+                projectFileVO.setProjectNum(projectVO.getNum() + 1);
                 projectFileDAO.register(projectFileVO);
             });
         }
@@ -166,6 +167,24 @@ public class ProjectService {
                 projectReviewFileDAO.register(projectReviewFileVO);
             });
         }
+    }
+
+    // 리뷰 수정
+    @Transactional(rollbackFor = Exception.class)
+    public void modifyReview(ProjectReviewVO projectReviewVO) {
+        // 기존 파일 삭제
+        projectReviewFileDAO.remove(projectReviewVO.getNum());
+
+        // 파일 추가
+        if (projectReviewVO.getFileList() != null) {
+            projectReviewVO.getFileList().forEach(projectReviewFileVO -> {
+                projectReviewFileVO.setProjectReviewNum(projectReviewVO.getNum());
+                projectReviewFileDAO.register(projectReviewFileVO);
+            });
+        }
+
+        // 게시물 수정
+        projectReviewDAO.update(projectReviewVO);
     }
 
     // 리뷰 사진 가져오기

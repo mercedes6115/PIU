@@ -104,17 +104,26 @@ public class TempUserSerivce {
         if(countEmail==0 && countNickname==0){
             userDAO.kakaoinsert(userVO);
             log.info("이제 저장할거임"+userDAO.emailCheck(userVO.getEmail()));
+
             return userDAO.read(userVO.getNum());
 
-        }else if(countEmail!=0){
-            log.info("Email check "+userDAO.emailCheck(userVO.getEmail()));
+        }else if((countEmail!=0 && countNickname==0)){
+            log.info("이메일 중복"+userDAO.emailCheck(userVO.getEmail()));
+            log.info("닉네임 중복"+userDAO.nicknameCheck(userVO.getNickname()));
             return null;
-        }else if(countNickname!=0){
 
+        }else if(countEmail==0 && countNickname!=0){
             log.info("nickname check "+userDAO.nicknameCheck(userVO.getNickname()));
             String temp=userVO.getNickname()+(countNickname+1);
+            int count=countNickname+1;
             log.info(temp);
 //            log.info(countNickname+1);
+
+//            while (temp.equals(userDAO.nicknameCheck(temp))){
+//                log.info("while문 nickname check "+userDAO.nicknameCheck(userVO.getNickname()));
+//                temp=userVO.getNickname()+(count++);
+//                log.info(temp);
+//            }
             userVO.setNickname(temp);
             userDAO.kakaoinsert(userVO);
 

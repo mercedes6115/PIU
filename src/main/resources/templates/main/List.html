@@ -145,6 +145,33 @@
         }
     };
 
+    $(function () {
+        $(document).mousedown(function (e) {
+            if ($(".CategoryListWrapper").is(":visible")) {
+                $(".CategoryListWrapper").each(function () {
+                    var l_position = $(this).offset();
+                    l_position.right = parseInt(l_position.left) + ($(this).width());
+                    l_position.bottom = parseInt(l_position.top) + parseInt($(this).height());
+
+                    if( ( l_position.left <= e.pageX && e.pageX <= l_position.right )
+                        && ( l_position.top <= e.pageY && e.pageY <= l_position.bottom ) ) {
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            }
+        });
+        $(".nav-category-text-wrap").click(function () {
+            if (!$(".CategoryListWrapper").is(":visible")) {
+                $(".CategoryListWrapper").show();
+            }
+        });
+    });
+
+<<<<<<< HEAD
+=======
+
+>>>>>>> b2cd0901126a359fe8df5d467f801c46a2af1f90
     infinity_scroll();
 </script>
 </html>

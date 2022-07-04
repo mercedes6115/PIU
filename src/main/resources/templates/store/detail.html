@@ -281,89 +281,146 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-<!--<script src="/static/assets/js/store.js"></script>-->
+<script src="/assets/js/storeQna.js"></script>
+<script src="/assets/js/storeMain.js"></script>
+<script src="/assets/js/storeReview.js"></script>
+
 <script th:inline="javascript">
     let productNum = [[${product.num}]];
     let pageNum = 1;
-    showJjimcheck()
     // 임시 유저 userNum = 22;
     let userNum = [[${userNum}]];
+
+    showJjimcheck()
+
+    //-------- 리뷰 가져오기 ajax
+    getReviewList();
+    mainimg();
+    subimg();
+
+    //------------------------------------------------------------------------------------------
+    //--------------------------------문의 가져오기 ajax-----------------------------
+    let 수정중 = false;
+    let 답글중 = false;
+
+    //문의 리스트 js
+    showQnaList(pageNum);
+
+    // ======================================================================
+
+
+
+    //상품 상세 링크
+    let $as = $('.nav_item').find('a');
+    $as.click(function(){
+        $as.removeClass('active');
+        if(!$(this).hasClass('active')) {
+            $(this).addClass('active');
+        }
+    })
+
+
+    modal = document.getElementsByClassName("share_container")[0];
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+
+    //--------------------------- 공유하기 api----------------------------------
+
+    // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
+    Kakao.init('a976ec1bd79664fdd82edd1c18835ef7');
+
+    // SDK 초기화 여부를 판단합니다.
+    console.log(Kakao.isInitialized());
+    function kakaoShare() {
+
+        Kakao.Link.sendDefault({
+            objectType: 'feed',
+            content: {
+                title: '주방용품', //카카오공유하기 시 타이틀
+                description: '초록색이 좋아 고무장갑', //카카오공유하기 시 설명
+                imageUrl: 'http://127.0.0.1:5500/src/main/resources/static/images/5.jpg', //카카오공유하기 시 썸네일 이미지 경로
+                link: {
+                    mobileWebUrl: 'http://localhost:10010/store/detail.html', //카카오공유하기 시 클릭 후 이동 경로
+                    webUrl: 'http://localhost:10010/store/detail.html', //카카오공유하기 시 클릭 후 이동 경로
+                },
+            },
+            buttons: [
+                {
+                    title: '웹으로 보기',
+                    link: {
+                        mobileWebUrl: 'http://localhost:10010/store/detail.html', //카카오공유하기 시 클릭 후 이동 경로
+                        webUrl: 'http://localhost:10010/store/detail.html', //카카오공유하기 시 클릭 후 이동 경로
+                    },
+                },
+            ],
+            // 카카오톡 미설치 시 카카오톡 설치 경로이동
+            installTalk: true,
+
+        })
+        $('.share_container').css("display","none");
+    }
+
+
+
     //찜 ajax
     $('.jjim-ajax').on("click",function() {
-
+        let data = {userNum : userNum, category: "1", productNum : productNum};
         if($(this).hasClass("material-symbols-outlined")){ //찜 안되어있을때, insert ajax
-            $.ajax({
-                url:"/store/jjim",
-                type:"post",
-                data: {userNum : userNum, category: "1", productNum : productNum},
-                success : function (result) {
-                    jjimCounts()
-                }
-            })
             $(this).removeClass("material-symbols-outlined");
             $(this).addClass("material-icons");
             $(this).css("color","red");
-        }else{                                             //찜 되어있으면,   delete ajax
-            $.ajax({
-                url:"/store/jjim",
-                type:"delete",
-                data: {userNum : userNum, category: "1", productNum : productNum},
-                success : function (result) {
-                    jjimCounts()
-                }
+
+            mainService.doJjim(data,function (result) {
+                jjimCounts()
             })
-            //
+        }else{
             $(this).addClass("material-symbols-outlined");
             $(this).removeClass("material-icons");
-            $(this).css("color","rgb(167 162 162)");
+            $(this).css("color","rgb(167 162 162)");//찜 되어있으면,   delete ajax
+
+            mainService.deleteJjim(data,function (result) {
+                jjimCounts()
+            })
         }
     });
 
     //찜...
     function showJjimcheck(){
         jjimCounts()
-        $.ajax({
-            url : "/store/jjim",
-            type : "get",
-            success : function (jjims) {
-                $(jjims).each(function (i, jjim) {
-                    if(jjim.userNum==userNum){
-                        if($(".jjim-ajax[name="+jjim.productNum+"]").hasClass("material-symbols-outlined")){ //찜 안되어있다면
-                            $(".jjim-ajax[name="+jjim.productNum+"]").removeClass("material-symbols-outlined");
-                            $(".jjim-ajax[name="+jjim.productNum+"]").addClass("material-icons");
-                            $(".jjim-ajax[name="+jjim.productNum+"]").css("color","red");
-                        }else{                                                                             //찜되어있다면
-                            $(".jjim-ajax[name="+jjim.productNum+"]").addClass("material-symbols-outlined");
-                            $(".jjim-ajax[name="+jjim.productNum+"]").removeClass("material-icons");
-                            $(".jjim-ajax[name="+jjim.productNum+"]").css("color","rgb(167 162 162)");
+        mainService.jjimCheck(function (jjims) {
+            $(jjims).each(function (i, jjim) {
+                if(jjim.userNum==userNum){
+                    if($(".jjim-ajax[name="+jjim.productNum+"]").hasClass("material-symbols-outlined")){ //찜 안되어있다면
+                        $(".jjim-ajax[name="+jjim.productNum+"]").removeClass("material-symbols-outlined");
+                        $(".jjim-ajax[name="+jjim.productNum+"]").addClass("material-icons");
+                        $(".jjim-ajax[name="+jjim.productNum+"]").css("color","red");
+                    }else{                                                                             //찜되어있다면
+                        $(".jjim-ajax[name="+jjim.productNum+"]").addClass("material-symbols-outlined");
+                        $(".jjim-ajax[name="+jjim.productNum+"]").removeClass("material-icons");
+                        $(".jjim-ajax[name="+jjim.productNum+"]").css("color","rgb(167 162 162)");
 
-                        }
                     }
-                })
-            }
+                }
+            })
         })
     }
 
     //찜 카운트 ajax
     function jjimCounts(){
-        $.ajax({
-            url:"/store/jjimCount?productNum="+productNum,
-            type:"get",
-            success:function (count) {
-                let cnt=0;
-                cnt += count;
-                $(".jjimCount").text(cnt);
-            }
-
+        mainService.jjimcount(productNum,function (count) {
+            let cnt = 0;
+            cnt += count;
+            $(".jjimCount").text(cnt);
         })
     }
 
-    //--------------------------------------------------------- 리뷰 가져오기 ajax
-    $.ajax({
-        url: "/store/reviewLists/" + productNum,
-        type: "get",
-        dataType: "json",
-        success: function(reviews){   // 모든 리뷰 리스트
+    // 전체 리뷰 가져오기 ajax
+    function getReviewList(){
+        reviewService.getReviewList(productNum,function (reviews) {
             let str = "";
             if(reviews.length==0){
                 str += "현재 댓글이 없습니다.";
@@ -394,26 +451,18 @@
                 // 유저 아이디 & 사진 가져오기
                 (function(){
                     let userNum = reviews[i].userNum;
-                    $.ajax({
-                        url : "/store/userInfo?userNum=" + userNum,
-                        type : "get",
-                        async : false,
-                        success:function (user) {
-                            str += user.nickname;
-
-
-                            //사진 가져오기
-                            setTimeout(function () {
-                                let ps = $(".profile");
-                                $(ps[0]).attr("class","profile"+user.nickname);
-                            },50)
-
-                            // =======================================유저 사진 받아와서 뿌릴예정=========================================================
-                            let profileImg = "<img src='/userFile/display?fileName=" + user.profileUploadPath + "/"  + user.profileFileName + "' style='width: 34px; height: 34px;'>";
-                            setTimeout(function () {
-                                $(".profile"+user.nickname).html(profileImg);
-                            },100)
-                        }
+                    qnaService.getUserinfo(userNum,function (user) {
+                        str += user.nickname;
+                        //사진 가져오기
+                        setTimeout(function () {
+                            let ps = $(".profile");
+                            $(ps[0]).attr("class","profile"+user.nickname);
+                        },50)
+                        // =======================================유저 사진 받아와서 뿌릴예정=========================================================
+                        let profileImg = "<img src='/userFile/display?fileName=" + user.profileUploadPath + "/"  + user.profileFileName + "' style='width: 34px; height: 34px;'>";
+                        setTimeout(function () {
+                            $(".profile"+user.nickname).html(profileImg);
+                        },100)
                     })
                 })(i);
                 str +="</div>";
@@ -435,27 +484,22 @@
 
             // 상품의 모든 파일 보여주기 ..(실제 구매 후기 사진 란)
             for (let i =0; i< reviews.length;i++) {
-                $.ajax({
-                    url: "/productReviewFile/list/" + reviews[i].num,
-                    type: "get",
-                    success: function (files) {
-                        let text = "";
-                        $(files).each(function (i, file) {
-                            text += "<div class =\"reviewImageForm\">";
-                            text += "<picture class=\"moveImage\">";
-                            text += "<img src='/productReviewFile/display?fileName=" + file.uploadPath + "/" + file.uuid + "_" + file.fileName + "'>";
-                            text += "</picture>";
-                            text += "</div>";
-                        })
-                        $(".reviewImages").append(text);
-                    }
+                reviewService.getReviewFiles(reviews[i].num,function (files) {
+                    let text = "";
+                    $(files).each(function (i, file) {
+                        text += "<div class =\"reviewImageForm\">";
+                        text += "<picture class=\"moveImage\">";
+                        text += "<img src='/productReviewFile/display?fileName=" + file.uploadPath + "/" + file.uuid + "_" + file.fileName + "'>";
+                        text += "</picture>";
+                        text += "</div>";
+                    })
+                    $(".reviewImages").append(text);
                 })
             }
+        })
+    }
 
-        }
-    });
 
-    //------------------------------------------------------------------------------------------
     //리뷰 사진 누르면 리뷰 보기 페이지 이동
     $('.reviewImages').on("click","img",function () {
         location.href = "/store/goReviewList/"+productNum;
@@ -466,23 +510,20 @@
         e.preventDefault();
         location.href = "/store/goReviewList/"+productNum;
     })
-    //------------------------------------------------------------------------------------------
+
+
     //메인 사진걸기
-    $.ajax({
-        url: "/productFile/list/"+productNum,
-        type : "get",
-        success : function (files) {
+    function mainimg(){
+        mainService.getFileLists(productNum,function (files) {
             let str = "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/" + files[0].uuid + "_"  + files[0].fileName + "'>";
             $(".mainImage").html(str);
-            // $("img#"+productNum).attr("src", "/upload/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName )
-        }
-    })
+        })
+    }
+
     //------------------------------------------------------------------------------------------
     // 상세 페이지 사진 걸기
-    $.ajax({
-        url: "/productFile/list/"+productNum,
-        type : "get",
-        success : function (files) {
+    function subimg(){
+        mainService.getFileLists(productNum,function (files) {
             let str ="";
             if(files.length>1){
                 for(let i =1; i< files.length;i++){
@@ -493,132 +534,112 @@
                 str += "<img src='/productFile/display?fileName=" + files[0].uploadPath + "/" + files[0].uuid + "_"  + files[0].fileName + "'>";
                 $(".mainImage").html(str);
             }
-            // $("img#"+productNum).attr("src", "/upload/display?fileName=" + files[0].uploadPath + "/s_" + files[0].uuid + "_"  + files[0].fileName )
-        }
-    })
-    //------------------------------------------------------------------------------------------
-    //--------------------------------문의 가져오기 ajax-----------------------------
-    let 수정중 = false;
-    let 답글중 = false;
+        })
+    }
 
-    //문의 리스트 js
-    showQnaList(pageNum);
+
+
     function showQnaList(pageNum){
         수정중 = false;
-        $.ajax({
-            url: "/store/qnaList/" + productNum +"/"+ pageNum,
-            type: "get",
-            dataType: "json",
-            success: function(qnaDTO){
-                let str = "";
+        qnaService.qnaList({productNum:productNum,pageNum:pageNum},function (qnaDTO) {
 
-                if(qnaDTO.length==0){
-                    str += "현재 문의가 없습니다.";
-                    $('.ProductQnas').html(str);
-                    return;
-                }
-                $.each(qnaDTO.list, function(i, qna){
-                    str += "<div class=\"qnas\">";
-                    str += "<div class=\"flex\" style=\"align-items: center;\">";
-                    str += "<div class=\"profile_img\">";
-                    str += "</div>";
-                    str += "<div class=\"id_and_date\" style=\"flex-direction: column;\">";
-                    str += "<div class=\"admin_id\" style=\"color: black;\">";
-                    (function(){
-                        $.ajax({
-                            url : "/store/userInfo?userNum="+qna.userNum,
-                            type : "get",
-                            async : false,
-                            success:function (user) {
-                                str += user.nickname;
+            let str = "";
 
-                                //사진 가져오기
-                                setTimeout(function () {
-                                    let ps = $(".profile_img");
-                                    $(ps[0]).attr("class","profile_img"+user.nickname);
-                                },50)
-
-                                // =======================================유저 사진 받아와서 뿌릴예정=========================================================
-                                let profileImg = "<img src='/userFile/display?fileName=" + user.profileUploadPath + "/"  + user.profileFileName + "' style='width: 34px; height: 34px; border-radius: 50%; margin-right: 5px;'>";
-                                setTimeout(function () {
-                                    $(".profile_img"+user.nickname).html(profileImg);
-                                },100)
-                            }
-                        })
-                    })(i);
-                    str += "</div>";
-                    str += "<div class=\"admin_date\">"+qna.updateDate.substring(0,10)+"</div>";
-                    str += "</div>";
-
-                    // 문의 수정 삭제 만들기
-                    if(qna.userNum == userNum){  // 현재 로그인 한 유저와 글쓴이가 같을경우에만 수정삭제 가능.
-                        str += "<div style='display: flex; margin-left: 5px; font-size: 11px; position: absolute; right: 1%'>";
-                        str += "<div style='margin-right: 5px;' class='qnaModify' name=\""+qna.num+"\"><a style='color: black; cursor:pointer;'>수정</a></div>";
-                        str += "<div class='qnaDelete' name=\""+qna.num+"\"><a style='color: black; cursor:pointer;'>삭제</a></div>";
-                        str += "</div>";
-                    }else if(userNum==1){
-                        str += "<div style='font-size: 11px; position: absolute; right: 1%;'>";
-                        str += "<a href=\""+qna.num+"\" class='makeComment' style='color: black'>답글달기</a>";
-                        str += "</div>";
-                    }
-                    str += "</div>";
-                    str += "<div class=\"space\"></div>";
-                    str += "<div class=\"small_and_gray\"><p class=\"user_question\">"+qna.content+"</p></div>";
-                    str += "<div class=\"space\"></div>";
-                    str += "<div class=\"qna_replys\">";
-                    str += "<div class=\"qna_reply\">";
-                    (function (i) {
-                        $.ajax({
-                            url:"/store/qnaCommentList/"+qna.num,
-                            type : "get",
-                            async:false,
-                            success : function (qnaCommentLists) {
-                                $.each(qnaCommentLists, function (i, comment) {
-                                    str += "<div class=\"flex\" style=\"align-items: center;\">";
-                                    str += "<div class=\"admin_profile_img\"><img src=\"/images/chun8.png\"></div>";
-                                    str += "<div class=\"flex id_and_date\" style='width: 100%'>";
-                                    str += "<div class=\"admin_id\">운영자" + "&nbsp; </div>";
-                                    str += "<div class=\"admin_date\">" + comment.updateDate.substring(0,10) + "</div>";
-
-                                    if(userNum==1){ //관리자면
-                                        str += "<div style='position: absolute; right: 0; font-weight: normal;'>";
-                                        str += "<a href=\""+comment.num+"\" name=\""+qna.num+"\" id=\""+comment.content+"\" class=\"modify_adminComment\" style='margin-right: 5px;'>수정</a>";
-                                        str += "<a href=\""+comment.num+"\" name='"+qna.num+"' class=\"delete_adminComment\">삭제</a>";
-                                        str += "<a href=\""+comment.num+"\" name='"+qna.num+"' class=\"cancel_adminComment\" style='display: none; color: #000000;'>취소</a>";
-                                        str += "</div>";
-                                    }
-
-                                    str += "</div>";
-                                    str += "</div>";
-                                    str += "<div class=\"small_and_gray\" style=\"color: black;\">";
-                                    str += "<p class=\"admin_comment\" id=\""+comment.num+"\">" + comment.content + "</p>";
-                                    str += "</div>";
-                                    str += "<div class='testline' name=\""+comment.num+"\"></div>"
-                                })
-
-                            }
-                        })
-                    })(i);
-                    str += "<div class=\"space\"></div>";
-                    str += "</div>";
-                    str += "</div>";
-                    str += "<div class=\"flex commentBox\" name='"+ qna.num+ "' style=\"position: relative; align-items: center; height: 48px;\">";
-                    str += "<div class=\"do_admin_comment\">";
-                    str += "<div class=\"flex\">";
-                    str += "<input class=\"doComment\" name='"+qna.num+"' type=\"text\" placeholder=\"관리자만 입력할 수 있습니다\">";
-                    str += "<div class=\"send_plane\" name='"+qna.num+"'  style=\"width: 20px; height: 20px;\"><span class=\"material-symbols-outlined\">";
-                    str += "send";
-                    str += " </span></div>";
-                    str += "</div>";
-                    str += "</div>";
-                    str += "</div>";
-                    str += "</div>";
-                });
+            if(qnaDTO.length==0){
+                str += "현재 문의가 없습니다.";
                 $('.ProductQnas').html(str);
-                $(".commentBox").hide();
-                showQnaPage(qnaDTO.total);
+                return;
             }
-        });
+            $.each(qnaDTO.list, function(i, qna){
+                str += "<div class=\"qnas\">";
+                str += "<div class=\"flex\" style=\"align-items: center;\">";
+                str += "<div class=\"profile_img\">";
+                str += "</div>";
+                str += "<div class=\"id_and_date\" style=\"flex-direction: column;\">";
+                str += "<div class=\"admin_id\" style=\"color: black;\">";
+                (function(){
+                    qnaService.getUserinfo(qna.userNum,function (user) {
+                        str += user.nickname;
+
+                        //사진 가져오기
+                        setTimeout(function () {
+                            let ps = $(".profile_img");
+                            $(ps[0]).attr("class","profile_img"+user.nickname);
+                        },50)
+
+                        // =======================================유저 사진 받아와서 뿌릴예정=========================================================
+                        let profileImg = "<img src='/userFile/display?fileName=" + user.profileUploadPath + "/"  + user.profileFileName + "' style='width: 34px; height: 34px; border-radius: 50%; margin-right: 5px;'>";
+                        setTimeout(function () {
+                            $(".profile_img"+user.nickname).html(profileImg);
+                        },100)
+                    })
+                })(i);
+                str += "</div>";
+                str += "<div class=\"admin_date\">"+qna.updateDate.substring(0,10)+"</div>";
+                str += "</div>";
+
+                // 문의 수정 삭제 만들기
+                if(qna.userNum == userNum){  // 현재 로그인 한 유저와 글쓴이가 같을경우에만 수정삭제 가능.
+                    str += "<div style='display: flex; margin-left: 5px; font-size: 11px; position: absolute; right: 1%'>";
+                    str += "<div style='margin-right: 5px;' class='qnaModify' name=\""+qna.num+"\"><a style='color: black; cursor:pointer;'>수정</a></div>";
+                    str += "<div class='qnaDelete' name=\""+qna.num+"\"><a style='color: black; cursor:pointer;'>삭제</a></div>";
+                    str += "</div>";
+                }else if(userNum==1){
+                    str += "<div style='font-size: 11px; position: absolute; right: 1%;'>";
+                    str += "<a href=\""+qna.num+"\" class='makeComment' style='color: black'>답글달기</a>";
+                    str += "</div>";
+                }
+                str += "</div>";
+                str += "<div class=\"space\"></div>";
+                str += "<div class=\"small_and_gray\"><p class=\"user_question\">"+qna.content+"</p></div>";
+                str += "<div class=\"space\"></div>";
+                str += "<div class=\"qna_replys\">";
+                str += "<div class=\"qna_reply\">";
+                (function (i) {
+                    qnaService.qnaCommentList(qna.num,function (qnaCommentLists) {
+                        $.each(qnaCommentLists, function (i, comment) {
+                            str += "<div class=\"flex\" style=\"align-items: center;\">";
+                            str += "<div class=\"admin_profile_img\"><img src=\"/images/chun8.png\"></div>";
+                            str += "<div class=\"flex id_and_date\" style='width: 100%'>";
+                            str += "<div class=\"admin_id\">운영자" + "&nbsp; </div>";
+                            str += "<div class=\"admin_date\">" + comment.updateDate.substring(0,10) + "</div>";
+
+                            if(userNum==1){ //관리자면
+                                str += "<div style='position: absolute; right: 0; font-weight: normal;'>";
+                                str += "<a href=\""+comment.num+"\" name=\""+qna.num+"\" id=\""+comment.content+"\" class=\"modify_adminComment\" style='margin-right: 5px;'>수정</a>";
+                                str += "<a href=\""+comment.num+"\" name='"+qna.num+"' class=\"delete_adminComment\">삭제</a>";
+                                str += "<a href=\""+comment.num+"\" name='"+qna.num+"' class=\"cancel_adminComment\" style='display: none; color: #000000;'>취소</a>";
+                                str += "</div>";
+                            }
+
+                            str += "</div>";
+                            str += "</div>";
+                            str += "<div class=\"small_and_gray\" style=\"color: black;\">";
+                            str += "<p class=\"admin_comment\" id=\""+comment.num+"\">" + comment.content + "</p>";
+                            str += "</div>";
+                            str += "<div class='testline' name=\""+comment.num+"\"></div>"
+                        })
+                    })
+                })(i);
+                str += "<div class=\"space\"></div>";
+                str += "</div>";
+                str += "</div>";
+                str += "<div class=\"flex commentBox\" name='"+ qna.num+ "' style=\"position: relative; align-items: center; height: 48px;\">";
+                str += "<div class=\"do_admin_comment\">";
+                str += "<div class=\"flex\">";
+                str += "<input class=\"doComment\" name='"+qna.num+"' type=\"text\" placeholder=\"관리자만 입력할 수 있습니다\">";
+                str += "<div class=\"send_plane\" name='"+qna.num+"'  style=\"width: 20px; height: 20px;\"><span class=\"material-symbols-outlined\">";
+                str += "send";
+                str += " </span></div>";
+                str += "</div>";
+                str += "</div>";
+                str += "</div>";
+                str += "</div>";
+            });
+            $('.ProductQnas').html(str);
+            $(".commentBox").hide();
+            showQnaPage(qnaDTO.total);
+        })
         setTimeout(function () {
             usea();
         },300);
@@ -628,17 +649,12 @@
     $(".ProductQnas").on("click",".qnaDelete",function (e) {
         e.preventDefault();
         if(confirm("정말 삭제하시겠습니까?")){
-            $.ajax({
-                url:"/store/qnaDelete?num="+$(this).attr("name"),
-                type:"get",
-                success : function (res) {
-                    showQnaList(pageNum);
-                }
-            })
+            qnaService.qnaDelete($(this).attr("name"))
         }else{
             return false;
         }
     })
+
 
     //문의 수정
     $(".ProductQnas").on("click",".qnaModify",function (e) {
@@ -679,9 +695,7 @@
         }
         QnaPaging.html(str);
     }
-    // ======================================================================
-    // ======================================================================
-    //------------------------------------------------------------------------------------------
+
 
     // 문의 댓글 작성 -- 관리자
     $('.ProductQnas').on("click", ".send_plane", function () {
@@ -693,28 +707,19 @@
             return;
         }
         if(!수정중){//수정중==false 문의 댓글 등록
-            $.ajax({
-                url:"/store/qnaCommentWrite",
-                type:"post",
-                data: JSON.stringify({content : $content,userNum: 22,qnaNum:$qnaNum}),
-                contentType: "application/json",
-                success : function (comment) {
-                    showQnaList(pageNum);
-                    수정중=false;
-                    답글중 = false;
-                }
+            let data = {content : $content,userNum: 22,qnaNum:$qnaNum};
+
+            qnaService.qnaCommentWrite(data, function () {
+                showQnaList(pageNum);
+                수정중=false;
+                답글중 = false;
             })
         }else{  // 문의 댓글 수정
-            $.ajax({
-                url: "/store/qnaCommentUpdate",
-                type : "post",
-                data : {num: $(this).attr("name"), content : $content},
-                success : function (result) {
-                    showQnaList(pageNum);
-                    수정중=false;
-                    답글중 = false;
-                }
-
+            let data = {num: $(this).attr("name"), content : $content};
+            qnaService.qnaCommentUpdate(data,function () {
+                showQnaList(pageNum);
+                수정중=false;
+                답글중 = false;
             })
         }
     })
@@ -787,29 +792,16 @@
     // 문의의 관리자 댓글 삭제
     $('.ProductQnas').on("click", ".delete_adminComment", function (e) {
         e.preventDefault();
-        $.ajax({
-            url:"/store/qnaCommentDelete?qnaCommentNum="+$(this).attr("href"),
-            type : "get",
-            success : function (res) {
-                showQnaList(pageNum);
-            }
+        qnaService.qnaCommentDelete($(this).attr("href"),function () {
+            showQnaList(pageNum);
         })
     })
 
-    //scroll top
+    // ============================================scroll top =================================
     $('.gototop').click(function(){
         $('html, body').animate({scrollTop : 0},300);
     });
 
-
-    //상품 상세 링크
-    let $as = $('.nav_item').find('a');
-    $as.click(function(){
-        $as.removeClass('active');
-        if(!$(this).hasClass('active')) {
-            $(this).addClass('active');
-        }
-    })
 
     //a태그 내부 페이지 이동
     function usea(){
@@ -844,12 +836,6 @@
         $('.share_container').css("display","none");
     })
 
-    modal = document.getElementsByClassName("share_container")[0];
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
 
     // 리뷰로 이동 페이지
     $('.moveReviewTotal').click(function (e) {
@@ -868,44 +854,6 @@
         e.preventDefault();
         location.href = "/store/qnaWrite?productNum="+productNum;
     })
-
-    //--------------------------- 공유하기 api----------------------------------
-
-    // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
-    Kakao.init('a976ec1bd79664fdd82edd1c18835ef7');
-
-    // SDK 초기화 여부를 판단합니다.
-    console.log(Kakao.isInitialized());
-    function kakaoShare() {
-
-        Kakao.Link.sendDefault({
-            objectType: 'feed',
-            content: {
-                title: '주방용품', //카카오공유하기 시 타이틀
-                description: '초록색이 좋아 고무장갑', //카카오공유하기 시 설명
-                imageUrl: 'http://127.0.0.1:5500/src/main/resources/static/images/5.jpg', //카카오공유하기 시 썸네일 이미지 경로
-                link: {
-                    mobileWebUrl: 'http://localhost:10010/store/detail.html', //카카오공유하기 시 클릭 후 이동 경로
-                    webUrl: 'http://localhost:10010/store/detail.html', //카카오공유하기 시 클릭 후 이동 경로
-                },
-            },
-            buttons: [
-                {
-                    title: '웹으로 보기',
-                    link: {
-                        mobileWebUrl: 'http://localhost:10010/store/detail.html', //카카오공유하기 시 클릭 후 이동 경로
-                        webUrl: 'http://localhost:10010/store/detail.html', //카카오공유하기 시 클릭 후 이동 경로
-                    },
-                },
-            ],
-            // 카카오톡 미설치 시 카카오톡 설치 경로이동
-            installTalk: true,
-
-        })
-        $('.share_container').css("display","none");
-    }
-
-
 
 
     //  클립보드 복사하기
@@ -939,11 +887,6 @@
         $('.share_container').css("display","none");
 
     }
-
-
-
-
-
 
 
 </script>

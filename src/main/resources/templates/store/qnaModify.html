@@ -37,7 +37,7 @@
                         <div class="id_and_date">
                             <div class="review_id"></div>
                             <div class="admin_date" id="admin_date"></div>
-                                                        <!--세션으로 받을값-->
+                            <!--세션으로 받을값-->
                             <input type="hidden" name="userNum" th:value="*{userNum}">
                             <input type="hidden" name="productNum" th:value="*{productNum}">
                             <input type="hidden" name="num" th:value="*{num}">
@@ -62,24 +62,23 @@
 <div th:replace="~{/main/Footer :: FooterImport}"></div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/assets/js/storeQna.js"></script>
+<script src="/assets/js/storeMain.js"></script>
+<script src="/assets/js/storeReview.js"></script>
 <script th:inline="javascript">
     let qnaDetail = [[${qnaDetail}]];
-    console.log("qnaDetail="+qnaDetail)
 
     //현재 받은 세션으로 userNum 값 구하기
-    let userNum = 22;  // 임시 데이터
-    $.ajax({
-        url : "/store/userInfo?userNum="+userNum,
-        type : "get",
-        success : function (user) {
-            $(".review_id").text(user.nickname);
-            //사진 가져오기
-            // =======================================유저 사진 받아와서 뿌릴예정=========================================================
-            let profileImg = "<img src='/userFile/display?fileName=" + user.profileUploadPath + "/"  + user.profileFileName + "' style='width: 34px; height: 34px;'>";
-            setTimeout(function () {
-                $(".profile_img").html(profileImg);
-            },100)
-        }
+    let userNum = [[${userNum}]];
+
+    qnaService.getUserinfo(userNum,function (user) {
+        $(".review_id").text(user.nickname);
+        //사진 가져오기
+        // =======================================유저 사진 받아와서 뿌릴예정=========================================================
+        let profileImg = "<img src='/userFile/display?fileName=" + user.profileUploadPath + "/"  + user.profileFileName + "' style='width: 34px; height: 34px;'>";
+        setTimeout(function () {
+            $(".profile_img").html(profileImg);
+        },100)
     })
 
 

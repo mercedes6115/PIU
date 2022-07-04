@@ -56,6 +56,11 @@
                 <input name="totalitems" type="hidden">
                 <input name="totalpayment" type="hidden">
             </div>
+            <div class="flex" style="justify-content: space-between;">
+                <div>잔여 포인트</div>
+                <div class="pay_point flex"> <p class="remain-points" name="remain-points" ></p></div>
+                <input type="hidden">
+            </div>
 
             <div style="width: 100%;"> <button class="toBuy goPayment" type="button" onclick="goNext()" >결제 하기 </button></div>
 
@@ -76,6 +81,10 @@
 
 <script th:inline="javascript">
     let productNum = [[${product.num}]];
+    let price = [[${product.price}]];
+    let upoint = [[${user.point}]];
+    let remainpoint = [[${user.getPoint}-${product.price}]];
+    let count;
 
     //scroll top
     $('.toTop').click(function(){
@@ -100,6 +109,10 @@
     $('.total_price').text($amount*$item_price + "P");  //700 대신 상품 가격입력
     $('input[name="totalitems"]').val($amount);
     $('input[name="totalpayment"]').val($amount*$item_price);
+    let result = upoint - $amount*$item_price;
+
+    $('.remain-points').text(result+'P');
+    $('.remain-points').css("color","#1F89FF");
 
     //+,- 수량 버튼 클릭시 총 포인트 계산 및  input에 넣어서 넘길준비
     $oper.click(function(){
@@ -110,6 +123,8 @@
                 $('.total_price').empty().text($amount*$item_price + "P");
                 $('input[name="totalitems"]').val($amount);
                 $('input[name="totalpayment"]').val($amount*$item_price);
+                result = upoint - $amount*$item_price;
+                $('.remain-points').text(result+'P');
             }
         }else if($(this).hasClass('plus')){
             $('.item_amount_input').attr("value",$amount+1);
@@ -117,6 +132,8 @@
             $('.total_price').empty().text($amount*$item_price + "P");
             $('input[name="totalitems"]').val($amount);
             $('input[name="totalpayment"]').val($amount*$item_price);
+            result = upoint - $amount*$item_price;
+            $('.remain-points').text(result+'P');
         }
     })
 
@@ -125,9 +142,14 @@
 
 <script th:inline="javascript">
     // var count = 1;
-    let price = [[${product.price}]];
-    let upoint = [[${user.point}]];
-    let count;
+
+    let url = [[${url}]];
+
+    if(url == "store") {
+        $('.nav-container').css("display", "none");
+        $('.menu-plogging').css("color", "black");
+        $('.menu-store').css("color","#1F89FF");
+    }
 
 
     $(document).ready(function() {
@@ -161,6 +183,11 @@
             $(".goPayment").on("click",function () {
                 $("#gogo").submit();
             })
+        }
+        if (result < 0){
+            $('.remain-points').css("color", "red");
+        } else if (result >= 0){
+            $('.remain-points').css("color", "#1F89FF");
         }
     })
 

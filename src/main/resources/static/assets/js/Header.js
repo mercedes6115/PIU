@@ -5,9 +5,21 @@ $('.creater').click(function (e) {
         alert("기업 회원만 이용가능합니다. 기업으로 회원가입해주세요.");
 
     } else {
-        location.href = "/user/center";
+        location.href = "/group/main";
     }
 })
+
+if(url == "store") {
+    $('.nav-container').css("display", "none");
+    $('.menu-plogging').css("color", "black");
+    $('.menu-store').css("color","#1F89FF");
+} else {
+    $('.nav-container').css("display", "block");
+    $('.menu-plogging').css("color", "#1F89FF");
+    $('.menu-store').css("color","black");
+}
+
+
 
 
 $(function () {

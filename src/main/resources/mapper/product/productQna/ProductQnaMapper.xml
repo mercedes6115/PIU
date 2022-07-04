@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.pickitup.mapper.product.productQna.ProductQnaMapper">
-<!--    <select id="getList" resultType="productQnaVO">-->
-<!--    SELECT-->
-<!--        NUM, CONTENT, REGIST_DATE, UPDATE_DATE,-->
-<!--        USER_NUM, PRODUCT_NUM-->
-<!--    FROM TBL_PRODUCT_QNA-->
-<!--    WHERE PRODUCT_NUM=#{productNum}-->
-<!--    ORDER BY UPDATE_DATE DESC-->
-<!--    </select>-->
+    <!--    <select id="getList" resultType="productQnaVO">-->
+    <!--    SELECT-->
+    <!--        NUM, CONTENT, REGIST_DATE, UPDATE_DATE,-->
+    <!--        USER_NUM, PRODUCT_NUM-->
+    <!--    FROM TBL_PRODUCT_QNA-->
+    <!--    WHERE PRODUCT_NUM=#{productNum}-->
+    <!--    ORDER BY UPDATE_DATE DESC-->
+    <!--    </select>-->
 
-<!--    ======================criteria 완성시======================-->
+    <!--    ======================criteria 완성시======================-->
     <select id="getList" resultType="productQnaVO">
         <![CDATA[
         SELECT  NUM, CONTENT, REGIST_DATE, UPDATE_DATE, USER_NUM, PRODUCT_NUM
@@ -28,12 +28,12 @@
         ORDER BY UPDATE_DATE DESC
         ]]>
     </select>
-<!--    ======================criteria 완성시======================-->
+    <!--    ======================criteria 완성시======================-->
 
     <select id="getDetail" resultType="productQnaVO">
     SELECT
         NUM, CONTENT, REGIST_DATE, UPDATE_DATE,
-        STATUS, USER_NUM, PRODUCT_NUM
+        USER_NUM, PRODUCT_NUM
     FROM TBL_PRODUCT_QNA
     WHERE NUM=#{num}
     ORDER BY UPDATE_DATE DESC

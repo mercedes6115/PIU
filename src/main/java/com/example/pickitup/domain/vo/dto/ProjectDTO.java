@@ -16,7 +16,7 @@ public class ProjectDTO {
     private String course;
     private String startTime;
     private String endTime;
-    private int terrain;
+    private String terrain;
     private String status;
     private int point;
     private String approval;

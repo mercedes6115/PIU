@@ -36,6 +36,7 @@
     top: 0;
     left: 0;
     position: sticky;
+    display: block;
 }
 
 .header1{
@@ -45,11 +46,10 @@
 }
 .header2{
     display: flex;
-    width: 100%;
-    max-width: 1216px;
+    max-width: 1176px;
+    width: calc(100% - 40px);
     padding-left: 20px;
     padding-right: 20px;
-    -webkit-box-align: stretch;
     align-items: stretch;
     flex-direction: column;
 }
@@ -66,7 +66,6 @@
     width: 100%;
     flex-direction: row;
     position: relative;
-    align-items: center;
 }
 .header3 > a {
     color: black;
@@ -81,13 +80,9 @@
 
 
 .logo-wrap{
-    font-family:'Openas';
     display: block;
-    width: auto;
-    FONT-WEIGHT: 600;
-    font-size: 25px;
-    margin-top: 5px;
-
+    align-items: stretch;
+    flex-direction: column;
 }
 
 @media screen and (min-width: 1024px){
@@ -98,8 +93,13 @@
 
 
 .logo-wrap1{
+    font-family:'Openas';
     display: block;
     width: auto;
+    height: 24px;
+    FONT-WEIGHT: 600;
+    font-size: 25px;
+    padding-top: 33%;
 }
 .logo-font{
     font-family:'Openas';
@@ -179,13 +179,13 @@
 }
 
 .menu-plogging{
-    font-family: 'Noto Sans KR';
+    font-family: 'SDSamliphopangche_Basic';
     border-width: 0;
     color: #1F89FF;
     margin: 0;
     padding: 0;
     font-size: 1.25rem;
-    font-weight: 700;
+    font-weight: 500;
     line-height: 1.625rem;
     white-space: nowrap;
     text-decoration-line: none;
@@ -200,13 +200,13 @@ a{
     flex-shrink: 0;
 }
 .menu-store{
-    font-family: 'Noto Sans KR';
+    font-family: 'SDSamliphopangche_Basic';
     border-width: 0;
     color: #1A1A1A;
     margin: 0;
     padding: 0;
     font-size: 1.25rem;
-    font-weight: 700;
+    font-weight: 500;
     line-height: 1.625rem;
     white-space: nowrap;
     text-decoration-line: none;
@@ -250,13 +250,11 @@ a{
 .search-box1{
     display: flex;
     width: 100%;
-    -webkit-box-align: stretch;
     align-items: stretch;
     flex-direction: column;
 }
 .search-box2{
     display: flex;
-    -webkit-box-align: center;
     align-items: center;
     flex-direction: row;
 }
@@ -424,12 +422,14 @@ a{
 .myplogging{
     font-family: 'Noto Sans KR', sans-serif;
     border-width: 0px;
+    color: #1A1A1A;
     margin: 0px;
     padding: 0px;
+    padding-top: 10px;
     font-size: 0.875rem;
-    font-weight: 400;
+    font-weight: bold;
     line-height: 1.125rem;
-    color: black;
+    text-decoration-line: none;
 }
 
 
