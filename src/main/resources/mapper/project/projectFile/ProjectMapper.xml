@@ -292,8 +292,6 @@
     <delete id="delete" parameterType="long">
        DELETE FROM TBL_PROJECT WHERE NUM = #{num}
     </delete>
-=======
->>>>>>> b2cd0901126a359fe8df5d467f801c46a2af1f90
 <!--    <insert id="insert" parameterType="projectVO">-->
 <!--        INSERT INTO TBL_PROJECT-->
 <!--        <selectKey keyProperty="num" resultType="long" order="BEFORE">-->
@@ -321,7 +319,6 @@
 <!--    <delete id="delete" parameterType="long">-->
 <!--       DELETE FROM TBL_PROJECT WHERE NUM = #{num}-->
 <!--    </delete>-->
->>>>>>> bb94eb11b3c61be2b1a8473dd9872121aa718257
 
     <!-- 프로젝트 찜순 목록(상위 10개)   -->
     <select id="getListJJim" resultType="projectVO">
